@@ -1,0 +1,57 @@
+package dclelpB6;
+
+{$R *.res}
+{$IFDEF IMPLICITBUILDING This IFDEF should not be used by users}
+{$ALIGN 8}
+{$ASSERTIONS ON}
+{$BOOLEVAL OFF}
+{$DEBUGINFO OFF}
+{$EXTENDEDSYNTAX ON}
+{$IMPORTEDDATA ON}
+{$IOCHECKS ON}
+{$LOCALSYMBOLS OFF}
+{$LONGSTRINGS ON}
+{$OPENSTRINGS ON}
+{$OPTIMIZATION ON}
+{$OVERFLOWCHECKS OFF}
+{$RANGECHECKS OFF}
+{$REFERENCEINFO OFF}
+{$SAFEDIVIDE OFF}
+{$STACKFRAMES OFF}
+{$TYPEDADDRESS OFF}
+{$VARSTRINGCHECKS ON}
+{$WRITEABLECONST ON}
+{$MINENUMSIZE 1}
+{$IMAGEBASE $400000}
+{$DEFINE RELEASE}
+{$DEFINE BUIlDER_USED}
+{$ENDIF IMPLICITBUILDING}
+{$DESCRIPTION 'EldoS Visual Components (Design-time)'}
+{$DESIGNONLY}
+{$IMPLICITBUILD OFF}
+
+requires
+  vcl,
+  dclstd,
+  elpackB6;
+
+contains
+  ElReg in 'ElReg.pas',
+  frmFormPers in 'Design\frmFormPers.pas' {PersPropsForm},
+  MlCapProp in 'Design\MlCapProp.pas' {MlCapEditDialog},
+  ElTBDsgn in 'Design\ElTBDsgn.pas',
+  frmSoundMap in 'Design\frmSoundMap.pas' {SoundMapForm},
+  ColorMapProp in 'Design\ColorMapProp.pas',
+  frmItemsProp in 'Design\frmItemsProp.pas' {ItemsPropDlg},
+  frmItemCol in 'Design\frmItemCol.pas' {ItemColDlg},
+  frmSectEdit in 'Design\frmSectEdit.pas' {SectEdit},
+  frmSectProp in 'Design\frmSectProp.pas' {ElSectionsPropDlg},
+  frmStrPoolEdit in 'Design\frmStrPoolEdit.pas',
+  ElImageIndexProp in 'Design\ElImageIndexProp.pas',
+  ColnProp in 'Design\ColnProp.pas',
+  PgCtlProp in 'Design\PgCtlProp.pas',
+  ElMenuDsgn in 'Design\ElMenuDsgn.pas',
+  ElEBDsgn in 'Design\ElEBDsgn.pas',
+  TreeDsgn in 'Design\TreeDsgn.pas';
+
+end.

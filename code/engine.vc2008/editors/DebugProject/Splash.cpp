@@ -1,0 +1,15 @@
+
+#pragma hdrstop
+
+#include "Splash.h"
+//---------------------------------------------------------------------------
+#pragma package(smart_init)
+#pragma link "ExtBtn"
+#pragma resource "*.dfm"
+TfrmSplash *frmSplash;
+//---------------------------------------------------------------------------
+__fastcall TfrmSplash::TfrmSplash(TComponent* Owner)
+    : TForm(Owner)
+{
+}
+//---------------------------------------------------------------------------

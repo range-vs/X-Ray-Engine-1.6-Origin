@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>1899.12.30 00:00:00.000.397,E:\src_cop_x64_10_4\code\SDK\components\AlexMX\EditorDebug.pas=E:\src_cop_x64_10_4\code\SDK\components\AlexMX\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.567,E:\src_cop_x64_10_4\code\SDK\components\AlexMX\EditorDebugReg.pas=E:\src_cop_x64_10_4\code\SDK\components\AlexMX\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.467,E:\src_cop_x64_10_4\code\SDK\components\AlexMX\editor_debug.dproj=C:\Users\admin_test\Documents\Embarcadero\Studio\Projects\Package1.dproj</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.933,E:\src_cop_x64_10_4\code\SDK\components\AlexMX\editor_debug.dproj=E:\src_cop_x64_10_4\code\SDK\components\AlexMX\editor_debug.dproj</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.857,=vcl.dcp</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.652,=E:\src_cop_x64_10_4\code\SDK\components\AlexMX\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.964,=E:\src_cop_x64_10_4\code\SDK\components\AlexMX\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.083,=rtl.dcp</Transaction>
+  </Transactions>
+</BorlandProject>

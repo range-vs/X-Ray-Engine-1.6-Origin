@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<ProjectSortOrder AutoSort="0" SortType="0">
+    <File Path="Design"/>
+    <File Path="Design\ColnProp.pas"/>
+    <File Path="Design\ColorMapProp.pas"/>
+    <File Path="Design\ElEBDsgn.pas"/>
+    <File Path="Design\ElImageIndexProp.pas"/>
+    <File Path="Design\ElMenuDsgn.pas"/>
+    <File Path="Design\ElTBDsgn.pas"/>
+    <File Path="Design\frmFormPers.pas"/>
+    <File Path="Design\frmFormPers.dfm"/>
+    <File Path="Design\frmItemCol.pas"/>
+    <File Path="Design\frmItemCol.dfm"/>
+    <File Path="Design\frmItemsProp.pas"/>
+    <File Path="Design\frmItemsProp.dfm"/>
+    <File Path="Design\frmSectEdit.pas"/>
+    <File Path="Design\frmSectEdit.dfm"/>
+    <File Path="Design\frmSectProp.pas"/>
+    <File Path="Design\frmSectProp.dfm"/>
+    <File Path="Design\frmSoundMap.pas"/>
+    <File Path="Design\frmSoundMap.dfm"/>
+    <File Path="Design\frmStrPoolEdit.pas"/>
+    <File Path="Design\MlCapProp.pas"/>
+    <File Path="Design\MlCapProp.dfm"/>
+    <File Path="Design\PgCtlProp.pas"/>
+    <File Path="Design\TreeDsgn.pas"/>
+    <File Path="dclelpB6.cpp"/>
+    <File Path="ElReg.pas"/>
+    <File Path="dclstd.dcp"/>
+    <File Path="elpackB6.dcp"/>
+    <File Path="vcl.dcp"/>
+  </ProjectSortOrder>
+</BorlandProject>

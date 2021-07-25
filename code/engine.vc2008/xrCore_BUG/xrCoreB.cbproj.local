@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>1899.12.30 00:00:00.000.381,E:\src_cop_x64\code\engine.vc2008\xrCore\string_concatenations.h=</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.845,=E:\src_cop_x64\code\engine.vc2008\xrCore\string_concatenations.h</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.712,=E:\src_cop_x64_10_4\code\engine.vc2008\xrCore\memory_usage.cpp</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.337,=E:\src_cop_x64_10_4\code\engine.vc2008\editors\Include\stack_trace.cpp</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.325,E:\src_cop_x64_10_4\code\engine.vc2008\xrCore\rt_lzo.h=</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.118,E:\src_cop_x64\code\engine.vc2008\xrCore\string_concatenations.h=</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.614,E:\src_cop_x64\code\engine.vc2008\xrCore\string_concatenations.cpp=</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.953,=E:\src_cop_x64\code\engine.vc2008\xrCore\string_concatenations_inline.h</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.233,E:\src_cop_x64\code\engine.vc2008\xrCore\string_concatenations_inline.h=</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.274,E:\src_cop_x64_10_4\code\engine.vc2008\xrCore\rt_lzo.cpp=</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.921,=E:\src_cop_x64\code\engine.vc2008\xrCore\string_concatenations.cpp</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.528,=E:\src_cop_x64\code\engine.vc2008\xrCore\NET_utils.cpp</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.859,E:\src_cop_x64\code\engine.vc2008\xrCore\string_concatenations_inline.h=</Transaction>
+  </Transactions>
+</BorlandProject>

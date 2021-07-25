@@ -1,0 +1,120 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{73363CBA-0C3A-4193-93EC-1DA36ACE8AFD}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="ElPack\Code\dceldbB6.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="ElPack\Code\dcelppB6.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="ElPack\Code\dclelpB6.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="ElPack\Code\elpackB6.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="ElPack\Code\elpkdbB6.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="ElPack\Code\elpproB6.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="AlexMX\editor.dproj">
+            <Dependencies>ElPack\Code\dceldbB6.dproj;ElPack\Code\dcelppB6.dproj;ElPack\Code\dclelpB6.dproj</Dependencies>
+        </Projects>
+        <Projects Include="AlexMX\editorB.dproj">
+            <Dependencies>ElPack\Code\elpackB6.dproj;ElPack\Code\elpkdbB6.dproj;ElPack\Code\elpproB6.dproj</Dependencies>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="dceldbB6">
+        <MSBuild Projects="ElPack\Code\dceldbB6.dproj"/>
+    </Target>
+    <Target Name="dceldbB6:Clean">
+        <MSBuild Projects="ElPack\Code\dceldbB6.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="dceldbB6:Make">
+        <MSBuild Projects="ElPack\Code\dceldbB6.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="dcelppB6">
+        <MSBuild Projects="ElPack\Code\dcelppB6.dproj"/>
+    </Target>
+    <Target Name="dcelppB6:Clean">
+        <MSBuild Projects="ElPack\Code\dcelppB6.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="dcelppB6:Make">
+        <MSBuild Projects="ElPack\Code\dcelppB6.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="dclelpB6">
+        <MSBuild Projects="ElPack\Code\dclelpB6.dproj"/>
+    </Target>
+    <Target Name="dclelpB6:Clean">
+        <MSBuild Projects="ElPack\Code\dclelpB6.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="dclelpB6:Make">
+        <MSBuild Projects="ElPack\Code\dclelpB6.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="elpackB6">
+        <MSBuild Projects="ElPack\Code\elpackB6.dproj"/>
+    </Target>
+    <Target Name="elpackB6:Clean">
+        <MSBuild Projects="ElPack\Code\elpackB6.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="elpackB6:Make">
+        <MSBuild Projects="ElPack\Code\elpackB6.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="elpkdbB6">
+        <MSBuild Projects="ElPack\Code\elpkdbB6.dproj"/>
+    </Target>
+    <Target Name="elpkdbB6:Clean">
+        <MSBuild Projects="ElPack\Code\elpkdbB6.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="elpkdbB6:Make">
+        <MSBuild Projects="ElPack\Code\elpkdbB6.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="elpproB6">
+        <MSBuild Projects="ElPack\Code\elpproB6.dproj"/>
+    </Target>
+    <Target Name="elpproB6:Clean">
+        <MSBuild Projects="ElPack\Code\elpproB6.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="elpproB6:Make">
+        <MSBuild Projects="ElPack\Code\elpproB6.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="editor" DependsOnTargets="dceldbB6;dcelppB6;dclelpB6">
+        <MSBuild Projects="AlexMX\editor.dproj"/>
+    </Target>
+    <Target Name="editor:Clean" DependsOnTargets="dceldbB6:Clean;dcelppB6:Clean;dclelpB6:Clean">
+        <MSBuild Projects="AlexMX\editor.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="editor:Make" DependsOnTargets="dceldbB6:Make;dcelppB6:Make;dclelpB6:Make">
+        <MSBuild Projects="AlexMX\editor.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="editorB" DependsOnTargets="elpackB6;elpkdbB6;elpproB6">
+        <MSBuild Projects="AlexMX\editorB.dproj"/>
+    </Target>
+    <Target Name="editorB:Clean" DependsOnTargets="elpackB6:Clean;elpkdbB6:Clean;elpproB6:Clean">
+        <MSBuild Projects="AlexMX\editorB.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="editorB:Make" DependsOnTargets="elpackB6:Make;elpkdbB6:Make;elpproB6:Make">
+        <MSBuild Projects="AlexMX\editorB.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="dceldbB6;dcelppB6;dclelpB6;elpackB6;elpkdbB6;elpproB6;editor;editorB"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="dceldbB6:Clean;dcelppB6:Clean;dclelpB6:Clean;elpackB6:Clean;elpkdbB6:Clean;elpproB6:Clean;editor:Clean;editorB:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="dceldbB6:Make;dcelppB6:Make;dclelpB6:Make;elpackB6:Make;elpkdbB6:Make;elpproB6:Make;editor:Make;editorB:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>

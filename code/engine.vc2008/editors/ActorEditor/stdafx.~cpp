@@ -1,0 +1,37 @@
+#include "stdafx.h"
+#pragma hdrstop
+
+// external dependencies
+
+#pragma comment(lib,"dinput8B.lib")
+#pragma comment(lib,"freeimageB.lib")
+//#pragma comment(lib,"d3d9.lib")
+#pragma comment(lib,"dxtB.lib")
+//.#pragma comment(lib,"xrProgressiveB.lib")
+#pragma comment(lib,"MagicFMB.lib")
+#pragma comment(lib,"EToolsB.lib")
+//.#pragma comment(lib,"LWOB.lib")
+
+#if defined(__RELEASE)
+#pragma comment(lib,"xrECoreB_release.lib")
+#pragma comment(lib, "libogg_static_release.lib")
+#pragma comment(lib,"libtheora_release.lib")
+#pragma comment(lib,"xrEPropsB_release.lib")
+#pragma comment(lib,"xrCoreB_release.lib")
+#pragma comment(lib,"xrSoundB_release.lib")
+#elif defined(__DEBUG)
+#pragma comment(lib,"xrECoreB.lib")
+#pragma comment(lib,"xrEPropsB.lib")
+#pragma comment(lib,"xrCoreB.lib")
+#pragma comment(lib,"xrSoundB.lib")
+#pragma comment(lib, "libogg_static.lib")
+#pragma comment(lib,"libtheora.lib")
+#elif defined(__MIXED)
+#pragma comment(lib,"xrECoreB_mixed.lib")
+#pragma comment(lib,"xrEPropsB_mixed.lib")
+#pragma comment(lib,"xrCoreB_mixed.lib")
+#pragma comment(lib,"xrSoundB_mixed.lib")
+#pragma comment(lib, "libogg_static_mixed.lib")
+#pragma comment(lib,"libtheora_mixed.lib")
+#endif
+

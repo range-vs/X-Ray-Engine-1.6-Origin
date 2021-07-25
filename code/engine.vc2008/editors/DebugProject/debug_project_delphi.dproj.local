@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>1899.12.30 00:00:00.000.872,=C:\Users\admin_test\Documents\Embarcadero\Studio\Projects\Unit2.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.459,C:\Users\admin_test\Documents\Embarcadero\Studio\Projects\Unit2.pas=E:\src_cop_x64\code\engine.vc2008\editors\DebugProject\Unit2.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.373,=E:\src_cop_x64_10_4\code\engine.vc2008\editors\DebugProject\Unit3.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.476,E:\src_cop_x64_10_4\code\engine.vc2008\editors\DebugProject\Unit3.pas=E:\src_cop_x64_10_4\code\engine.vc2008\editors\DebugProject\test_delphi_unit.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.869,E:\src_cop_x64_10_4\code\engine.vc2008\editors\DebugProject\Unit2.pas=</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.459,C:\Users\admin_test\Documents\Embarcadero\Studio\Projects\Unit2.dfm=E:\src_cop_x64\code\engine.vc2008\editors\DebugProject\Unit2.dfm</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.429,C:\Users\admin_test\Documents\Embarcadero\Studio\Projects\Project1.dproj=E:\src_cop_x64\code\engine.vc2008\editors\DebugProject\debug_project_delphi.dproj</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.476,E:\src_cop_x64_10_4\code\engine.vc2008\editors\DebugProject\Unit3.dfm=E:\src_cop_x64_10_4\code\engine.vc2008\editors\DebugProject\test_delphi_unit.dfm</Transaction>
+  </Transactions>
+</BorlandProject>

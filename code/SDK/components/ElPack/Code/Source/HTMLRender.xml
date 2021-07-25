@@ -1,0 +1,670 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<namespace name="HTMLRender" platform="Win32">
+  <const name="flIsLink" type="Integer" file="HTMLRender.pas" line="136">
+    <value>
+      $1
+    </value>
+  </const>
+  <const name="flSub" type="Integer" file="HTMLRender.pas" line="137">
+    <value>
+      $2
+    </value>
+  </const>
+  <const name="flSuper" type="Integer" file="HTMLRender.pas" line="138">
+    <value>
+      $4
+    </value>
+  </const>
+  <type name="TElFString" type="WideString" file="ElStrUtils.pas" line="77" />
+  <const name="hitChar" type="THTMLItemType" file="HTMLRender.pas" line="148">
+    <value>
+      hitChar
+    </value>
+  </const>
+  <const name="hitSoftBreak" type="THTMLItemType" file="HTMLRender.pas" line="148">
+    <value>
+      hitSoftBreak
+    </value>
+  </const>
+  <const name="hitBreak" type="THTMLItemType" file="HTMLRender.pas" line="148">
+    <value>
+      hitBreak
+    </value>
+  </const>
+  <const name="hitPara" type="THTMLItemType" file="HTMLRender.pas" line="148">
+    <value>
+      hitPara
+    </value>
+  </const>
+  <const name="hitBitmap" type="THTMLItemType" file="HTMLRender.pas" line="148">
+    <value>
+      hitBitmap
+    </value>
+  </const>
+  <const name="hitHR" type="THTMLItemType" file="HTMLRender.pas" line="148">
+    <value>
+      hitHR
+    </value>
+  </const>
+  <const name="hitLI" type="THTMLItemType" file="HTMLRender.pas" line="148">
+    <value>
+      hitLI
+    </value>
+  </const>
+  <const name="hitUL" type="THTMLItemType" file="HTMLRender.pas" line="148">
+    <value>
+      hitUL
+    </value>
+  </const>
+  <enum name="THTMLItemType" file="HTMLRender.pas" line="148">
+    <element value="0" name="hitChar" file="HTMLRender.pas" line="148" />
+    <element value="1" name="hitSoftBreak" file="HTMLRender.pas" line="148" />
+    <element value="2" name="hitBreak" file="HTMLRender.pas" line="148" />
+    <element value="3" name="hitPara" file="HTMLRender.pas" line="148" />
+    <element value="4" name="hitBitmap" file="HTMLRender.pas" line="148" />
+    <element value="5" name="hitHR" file="HTMLRender.pas" line="148" />
+    <element value="6" name="hitLI" file="HTMLRender.pas" line="148" />
+    <element value="7" name="hitUL" file="HTMLRender.pas" line="148" />
+  </enum>
+  <set name="THTMLItemTypes" type="THTMLItemType">
+    <element name="hitChar" />
+    <element name="hitSoftBreak" />
+    <element name="hitBreak" />
+    <element name="hitPara" />
+    <element name="hitBitmap" />
+    <element name="hitHR" />
+    <element name="hitLI" />
+    <element name="hitUL" />
+  </set>
+  <class name="TElHTMLItem" file="HTMLRender.pas" line="155">
+    <ancestor name="TObject" namespace="System">
+      <methodref name="Create" visibility="public" procflags="constructor">
+      </methodref>
+      <methodref name="Free" visibility="public">
+      </methodref>
+      <methodref name="DisposeOf" visibility="public" procflags="inline">
+      </methodref>
+      <methodref name="InitInstance" visibility="public" procflags="class">
+      </methodref>
+      <methodref name="CleanupInstance" visibility="public">
+      </methodref>
+      <methodref name="ClassType" visibility="public" procflags="inline">
+      </methodref>
+      <methodref name="ClassName" visibility="public" procflags="class">
+      </methodref>
+      <methodref name="ClassNameIs" visibility="public" procflags="class">
+      </methodref>
+      <methodref name="ClassParent" visibility="public" procflags="class">
+      </methodref>
+      <methodref name="ClassInfo" visibility="public" procflags="class inline">
+      </methodref>
+      <methodref name="InstanceSize" visibility="public" procflags="class inline">
+      </methodref>
+      <methodref name="InheritsFrom" visibility="public" procflags="class">
+      </methodref>
+      <methodref name="MethodAddress" visibility="public" procflags="class overload">
+      </methodref>
+      <methodref name="MethodAddress" visibility="public" procflags="class overload">
+      </methodref>
+      <methodref name="MethodName" visibility="public" procflags="class">
+      </methodref>
+      <methodref name="QualifiedClassName" visibility="public" procflags="class">
+      </methodref>
+      <methodref name="FieldAddress" visibility="public" procflags="overload">
+      </methodref>
+      <methodref name="FieldAddress" visibility="public" procflags="overload">
+      </methodref>
+      <methodref name="GetInterface" visibility="public">
+      </methodref>
+      <methodref name="GetInterfaceEntry" visibility="public" procflags="class">
+      </methodref>
+      <methodref name="GetInterfaceTable" visibility="public" procflags="class inline">
+      </methodref>
+      <methodref name="UnitName" visibility="public" procflags="class">
+      </methodref>
+      <methodref name="UnitScope" visibility="public" procflags="class">
+      </methodref>
+      <methodref name="Equals" visibility="public" procflags="virtual">
+      </methodref>
+      <methodref name="GetHashCode" visibility="public" procflags="virtual">
+      </methodref>
+      <methodref name="ToString" visibility="public" procflags="virtual">
+      </methodref>
+      <methodref name="SafeCallException" visibility="public" procflags="virtual">
+      </methodref>
+      <methodref name="AfterConstruction" visibility="public" procflags="virtual">
+      </methodref>
+      <methodref name="BeforeDestruction" visibility="public" procflags="virtual">
+      </methodref>
+      <methodref name="Dispatch" visibility="public" procflags="virtual">
+      </methodref>
+      <methodref name="DefaultHandler" visibility="public" procflags="virtual">
+      </methodref>
+      <methodref name="NewInstance" visibility="public" procflags="class virtual">
+      </methodref>
+      <methodref name="FreeInstance" visibility="public" procflags="virtual">
+      </methodref>
+      <methodref name="Destroy" visibility="public" procflags="destructor virtual">
+      </methodref>
+      <methodref name="GetDisposed" visibility="protected" procflags="inline">
+      </methodref>
+      <methodref name="CheckDisposed" visibility="protected" procflags="inline">
+      </methodref>
+      <propertyref name="Disposed" visibility="protected">
+      </propertyref>
+    </ancestor>
+    <members>
+      <field name="FOwner" type="TElHTMLData" visibility="private" size="4" offset="4" file="HTMLRender.pas" line="157" />
+      <field name="ItemType" type="THTMLItemType" visibility="private" size="1" offset="8" file="HTMLRender.pas" line="158" />
+      <field name="FText" type="TElFString" visibility="private" size="4" offset="12" file="HTMLRender.pas" line="159" />
+      <field name="FontStyle" type="TFontStyles" visibility="private" size="1" offset="16" file="HTMLRender.pas" line="160" />
+      <field name="FontHeight" type="Integer" visibility="private" size="4" offset="20" file="HTMLRender.pas" line="161" />
+      <field name="FontBgColor" type="TColor" visibility="private" size="4" offset="24" file="HTMLRender.pas" line="162" />
+      <field name="FontColor" type="TColor" visibility="private" size="4" offset="28" file="HTMLRender.pas" line="163" />
+      <field name="FLinkRef" type="TElFString" visibility="private" size="4" offset="32" file="HTMLRender.pas" line="164" />
+      <field name="FFontRef" type="TElFString" visibility="private" size="4" offset="36" file="HTMLRender.pas" line="165" />
+      <field name="FFntCnt" type="Integer" visibility="private" size="4" offset="40" file="HTMLRender.pas" line="166" />
+      <field name="TWidth" type="Word" visibility="private" size="2" offset="44" file="HTMLRender.pas" line="167" />
+      <field name="Width" type="Word" visibility="private" size="2" offset="46" file="HTMLRender.pas" line="168" />
+      <field name="Height" type="Word" visibility="private" size="2" offset="48" file="HTMLRender.pas" line="169" />
+      <field name="Indent" type="Integer" visibility="private" size="4" offset="52" file="HTMLRender.pas" line="170" />
+      <field name="FBoolState" type="Integer" visibility="private" size="4" offset="56" file="HTMLRender.pas" line="171" />
+      <function name="GetWidth" visibility="private" procflags="virtual" file="HTMLRender.pas" line="173">
+        <parameters>
+          <retval type="Integer" />
+        </parameters>
+      </function>
+      <function name="GetHeight" visibility="private" procflags="virtual" file="HTMLRender.pas" line="174">
+        <parameters>
+          <parameter name="BaseLine" type="Integer" paramflags="var" />
+          <retval type="Integer" />
+        </parameters>
+      </function>
+      <function name="GetIsLink" visibility="private" file="HTMLRender.pas" line="175">
+        <parameters>
+          <retval type="Boolean" />
+        </parameters>
+      </function>
+      <procedure name="SetIsLink" visibility="private" file="HTMLRender.pas" line="176">
+        <parameters>
+          <parameter name="Value" type="Boolean" />
+        </parameters>
+      </procedure>
+      <function name="GetIsSub" visibility="private" file="HTMLRender.pas" line="177">
+        <parameters>
+          <retval type="Boolean" />
+        </parameters>
+      </function>
+      <procedure name="SetIsSub" visibility="private" file="HTMLRender.pas" line="178">
+        <parameters>
+          <parameter name="Value" type="Boolean" />
+        </parameters>
+      </procedure>
+      <function name="GetIsSuper" visibility="private" file="HTMLRender.pas" line="179">
+        <parameters>
+          <retval type="Boolean" />
+        </parameters>
+      </function>
+      <procedure name="SetIsSuper" visibility="private" file="HTMLRender.pas" line="180">
+        <parameters>
+          <parameter name="Value" type="Boolean" />
+        </parameters>
+      </procedure>
+      <procedure name="Assign" visibility="public" file="HTMLRender.pas" line="183">
+        <parameters>
+          <parameter name="Source" type="TElHTMLItem" />
+        </parameters>
+      </procedure>
+      <constructor name="Create" visibility="public" file="HTMLRender.pas" line="184">
+        <parameters>
+          <parameter name="Owner" type="TElHTMLData" />
+        </parameters>
+      </constructor>
+      <destructor name="Destroy" visibility="public" file="HTMLRender.pas" line="185">
+        <parameters>
+        </parameters>
+      </destructor>
+      <property name="Text" visibility="public" read="FText" write="FText" type="TElFString" default="0" file="HTMLRender.pas" line="187" />
+      <property name="LinkRef" visibility="public" read="FLinkRef" write="FLinkRef" type="TElFString" default="0" file="HTMLRender.pas" line="188" />
+      <property name="IsLink" visibility="public" read="GetIsLink" write="SetIsLink" type="Boolean" file="HTMLRender.pas" line="189" />
+      <property name="IsSub" visibility="public" read="GetIsSub" write="SetIsSub" type="Boolean" file="HTMLRender.pas" line="190" />
+      <property name="IsSuper" visibility="public" read="GetIsSuper" write="SetIsSuper" type="Boolean" file="HTMLRender.pas" line="191" />
+    </members>
+  </class>
+  <class name="TElHTMLBreakItem" file="HTMLRender.pas" line="194">
+    <ancestor name="TElHTMLItem" namespace="HTMLRender">
+      <methodref name="GetWidth" visibility="private" procflags="virtual" />
+      <methodref name="GetHeight" visibility="private" procflags="virtual" />
+      <methodref name="GetIsLink" visibility="private" />
+      <methodref name="SetIsLink" visibility="private" />
+      <methodref name="GetIsSub" visibility="private" />
+      <methodref name="SetIsSub" visibility="private" />
+      <methodref name="GetIsSuper" visibility="private" />
+      <methodref name="SetIsSuper" visibility="private" />
+      <methodref name="Assign" visibility="public" />
+      <methodref name="Create" visibility="public" procflags="constructor" />
+      <methodref name="Destroy" visibility="public" procflags="destructor override" />
+      <propertyref name="Text" visibility="public" />
+      <propertyref name="LinkRef" visibility="public" />
+      <propertyref name="IsLink" visibility="public" />
+      <propertyref name="IsSub" visibility="public" />
+      <propertyref name="IsSuper" visibility="public" />
+      <ancestor name="TObject" namespace="System">
+        <methodref name="Create" visibility="public" procflags="constructor">
+        </methodref>
+        <methodref name="Free" visibility="public">
+        </methodref>
+        <methodref name="DisposeOf" visibility="public" procflags="inline">
+        </methodref>
+        <methodref name="InitInstance" visibility="public" procflags="class">
+        </methodref>
+        <methodref name="CleanupInstance" visibility="public">
+        </methodref>
+        <methodref name="ClassType" visibility="public" procflags="inline">
+        </methodref>
+        <methodref name="ClassName" visibility="public" procflags="class">
+        </methodref>
+        <methodref name="ClassNameIs" visibility="public" procflags="class">
+        </methodref>
+        <methodref name="ClassParent" visibility="public" procflags="class">
+        </methodref>
+        <methodref name="ClassInfo" visibility="public" procflags="class inline">
+        </methodref>
+        <methodref name="InstanceSize" visibility="public" procflags="class inline">
+        </methodref>
+        <methodref name="InheritsFrom" visibility="public" procflags="class">
+        </methodref>
+        <methodref name="MethodAddress" visibility="public" procflags="class overload">
+        </methodref>
+        <methodref name="MethodAddress" visibility="public" procflags="class overload">
+        </methodref>
+        <methodref name="MethodName" visibility="public" procflags="class">
+        </methodref>
+        <methodref name="QualifiedClassName" visibility="public" procflags="class">
+        </methodref>
+        <methodref name="FieldAddress" visibility="public" procflags="overload">
+        </methodref>
+        <methodref name="FieldAddress" visibility="public" procflags="overload">
+        </methodref>
+        <methodref name="GetInterface" visibility="public">
+        </methodref>
+        <methodref name="GetInterfaceEntry" visibility="public" procflags="class">
+        </methodref>
+        <methodref name="GetInterfaceTable" visibility="public" procflags="class inline">
+        </methodref>
+        <methodref name="UnitName" visibility="public" procflags="class">
+        </methodref>
+        <methodref name="UnitScope" visibility="public" procflags="class">
+        </methodref>
+        <methodref name="Equals" visibility="public" procflags="virtual">
+        </methodref>
+        <methodref name="GetHashCode" visibility="public" procflags="virtual">
+        </methodref>
+        <methodref name="ToString" visibility="public" procflags="virtual">
+        </methodref>
+        <methodref name="SafeCallException" visibility="public" procflags="virtual">
+        </methodref>
+        <methodref name="AfterConstruction" visibility="public" procflags="virtual">
+        </methodref>
+        <methodref name="BeforeDestruction" visibility="public" procflags="virtual">
+        </methodref>
+        <methodref name="Dispatch" visibility="public" procflags="virtual">
+        </methodref>
+        <methodref name="DefaultHandler" visibility="public" procflags="virtual">
+        </methodref>
+        <methodref name="NewInstance" visibility="public" procflags="class virtual">
+        </methodref>
+        <methodref name="FreeInstance" visibility="public" procflags="virtual">
+        </methodref>
+        <methodref name="Destroy" visibility="public" procflags="destructor virtual">
+        </methodref>
+        <methodref name="GetDisposed" visibility="protected" procflags="inline">
+        </methodref>
+        <methodref name="CheckDisposed" visibility="protected" procflags="inline">
+        </methodref>
+        <propertyref name="Disposed" visibility="protected">
+        </propertyref>
+      </ancestor>
+    </ancestor>
+    <members>
+      <field name="FParams" type="Integer" visibility="private" size="4" offset="60" file="HTMLRender.pas" line="196" />
+      <field name="ListLevel" type="Integer" visibility="private" size="4" offset="64" file="HTMLRender.pas" line="197" />
+      <field name="ListItemN" type="Integer" visibility="private" size="4" offset="68" file="HTMLRender.pas" line="198" />
+      <function name="GetWidth" visibility="private" procflags="override" file="HTMLRender.pas" line="200">
+        <parameters>
+          <retval type="Integer" />
+        </parameters>
+      </function>
+      <function name="GetHeight" visibility="private" procflags="override" file="HTMLRender.pas" line="201">
+        <parameters>
+          <parameter name="BaseLine" type="Integer" paramflags="var" />
+          <retval type="Integer" />
+        </parameters>
+      </function>
+      <procedure name="Assign" visibility="public" file="HTMLRender.pas" line="203">
+        <parameters>
+          <parameter name="Source" type="TElHTMLItem" />
+        </parameters>
+      </procedure>
+      <procedure name="AssignBreakProps" visibility="public" file="HTMLRender.pas" line="204">
+        <parameters>
+          <parameter name="Source" type="TElHTMLBreakItem" />
+        </parameters>
+      </procedure>
+    </members>
+  </class>
+  <class name="TElHTMLData" file="HTMLRender.pas" line="207">
+    <ancestor name="TObject" namespace="System">
+      <methodref name="Create" visibility="public" procflags="constructor">
+      </methodref>
+      <methodref name="Free" visibility="public">
+      </methodref>
+      <methodref name="DisposeOf" visibility="public" procflags="inline">
+      </methodref>
+      <methodref name="InitInstance" visibility="public" procflags="class">
+      </methodref>
+      <methodref name="CleanupInstance" visibility="public">
+      </methodref>
+      <methodref name="ClassType" visibility="public" procflags="inline">
+      </methodref>
+      <methodref name="ClassName" visibility="public" procflags="class">
+      </methodref>
+      <methodref name="ClassNameIs" visibility="public" procflags="class">
+      </methodref>
+      <methodref name="ClassParent" visibility="public" procflags="class">
+      </methodref>
+      <methodref name="ClassInfo" visibility="public" procflags="class inline">
+      </methodref>
+      <methodref name="InstanceSize" visibility="public" procflags="class inline">
+      </methodref>
+      <methodref name="InheritsFrom" visibility="public" procflags="class">
+      </methodref>
+      <methodref name="MethodAddress" visibility="public" procflags="class overload">
+      </methodref>
+      <methodref name="MethodAddress" visibility="public" procflags="class overload">
+      </methodref>
+      <methodref name="MethodName" visibility="public" procflags="class">
+      </methodref>
+      <methodref name="QualifiedClassName" visibility="public" procflags="class">
+      </methodref>
+      <methodref name="FieldAddress" visibility="public" procflags="overload">
+      </methodref>
+      <methodref name="FieldAddress" visibility="public" procflags="overload">
+      </methodref>
+      <methodref name="GetInterface" visibility="public">
+      </methodref>
+      <methodref name="GetInterfaceEntry" visibility="public" procflags="class">
+      </methodref>
+      <methodref name="GetInterfaceTable" visibility="public" procflags="class inline">
+      </methodref>
+      <methodref name="UnitName" visibility="public" procflags="class">
+      </methodref>
+      <methodref name="UnitScope" visibility="public" procflags="class">
+      </methodref>
+      <methodref name="Equals" visibility="public" procflags="virtual">
+      </methodref>
+      <methodref name="GetHashCode" visibility="public" procflags="virtual">
+      </methodref>
+      <methodref name="ToString" visibility="public" procflags="virtual">
+      </methodref>
+      <methodref name="SafeCallException" visibility="public" procflags="virtual">
+      </methodref>
+      <methodref name="AfterConstruction" visibility="public" procflags="virtual">
+      </methodref>
+      <methodref name="BeforeDestruction" visibility="public" procflags="virtual">
+      </methodref>
+      <methodref name="Dispatch" visibility="public" procflags="virtual">
+      </methodref>
+      <methodref name="DefaultHandler" visibility="public" procflags="virtual">
+      </methodref>
+      <methodref name="NewInstance" visibility="public" procflags="class virtual">
+      </methodref>
+      <methodref name="FreeInstance" visibility="public" procflags="virtual">
+      </methodref>
+      <methodref name="Destroy" visibility="public" procflags="destructor virtual">
+      </methodref>
+      <methodref name="GetDisposed" visibility="protected" procflags="inline">
+      </methodref>
+      <methodref name="CheckDisposed" visibility="protected" procflags="inline">
+      </methodref>
+      <propertyref name="Disposed" visibility="protected">
+      </propertyref>
+    </ancestor>
+    <members>
+      <field name="FRender" type="TElHTMLRender" visibility="protected" size="4" offset="4" file="HTMLRender.pas" line="209" />
+      <field name="FLinkColor" type="TColor" visibility="protected" size="4" offset="8" file="HTMLRender.pas" line="210" />
+      <field name="FDefaultColor" type="TColor" visibility="protected" size="4" offset="12" file="HTMLRender.pas" line="211" />
+      <field name="FLinkStyle" type="TFontStyles" visibility="protected" size="1" offset="16" file="HTMLRender.pas" line="212" />
+      <field name="FDefaultStyle" type="TFontStyles" visibility="protected" size="1" offset="17" file="HTMLRender.pas" line="213" />
+      <field name="FDefaultHeight" type="Integer" visibility="protected" size="4" offset="20" file="HTMLRender.pas" line="214" />
+      <field name="FCharset" type="TFontCharset" visibility="protected" size="1" offset="24" file="HTMLRender.pas" line="215" />
+      <field name="FDefaultFont" type="string" visibility="protected" size="4" offset="28" file="HTMLRender.pas" line="216" />
+      <field name="FArray" type="TElList" visibility="protected" size="4" offset="32" file="HTMLRender.pas" line="217" />
+      <field name="FDefaultBgColor" type="TColor" visibility="protected" size="4" offset="36" file="HTMLRender.pas" line="218" />
+      <field name="FHighlightBgColor" type="TColor" visibility="protected" size="4" offset="40" file="HTMLRender.pas" line="219" />
+      <field name="FHighlightColor" type="TColor" visibility="protected" size="4" offset="44" file="HTMLRender.pas" line="220" />
+      <field name="FSelectedItem" type="TElHTMLItem" visibility="protected" size="4" offset="48" file="HTMLRender.pas" line="221" />
+      <field name="FRect" type="TRect" visibility="protected" size="16" offset="52" file="HTMLRender.pas" line="222" />
+      <field name="FTextSize" type="TSize" visibility="protected" size="8" offset="68" file="HTMLRender.pas" line="224" />
+      <constructor name="Create" visibility="public" file="HTMLRender.pas" line="229">
+        <parameters>
+        </parameters>
+      </constructor>
+      <destructor name="Destroy" visibility="public" file="HTMLRender.pas" line="230">
+        <parameters>
+        </parameters>
+      </destructor>
+      <procedure name="ClearArray" visibility="public" file="HTMLRender.pas" line="231">
+      </procedure>
+      <function name="LineCount" visibility="public" file="HTMLRender.pas" line="232">
+        <parameters>
+          <retval type="Integer" />
+        </parameters>
+      </function>
+      <property name="TextSize" visibility="public" read="FTextSize" type="TSize" file="HTMLRender.pas" line="234" />
+      <property name="LinkColor" visibility="public" read="FLinkColor" write="FLinkColor" type="TColor" file="HTMLRender.pas" line="235" />
+      <property name="DefaultBgColor" visibility="public" read="FDefaultBgColor" write="FDefaultBgColor" type="TColor" file="HTMLRender.pas" line="236" />
+      <property name="DefaultColor" visibility="public" read="FDefaultColor" write="FDefaultColor" type="TColor" file="HTMLRender.pas" line="237" />
+      <property name="LinkStyle" visibility="public" read="FLinkStyle" write="FLinkStyle" type="TFontStyles" file="HTMLRender.pas" line="238" />
+      <property name="DefaultStyle" visibility="public" read="FDefaultStyle" write="FDefaultStyle" type="TFontStyles" file="HTMLRender.pas" line="239" />
+      <property name="DefaultHeight" visibility="public" read="FDefaultHeight" write="FDefaultHeight" type="Integer" file="HTMLRender.pas" line="240" />
+      <property name="DefaultFont" visibility="public" read="FDefaultFont" write="FDefaultFont" type="string" default="0" file="HTMLRender.pas" line="241" />
+      <property name="Charset" visibility="public" read="FCharset" write="FCharset" type="TFontCharset" file="HTMLRender.pas" line="242" />
+      <property name="HighlightBgColor" visibility="public" read="FHighlightBgColor" write="FHighlightBgColor" type="TColor" file="HTMLRender.pas" line="243" />
+      <property name="HighlightColor" visibility="public" read="FHighlightColor" write="FHighlightColor" type="TColor" file="HTMLRender.pas" line="244" />
+      <property name="SelectedItem" visibility="public" read="FSelectedItem" write="FSelectedItem" type="TElHTMLItem" file="HTMLRender.pas" line="245" />
+      <property name="Rect" visibility="public" read="FRect" write="FRect" type="TRect" file="HTMLRender.pas" line="246" />
+    </members>
+  </class>
+  <class name="TElHTMLRender" file="HTMLRender.pas" line="249">
+    <ancestor name="TObject" namespace="System">
+      <methodref name="Create" visibility="public" procflags="constructor">
+      </methodref>
+      <methodref name="Free" visibility="public">
+      </methodref>
+      <methodref name="DisposeOf" visibility="public" procflags="inline">
+      </methodref>
+      <methodref name="InitInstance" visibility="public" procflags="class">
+      </methodref>
+      <methodref name="CleanupInstance" visibility="public">
+      </methodref>
+      <methodref name="ClassType" visibility="public" procflags="inline">
+      </methodref>
+      <methodref name="ClassName" visibility="public" procflags="class">
+      </methodref>
+      <methodref name="ClassNameIs" visibility="public" procflags="class">
+      </methodref>
+      <methodref name="ClassParent" visibility="public" procflags="class">
+      </methodref>
+      <methodref name="ClassInfo" visibility="public" procflags="class inline">
+      </methodref>
+      <methodref name="InstanceSize" visibility="public" procflags="class inline">
+      </methodref>
+      <methodref name="InheritsFrom" visibility="public" procflags="class">
+      </methodref>
+      <methodref name="MethodAddress" visibility="public" procflags="class overload">
+      </methodref>
+      <methodref name="MethodAddress" visibility="public" procflags="class overload">
+      </methodref>
+      <methodref name="MethodName" visibility="public" procflags="class">
+      </methodref>
+      <methodref name="QualifiedClassName" visibility="public" procflags="class">
+      </methodref>
+      <methodref name="FieldAddress" visibility="public" procflags="overload">
+      </methodref>
+      <methodref name="FieldAddress" visibility="public" procflags="overload">
+      </methodref>
+      <methodref name="GetInterface" visibility="public">
+      </methodref>
+      <methodref name="GetInterfaceEntry" visibility="public" procflags="class">
+      </methodref>
+      <methodref name="GetInterfaceTable" visibility="public" procflags="class inline">
+      </methodref>
+      <methodref name="UnitName" visibility="public" procflags="class">
+      </methodref>
+      <methodref name="UnitScope" visibility="public" procflags="class">
+      </methodref>
+      <methodref name="Equals" visibility="public" procflags="virtual">
+      </methodref>
+      <methodref name="GetHashCode" visibility="public" procflags="virtual">
+      </methodref>
+      <methodref name="ToString" visibility="public" procflags="virtual">
+      </methodref>
+      <methodref name="SafeCallException" visibility="public" procflags="virtual">
+      </methodref>
+      <methodref name="AfterConstruction" visibility="public" procflags="virtual">
+      </methodref>
+      <methodref name="BeforeDestruction" visibility="public" procflags="virtual">
+      </methodref>
+      <methodref name="Dispatch" visibility="public" procflags="virtual">
+      </methodref>
+      <methodref name="DefaultHandler" visibility="public" procflags="virtual">
+      </methodref>
+      <methodref name="NewInstance" visibility="public" procflags="class virtual">
+      </methodref>
+      <methodref name="FreeInstance" visibility="public" procflags="virtual">
+      </methodref>
+      <methodref name="Destroy" visibility="public" procflags="destructor virtual">
+      </methodref>
+      <methodref name="GetDisposed" visibility="protected" procflags="inline">
+      </methodref>
+      <methodref name="CheckDisposed" visibility="protected" procflags="inline">
+      </methodref>
+      <propertyref name="Disposed" visibility="protected">
+      </propertyref>
+    </ancestor>
+    <members>
+      <field name="FOnImageNeeded" type="TElHTMLImageNeededEvent" visibility="private" size="8" offset="8" file="HTMLRender.pas" line="251" />
+      <field name="FIntData" type="TElHTMLData" visibility="private" size="4" offset="16" file="HTMLRender.pas" line="252" />
+      <field name="FData" type="TElHTMLData" visibility="private" size="4" offset="20" file="HTMLRender.pas" line="253" />
+      <field name="Canvas" type="TCanvas" visibility="private" size="4" offset="24" file="HTMLRender.pas" line="254" />
+      <field name="Bitmap" type="TBitmap" visibility="private" size="4" offset="28" file="HTMLRender.pas" line="255" />
+      <field name="FSaveObj" type="HGDIOBJ" visibility="private" size="4" offset="32" file="HTMLRender.pas" line="257" />
+      <procedure name="TriggerImageNeededEvent" visibility="protected" procflags="virtual" file="HTMLRender.pas" line="260">
+        <parameters>
+          <parameter name="Src" type="TElFString" />
+          <parameter name="Image" type="TBitmap" paramflags="var" />
+        </parameters>
+      </procedure>
+      <procedure name="CalcTokenSizes" visibility="protected" file="HTMLRender.pas" line="261">
+        <parameters>
+          <parameter name="FCurData" type="TElHTMLData" />
+        </parameters>
+      </procedure>
+      <function name="GetTextSize" visibility="protected" file="HTMLRender.pas" line="262">
+        <parameters>
+          <retval type="TSize" />
+        </parameters>
+      </function>
+      <function name="FindItemAt" visibility="protected" file="HTMLRender.pas" line="263">
+        <parameters>
+          <parameter name="Point" type="TPoint" />
+          <parameter name="SrcPoint" type="TPoint" />
+          <parameter name="R" type="TRect" />
+          <retval type="TElHTMLItem" />
+        </parameters>
+      </function>
+      <constructor name="Create" visibility="public" file="HTMLRender.pas" line="265">
+        <parameters>
+        </parameters>
+      </constructor>
+      <destructor name="Destroy" visibility="public" file="HTMLRender.pas" line="266">
+        <parameters>
+        </parameters>
+      </destructor>
+      <procedure name="DestroyData" visibility="public" file="HTMLRender.pas" line="268">
+        <parameters>
+          <parameter name="Data" type="TElHTMLData" />
+        </parameters>
+      </procedure>
+      <procedure name="SetData" visibility="public" file="HTMLRender.pas" line="269">
+        <parameters>
+          <parameter name="NewData" type="TElHTMLData" />
+        </parameters>
+      </procedure>
+      <function name="CreateData" visibility="public" file="HTMLRender.pas" line="270">
+        <parameters>
+          <retval type="TElHTMLData" />
+        </parameters>
+      </function>
+      <procedure name="DrawText" visibility="public" file="HTMLRender.pas" line="271">
+        <parameters>
+          <parameter name="Canvas" type="TCanvas" />
+          <parameter name="SrcPoint" type="TPoint" />
+          <parameter name="R" type="TRect" />
+          <parameter name="AdjustFromColor" type="TColor" />
+        </parameters>
+      </procedure>
+      <procedure name="DrawTextEx" visibility="public" file="HTMLRender.pas" line="272">
+        <parameters>
+          <parameter name="Canvas" type="TCanvas" />
+          <parameter name="SrcPoint" type="TPoint" />
+          <parameter name="R" type="TRect" />
+          <parameter name="UseOverColors" type="Boolean" />
+          <parameter name="Color" type="TColor" />
+          <parameter name="BkColor" type="TColor" />
+          <parameter name="SelColor" type="TColor" />
+          <parameter name="SelBkColor" type="TColor" />
+          <parameter name="AdjustFromColor" type="TColor" />
+        </parameters>
+      </procedure>
+      <function name="IsCursorOverLink" visibility="public" file="HTMLRender.pas" line="273">
+        <parameters>
+          <parameter name="Point" type="TPoint" />
+          <parameter name="SrcPoint" type="TPoint" />
+          <parameter name="R" type="TRect" />
+          <parameter name="href" type="TElFString" paramflags="var" />
+          <retval type="Boolean" />
+        </parameters>
+      </function>
+      <procedure name="SelectLinkAt" visibility="public" file="HTMLRender.pas" line="274">
+        <parameters>
+          <parameter name="Point" type="TPoint" />
+          <parameter name="SrcPoint" type="TPoint" />
+          <parameter name="R" type="TRect" />
+        </parameters>
+      </procedure>
+      <procedure name="SelectPrevLink" visibility="public" file="HTMLRender.pas" line="275">
+      </procedure>
+      <procedure name="SelectNextLink" visibility="public" file="HTMLRender.pas" line="276">
+      </procedure>
+      <procedure name="PrepareToData" visibility="public" file="HTMLRender.pas" line="278">
+        <parameters>
+          <parameter name="Text" type="TElFString" />
+          <parameter name="MaxWidth" type="Integer" />
+          <parameter name="AutoWrap" type="Boolean" />
+          <parameter name="CurData" type="TElHTMLData" />
+        </parameters>
+      </procedure>
+      <procedure name="PrepareText" visibility="public" file="HTMLRender.pas" line="280">
+        <parameters>
+          <parameter name="Text" type="TElFString" />
+          <parameter name="MaxWidth" type="Integer" />
+          <parameter name="AutoWrap" type="Boolean" />
+        </parameters>
+      </procedure>
+      <property name="Data" visibility="public" read="FData" type="TElHTMLData" file="HTMLRender.pas" line="282" />
+      <event name="OnImageNeeded" visibility="public" read="FOnImageNeeded" write="FOnImageNeeded" type="TElHTMLImageNeededEvent" file="HTMLRender.pas" line="283" />
+    </members>
+  </class>
+</namespace>

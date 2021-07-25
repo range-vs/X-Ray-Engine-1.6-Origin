@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>1899.12.30 00:00:00.000.616,E:\src_cop_x64_10_4\code\SDK\components\AlexMX\editor.dproj=C:\Users\admin_test\Documents\Embarcadero\Studio\Projects\Package1.dproj</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.715,=E:\src_cop_x64_10_4\code\SDK\components\AlexMX\MxRegister.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.078,=rtl.dcp</Transaction>
+  </Transactions>
+</BorlandProject>

@@ -1,0 +1,2084 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{C0F4951E-324A-44BE-99EF-4C2E220B1A6B}</ProjectGuid>
+        <ProjectType>CppVCLApplication</ProjectType>
+        <MainSource>LevelEditor.cpp</MainSource>
+        <Base>True</Base>
+        <Config Condition="'$(Config)'==''">Release</Config>
+        <FrameworkType>VCL</FrameworkType>
+        <ProjectVersion>19.1</ProjectVersion>
+        <Platform Condition="'$(Platform)'==''">Win32</Platform>
+        <TargetedPlatforms>3</TargetedPlatforms>
+        <AppType>Application</AppType>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Config)'=='Base' or '$(Base)'!=''">
+        <Base>true</Base>
+    </PropertyGroup>
+    <PropertyGroup Condition="('$(Platform)'=='Win32' and '$(Base)'=='true') or '$(Base_Win32)'!=''">
+        <Base_Win32>true</Base_Win32>
+        <CfgParent>Base</CfgParent>
+        <Base>true</Base>
+    </PropertyGroup>
+    <PropertyGroup Condition="('$(Platform)'=='Win64' and '$(Base)'=='true') or '$(Base_Win64)'!=''">
+        <Base_Win64>true</Base_Win64>
+        <CfgParent>Base</CfgParent>
+        <Base>true</Base>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Config)'=='Debug' or '$(Cfg_1)'!=''">
+        <Cfg_1>true</Cfg_1>
+        <CfgParent>Base</CfgParent>
+        <Base>true</Base>
+    </PropertyGroup>
+    <PropertyGroup Condition="('$(Platform)'=='Win32' and '$(Cfg_1)'=='true') or '$(Cfg_1_Win32)'!=''">
+        <Cfg_1_Win32>true</Cfg_1_Win32>
+        <CfgParent>Cfg_1</CfgParent>
+        <Cfg_1>true</Cfg_1>
+        <Base>true</Base>
+    </PropertyGroup>
+    <PropertyGroup Condition="('$(Platform)'=='Win64' and '$(Cfg_1)'=='true') or '$(Cfg_1_Win64)'!=''">
+        <Cfg_1_Win64>true</Cfg_1_Win64>
+        <CfgParent>Cfg_1</CfgParent>
+        <Cfg_1>true</Cfg_1>
+        <Base>true</Base>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Config)'=='Release' or '$(Cfg_2)'!=''">
+        <Cfg_2>true</Cfg_2>
+        <CfgParent>Base</CfgParent>
+        <Base>true</Base>
+    </PropertyGroup>
+    <PropertyGroup Condition="('$(Platform)'=='Win32' and '$(Cfg_2)'=='true') or '$(Cfg_2_Win32)'!=''">
+        <Cfg_2_Win32>true</Cfg_2_Win32>
+        <CfgParent>Cfg_2</CfgParent>
+        <Cfg_2>true</Cfg_2>
+        <Base>true</Base>
+    </PropertyGroup>
+    <PropertyGroup Condition="('$(Platform)'=='Win64' and '$(Cfg_2)'=='true') or '$(Cfg_2_Win64)'!=''">
+        <Cfg_2_Win64>true</Cfg_2_Win64>
+        <CfgParent>Cfg_2</CfgParent>
+        <Cfg_2>true</Cfg_2>
+        <Base>true</Base>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Base)'!=''">
+        <BCC_InstructionSet>5</BCC_InstructionSet>
+        <BCC_Defines>_USE_OLD_STL;$(BCC_Defines)</BCC_Defines>
+        <Manifest_File>$(BDS)\bin\default_app.manifest</Manifest_File>
+        <IntermediateOutputDir>..\..\..\..\intermedia\LevelEditor\$(Platform)\$(Config)</IntermediateOutputDir>
+        <BPILibOutputDir>..\..\..\..\libraries\$(Platform)\$(Config)</BPILibOutputDir>
+        <_TCHARMapping>char</_TCHARMapping>
+        <BCC_CallingConvention>stdcall</BCC_CallingConvention>
+        <BCC_DataAlignment>DWord</BCC_DataAlignment>
+        <SanitizedProjectName>LevelEditor</SanitizedProjectName>
+        <VerInfo_Release>2</VerInfo_Release>
+        <DCC_Namespace>System;Xml;Data;Datasnap;Web;Soap;$(DCC_Namespace)</DCC_Namespace>
+        <VerInfo_Keys>CompanyName=;FileDescription=;FileVersion=1.0.2.186;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=;ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
+        <VerInfo_Build>186</VerInfo_Build>
+        <VerInfo_Locale>1033</VerInfo_Locale>
+        <BCC_SourceDebuggingOn>true</BCC_SourceDebuggingOn>
+        <ILINK_AppType>Windows</ILINK_AppType>
+        <BCC_DebugLineNumbers>true</BCC_DebugLineNumbers>
+        <DynamicRTL>true</DynamicRTL>
+        <BCC_DisableWarnings>true</BCC_DisableWarnings>
+        <BCC_DisableOptimizations>true</BCC_DisableOptimizations>
+        <TASM_Debugging>Full</TASM_Debugging>
+        <BCC_GenerateWindowsApp>true</BCC_GenerateWindowsApp>
+        <ILINK_ImageComment>/GF:LARGEADDRESSAWARE</ILINK_ImageComment>
+        <ILINK_GenerateDRC>true</ILINK_GenerateDRC>
+        <DCC_IncludePath>.\;$(BDS)\lib;$(BDS)\lib\obj;$(DCC_IncludePath)</DCC_IncludePath>
+        <BCC_InlineFunctionExpansion>false</BCC_InlineFunctionExpansion>
+        <DCC_AdditionalSwitches>-M</DCC_AdditionalSwitches>
+        <BCC_IncludePath>.\;..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source\Core2D;..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source\Core3D;..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source\Numerics;..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source\Approximation3D;..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source\Containment2D;..\..;..\..\xrServerEntities;..\..\Layers\xrRender;Edit;Engine;$(BDS)\include;..\..\xrCore;..\..\xrParticles;..\..\..\SDK\components\ElPack\Code\Source;..\..\..\SDK\components\AlexMX;..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source;..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source\Core;..\..\utils\ETools;..\..\..\SDK\include_editors;..\..\..\SDK\sources\libvorbis-1.2.3\include;..\..\..\SDK\sources\libogg-1.1.4\include;..\..\..\sdk\sources\MagicSoftware\FreeMagic\include;$(BCC_IncludePath)</BCC_IncludePath>
+        <ILINK_LibraryPath>..\Include\;..\..\..\SDK\sources\MagicSoftware\FreeMagic\Source\Core\;..\..;..\..\xrCDB\;..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source\Approximation3D\;..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source\Core2D\;..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source\Numerics\;..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source\Core3D\;..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source\Containment2D\;Engine\;Edit\;..\..\xrEngine\;..\..\Layers\xrRender\;..\..\xrServerEntities\;$(BDS)\lib;..\..\..\SDK\components\ElPack\Code;..\..\..\SDK\components\AlexMX;..\..\..\SDK\components\libraries\$(Platform)\$(Config);..\..\..\..\libraries\$(Platform)\$(Config);..\..\..\SDK\components\bins\$(Platform)\$(Config);..\..\..\SDK\components\ElPack\Code\Source;..\..\..\..\bins\$(Platform)\$(Config);$(ILINK_LibraryPath)</ILINK_LibraryPath>
+        <ILINK_FullDebugInfo>true</ILINK_FullDebugInfo>
+        <DCC_ObjOutput>..\..\..\..\intermedia\LevelEditor\$(Platform)\$(Config)</DCC_ObjOutput>
+        <PackageImports>rtl.bpi;vcl.bpi;vclx.bpi;bcbsmp.bpi;elpackB6.bpi;elpproB6.bpi;elpkdbB6.bpi;editorB.bpi;$(PackageImports)</PackageImports>
+        <FinalOutputDir>..\..\..\..\bins\$(Platform)\$(Config)</FinalOutputDir>
+        <BRCC_OutputDir>..\..\..\..\intermedia\LevelEditor\$(Platform)\$(Config)</BRCC_OutputDir>
+        <DCC_CBuilderOutput>JPHNE</DCC_CBuilderOutput>
+        <AllPackageLibs>rtl.lib;vcl.lib;bcbsmp.lib;vclx.lib;elpackB6.lib;elpproB6.lib;elpkdbB6.lib;editorB.lib;xmlrtl.lib;vclactnband.lib</AllPackageLibs>
+        <UsePackages>true</UsePackages>
+        <BCC_OutputDir>..\..\..\..\intermedia\LevelEditor\$(Platform)\$(Config)</BCC_OutputDir>
+        <DCC_UnitSearchPath>.\;$(BDS)\lib;$(BDS)\lib\obj;..\..\..\..\bins\$(Platform)\$(Config);$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
+        <IncludePath>..\Include\;..\..\..\SDK\sources\MagicSoftware\FreeMagic\Source\Core\;..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source\Numerics\;..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source\Core2D\;..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source\Approximation3D\;..\..\xrEngine\;..\..\xrCDB\;..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source\Containment2D\;Edit\;..\..\Layers\xrRender\;..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source\Core3D\;Engine\;..\..\xrServerEntities\;..\..\..\SDK\include\stackwolker\;..\..\..\SDK\include\;..\editors\Include\;$(IncludePath)</IncludePath>
+        <BCC_PCHCache>true</BCC_PCHCache>
+        <ILINK_BpiLibOutputDir>..\..\..\..\libraries\Mixed</ILINK_BpiLibOutputDir>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Base_Win32)'!=''">
+        <VerInfo_Build>0</VerInfo_Build>
+        <VerInfo_Release>0</VerInfo_Release>
+        <Debugger_CWD>D:\Program Files\X-Ray CoP SDK\editors</Debugger_CWD>
+        <Debugger_RunParams>-editor</Debugger_RunParams>
+        <VerInfo_Keys>CompanyName=;FileVersion=1.0.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductVersion=1.0.0.0;Comments=;ProgramID=com.embarcadero.$(MSBuildProjectName);FileDescription=$(MSBuildProjectName);ProductName=$(MSBuildProjectName)</VerInfo_Keys>
+        <BCC_Defines>_EDITOR;_LEVEL_EDITOR;$(BCC_Defines)</BCC_Defines>
+        <DCC_Namespace>Winapi;System.Win;Data.Win;Datasnap.Win;Web.Win;Soap.Win;Xml.Win;Bde;$(DCC_Namespace)</DCC_Namespace>
+        <BCC_UserSuppliedOptions> -tWM -a4 -5 -Q -ps -Vms -ff -Vx -r- -xp -k -Ve -xf</BCC_UserSuppliedOptions>
+        <BRCC_Defines>_EDITOR;_LEVEL_EDITOR;__MIXED;__MIXED_CONFMANAGER;$(BRCC_Defines)</BRCC_Defines>
+        <TASM_Defines>_EDITOR _LEVEL_EDITOR __MIXED __MIXED_CONFMANAGER;$(TASM_Defines)</TASM_Defines>
+        <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
+        <UWP_CppLogo44>$(BDS)\bin\Artwork\Windows\UWP\cppreg_UwpDefault_44.png</UWP_CppLogo44>
+        <UWP_CppLogo150>$(BDS)\bin\Artwork\Windows\UWP\cppreg_UwpDefault_150.png</UWP_CppLogo150>
+        <Icon_MainIcon>LevelEditor_Icon.ico</Icon_MainIcon>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Base_Win64)'!=''">
+        <BRCC_Defines>_EDITOR;_LEVEL_EDITOR;__MIXED;__MIXED_CONFMANAGER;$(BRCC_Defines)</BRCC_Defines>
+        <BCC_Defines>_EDITOR;_LEVEL_EDITOR;__MIXED;__MIXED_CONFMANAGER;$(BCC_Defines)</BCC_Defines>
+        <Icon_MainIcon>LevelEditor_Icon.ico</Icon_MainIcon>
+        <TASM_Defines>_EDITOR _LEVEL_EDITOR __MIXED __MIXED_CONFMANAGER;$(TASM_Defines)</TASM_Defines>
+        <UWP_CppLogo44>$(BDS)\bin\Artwork\Windows\UWP\cppreg_UwpDefault_44.png</UWP_CppLogo44>
+        <UWP_CppLogo150>$(BDS)\bin\Artwork\Windows\UWP\cppreg_UwpDefault_150.png</UWP_CppLogo150>
+        <DCC_Namespace>Winapi;System.Win;Data.Win;Datasnap.Win;Web.Win;Soap.Win;Xml.Win;$(DCC_Namespace)</DCC_Namespace>
+        <BT_BuildType>Debug</BT_BuildType>
+        <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
+        <VerInfo_Keys>CompanyName=;FileDescription=$(MSBuildProjectName);FileVersion=1.0.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProgramID=com.embarcadero.$(MSBuildProjectName);ProductName=$(MSBuildProjectName);ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
+        <VerInfo_Release>0</VerInfo_Release>
+        <VerInfo_Build>0</VerInfo_Build>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Cfg_1)'!=''">
+        <DCC_AdditionalSwitches> -M -V</DCC_AdditionalSwitches>
+        <TASM_DisplaySourceLines>true</TASM_DisplaySourceLines>
+        <ILINK_DisableIncrementalLinking>true</ILINK_DisableIncrementalLinking>
+        <ILINK_LibraryPath>$(BDS)\lib\debug;$(ILINK_LibraryPath);$(ILINK_LibraryPath)</ILINK_LibraryPath>
+        <DCC_DebugInfoInExe>true</DCC_DebugInfoInExe>
+        <DCC_Define>DEBUG;$(DCC_Define);$(DCC_Define)</DCC_Define>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Cfg_1_Win32)'!=''">
+        <ILINK_LibraryPath>..\..\..\SDK\components\bins\Win32\Debug\;$(ILINK_LibraryPath)</ILINK_LibraryPath>
+        <LinkPackageStatics>xmlrtl.lib;vclactnband.lib</LinkPackageStatics>
+        <VerInfo_Release>0</VerInfo_Release>
+        <VerInfo_Keys>CompanyName=;FileVersion=1.0.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductVersion=1.0.0.0;Comments=;ProgramID=com.embarcadero.$(MSBuildProjectName);FileDescription=$(MSBuildProjectName);ProductName=$(MSBuildProjectName)</VerInfo_Keys>
+        <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
+        <VerInfo_Build>0</VerInfo_Build>
+        <BCC_Defines>_DEBUG;$(BCC_Defines);$(BCC_Defines)</BCC_Defines>
+        <LinkPackageImports>rtl.bpi;vcl.bpi;bcbsmp.bpi;vclx.bpi;elpackB6.bpi;elpproB6.bpi;elpkdbB6.bpi;editorB.bpi</LinkPackageImports>
+        <BT_BuildType>Debug</BT_BuildType>
+        <Icon_MainIcon>LevelEditor_Icon.ico</Icon_MainIcon>
+        <Debugger_CWD>E:\Program Files\X-Ray CoP SDK\editors</Debugger_CWD>
+        <Debugger_DebugSourcePath>C:\src_cop_x64_10_4\code\engine.vc2008\editors\ECore\Editor\;$(Debugger_DebugSourcePath)</Debugger_DebugSourcePath>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Cfg_1_Win64)'!=''">
+        <BCC_Defines>_DEBUG;$(BCC_Defines);TEST_SDK;$(BCC_Defines)</BCC_Defines>
+        <AppEnableRuntimeThemes>true</AppEnableRuntimeThemes>
+        <AppDPIAwarenessMode>PerMonitorV2</AppDPIAwarenessMode>
+        <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
+        <VerInfo_Release>0</VerInfo_Release>
+        <VerInfo_Build>0</VerInfo_Build>
+        <VerInfo_Keys>CompanyName=;FileDescription=$(MSBuildProjectName);FileVersion=1.0.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProgramID=com.embarcadero.$(MSBuildProjectName);ProductName=$(MSBuildProjectName);ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
+        <ILINK_FullDebugInfo>false</ILINK_FullDebugInfo>
+        <Debugger_RunParams>-editor</Debugger_RunParams>
+        <BCC_PCHUsage>UseDontGenerate</BCC_PCHUsage>
+        <ILINK_LibraryPath>..\..\..\SDK\components\bins\$(Platform)\Debug;..\..\..\SDK\components\libraries\$(Platform)\Debug;$(ILINK_LibraryPath)</ILINK_LibraryPath>
+        <LinkPackageImports>rtl.bpi;vcl.bpi;bcbsmp.bpi;vclx.bpi;elpackB6.bpi;elpproB6.bpi;elpkdbB6.bpi;editorB.bpi;xmlrtl.bpi;vclactnband.bpi</LinkPackageImports>
+        <Debugger_CWD>E:\Program Files\X-Ray CoP SDK\editors</Debugger_CWD>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Cfg_2)'!=''">
+        <DCC_AdditionalSwitches> -M -$O+</DCC_AdditionalSwitches>
+        <BCC_InlineFunctionExpansion>true</BCC_InlineFunctionExpansion>
+        <TASM_Debugging>None</TASM_Debugging>
+        <BCC_OptimizationLevel>Level2</BCC_OptimizationLevel>
+        <ILINK_LibraryPath>$(BDS)\lib\release;$(ILINK_LibraryPath);$(ILINK_LibraryPath)</ILINK_LibraryPath>
+        <ILINK_FullDebugInfo>false</ILINK_FullDebugInfo>
+        <BCC_SourceDebuggingOn>false</BCC_SourceDebuggingOn>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Cfg_2_Win32)'!=''">
+        <BCC_Defines>NDEBUG;$(BCC_Defines);$(BCC_Defines)</BCC_Defines>
+        <BCC_UserSuppliedOptions> -tWM -a4 -5 -Q -ps -Vms -ff -Vx -r- -xp -k -Ve -xf -r</BCC_UserSuppliedOptions>
+        <LinkPackageImports>rtl.bpi;vcl.bpi;bcbsmp.bpi;vclx.bpi;elpackB6.bpi;elpproB6.bpi;elpkdbB6.bpi;editorB.bpi</LinkPackageImports>
+        <LinkPackageStatics>xmlrtl.lib;vclactnband.lib</LinkPackageStatics>
+        <Debugger_CWD>E:\Program Files\X-Ray CoP SDK\editors</Debugger_CWD>
+        <BT_BuildType>Debug</BT_BuildType>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Cfg_2_Win64)'!=''">
+        <BCC_Defines>NDEBUG;$(BCC_Defines);$(BCC_Defines)</BCC_Defines>
+        <AppEnableRuntimeThemes>true</AppEnableRuntimeThemes>
+        <AppDPIAwarenessMode>PerMonitorV2</AppDPIAwarenessMode>
+        <LinkPackageImports>rtl.bpi;vcl.bpi;bcbsmp.bpi;vclx.bpi;elpackB6.bpi;elpproB6.bpi;elpkdbB6.bpi;editorB.bpi;xmlrtl.bpi;vclactnband.bpi</LinkPackageImports>
+        <BCC_SourceDebuggingOn>true</BCC_SourceDebuggingOn>
+        <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
+        <VerInfo_Release>0</VerInfo_Release>
+        <VerInfo_Build>0</VerInfo_Build>
+        <VerInfo_Keys>CompanyName=;FileDescription=$(MSBuildProjectName);FileVersion=1.0.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProgramID=com.embarcadero.$(MSBuildProjectName);ProductName=$(MSBuildProjectName);ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
+        <Debugger_RunParams>-editor</Debugger_RunParams>
+        <Debugger_CWD>E:\Program Files\X-Ray CoP SDK\editors</Debugger_CWD>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Cfg_2)'!='' And '$(FileToCompile)'=='Edit\UI_LevelTools.cpp'">
+        <ILINK_FullDebugInfo>true</ILINK_FullDebugInfo>
+        <BCC_SourceDebuggingOn>true</BCC_SourceDebuggingOn>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Cfg_2)'!='' And '$(FileToCompile)'=='LevelEditor.cpp'">
+        <BCC_SourceDebuggingOn>true</BCC_SourceDebuggingOn>
+        <ILINK_FullDebugInfo>true</ILINK_FullDebugInfo>
+    </PropertyGroup>
+    <ItemGroup>
+        <CppCompile Include="..\Include\stack_trace.cpp">
+            <BuildOrder>162</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="BottomBar.cpp">
+            <BuildOrder>14</BuildOrder>
+            <Form>fraBottomBar</Form>
+            <DesignClass>TFrame</DesignClass>
+            <DependentOn>BottomBar.h</DependentOn>
+            <BuildOrder>103</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="DOOneColor.cpp">
+            <BuildOrder>26</BuildOrder>
+            <Form>frmOneColor</Form>
+            <DependentOn>DOOneColor.h</DependentOn>
+            <BuildOrder>101</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="DOShuffle.cpp">
+            <BuildOrder>29</BuildOrder>
+            <Form>frmDOShuffle</Form>
+            <DependentOn>DOShuffle.h</DependentOn>
+            <BuildOrder>108</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="EditLibrary.cpp">
+            <BuildOrder>32</BuildOrder>
+            <Form>frmEditLibrary</Form>
+            <DependentOn>EditLibrary.h</DependentOn>
+            <BuildOrder>115</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="EditLightAnim.cpp">
+            <BuildOrder>35</BuildOrder>
+            <Form>frmEditLightAnim</Form>
+            <DependentOn>EditLightAnim.h</DependentOn>
+            <BuildOrder>114</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="Edit\AppendObjectInfoForm.cpp">
+            <BuildOrder>437</BuildOrder>
+            <Form>frmAppendObjectInfo</Form>
+            <DependentOn>Edit\AppendObjectInfoForm.h</DependentOn>
+            <BuildOrder>42</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="Edit\Builder.cpp">
+            <BuildOrder>98</BuildOrder>
+            <BuildOrder>97</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="Edit\BuilderCF.cpp">
+            <BuildOrder>96</BuildOrder>
+            <BuildOrder>101</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="Edit\BuilderCore.cpp">
+            <BuildOrder>93</BuildOrder>
+            <BuildOrder>104</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="Edit\BuilderGame.cpp">
+            <BuildOrder>90</BuildOrder>
+            <BuildOrder>107</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="Edit\BuilderLODs.cpp">
+            <BuildOrder>62</BuildOrder>
+            <BuildOrder>377</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="Edit\BuilderLTX.cpp">
+            <BuildOrder>89</BuildOrder>
+            <BuildOrder>110</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="Edit\BuilderOGF.cpp">
+            <BuildOrder>92</BuildOrder>
+            <BuildOrder>113</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="Edit\BuilderRemote.cpp">
+            <BuildOrder>91</BuildOrder>
+            <BuildOrder>116</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="Edit\Cursor3D.cpp">
+            <BuildOrder>144</BuildOrder>
+            <BuildOrder>119</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="Edit\Custom2DProjector.cpp">
+            <BuildOrder>143</BuildOrder>
+            <BuildOrder>122</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="Edit\CustomObject.cpp">
+            <BuildOrder>75</BuildOrder>
+            <BuildOrder>386</BuildOrder>
+        </CppCompile>
+        <None Include="Edit\CustomObject.h">
+            <BuildOrder>74</BuildOrder>
+            <BuildOrder>389</BuildOrder>
+        </None>
+        <CppCompile Include="Edit\CustomObjectAnimation.cpp">
+            <BuildOrder>77</BuildOrder>
+            <BuildOrder>392</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="Edit\CustomObjectLE.cpp">
+            <BuildOrder>68</BuildOrder>
+            <BuildOrder>383</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="Edit\EditObjectExportLWO.cpp">
+            <BuildOrder>145</BuildOrder>
+            <BuildOrder>128</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="Edit\ELight.cpp">
+            <BuildOrder>142</BuildOrder>
+            <BuildOrder>131</BuildOrder>
+        </CppCompile>
+        <None Include="Edit\ELight_def.h">
+            <BuildOrder>65</BuildOrder>
+            <BuildOrder>356</BuildOrder>
+        </None>
+        <CppCompile Include="Edit\ELight_IO.cpp">
+            <BuildOrder>353</BuildOrder>
+            <BuildOrder>12</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="Edit\ELight_props.cpp">
+            <BuildOrder>350</BuildOrder>
+            <BuildOrder>13</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="Edit\EParticlesObject.cpp">
+            <BuildOrder>139</BuildOrder>
+            <BuildOrder>134</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="Edit\ESceneAIMapControls.cpp">
+            <BuildOrder>37</BuildOrder>
+            <BuildOrder>278</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="Edit\ESceneAIMapTools.cpp">
+            <BuildOrder>138</BuildOrder>
+            <BuildOrder>137</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="Edit\ESceneAIMapTools_Controls.cpp">
+            <BuildOrder>141</BuildOrder>
+            <BuildOrder>140</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="Edit\ESceneAIMapTools_Export.cpp">
+            <BuildOrder>95</BuildOrder>
+            <BuildOrder>94</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="Edit\ESceneAIMapTools_Generate.cpp">
+            <BuildOrder>143</BuildOrder>
+            <BuildOrder>140</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="Edit\ESceneAIMapTools_MotionSimulator.cpp">
+            <BuildOrder>147</BuildOrder>
+            <BuildOrder>146</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="Edit\ESceneAIMapTools_Pick.cpp">
+            <BuildOrder>154</BuildOrder>
+            <BuildOrder>149</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="Edit\ESceneAIMapTools_Render.cpp">
+            <BuildOrder>153</BuildOrder>
+            <BuildOrder>152</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="Edit\ESceneControlsCustom.cpp">
+            <BuildOrder>34</BuildOrder>
+            <BuildOrder>281</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="Edit\ESceneCustomMTools.cpp">
+            <BuildOrder>156</BuildOrder>
+            <BuildOrder>155</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="Edit\ESceneCustomMToolsControls.cpp">
+            <BuildOrder>158</BuildOrder>
+            <BuildOrder>155</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="Edit\ESceneCustomOTools.cpp">
+            <BuildOrder>161</BuildOrder>
+            <BuildOrder>152</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="Edit\ESceneCustomOToolsIO.cpp">
+            <BuildOrder>164</BuildOrder>
+            <BuildOrder>149</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="Edit\ESceneDOTools.cpp">
+            <BuildOrder>146</BuildOrder>
+            <BuildOrder>125</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="Edit\ESceneDOTools_Controls.cpp">
+            <BuildOrder>341</BuildOrder>
+            <BuildOrder>14</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="Edit\ESceneDOTools_Generate.cpp">
+            <BuildOrder>344</BuildOrder>
+            <BuildOrder>275</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="Edit\ESceneDOTools_Pick.cpp">
+            <BuildOrder>338</BuildOrder>
+            <BuildOrder>17</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="Edit\ESceneDummyTools.cpp">
+            <BuildOrder>167</BuildOrder>
+            <BuildOrder>148</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="Edit\ESceneFogVolumeTools.cpp">
+            <BuildOrder>47</BuildOrder>
+            <BuildOrder>422</BuildOrder>
+        </CppCompile>
+        <None Include="Edit\ESceneFogVolumeTools.h">
+            <BuildOrder>45</BuildOrder>
+            <BuildOrder>416</BuildOrder>
+        </None>
+        <CppCompile Include="Edit\ESceneGlowTools.cpp">
+            <BuildOrder>170</BuildOrder>
+            <BuildOrder>151</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="Edit\ESceneGlowToolsIO.cpp">
+            <BuildOrder>8</BuildOrder>
+            <BuildOrder>305</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="Edit\ESceneGroupControls.cpp">
+            <BuildOrder>61</BuildOrder>
+            <BuildOrder>380</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="Edit\ESceneGroupTools.cpp">
+            <BuildOrder>173</BuildOrder>
+            <BuildOrder>150</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="Edit\ESceneGroupToolsIO.cpp">
+            <BuildOrder>335</BuildOrder>
+            <BuildOrder>18</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="Edit\ESceneLightTools.cpp">
+            <BuildOrder>176</BuildOrder>
+            <BuildOrder>137</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="Edit\ESceneLightToolsIO.cpp">
+            <BuildOrder>179</BuildOrder>
+            <BuildOrder>124</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="Edit\ESceneObjectControls.cpp">
+            <BuildOrder>31</BuildOrder>
+            <BuildOrder>284</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="Edit\ESceneObjectTools.cpp">
+            <BuildOrder>182</BuildOrder>
+            <BuildOrder>123</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="Edit\ESceneObjectToolsExportBreakable.cpp">
+            <BuildOrder>64</BuildOrder>
+            <BuildOrder>359</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="Edit\ESceneObjectToolsIO.cpp">
+            <BuildOrder>317</BuildOrder>
+            <BuildOrder>0</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="Edit\EScenePortalControls.cpp">
+            <BuildOrder>30</BuildOrder>
+            <BuildOrder>287</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="Edit\EScenePortalTools.cpp">
+            <BuildOrder>185</BuildOrder>
+            <BuildOrder>126</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="Edit\EScenePortalToolsIO.cpp">
+            <BuildOrder>7</BuildOrder>
+            <BuildOrder>308</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="Edit\EScenePSControls.cpp">
+            <BuildOrder>33</BuildOrder>
+            <BuildOrder>290</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="Edit\EScenePSTools.cpp">
+            <BuildOrder>188</BuildOrder>
+            <BuildOrder>125</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="Edit\EScenePSToolsIO.cpp">
+            <BuildOrder>320</BuildOrder>
+            <BuildOrder>3</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="Edit\ESceneSectorControls.cpp">
+            <BuildOrder>32</BuildOrder>
+            <BuildOrder>293</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="Edit\ESceneSectorTools.cpp">
+            <BuildOrder>191</BuildOrder>
+            <BuildOrder>122</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="Edit\ESceneSectorToolsIO.cpp">
+            <BuildOrder>4</BuildOrder>
+            <BuildOrder>311</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="Edit\ESceneShapeControls.cpp">
+            <BuildOrder>296</BuildOrder>
+            <BuildOrder>19</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="Edit\ESceneShapeTools.cpp">
+            <BuildOrder>194</BuildOrder>
+            <BuildOrder>119</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="Edit\ESceneShapeToolsIO.cpp">
+            <BuildOrder>323</BuildOrder>
+            <BuildOrder>2</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="Edit\ESceneSoundEnvTools.cpp">
+            <BuildOrder>197</BuildOrder>
+            <BuildOrder>118</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="Edit\ESceneSoundEnvToolsIO.cpp">
+            <BuildOrder>9</BuildOrder>
+            <BuildOrder>326</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="Edit\ESceneSoundSrcTools.cpp">
+            <BuildOrder>200</BuildOrder>
+            <BuildOrder>121</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="Edit\ESceneSoundSrcToolsIO.cpp">
+            <BuildOrder>329</BuildOrder>
+            <BuildOrder>16</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="Edit\ESceneSpawnControls.cpp">
+            <BuildOrder>6</BuildOrder>
+            <BuildOrder>299</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="Edit\ESceneSpawnTools.cpp">
+            <BuildOrder>203</BuildOrder>
+            <BuildOrder>120</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="Edit\ESceneSpawnToolsIO.cpp">
+            <BuildOrder>314</BuildOrder>
+            <BuildOrder>1</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="Edit\ESceneWallmarkControls.cpp">
+            <BuildOrder>63</BuildOrder>
+            <BuildOrder>368</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="Edit\ESceneWallmarkTools.cpp">
+            <BuildOrder>66</BuildOrder>
+            <BuildOrder>365</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="Edit\ESceneWayControls.cpp">
+            <BuildOrder>5</BuildOrder>
+            <BuildOrder>302</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="Edit\ESceneWayTools.cpp">
+            <BuildOrder>206</BuildOrder>
+            <BuildOrder>127</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="Edit\ESceneWayToolsIO.cpp">
+            <BuildOrder>332</BuildOrder>
+            <BuildOrder>15</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="Edit\EShape.cpp">
+            <BuildOrder>209</BuildOrder>
+            <BuildOrder>134</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="Edit\ESound_Environment.cpp">
+            <BuildOrder>212</BuildOrder>
+            <BuildOrder>133</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="Edit\ESound_Source.cpp">
+            <BuildOrder>215</BuildOrder>
+            <BuildOrder>136</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="Edit\FS2.cpp">
+            <DependentOn>Edit\FS2.h</DependentOn>
+            <BuildOrder>158</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="Edit\GeometryPartExtractor.cpp">
+            <BuildOrder>59</BuildOrder>
+            <BuildOrder>374</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="Edit\glow.cpp">
+            <BuildOrder>221</BuildOrder>
+            <BuildOrder>132</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="Edit\GroupObject.cpp">
+            <BuildOrder>224</BuildOrder>
+            <BuildOrder>129</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="Edit\GroupObjectUtils.cpp">
+            <BuildOrder>434</BuildOrder>
+            <BuildOrder>39</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="Edit\LevelPreferences.cpp">
+            <BuildOrder>76</BuildOrder>
+            <BuildOrder>395</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="Edit\portal.cpp">
+            <BuildOrder>227</BuildOrder>
+            <BuildOrder>128</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="Edit\portalutils.cpp">
+            <BuildOrder>230</BuildOrder>
+            <BuildOrder>131</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="Edit\scene.cpp">
+            <BuildOrder>233</BuildOrder>
+            <BuildOrder>130</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="Edit\SceneIO.cpp">
+            <BuildOrder>26</BuildOrder>
+            <BuildOrder>239</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="Edit\SceneObject.cpp">
+            <BuildOrder>25</BuildOrder>
+            <BuildOrder>242</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="Edit\SceneObjectIO.cpp">
+            <BuildOrder>28</BuildOrder>
+            <BuildOrder>245</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="Edit\ScenePick.cpp">
+            <BuildOrder>27</BuildOrder>
+            <BuildOrder>248</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="Edit\SceneRender.cpp">
+            <BuildOrder>251</BuildOrder>
+            <BuildOrder>24</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="Edit\SceneSelection.cpp">
+            <BuildOrder>254</BuildOrder>
+            <BuildOrder>21</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="Edit\SceneSnap.cpp">
+            <BuildOrder>257</BuildOrder>
+            <BuildOrder>20</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="Edit\SceneSummaryInfo.cpp">
+            <BuildOrder>260</BuildOrder>
+            <BuildOrder>23</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="Edit\SceneUndo.cpp">
+            <BuildOrder>263</BuildOrder>
+            <BuildOrder>22</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="Edit\SceneUtil.cpp">
+            <BuildOrder>29</BuildOrder>
+            <BuildOrder>266</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="Edit\Scene_Tools.cpp">
+            <BuildOrder>78</BuildOrder>
+            <BuildOrder>236</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="Edit\sector.cpp">
+            <BuildOrder>36</BuildOrder>
+            <BuildOrder>269</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="Edit\SoundManager_LE.cpp">
+            <BuildOrder>35</BuildOrder>
+            <BuildOrder>272</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="Edit\SpawnPoint.cpp">
+            <BuildOrder>38</BuildOrder>
+            <BuildOrder>10</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="Edit\UI_LevelMain.cpp">
+            <BuildOrder>89</BuildOrder>
+            <BuildOrder>88</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="Edit\UI_LevelTools.cpp">
+            <BuildOrder>86</BuildOrder>
+            <BuildOrder>81</BuildOrder>
+            <OptionOverrides>true</OptionOverrides>
+        </CppCompile>
+        <CppCompile Include="Edit\WayPoint.cpp">
+            <BuildOrder>95</BuildOrder>
+            <BuildOrder>92</BuildOrder>
+        </CppCompile>
+        <None Include="Engine\ShapeData.h">
+            <BuildOrder>60</BuildOrder>
+            <BuildOrder>371</BuildOrder>
+        </None>
+        <CppCompile Include="FrameAIMap.cpp">
+            <BuildOrder>38</BuildOrder>
+            <Form>fraAIMap</Form>
+            <DependentOn>FrameAIMap.h</DependentOn>
+            <BuildOrder>117</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="FrameDetObj.cpp">
+            <BuildOrder>41</BuildOrder>
+            <Form>fraDetailObject</Form>
+            <DependentOn>FrameDetObj.h</DependentOn>
+            <BuildOrder>116</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="FrameFogVol.cpp">
+            <BuildOrder>43</BuildOrder>
+            <Form>fraFogVol</Form>
+            <DependentOn>FrameFogVol.h</DependentOn>
+            <BuildOrder>428</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="FrameGroup.cpp">
+            <BuildOrder>44</BuildOrder>
+            <Form>fraGroup</Form>
+            <DependentOn>FrameGroup.h</DependentOn>
+            <BuildOrder>113</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="FrameLight.cpp">
+            <BuildOrder>47</BuildOrder>
+            <Form>fraLight</Form>
+            <DependentOn>FrameLight.h</DependentOn>
+            <BuildOrder>110</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="FrameObject.cpp">
+            <BuildOrder>50</BuildOrder>
+            <Form>fraObject</Form>
+            <DependentOn>FrameObject.h</DependentOn>
+            <BuildOrder>109</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="FramePortal.cpp">
+            <BuildOrder>53</BuildOrder>
+            <Form>fraPortal</Form>
+            <DependentOn>FramePortal.h</DependentOn>
+            <BuildOrder>112</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="FramePS.cpp">
+            <BuildOrder>56</BuildOrder>
+            <Form>fraPS</Form>
+            <DependentOn>FramePS.h</DependentOn>
+            <BuildOrder>111</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="FrameSector.cpp">
+            <BuildOrder>98</BuildOrder>
+            <Form>fraSector</Form>
+            <DependentOn>FrameSector.h</DependentOn>
+            <BuildOrder>59</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="FrameShape.cpp">
+            <BuildOrder>85</BuildOrder>
+            <Form>fraShape</Form>
+            <DependentOn>FrameShape.h</DependentOn>
+            <BuildOrder>62</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="FrameSpawn.cpp">
+            <BuildOrder>84</BuildOrder>
+            <Form>fraSpawn</Form>
+            <DependentOn>FrameSpawn.h</DependentOn>
+            <BuildOrder>65</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="FrameWayPoint.cpp">
+            <BuildOrder>87</BuildOrder>
+            <Form>fraWayPoint</Form>
+            <DependentOn>FrameWayPoint.h</DependentOn>
+            <BuildOrder>68</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="FrmDBXpacker.cpp">
+            <BuildOrder>73</BuildOrder>
+            <Form>DB_packer</Form>
+            <DependentOn>FrmDBXpacker.h</DependentOn>
+            <BuildOrder>398</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="iniStreamImpl.cpp">
+            <BuildOrder>72</BuildOrder>
+            <BuildOrder>407</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="LEClipEditor.cpp">
+            <BuildOrder>48</BuildOrder>
+            <Form>ClipMaker</Form>
+            <DependentOn>LEClipEditor.h</DependentOn>
+            <BuildOrder>443</BuildOrder>
+        </CppCompile>
+        <None Include="LEClipEditor.ddp">
+            <BuildOrder>-1</BuildOrder>
+            <BuildOrder>440</BuildOrder>
+        </None>
+        <None Include="LEClipEditor.dfm">
+            <BuildOrder>-1</BuildOrder>
+            <BuildOrder>446</BuildOrder>
+        </None>
+        <None Include="LEClipEditor.h">
+            <BuildOrder>54</BuildOrder>
+            <BuildOrder>449</BuildOrder>
+        </None>
+        <CppCompile Include="LeftBar.cpp">
+            <BuildOrder>86</BuildOrder>
+            <Form>fraLeftBar</Form>
+            <DesignClass>TFrame</DesignClass>
+            <DependentOn>LeftBar.h</DependentOn>
+            <BuildOrder>71</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="LEPhysics.cpp">
+            <BuildOrder>57</BuildOrder>
+            <BuildOrder>452</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="LevelEditor.cpp">
+            <BuildOrder>2</BuildOrder>
+            <BuildOrder>105</BuildOrder>
+            <OptionOverrides>true</OptionOverrides>
+        </CppCompile>
+        <ResFiles Include="LevelEditor.res">
+            <BuildOrder>8</BuildOrder>
+            <BuildOrder>107</BuildOrder>
+        </ResFiles>
+        <None Include="LevelEditor.todo">
+            <BuildOrder>-1</BuildOrder>
+            <BuildOrder>5</BuildOrder>
+        </None>
+        <CppCompile Include="main.cpp">
+            <BuildOrder>17</BuildOrder>
+            <Form>frmMain</Form>
+            <DependentOn>main.h</DependentOn>
+            <BuildOrder>100</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="ObjectList.cpp">
+            <BuildOrder>83</BuildOrder>
+            <Form>frmObjectList</Form>
+            <DependentOn>ObjectList.h</DependentOn>
+            <BuildOrder>74</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="previewimage.cpp">
+            <BuildOrder>80</BuildOrder>
+            <Form>frmPreviewImage</Form>
+            <DependentOn>previewimage.h</DependentOn>
+            <BuildOrder>77</BuildOrder>
+        </CppCompile>
+        <None Include="Profiling\AQtimeModule1.aqt"/>
+        <CppCompile Include="PropertiesEObject.cpp">
+            <BuildOrder>80</BuildOrder>
+            <Form>frmPropertiesEObject</Form>
+            <DependentOn>PropertiesEObject.h</DependentOn>
+            <BuildOrder>79</BuildOrder>
+        </CppCompile>
+        <ResFiles Include="resource.res">
+            <BuildOrder>11</BuildOrder>
+            <BuildOrder>106</BuildOrder>
+        </ResFiles>
+        <CppCompile Include="RightForm.cpp">
+            <BuildOrder>46</BuildOrder>
+            <Form>frmRight</Form>
+            <DependentOn>RightForm.h</DependentOn>
+            <BuildOrder>425</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="Splash.cpp">
+            <BuildOrder>83</BuildOrder>
+            <Form>frmSplash</Form>
+            <DependentOn>Splash.h</DependentOn>
+            <BuildOrder>82</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="stdafx.cpp">
+            <BuildOrder>23</BuildOrder>
+            <BuildOrder>102</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="TopBar.cpp">
+            <BuildOrder>99</BuildOrder>
+            <Form>fraTopBar</Form>
+            <DesignClass>TFrame</DesignClass>
+            <DependentOn>TopBar.h</DependentOn>
+            <BuildOrder>20</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="..\..\Layers\xrRender\DetailManager.cpp">
+            <DependentOn>..\..\Layers\xrRender\DetailManager.h</DependentOn>
+            <BuildOrder>157</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="..\..\Layers\xrRender\DetailManager_CACHE.cpp">
+            <BuildOrder>58</BuildOrder>
+            <BuildOrder>413</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="..\..\Layers\xrRender\DetailManager_Decompress.cpp">
+            <BuildOrder>69</BuildOrder>
+            <BuildOrder>404</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="..\..\Layers\xrRender\DetailManager_soft.cpp">
+            <BuildOrder>71</BuildOrder>
+            <BuildOrder>410</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="..\..\Layers\xrRender\DetailManager_VS.cpp">
+            <BuildOrder>44</BuildOrder>
+            <BuildOrder>419</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="..\..\Layers\xrRender\stats_manager.cpp">
+            <BuildOrder>51</BuildOrder>
+            <BuildOrder>470</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="..\..\xrCDB\Frustum.cpp">
+            <BuildOrder>157</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="..\..\xrCDB\xrCDB_Collector.cpp">
+            <BuildOrder>158</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="..\..\xrEngine\ObjectAnimator.cpp">
+            <BuildOrder>347</BuildOrder>
+            <BuildOrder>11</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="..\..\xrEngine\pure.cpp">
+            <BuildOrder>161</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="..\..\xrServerEntities\gametype_chooser.cpp">
+            <BuildOrder>431</BuildOrder>
+            <BuildOrder>40</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="..\..\xrServerEntities\LevelGameDef.cpp">
+            <BuildOrder>67</BuildOrder>
+            <BuildOrder>362</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source\Approximation3D\MgcAppr3DPlaneFit.cpp">
+            <BuildOrder>53</BuildOrder>
+            <BuildOrder>458</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source\Containment2D\MgcConvexHull2D.cpp">
+            <BuildOrder>56</BuildOrder>
+            <BuildOrder>455</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source\Core2D\MgcVector2.cpp">
+            <BuildOrder>49</BuildOrder>
+            <BuildOrder>464</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source\Core3D\MgcVector3.cpp">
+            <BuildOrder>52</BuildOrder>
+            <BuildOrder>467</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="..\..\..\SDK\sources\MagicSoftware\FreeMagic\Source\Core\MgcMath.cpp">
+            <BuildOrder>159</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source\Numerics\MgcEigen.cpp">
+            <BuildOrder>50</BuildOrder>
+            <BuildOrder>461</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="..\..\..\SDK\sources\MagicSoftware\FreeMagic\Source\Numerics\MgcLinearSystem.cpp">
+            <BuildOrder>160</BuildOrder>
+        </CppCompile>
+        <FormResources Include="FrameAIMap.dfm"/>
+        <FormResources Include="FramePortal.dfm"/>
+        <FormResources Include="FramePS.dfm"/>
+        <FormResources Include="FrameSector.dfm"/>
+        <FormResources Include="FrameShape.dfm"/>
+        <FormResources Include="FrameSpawn.dfm"/>
+        <FormResources Include="FrameDetObj.dfm"/>
+        <FormResources Include="FrameFogVol.dfm"/>
+        <FormResources Include="FrameGroup.dfm"/>
+        <FormResources Include="FrameLight.dfm"/>
+        <FormResources Include="FrameObject.dfm"/>
+        <FormResources Include="TopBar.dfm"/>
+        <FormResources Include="LeftBar.dfm"/>
+        <FormResources Include="FrameWayPoint.dfm"/>
+        <FormResources Include="FrmDBXpacker.dfm"/>
+        <FormResources Include="LEClipEditor.dfm"/>
+        <FormResources Include="PropertiesEObject.dfm"/>
+        <FormResources Include="RightForm.dfm"/>
+        <FormResources Include="Splash.dfm"/>
+        <FormResources Include="main.dfm"/>
+        <FormResources Include="ObjectList.dfm"/>
+        <FormResources Include="previewimage.dfm"/>
+        <FormResources Include="EditLightAnim.dfm"/>
+        <FormResources Include="Edit\AppendObjectInfoForm.dfm"/>
+        <FormResources Include="BottomBar.dfm"/>
+        <FormResources Include="DOOneColor.dfm"/>
+        <FormResources Include="DOShuffle.dfm"/>
+        <FormResources Include="EditLibrary.dfm"/>
+        <BuildConfiguration Include="Release">
+            <Key>Cfg_2</Key>
+            <CfgParent>Base</CfgParent>
+        </BuildConfiguration>
+        <BuildConfiguration Include="Base">
+            <Key>Base</Key>
+        </BuildConfiguration>
+        <BuildConfiguration Include="Debug">
+            <Key>Cfg_1</Key>
+            <CfgParent>Base</CfgParent>
+        </BuildConfiguration>
+    </ItemGroup>
+    <Import Project="$(BDS)\Bin\CodeGear.Cpp.Targets"/>
+    <ProjectExtensions>
+        <Borland.Personality>CPlusPlusBuilder.Personality.12</Borland.Personality>
+        <Borland.ProjectType>CppVCLApplication</Borland.ProjectType>
+        <BorlandProject>
+            <CPlusPlusBuilder.Personality>
+                <VersionInfo>
+                    <VersionInfo Name="IncludeVerInfo">False</VersionInfo>
+                    <VersionInfo Name="AutoIncBuild">False</VersionInfo>
+                    <VersionInfo Name="MajorVer">1</VersionInfo>
+                    <VersionInfo Name="MinorVer">0</VersionInfo>
+                    <VersionInfo Name="Release">2</VersionInfo>
+                    <VersionInfo Name="Build">186</VersionInfo>
+                    <VersionInfo Name="Debug">False</VersionInfo>
+                    <VersionInfo Name="PreRelease">False</VersionInfo>
+                    <VersionInfo Name="Special">False</VersionInfo>
+                    <VersionInfo Name="Private">False</VersionInfo>
+                    <VersionInfo Name="DLL">False</VersionInfo>
+                    <VersionInfo Name="Locale">1033</VersionInfo>
+                    <VersionInfo Name="CodePage">1252</VersionInfo>
+                </VersionInfo>
+                <VersionInfoKeys>
+                    <VersionInfoKeys Name="CompanyName"/>
+                    <VersionInfoKeys Name="FileDescription"/>
+                    <VersionInfoKeys Name="FileVersion">1.0.2.186</VersionInfoKeys>
+                    <VersionInfoKeys Name="InternalName"/>
+                    <VersionInfoKeys Name="LegalCopyright"/>
+                    <VersionInfoKeys Name="LegalTrademarks"/>
+                    <VersionInfoKeys Name="OriginalFilename"/>
+                    <VersionInfoKeys Name="ProductName"/>
+                    <VersionInfoKeys Name="ProductVersion">1.0.0.0</VersionInfoKeys>
+                    <VersionInfoKeys Name="Comments"/>
+                </VersionInfoKeys>
+                <HistoryLists_hlIncludePath>
+                    <HistoryLists_hlIncludePath Name="Count">28</HistoryLists_hlIncludePath>
+                    <HistoryLists_hlIncludePath Name="Item0">..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source\Core2D;..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source\Core3D;..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source\Numerics;..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source\Approximation3D;..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source\Containment2D;..\..;..\..\xrServerEntities;..\..\Layers\xrRender;$(DXSDK_DIR)\Include;Edit;Engine;$(BCB)\Projects;$(BCB)\include\vcl;$(BCB)\include;../../xrEngine;..\..\xrCore;..\..\xrParticles;..\..\..\SDK\components\ElPack\Code\Source;..\..\..\SDK\components\AlexMX;..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source;..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source\Core;..\..\utils\ETools;..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source\Containment3D;..\..\..\SDK\include_editors;..\..\..\SDK\sources\libvorbis-1.2.3\include;..\..\..\SDK\sources\libogg-1.1.4\include</HistoryLists_hlIncludePath>
+                    <HistoryLists_hlIncludePath Name="Item1">..\..\..\SDK\sources\libvorbis-1.2.3\lib;..\..\..\SDK\sources\libogg-1.1.4\src;..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source\Core2D;..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source\Core3D;..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source\Numerics;..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source\Approximation3D;..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source\Containment2D;..\..;..\..\xrServerEntities;..\..\Layers\xrRender;$(DXSDK_DIR)\Include;Edit;Engine;$(BCB)\Projects;$(BCB)\include\vcl;$(BCB)\include;../../xrEngine;..\..\xrCore;..\..\xrParticles;..\..\..\SDK\components\ElPack\Code\Source;..\..\..\SDK\components\AlexMX;..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source;..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source\Core;..\..\utils\ETools;..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source\Containment3D;..\..\..\SDK\include_editors;..\..\..\SDK\sources\libvorbis-1.2.3\include;..\..\..\SDK\sources\libogg-1.1.4\include</HistoryLists_hlIncludePath>
+                    <HistoryLists_hlIncludePath Name="Item2">..\..\..\SDK\sources\libvorbis-1.2.3\lib;..\..\..\SDK\sources\libogg-1.1.4\src;..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source\Core2D;..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source\Core3D;..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source\Numerics;..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source\Approximation3D;..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source\Containment2D;..\..;..\..\xrServerEntities;..\..\Layers\xrRender;$(DXSDK_DIR)\Include;Edit;Engine;$(BCB)\Projects;$(BCB)\include\vcl;$(BCB)\include;../../xrEngine;..\..\xrCore;..\..\xrParticles;..\..\..\SDK\components\ElPack\Code\Source;..\..\..\SDK\components\AlexMX;..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source;..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source\Core;..\..\utils\ETools;..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source\Containment3D;..\..\..\SDK\include_editors</HistoryLists_hlIncludePath>
+                    <HistoryLists_hlIncludePath Name="Item3">..\..\..\SDK\sources\libvorbis-1.2.3\lib;..\..\..\SDK\sources\libogg-1.1.4\src;..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source\Core2D;..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source\Core3D;..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source\Numerics;..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source\Approximation3D;..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source\Containment2D;..\..;..\..\xrServerEntities;..\..\Layers\xrRender;$(DXSDK_DIR)\Include;Edit;Engine;$(BCB)\Projects;$(BCB)\include\vcl;$(BCB)\include;../../xrEngine;..\..\xrCore;..\..\xrParticles;..\..\..\SDK\components\ElPack\Code\Source;..\..\..\SDK\components\AlexMX;..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source;..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source\Core;..\..\utils\ETools;..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source\Containment3D;..\..\..\SDK\include</HistoryLists_hlIncludePath>
+                    <HistoryLists_hlIncludePath Name="Item4">..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source\Core2D;..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source\Core3D;..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source\Numerics;..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source\Approximation3D;..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source\Containment2D;..\..;..\..\xrServerEntities;..\..\Layers\xrRender;$(DXSDK_DIR)\Include;Edit;Engine;$(BCB)\Projects;$(BCB)\include\vcl;$(BCB)\include;../../xrEngine;..\..\xrCore;..\..\xrParticles;..\..\..\SDK\components\ElPack\Code\Source;..\..\..\SDK\components\AlexMX;..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source;..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source\Core;..\..\utils\ETools;..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source\Containment3D;..\..\..\SDK\include</HistoryLists_hlIncludePath>
+                    <HistoryLists_hlIncludePath Name="Item5">..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source\Core2D;..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source\Core3D;..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source\Numerics;..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source\Approximation3D;..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source\Containment2D;..\..;..\..\xrServerEntities;..\..\Layers\xrRender;$(DXSDK_DIR)\Include;Edit;Engine;$(BCB)\Projects;$(BCB)\include\vcl;$(BCB)\include;../../xrEngine;..\..\xrCore;..\..\xrParticles;..\..\..\SDK\components\ElPack\Code\Source;..\..\..\SDK\components\AlexMX;..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source;..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source\Core;..\..\utils\ETools;..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source\Containment3D;..\..\SDK\include</HistoryLists_hlIncludePath>
+                    <HistoryLists_hlIncludePath Name="Item6">..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source\Core2D;..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source\Core3D;..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source\Numerics;..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source\Approximation3D;..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source\Containment2D;..\..;..\..\xrServerEntities;..\..\Layers\xrRender;$(DXSDK_DIR)\Include;Edit;Engine;$(BCB)\Projects;$(BCB)\include\vcl;$(BCB)\include;../../xrEngine;..\..\xrCore;..\..\xrParticles;..\..\..\SDK\components\ElPack\Code\Source;..\..\..\SDK\components\AlexMX;..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source;..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source\Core;..\..\utils\ETools;..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source\Containment3D</HistoryLists_hlIncludePath>
+                    <HistoryLists_hlIncludePath Name="Item7">..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source\Core2D;..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source\Core3D;..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source\Numerics;..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source\Approximation3D;..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source\Containment2D;..\..;..\..\xrServerEntities;..\..\Layers\xrRender;$(DXSDK_DIR)\Include;Edit;Engine;$(BCB)\Projects;$(BCB)\include\vcl;$(BCB)\include;../../xrEngine;..\..\xrCore;..\..\xrParticles;..\..\..\SDK\components\ElPack\Code\Source;..\..\..\SDK\components\AlexMX;..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source;..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source\Core;..\..\utils\ETools</HistoryLists_hlIncludePath>
+                    <HistoryLists_hlIncludePath Name="Item8">..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source\Core2D;..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source\Core3D;..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source\Numerics;..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source\Approximation3D;..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source\Containment2D;..\..;..\..\xrServerEntities;..\..\Layers\xrRender;$(DXSDK_DIR)\Include;Edit;Engine;$(BCB)\Projects;$(BCB)\include\vcl;$(BCB)\include;../../xrEngine;..\..\xrCore;..\..\xrParticles;..\..\..\SDK\components\ElPack\Code\Source;..\..\..\SDK\components\AlexMX;..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source;..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source\Core</HistoryLists_hlIncludePath>
+                    <HistoryLists_hlIncludePath Name="Item9">..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source\Core2D;..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source\Core3D;..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source\Numerics;..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source\Approximation3D;..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source\Containment2D;..\..;..\..\xrServerEntities;..\..\Layers\xrRender;$(DXSDK_DIR)\Include;Edit;Engine;$(BCB)\Projects;$(BCB)\include\vcl;$(BCB)\include;../../xrEngine;..\..\xrCore;..\..\xrParticles;..\..\..\SDK\components\ElPack\Code\Source;..\..\..\SDK\components\AlexMX;..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source</HistoryLists_hlIncludePath>
+                    <HistoryLists_hlIncludePath Name="Item10">..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source\Core2D;..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source\Core3D;..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source\Numerics;..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source\Approximation3D;..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source\Containment2D;..\..;..\..\xrServerEntities;..\..\Layers\xrRender;$(DXSDK_DIR)\Include;Edit;Engine;$(BCB)\Projects;$(BCB)\include\vcl;$(BCB)\include;../../xrEngine;..\..\xrCore;..\..\xrParticles;..\..\..\SDK\components\ElPack\Code\Source;..\..\..\SDK\components\AlexMX</HistoryLists_hlIncludePath>
+                    <HistoryLists_hlIncludePath Name="Item11">..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source\Core2D;..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source\Core3D;..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source\Numerics;..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source\Approximation3D;..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source\Containment2D;..\..;..\..\xrServerEntities;..\..\Layers\xrRender;$(DXSDK_DIR)\Include;Edit;Engine;$(BCB)\Projects;$(BCB)\include\vcl;$(BCB)\include;../../xrEngine;..\..\xrCore;..\..\xrParticles;..\..\..\SDK\components\ElPack\Code\Source</HistoryLists_hlIncludePath>
+                    <HistoryLists_hlIncludePath Name="Item12">..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source\Core2D;..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source\Core3D;..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source\Numerics;..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source\Approximation3D;..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source\Containment2D;..\..;..\..\xrServerEntities;..\..\Layers\xrRender;$(DXSDK_DIR)\Include;Edit;Engine;$(BCB)\Projects;$(BCB)\include\vcl;$(BCB)\include;../../xrEngine;..\..\xrCore;..\..\xrParticles</HistoryLists_hlIncludePath>
+                    <HistoryLists_hlIncludePath Name="Item13">..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source\Core2D;..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source\Core3D;..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source\Numerics;..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source\Approximation3D;..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source\Containment2D;..\..;..\..\xrServerEntities;..\..\Layers\xrRender;$(DXSDK_DIR)\Include;Edit;Engine;$(BCB)\Projects;$(BCB)\include\vcl;$(BCB)\include;../../xrEngine;..\..\xrCore</HistoryLists_hlIncludePath>
+                    <HistoryLists_hlIncludePath Name="Item14">..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source\Core2D;..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source\Core3D;..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source\Numerics;..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source\Approximation3D;..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source\Containment2D;..\..;..\..\xrServerEntities;..\..\Layers\xrRender;$(DXSDK_DIR)\Include;Edit;Engine;$(BCB)\Projects;$(BCB)\include\vcl;$(BCB)\include;../../xrEngine</HistoryLists_hlIncludePath>
+                    <HistoryLists_hlIncludePath Name="Item15">..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source\Core2D;..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source\Core3D;..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source\Numerics;..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source\Approximation3D;..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source\Containment2D;..\..;..\..\xrServerEntities;..\..\Layers\xrRender;$(DXSDK_DIR)\Include;Edit;Engine;$(BCB)\Projects;$(BCB)\include\vcl;$(BCB)\include;$(COMPONENTS)\alexmx;$(COMPONENTS)\ElPack\Code;$(COMPONENTS)\ElPack\Code\Source;$(CORE_DIR);../../xrEngine;$(MAGIC_SW_DIR);$(ETOOLS_DIR)</HistoryLists_hlIncludePath>
+                    <HistoryLists_hlIncludePath Name="Item16">..\..;..\..\xrServerEntities;..\..\Layers\xrRender;$(DXSDK_DIR)\Include;Edit;Engine;$(BCB)\Projects;$(BCB)\include\vcl;$(BCB)\include;$(COMPONENTS)\alexmx;$(COMPONENTS)\ElPack\Code;$(COMPONENTS)\ElPack\Code\Source;$(CORE_DIR);../../xrEngine;$(MAGIC_SW_DIR);$(ETOOLS_DIR)</HistoryLists_hlIncludePath>
+                    <HistoryLists_hlIncludePath Name="Item17">$(VC_INCLUDE);..\..;..\..\xrServerEntities;..\..\Layers\xrRender;$(DXSDK_DIR)\Include;Edit;Engine;$(BCB)\Projects;$(BCB)\include\vcl;$(BCB)\include;$(COMPONENTS)\alexmx;$(COMPONENTS)\ElPack\Code;$(COMPONENTS)\ElPack\Code\Source;$(CORE_DIR);../../xrEngine;$(MAGIC_SW_DIR);$(ETOOLS_DIR)</HistoryLists_hlIncludePath>
+                    <HistoryLists_hlIncludePath Name="Item18">..\..;..\..\xrServerEntities;..\..\Layers\xrRender;..\..\xrEngine\xrRender;$(DXSDK_DIR)\Include;Edit;Engine;$(BCB)\Projects;$(BCB)\include\vcl;$(BCB)\include;$(COMPONENTS)\alexmx;$(COMPONENTS)\ElPack\Code;$(COMPONENTS)\ElPack\Code\Source;$(CORE_DIR);../../xrEngine;../../xrRender;$(MAGIC_SW_DIR);$(ETOOLS_DIR)</HistoryLists_hlIncludePath>
+                    <HistoryLists_hlIncludePath Name="Item19">..\..\xrServerEntities;..\..\Layers\xrRender;..\..\xrEngine\xrRender;$(DXSDK_DIR)\Include;Edit;Engine;$(BCB)\Projects;$(BCB)\include\vcl;$(BCB)\include;$(COMPONENTS)\alexmx;$(COMPONENTS)\ElPack\Code;$(COMPONENTS)\ElPack\Code\Source;$(CORE_DIR);../../xrEngine;../../xrRender;$(MAGIC_SW_DIR);$(ETOOLS_DIR)</HistoryLists_hlIncludePath>
+                    <HistoryLists_hlIncludePath Name="Item20">..\..\xrEngine\xrRender;$(DXSDK_DIR)\Include;Edit;Engine;$(BCB)\Projects;$(BCB)\include\vcl;$(BCB)\include;$(COMPONENTS)\alexmx;$(COMPONENTS)\ElPack\Code;$(COMPONENTS)\ElPack\Code\Source;$(CORE_DIR);../../xrEngine;../../xrRender;$(MAGIC_SW_DIR);$(ETOOLS_DIR)</HistoryLists_hlIncludePath>
+                    <HistoryLists_hlIncludePath Name="Item21">..\..\xrEngine\xrRender;$(DXSDK_DIR)\Include;Edit;Engine;$(BCB)\Projects;$(BCB)\include\vcl;$(BCB)\include;$(COMPONENTS)\alexmx;$(COMPONENTS)\ElPack\Code;$(COMPONENTS)\ElPack\Code\Source;$(CORE_DIR);../../xrEngine;../../xrRender;$(MAGIC_SW_DIR)</HistoryLists_hlIncludePath>
+                    <HistoryLists_hlIncludePath Name="Item22">$(DXSDK_DIR)\Include;Edit;Engine;$(BCB)\Projects;$(BCB)\include\vcl;$(BCB)\include;$(COMPONENTS)\alexmx;$(COMPONENTS)\ElPack\Code;$(COMPONENTS)\ElPack\Code\Source;$(CORE_DIR);../../xrEngine;../../xrRender;$(MAGIC_SW_DIR)</HistoryLists_hlIncludePath>
+                    <HistoryLists_hlIncludePath Name="Item23">$(DXSDK_DIR)\Include;Edit;Engine;$(BCB)\Projects;$(BCB)\include\vcl;$(BCB)\include;$(COMPONENTS)\alexmx;$(COMPONENTS)\ElPack\Code;$(COMPONENTS)\ElPack\Code\Source;$(CORE_DIR);../../xrEngine;../../xrEngine/xrRender;$(MAGIC_SW_DIR)</HistoryLists_hlIncludePath>
+                    <HistoryLists_hlIncludePath Name="Item24">$(DXSDK_DIR)\Include;Edit;Engine;$(BCB)\Projects;$(BCB)\include\vcl;$(BCB)\include;$(COMPONENTS)\alexmx;$(COMPONENTS)\ElPack\Code;$(COMPONENTS)\ElPack\Code\Source;$(CORE_DIR);../../xrEngine;../../xrEngine/xrRender</HistoryLists_hlIncludePath>
+                    <HistoryLists_hlIncludePath Name="Item25">Edit;Engine;$(BCB)\Projects;$(BCB)\include\vcl;$(BCB)\include;$(DXSDK_DIR)\Include;$(COMPONENTS)\alexmx;$(COMPONENTS)\ElPack\Code;$(COMPONENTS)\ElPack\Code\Source;$(CORE_DIR);../../xrEngine;../../xrEngine/xrRender</HistoryLists_hlIncludePath>
+                    <HistoryLists_hlIncludePath Name="Item26">Edit;H:\RAD\Borland\CBuilder6\Projects;&quot;R:\SDK\Microsoft DirectX 9.0 SDK (April 2005)\Include&quot;Edit;Engine;r:\borland\components6\alexmx;$(BCB)\include;$(BCB)\include\vcl;R:\SDK\MagicFM_Borland\Sdk\Include;R:\Borland\Components6\ElPack\Code;R:\Borland\Components6\ElPack\Code\Source;P:\xrCore;..\ECore;..\ECore\Editor;..\ECore\Engine;..\ECore\Engine\blenders;..\ECore\Engine\visuals;..\xrEProps;P:\xrSound</HistoryLists_hlIncludePath>
+                    <HistoryLists_hlIncludePath Name="Item27">H:\RAD\Borland\CBuilder6\Projects;R:\SDK\Microsoft DirectX 9.0 SDK (April 2005)\Include;Engine\Game;Edit;Engine;r:\borland\components6\alexmx;$(BCB)\include;$(BCB)\include\vcl;R:\SDK\MagicFM_Borland\Sdk\Include;R:\Borland\Components6\ElPack\Code;R:\Borland\Components6\ElPack\Code\Source;P:\xrCore;..\ECore;..\ECore\Editor;..\ECore\Engine;..\ECore\Engine\blenders;..\ECore\Engine\visuals;..\xrEProps;P:\xrSound</HistoryLists_hlIncludePath>
+                </HistoryLists_hlIncludePath>
+                <HistoryLists_hlLibraryPath>
+                    <HistoryLists_hlLibraryPath Name="Count">21</HistoryLists_hlLibraryPath>
+                    <HistoryLists_hlLibraryPath Name="Item0">..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source\Core2D;..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source\Core3D;..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source\Numerics;..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source\Approximation3D;..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source\Containment2D;..\..;..\..\Layers\xrRender;..\..\xrServerEntities;..\..\xrEngine;Edit;..\..\..\SDK\components\ElPack\Code;$(BCB)\Projects;$(BCB)\lib;$(BCB)\lib\obj;$(BCB)\Projects\Lib;..\..\..\SDK\components\AlexMX;..\..\..\..\libraries\Mixed</HistoryLists_hlLibraryPath>
+                    <HistoryLists_hlLibraryPath Name="Item1">..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source\Core2D;..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source\Core3D;..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source\Numerics;..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source\Approximation3D;..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source\Containment2D;..\..;..\..\Layers\xrRender;..\..\xrServerEntities;..\..\xrEngine;Edit;..\..\..\SDK\components\ElPack\Code;$(BCB)\Projects;$(BCB)\lib;$(BCB)\lib\obj;$(BCB)\Projects\Lib;..\..\..\SDK\components\AlexMX;..\..\..\..\libraries\Debug</HistoryLists_hlLibraryPath>
+                    <HistoryLists_hlLibraryPath Name="Item2">..\..\..\SDK\sources\libvorbis-1.2.3\lib;..\..\..\SDK\sources\libogg-1.1.4\src;..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source\Core2D;..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source\Core3D;..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source\Numerics;..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source\Approximation3D;..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source\Containment2D;..\..;..\..\Layers\xrRender;..\..\xrServerEntities;..\..\xrEngine;Edit;..\..\..\SDK\components\ElPack\Code;$(BCB)\Projects;$(BCB)\lib;$(BCB)\lib\obj;$(BCB)\Projects\Lib;..\..\..\SDK\components\AlexMX;..\..\..\..\libraries\Debug</HistoryLists_hlLibraryPath>
+                    <HistoryLists_hlLibraryPath Name="Item3">..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source\Core2D;..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source\Core3D;..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source\Numerics;..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source\Approximation3D;..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source\Containment2D;..\..;..\..\Layers\xrRender;..\..\xrServerEntities;..\..\xrEngine;Edit;..\..\..\SDK\components\ElPack\Code;$(BCB)\Projects;$(BCB)\lib;$(BCB)\lib\obj;$(BCB)\Projects\Lib;..\..\..\..\libraries;..\..\..\SDK\components\AlexMX</HistoryLists_hlLibraryPath>
+                    <HistoryLists_hlLibraryPath Name="Item4">..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source\Core2D;..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source\Core3D;..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source\Numerics;..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source\Approximation3D;..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source\Containment2D;..\..;..\..\Layers\xrRender;..\..\xrServerEntities;..\..\xrEngine;Edit;..\..\..\SDK\components\ElPack\Code;$(BCB)\Projects;$(BCB)\lib;$(BCB)\lib\obj;$(BCB)\Projects\Lib;..\..\..\..\libraries</HistoryLists_hlLibraryPath>
+                    <HistoryLists_hlLibraryPath Name="Item5">..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source\Core2D;..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source\Core3D;..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source\Numerics;..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source\Approximation3D;..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source\Containment2D;..\..;..\..\Layers\xrRender;..\..\xrServerEntities;..\..\xrEngine;Edit;..\..\..\SDK\components\ElPack\Code;$(BCB)\Projects;$(BCB)\lib;$(BCB)\lib\obj;$(BCB)\Projects\Lib</HistoryLists_hlLibraryPath>
+                    <HistoryLists_hlLibraryPath Name="Item6">..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source\Core2D;..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source\Core3D;..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source\Numerics;..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source\Approximation3D;..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source\Containment2D;..\..;..\..\Layers\xrRender;..\..\xrServerEntities;..\..\xrEngine;Edit;..\..\..\SDK\components\ElPack\Code;$(BCB)\Projects;$(BCB)\lib;$(BCB)\lib\obj;$(BCB)\Projects\Lib;$(COMPONENTS)\alexmx;$(COMPONENTS)\ElPack\Code\Source;$(OUT_LIB_DIR)</HistoryLists_hlLibraryPath>
+                    <HistoryLists_hlLibraryPath Name="Item7">..\..;..\..\Layers\xrRender;..\..\xrServerEntities;..\..\xrEngine;Edit;..\..\..\SDK\components\ElPack\Code;$(BCB)\Projects;$(BCB)\lib;$(BCB)\lib\obj;$(BCB)\Projects\Lib;$(COMPONENTS)\alexmx;$(COMPONENTS)\ElPack\Code\Source;$(OUT_LIB_DIR)</HistoryLists_hlLibraryPath>
+                    <HistoryLists_hlLibraryPath Name="Item8">..\..;..\..\Layers\xrRender;..\..\xrServerEntities;..\..\xrEngine;Edit;..\..\..\SDK\components\ElPack\Code;$(BCB)\Projects;$(BCB)\lib;$(BCB)\lib\obj;$(BCB)\Projects\Lib;$(COMPONENTS)\alexmx;$(COMPONENTS)\ElPack\Code\Source</HistoryLists_hlLibraryPath>
+                    <HistoryLists_hlLibraryPath Name="Item9">..\..;..\..\Layers\xrRender;..\..\xrServerEntities;..\..\xrEngine;Edit;..\..\..\SDK\components\ElPack\Code;$(BCB)\Projects;$(BCB)\lib;$(BCB)\lib\obj;$(BCB)\Projects\Lib;$(COMPONENTS)\alexmx;$(COMPONENTS)\ElPack\Code\Source;X:\stalker_addon\libraries;X:\libraries</HistoryLists_hlLibraryPath>
+                    <HistoryLists_hlLibraryPath Name="Item10">..\..\Layers\xrRender;..\..\xrServerEntities;..\..\xrEngine;Edit;..\..\..\SDK\components\ElPack\Code;$(BCB)\Projects;$(BCB)\lib;$(BCB)\lib\obj;$(BCB)\Projects\Lib;$(COMPONENTS)\alexmx;$(COMPONENTS)\ElPack\Code\Source;X:\stalker_addon\libraries;X:\libraries</HistoryLists_hlLibraryPath>
+                    <HistoryLists_hlLibraryPath Name="Item11">..\..\Layers\xrRender;..\..\xrServerEntities;..\..\xrEngine;Edit;..\..\..\SDK\components\ElPack\Code;$(BCB)\Projects;$(BCB)\lib;$(BCB)\lib\obj;$(BCB)\Projects\Lib;$(COMPONENTS)\alexmx;$(COMPONENTS)\ElPack\Code\Source;X:\stalker_addon\libraries</HistoryLists_hlLibraryPath>
+                    <HistoryLists_hlLibraryPath Name="Item12">..\..\..\SDK\components\ElPack\Code;$(BCB)\Projects;$(BCB)\lib;$(BCB)\lib\obj;$(BCB)\Projects\Lib;$(COMPONENTS)\alexmx;$(COMPONENTS)\ElPack\Code\Source;X:\stalker_addon\libraries</HistoryLists_hlLibraryPath>
+                    <HistoryLists_hlLibraryPath Name="Item13">..\..\xrServerEntities;..\..\Layers\xrRender;..\..\..\SDK\components\ElPack\Code;..\..\xrEngine\xrRender;..\..\xrRender;..\..\xrEngine;Edit;Engine;$(BCB)\Projects;$(BCB)\lib;$(BCB)\lib\obj;$(BCB)\Projects\Lib;$(COMPONENTS)\alexmx;$(COMPONENTS)\ElPack\Code\Source;X:\stalker_addon\libraries</HistoryLists_hlLibraryPath>
+                    <HistoryLists_hlLibraryPath Name="Item14">..\..\xrEngine\xrRender;..\..\xrRender;..\..\xrEngine;Edit;Engine;$(BCB)\Projects;$(BCB)\lib;$(BCB)\lib\obj;$(BCB)\Projects\Lib;$(COMPONENTS)\alexmx;$(COMPONENTS)\ElPack\Code;$(COMPONENTS)\ElPack\Code\Source;X:\stalker_addon\libraries</HistoryLists_hlLibraryPath>
+                    <HistoryLists_hlLibraryPath Name="Item15">..\..\xrRender;..\..\xrEngine;Edit;Engine;$(BCB)\Projects;$(BCB)\lib;$(BCB)\lib\obj;$(BCB)\Projects\Lib;$(COMPONENTS)\alexmx;$(COMPONENTS)\ElPack\Code;$(COMPONENTS)\ElPack\Code\Source;X:\stalker_addon\libraries</HistoryLists_hlLibraryPath>
+                    <HistoryLists_hlLibraryPath Name="Item16">..\..\xrEngine\xrRender;..\..\xrEngine;Edit;Engine;$(BCB)\Projects;$(BCB)\lib;$(BCB)\lib\obj;$(BCB)\Projects\Lib;$(COMPONENTS)\alexmx;$(COMPONENTS)\ElPack\Code;$(COMPONENTS)\ElPack\Code\Source;x:\libraries</HistoryLists_hlLibraryPath>
+                    <HistoryLists_hlLibraryPath Name="Item17">Edit;Engine;$(BCB)\Projects;$(BCB)\lib;$(BCB)\lib\obj;$(BCB)\Projects\Lib;$(COMPONENTS)\alexmx;$(COMPONENTS)\ElPack\Code;$(COMPONENTS)\ElPack\Code\Source;x:\libraries</HistoryLists_hlLibraryPath>
+                    <HistoryLists_hlLibraryPath Name="Item18">$(BCB)\Projects;$(BCB)\lib;$(BCB)\lib\obj;$(BCB)\Projects\Lib;$(COMPONENTS)\alexmx;$(COMPONENTS)\ElPack\Code;$(COMPONENTS)\ElPack\Code\Source;x:\libraries</HistoryLists_hlLibraryPath>
+                    <HistoryLists_hlLibraryPath Name="Item19">H:\RAD\Borland\CBuilder6\Projects;Edit;Engine;C:\Rad\Borland\CBuilder6\Projects;$(BCB)\lib;$(BCB)\lib\obj;$(BCB)\Projects\Lib;r:\borland\components6\alexmx;R:\Borland\Components6\ElPack\Code;R:\Borland\Components6\ElPack\Code\Source;..\lib\dx;..\lib;x:\;..\ECore;..\ECore\Editor</HistoryLists_hlLibraryPath>
+                    <HistoryLists_hlLibraryPath Name="Item20">H:\RAD\Borland\CBuilder6\Projects;Engine\Game;Edit;Engine;C:\Rad\Borland\CBuilder6\Projects;$(BCB)\lib;$(BCB)\lib\obj;$(BCB)\Projects\Lib;r:\borland\components6\alexmx;R:\Borland\Components6\ElPack\Code;R:\Borland\Components6\ElPack\Code\Source;..\lib\dx;..\lib;x:\;..\ECore;..\ECore\Editor</HistoryLists_hlLibraryPath>
+                </HistoryLists_hlLibraryPath>
+                <HistoryLists_hlDebugSourcePath>
+                    <HistoryLists_hlDebugSourcePath Name="Count">2</HistoryLists_hlDebugSourcePath>
+                    <HistoryLists_hlDebugSourcePath Name="Item0">X:\stalker_addon\sources\engine\editors\ECore\Editor\</HistoryLists_hlDebugSourcePath>
+                    <HistoryLists_hlDebugSourcePath Name="Item1">c:\rad\borland\cbuilder5\source\vcl;R:\Borland\Components6\AlexMX\</HistoryLists_hlDebugSourcePath>
+                </HistoryLists_hlDebugSourcePath>
+                <HistoryLists_hlConditionals>
+                    <HistoryLists_hlConditionals Name="Count">3</HistoryLists_hlConditionals>
+                    <HistoryLists_hlConditionals Name="Item0">_EDITOR;_LEVEL_EDITOR;__MIXED</HistoryLists_hlConditionals>
+                    <HistoryLists_hlConditionals Name="Item1">_EDITOR;_LEVEL_EDITOR;_DEBUG</HistoryLists_hlConditionals>
+                    <HistoryLists_hlConditionals Name="Item2">_EDITOR;_LEVEL_EDITOR</HistoryLists_hlConditionals>
+                </HistoryLists_hlConditionals>
+                <HistoryLists_hlIntOutputDir>
+                    <HistoryLists_hlIntOutputDir Name="Count">5</HistoryLists_hlIntOutputDir>
+                    <HistoryLists_hlIntOutputDir Name="Item0">..\..\..\..\intermediate\Mixed\LevelEditor</HistoryLists_hlIntOutputDir>
+                    <HistoryLists_hlIntOutputDir Name="Item1">..\..\..\..\intermediate\Debug\LevelEditor</HistoryLists_hlIntOutputDir>
+                    <HistoryLists_hlIntOutputDir Name="Item2">x:\intermediate_ed\le</HistoryLists_hlIntOutputDir>
+                    <HistoryLists_hlIntOutputDir Name="Item3">$(OUTPUT_INTERMEDIATE_DIR)\le</HistoryLists_hlIntOutputDir>
+                    <HistoryLists_hlIntOutputDir Name="Item4">intermediate</HistoryLists_hlIntOutputDir>
+                </HistoryLists_hlIntOutputDir>
+                <HistoryLists_hlFinalOutputDir>
+                    <HistoryLists_hlFinalOutputDir Name="Count">10</HistoryLists_hlFinalOutputDir>
+                    <HistoryLists_hlFinalOutputDir Name="Item0">..\..\..\..\binaries\Mixed\</HistoryLists_hlFinalOutputDir>
+                    <HistoryLists_hlFinalOutputDir Name="Item1">..\..\..\..\binaries\Debug\</HistoryLists_hlFinalOutputDir>
+                    <HistoryLists_hlFinalOutputDir Name="Item2">..\..\..\..\binaries\Debug</HistoryLists_hlFinalOutputDir>
+                    <HistoryLists_hlFinalOutputDir Name="Item3">..\..\..\..\binaries\</HistoryLists_hlFinalOutputDir>
+                    <HistoryLists_hlFinalOutputDir Name="Item4">..\..\..\..\binaries</HistoryLists_hlFinalOutputDir>
+                    <HistoryLists_hlFinalOutputDir Name="Item5">$(OUTPUT_BINARIES_DIR)\</HistoryLists_hlFinalOutputDir>
+                    <HistoryLists_hlFinalOutputDir Name="Item6">x:\stalker_addon\binaries\</HistoryLists_hlFinalOutputDir>
+                    <HistoryLists_hlFinalOutputDir Name="Item7">x:\binaries\</HistoryLists_hlFinalOutputDir>
+                    <HistoryLists_hlFinalOutputDir Name="Item8">x:\binaries</HistoryLists_hlFinalOutputDir>
+                    <HistoryLists_hlFinalOutputDir Name="Item9">x:\</HistoryLists_hlFinalOutputDir>
+                </HistoryLists_hlFinalOutputDir>
+                <HistoryLists_hIBPIOutputDir>
+                    <HistoryLists_hIBPIOutputDir Name="Count">7</HistoryLists_hIBPIOutputDir>
+                    <HistoryLists_hIBPIOutputDir Name="Item0">..\..\..\..\libraries\Mixed</HistoryLists_hIBPIOutputDir>
+                    <HistoryLists_hIBPIOutputDir Name="Item1">..\..\..\..\libraries\Debug</HistoryLists_hIBPIOutputDir>
+                    <HistoryLists_hIBPIOutputDir Name="Item2">..\..\..\..\libraries</HistoryLists_hIBPIOutputDir>
+                    <HistoryLists_hIBPIOutputDir Name="Item3">x:\stalker_addon\libraries</HistoryLists_hIBPIOutputDir>
+                    <HistoryLists_hIBPIOutputDir Name="Item4">$(OUTPUT_LIBRARIES_DIR)</HistoryLists_hIBPIOutputDir>
+                    <HistoryLists_hIBPIOutputDir Name="Item5">$(OUTPUT_LIBRARIES_DIR)\</HistoryLists_hIBPIOutputDir>
+                    <HistoryLists_hIBPIOutputDir Name="Item6">x:\libraries</HistoryLists_hIBPIOutputDir>
+                </HistoryLists_hIBPIOutputDir>
+                <Debugging>
+                    <Debugging Name="DebugSourceDirs">X:\stalker_addon\sources\engine\editors\ECore\Editor\</Debugging>
+                </Debugging>
+                <Parameters>
+                    <Parameters Name="RunParams">-editor</Parameters>
+                    <Parameters Name="Launcher"/>
+                    <Parameters Name="UseLauncher">0</Parameters>
+                    <Parameters Name="DebugCWD"/>
+                    <Parameters Name="HostApplication">E:\src_cop\binaries\LevelEditor.exe</Parameters>
+                    <Parameters Name="RemoteHost"/>
+                    <Parameters Name="RemotePath"/>
+                    <Parameters Name="RemoteLauncher"/>
+                    <Parameters Name="RemoteCWD"/>
+                    <Parameters Name="RemoteDebug">0</Parameters>
+                </Parameters>
+                <Compiler>
+                    <Compiler Name="ShowInfoMsgs">0</Compiler>
+                    <Compiler Name="LinkDebugVcl">0</Compiler>
+                    <Compiler Name="LinkCGLIB">0</Compiler>
+                </Compiler>
+                <CORBA>
+                    <CORBA Name="AddServerUnit">1</CORBA>
+                    <CORBA Name="AddClientUnit">1</CORBA>
+                    <CORBA Name="PrecompiledHeaders">1</CORBA>
+                </CORBA>
+                <ProjectProperties>
+                    <ProjectProperties Name="AutoShowDeps">False</ProjectProperties>
+                    <ProjectProperties Name="ManagePaths">True</ProjectProperties>
+                    <ProjectProperties Name="VerifyPackages">True</ProjectProperties>
+                    <ProjectProperties Name="IndexFiles">False</ProjectProperties>
+                </ProjectProperties>
+                <Source>
+                    <Source Name="MainSource">LevelEditor.cpp</Source>
+                </Source>
+                <Excluded_Packages>
+                    <Excluded_Packages Name="$(BDSBIN)\bcboffice2k270.bpl">Embarcadero C++Builder Office 2000 Servers Package</Excluded_Packages>
+                    <Excluded_Packages Name="$(BDSBIN)\bcbofficexp270.bpl">Embarcadero C++Builder Office XP Servers Package</Excluded_Packages>
+                    <Excluded_Packages Name="$(BDSBIN)\dcloffice2k270.bpl">Microsoft Office 2000 Sample Automation Server Wrapper Components</Excluded_Packages>
+                    <Excluded_Packages Name="$(BDSBIN)\dclofficexp270.bpl">Microsoft Office XP Sample Automation Server Wrapper Components</Excluded_Packages>
+                </Excluded_Packages>
+            </CPlusPlusBuilder.Personality>
+            <Platforms>
+                <Platform value="Win32">True</Platform>
+                <Platform value="Win64">True</Platform>
+            </Platforms>
+            <Deployment Version="3">
+                <DeployFile LocalName="..\..\..\..\bins\Win64\Debug\LevelEditor.exe" Configuration="Debug" Class="ProjectOutput">
+                    <Platform Name="Win64">
+                        <RemoteName>LevelEditor.exe</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile Condition="'$(DynamicRTL)'=='true' And '$(Multithreaded)'!='true'" LocalName="$(BDS)\bin\cc32c260.dll" Class="DependencyModule">
+                    <Platform Name="Win32">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile Condition="'$(DynamicRTL)'=='true' And '$(Multithreaded)'=='true'" LocalName="$(BDS)\bin\cc32270mt.dll" Class="DependencyModule">
+                    <Platform Name="Win32">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile Condition="'$(DynamicRTL)'=='true' And '$(Multithreaded)'=='true'" LocalName="$(BDS)\bin\cc32c270mt.dll" Class="DependencyModule">
+                    <Platform Name="Win32">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile Condition="'$(DynamicRTL)'=='true'" LocalName="$(BDS)\Redist\osx64\libcgcrtl.dylib" Class="DependencyModule">
+                    <Platform Name="OSX64">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile Condition="'$(DynamicRTL)'=='true' And '$(Multithreaded)'!='true'" LocalName="$(BDS)\bin\cc32260.dll" Class="DependencyModule">
+                    <Platform Name="Win32">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile Condition="'$(DynamicRTL)'=='true' And '$(Multithreaded)'=='true'" LocalName="$(BDS)\bin64\cc64260mt.dll" Class="DependencyModule">
+                    <Platform Name="Win64">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="LevelEditor.todo" Configuration="Debug" Class="ProjectFile">
+                    <Platform Name="Win32">
+                        <RemoteDir>.\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\..\..\..\bins\Win32\Debug\LevelEditor.tds" Configuration="Debug" Class="DebugSymbols">
+                    <Platform Name="Win32">
+                        <RemoteName>LevelEditor.tds</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="LEClipEditor.dfm" Configuration="Debug" Class="ProjectFile">
+                    <Platform Name="Win32">
+                        <RemoteDir>.\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile Condition="'$(DynamicRTL)'=='true' And '$(Multithreaded)'!='true'" LocalName="$(BDS)\bin64\cc64270.dll" Class="DependencyModule">
+                    <Platform Name="Win64">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile Condition="'$(DynamicRTL)'=='true' And '$(Multithreaded)'=='true'" LocalName="$(BDS)\bin64\cc64270mt.dll" Class="DependencyModule">
+                    <Platform Name="Win64">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile Condition="'$(DynamicRTL)'=='true' And '$(Multithreaded)'!='true'" LocalName="$(BDS)\bin\cc32c270.dll" Class="DependencyModule">
+                    <Platform Name="Win32">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="resource.res" Configuration="Debug" Class="ProjectFile">
+                    <Platform Name="Win32">
+                        <RemoteDir>.\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="LevelEditor.res" Configuration="Debug" Class="ProjectFile">
+                    <Platform Name="Win64">
+                        <RemoteDir>.\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile Condition="'$(DynamicRTL)'=='true'" LocalName="$(BDS)\Redist\osx32\libcgcrtl.dylib" Class="DependencyModule">
+                    <Platform Name="OSX32">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile Condition="'$(DynamicRTL)'=='true'" LocalName="$(BDS)\Redist\osx64\libcgstl.dylib" Class="DependencyModule">
+                    <Platform Name="OSX64">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile Condition="'$(DynamicRTL)'=='true' And '$(Multithreaded)'=='true'" LocalName="$(BDS)\bin\cc32260mt.dll" Class="DependencyModule">
+                    <Platform Name="Win32">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile Condition="'$(UsingDelphiRTL)'=='true'" LocalName="$(BDS)\bin\borlndmm.dll" Class="DependencyModule">
+                    <Platform Name="Win32">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile Condition="'$(DynamicRTL)'=='true'" LocalName="$(BDS)\Redist\osx32\libcgstl.dylib" Class="DependencyModule">
+                    <Platform Name="OSX32">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile Condition="'$(UsingDelphiRTL)'=='true'" LocalName="$(BDS)\bin64\borlndmm.dll" Class="DependencyModule">
+                    <Platform Name="Win64">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="LEClipEditor.dfm" Configuration="Debug" Class="ProjectFile">
+                    <Platform Name="Win64">
+                        <RemoteDir>.\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile Condition="'$(DynamicRTL)'=='true' And '$(Multithreaded)'!='true'" LocalName="$(BDS)\bin\cc32270.dll" Class="DependencyModule">
+                    <Platform Name="Win32">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\..\..\..\bins\Win32\Debug\LevelEditor.exe" Configuration="Debug" Class="ProjectOutput">
+                    <Platform Name="Win32">
+                        <RemoteName>LevelEditor.exe</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="LEClipEditor.ddp" Configuration="Debug" Class="ProjectFile">
+                    <Platform Name="Win32">
+                        <RemoteDir>.\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="LevelEditor.todo" Configuration="Debug" Class="ProjectFile">
+                    <Platform Name="Win64">
+                        <RemoteDir>.\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile Condition="'$(DynamicRTL)'=='true' And '$(Multithreaded)'!='true'" LocalName="$(BDS)\bin64\cc64260.dll" Class="DependencyModule">
+                    <Platform Name="Win64">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile Condition="'$(DynamicRTL)'=='true' And '$(Multithreaded)'=='true'" LocalName="$(BDS)\bin\cc32c260mt.dll" Class="DependencyModule">
+                    <Platform Name="Win32">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="Profiling\AQtimeModule1.aqt" Configuration="Debug" Class="ProjectFile">
+                    <Platform Name="Win32">
+                        <RemoteDir>.\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="LEClipEditor.ddp" Configuration="Debug" Class="ProjectFile">
+                    <Platform Name="Win64">
+                        <RemoteDir>.\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="resource.res" Configuration="Debug" Class="ProjectFile">
+                    <Platform Name="Win64">
+                        <RemoteDir>.\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="LevelEditor.res" Configuration="Debug" Class="ProjectFile">
+                    <Platform Name="Win32">
+                        <RemoteDir>.\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployClass Name="AdditionalDebugSymbols">
+                    <Platform Name="iOSSimulator">
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="OSX32">
+                        <RemoteDir>Contents\MacOS</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="Win32">
+                        <Operation>0</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="AndroidClassesDexFile">
+                    <Platform Name="Android">
+                        <RemoteDir>classes</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="Android64">
+                        <RemoteDir>classes</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="AndroidFileProvider">
+                    <Platform Name="Android">
+                        <RemoteDir>res\xml</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="Android64">
+                        <RemoteDir>res\xml</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="AndroidGDBServer">
+                    <Platform Name="Android">
+                        <RemoteDir>library\lib\armeabi-v7a</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="AndroidLibnativeArmeabiFile">
+                    <Platform Name="Android">
+                        <RemoteDir>library\lib\armeabi</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="Android64">
+                        <RemoteDir>library\lib\armeabi</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="AndroidLibnativeArmeabiv7aFile">
+                    <Platform Name="Android64">
+                        <RemoteDir>library\lib\armeabi-v7a</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="AndroidLibnativeMipsFile">
+                    <Platform Name="Android">
+                        <RemoteDir>library\lib\mips</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="Android64">
+                        <RemoteDir>library\lib\mips</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="AndroidServiceOutput">
+                    <Platform Name="Android">
+                        <RemoteDir>library\lib\armeabi-v7a</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="Android64">
+                        <RemoteDir>library\lib\arm64-v8a</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="AndroidServiceOutput_Android32">
+                    <Platform Name="Android64">
+                        <RemoteDir>library\lib\armeabi-v7a</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="AndroidSplashImageDef">
+                    <Platform Name="Android">
+                        <RemoteDir>res\drawable</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="Android64">
+                        <RemoteDir>res\drawable</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="AndroidSplashStyles">
+                    <Platform Name="Android">
+                        <RemoteDir>res\values</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="Android64">
+                        <RemoteDir>res\values</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="AndroidSplashStylesV21">
+                    <Platform Name="Android">
+                        <RemoteDir>res\values-v21</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="Android64">
+                        <RemoteDir>res\values-v21</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="Android_Colors">
+                    <Platform Name="Android">
+                        <RemoteDir>res\values</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="Android64">
+                        <RemoteDir>res\values</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="Android_DefaultAppIcon">
+                    <Platform Name="Android">
+                        <RemoteDir>res\drawable</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="Android64">
+                        <RemoteDir>res\drawable</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="Android_LauncherIcon144">
+                    <Platform Name="Android">
+                        <RemoteDir>res\drawable-xxhdpi</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="Android64">
+                        <RemoteDir>res\drawable-xxhdpi</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="Android_LauncherIcon36">
+                    <Platform Name="Android">
+                        <RemoteDir>res\drawable-ldpi</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="Android64">
+                        <RemoteDir>res\drawable-ldpi</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="Android_LauncherIcon48">
+                    <Platform Name="Android">
+                        <RemoteDir>res\drawable-mdpi</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="Android64">
+                        <RemoteDir>res\drawable-mdpi</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="Android_LauncherIcon72">
+                    <Platform Name="Android">
+                        <RemoteDir>res\drawable-hdpi</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="Android64">
+                        <RemoteDir>res\drawable-hdpi</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="Android_LauncherIcon96">
+                    <Platform Name="Android">
+                        <RemoteDir>res\drawable-xhdpi</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="Android64">
+                        <RemoteDir>res\drawable-xhdpi</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="Android_NotificationIcon24">
+                    <Platform Name="Android">
+                        <RemoteDir>res\drawable-mdpi</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="Android64">
+                        <RemoteDir>res\drawable-mdpi</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="Android_NotificationIcon36">
+                    <Platform Name="Android">
+                        <RemoteDir>res\drawable-hdpi</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="Android64">
+                        <RemoteDir>res\drawable-hdpi</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="Android_NotificationIcon48">
+                    <Platform Name="Android">
+                        <RemoteDir>res\drawable-xhdpi</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="Android64">
+                        <RemoteDir>res\drawable-xhdpi</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="Android_NotificationIcon72">
+                    <Platform Name="Android">
+                        <RemoteDir>res\drawable-xxhdpi</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="Android64">
+                        <RemoteDir>res\drawable-xxhdpi</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="Android_NotificationIcon96">
+                    <Platform Name="Android">
+                        <RemoteDir>res\drawable-xxxhdpi</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="Android64">
+                        <RemoteDir>res\drawable-xxxhdpi</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="Android_SplashImage426">
+                    <Platform Name="Android">
+                        <RemoteDir>res\drawable-small</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="Android64">
+                        <RemoteDir>res\drawable-small</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="Android_SplashImage470">
+                    <Platform Name="Android">
+                        <RemoteDir>res\drawable-normal</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="Android64">
+                        <RemoteDir>res\drawable-normal</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="Android_SplashImage640">
+                    <Platform Name="Android">
+                        <RemoteDir>res\drawable-large</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="Android64">
+                        <RemoteDir>res\drawable-large</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="Android_SplashImage960">
+                    <Platform Name="Android">
+                        <RemoteDir>res\drawable-xlarge</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="Android64">
+                        <RemoteDir>res\drawable-xlarge</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="Android_Strings">
+                    <Platform Name="Android">
+                        <RemoteDir>res\values</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="Android64">
+                        <RemoteDir>res\values</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="DebugSymbols">
+                    <Platform Name="iOSSimulator">
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="OSX32">
+                        <RemoteDir>Contents\MacOS</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="Win32">
+                        <Operation>0</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="DependencyFramework">
+                    <Platform Name="OSX32">
+                        <RemoteDir>Contents\MacOS</RemoteDir>
+                        <Operation>1</Operation>
+                        <Extensions>.framework</Extensions>
+                    </Platform>
+                    <Platform Name="OSX64">
+                        <RemoteDir>Contents\MacOS</RemoteDir>
+                        <Operation>1</Operation>
+                        <Extensions>.framework</Extensions>
+                    </Platform>
+                    <Platform Name="Win32">
+                        <Operation>0</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="DependencyModule">
+                    <Platform Name="iOSDevice32">
+                        <Operation>1</Operation>
+                        <Extensions>.dylib</Extensions>
+                    </Platform>
+                    <Platform Name="iOSDevice64">
+                        <Operation>1</Operation>
+                        <Extensions>.dylib</Extensions>
+                    </Platform>
+                    <Platform Name="iOSSimulator">
+                        <Operation>1</Operation>
+                        <Extensions>.dylib</Extensions>
+                    </Platform>
+                    <Platform Name="OSX32">
+                        <RemoteDir>Contents\MacOS</RemoteDir>
+                        <Operation>1</Operation>
+                        <Extensions>.dylib</Extensions>
+                    </Platform>
+                    <Platform Name="OSX64">
+                        <RemoteDir>Contents\MacOS</RemoteDir>
+                        <Operation>1</Operation>
+                        <Extensions>.dylib</Extensions>
+                    </Platform>
+                    <Platform Name="Win32">
+                        <Operation>0</Operation>
+                        <Extensions>.dll;.bpl</Extensions>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Required="true" Name="DependencyPackage">
+                    <Platform Name="iOSDevice32">
+                        <Operation>1</Operation>
+                        <Extensions>.dylib</Extensions>
+                    </Platform>
+                    <Platform Name="iOSDevice64">
+                        <Operation>1</Operation>
+                        <Extensions>.dylib</Extensions>
+                    </Platform>
+                    <Platform Name="iOSSimulator">
+                        <Operation>1</Operation>
+                        <Extensions>.dylib</Extensions>
+                    </Platform>
+                    <Platform Name="OSX32">
+                        <RemoteDir>Contents\MacOS</RemoteDir>
+                        <Operation>1</Operation>
+                        <Extensions>.dylib</Extensions>
+                    </Platform>
+                    <Platform Name="OSX64">
+                        <RemoteDir>Contents\MacOS</RemoteDir>
+                        <Operation>1</Operation>
+                        <Extensions>.dylib</Extensions>
+                    </Platform>
+                    <Platform Name="Win32">
+                        <Operation>0</Operation>
+                        <Extensions>.bpl</Extensions>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="File">
+                    <Platform Name="Android">
+                        <Operation>0</Operation>
+                    </Platform>
+                    <Platform Name="Android64">
+                        <Operation>0</Operation>
+                    </Platform>
+                    <Platform Name="iOSDevice32">
+                        <Operation>0</Operation>
+                    </Platform>
+                    <Platform Name="iOSDevice64">
+                        <Operation>0</Operation>
+                    </Platform>
+                    <Platform Name="iOSSimulator">
+                        <Operation>0</Operation>
+                    </Platform>
+                    <Platform Name="OSX32">
+                        <RemoteDir>Contents\Resources\StartUp\</RemoteDir>
+                        <Operation>0</Operation>
+                    </Platform>
+                    <Platform Name="OSX64">
+                        <RemoteDir>Contents\Resources\StartUp\</RemoteDir>
+                        <Operation>0</Operation>
+                    </Platform>
+                    <Platform Name="Win32">
+                        <Operation>0</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="iOS_AppStore1024">
+                    <Platform Name="iOSDevice64">
+                        <RemoteDir>..\$(PROJECTNAME).launchscreen\Assets\AppIcon.appiconset</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="iPad_AppIcon152">
+                    <Platform Name="iOSDevice64">
+                        <RemoteDir>..\$(PROJECTNAME).launchscreen\Assets\AppIcon.appiconset</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="iOSSimulator">
+                        <RemoteDir>..\$(PROJECTNAME).launchscreen\Assets\AppIcon.appiconset</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="iPad_AppIcon167">
+                    <Platform Name="iOSDevice64">
+                        <RemoteDir>..\$(PROJECTNAME).launchscreen\Assets\AppIcon.appiconset</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="iOSSimulator">
+                        <RemoteDir>..\$(PROJECTNAME).launchscreen\Assets\AppIcon.appiconset</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="iPad_Launch2x">
+                    <Platform Name="iOSDevice64">
+                        <RemoteDir>..\$(PROJECTNAME).launchscreen\Assets\LaunchScreenImage.imageset</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="iOSSimulator">
+                        <RemoteDir>..\$(PROJECTNAME).launchscreen\Assets\LaunchScreenImage.imageset</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="iPad_LaunchDark2x">
+                    <Platform Name="iOSDevice64">
+                        <RemoteDir>..\$(PROJECTNAME).launchscreen\Assets\LaunchScreenImage.imageset</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="iOSSimulator">
+                        <RemoteDir>..\$(PROJECTNAME).launchscreen\Assets\LaunchScreenImage.imageset</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="iPad_Notification40">
+                    <Platform Name="iOSDevice64">
+                        <RemoteDir>..\$(PROJECTNAME).launchscreen\Assets\AppIcon.appiconset</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="iOSSimulator">
+                        <RemoteDir>..\$(PROJECTNAME).launchscreen\Assets\AppIcon.appiconset</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="iPad_Setting58">
+                    <Platform Name="iOSDevice64">
+                        <RemoteDir>..\$(PROJECTNAME).launchscreen\Assets\AppIcon.appiconset</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="iOSSimulator">
+                        <RemoteDir>..\$(PROJECTNAME).launchscreen\Assets\AppIcon.appiconset</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="iPad_SpotLight80">
+                    <Platform Name="iOSDevice64">
+                        <RemoteDir>..\$(PROJECTNAME).launchscreen\Assets\AppIcon.appiconset</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="iOSSimulator">
+                        <RemoteDir>..\$(PROJECTNAME).launchscreen\Assets\AppIcon.appiconset</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="iPhone_AppIcon120">
+                    <Platform Name="iOSDevice64">
+                        <RemoteDir>..\$(PROJECTNAME).launchscreen\Assets\AppIcon.appiconset</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="iOSSimulator">
+                        <RemoteDir>..\$(PROJECTNAME).launchscreen\Assets\AppIcon.appiconset</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="iPhone_AppIcon180">
+                    <Platform Name="iOSDevice64">
+                        <RemoteDir>..\$(PROJECTNAME).launchscreen\Assets\AppIcon.appiconset</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="iOSSimulator">
+                        <RemoteDir>..\$(PROJECTNAME).launchscreen\Assets\AppIcon.appiconset</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="iPhone_Launch2x">
+                    <Platform Name="iOSDevice64">
+                        <RemoteDir>..\$(PROJECTNAME).launchscreen\Assets\LaunchScreenImage.imageset</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="iOSSimulator">
+                        <RemoteDir>..\$(PROJECTNAME).launchscreen\Assets\LaunchScreenImage.imageset</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="iPhone_Launch3x">
+                    <Platform Name="iOSDevice64">
+                        <RemoteDir>..\$(PROJECTNAME).launchscreen\Assets\LaunchScreenImage.imageset</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="iOSSimulator">
+                        <RemoteDir>..\$(PROJECTNAME).launchscreen\Assets\LaunchScreenImage.imageset</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="iPhone_LaunchDark2x">
+                    <Platform Name="iOSDevice64">
+                        <RemoteDir>..\$(PROJECTNAME).launchscreen\Assets\LaunchScreenImage.imageset</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="iOSSimulator">
+                        <RemoteDir>..\$(PROJECTNAME).launchscreen\Assets\LaunchScreenImage.imageset</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="iPhone_LaunchDark3x">
+                    <Platform Name="iOSDevice64">
+                        <RemoteDir>..\$(PROJECTNAME).launchscreen\Assets\LaunchScreenImage.imageset</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="iOSSimulator">
+                        <RemoteDir>..\$(PROJECTNAME).launchscreen\Assets\LaunchScreenImage.imageset</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="iPhone_Notification40">
+                    <Platform Name="iOSDevice64">
+                        <RemoteDir>..\$(PROJECTNAME).launchscreen\Assets\AppIcon.appiconset</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="iOSSimulator">
+                        <RemoteDir>..\$(PROJECTNAME).launchscreen\Assets\AppIcon.appiconset</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="iPhone_Notification60">
+                    <Platform Name="iOSDevice64">
+                        <RemoteDir>..\$(PROJECTNAME).launchscreen\Assets\AppIcon.appiconset</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="iOSSimulator">
+                        <RemoteDir>..\$(PROJECTNAME).launchscreen\Assets\AppIcon.appiconset</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="iPhone_Setting58">
+                    <Platform Name="iOSDevice64">
+                        <RemoteDir>..\$(PROJECTNAME).launchscreen\Assets\AppIcon.appiconset</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="iOSSimulator">
+                        <RemoteDir>..\$(PROJECTNAME).launchscreen\Assets\AppIcon.appiconset</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="iPhone_Setting87">
+                    <Platform Name="iOSDevice64">
+                        <RemoteDir>..\$(PROJECTNAME).launchscreen\Assets\AppIcon.appiconset</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="iOSSimulator">
+                        <RemoteDir>..\$(PROJECTNAME).launchscreen\Assets\AppIcon.appiconset</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="iPhone_Spotlight120">
+                    <Platform Name="iOSDevice64">
+                        <RemoteDir>..\$(PROJECTNAME).launchscreen\Assets\AppIcon.appiconset</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="iOSSimulator">
+                        <RemoteDir>..\$(PROJECTNAME).launchscreen\Assets\AppIcon.appiconset</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="iPhone_Spotlight80">
+                    <Platform Name="iOSDevice64">
+                        <RemoteDir>..\$(PROJECTNAME).launchscreen\Assets\AppIcon.appiconset</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="iOSSimulator">
+                        <RemoteDir>..\$(PROJECTNAME).launchscreen\Assets\AppIcon.appiconset</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="ProjectAndroidManifest">
+                    <Platform Name="Android">
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="Android64">
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="ProjectiOSDeviceDebug">
+                    <Platform Name="iOSDevice32">
+                        <RemoteDir>..\$(PROJECTNAME).app.dSYM\Contents\Resources\DWARF</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="iOSDevice64">
+                        <RemoteDir>..\$(PROJECTNAME).app.dSYM\Contents\Resources\DWARF</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="ProjectiOSDeviceResourceRules">
+                    <Platform Name="iOSDevice32">
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="iOSDevice64">
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="ProjectiOSEntitlements">
+                    <Platform Name="iOSDevice32">
+                        <RemoteDir>..\</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="iOSDevice64">
+                        <RemoteDir>..\</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="ProjectiOSInfoPList">
+                    <Platform Name="iOSDevice32">
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="iOSDevice64">
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="iOSSimulator">
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="ProjectiOSLaunchScreen">
+                    <Platform Name="iOSDevice64">
+                        <RemoteDir>..\$(PROJECTNAME).launchscreen</RemoteDir>
+                        <Operation>64</Operation>
+                    </Platform>
+                    <Platform Name="iOSSimulator">
+                        <RemoteDir>..\$(PROJECTNAME).launchscreen</RemoteDir>
+                        <Operation>64</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="ProjectiOSResource">
+                    <Platform Name="iOSDevice32">
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="iOSDevice64">
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="iOSSimulator">
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="ProjectOSXDebug">
+                    <Platform Name="OSX64">
+                        <RemoteDir>..\$(PROJECTNAME).app.dSYM\Contents\Resources\DWARF</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="ProjectOSXEntitlements">
+                    <Platform Name="OSX32">
+                        <RemoteDir>..\</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="OSX64">
+                        <RemoteDir>..\</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="ProjectOSXInfoPList">
+                    <Platform Name="OSX32">
+                        <RemoteDir>Contents</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="OSX64">
+                        <RemoteDir>Contents</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="ProjectOSXResource">
+                    <Platform Name="OSX32">
+                        <RemoteDir>Contents\Resources</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="OSX64">
+                        <RemoteDir>Contents\Resources</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Required="true" Name="ProjectOutput">
+                    <Platform Name="Android">
+                        <RemoteDir>library\lib\armeabi-v7a</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="Android64">
+                        <RemoteDir>library\lib\arm64-v8a</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="iOSDevice32">
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="iOSDevice64">
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="iOSSimulator">
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="Linux64">
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="OSX32">
+                        <RemoteDir>Contents\MacOS</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="OSX64">
+                        <RemoteDir>Contents\MacOS</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="Win32">
+                        <Operation>0</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="ProjectOutput_Android32">
+                    <Platform Name="Android64">
+                        <RemoteDir>library\lib\armeabi-v7a</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="ProjectUWPManifest">
+                    <Platform Name="Win32">
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="Win64">
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="UWP_CppLogo150">
+                    <Platform Name="Win32">
+                        <RemoteDir>Assets</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="Win64">
+                        <RemoteDir>Assets</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="UWP_CppLogo44">
+                    <Platform Name="Win32">
+                        <RemoteDir>Assets</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="Win64">
+                        <RemoteDir>Assets</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <ProjectRoot Platform="iOSDevice64" Name="$(PROJECTNAME).app"/>
+                <ProjectRoot Platform="Win64" Name="$(PROJECTNAME)"/>
+                <ProjectRoot Platform="iOSDevice32" Name="$(PROJECTNAME).app"/>
+                <ProjectRoot Platform="Linux64" Name="$(PROJECTNAME)"/>
+                <ProjectRoot Platform="Win32" Name="$(PROJECTNAME)"/>
+                <ProjectRoot Platform="OSX32" Name="$(PROJECTNAME).app"/>
+                <ProjectRoot Platform="Android" Name="$(PROJECTNAME)"/>
+                <ProjectRoot Platform="OSX64" Name="$(PROJECTNAME).app"/>
+                <ProjectRoot Platform="iOSSimulator" Name="$(PROJECTNAME).app"/>
+                <ProjectRoot Platform="Android64" Name="$(PROJECTNAME)"/>
+            </Deployment>
+        </BorlandProject>
+        <ProjectFileVersion>12</ProjectFileVersion>
+    </ProjectExtensions>
+    <Import Project="$(APPDATA)\Embarcadero\$(BDSAPPDATABASEDIR)\$(PRODUCTVERSION)\UserTools.proj" Condition="Exists('$(APPDATA)\Embarcadero\$(BDSAPPDATABASEDIR)\$(PRODUCTVERSION)\UserTools.proj')"/>
+    <Import Project="$(BDS)\Bin\CodeGear.Cpp.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Cpp.Targets')"/>
+    <Import Project="$(MSBuildProjectName).deployproj" Condition="Exists('$(MSBuildProjectName).deployproj')"/>
+</Project>

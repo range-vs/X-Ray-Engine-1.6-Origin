@@ -1,0 +1,50 @@
+package elpkdbB6;
+
+{$R *.res}
+{$IFDEF IMPLICITBUILDING This IFDEF should not be used by users}
+{$ALIGN 8}
+{$ASSERTIONS ON}
+{$BOOLEVAL OFF}
+{$DEBUGINFO ON}
+{$EXTENDEDSYNTAX ON}
+{$IMPORTEDDATA ON}
+{$IOCHECKS OFF}
+{$LOCALSYMBOLS ON}
+{$LONGSTRINGS ON}
+{$OPENSTRINGS ON}
+{$OPTIMIZATION OFF}
+{$OVERFLOWCHECKS OFF}
+{$RANGECHECKS OFF}
+{$REFERENCEINFO ON}
+{$SAFEDIVIDE OFF}
+{$STACKFRAMES ON}
+{$TYPEDADDRESS OFF}
+{$VARSTRINGCHECKS ON}
+{$WRITEABLECONST ON}
+{$MINENUMSIZE 1}
+{$IMAGEBASE $400000}
+{$DEFINE DEBUG}
+{$DEFINE BUIlDER_USED}
+{$ENDIF IMPLICITBUILDING}
+{$DESCRIPTION 'EldoS DB-Aware Controls'}
+{$RUNONLY}
+{$IMPLICITBUILD OFF}
+
+requires
+  vcl,
+  elpackB6,
+  VCLDB;
+
+contains
+  ElDBLookupCtrls in 'Source\ElDBLookupCtrls.pas',
+  ElDBWidelookupControls in 'Source\ElDBWidelookupControls.pas',
+  ElDBBoxes in 'Source\ElDBBoxes.pas',
+  ElDBBtnEdit in 'Source\ElDBBtnEdit.pas',
+  ElDBCtrls in 'Source\ElDBCtrls.pas',
+  ElDBCurrEdit in 'Source\ElDBCurrEdit.pas',
+  ElDBDTPick in 'Source\ElDBDTPick.pas',
+  ElDBHTMLView in 'Source\ElDBHTMLView.pas',
+  ElDBLbl in 'Source\ElDBLbl.pas',
+  ElDBSpin in 'Source\ElDBSpin.pas';
+
+end.

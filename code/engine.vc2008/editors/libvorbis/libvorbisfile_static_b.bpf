@@ -1,0 +1,17 @@
+//---------------------------------------------------------------------------
+
+#include <vcl.h>
+#pragma hdrstop
+#define Library
+
+#ifdef _RELEASE
+#pragma comment(lib, "libogg_static_release.lib")
+#pragma comment(lib, "libvorbis_static_release.lib")
+#else
+#pragma comment(lib, "libogg_static.lib")
+#pragma comment(lib, "libvorbis_static.lib")
+#endif
+
+// To add a file to the library use the Project menu 'Add to Project'.
+
+ 
