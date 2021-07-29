@@ -316,7 +316,7 @@ bool CInventory::Slot(u16 slot_id, PIItem pIItem, bool bNotActivate, bool strict
 
 	if(!strict_placement && !CanPutInSlot(pIItem,slot_id)) 
 	{
-#ifdef _DEBUG
+/*#ifdef _DEBUG // range fix
 		Msg("there is item %s[%d,%x] in slot %d[%d,%x]", 
 				ItemFromSlot(pIItem->GetSlot())->object().cName().c_str(), 
 				ItemFromSlot(pIItem->GetSlot())->object().ID(), 
@@ -324,7 +324,7 @@ bool CInventory::Slot(u16 slot_id, PIItem pIItem, bool bNotActivate, bool strict
 				pIItem->GetSlot(), 
 				pIItem->object().ID(),
 				pIItem);
-#endif
+#endif*/
 //.		if(m_slots[pIItem->GetSlot()].m_pIItem == pIItem && !bNotActivate )
 //.			Activate(pIItem->GetSlot());
 
@@ -1197,8 +1197,8 @@ bool CInventory::CanTakeItem(CInventoryItem *inventory_item) const
 	if (inventory_item->object().getDestroy()) return false;
 
 	if(!inventory_item->CanTake()) return false;
-
-	for(TIItemContainer::const_iterator it = m_all.begin(); it != m_all.end(); it++)
+	TIItemContainer::const_iterator it;
+	for(it = m_all.begin(); it != m_all.end(); it++)
 		if((*it)->object().ID() == inventory_item->object().ID()) break;
 	VERIFY3(it == m_all.end(), "item already exists in inventory",*inventory_item->object().cName());
 
