@@ -9,6 +9,22 @@
       <Configuration>Debug</Configuration>
       <Platform>x64</Platform>
     </ProjectConfiguration>
+    <ProjectConfiguration Include="ReleaseAndDebug|Win32">
+      <Configuration>ReleaseAndDebug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="ReleaseAndDebug|x64">
+      <Configuration>ReleaseAndDebug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="ReleaseSdk|Win32">
+      <Configuration>ReleaseSdk</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="ReleaseSdk|x64">
+      <Configuration>ReleaseSdk</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
     <ProjectConfiguration Include="Release|Win32">
       <Configuration>Release</Configuration>
       <Platform>Win32</Platform>
@@ -30,7 +46,31 @@
     <CharacterSet>MultiByte</CharacterSet>
     <WholeProgramOptimization>true</WholeProgramOptimization>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseAndDebug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <PlatformToolset>v142</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseSdk|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <PlatformToolset>v142</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <PlatformToolset>v142</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseAndDebug|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <PlatformToolset>v142</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseSdk|x64'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
@@ -53,7 +93,23 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\..\PropertyGeneral86.props" />
   </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseAndDebug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\..\PropertyGeneral86.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseSdk|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\..\PropertyGeneral86.props" />
+  </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\..\PropertyGeneral64.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseAndDebug|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\..\PropertyGeneral64.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseSdk|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\..\PropertyGeneral64.props" />
   </ImportGroup>
@@ -81,7 +137,23 @@
     <OutDir>..\..\..\..\bins\$(PlatformXray)\$(Configuration)\</OutDir>
     <IntDir>..\..\..\..\intermedia\$(ProjectName)\$(PlatformXray)\$(Configuration)\</IntDir>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseAndDebug|Win32'">
+    <OutDir>..\..\..\..\bins\$(PlatformXray)\$(Configuration)\</OutDir>
+    <IntDir>..\..\..\..\intermedia\$(ProjectName)\$(PlatformXray)\$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseSdk|Win32'">
+    <OutDir>..\..\..\..\bins\$(PlatformXray)\$(Configuration)\</OutDir>
+    <IntDir>..\..\..\..\intermedia\$(ProjectName)\$(PlatformXray)\$(Configuration)\</IntDir>
+  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <OutDir>..\..\..\..\bins\$(PlatformXray)\$(Configuration)\</OutDir>
+    <IntDir>..\..\..\..\intermedia\$(ProjectName)\$(PlatformXray)\$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseAndDebug|x64'">
+    <OutDir>..\..\..\..\bins\$(PlatformXray)\$(Configuration)\</OutDir>
+    <IntDir>..\..\..\..\intermedia\$(ProjectName)\$(PlatformXray)\$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseSdk|x64'">
     <OutDir>..\..\..\..\bins\$(PlatformXray)\$(Configuration)\</OutDir>
     <IntDir>..\..\..\..\intermedia\$(ProjectName)\$(PlatformXray)\$(Configuration)\</IntDir>
   </PropertyGroup>
@@ -91,7 +163,7 @@
       <AdditionalIncludeDirectories>openssl;../../../sdk/include; ../../../../include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CPPUNWIND;CRYPTO_BUILD;_SILENCE_STDEXT_HASH_DEPRECATION_WARNINGS;DEBUG;_CRT_SECURE_NO_WARNINGS;CRYPTO_AS_SHARED_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FloatingPointModel>Fast</FloatingPointModel>
       <WarningLevel>Level4</WarningLevel>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
@@ -111,7 +183,7 @@
       <AdditionalIncludeDirectories>openssl;../../../sdk/include; ../../../../include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CPPUNWIND;CRYPTO_BUILD;_SILENCE_STDEXT_HASH_DEPRECATION_WARNINGS;_CPPUNWIND;DEBUG;_CRT_SECURE_NO_WARNINGS;CRYPTO_AS_SHARED_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FloatingPointModel>Fast</FloatingPointModel>
       <WarningLevel>Level4</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
@@ -136,7 +208,55 @@
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
     </ClCompile>
   </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseAndDebug|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>openssl;../../../sdk/include; ../../../../include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_CPPUNWIND;CRYPTO_BUILD;_SILENCE_STDEXT_HASH_DEPRECATION_WARNINGS;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ExceptionHandling>
+      </ExceptionHandling>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <FloatingPointModel>Fast</FloatingPointModel>
+      <WarningLevel>Level4</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseSdk|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>openssl;../../../sdk/include; ../../../../include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_CPPUNWIND;CRYPTO_BUILD;_SILENCE_STDEXT_HASH_DEPRECATION_WARNINGS;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ExceptionHandling>
+      </ExceptionHandling>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <FloatingPointModel>Fast</FloatingPointModel>
+      <WarningLevel>Level4</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+  </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>openssl;../../../sdk/include; ../../../../include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_CPPUNWIND;CRYPTO_BUILD;_SILENCE_STDEXT_HASH_DEPRECATION_WARNINGS;_CPPUNWIND;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ExceptionHandling>
+      </ExceptionHandling>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <FloatingPointModel>Fast</FloatingPointModel>
+      <WarningLevel>Level4</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseAndDebug|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>openssl;../../../sdk/include; ../../../../include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_CPPUNWIND;CRYPTO_BUILD;_SILENCE_STDEXT_HASH_DEPRECATION_WARNINGS;_CPPUNWIND;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ExceptionHandling>
+      </ExceptionHandling>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <FloatingPointModel>Fast</FloatingPointModel>
+      <WarningLevel>Level4</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseSdk|x64'">
     <ClCompile>
       <AdditionalIncludeDirectories>openssl;../../../sdk/include; ../../../../include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CPPUNWIND;CRYPTO_BUILD;_SILENCE_STDEXT_HASH_DEPRECATION_WARNINGS;_CPPUNWIND;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>

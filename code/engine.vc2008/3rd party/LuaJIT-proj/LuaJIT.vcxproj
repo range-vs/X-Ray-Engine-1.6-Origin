@@ -9,6 +9,30 @@
       <Configuration>Debug</Configuration>
       <Platform>x64</Platform>
     </ProjectConfiguration>
+    <ProjectConfiguration Include="Mixed|Win32">
+      <Configuration>Mixed</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Mixed|x64">
+      <Configuration>Mixed</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="ReleaseAndDebug|Win32">
+      <Configuration>ReleaseAndDebug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="ReleaseAndDebug|x64">
+      <Configuration>ReleaseAndDebug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="ReleaseSdk|Win32">
+      <Configuration>ReleaseSdk</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="ReleaseSdk|x64">
+      <Configuration>ReleaseSdk</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
     <ProjectConfiguration Include="Release|Win32">
       <Configuration>Release</Configuration>
       <Platform>Win32</Platform>
@@ -54,13 +78,29 @@
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <Import Project="..\..\PropertyGeneral86.props" />
   </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseAndDebug|Win32'" Label="PropertySheets">
+    <Import Project="..\..\PropertyGeneral86.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseSdk|Win32'" Label="PropertySheets">
+    <Import Project="..\..\PropertyGeneral86.props" />
+  </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <Import Project="..\..\PropertyGeneral64.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <Import Project="..\..\PropertyGeneral64.props" />
   </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseAndDebug|x64'" Label="PropertySheets">
+    <Import Project="..\..\PropertyGeneral64.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseSdk|x64'" Label="PropertySheets">
+    <Import Project="..\..\PropertyGeneral64.props" />
+  </ImportGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>..\..\..\..\bins\$(PlatformXray)\$(Configuration)\</OutDir>
+    <IntDir>..\..\..\..\intermedia\$(ProjectName)\$(PlatformXray)\$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Mixed|Win32'">
     <OutDir>..\..\..\..\bins\$(PlatformXray)\$(Configuration)\</OutDir>
     <IntDir>..\..\..\..\intermedia\$(ProjectName)\$(PlatformXray)\$(Configuration)\</IntDir>
   </PropertyGroup>
@@ -68,7 +108,19 @@
     <OutDir>..\..\..\..\bins\$(PlatformXray)\$(Configuration)\</OutDir>
     <IntDir>..\..\..\..\intermedia\$(ProjectName)\$(PlatformXray)\$(Configuration)\</IntDir>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseAndDebug|Win32'">
+    <OutDir>..\..\..\..\bins\$(PlatformXray)\$(Configuration)\</OutDir>
+    <IntDir>..\..\..\..\intermedia\$(ProjectName)\$(PlatformXray)\$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseSdk|Win32'">
+    <OutDir>..\..\..\..\bins\$(PlatformXray)\$(Configuration)\</OutDir>
+    <IntDir>..\..\..\..\intermedia\$(ProjectName)\$(PlatformXray)\$(Configuration)\</IntDir>
+  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <OutDir>..\..\..\..\bins\$(PlatformXray)\$(Configuration)\</OutDir>
+    <IntDir>..\..\..\..\intermedia\$(ProjectName)\$(PlatformXray)\$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Mixed|x64'">
     <OutDir>..\..\..\..\bins\$(PlatformXray)\$(Configuration)\</OutDir>
     <IntDir>..\..\..\..\intermedia\$(ProjectName)\$(PlatformXray)\$(Configuration)\</IntDir>
   </PropertyGroup>
@@ -76,13 +128,27 @@
     <OutDir>..\..\..\..\bins\$(PlatformXray)\$(Configuration)\</OutDir>
     <IntDir>..\..\..\..\intermedia\$(ProjectName)\$(PlatformXray)\$(Configuration)\</IntDir>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseAndDebug|x64'">
+    <OutDir>..\..\..\..\bins\$(PlatformXray)\$(Configuration)\</OutDir>
+    <IntDir>..\..\..\..\intermedia\$(ProjectName)\$(PlatformXray)\$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseSdk|x64'">
+    <OutDir>..\..\..\..\bins\$(PlatformXray)\$(Configuration)\</OutDir>
+    <IntDir>..\..\..\..\intermedia\$(ProjectName)\$(PlatformXray)\$(Configuration)\</IntDir>
+  </PropertyGroup>
   <ItemDefinitionGroup>
     <Link>
       <AdditionalDependencies>lj_vm_$(PlatformShortName).obj;%(AdditionalDependencies)</AdditionalDependencies>
       <ImportLibrary Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\..\..\libraries\$(PlatformXray)\$(Configuration)\$(TargetName).lib</ImportLibrary>
+      <ImportLibrary Condition="'$(Configuration)|$(Platform)'=='Mixed|Win32'">..\..\..\..\libraries\$(PlatformXray)\$(Configuration)\$(TargetName).lib</ImportLibrary>
       <ImportLibrary Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\..\..\libraries\$(PlatformXray)\$(Configuration)\$(TargetName).lib</ImportLibrary>
+      <ImportLibrary Condition="'$(Configuration)|$(Platform)'=='ReleaseAndDebug|Win32'">..\..\..\..\libraries\$(PlatformXray)\$(Configuration)\$(TargetName).lib</ImportLibrary>
+      <ImportLibrary Condition="'$(Configuration)|$(Platform)'=='ReleaseSdk|Win32'">..\..\..\..\libraries\$(PlatformXray)\$(Configuration)\$(TargetName).lib</ImportLibrary>
       <ImportLibrary Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">..\..\..\..\libraries\$(PlatformXray)\$(Configuration)\$(TargetName).lib</ImportLibrary>
+      <ImportLibrary Condition="'$(Configuration)|$(Platform)'=='Mixed|x64'">..\..\..\..\libraries\$(PlatformXray)\$(Configuration)\$(TargetName).lib</ImportLibrary>
       <ImportLibrary Condition="'$(Configuration)|$(Platform)'=='Release|x64'">..\..\..\..\libraries\$(PlatformXray)\$(Configuration)\$(TargetName).lib</ImportLibrary>
+      <ImportLibrary Condition="'$(Configuration)|$(Platform)'=='ReleaseAndDebug|x64'">..\..\..\..\libraries\$(PlatformXray)\$(Configuration)\$(TargetName).lib</ImportLibrary>
+      <ImportLibrary Condition="'$(Configuration)|$(Platform)'=='ReleaseSdk|x64'">..\..\..\..\libraries\$(PlatformXray)\$(Configuration)\$(TargetName).lib</ImportLibrary>
     </Link>
     <ClCompile>
       <PreprocessorDefinitions Condition="'$(Platform)'=='Win32'">LUA_BUILD_AS_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -91,20 +157,32 @@
       <EnableEnhancedInstructionSet Condition="'$(Platform)'=='Win32'">StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
       <LanguageStandard Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">stdcpp17</LanguageStandard>
       <LanguageStandard Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">stdcpp17</LanguageStandard>
+      <LanguageStandard Condition="'$(Configuration)|$(Platform)'=='ReleaseAndDebug|Win32'">stdcpp17</LanguageStandard>
+      <LanguageStandard Condition="'$(Configuration)|$(Platform)'=='ReleaseSdk|Win32'">stdcpp17</LanguageStandard>
       <LanguageStandard Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">stdcpp17</LanguageStandard>
       <LanguageStandard Condition="'$(Configuration)|$(Platform)'=='Release|x64'">stdcpp17</LanguageStandard>
+      <LanguageStandard Condition="'$(Configuration)|$(Platform)'=='ReleaseAndDebug|x64'">stdcpp17</LanguageStandard>
+      <LanguageStandard Condition="'$(Configuration)|$(Platform)'=='ReleaseSdk|x64'">stdcpp17</LanguageStandard>
+      <LanguageStandard Condition="'$(Configuration)|$(Platform)'=='Mixed|Win32'">stdcpp17</LanguageStandard>
+      <LanguageStandard Condition="'$(Configuration)|$(Platform)'=='Mixed|x64'">stdcpp17</LanguageStandard>
       <ConformanceMode Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ConformanceMode>
       <ConformanceMode Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ConformanceMode>
+      <ConformanceMode Condition="'$(Configuration)|$(Platform)'=='ReleaseAndDebug|Win32'">true</ConformanceMode>
+      <ConformanceMode Condition="'$(Configuration)|$(Platform)'=='ReleaseSdk|Win32'">true</ConformanceMode>
       <ConformanceMode Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ConformanceMode>
       <ConformanceMode Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ConformanceMode>
+      <ConformanceMode Condition="'$(Configuration)|$(Platform)'=='ReleaseAndDebug|x64'">true</ConformanceMode>
+      <ConformanceMode Condition="'$(Configuration)|$(Platform)'=='ReleaseSdk|x64'">true</ConformanceMode>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">./</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Mixed|Win32'">./</AdditionalIncludeDirectories>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">./</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='ReleaseAndDebug|Win32'">./</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='ReleaseSdk|Win32'">./</AdditionalIncludeDirectories>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">./</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Mixed|x64'">./</AdditionalIncludeDirectories>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|x64'">./</AdditionalIncludeDirectories>
-      <RuntimeLibrary Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">MultiThreadedDebugDLL</RuntimeLibrary>
-      <RuntimeLibrary Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">MultiThreadedDebugDLL</RuntimeLibrary>
-      <RuntimeLibrary Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">MultiThreadedDLL</RuntimeLibrary>
-      <RuntimeLibrary Condition="'$(Configuration)|$(Platform)'=='Release|x64'">MultiThreadedDLL</RuntimeLibrary>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='ReleaseAndDebug|x64'">./</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='ReleaseSdk|x64'">./</AdditionalIncludeDirectories>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
