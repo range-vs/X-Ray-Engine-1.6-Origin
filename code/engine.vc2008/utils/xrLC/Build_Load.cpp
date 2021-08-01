@@ -45,6 +45,7 @@ struct R_Layer
 
 void CBuild::Load	(const b_params& Params, const IReader& _in_FS)
 {
+	auto d = lc_global_data();
 	IReader&	fs	= const_cast<IReader&>(_in_FS);
 	// HANDLE		hLargeHeap	= HeapCreate(0,64*1024*1024,0);
 	// clMsg		("* <LargeHeap> handle: %X",hLargeHeap);
