@@ -220,7 +220,7 @@ namespace lc_net
 
 	net_execution* 	exec_pool::receive_task	( IAgent* agent,DWORD sessionId, IGenericStream* inStream  )
 	{
-		__try{
+		//__try{
 		cleanup().on_net_receive( agent, sessionId, inStream );
 		u32 id =u32(-1),  type = u32(-1);
 		read_task_caption( inStream, id, type );
@@ -244,12 +244,12 @@ namespace lc_net
 
 		return e;
 
-		}
+		/*}
 		 __except( EXCEPTION_EXECUTE_HANDLER )
 		 {
 			 Msg( "accept!" );
 			 return 0;
-		 }
+		 }*/
 		
 	}
 

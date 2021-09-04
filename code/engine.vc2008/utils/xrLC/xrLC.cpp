@@ -26,6 +26,7 @@
 #	undef TRIVIAL_ENCRYPTOR_ENCODER
 #	undef TRIVIAL_ENCRYPTOR_DECODER
 #endif // PROTECTED_BUILD
+#include "../../test_dll/test.h"
 
 CBuild*	pBuild		= NULL;
 u32		version		= 0;
@@ -51,8 +52,8 @@ typedef int __cdecl xrOptions(b_params* params, u32 version, bool bRunBuild);
 
 void Startup(LPSTR     lpCmdLine)
 {
-	
 	create_global_data();
+
 	char cmd[512],name[256];
 	BOOL bModifyOptions		= FALSE;
 

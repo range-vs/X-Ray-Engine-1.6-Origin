@@ -34,6 +34,7 @@ twrite_mu_refs		*write_mu_refs		= 0;
  {
 	 return data;
  }
+
 void	create_global_data()
 {
 	VERIFY( !inlc_global_data() );
