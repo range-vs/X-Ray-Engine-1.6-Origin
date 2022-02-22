@@ -1,12 +1,13 @@
 # /* **************************************************************************
 #  *                                                                          *
-#  *     (C) Copyright Paul Mensonides 2002.  Permission to copy, use,        *
-#  *     modify, sell, and distribute this software is granted provided       *
-#  *     this copyright notice appears in all copies.  This software is       *
-#  *     provided "as is" without express or implied warranty, and with       *
-#  *     no claim at to its suitability for any purpose.                      *
+#  *     (C) Copyright Paul Mensonides 2002.
+#  *     Distributed under the Boost Software License, Version 1.0. (See
+#  *     accompanying file LICENSE_1_0.txt or copy at
+#  *     http://www.boost.org/LICENSE_1_0.txt)
 #  *                                                                          *
 #  ************************************************************************** */
+#
+# /* Revised by Edward Diener (2020) */
 #
 # /* See http://www.boost.org for most recent version. */
 #
@@ -15,7 +16,6 @@
 #
 # include <boost/preprocessor/cat.hpp>
 # include <boost/preprocessor/config/config.hpp>
-# include <boost/preprocessor/tuple/eat.hpp>
 #
 # if BOOST_PP_CONFIG_FLAGS() & BOOST_PP_CONFIG_MWCC()
 #    define BOOST_PP_SEQ_SIZE(seq) BOOST_PP_SEQ_SIZE_I((seq))
@@ -24,9 +24,13 @@
 # elif BOOST_PP_CONFIG_FLAGS() & BOOST_PP_CONFIG_EDG() || BOOST_PP_CONFIG_FLAGS() & BOOST_PP_CONFIG_MSVC()
 #    define BOOST_PP_SEQ_SIZE(seq) BOOST_PP_SEQ_SIZE_I(seq)
 #    define BOOST_PP_SEQ_SIZE_I(seq) BOOST_PP_CAT(BOOST_PP_SEQ_SIZE_, BOOST_PP_SEQ_SIZE_0 seq)
+# elif defined(__IBMC__) || defined(__IBMCPP__)
+#    define BOOST_PP_SEQ_SIZE(seq) BOOST_PP_CAT(BOOST_PP_SEQ_SIZE_, BOOST_PP_CAT(BOOST_PP_SEQ_SIZE_0, seq))
 # else
 #    define BOOST_PP_SEQ_SIZE(seq) BOOST_PP_CAT(BOOST_PP_SEQ_SIZE_, BOOST_PP_SEQ_SIZE_0 seq)
 # endif
+#
+# if ~BOOST_PP_CONFIG_FLAGS() & BOOST_PP_CONFIG_STRICT()
 #
 # define BOOST_PP_SEQ_SIZE_0(_) BOOST_PP_SEQ_SIZE_1
 # define BOOST_PP_SEQ_SIZE_1(_) BOOST_PP_SEQ_SIZE_2
@@ -543,5 +547,25 @@
 # define BOOST_PP_SEQ_SIZE_BOOST_PP_SEQ_SIZE_254 254
 # define BOOST_PP_SEQ_SIZE_BOOST_PP_SEQ_SIZE_255 255
 # define BOOST_PP_SEQ_SIZE_BOOST_PP_SEQ_SIZE_256 256
+# define BOOST_PP_SEQ_SIZE_BOOST_PP_SEQ_SIZE_257 257
+#
+# else
+#
+# include <boost/preprocessor/config/limits.hpp>
+#
+# if BOOST_PP_LIMIT_SEQ == 256
+# include <boost/preprocessor/seq/limits/size_256.hpp>
+# elif BOOST_PP_LIMIT_SEQ == 512
+# include <boost/preprocessor/seq/limits/size_256.hpp>
+# include <boost/preprocessor/seq/limits/size_512.hpp>
+# elif BOOST_PP_LIMIT_SEQ == 1024
+# include <boost/preprocessor/seq/limits/size_256.hpp>
+# include <boost/preprocessor/seq/limits/size_512.hpp>
+# include <boost/preprocessor/seq/limits/size_1024.hpp>
+# else
+# error Incorrect value for the BOOST_PP_LIMIT_SEQ limit
+# endif
+#
+# endif
 #
 # endif

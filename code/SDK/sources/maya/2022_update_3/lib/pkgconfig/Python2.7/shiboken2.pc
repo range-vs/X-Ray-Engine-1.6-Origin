@@ -1,0 +1,13 @@
+prefix=S:/OSSCICD/workspace/pyside_maya/src/pyside2_install/py2.7-qt5.15.2-64bit-relwithdebinfo
+exec_prefix=S:/OSSCICD/workspace/pyside_maya/src/pyside2_install/py2.7-qt5.15.2-64bit-relwithdebinfo
+libdir=lib
+includedir=S:/OSSCICD/workspace/pyside_maya/src/pyside2_install/py2.7-qt5.15.2-64bit-relwithdebinfo/include/shiboken2
+generator_location=S:/OSSCICD/workspace/pyside_maya/src/pyside2_install/py2.7-qt5.15.2-64bit-relwithdebinfo/bin/shiboken2
+python_interpreter=S:/OSSCICD/workspace/pyside_maya/external_dependencies/python-2.7.11-Maya-2020+-win/libs/python.exe
+python_include_dir=S:/OSSCICD/workspace/pyside_maya/external_dependencies/python-2.7.11-Maya-2020+-win/Include
+
+Name: shiboken2
+Description: Support library for Python bindings created with the Shiboken2 generator.
+Version: 5.15.2
+Libs:  -L${libdir} -lshiboken2-python2.7
+Cflags: -IS:/OSSCICD/workspace/pyside_maya/external_dependencies/python-2.7.11-Maya-2020+-win/Include -I${includedir}/

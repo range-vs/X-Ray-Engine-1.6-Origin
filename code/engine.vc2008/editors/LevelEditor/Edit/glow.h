@@ -25,7 +25,7 @@ public:
     Flags8			m_Flags;
 
     bool			m_bDefLoad;
-    void 			ShaderChange	(PropValue* value);
+    void 	__stdcall		ShaderChange	(PropValue* value);
 protected:
 	virtual /*const*/ Fvector& GetScale		()/* const */
 	{

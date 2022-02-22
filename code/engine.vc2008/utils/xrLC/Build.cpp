@@ -146,8 +146,12 @@ extern u16		RegisterShader		(LPCSTR T);
 
 void CBuild::Light_prepare()
 {
-	for (vecFaceIt I=lc_global_data()->g_faces().begin();	I!=lc_global_data()->g_faces().end(); I++) (*I)->CacheOpacity();
-	for (u32 m=0; m<mu_models().size(); m++)	mu_models()[m]->calc_faceopacity();
+	for (vecFaceIt I = lc_global_data()->g_faces().begin(); I != lc_global_data()->g_faces().end(); I++)
+	{
+		(*I)->CacheOpacity();
+	}
+	for (u32 m=0; m<mu_models().size(); m++)	
+		mu_models()[m]->calc_faceopacity();
 }
 
 
@@ -165,7 +169,8 @@ void CBuild::Run	(LPCSTR P)
 	//****************************************** Open Level
 	strconcat					(sizeof(path),path,P,"\\")	;
 	string_path					lfn				;
-	IWriter* fs					= FS.w_open		(strconcat(sizeof(lfn),lfn,path,"level."));
+	strconcat(sizeof(lfn), lfn, path, "level.");
+	IWriter* fs					= FS.w_open		(lfn);
 	fs->open_chunk				(fsL_HEADER)	;
 	hdrLEVEL H;	
 	H.XRLC_version				= XRCL_PRODUCTION_VERSION;

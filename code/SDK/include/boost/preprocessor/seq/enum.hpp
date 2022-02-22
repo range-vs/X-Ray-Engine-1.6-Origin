@@ -1,12 +1,13 @@
 # /* **************************************************************************
 #  *                                                                          *
-#  *     (C) Copyright Paul Mensonides 2002.  Permission to copy, use,        *
-#  *     modify, sell, and distribute this software is granted provided       *
-#  *     this copyright notice appears in all copies.  This software is       *
-#  *     provided "as is" without express or implied warranty, and with       *
-#  *     no claim at to its suitability for any purpose.                      *
+#  *     (C) Copyright Paul Mensonides 2002.
+#  *     Distributed under the Boost Software License, Version 1.0. (See
+#  *     accompanying file LICENSE_1_0.txt or copy at
+#  *     http://www.boost.org/LICENSE_1_0.txt)
 #  *                                                                          *
 #  ************************************************************************** */
+#
+# /* Revised by Edward Diener (2020) */
 #
 # /* See http://www.boost.org for most recent version. */
 #
@@ -19,12 +20,17 @@
 #
 # /* BOOST_PP_SEQ_ENUM */
 #
-# if ~BOOST_PP_CONFIG_FLAGS() & BOOST_PP_CONFIG_EDG()
-#    define BOOST_PP_SEQ_ENUM(seq) BOOST_PP_CAT(BOOST_PP_SEQ_ENUM_, BOOST_PP_SEQ_SIZE(seq)) seq
-# else
+# if BOOST_PP_CONFIG_FLAGS() & BOOST_PP_CONFIG_EDG()
 #    define BOOST_PP_SEQ_ENUM(seq) BOOST_PP_SEQ_ENUM_I(seq)
 #    define BOOST_PP_SEQ_ENUM_I(seq) BOOST_PP_CAT(BOOST_PP_SEQ_ENUM_, BOOST_PP_SEQ_SIZE(seq)) seq
+# elif BOOST_PP_CONFIG_FLAGS() & BOOST_PP_CONFIG_MWCC()
+#    define BOOST_PP_SEQ_ENUM(seq) BOOST_PP_SEQ_ENUM_I(BOOST_PP_SEQ_SIZE(seq), seq)
+#    define BOOST_PP_SEQ_ENUM_I(size, seq) BOOST_PP_CAT(BOOST_PP_SEQ_ENUM_, size) seq
+# else
+#    define BOOST_PP_SEQ_ENUM(seq) BOOST_PP_CAT(BOOST_PP_SEQ_ENUM_, BOOST_PP_SEQ_SIZE(seq)) seq
 # endif
+#
+# if ~BOOST_PP_CONFIG_FLAGS() & BOOST_PP_CONFIG_STRICT()
 #
 # define BOOST_PP_SEQ_ENUM_1(x) x
 # define BOOST_PP_SEQ_ENUM_2(x) x, BOOST_PP_SEQ_ENUM_1
@@ -282,5 +288,24 @@
 # define BOOST_PP_SEQ_ENUM_254(x) x, BOOST_PP_SEQ_ENUM_253
 # define BOOST_PP_SEQ_ENUM_255(x) x, BOOST_PP_SEQ_ENUM_254
 # define BOOST_PP_SEQ_ENUM_256(x) x, BOOST_PP_SEQ_ENUM_255
+#
+# else
+#
+# include <boost/preprocessor/config/limits.hpp>
+#
+# if BOOST_PP_LIMIT_SEQ == 256
+# include <boost/preprocessor/seq/limits/enum_256.hpp>
+# elif BOOST_PP_LIMIT_SEQ == 512
+# include <boost/preprocessor/seq/limits/enum_256.hpp>
+# include <boost/preprocessor/seq/limits/enum_512.hpp>
+# elif BOOST_PP_LIMIT_SEQ == 1024
+# include <boost/preprocessor/seq/limits/enum_256.hpp>
+# include <boost/preprocessor/seq/limits/enum_512.hpp>
+# include <boost/preprocessor/seq/limits/enum_1024.hpp>
+# else
+# error Incorrect value for the BOOST_PP_LIMIT_SEQ limit
+# endif
+#
+# endif
 #
 # endif

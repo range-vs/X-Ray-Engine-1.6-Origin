@@ -1,13 +1,12 @@
-// Copyright David Abrahams 2002. Permission to copy, use,
-// modify, sell and distribute this software is granted provided this
-// copyright notice appears in all copies. This software is provided
-// "as is" without express or implied warranty, and with no claim as
-// to its suitability for any purpose.
+// Copyright David Abrahams 2002.
+// Distributed under the Boost Software License, Version 1.0. (See
+// accompanying file LICENSE_1_0.txt or copy at
+// http://www.boost.org/LICENSE_1_0.txt)
 #ifndef POINTEE_DWA2002323_HPP
 # define POINTEE_DWA2002323_HPP
 
-# include <boost/type_traits/object_traits.hpp>
-# include <boost/type_traits/remove_pointer.hpp>
+# include <boost/python/detail/prefix.hpp>
+# include <boost/python/detail/type_traits.hpp>
 
 namespace boost { namespace python {
 
@@ -16,7 +15,7 @@ namespace detail
   template <bool is_ptr = true>
   struct pointee_impl
   {
-      template <class T> struct apply : remove_pointer<T> {};
+      template <class T> struct apply : detail::remove_pointer<T> {};
   };
 
   template <>
@@ -31,10 +30,12 @@ namespace detail
 
 template <class T>
 struct pointee
-    : detail::pointee_impl<is_pointer<T>::value>::template apply<T>
+    : detail::pointee_impl<
+        detail::is_pointer<T>::value
+      >::template apply<T>
 {
 };
 
-}} // namespace boost::python::detail
+}} // namespace boost::python
 
 #endif // POINTEE_DWA2002323_HPP

@@ -98,24 +98,42 @@ void CPureServerObject::script_register(lua_State *L)
 
 void CSE_Abstract::script_register(lua_State *L)
 {
+//	typedef CWrapperBase<CSE_Abstract> WrapType;
+//	typedef CSE_Abstract BaseType;
+//	module(L)[
+//		class_<CSE_Abstract,WrapType,CPureServerObject>	("cse_abstract")
+//			.def_readonly	("id",				&BaseType::ID)
+//			.def_readonly	("parent_id",		&BaseType::ID_Parent)
+//			.def_readonly	("script_version",	&BaseType::m_script_version)
+//			.def_readwrite	("position",		&BaseType::o_Position)
+//			.def_readwrite	("angle",			&BaseType::o_Angle)
+//			.def			("section_name",	&get_section_name)
+//			.def			("name",			&get_name)
+//			.def			("clsid",			&BaseType::script_clsid)
+//			.def			("spawn_ini",		&get_spawn_ini)
+//			.def			("STATE_Read",		&BaseType::STATE_Read, &WrapType::STATE_Read_static)
+//			.def			("STATE_Write",		&BaseType::STATE_Write, &WrapType::STATE_Write_static)
+//			.def			("UPDATE_Read",		&BaseType::UPDATE_Read, &WrapType::UPDATE_Read_static)
+//			.def			("UPDATE_Write",	&BaseType::UPDATE_Write, &WrapType::UPDATE_Write_static)
+////			.def(		constructor<LPCSTR>())
+//	];
 	typedef CWrapperBase<CSE_Abstract> WrapType;
 	typedef CSE_Abstract BaseType;
-	module(L)[
-		class_<CSE_Abstract,WrapType,CPureServerObject>	("cse_abstract")
-			.def_readonly	("id",				&BaseType::ID)
-			.def_readonly	("parent_id",		&BaseType::ID_Parent)
-			.def_readonly	("script_version",	&BaseType::m_script_version)
-			.def_readwrite	("position",		&BaseType::o_Position)
-			.def_readwrite	("angle",			&BaseType::o_Angle)
-			.def			("section_name",	&get_section_name)
-			.def			("name",			&get_name)
-			.def			("clsid",			&BaseType::script_clsid)
-			.def			("spawn_ini",		&get_spawn_ini)
-			.def			("STATE_Read",		&BaseType::STATE_Read, &WrapType::STATE_Read_static)
-			.def			("STATE_Write",		&BaseType::STATE_Write, &WrapType::STATE_Write_static)
-			.def			("UPDATE_Read",		&BaseType::UPDATE_Read, &WrapType::UPDATE_Read_static)
-			.def			("UPDATE_Write",	&BaseType::UPDATE_Write, &WrapType::UPDATE_Write_static)
-//			.def(		constructor<LPCSTR>())
+	module(L)[class_<CSE_Abstract, CPureServerObject, default_holder, WrapType>("cse_abstract")
+		.def_readonly("id", &BaseType::ID)
+		.def_readonly("parent_id", &BaseType::ID_Parent)
+		.def_readonly("script_version", &BaseType::m_script_version)
+		.def_readwrite("position", &BaseType::o_Position)
+		.def_readwrite("angle", &BaseType::o_Angle)
+		.def("section_name", &get_section_name)
+		.def("name", &get_name)
+		.def("clsid", &BaseType::script_clsid)
+		.def("spawn_ini", &get_spawn_ini)
+		.def("STATE_Read", &BaseType::STATE_Read, &WrapType::STATE_Read_static)
+		.def("STATE_Write", &BaseType::STATE_Write, &WrapType::STATE_Write_static)
+		.def("UPDATE_Read", &BaseType::UPDATE_Read, &WrapType::UPDATE_Read_static)
+		.def("UPDATE_Write", &BaseType::UPDATE_Write, &WrapType::UPDATE_Write_static)
+		//			.def(		constructor<LPCSTR>())
 	];
 }
 

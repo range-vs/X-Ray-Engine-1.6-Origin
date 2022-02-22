@@ -15,6 +15,7 @@
 #include "..\..\Layers\xrRender\SkeletonCustom.h"
 #include "..\..\Include/xrAPI/xrAPI.h"
 
+class CSkeletonWallmark;
 
 // definition (Renderer)
 class CRenderTarget /*:public IRender_Target*/

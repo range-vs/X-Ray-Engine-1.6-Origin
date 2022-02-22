@@ -1,23 +1,21 @@
-// Copyright David Abrahams 2002. Permission to copy, use,
-// modify, sell and distribute this software is granted provided this
-// copyright notice appears in all copies. This software is provided
-// "as is" without express or implied warranty, and with no claim as
-// to its suitability for any purpose.
+// Copyright David Abrahams 2002.
+// Distributed under the Boost Software License, Version 1.0. (See
+// accompanying file LICENSE_1_0.txt or copy at
+// http://www.boost.org/LICENSE_1_0.txt)
 #ifndef DEF_HELPER_DWA200287_HPP
 # define DEF_HELPER_DWA200287_HPP
 
 # include <boost/python/args.hpp>
-# include <boost/type_traits/ice.hpp>
-# include <boost/type_traits/same_traits.hpp>
 # include <boost/python/detail/indirect_traits.hpp>
+# include <boost/python/detail/type_traits.hpp>
 # include <boost/mpl/not.hpp>
 # include <boost/mpl/and.hpp>
 # include <boost/mpl/or.hpp>
-# include <boost/type_traits/add_reference.hpp>
 # include <boost/mpl/lambda.hpp>
 # include <boost/mpl/apply.hpp>
 # include <boost/tuple/tuple.hpp>
 # include <boost/python/detail/not_specified.hpp>
+# include <boost/python/detail/def_helper_fwd.hpp>
 
 namespace boost { namespace python {
 
@@ -74,7 +72,8 @@ namespace detail
   struct tuple_extract_base_select
   {
       typedef typename Tuple::head_type head_type;
-      typedef typename mpl::apply1<Predicate, typename add_reference<head_type>::type>::type match_t;
+      typedef typename mpl::apply1<Predicate,
+              typename add_lvalue_reference<head_type>::type>::type match_t;
       BOOST_STATIC_CONSTANT(bool, match = match_t::value);
       typedef typename tuple_extract_impl<match>::template apply<Tuple,Predicate> type;
   };
@@ -100,8 +99,8 @@ namespace detail
         Tuple
         , mpl::not_<
            mpl::or_<
-              is_reference_to_class<mpl::_1>
-              , is_reference_to_member_function_pointer<mpl::_1 >
+               indirect_traits::is_reference_to_class<mpl::_1>
+             , indirect_traits::is_reference_to_member_function_pointer<mpl::_1 >
            >
         >
      >
@@ -120,8 +119,8 @@ namespace detail
           Tuple
           , mpl::and_<
              mpl::not_<is_same<not_specified const&,mpl::_1> >
-               , is_reference_to_class<mpl::_1 >
-               , mpl::not_<is_reference_to_keywords<mpl::_1 > >
+              , indirect_traits::is_reference_to_class<mpl::_1 >
+              , mpl::not_<is_reference_to_keywords<mpl::_1 > >
           >
         >
   {
@@ -131,7 +130,7 @@ namespace detail
   struct default_implementation_extract
       : tuple_extract<
           Tuple
-          , is_reference_to_member_function_pointer<mpl::_1 >
+          , indirect_traits::is_reference_to_member_function_pointer<mpl::_1 >
           >
   {
   };
@@ -143,7 +142,7 @@ namespace detail
   // are expected to be the types of the actual (optional) arguments
   // passed to def().
   //
-  template <class T1, class T2 = not_specified, class T3 = not_specified, class T4 = not_specified>
+  template <class T1, class T2, class T3, class T4>
   struct def_helper
   {
       // A tuple type which begins with references to the supplied
@@ -155,7 +154,7 @@ namespace detail
           , T3 const&
           , T4 const&
           , default_call_policies
-          , keywords<0>
+          , detail::keywords<0>
           , char const*
           , void(not_specified::*)()   // A function pointer type which is never an
                                        // appropriate default implementation

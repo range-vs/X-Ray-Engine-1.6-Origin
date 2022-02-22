@@ -499,4 +499,5 @@ BOOL CPostprocessAnimatorControlled::Valid()
 	return m_controller->Valid					();
 }
 
+
 #endif

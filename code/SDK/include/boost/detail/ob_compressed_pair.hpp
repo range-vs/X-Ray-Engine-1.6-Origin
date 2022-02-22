@@ -1,10 +1,9 @@
 //  (C) Copyright Steve Cleary, Beman Dawes, Howard Hinnant & John Maddock 2000.
-//  Permission to copy, use, modify, sell and
-//  distribute this software is granted provided this copyright notice appears
-//  in all copies. This software is provided "as is" without express or implied
-//  warranty, and with no claim as to its suitability for any purpose.
-
-//  See http://www.boost.org for most recent version including documentation.
+//  Use, modification and distribution are subject to the Boost Software License,
+//  Version 1.0. (See accompanying file LICENSE_1_0.txt or copy at
+//  http://www.boost.org/LICENSE_1_0.txt).
+//
+//  See http://www.boost.org/libs/utility for most recent version including documentation.
 //  see libs/utility/compressed_pair.hpp
 //
 /* Release notes:
@@ -168,17 +167,6 @@ public:
    compressed_pair_1(const ::boost::compressed_pair<T1,T2>& x)
       : T2(x.second()), _first(x.first()) {}
 
-#if defined(BOOST_MSVC) && BOOST_MSVC <= 1300
-  // Total weirdness. If the assignment to _first is moved after
-  // the call to the inherited operator=, then this breaks graph/test/graph.cpp
-  // by way of iterator_adaptor.
-  compressed_pair_1& operator=(const compressed_pair_1& x) {
-    _first = x._first;
-    T2::operator=(x);
-    return *this;
-  }
-#endif
-
    first_reference       first()       { return _first; }
    first_const_reference first() const { return _first; }
 
@@ -293,22 +281,24 @@ public:
    typedef typename call_traits<second_type>::const_reference second_const_reference;
 
             compressed_pair_4() : T1() {}
-            compressed_pair_4(first_param_type x, second_param_type) : T1(x) {}
+            compressed_pair_4(first_param_type x, second_param_type y) : T1(x), m_second(y) {}
    // only one single argument constructor since T1 == T2
-   explicit compressed_pair_4(first_param_type x) : T1(x) {}
+   explicit compressed_pair_4(first_param_type x) : T1(x), m_second(x) {}
    compressed_pair_4(const ::boost::compressed_pair<T1,T2>& x)
-      : T1(x.first()){}
+      : T1(x.first()), m_second(x.second()) {}
 
    first_reference       first()       { return *this; }
    first_const_reference first() const { return *this; }
 
-   second_reference       second()       { return *this; }
-   second_const_reference second() const { return *this; }
+   second_reference       second()       { return m_second; }
+   second_const_reference second() const { return m_second; }
 
    void swap(compressed_pair_4& y)
    {
       // no need to swap empty base classes:
    }
+private:
+   T2 m_second;
 };
 
 // T1 == T2, not empty

@@ -1,19 +1,27 @@
 #ifndef YearMonthDayBase_HPP__
 #define YearMonthDayBase_HPP__
-/* Copyright (c) 2001 CrystalClear Software, Inc.
- * Disclaimer & Full Copyright at end of file
+
+/* Copyright (c) 2002,2003 CrystalClear Software, Inc.
+ * Use, modification and distribution is subject to the 
+ * Boost Software License, Version 1.0. (See accompanying
+ * file LICENSE_1_0.txt or http://www.boost.org/LICENSE_1_0.txt)
  * Author: Jeff Garland 
+ * $Date$
  */
+
+#include <boost/date_time/compiler_config.hpp>
 
 namespace boost {
 namespace date_time {
 
   //! Allow rapid creation of ymd triples of different types
   template<typename YearType, typename MonthType, typename DayType>
-  struct year_month_day_base {
-    year_month_day_base(YearType  year, 
+  struct BOOST_SYMBOL_VISIBLE year_month_day_base {
+    BOOST_CXX14_CONSTEXPR
+    year_month_day_base(YearType  year,
                         MonthType month,
                         DayType   day);
+
     YearType year;
     MonthType month;
     DayType day;
@@ -21,11 +29,11 @@ namespace date_time {
     typedef MonthType month_type;
     typedef DayType   day_type;
   };
-  
-  
+
+
   //! A basic constructor
   template<typename YearType, typename MonthType, typename DayType>
-  inline
+  inline BOOST_CXX14_CONSTEXPR
   year_month_day_base<YearType,MonthType,DayType>::year_month_day_base(YearType y, 
                                                                        MonthType m,
                                                                        DayType d) :
@@ -33,20 +41,9 @@ namespace date_time {
     month(m),
     day(d)
   {}
-  
+
 } }//namespace date_time
 
-/* Copyright (c) 2001
- * CrystalClear Software, Inc.
- *
- * Permission to use, copy, modify, distribute and sell this software
- * and its documentation for any purpose is hereby granted without fee,
- * provided that the above copyright notice appear in all copies and
- * that both that copyright notice and this permission notice appear
- * in supporting documentation.  CrystalClear Software makes no
- * representations about the suitability of this software for any
- * purpose.  It is provided "as is" without express or implied warranty.
- */
 
 #endif
 

@@ -145,5 +145,6 @@ void CSector::Save(IWriter &fs)
 	fs.w_chunk(fsP_Root,&ID,sizeof(u32));
 
 	// Portals
-	fs.w_chunk(fsP_Portals,&*Portals.begin(),Portals.size()*sizeof(u16));
+	if(!Portals.empty())
+		fs.w_chunk(fsP_Portals,&*Portals.begin(),Portals.size()*sizeof(u16));
 }

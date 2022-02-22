@@ -10,14 +10,14 @@
 #define OBSTACLES_QUERY_H
 
 #include "object_broker.h"
-#include "associative_vector.h"
+#include "Associative_Vector.h"
 
 class CGameObject;
 
 class obstacles_query {
 public:
 	typedef xr_vector<u32>						AREA;
-	typedef associative_vector<
+	typedef AssociativeVector<
 				const CGameObject*,
 				u32
 			>									OBSTACLES;

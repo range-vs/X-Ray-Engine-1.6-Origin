@@ -1,7 +1,7 @@
 #pragma once
 #include "game_base.h"
 #include "xrServer_Object_Base.h"
-#include "associative_vector.h"
+#include "Associative_Vector.h"
 
 class xrServer;
 
@@ -33,11 +33,11 @@ private:
 
 	typedef xr_vector<section_item>							section_items;
 	typedef section_items::iterator							section_items_iter;
-	typedef associative_vector<shared_str, section_items*>	respawn_sections_map;
+	typedef AssociativeVector<shared_str, section_items*>	respawn_sections_map;
 	typedef respawn_sections_map::iterator					respawn_section_iter;
 
 
-	struct search_by_id_predicate : public std::binary_function<spawn_item, u16, bool>
+	struct search_by_id_predicate //: public std::binary_function<spawn_item, u16, bool>
 	{
 		bool operator()(spawn_item const & left, u16 right) const;
 	};

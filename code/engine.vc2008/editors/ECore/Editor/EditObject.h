@@ -8,6 +8,7 @@
 //	#include "PropertiesListHelper.h"
 #	include "GameMtlLib.h"
 #	include "pick_defs.h"
+#include "ImageManager.h"
 #endif
 #	include "../../../include/xrrender/kinematics.h"
 

@@ -30,7 +30,7 @@
   for the legal aspects }
 
 {$IFDEF WIN32}
-{.$DEFINE USE_PROGRESSBAR}
+{$DEFINE USE_PROGRESSBAR}
 { Activate this define if you do not want to use TGauge Borland sample
   component in TDBProgress component and FileUtil routines. In this case
   TProgressBar component will be used }

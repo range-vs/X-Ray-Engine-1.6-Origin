@@ -1,10 +1,11 @@
-// Copyright David Abrahams 2002. Permission to copy, use,
-// modify, sell and distribute this software is granted provided this
-// copyright notice appears in all copies. This software is provided
-// "as is" without express or implied warranty, and with no claim as
-// to its suitability for any purpose.
+// Copyright David Abrahams 2002.
+// Distributed under the Boost Software License, Version 1.0. (See
+// accompanying file LICENSE_1_0.txt or copy at
+// http://www.boost.org/LICENSE_1_0.txt)
 #ifndef OBJECT_SLICES_DWA2002615_HPP
 # define OBJECT_SLICES_DWA2002615_HPP
+
+# include <boost/python/detail/prefix.hpp>
 
 # include <boost/python/proxy.hpp>
 # include <boost/python/object_core.hpp>
@@ -26,6 +27,12 @@ struct slice_policies : const_slice_policies
     static void del(object const& target, key_type const& key);
 };
 
+template <class T, class U>
+inline slice_policies::key_type slice_key(T x, U y)
+{
+    return slice_policies::key_type(handle<>(x), handle<>(y));
+}
+    
 //
 // implementation
 //
@@ -34,7 +41,7 @@ object_slice
 object_operators<U>::slice(object_cref start, object_cref finish)
 {
     object_cref2 x = *static_cast<U*>(this);
-    return object_slice(x, std::make_pair(borrowed(start.ptr()), borrowed(finish.ptr())));
+    return object_slice(x, api::slice_key(borrowed(start.ptr()), borrowed(finish.ptr())));
 }
 
 template <class U>
@@ -42,7 +49,7 @@ const_object_slice
 object_operators<U>::slice(object_cref start, object_cref finish) const
 {
     object_cref2 x = *static_cast<U const*>(this);
-    return const_object_slice(x, std::make_pair(borrowed(start.ptr()), borrowed(finish.ptr())));
+    return const_object_slice(x, api::slice_key(borrowed(start.ptr()), borrowed(finish.ptr())));
 }
 
 template <class U>
@@ -50,7 +57,7 @@ object_slice
 object_operators<U>::slice(slice_nil, object_cref finish)
 {
     object_cref2 x = *static_cast<U*>(this);
-    return object_slice(x, std::make_pair(allow_null((PyObject*)0), borrowed(finish.ptr())));
+    return object_slice(x, api::slice_key(allow_null((PyObject*)0), borrowed(finish.ptr())));
 }
 
 template <class U>
@@ -58,7 +65,23 @@ const_object_slice
 object_operators<U>::slice(slice_nil, object_cref finish) const
 {
     object_cref2 x = *static_cast<U const*>(this);
-    return const_object_slice(x, std::make_pair(allow_null((PyObject*)0), borrowed(finish.ptr())));
+    return const_object_slice(x, api::slice_key(allow_null((PyObject*)0), borrowed(finish.ptr())));
+}
+
+template <class U>
+object_slice
+object_operators<U>::slice(slice_nil, slice_nil)
+{
+    object_cref2 x = *static_cast<U*>(this);
+    return object_slice(x, api::slice_key(allow_null((PyObject*)0), allow_null((PyObject*)0)));
+}
+
+template <class U>
+const_object_slice
+object_operators<U>::slice(slice_nil, slice_nil) const
+{
+    object_cref2 x = *static_cast<U const*>(this);
+    return const_object_slice(x, api::slice_key(allow_null((PyObject*)0), allow_null((PyObject*)0)));
 }
 
 template <class U>
@@ -66,7 +89,7 @@ object_slice
 object_operators<U>::slice(object_cref start, slice_nil)
 {
     object_cref2 x = *static_cast<U*>(this);
-    return object_slice(x, std::make_pair(borrowed(start.ptr()), allow_null((PyObject*)0)));
+    return object_slice(x, api::slice_key(borrowed(start.ptr()), allow_null((PyObject*)0)));
 }
 
 template <class U>
@@ -74,9 +97,9 @@ const_object_slice
 object_operators<U>::slice(object_cref start, slice_nil) const
 {
     object_cref2 x = *static_cast<U const*>(this);
-    return const_object_slice(x, std::make_pair(borrowed(start.ptr()), allow_null((PyObject*)0)));
+    return const_object_slice(x, api::slice_key(borrowed(start.ptr()), allow_null((PyObject*)0)));
 }
-# if !defined(BOOST_MSVC) || BOOST_MSVC > 1300
+
 template <class U>
 template <class T, class V>
 inline const_object_slice
@@ -96,8 +119,6 @@ object_operators<U>::slice(T const& start, V const& end)
         typename slice_bound<T>::type(start)
         , typename slice_bound<V>::type(end));
 }
-# endif 
-
 
 inline object const_slice_policies::get(object const& target, key_type const& key)
 {

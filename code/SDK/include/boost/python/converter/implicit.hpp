@@ -1,8 +1,7 @@
-// Copyright David Abrahams 2002. Permission to copy, use,
-// modify, sell and distribute this software is granted provided this
-// copyright notice appears in all copies. This software is provided
-// "as is" without express or implied warranty, and with no claim as
-// to its suitability for any purpose.
+// Copyright David Abrahams 2002.
+// Distributed under the Boost Software License, Version 1.0. (See
+// accompanying file LICENSE_1_0.txt or copy at
+// http://www.boost.org/LICENSE_1_0.txt)
 #ifndef IMPLICIT_DWA2002326_HPP
 # define IMPLICIT_DWA2002326_HPP
 
@@ -30,8 +29,12 @@ struct implicit
     static void construct(PyObject* obj, rvalue_from_python_stage1_data* data)
     {
         void* storage = ((rvalue_from_python_storage<Target>*)data)->storage.bytes;
+
+        arg_from_python<Source> get_source(obj);
+        bool convertible = get_source.convertible();
+        BOOST_VERIFY(convertible);
         
-        new (storage) Target(extract<Source>(obj)());
+        new (storage) Target(get_source());
         
         // record successful construction
         data->convertible = storage;

@@ -10,6 +10,7 @@
 
 #include "script_storage_space.h"
 #include "script_space_forward.h"
+#include <luabind/luabind.hpp>
 
 struct lua_State;
 class CScriptThread;

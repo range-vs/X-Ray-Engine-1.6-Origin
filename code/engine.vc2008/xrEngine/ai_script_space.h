@@ -27,6 +27,7 @@ extern "C" {
 
 // Lua-bind
 #include <luabind/luabind.hpp>
+#include <luabind/functor.hpp>
 #include <luabind/object.hpp>
 
 #pragma warning(default:4244)

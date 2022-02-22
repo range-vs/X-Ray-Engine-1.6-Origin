@@ -10,14 +10,17 @@
 
 #include "object_factory_space.h"
 #include "object_item_abstract.h"
+#include <luabind/functor.hpp>
 
 class CObjectItemScript : public CObjectItemAbstract {
 protected:
 	typedef CObjectItemAbstract inherited;
 
 protected:
-	luabind::object								m_client_creator;
-	luabind::object								m_server_creator;
+#ifndef NO_XR_GAME
+	mutable luabind::functor<ObjectFactory::CLIENT_BASE_CLASS*, luabind::policy::adopt<0>> m_client_creator;
+#endif
+	mutable luabind::functor<ObjectFactory::SERVER_BASE_CLASS*, luabind::policy::adopt<0>> m_server_creator;
 
 public:
 												CObjectItemScript	(

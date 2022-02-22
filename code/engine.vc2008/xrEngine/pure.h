@@ -103,10 +103,18 @@ public:
 	};
 	void Resort	(void)
 	{
-		qsort	(&*R.begin(),R.size(),sizeof(_REG_INFO),_REG_Compare);
-		while	((R.size()) && (R[R.size()-1].Prio==REG_PRIORITY_INVALID)) R.pop_back();
-		if (R.empty())		R.clear		();
-		changed				= false;
+		if (!R.empty()) {
+            std::sort(std::begin(R), std::end(R),
+                [](const auto& a, const auto& b) { return a.Prio > b.Prio; });
+        }
+
+        while (!R.empty() && R.back().Prio == REG_PRIORITY_INVALID)
+            R.pop_back();
+
+        if (R.empty())
+            R.clear();
+
+        changed = false;
 	};
 };
 

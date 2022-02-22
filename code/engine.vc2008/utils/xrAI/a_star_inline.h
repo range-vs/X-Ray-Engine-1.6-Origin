@@ -263,3 +263,4 @@ IC	bool CSAStar::find				(_PathManager &path_manager)
 
 #undef TEMPLATE_SPECIALIZATION
 #undef CSAStar
+

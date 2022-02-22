@@ -2,7 +2,7 @@ import os
 import re
 import shutil
 
-dirNameSrc = "C:\\src_cop\\code\\"
+dirNameSrc = "C:\\Users\\trubn\\Desktop\\_1\\"
 log = "log.txt"
 rootFolder = "C:\\fix_defines"
 becapFolder = "src_cop_old"
@@ -38,6 +38,14 @@ def DEFINE_STACK(T, N):
     return "typedef xr_stack< " + T + " > " + N + ";\n"
 def DEF_UILIST(N,T):
     return DEF_VECTOR(N,T)
+def TYPEDEF_STD_VECTOR(T):
+    return "typedef std::vector< " + T + " > " + T + "_vec; typedef std::vector< " + T + " >::iterator " + T + "_vec_it; typedef std::vector< " + T + " >::const_iterator " + T + "_vec_cit;\n"
+def TYPEDEF_STD_VECTOR_PTR(T):
+    return "typedef std::vector< " + T + "* > " + T + "_vec; typedef std::vector< " + T + "* >::iterator " + T + "_vec_it; typedef std::vector< " + T + "* >::const_iterator " + T + "_vec_cit;\n"
+def EXPORT_STD_VECTOR(T):
+    return "template class xrFSL_CORE_API std::allocator< " + T +"* >; template class xrFSL_CORE_API std::vector< " + T + "*, std::allocator< type* > >;\n"
+def EXPORT_STD_VECTOR_CONST_ITERATOR(T):
+    return "class_it_base xrFSL_CORE_API std::_Iterator_base; template class xrFSL_CORE_API std::_Vector_const_iterator<" + T + ", std::allocator<" + T + "> >;\n"
 
 definesDict = {
     "DEF_VECTOR": DEF_VECTOR,
@@ -54,7 +62,11 @@ definesDict = {
     "DEFINE_SET":DEFINE_SET,
     "DEFINE_SET_PRED":DEFINE_SET_PRED,
     "DEFINE_STACK":DEFINE_STACK,
-    "DEF_UILIST":DEF_UILIST
+    "DEF_UILIST":DEF_UILIST,
+    "TYPEDEF_STD_VECTOR":TYPEDEF_STD_VECTOR,
+    "TYPEDEF_STD_VECTOR_PTR":TYPEDEF_STD_VECTOR_PTR,
+    "EXPORT_STD_VECTOR":EXPORT_STD_VECTOR,
+    "EXPORT_STD_VECTOR_CONST_ITERATOR":EXPORT_STD_VECTOR_CONST_ITERATOR
 }
 
 
@@ -72,7 +84,7 @@ os.makedirs(fullNewFolder)
 with open(log,"w") as fileLog:
     for root, dirs, files in os.walk(dirNameSrc):
         for filename in files:
-            if filename.lower().endswith(tuple([".cpp", ".h", ".hpp", ".c"])):
+            if filename.lower().endswith(tuple([".cpp", ".h", ".hpp", ".c", ".cxx"])):
                 filenameFull = os.path.join(root, filename) 
                 with open(filenameFull,"r") as file:
                     all_lines = file.readlines()
@@ -97,9 +109,9 @@ with open(log,"w") as fileLog:
                             leftSpaces = strFix.replace(strFix.lstrip(), "") # получаем пробелы в начале строки
                             strFix = strFix.replace(define, "") # получаем типы аргументов из строки и конструируем Tuple
                             _args = re.sub(r"([\s\(\);]*)", "", strFix).split(",")
-                            for i in range(0, len(_args)):
-                                if(_args[i].find("const") != -1):
-                                    _args[i] = _args[i].replace("const", " const ")
+                            for j in range(0, len(_args)):
+                                if(_args[j].find("const") != -1):
+                                    _args[j] = _args[j].replace("const", " const ")
                             args = tuple(_args)
                             newString = definesDict[define](*args) # конструируем код для замены
                             strFix = leftSpaces + newString # конструируем новую строку

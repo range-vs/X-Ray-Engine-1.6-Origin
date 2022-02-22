@@ -27,24 +27,9 @@
     <ClInclude Include="test_project.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="test_class.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="stl_ext_class.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="shared_string_debug.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="StackWalker.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="test_project.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="StackWalker.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

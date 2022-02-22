@@ -1,7 +1,8 @@
-//  (C) Copyright Boost.org 2001. Permission to copy, use, modify, sell and
-//  distribute this software is granted provided this copyright notice appears
-//  in all copies. This software is provided "as is" without express or implied
-//  warranty, and with no claim as to its suitability for any purpose.
+//  (C) Copyright John Maddock 2001 - 2003. 
+//  (C) Copyright Jens Maurer 2001 - 2003. 
+//  Use, modification and distribution are subject to the 
+//  Boost Software License, Version 1.0. (See accompanying file 
+//  LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
 
 //  See http://www.boost.org for most recent version.
 
@@ -10,7 +11,11 @@
 #define BOOST_PLATFORM "linux"
 
 // make sure we have __GLIBC_PREREQ if available at all
+#ifdef __cplusplus
 #include <cstdlib>
+#else
+#include <stdlib.h>
+#endif
 
 //
 // <stdint.h> added to glibc 2.1.1
@@ -19,24 +24,27 @@
 #if defined(__GLIBC__) && ((__GLIBC__ > 2) || ((__GLIBC__ == 2) && (__GLIBC_MINOR__ >= 1)))
    // <stdint.h> defines int64_t unconditionally, but <sys/types.h> defines
    // int64_t only if __GNUC__.  Thus, assume a fully usable <stdint.h>
-   // only when using GCC.
-#  if defined __GNUC__
+   // only when using GCC.  Update 2017: this appears not to be the case for
+   // recent glibc releases, see bug report: https://svn.boost.org/trac/boost/ticket/13045
+#  if defined(__GNUC__) || ((__GLIBC__ > 2) || ((__GLIBC__ == 2) && (__GLIBC_MINOR__ >= 5)))
 #    define BOOST_HAS_STDINT_H
 #  endif
 #endif
 
-//
-// como on linux doesn't have std:: c functions:
-//
-#ifdef __COMO__
-#  define BOOST_NO_STDC_NAMESPACE
-#endif
+#if defined(__LIBCOMO__)
+   //
+   // como on linux doesn't have std:: c functions:
+   // NOTE: versions of libcomo prior to beta28 have octal version numbering,
+   // e.g. version 25 is 21 (dec)
+   //
+#  if __LIBCOMO_VERSION__ <= 20
+#    define BOOST_NO_STDC_NAMESPACE
+#  endif
 
-//
-// Intel on linux doesn't have swprintf in std::
-//
-#ifdef  __ICC
-#  define BOOST_NO_STDC_NAMESPACE
+#  if __LIBCOMO_VERSION__ <= 21
+#    define BOOST_NO_SWPRINTF
+#  endif
+
 #endif
 
 //
@@ -64,7 +72,10 @@
 
 // boilerplate code:
 #define BOOST_HAS_UNISTD_H
-#include <boost/config/posix_features.hpp>
+#include <boost/config/detail/posix_features.hpp>
+#if defined(__USE_GNU) && !defined(__ANDROID__) && !defined(ANDROID)
+#define BOOST_HAS_PTHREAD_YIELD
+#endif
 
 #ifndef __GNUC__
 //
@@ -91,4 +102,5 @@
 #     define __inline__ inline
 #  endif
 #endif
+
 

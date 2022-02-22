@@ -164,6 +164,7 @@ IC	const typename CProblemSolverAbstract::CState &CProblemSolverAbstract::target
 TEMPLATE_SPECIALIZATION
 IC	void CProblemSolverAbstract::add_evaluator				(const _condition_type &condition_id, _condition_evaluator_ptr evaluator)
 {
+	//OutputDebugString(("CProblemSolverAbstract::add_evaluator_ENUM___" + std::to_string(condition_id) + "\n").c_str());
 	THROW						(evaluators().end() == evaluators().find(condition_id));
 	m_evaluators.insert			(std::make_pair(condition_id,evaluator));
 }

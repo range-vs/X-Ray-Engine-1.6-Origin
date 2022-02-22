@@ -1,18 +1,15 @@
 #if !defined(BOOST_PP_IS_ITERATING)
 
-// Copyright David Abrahams 2002. Permission to copy, use,
-// modify, sell and distribute this software is granted provided this
-// copyright notice appears in all copies. This software is provided
-// "as is" without express or implied warranty, and with no claim as
-// to its suitability for any purpose.
+// Copyright David Abrahams 2002.
+// Distributed under the Boost Software License, Version 1.0. (See
+// accompanying file LICENSE_1_0.txt or copy at
+// http://www.boost.org/LICENSE_1_0.txt)
 # ifndef INVOKE_DWA20021122_HPP
 #  define INVOKE_DWA20021122_HPP
 
-#  include <boost/python/detail/wrap_python.hpp>
+#  include <boost/python/detail/prefix.hpp>
 #  include <boost/python/detail/preprocessor.hpp>
 #  include <boost/python/detail/none.hpp>
-
-#  include <boost/type_traits/is_member_function_pointer.hpp>
 
 #  include <boost/preprocessor/iterate.hpp>
 #  include <boost/preprocessor/facilities/intercept.hpp>
@@ -45,23 +42,19 @@ namespace boost { namespace python { namespace detail {
 // invoke(...), selecting the appropriate implementation
 typedef int void_result_to_python;
 
-// Trait forward declaration.
-template <class T> struct is_defaulted_virtual_fn;
-
-// Tag types describing invocation methods
-struct fn_tag {};
-struct mem_fn_tag {};
+template <bool void_return, bool member>
+struct invoke_tag_ {};
 
 // A metafunction returning the appropriate tag type for invoking an
-// object of type T.
-template <class T>
+// object of type F with return type R.
+template <class R, class F>
 struct invoke_tag
-    : mpl::if_<
-        is_member_function_pointer<T>
-        , mem_fn_tag
-        , fn_tag
+  : invoke_tag_<
+        is_same<R,void>::value
+      , is_member_function_pointer<F>::value
     >
-{};
+{
+};
 
 #  define BOOST_PP_ITERATION_PARAMS_1                                            \
         (3, (0, BOOST_PYTHON_MAX_ARITY, <boost/python/detail/invoke.hpp>))
@@ -75,26 +68,26 @@ struct invoke_tag
 # define N BOOST_PP_ITERATION()
 
 template <class RC, class F BOOST_PP_ENUM_TRAILING_PARAMS_Z(1, N, class AC)>
-inline PyObject* invoke(fn_tag, RC*, F& f BOOST_PP_ENUM_TRAILING_BINARY_PARAMS_Z(1, N, AC, & ac) )
+inline PyObject* invoke(invoke_tag_<false,false>, RC const& rc, F& f BOOST_PP_ENUM_TRAILING_BINARY_PARAMS_Z(1, N, AC, & ac) )
 {
-    return RC()(f( BOOST_PP_ENUM_BINARY_PARAMS_Z(1, N, ac, () BOOST_PP_INTERCEPT) ));
+    return rc(f( BOOST_PP_ENUM_BINARY_PARAMS_Z(1, N, ac, () BOOST_PP_INTERCEPT) ));
 }
                  
-template <class F BOOST_PP_ENUM_TRAILING_PARAMS_Z(1, N, class AC)>
-inline PyObject* invoke(fn_tag, void_result_to_python, F& f BOOST_PP_ENUM_TRAILING_BINARY_PARAMS_Z(1, N, AC, & ac) )
+template <class RC, class F BOOST_PP_ENUM_TRAILING_PARAMS_Z(1, N, class AC)>
+inline PyObject* invoke(invoke_tag_<true,false>, RC const&, F& f BOOST_PP_ENUM_TRAILING_BINARY_PARAMS_Z(1, N, AC, & ac) )
 {
     f( BOOST_PP_ENUM_BINARY_PARAMS_Z(1, N, ac, () BOOST_PP_INTERCEPT) );
     return none();
 }
 
 template <class RC, class F, class TC BOOST_PP_ENUM_TRAILING_PARAMS_Z(1, N, class AC)>
-inline PyObject* invoke(mem_fn_tag, RC*, F& f, TC& tc BOOST_PP_ENUM_TRAILING_BINARY_PARAMS_Z(1, N, AC, & ac) )
+inline PyObject* invoke(invoke_tag_<false,true>, RC const& rc, F& f, TC& tc BOOST_PP_ENUM_TRAILING_BINARY_PARAMS_Z(1, N, AC, & ac) )
 {
-    return RC()( (tc().*f)(BOOST_PP_ENUM_BINARY_PARAMS_Z(1, N, ac, () BOOST_PP_INTERCEPT)) );
+    return rc( (tc().*f)(BOOST_PP_ENUM_BINARY_PARAMS_Z(1, N, ac, () BOOST_PP_INTERCEPT)) );
 }
                  
-template <class F, class TC BOOST_PP_ENUM_TRAILING_PARAMS_Z(1, N, class AC)>
-inline PyObject* invoke(mem_fn_tag, void_result_to_python, F& f, TC& tc BOOST_PP_ENUM_TRAILING_BINARY_PARAMS_Z(1, N, AC, & ac) )
+template <class RC, class F, class TC BOOST_PP_ENUM_TRAILING_PARAMS_Z(1, N, class AC)>
+inline PyObject* invoke(invoke_tag_<true,true>, RC const&, F& f, TC& tc BOOST_PP_ENUM_TRAILING_BINARY_PARAMS_Z(1, N, AC, & ac) )
 {
     (tc().*f)(BOOST_PP_ENUM_BINARY_PARAMS_Z(1, N, ac, () BOOST_PP_INTERCEPT));
     return none();

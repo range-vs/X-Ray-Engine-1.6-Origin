@@ -1,10 +1,20 @@
-
 #ifndef CONSTRAINED_VALUE_HPP___
 #define CONSTRAINED_VALUE_HPP___
-/* Copyright (c) 2000 CrystalClear Software, Inc.
- * Disclaimer & Full Copyright at end of file
+
+/* Copyright (c) 2002,2003 CrystalClear Software, Inc.
+ * Use, modification and distribution is subject to the 
+ * Boost Software License, Version 1.0. (See accompanying
+ * file LICENSE_1_0.txt or http://www.boost.org/LICENSE_1_0.txt)
  * Author: Jeff Garland 
+ * $Date$
  */
+
+#include <exception>
+#include <stdexcept>
+#include <boost/config.hpp>
+#include <boost/throw_exception.hpp>
+#include <boost/type_traits/conditional.hpp>
+#include <boost/type_traits/is_base_of.hpp>
 
 namespace boost {
 
@@ -29,57 +39,83 @@ namespace CV {
    *
    */
   template<class value_policies>
-  class constrained_value {
+  class BOOST_SYMBOL_VISIBLE constrained_value {
   public:
     typedef typename value_policies::value_type value_type;
     //    typedef except_type exception_type;
-    constrained_value(value_type value) 
+    BOOST_CXX14_CONSTEXPR constrained_value(value_type value) : value_((min)())
     {
       assign(value);
-    };
-    constrained_value& operator=(value_type v) 
-    { 
+    }
+    BOOST_CXX14_CONSTEXPR constrained_value& operator=(value_type v)
+    {
       assign(v); 
       return *this;
-    }   
+    }
     //! Return the max allowed value (traits method)
-    static value_type max() {return value_policies::max();};
+    static BOOST_CONSTEXPR value_type
+    max BOOST_PREVENT_MACRO_SUBSTITUTION () {return (value_policies::max)();}
+
     //! Return the min allowed value (traits method)
-    static value_type min() {return value_policies::min();};
+    static BOOST_CONSTEXPR value_type
+    min BOOST_PREVENT_MACRO_SUBSTITUTION () {return (value_policies::min)();}
+
     //! Coerce into the representation type
-    operator value_type() const {return value_;};
+    BOOST_CXX14_CONSTEXPR operator value_type() const {return value_;}
   protected:
     value_type value_;
   private:
-    void assign(value_type value)
+    BOOST_CXX14_CONSTEXPR void assign(value_type value)
     {
       //adding 1 below gets rid of a compiler warning which occurs when the 
       //min_value is 0 and the type is unsigned....
-      if (value+1 < min()+1) {
+      if (value+1 < (min)()+1) {
         value_policies::on_error(value_, value, min_violation);
         return;
       }
-      if (value > max()) {
+      if (value > (max)()) {
         value_policies::on_error(value_, value, max_violation);
         return;
       }
       value_ = value;
-
     }
 };
 
   //! Template to shortcut the constrained_value policy creation process
   template<typename rep_type, rep_type min_value, 
            rep_type max_value, class exception_type>
-  class simple_exception_policy
+  class BOOST_SYMBOL_VISIBLE simple_exception_policy
   {
+    struct BOOST_SYMBOL_VISIBLE exception_wrapper : public exception_type
+    {
+      // In order to support throw_exception mechanism in the BOOST_NO_EXCEPTIONS mode,
+      // we'll have to provide a way to acquire std::exception from the exception being thrown.
+      // However, we cannot derive from it, since it would make it interceptable by this class,
+      // which might not be what the user wanted.
+      operator std::out_of_range () const
+      {
+        // TODO: Make the message more descriptive by using arguments to on_error
+        return std::out_of_range("constrained value boundary has been violated");
+      }
+    };
+
+    typedef typename conditional<
+      is_base_of< std::exception, exception_type >::value,
+      exception_type,
+      exception_wrapper
+    >::type actual_exception_type;
+
   public:
     typedef rep_type value_type;
-    static rep_type min() { return min_value; };
-    static rep_type max() { return max_value;};
+    static BOOST_CONSTEXPR rep_type
+    min BOOST_PREVENT_MACRO_SUBSTITUTION () { return min_value; }
+
+    static BOOST_CONSTEXPR rep_type
+    max BOOST_PREVENT_MACRO_SUBSTITUTION () { return max_value; }
+
     static void on_error(rep_type, rep_type, violation_enum)
     {
-      throw exception_type();
+      boost::throw_exception(actual_exception_type());
     }
   };
 
@@ -88,16 +124,6 @@ namespace CV {
 } } //namespace CV
 
 
-/* Copyright (c) 2000-2002
- * CrystalClear Software, Inc.
- * Permission to use, copy, modify, distribute and sell this software
- * and its documentation for any purpose is hereby granted without fee,
- * provided that the above copyright notice appear in all copies and
- * that both that copyright notice and this permission notice appear
- * in supporting documentation.  CrystalClear Software makes no
- * representations about the suitability of this software for any
- * purpose.  It is provided "as is" without express or implied warranty.
- */
 
 
 #endif

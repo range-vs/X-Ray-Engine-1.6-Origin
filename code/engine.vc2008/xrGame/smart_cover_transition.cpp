@@ -22,7 +22,7 @@ using smart_cover::transitions::animation_action;
 
 action::action					(luabind::object const &table)
 {
-	VERIFY						(table.type() == LUA_TTABLE);
+	VERIFY						(luabind::type(table) == LUA_TTABLE);
 
 	m_precondition_functor		= parse_string(table, "precondition_functor");
 	m_precondition_params		= parse_string(table, "precondition_params");
@@ -51,16 +51,15 @@ bool action::applicable			() const
 
 void action::load_animations	(luabind::object const &table)
 {
-	luabind::object::iterator	I = table.begin();
-	luabind::object::iterator	E = table.end();
-	for ( ; I != E; ++I) {
-		luabind::object			tmp = *I;
-		Fvector	const			&pos = parse_fvector(tmp, "position");
-		shared_str				anim_id = parse_string(tmp, "animation");
+	for (luabind::iterator it(table), end; it != end; ++it)
+	{
+		luabind::object tmp = *it;
+		Fvector const& pos = parse_fvector(tmp, "position");
+		shared_str anim_id = parse_string(tmp, "animation");
 		MonsterSpace::EBodyState body_state = (MonsterSpace::EBodyState)parse_int(tmp, "body_state");
 		MonsterSpace::EMovementType movement_type = (MonsterSpace::EMovementType)parse_int(tmp, "movement_type");
-		animation_action		*animation = xr_new<animation_action>(pos, anim_id, body_state, movement_type);
-		m_animations.push_back	(animation);
+		animation_action* animation = xr_new<animation_action>(pos, anim_id, body_state, movement_type);
+		m_animations.push_back(animation);
 	}
 }
 

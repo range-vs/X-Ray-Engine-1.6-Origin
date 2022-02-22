@@ -78,22 +78,39 @@ void CPhysicItem::OnH_B_Chield		()
 
 BOOL CPhysicItem::net_Spawn			(CSE_Abstract* DC)
 {
+	//if (!inherited::net_Spawn(DC))
+	//	return (FALSE);
+	//IKinematics* pK = smart_cast<IKinematics*>(Visual());
+	//pK->CalculateBones_Invalidate();
+	//pK->CalculateBones(TRUE);
+	//CSE_Abstract *abstract = (CSE_Abstract*)DC;
+	//if (0xffff == abstract->ID_Parent)
+	//{
+	//	if(!PPhysicsShell())setup_physic_shell	();
+	//	//else processing_deactivate();//.
+	//}
+
+	//setVisible				(TRUE);
+	//setEnabled				(TRUE);
+
+	//return					(TRUE);
 	if (!inherited::net_Spawn(DC))
 		return (FALSE);
 	IKinematics* pK = smart_cast<IKinematics*>(Visual());
 	pK->CalculateBones_Invalidate();
 	pK->CalculateBones(TRUE);
-	CSE_Abstract *abstract = (CSE_Abstract*)DC;
+	CSE_Abstract* abstract = (CSE_Abstract*)DC;
 	if (0xffff == abstract->ID_Parent)
 	{
-		if(!PPhysicsShell())setup_physic_shell	();
-		//else processing_deactivate();//.
+		if (!PPhysicsShell())
+			setup_physic_shell();
+		// else processing_deactivate();//.
 	}
 
-	setVisible				(TRUE);
-	setEnabled				(TRUE);
+	setVisible(TRUE);
+	setEnabled(TRUE);
 
-	return					(TRUE);
+	return (TRUE);
 }
 
 void CPhysicItem::net_Destroy		()

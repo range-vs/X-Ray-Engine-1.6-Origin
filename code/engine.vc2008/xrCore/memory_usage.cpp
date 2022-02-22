@@ -1,10 +1,12 @@
 #include "stdafx.h"
 #include <malloc.h>
 #include <errno.h>
+#include <psapi.h>
 
 #ifdef __BORLANDC__
 #define ENOSYS          40
 #endif
+
 
 XRCORE_API void vminfo (size_t *_free, size_t *reserved, size_t *committed) {
 	MEMORY_BASIC_INFORMATION memory_info;
@@ -197,8 +199,10 @@ u32	mem_usage_impl()
     return pmc.PagefileUsage;
 }
 
+/*
 u32		xrMemory::mem_usage		(u32* pBlocksUsed, u32* pBlocksFree)
 {
 	return mem_usage_impl(); //				(mem_usage_impl((HANDLE)_get_heap_handle(),pBlocksUsed,pBlocksFree));
 }
+*/
 

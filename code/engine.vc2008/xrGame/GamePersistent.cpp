@@ -602,7 +602,7 @@ void CGamePersistent::OnFrame	()
 						C = Actor()->Holder()->Camera();
 
 					Actor()->Cameras().UpdateFromCamera		(C);
-					Actor()->Cameras().ApplyDevice			(VIEWPORT_NEAR);
+					Actor()->Cameras().ApplyDevice			();
 #ifdef DEBUG
 					if(psActorFlags.test(AF_NO_CLIP))
 					{
@@ -648,7 +648,7 @@ void CGamePersistent::OnFrame	()
 				C = Actor()->Holder()->Camera();
 
 			Actor()->Cameras().UpdateFromCamera			(C);
-			Actor()->Cameras().ApplyDevice				(VIEWPORT_NEAR);
+			Actor()->Cameras().ApplyDevice				();
 
 		}
 #endif // MASTER_GOLD

@@ -1,137 +1,170 @@
 #ifndef _DATE_TIME_WRAPPING_INT_HPP__
 #define _DATE_TIME_WRAPPING_INT_HPP__
-/* Copyright (c) 2001 CrystalClear Software, Inc.
- * Disclaimer & Full Copyright at end of file
- * Author: Jeff Garland 
+
+/* Copyright (c) 2002,2003,2005 CrystalClear Software, Inc.
+ * Use, modification and distribution is subject to the
+ * Boost Software License, Version 1.0. (See accompanying
+ * file LICENSE_1_0.txt or http://www.boost.org/LICENSE_1_0.txt)
+ * Author: Jeff Garland, Bart Garst
+ * $Date$
  */
 
+#include "boost/config.hpp"
 
 namespace boost {
 namespace date_time {
 
-//! A wrapping integer used to support time durations 
+//! A wrapping integer used to support time durations (WARNING: only instantiate with a signed type)
 /*! In composite date and time types this type is used to
  *  wrap at the day boundary.
+ *  Ex:
+ *  A wrapping_int<short, 10> will roll over after nine, and
+ *  roll under below zero. This gives a range of [0,9]
  *
+ * NOTE: it is strongly recommended that wrapping_int2 be used
+ * instead of wrapping_int as wrapping_int is to be depricated
+ * at some point soon.
+ *
+ * Also Note that warnings will occur if instantiated with an
+ * unsigned type. Only a signed type should be used!
  */
 template<typename int_type_, int_type_ wrap_val>
 class wrapping_int {
 public:
   typedef int_type_ int_type;
   //typedef overflow_type_ overflow_type;
-  static int_type wrap_value() {return wrap_val;}
+  static BOOST_CONSTEXPR int_type wrap_value() {return wrap_val;}
   //!Add, return true if wrapped
-  wrapping_int(int_type v) : value_(v) {};
+  BOOST_CXX14_CONSTEXPR wrapping_int(int_type v) : value_(v) {}
   //! Explicit converion method
-  int_type as_int()   const   {return value_;}
-  operator int_type() const   {return value_;}
-  int_type add(int_type v) 
+  BOOST_CONSTEXPR int_type as_int()   const   {return value_;}
+  BOOST_CONSTEXPR operator int_type() const   {return value_;}
+  //!Add, return number of wraps performed
+  /*! The sign of the returned value will indicate which direction the
+   * wraps went. Ex: add a negative number and wrapping under could occur,
+   * this would be indicated by a negative return value. If wrapping over
+   * took place, a positive value would be returned */
+  template< typename IntT >
+  BOOST_CXX14_CONSTEXPR IntT add(IntT v)
   {
-    //take the mod here and assign it....
-    int_type remainder = v % wrap_val;
-    int_type overflow = v / wrap_val;
-    value_ += remainder;
-    if ((value_) >= wrap_val) {
-      value_ -= wrap_val;
-      overflow++;
-    }
-    return overflow;
+    int_type remainder = static_cast<int_type>(v % (wrap_val));
+    IntT overflow = static_cast<IntT>(v / (wrap_val));
+    value_ = static_cast<int_type>(value_ + remainder);
+    return calculate_wrap(overflow);
   }
-  int_type subtract(int_type v) 
+  //! Subtract will return '+d' if wrapping under took place ('d' is the number of wraps)
+  /*! The sign of the returned value will indicate which direction the
+   * wraps went (positive indicates wrap under, negative indicates wrap over).
+   * Ex: subtract a negative number and wrapping over could
+   * occur, this would be indicated by a negative return value. If
+   * wrapping under took place, a positive value would be returned. */
+  template< typename IntT >
+  BOOST_CXX14_CONSTEXPR IntT subtract(IntT v)
   {
-    //take the mod here and assign it....
-    int_type remainder = v % wrap_val;
-    int_type underflow = v / wrap_val;
-    
-//     std::cout << "wi :" << value_ << "|"
-//               << v << "|"
-//               << underflow << "|" 
-//               << remainder << "|" 
-//               << wrap_val  << std::endl;
-    if (remainder > value_) {
-      underflow++;
-      //      value_ = remainder - value_;
-      value_ = wrap_val - (remainder-value_);
-    }
-    else {
-      value_ -= remainder;
-      //value_ = wrap_val-(remainder-value_);
-      //      value_ = wrap_val -(value_-remainder);
-    }
-//     std::cout << "wi final uf: " << underflow 
-//               << " value: "  << value_ << std::endl;
-    return underflow;
+    int_type remainder = static_cast<int_type>(v % (wrap_val));
+    IntT underflow = static_cast<IntT>(-(v / (wrap_val)));
+    value_ = static_cast<int_type>(value_ - remainder);
+    return calculate_wrap(underflow) * -1;
   }
-		    
 private:
   int_type value_;
-			      
+
+  template< typename IntT >
+  BOOST_CXX14_CONSTEXPR IntT calculate_wrap(IntT wrap)
+  {
+    if ((value_) >= wrap_val)
+    {
+      ++wrap;
+      value_ -= (wrap_val);
+    }
+    else if(value_ < 0)
+    {
+      --wrap;
+      value_ += (wrap_val);
+    }
+    return wrap;
+  }
+
 };
 
 
-//! A wrapping integer used to wrap around at the top
+//! A wrapping integer used to wrap around at the top (WARNING: only instantiate with a signed type)
 /*! Bad name, quick impl to fix a bug -- fix later!!
  *  This allows the wrap to restart at a value other than 0.
- *  Currently this only works if wrap_min == 1 
  */
 template<typename int_type_, int_type_ wrap_min, int_type_ wrap_max>
 class wrapping_int2 {
 public:
   typedef int_type_ int_type;
-  static unsigned long wrap_value() {return wrap_max;}
-  static unsigned long min_value()  {return wrap_min;}
-  //!Add, return true if wrapped
-  wrapping_int2(int_type v) : value_(v) {};
-  //! Explicit converion method
-  int_type as_int()   const   {return value_;}
-  operator int_type() const {return value_;}
-  int_type add(int_type v) 
-  {
-    //take the mod here and assign it....
-    int_type remainder = v % wrap_max;
-    int_type overflow = v / wrap_max;
-//     std::cout << "wi2: " << value_ << "|"
-// 	      << v << "|"
-// 	      << remainder << "|" 
-// 	      << wrap_max  << "|"
-//               << wrap_min  << std::endl;
-    value_ += remainder;
-    if ((value_) > wrap_max) {
-      overflow++;
-      value_ -= (wrap_max - wrap_min + 1);
+  static BOOST_CONSTEXPR int_type wrap_value() {return wrap_max;}
+  static BOOST_CONSTEXPR int_type min_value()  {return wrap_min;}
+  /*! If initializing value is out of range of [wrap_min, wrap_max],
+   * value will be initialized to closest of min or max */
+  BOOST_CXX14_CONSTEXPR wrapping_int2(int_type v) : value_(v) {
+    if(value_ < wrap_min)
+    {
+      value_ = wrap_min;
     }
-//     std::cout << "wi2 final: " 
-// 	      << overflow << "|" 
-// 	      << value_ << std::endl;
-    return overflow;
+    if(value_ > wrap_max)
+    {
+      value_ = wrap_max;
+    }
   }
-		    
+  //! Explicit converion method
+  BOOST_CONSTEXPR int_type as_int()   const   {return value_;}
+  BOOST_CONSTEXPR operator int_type() const {return value_;}
+  //!Add, return number of wraps performed
+  /*! The sign of the returned value will indicate which direction the
+   * wraps went. Ex: add a negative number and wrapping under could occur,
+   * this would be indicated by a negative return value. If wrapping over
+   * took place, a positive value would be returned */
+  template< typename IntT >
+  BOOST_CXX14_CONSTEXPR IntT add(IntT v)
+  {
+    int_type remainder = static_cast<int_type>(v % (wrap_max - wrap_min + 1));
+    IntT overflow = static_cast<IntT>(v / (wrap_max - wrap_min + 1));
+    value_ = static_cast<int_type>(value_ + remainder);
+    return calculate_wrap(overflow);
+  }
+  //! Subtract will return '-d' if wrapping under took place ('d' is the number of wraps)
+  /*! The sign of the returned value will indicate which direction the
+   * wraps went. Ex: subtract a negative number and wrapping over could
+   * occur, this would be indicated by a positive return value. If
+   * wrapping under took place, a negative value would be returned */
+  template< typename IntT >
+  BOOST_CXX14_CONSTEXPR IntT subtract(IntT v)
+  {
+    int_type remainder = static_cast<int_type>(v % (wrap_max - wrap_min + 1));
+    IntT underflow = static_cast<IntT>(-(v / (wrap_max - wrap_min + 1)));
+    value_ = static_cast<int_type>(value_ - remainder);
+    return calculate_wrap(underflow);
+  }
+
 private:
   int_type value_;
-			      
+
+  template< typename IntT >
+  BOOST_CXX14_CONSTEXPR IntT calculate_wrap(IntT wrap)
+  {
+    if ((value_) > wrap_max)
+    {
+      ++wrap;
+      value_ -= (wrap_max - wrap_min + 1);
+    }
+    else if((value_) < wrap_min)
+    {
+      --wrap;
+      value_ += (wrap_max - wrap_min + 1);
+    }
+    return wrap;
+  }
 };
 
 
 
 } } //namespace date_time
 
-/*
- * Copyright (c) 2001
- * CrystalClear Software, Inc.
- *
- * Permission to use, copy, modify, distribute and sell this software
- * and its documentation for any purpose is hereby granted without fee,
- * provided that the above copyright notice appear in all copies and
- * that both that copyright notice and this permission notice appear
- * in supporting documentation.  CrystalClear Software makes no
- * representations about the suitability of this software for any
- * purpose.  It is provided as is without express or implied warranty.
- *
- *
- * Author:  Jeff Garland (jeff@CrystalClearSoftware.com)
- * Created: Sat Sep  8 19:37:11 2001 
- *
- */
 
 
 #endif
+

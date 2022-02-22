@@ -56,7 +56,7 @@ object fraLeftBar: TfraLeftBar
       object APHeadLabel2: TLabel
         Left = 1
         Top = 1
-        Width = 396
+        Width = 31
         Height = 13
         Align = alTop
         Alignment = taCenter
@@ -64,7 +64,6 @@ object fraLeftBar: TfraLeftBar
         Color = clGray
         ParentColor = False
         OnClick = PanelMaximizeClick
-        ExplicitWidth = 31
       end
       object ebSceneMin: TExtBtn
         Left = 386
@@ -244,7 +243,7 @@ object fraLeftBar: TfraLeftBar
       object Label4: TLabel
         Left = 1
         Top = 1
-        Width = 396
+        Width = 29
         Height = 13
         Align = alTop
         Alignment = taCenter
@@ -252,7 +251,6 @@ object fraLeftBar: TfraLeftBar
         Color = clGray
         ParentColor = False
         OnClick = PanelMaximizeClick
-        ExplicitWidth = 29
       end
       object ExtBtn2: TExtBtn
         Left = 386
@@ -458,7 +456,7 @@ object fraLeftBar: TfraLeftBar
       object Label6: TLabel
         Left = 1
         Top = 1
-        Width = 396
+        Width = 59
         Height = 13
         Align = alTop
         Alignment = taCenter
@@ -466,7 +464,6 @@ object fraLeftBar: TfraLeftBar
         Color = clGray
         ParentColor = False
         OnClick = PanelMaximizeClick
-        ExplicitWidth = 59
       end
       object Bevel6: TBevel
         Left = 1
@@ -500,7 +497,7 @@ object fraLeftBar: TfraLeftBar
       object Label1: TLabel
         Left = 1
         Top = 1
-        Width = 396
+        Width = 70
         Height = 13
         Align = alTop
         Alignment = taCenter
@@ -508,7 +505,6 @@ object fraLeftBar: TfraLeftBar
         Color = clGray
         ParentColor = False
         OnClick = PanelMaximizeClick
-        ExplicitWidth = 70
       end
       object ExtBtn10: TExtBtn
         Left = 386

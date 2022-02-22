@@ -1,10 +1,11 @@
-// Copyright David Abrahams 2002. Permission to copy, use,
-// modify, sell and distribute this software is granted provided this
-// copyright notice appears in all copies. This software is provided
-// "as is" without express or implied warranty, and with no claim as
-// to its suitability for any purpose.
+// Copyright David Abrahams 2002.
+// Distributed under the Boost Software License, Version 1.0. (See
+// accompanying file LICENSE_1_0.txt or copy at
+// http://www.boost.org/LICENSE_1_0.txt)
 #ifndef BACK_REFERENCE_DWA2002510_HPP
 # define BACK_REFERENCE_DWA2002510_HPP
+
+# include <boost/python/detail/prefix.hpp>
 
 # include <boost/python/object_fwd.hpp>
 # include <boost/python/detail/dependent.hpp>
@@ -28,7 +29,6 @@ struct back_reference
     T m_value;
 };
 
-# ifndef BOOST_NO_TEMPLATE_PARTIAL_SPECIALIZATION
 template<typename T>
 class is_back_reference
 {
@@ -43,36 +43,6 @@ class is_back_reference<back_reference<T> >
     BOOST_STATIC_CONSTANT(bool, value = true);
 };
 
-# else // no partial specialization
-
-}} // namespace boost::python
-
-#include <boost/type.hpp>
-
-namespace boost { namespace python {
-
-namespace detail
-{
-  typedef char (&yes_back_reference_t)[1];
-  typedef char (&no_back_reference_t)[2];
-      
-  no_back_reference_t is_back_reference_test(...);
-
-  template<typename T>
-  yes_back_reference_t is_back_reference_test(boost::type< back_reference<T> >);
-}
-
-template<typename T>
-class is_back_reference
-{
- public:
-    BOOST_STATIC_CONSTANT(
-        bool, value = (
-            sizeof(detail::is_back_reference_test(boost::type<T>()))
-            == sizeof(detail::yes_back_reference_t)));
-};
-
-# endif // BOOST_NO_TEMPLATE_PARTIAL_SPECIALIZATION
 
 //
 // implementations

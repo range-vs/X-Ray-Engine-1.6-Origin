@@ -1,14 +1,19 @@
 # /* **************************************************************************
 #  *                                                                          *
-#  *     (C) Copyright Paul Mensonides 2002.  Permission to copy, use,        *
-#  *     modify, sell, and distribute this software is granted provided       *
-#  *     this copyright notice appears in all copies.  This software is       *
-#  *     provided "as is" without express or implied warranty, and with       *
-#  *     no claim at to its suitability for any purpose.                      *
+#  *     (C) Copyright Paul Mensonides 2002.
+#  *     Distributed under the Boost Software License, Version 1.0. (See
+#  *     accompanying file LICENSE_1_0.txt or copy at
+#  *     http://www.boost.org/LICENSE_1_0.txt)
 #  *                                                                          *
 #  ************************************************************************** */
 #
+# /* Revised by Edward Diener (2020) */
+#
 # /* See http://www.boost.org for most recent version. */
+#
+# include <boost/preprocessor/config/config.hpp>
+#
+# if ~BOOST_PP_CONFIG_FLAGS() & BOOST_PP_CONFIG_STRICT()
 #
 # if BOOST_PP_LOCAL_R(256)
     BOOST_PP_LOCAL_MACRO(256)
@@ -780,4 +785,23 @@
 # endif
 # if BOOST_PP_LOCAL_R(0)
     BOOST_PP_LOCAL_MACRO(0)
+# endif
+#
+# else
+#
+# include <boost/preprocessor/config/limits.hpp>
+#
+# if BOOST_PP_LIMIT_ITERATION == 256
+# include <boost/preprocessor/iteration/detail/limits/rlocal_256.hpp>
+# elif BOOST_PP_LIMIT_ITERATION == 512
+# include <boost/preprocessor/iteration/detail/limits/rlocal_512.hpp>
+# include <boost/preprocessor/iteration/detail/limits/rlocal_256.hpp>
+# elif BOOST_PP_LIMIT_ITERATION == 1024
+# include <boost/preprocessor/iteration/detail/limits/rlocal_1024.hpp>
+# include <boost/preprocessor/iteration/detail/limits/rlocal_512.hpp>
+# include <boost/preprocessor/iteration/detail/limits/rlocal_256.hpp>
+# else
+# error Incorrect value for the BOOST_PP_LIMIT_ITERATION limit
+# endif
+#
 # endif

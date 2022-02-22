@@ -10,7 +10,7 @@
 #include "game_base.h"
 #include "level.h"
 
-#include "associative_vector.h"
+#include "Associative_Vector.h"
 
 class UITeamPanels;
 class CUIFrameLineWnd;
@@ -38,7 +38,7 @@ private:
 		}
 	};
 
-	typedef associative_vector<ClientID, TPlayerItem> MapClientIdToUIPlayer;
+	typedef AssociativeVector<ClientID, TPlayerItem> MapClientIdToUIPlayer;
 
 	
 	

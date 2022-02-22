@@ -134,7 +134,7 @@ void CBuild::BuildRapid		(BOOL bSaveForOtherCompilers)
 		// Prepare faces
 		for (u32 k=0; k<CL.getTS(); k++){
 			CDB::TRI& T			= CL.getT( k );
-			base_Face* F		= (base_Face*)(*((void**)&T.dummy));
+			base_Face* F		= (base_Face*)(((void**)T.dummy)); //(base_Face*)(*((void**)&T.dummy));
 			b_rc_face& cf		= rc_faces[k];
 			cf.dwMaterial		= F->dwMaterial;
 			cf.dwMaterialGame	= F->dwMaterialGame;

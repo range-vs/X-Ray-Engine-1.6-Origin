@@ -1,23 +1,27 @@
 #if !defined(BOOST_PP_IS_ITERATING)
 
-// Copyright David Abrahams 2001. Permission to copy, use,
-// modify, sell and distribute this software is granted provided this
-// copyright notice appears in all copies. This software is provided
-// "as is" without express or implied warranty, and with no claim as
-// to its suitability for any purpose.
+// Copyright David Abrahams 2001.
+// Distributed under the Boost Software License, Version 1.0. (See
+// accompanying file LICENSE_1_0.txt or copy at
+// http://www.boost.org/LICENSE_1_0.txt)
 
 # ifndef MAKE_HOLDER_DWA20011215_HPP
 #  define MAKE_HOLDER_DWA20011215_HPP
 
+#  include <boost/python/detail/prefix.hpp>
+
 #  include <boost/python/object/instance.hpp>
+#  include <boost/python/converter/registry.hpp>
+#if !defined( BOOST_PYTHON_NO_PY_SIGNATURES) && defined( BOOST_PYTHON_PY_SIGNATURES_PROPER_INIT_SELF_TYPE)
+#  include <boost/python/detail/python_type.hpp>
+#endif
 
 #  include <boost/python/object/forward.hpp>
-#  include <boost/python/detail/wrap_python.hpp>
 #  include <boost/python/detail/preprocessor.hpp>
 
 #  include <boost/mpl/next.hpp>
 #  include <boost/mpl/begin_end.hpp>
-#  include <boost/mpl/apply.hpp>
+#  include <boost/mpl/deref.hpp>
 
 #  include <boost/preprocessor/iterate.hpp>
 #  include <boost/preprocessor/iteration/local.hpp>
@@ -43,8 +47,14 @@ template <int nargs> struct make_holder;
 
 # endif // MAKE_HOLDER_DWA20011215_HPP
 
-#elif BOOST_PP_ITERATION_DEPTH() == 1
-# line BOOST_PP_LINE(__LINE__, make_holder.hpp)
+// For gcc 4.4 compatability, we must include the
+// BOOST_PP_ITERATION_DEPTH test inside an #else clause.
+#else // BOOST_PP_IS_ITERATING
+#if BOOST_PP_ITERATION_DEPTH() == 1
+# if !(BOOST_WORKAROUND(__MWERKS__, > 0x3100)                      \
+        && BOOST_WORKAROUND(__MWERKS__, BOOST_TESTED_AT(0x3201)))
+#  line BOOST_PP_LINE(__LINE__, make_holder.hpp)
+# endif 
 
 # define N BOOST_PP_ITERATION()
 
@@ -61,7 +71,7 @@ struct make_holder<N>
         typedef typename mpl::begin<ArgList>::type iter0;
         
 #  define BOOST_PP_LOCAL_MACRO(n)               \
-    typedef typename mpl::apply0<iter##n>::type t##n;        \
+    typedef typename mpl::deref<iter##n>::type t##n;        \
     typedef typename forward<t##n>::type f##n;  \
     typedef typename mpl::next<iter##n>::type   \
         BOOST_PP_CAT(iter,BOOST_PP_INC(n)); // Next iterator type
@@ -71,7 +81,11 @@ struct make_holder<N>
 # endif 
         
         static void execute(
-            PyObject* p
+#if !defined( BOOST_PYTHON_NO_PY_SIGNATURES) && defined( BOOST_PYTHON_PY_SIGNATURES_PROPER_INIT_SELF_TYPE)
+            boost::python::detail::python_class<BOOST_DEDUCED_TYPENAME Holder::value_type> *p
+#else
+            PyObject *p
+#endif
             BOOST_PP_ENUM_TRAILING_BINARY_PARAMS_Z(1, N, t, a))
         {
             typedef instance<Holder> instance_t;
@@ -91,4 +105,5 @@ struct make_holder<N>
 
 # undef N
 
+#endif // BOOST_PP_ITERATION_DEPTH()
 #endif

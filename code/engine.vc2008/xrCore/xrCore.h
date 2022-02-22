@@ -257,7 +257,7 @@ struct XRCORE_API xr_rtoken
     shared_str	name;
     int	   	id;
 			xr_rtoken	(LPCSTR _nm, int _id){name=_nm;id=_id;}
-#if defined(_EDITOR) && defined(_WIN64)
+#ifdef _EDITOR
             xr_rtoken	(xr_rtoken&& rt)
 			{
 			   this->name = rt.name;

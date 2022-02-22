@@ -1,27 +1,21 @@
 /* Boost interval/detail/x86gcc_rounding_control.hpp file
  *
- * Copyright Jens Maurer 2000
- * Copyright Hervé Brönnimann, Guillaume Melquiond, Sylvain Pion 2002
- * Permission to use, copy, modify, sell, and distribute this software
- * is hereby granted without fee provided that the above copyright notice
- * appears in all copies and that both that copyright notice and this
- * permission notice appear in supporting documentation,
+ * Copyright 2000 Jens Maurer
+ * Copyright 2002 HervÃ© BrÃ¶nnimann, Guillaume Melquiond, Sylvain Pion
  *
- * None of the above authors nor Polytechnic University make any
- * representation about the suitability of this software for any
- * purpose. It is provided "as is" without express or implied warranty.
- *
- * $Id: x86gcc_rounding_control.hpp,v 1.2 2003/02/05 17:34:33 gmelquio Exp $
+ * Distributed under the Boost Software License, Version 1.0.
+ * (See accompanying file LICENSE_1_0.txt or
+ * copy at http://www.boost.org/LICENSE_1_0.txt)
  */
 
 #ifndef BOOST_NUMERIC_INTERVAL_DETAIL_X86GCC_ROUNDING_CONTROL_HPP
 #define BOOST_NUMERIC_INTERVAL_DETAIL_X86GCC_ROUNDING_CONTROL_HPP
 
-#ifndef __GNUC__
+#if !defined(__GNUC__) && !(defined(__BORLANDC__) && defined(__clang__))
 #  error This header only works with GNU CC.
 #endif
 
-#ifndef __i386__
+#if !defined(__i386__) && !defined(__x86_64__)
 #  error This header only works on x86 CPUs.
 #endif
 

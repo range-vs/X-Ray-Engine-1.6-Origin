@@ -138,8 +138,9 @@ public:
 	bool					StopAtEnd			();
 
 };
-struct accel_str_pred : public std::binary_function<shared_str, shared_str, bool>	{	
-	IC bool operator()(const shared_str& x, const shared_str& y) const	{	return xr_strcmp(x,y)<0;	}
+struct accel_str_pred //: public std::binary_function<shared_str, shared_str, bool>	
+{	
+	/*IC*/ bool operator()(const shared_str& x, const shared_str& y) const	{	return xr_strcmp(x,y)<0;	}
 };
 typedef xr_map<shared_str,u16,accel_str_pred> 	accel_map;
 typedef xr_vector< CMotionDef > MotionDefVec; typedef MotionDefVec::iterator MotionDefVecIt;

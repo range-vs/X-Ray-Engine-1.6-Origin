@@ -64,7 +64,7 @@ public:
 	__fastcall virtual ~TRxWindowHook();
 	void __fastcall HookControl();
 	void __fastcall UnhookControl();
-	__property HWND HookWindow = {read=GetHookHandle, nodefault};
+	__property HWND HookWindow = {read=GetHookHandle};
 	
 __published:
 	__property bool Active = {read=FActive, write=SetActive, default=1};

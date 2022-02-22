@@ -43,7 +43,12 @@ public:
 	virtual void 			run								()										;
 	virtual bool 			obsolete						()								const	;
 	virtual bool			compare							(const	CPHReqComparerV* v)		const	{return v->compare(this);}
-	virtual bool			compare							(const	CPHScriptAction* v)		const	{return *m_lua_function==*(v->m_lua_function);}
+	virtual bool compare(const CPHScriptAction* v) const
+	{
+		const auto& lhs = static_cast<const luabind::adl::object&>(*m_lua_function);
+		const auto& rhs = static_cast<const luabind::adl::object&>(*v->m_lua_function);
+		return lhs == rhs;
+	}
 };
 
 
@@ -87,7 +92,7 @@ class CPHScriptObjectConditionN:
 	public CPHCondition,
 	public CPHReqComparerV
 {
-	CScriptCallbackEx<bool>			m_callback;
+	CScriptCallbackEx_<bool>			m_callback;
 public:
 	CPHScriptObjectConditionN			( const luabind::object &object,const luabind::functor<bool> &functor)	;
 	virtual					~CPHScriptObjectConditionN		()													;
@@ -103,7 +108,7 @@ class CPHScriptObjectActionN :
 	public CPHReqComparerV
 {
 	bool	b_obsolete							   ;
-	CScriptCallbackEx<void>			m_callback;
+	CScriptCallbackEx_<void>			m_callback;
 public:
 	CPHScriptObjectActionN			( const luabind::object &object,const luabind::functor<void> &functor);
 	virtual					~CPHScriptObjectActionN			()													;

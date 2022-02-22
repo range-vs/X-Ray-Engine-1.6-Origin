@@ -47,45 +47,93 @@ cover::cover					(
 	m_is_combat_cover			(is_combat_cover),
 	m_can_fire					(can_fire)
 {
-	m_is_smart_cover			= 1;
+//	m_is_smart_cover			= 1;
+//
+//	m_loopholes.reserve			( m_description->loopholes().size( ) );
+//	Loopholes::const_iterator	I = m_description->loopholes().begin();
+//	Loopholes::const_iterator	E = m_description->loopholes().end();
+//	for ( ; I != E; ++I) {
+//		luabind::object::iterator	i = loopholes_availability.begin( );
+//		luabind::object::iterator	e = loopholes_availability.end( );
+//		for ( ; i != e; ++i ) {
+//			LPCSTR const loophole_id= luabind::object_cast< LPCSTR >( i.key( ) );
+//			if ( xr_strcmp( loophole_id, (*I)->id( ) ) )
+//				continue;
+//
+//			if ( !luabind::object_cast< bool >( *i ) )
+//				break;
+//
+//			m_loopholes.push_back	( *I );
+//			break;
+//		}
+//	}
+//
+//	CLevelGraph const			&graph = ai().level_graph();
+//	m_vertices.resize			(loopholes().size());
+//	Vertices::iterator			i = m_vertices.begin();
+//	Loopholes::const_iterator	J = loopholes().begin();
+//	Loopholes::const_iterator	K = loopholes().end();
+//	for ( ; J != K; ++J, ++i) {
+//		Fvector					position = this->fov_position(**J);
+//		position.y				+= 2.0f;
+//		u32						level_vertex_id = graph.vertex_id(position);
+//		VERIFY2					(
+//			graph.valid_vertex_id(level_vertex_id),
+//			make_string(
+//				"invalid vertex id: smart cover[%s], loophole [%s]",
+//				m_object.cName().c_str(),
+//				(*J)->id().c_str()
+//			)
+//		);
+//		vertex					(**J, (*i).second);
+//		const_cast<loophole*&>((*i).first) = *J;
+//	}
+//
+//#ifdef DEBUG
+//	check_loopholes_connectivity();
+//#endif // DEBUG
+	m_is_smart_cover = 1;
 
-	m_loopholes.reserve			( m_description->loopholes().size( ) );
-	Loopholes::const_iterator	I = m_description->loopholes().begin();
-	Loopholes::const_iterator	E = m_description->loopholes().end();
-	for ( ; I != E; ++I) {
-		luabind::object::iterator	i = loopholes_availability.begin( );
-		luabind::object::iterator	e = loopholes_availability.end( );
-		for ( ; i != e; ++i ) {
-			LPCSTR const loophole_id= luabind::object_cast< LPCSTR >( i.key( ) );
-			if ( xr_strcmp( loophole_id, (*I)->id( ) ) )
-				continue;
+	if (loopholes_availability)
+	{
+		m_loopholes.reserve(m_description->loopholes().size());
+		for (const auto& it : m_description->loopholes())
+		{
+			for (luabind::iterator i(loopholes_availability), e; i != e; ++i)
+			{
+				pcstr const loophole_id = luabind::object_cast<pcstr>(i.key());
+				if (xr_strcmp(loophole_id, it->id()))
+					continue;
 
-			if ( !luabind::object_cast< bool >( *i ) )
+				if (!luabind::object_cast<bool>(*i))
+					break;
+
+				m_loopholes.push_back(it);
 				break;
-
-			m_loopholes.push_back	( *I );
-			break;
+			}
 		}
 	}
+	else
+	{
+		m_loopholes.reserve(m_description->loopholes().size());
 
-	CLevelGraph const			&graph = ai().level_graph();
-	m_vertices.resize			(loopholes().size());
-	Vertices::iterator			i = m_vertices.begin();
-	Loopholes::const_iterator	J = loopholes().begin();
-	Loopholes::const_iterator	K = loopholes().end();
-	for ( ; J != K; ++J, ++i) {
-		Fvector					position = this->fov_position(**J);
-		position.y				+= 2.0f;
-		u32						level_vertex_id = graph.vertex_id(position);
-		VERIFY2					(
-			graph.valid_vertex_id(level_vertex_id),
-			make_string(
-				"invalid vertex id: smart cover[%s], loophole [%s]",
-				m_object.cName().c_str(),
-				(*J)->id().c_str()
-			)
-		);
-		vertex					(**J, (*i).second);
+		for (const auto& it : m_description->loopholes())
+			m_loopholes.push_back(it);
+	}
+
+	CLevelGraph const& graph = ai().level_graph();
+	m_vertices.resize(loopholes().size());
+	Vertices::iterator i = m_vertices.begin();
+	Loopholes::const_iterator J = loopholes().begin();
+	Loopholes::const_iterator K = loopholes().end();
+	for (; J != K; ++J, ++i)
+	{
+		Fvector position = this->fov_position(**J);
+		position.y += 2.0f;
+		u32 level_vertex_id = graph.vertex_id(position);
+		VERIFY2(graph.valid_vertex_id(level_vertex_id), make_string("invalid vertex id: smart cover[%s], loophole [%s]",
+			m_object.cName().c_str(), (*J)->id().c_str()));
+		vertex(**J, (*i).second);
 		const_cast<loophole*&>((*i).first) = *J;
 	}
 

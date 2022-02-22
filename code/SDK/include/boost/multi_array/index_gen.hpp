@@ -1,17 +1,17 @@
-// Copyright (C) 2002 Ronald Garcia
-//
-// Permission to copy, use, sell and distribute this software is granted
-// provided this copyright notice appears in all copies. 
-// Permission to modify the code and to distribute modified code is granted
-// provided this copyright notice appears in all copies, and a notice 
-// that the code was modified is included with the copyright notice.
-//
-// This software is provided "as is" without express or implied warranty, 
-// and with no claim as to its suitability for any purpose.
-//
+// Copyright 2002 The Trustees of Indiana University.
 
-#ifndef BOOST_INDEX_GEN_RG071801_HPP
-#define BOOST_INDEX_GEN_RG071801_HPP
+// Use, modification and distribution is subject to the Boost Software 
+// License, Version 1.0. (See accompanying file LICENSE_1_0.txt or copy at
+// http://www.boost.org/LICENSE_1_0.txt)
+
+//  Boost.MultiArray Library
+//  Authors: Ronald Garcia
+//           Jeremy Siek
+//           Andrew Lumsdaine
+//  See http://www.boost.org/libs/multi_array for documentation.
+
+#ifndef BOOST_MULTI_ARRAY_INDEX_GEN_HPP
+#define BOOST_MULTI_ARRAY_INDEX_GEN_HPP
 
 #include "boost/array.hpp"
 #include "boost/multi_array/index_range.hpp"
@@ -28,9 +28,9 @@ namespace multi_array {
 template <int NumRanges, int NumDims>
 struct index_gen {
 private:
-  typedef index Index;
-  typedef std::size_t SizeType;
-  typedef index_range<Index,SizeType> range;
+  typedef ::boost::detail::multi_array::index index;
+  typedef ::boost::detail::multi_array::size_type size_type;
+  typedef index_range<index,size_type> range;
 public:
   template <int Dims, int Ranges>
   struct gen_type {
@@ -44,27 +44,27 @@ public:
 
   template <int ND>
   explicit index_gen(const index_gen<NumRanges-1,ND>& rhs,
-            const index_range<Index,SizeType>& range)
+            const range& r)
   {
     std::copy(rhs.ranges_.begin(),rhs.ranges_.end(),ranges_.begin());
-    *ranges_.rbegin() = range;
+    *ranges_.rbegin() = r;
   }
 
   index_gen<NumRanges+1,NumDims+1>
-  operator[](const index_range<Index,SizeType>& range) const
+  operator[](const range& r) const
   {
     index_gen<NumRanges+1,NumDims+1> tmp;
     std::copy(ranges_.begin(),ranges_.end(),tmp.ranges_.begin());
-    *tmp.ranges_.rbegin() = range;
+    *tmp.ranges_.rbegin() = r;
     return tmp;
   }
 
   index_gen<NumRanges+1,NumDims>
-  operator[](Index idx) const
+  operator[](index idx) const
   {
     index_gen<NumRanges+1,NumDims> tmp;
     std::copy(ranges_.begin(),ranges_.end(),tmp.ranges_.begin());
-    *tmp.ranges_.rbegin() = index_range<Index,SizeType>(idx);
+    *tmp.ranges_.rbegin() = range(idx);
     return tmp;
   }    
 
@@ -78,4 +78,4 @@ public:
 } // namespace boost
 
 
-#endif // BOOST_INDEX_GEN_RG071801_HPP
+#endif

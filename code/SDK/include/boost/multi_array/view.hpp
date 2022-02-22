@@ -1,17 +1,17 @@
-// Copyright (C) 2002 Ronald Garcia
-//
-// Permission to copy, use, sell and distribute this software is granted
-// provided this copyright notice appears in all copies. 
-// Permission to modify the code and to distribute modified code is granted
-// provided this copyright notice appears in all copies, and a notice 
-// that the code was modified is included with the copyright notice.
-//
-// This software is provided "as is" without express or implied warranty, 
-// and with no claim as to its suitability for any purpose.
-//
+// Copyright 2002 The Trustees of Indiana University.
 
-#ifndef BOOST_MULTI_ARRAY_VIEW_RG071301_HPP
-#define BOOST_MULTI_ARRAY_VIEW_RG071301_HPP
+// Use, modification and distribution is subject to the Boost Software 
+// License, Version 1.0. (See accompanying file LICENSE_1_0.txt or copy at
+// http://www.boost.org/LICENSE_1_0.txt)
+
+//  Boost.MultiArray Library
+//  Authors: Ronald Garcia
+//           Jeremy Siek
+//           Andrew Lumsdaine
+//  See http://www.boost.org/libs/multi_array for documentation.
+
+#ifndef BOOST_MULTI_ARRAY_VIEW_HPP
+#define BOOST_MULTI_ARRAY_VIEW_HPP
 
 //
 // view.hpp - code for creating "views" of array data.
@@ -23,6 +23,8 @@
 #include "boost/multi_array/storage_order.hpp"
 #include "boost/multi_array/subarray.hpp"
 #include "boost/multi_array/algorithm.hpp"
+#include "boost/type_traits/is_integral.hpp"
+#include "boost/utility/enable_if.hpp"
 #include "boost/array.hpp"
 #include "boost/limits.hpp"
 #include <algorithm>
@@ -44,7 +46,6 @@ public:
   typedef typename super_type::value_type value_type;
   typedef typename super_type::const_reference const_reference;
   typedef typename super_type::const_iterator const_iterator;
-  typedef typename super_type::const_iter_base const_iter_base;
   typedef typename super_type::const_reverse_iterator const_reverse_iterator;
   typedef typename super_type::element element;
   typedef typename super_type::size_type size_type;
@@ -73,8 +74,17 @@ public:
 
 
   template <class BaseList>
-  void reindex(const BaseList& values) {
-    boost::copy_n(values.begin(),num_dimensions(),index_base_list_.begin());
+#ifdef BOOST_NO_SFINAE
+  void
+#else
+  typename
+  disable_if<typename boost::is_integral<BaseList>::type,void >::type
+#endif
+  reindex(const BaseList& values) {
+    boost::function_requires<
+      CollectionConcept<BaseList> >();
+    boost::detail::multi_array::
+      copy_n(values.begin(),num_dimensions(),index_base_list_.begin());
     origin_offset_ =
       this->calculate_indexing_offset(stride_list_,index_base_list_);
   }
@@ -109,9 +119,11 @@ public:
 
   template <typename IndexList>
   const element& operator()(IndexList indices) const {
+    boost::function_requires<
+      CollectionConcept<IndexList> >();
     return super_type::access_element(boost::type<const element&>(),
-                                      origin(),
-                                      indices,strides());
+                                      indices,origin(),
+                                      shape(),strides(),index_bases());
   }
 
   // Only allow const element access
@@ -123,11 +135,7 @@ public:
   }
 
   // see generate_array_view in base.hpp
-#if !defined(BOOST_MSVC) || BOOST_MSVC > 1300
   template <int NDims>
-#else
-  template <int NumDims, int NDims> // else ICE
-#endif // BOOST_MSVC
   typename const_array_view<NDims>::type 
   operator[](const boost::detail::multi_array::
              index_gen<NumDims,NDims>& indices)
@@ -142,13 +150,13 @@ public:
                                       origin());
   }
   const_iterator begin() const {
-    return const_iterator(const_iter_base(*index_bases(),origin(),
-                                   shape(),strides(),index_bases()));
+    return const_iterator(*index_bases(),origin(),
+                          shape(),strides(),index_bases());
   }
 
   const_iterator end() const {
-    return const_iterator(const_iter_base(*index_bases()+*shape(),origin(),
-                                   shape(),strides(),index_bases()));
+    return const_iterator(*index_bases()+(index)*shape(),origin(),
+                          shape(),strides(),index_bases());
   }
   
   const_reverse_iterator rbegin() const {
@@ -226,13 +234,14 @@ public: // should be protected
     index_base_list_.assign(0);
 
     // Get the extents and strides
-    boost::copy_n(extents.begin(),NumDims,extent_list_.begin());
-    boost::copy_n(strides.begin(),NumDims,stride_list_.begin());
+    boost::detail::multi_array::
+      copy_n(extents.begin(),NumDims,extent_list_.begin());
+    boost::detail::multi_array::
+      copy_n(strides.begin(),NumDims,stride_list_.begin());
 
     // Calculate the array size
     num_elements_ = std::accumulate(extent_list_.begin(),extent_list_.end(),
-                            size_type(1),std::multiplies<size_type>());
-    assert(num_elements_ != 0);
+                                    size_type(1),std::multiplies<size_type>());
   }
 
   typedef boost::array<size_type,NumDims> size_list;
@@ -260,11 +269,9 @@ public:
   typedef typename super_type::value_type value_type;
   typedef typename super_type::reference reference;
   typedef typename super_type::iterator iterator;
-  typedef typename super_type::iter_base iter_base;
   typedef typename super_type::reverse_iterator reverse_iterator;
   typedef typename super_type::const_reference const_reference;
   typedef typename super_type::const_iterator const_iterator;
-  typedef typename super_type::const_iter_base const_iter_base;
   typedef typename super_type::const_reverse_iterator const_reverse_iterator;
   typedef typename super_type::element element;
   typedef typename super_type::size_type size_type;
@@ -287,13 +294,13 @@ public:
   template <typename ConstMultiArray>
   multi_array_view& operator=(const ConstMultiArray& other) {
     function_requires< 
-      boost::detail::multi_array::
+      boost::multi_array_concepts::
       ConstMultiArrayConcept<ConstMultiArray,NumDims> >();
 
     // make sure the dimensions agree
-    assert(other.num_dimensions() == this->num_dimensions());
-    assert(std::equal(other.shape(),other.shape()+this->num_dimensions(),
-                      this->shape()));
+    BOOST_ASSERT(other.num_dimensions() == this->num_dimensions());
+    BOOST_ASSERT(std::equal(other.shape(),other.shape()+this->num_dimensions(),
+                            this->shape()));
     // iterator-based copy
     std::copy(other.begin(),other.end(),begin());
     return *this;
@@ -303,9 +310,10 @@ public:
   multi_array_view& operator=(const multi_array_view& other) {
     if (&other != this) {
       // make sure the dimensions agree
-      assert(other.num_dimensions() == this->num_dimensions());
-      assert(std::equal(other.shape(),other.shape()+this->num_dimensions(),
-                        this->shape()));
+      BOOST_ASSERT(other.num_dimensions() == this->num_dimensions());
+      BOOST_ASSERT(std::equal(other.shape(),
+                              other.shape()+this->num_dimensions(),
+                              this->shape()));
       // iterator-based copy
       std::copy(other.begin(),other.end(),begin());
     }
@@ -316,9 +324,12 @@ public:
 
   template <class IndexList>
   element& operator()(const IndexList& indices) {
+    boost::function_requires<
+      CollectionConcept<IndexList> >();
     return super_type::access_element(boost::type<element&>(),
-                                      origin(),
-                                      indices,this->strides());
+                                      indices,origin(),
+                                      this->shape(),this->strides(),
+                                      this->index_bases());
   }
 
 
@@ -331,11 +342,7 @@ public:
 
 
   // see generate_array_view in base.hpp
-#if !defined(BOOST_MSVC) || BOOST_MSVC > 1300
   template <int NDims>
-#else
-  template <int NumDims, int NDims> // else ICE
-#endif // BOOST_MSVC
   typename array_view<NDims>::type 
   operator[](const boost::detail::multi_array::
              index_gen<NumDims,NDims>& indices) {
@@ -351,15 +358,15 @@ public:
   
   
   iterator begin() {
-    return iterator(iter_base(*this->index_bases(),origin(),
-                              this->shape(),this->strides(),
-                              this->index_bases()));
+    return iterator(*this->index_bases(),origin(),
+                    this->shape(),this->strides(),
+                    this->index_bases());
   }
 
   iterator end() {
-    return iterator(iter_base(*this->index_bases()+*this->shape(),origin(),
-                              this->shape(),this->strides(),
-                              this->index_bases()));
+    return iterator(*this->index_bases()+(index)*this->shape(),origin(),
+                    this->shape(),this->strides(),
+                    this->index_bases());
   }
 
   reverse_iterator rbegin() {
@@ -377,6 +384,8 @@ public:
 
   template <class IndexList>
   const element& operator()(const IndexList& indices) const {
+    boost::function_requires<
+      CollectionConcept<IndexList> >();
     return super_type::operator()(indices);
   }
 
@@ -385,11 +394,7 @@ public:
   }
 
   // see generate_array_view in base.hpp
-#if !defined(BOOST_MSVC) || BOOST_MSVC > 1300
   template <int NDims>
-#else
-  template <int NumDims, int NDims> // else ICE
-#endif // BOOST_MSVC
   typename const_array_view<NDims>::type 
   operator[](const boost::detail::multi_array::
              index_gen<NumDims,NDims>& indices)
@@ -452,5 +457,4 @@ public:
 
 } // namespace boost
 
-#endif // BOOST_MULTI_ARRAY_VIEW_RG071301_HPP
-
+#endif

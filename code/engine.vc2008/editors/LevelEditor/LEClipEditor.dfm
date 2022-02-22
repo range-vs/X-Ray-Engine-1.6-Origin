@@ -26,7 +26,7 @@ object ClipMaker: TClipMaker
   OnCreate = FormCreate
   OnDestroy = FormDestroy
   OnShow = FormShow
-  PixelsPerInch = 106
+  PixelsPerInch = 96
   TextHeight = 13
   object paB: TPanel
     Left = 129

@@ -94,8 +94,9 @@
         <BCC_Defines>__MIXED_CONFMANAGER;$(BCC_Defines)</BCC_Defines>
         <DCC_Namespace>Winapi;System.Win;Data.Win;Datasnap.Win;Web.Win;Soap.Win;Xml.Win;Bde;$(DCC_Namespace)</DCC_Namespace>
         <BRCC_Defines>_DEBUG;__MIXED_CONFMANAGER;$(BRCC_Defines)</BRCC_Defines>
-        <BCC_UserSuppliedOptions> -tWM -a4 -5 -ps -Vx -r- -k -Ve</BCC_UserSuppliedOptions>
+        <BCC_UserSuppliedOptions> -tWM</BCC_UserSuppliedOptions>
         <TASM_Defines>_DEBUG __MIXED_CONFMANAGER;$(TASM_Defines)</TASM_Defines>
+        <BCC_UseClassicCompiler>false</BCC_UseClassicCompiler>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win64)'!=''">
         <DCC_Namespace>Winapi;System.Win;Data.Win;Datasnap.Win;Web.Win;Soap.Win;Xml.Win;$(DCC_Namespace)</DCC_Namespace>
@@ -131,7 +132,6 @@
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2_Win32)'!=''">
         <BCC_Defines>NDEBUG;$(BCC_Defines);$(BCC_Defines)</BCC_Defines>
-        <BCC_UserSuppliedOptions> -tWM -a4 -5 -ps -Vx -r- -k -Ve -r</BCC_UserSuppliedOptions>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2_Win64)'!=''">
         <BCC_Defines>NDEBUG;$(BCC_Defines);$(BCC_Defines)</BCC_Defines>
@@ -141,12 +141,12 @@
             <BuildOrder>5</BuildOrder>
             <BuildOrder>0</BuildOrder>
         </CppCompile>
-        <BuildConfiguration Include="Base">
-            <Key>Base</Key>
-        </BuildConfiguration>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>
+        </BuildConfiguration>
+        <BuildConfiguration Include="Base">
+            <Key>Base</Key>
         </BuildConfiguration>
         <BuildConfiguration Include="Debug">
             <Key>Cfg_1</Key>

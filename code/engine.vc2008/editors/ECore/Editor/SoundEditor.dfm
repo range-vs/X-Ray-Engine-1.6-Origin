@@ -22,7 +22,7 @@ object frmSoundLib: TfrmSoundLib
   OnDestroy = FormDestroy
   OnKeyDown = FormKeyDown
   OnShow = FormShow
-  PixelsPerInch = 106
+  PixelsPerInch = 96
   TextHeight = 13
   object Splitter1: TSplitter
     Left = 192

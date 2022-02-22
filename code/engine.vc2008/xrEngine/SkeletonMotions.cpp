@@ -2,6 +2,7 @@
 #include 	"stdafx.h"
 #pragma hdrstop
 
+/*
 #if defined(_WIN64) && defined(_ACTOR_EDITOR)
 #define ECORE_API
 
@@ -21,6 +22,7 @@
 	#define DLL_API
 #endif // NO_ENGINE_API
 #endif
+*/
 
 #include 	"SkeletonMotions.h"
 //#include 	"SkeletonAnimated.h"
@@ -69,7 +71,7 @@ void CPartition::load(IKinematics* V, LPCSTR model_name)
 		CInifile::SectCIt it_e	= S.Data.end();
 		if(S.Data.size())
 		{
-			P[i].bones.clear_not_free();
+			P[i].bones.clear();
 		}
 		for(;it!=it_e; ++it)
 		{

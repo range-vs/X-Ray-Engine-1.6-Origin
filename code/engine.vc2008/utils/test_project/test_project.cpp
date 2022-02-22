@@ -3,252 +3,410 @@
 
 #include "framework.h"
 #include "test_project.h"
-#include "shared_string_debug.h"
-#include "StackWalker.h"
 #include <vector>
 #include <string>
+#include <filesystem>
+#include <fstream>
+#include <sstream>
+namespace fs = std::filesystem;
 
-using namespace std;
-
-#define MAX_LOADSTRING 100
-
-// Global Variables:
-HINSTANCE hInst;                                // current instance
-WCHAR szTitle[MAX_LOADSTRING];                  // The title bar text
-WCHAR szWindowClass[MAX_LOADSTRING];            // the main window class name
-
-// Forward declarations of functions included in this code module:
-ATOM                MyRegisterClass(HINSTANCE hInstance);
-BOOL                InitInstance(HINSTANCE, int);
-LRESULT CALLBACK    WndProc(HWND, UINT, WPARAM, LPARAM);
-INT_PTR CALLBACK    About(HWND, UINT, WPARAM, LPARAM);
-
-class StackWalkerToConsole : public StackWalker
-{
-protected:
-    virtual void OnOutput(LPCSTR szText) { printf("%s", szText); }
+extern "C" {
+#include <lua.h>
+#include <lualib.h>
+#include <lauxlib.h>
 };
 
-int exception_filter(int code, _EXCEPTION_POINTERS* ep)
+#include "luabind/luabind.hpp"
+#include <luabind/class_info.hpp>
+#include "luabind/functor.hpp"
+
+using namespace std;
+using namespace luabind;
+
+typedef char* pstr;
+using pcstr = const char*;
+using string512 = char[512];
+using string_path = char[2 * MAX_PATH];
+
+#define SCRIPT_GLOBAL_NAMESPACE "_G"
+
+static const char* file_header_old = "local function script_name() \
+return \"%s\" \
+end \
+local this = {} \
+%s this %s \
+setmetatable(this, {__index = " SCRIPT_GLOBAL_NAMESPACE "}) \
+setfenv(1, this) ";
+
+static const char* file_header = file_header_old;
+
+class ScriptBuffer
 {
-    ////if (exception_code == EXCEPTION_STACK_OVERFLOW)
-    ////{
-    ////    // Do not call _resetstkoflw here, because
-    ////    // at this point, the stack is not yet unwound.
-    ////    // Instead, signal that the handler (the __except block)
-    ////    // is to be executed.
-    ////    return EXCEPTION_EXECUTE_HANDLER;
-    ////}
-    ////else
-    ////    return EXCEPTION_CONTINUE_SEARCH;
+    static std::unique_ptr< ScriptBuffer> instanse;
 
-    // // TODO: перенести в дебаг - файл
-    //DWORD error_code = GetLastError();
-    //LPVOID message;
-    //FormatMessage(
-    //    FORMAT_MESSAGE_ALLOCATE_BUFFER |
-    //    FORMAT_MESSAGE_FROM_SYSTEM,
-    //    NULL,
-    //    error_code,
-    //    MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT),
-    //    (LPSTR)&message,
-    //    0,
-    //    NULL
-    //);
-    //std::string msg = "Unknown error. See stack trace.";
-    //if (error_code != 0)
-    //    msg = "[error][" + universal_string::toString(error_code) + "]    : " + (LPSTR)message + " See stack trace.";
-    //FATAL(msg.c_str());
-    ////
+public:
+    char* scriptBuffer = nullptr;
+    size_t scriptBufferSize = 0;
 
-    std::cout << "Filtering " << std::hex << code << std::endl;
-    StackWalkerToConsole sw;
-    sw.ShowCallstack(GetCurrentThread(), ep->ContextRecord);
-    return EXCEPTION_EXECUTE_HANDLER;
+public:
+    ScriptBuffer() = default;
+    ScriptBuffer(ScriptBuffer&) = delete;
+    ScriptBuffer& operator=(ScriptBuffer&) = delete;
+    ScriptBuffer(ScriptBuffer&&) = delete;
+    const ScriptBuffer& operator=(ScriptBuffer&&) = delete;
+    ~ScriptBuffer();
+
+    void resize(size_t total_size);
+
+    static std::unique_ptr< ScriptBuffer>& getInstance();
+};
+
+std::unique_ptr<ScriptBuffer> ScriptBuffer::instanse(nullptr);
+
+ScriptBuffer::~ScriptBuffer()
+{
+    if (scriptBuffer)
+        free(scriptBuffer);
 }
+
+void ScriptBuffer::resize(size_t total_size)
+{
+    if (total_size >= scriptBufferSize)
+    {
+        scriptBufferSize = total_size;
+        scriptBuffer = (char*)realloc(scriptBuffer, scriptBufferSize);
+    }
+}
+
+std::unique_ptr<ScriptBuffer>& ScriptBuffer::getInstance()
+{
+    if (!instanse)
+    {
+        instanse.reset(new ScriptBuffer);
+        instanse->scriptBufferSize = 1024 * 1024;
+        instanse->scriptBuffer = (char*)malloc(instanse->scriptBufferSize);
+    }
+    return instanse;
+}
+
+
+inline char* strconcat(int dest_sz, char* dest, const char* S1, const char* S2)
+{
+    strcpy_s(dest, dest_sz, S1);
+    strcat_s(dest, dest_sz, S2);
+    return  dest;
+}
+
+bool bfCreateNamespaceTable(lua_State* tpLuaVM, LPCSTR caNamespaceName)
+{
+    lua_pushstring(tpLuaVM, "_G");
+    lua_gettable(tpLuaVM, LUA_GLOBALSINDEX);
+    LPSTR			S2 = _strdup(caNamespaceName);
+    LPSTR			S = S2;
+    for (;;) {
+        if (!strlen(S)) {
+            lua_pop(tpLuaVM, 1);
+            //LuaOut(Lua::eLuaMessageTypeError, "the namespace name %s is incorrect!", caNamespaceName);
+            free(S2);
+            return		(false);
+        }
+        LPSTR			S1 = strchr(S, '.');
+        if (S1)
+            *S1 = 0;
+        lua_pushstring(tpLuaVM, S);
+        lua_gettable(tpLuaVM, -2);
+        if (lua_isnil(tpLuaVM, -1)) {
+            lua_pop(tpLuaVM, 1);
+            lua_newtable(tpLuaVM);
+            lua_pushstring(tpLuaVM, S);
+            lua_pushvalue(tpLuaVM, -2);
+            lua_settable(tpLuaVM, -4);
+        }
+        else
+            if (!lua_istable(tpLuaVM, -1)) {
+                free(S2);
+                lua_pop(tpLuaVM, 2);
+                //LuaOut(Lua::eLuaMessageTypeError, "the namespace name %s is already being used by the non-table object!", caNamespaceName);
+                return			(false);
+            }
+        lua_remove(tpLuaVM, -2);
+        if (S1)
+            S = ++S1;
+        else
+            break;
+    }
+    free(S2);
+    return			(true);
+}
+
+void vfCopyGlobals(lua_State* tpLuaVM)
+{
+    lua_newtable(tpLuaVM);
+    lua_pushstring(tpLuaVM, "_G");
+    lua_gettable(tpLuaVM, LUA_GLOBALSINDEX);
+    lua_pushnil(tpLuaVM);
+    while (lua_next(tpLuaVM, -2)) {
+        lua_pushvalue(tpLuaVM, -2);
+        lua_pushvalue(tpLuaVM, -2);
+        lua_settable(tpLuaVM, -6);
+        lua_pop(tpLuaVM, 1);
+    }
+}
+
+bool parse_namespace(pcstr caNamespaceName, pstr b, size_t b_size, pstr c, size_t c_size)
+{
+    *b = 0;
+    *c = 0;
+    std::string r = std::string(caNamespaceName);
+    pstr S = (char*)r.c_str();
+    for (int i = 0;; i++)
+    {
+        if (!strlen(S))
+        {
+            //FATAL("Lua Error : the namespace name %s is incorrect!", caNamespaceName);
+            return false;
+        }
+        pstr S1 = strchr(S, '.');
+        if (S1)
+            *S1 = 0;
+        if (i)
+            strcat_s(b, b_size, "{");
+        strcat_s(b, b_size, S);
+        strcat_s(b, b_size, "=");
+        if (i)
+            strcat_s(c, c_size, "}");
+        if (S1)
+            S = ++S1;
+        else
+            break;
+    }
+    return true;
+}
+
+bool bfLoadBuffer(lua_State* tpLuaVM, LPCSTR caBuffer, size_t tSize, LPCSTR caScriptName, LPCSTR caNameSpaceName)
+{
+    int l_iErrorCode;
+    if (caNameSpaceName && strcmp("_G", caNameSpaceName))
+    {
+        string512 insert, a, b;
+        LPCSTR header = file_header;
+        if (!parse_namespace(caNameSpaceName, a, sizeof(a), b, sizeof(b)))
+            return false;
+        sprintf(insert, header, caNameSpaceName, a, b);
+        const size_t str_len = strlen(insert);
+        const size_t total_size = str_len + tSize;
+        ScriptBuffer::getInstance()->resize(total_size);
+        strcpy_s(ScriptBuffer::getInstance()->scriptBuffer, total_size, insert);
+        CopyMemory(ScriptBuffer::getInstance()->scriptBuffer + str_len, caBuffer, tSize);
+        l_iErrorCode = luaL_loadbuffer(tpLuaVM, ScriptBuffer::getInstance()->scriptBuffer, tSize + str_len, caScriptName);
+    }
+    else
+        l_iErrorCode = luaL_loadbuffer(tpLuaVM, caBuffer, tSize, caScriptName);
+    if (l_iErrorCode) {
+//#ifdef DEBUG
+//        if (!bfPrintOutput(tpLuaVM, caScriptName, l_iErrorCode))
+//            vfPrintError(tpLuaVM, l_iErrorCode);
+//#endif
+        return false;
+    }
+    return true;
+}
+
+bool bfDoFile(lua_State* tpLuaVM, LPCSTR caScriptName, LPCSTR caNameSpaceName, bool bCall)
+{
+    string_path		l_caLuaFileName;
+    std::ifstream l_tpFileReader(caScriptName);
+    strconcat(sizeof(l_caLuaFileName), l_caLuaFileName, "@", caScriptName);
+    std::stringstream ss;
+    ss << l_tpFileReader.rdbuf();
+    if (!bfLoadBuffer(tpLuaVM, ss.str().c_str(), ss.str().size(), l_caLuaFileName, caNameSpaceName)) {
+        lua_pop(tpLuaVM, 4);
+        return		(false);
+    }
+
+    if (bCall) {
+        lua_call(tpLuaVM, 0, 0);
+    }
+    else
+        lua_insert(tpLuaVM, -4);
+
+    return			(true);
+}
+
+void vfSetNamespace(lua_State* tpLuaVM)
+{
+    lua_pushnil(tpLuaVM);
+    while (lua_next(tpLuaVM, -2)) {
+        lua_pushvalue(tpLuaVM, -2);
+        lua_gettable(tpLuaVM, -5);
+        if (lua_isnil(tpLuaVM, -1)) {
+            lua_pop(tpLuaVM, 1);
+            lua_pushvalue(tpLuaVM, -2);
+            lua_pushvalue(tpLuaVM, -2);
+            lua_pushvalue(tpLuaVM, -2);
+            lua_pushnil(tpLuaVM);
+            lua_settable(tpLuaVM, -7);
+            lua_settable(tpLuaVM, -7);
+        }
+        else {
+            lua_pop(tpLuaVM, 1);
+            lua_pushvalue(tpLuaVM, -2);
+            lua_gettable(tpLuaVM, -4);
+            if (!lua_equal(tpLuaVM, -1, -2)) {
+                lua_pushvalue(tpLuaVM, -3);
+                lua_pushvalue(tpLuaVM, -2);
+                lua_pushvalue(tpLuaVM, -2);
+                lua_pushvalue(tpLuaVM, -5);
+                lua_settable(tpLuaVM, -8);
+                lua_settable(tpLuaVM, -8);
+            }
+            lua_pop(tpLuaVM, 1);
+        }
+        lua_pushvalue(tpLuaVM, -2);
+        lua_pushnil(tpLuaVM);
+        lua_settable(tpLuaVM, -6);
+        lua_pop(tpLuaVM, 1);
+    }
+    lua_pop(tpLuaVM, 3);
+}
+
+bool bfLoadFileIntoNamespace(lua_State* tpLuaVM, LPCSTR caScriptName, LPCSTR caNamespaceName, bool bCall)
+{
+    if (!bfCreateNamespaceTable(tpLuaVM, caNamespaceName))
+        return		(false);
+    vfCopyGlobals(tpLuaVM);
+    if (!bfDoFile(tpLuaVM, caScriptName, caNamespaceName, bCall))
+        return		(false);
+    vfSetNamespace(tpLuaVM);
+    return			(true);
+}
+
+char* strext(const char* S) { return (char*)strrchr(S, '.'); }
+
+class	adopt_compiler
+{
+
+};
+
+static void* lua_alloc(void* ud, void* ptr, size_t osize, size_t nsize)
+{
+    (void)ud;
+    (void)osize;
+    if (!nsize)
+    {
+        free(ptr);
+        return nullptr;
+    }
+    return realloc(ptr, nsize);
+}
+
+static void* __cdecl luabind_allocator(void* context, const void* pointer, size_t const size)
+{
+    if (!size)
+    {
+        void* non_const_pointer = const_cast<LPVOID>(pointer);
+        free(non_const_pointer);
+        return nullptr;
+    }
+    if (!pointer)
+    {
+        return malloc(size);
+    }
+    void* non_const_pointer = const_cast<LPVOID>(pointer);
+    return realloc(non_const_pointer, size);
+}
+
+struct luajit
+{
+    static void open_lib(lua_State* L, pcstr module_name, lua_CFunction function)
+    {
+        lua_pushcfunction(L, function);
+        lua_pushstring(L, module_name);
+        lua_call(L, 1, 0);
+    }
+
+    static void allow_escape_sequences(bool allowed)
+    {
+        lj_allow_escape_sequences(allowed ? 1 : 0);
+    }
+};
 
 int _winMain(_In_ HINSTANCE hInstance,
     _In_opt_ HINSTANCE hPrevInstance,
-    _In_ LPWSTR    lpCmdLine,
+    _In_ char*    lpCmdLine,
     _In_ int       nCmdShow)
 {
     AllocConsole();
     freopen("CONOUT$", "w", stdout);
 
-    MSG msg;
-
-    UNREFERENCED_PARAMETER(hPrevInstance);
-    UNREFERENCED_PARAMETER(lpCmdLine);
-
-    // TODO: Place code here.
-
-    // Initialize global strings
-    LoadStringW(hInstance, IDS_APP_TITLE, szTitle, MAX_LOADSTRING);
-    LoadStringW(hInstance, IDC_TESTPROJECT, szWindowClass, MAX_LOADSTRING);
-    MyRegisterClass(hInstance);
-
-    // Perform application initialization:
-    if (!InitInstance(hInstance, nCmdShow))
+    // DEBUG LUABIND
+    luabind::allocator = &luabind_allocator;
+    luabind::allocator_context = nullptr;
+    lua_State* LSVM = lua_newstate(lua_alloc, NULL);
+    if (!LSVM)
     {
-        return FALSE;
+        //Msg("! ERROR : Cannot initialize LUA VM!");
+        return -1;
     }
-
-    HACCEL hAccelTable = LoadAccelerators(hInstance, MAKEINTRESOURCE(IDC_TESTPROJECT));
-
-    //test();
-    int* a = nullptr;
-    *a = 45;
-
-    // Main message loop:
-    while (GetMessage(&msg, nullptr, 0, 0))
+    luabind::open(LSVM);
+    luabind::bind_class_info(LSVM);
+    luajit::open_lib(LSVM, "", luaopen_base);
+    luajit::open_lib(LSVM, LUA_LOADLIBNAME, luaopen_package);
+    luajit::open_lib(LSVM, LUA_TABLIBNAME, luaopen_table);
+    luajit::open_lib(LSVM, LUA_IOLIBNAME, luaopen_io);
+    luajit::open_lib(LSVM, LUA_OSLIBNAME, luaopen_os);
+    luajit::open_lib(LSVM, LUA_MATHLIBNAME, luaopen_math);
+    luajit::open_lib(LSVM, LUA_STRLIBNAME, luaopen_string);
+    luajit::open_lib(LSVM, LUA_BITLIBNAME, luaopen_bit);
+    luajit::open_lib(LSVM, LUA_FFILIBNAME, luaopen_ffi);
+#ifdef DEBUG
+    luajit::open_lib(LSVM, LUA_DBLIBNAME, luaopen_debug);
+#endif
+    // load shaders
+    // загрузить список всех шейдеров
+    std::string path = R"(E:\Program Files\STLK-COP\UEgamedata\shaders\r2)";
+    int c(0);
+    for (const auto& entry : fs::directory_iterator(path))
     {
-        if (!TranslateAccelerator(msg.hwnd, hAccelTable, &msg))
+        if (fs::is_directory(entry))
+            continue;
+        ++c;
+        string_path namesp, fn;
+        strcpy(namesp, entry.path().filename().string().c_str());
+        try {
+            OutputDebugStringA((entry.path().string() + "\n").c_str());
+            bfLoadFileIntoNamespace(LSVM, entry.path().string().c_str(), namesp, true); // перенести из движка сюда
+        }
+        catch (...)
         {
-            TranslateMessage(&msg);
-            DispatchMessage(&msg);
+            // error
+            return -1;
         }
     }
-    return TRUE;
+    // поптыка обратиться к луа скрипту
+    LPCSTR				t_0 = "$null";
+    LPCSTR				t_1 = "null";
+    LPCSTR				t_d = "null";
+    const object				shader = luabind::globals(LSVM)["combine_volumetric"];
+    const functor<void> element = (object)shader["normal"];
+    adopt_compiler		ac = adopt_compiler();
+    element(ac, t_0, t_1, t_d);
+
+
+
+    //
+
+
+    return true;
 }
 
-int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
-                     _In_opt_ HINSTANCE hPrevInstance,
-                     _In_ LPWSTR    lpCmdLine,
-                     _In_ int       nCmdShow)
+int APIENTRY WinMain(HINSTANCE hInstance,
+    HINSTANCE hPrevInstance,
+    char* lpCmdLine,
+    int       nCmdShow)
 {
     MSG msg = { 0 };
-    __try
-	{
-        return _winMain(hInstance, hPrevInstance, lpCmdLine, nCmdShow);
-	}
-	__except (exception_filter(GetExceptionCode(), GetExceptionInformation()))
-	{
-		//_resetstkoflw();
-		std::exit(-1); // аварийный выход
-	}
-    return (int) msg.wParam;
+    return _winMain(hInstance, hPrevInstance, lpCmdLine, nCmdShow);
 }
 
 
-
-//
-//  FUNCTION: MyRegisterClass()
-//
-//  PURPOSE: Registers the window class.
-//
-ATOM MyRegisterClass(HINSTANCE hInstance)
-{
-    WNDCLASSEXW wcex;
-
-    wcex.cbSize = sizeof(WNDCLASSEX);
-
-    wcex.style          = CS_HREDRAW | CS_VREDRAW;
-    wcex.lpfnWndProc    = WndProc;
-    wcex.cbClsExtra     = 0;
-    wcex.cbWndExtra     = 0;
-    wcex.hInstance      = hInstance;
-    wcex.hIcon          = LoadIcon(hInstance, MAKEINTRESOURCE(IDI_TESTPROJECT));
-    wcex.hCursor        = LoadCursor(nullptr, IDC_ARROW);
-    wcex.hbrBackground  = (HBRUSH)(COLOR_WINDOW+1);
-    wcex.lpszMenuName   = MAKEINTRESOURCEW(IDC_TESTPROJECT);
-    wcex.lpszClassName  = szWindowClass;
-    wcex.hIconSm        = LoadIcon(wcex.hInstance, MAKEINTRESOURCE(IDI_SMALL));
-
-    return RegisterClassExW(&wcex);
-}
-
-//
-//   FUNCTION: InitInstance(HINSTANCE, int)
-//
-//   PURPOSE: Saves instance handle and creates main window
-//
-//   COMMENTS:
-//
-//        In this function, we save the instance handle in a global variable and
-//        create and display the main program window.
-//
-BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
-{
-   hInst = hInstance; // Store instance handle in our global variable
-
-   HWND hWnd = CreateWindowW(szWindowClass, szTitle, WS_OVERLAPPEDWINDOW,
-      CW_USEDEFAULT, 0, CW_USEDEFAULT, 0, nullptr, nullptr, hInstance, nullptr);
-
-   if (!hWnd)
-   {
-      return FALSE;
-   }
-
-   ShowWindow(hWnd, nCmdShow);
-   UpdateWindow(hWnd);
-
-   return TRUE;
-}
-
-//
-//  FUNCTION: WndProc(HWND, UINT, WPARAM, LPARAM)
-//
-//  PURPOSE: Processes messages for the main window.
-//
-//  WM_COMMAND  - process the application menu
-//  WM_PAINT    - Paint the main window
-//  WM_DESTROY  - post a quit message and return
-//
-//
-LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
-{
-    switch (message)
-    {
-    case WM_COMMAND:
-        {
-            int wmId = LOWORD(wParam);
-            // Parse the menu selections:
-            switch (wmId)
-            {
-            case IDM_ABOUT:
-                DialogBox(hInst, MAKEINTRESOURCE(IDD_ABOUTBOX), hWnd, About);
-                break;
-            case IDM_EXIT:
-                DestroyWindow(hWnd);
-                break;
-            default:
-                return DefWindowProc(hWnd, message, wParam, lParam);
-            }
-        }
-        break;
-    case WM_PAINT:
-        {
-            PAINTSTRUCT ps;
-            HDC hdc = BeginPaint(hWnd, &ps);
-            // TODO: Add any drawing code that uses hdc here...
-            EndPaint(hWnd, &ps);
-        }
-        break;
-    case WM_DESTROY:
-        PostQuitMessage(0);
-        break;
-    default:
-        return DefWindowProc(hWnd, message, wParam, lParam);
-    }
-    return 0;
-}
-
-// Message handler for about box.
-INT_PTR CALLBACK About(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
-{
-    UNREFERENCED_PARAMETER(lParam);
-    switch (message)
-    {
-    case WM_INITDIALOG:
-        return (INT_PTR)TRUE;
-
-    case WM_COMMAND:
-        if (LOWORD(wParam) == IDOK || LOWORD(wParam) == IDCANCEL)
-        {
-            EndDialog(hDlg, LOWORD(wParam));
-            return (INT_PTR)TRUE;
-        }
-        break;
-    }
-    return (INT_PTR)FALSE;
-}

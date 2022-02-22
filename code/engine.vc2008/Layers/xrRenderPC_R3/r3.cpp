@@ -1282,6 +1282,7 @@ HRESULT	CRender::shader_compile			(
 		sh_name[len]='0'; ++len;
 		sh_name[len]='0'; ++len;
 	}
+   sh_name[len] = '\0';
 
 	// finish
 	defines[def_it].Name			=	0;

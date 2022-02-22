@@ -44,7 +44,6 @@ public:
 };
 
 
-#pragma pack(push,4)
 class PASCALIMPLEMENTATION TRxFindFiles : public System::TObject
 {
 	typedef System::TObject inherited;
@@ -63,7 +62,6 @@ public:
 	
 };
 
-#pragma pack(pop)
 
 //-- var, const, procedure ---------------------------------------------------
 static const System::Int8 faNotFiles = System::Int8(0x10);

@@ -192,7 +192,9 @@ void LightPoint(CDB::COLLIDER* DB, base_color &C, Fvector &P, Fvector &N, base_l
 
 	if (0==(flags&LP_dont_rgb))
 	{
-		R_Light	*L	= &*lights.rgb.begin(), *E = &*lights.rgb.end();
+		//R_Light	*L	= &*lights.rgb.begin(), *E = &*lights.rgb.end();
+		auto L = lights.rgb.begin();
+		auto E = lights.rgb.end();
 		for (;L!=E; L++)
 		{
 			if (L->type==LT_DIRECT) {
@@ -230,7 +232,9 @@ void LightPoint(CDB::COLLIDER* DB, base_color &C, Fvector &P, Fvector &N, base_l
 	}
 	if (0==(flags&LP_dont_sun))
 	{
-		R_Light	*L	= &*(lights.sun.begin()), *E = &*(lights.sun.end());
+		//R_Light	*L	= &*(lights.sun.begin()), *E = &*(lights.sun.end());
+		auto L = lights.sun.begin();
+		auto E = lights.sun.end();
 		for (;L!=E; L++)
 		{
 			if (L->type==LT_DIRECT) {
@@ -264,7 +268,9 @@ void LightPoint(CDB::COLLIDER* DB, base_color &C, Fvector &P, Fvector &N, base_l
 	}
 	if (0==(flags&LP_dont_hemi))
 	{
-		R_Light	*L	= &*lights.hemi.begin(), *E = &*lights.hemi.end();
+		//R_Light	*L	= &*lights.hemi.begin(), *E = &*lights.hemi.end();
+		auto L = lights.hemi.begin();
+		auto E = lights.hemi.end();
 		for (;L!=E; L++)
 		{
 			if (L->type==LT_DIRECT) {
@@ -326,7 +332,11 @@ bool detail_slot_calculate( u32 _x, u32 _z, DetailSlot&	DS, DWORDVec& box_result
 	DB.box_query		( &gl_data.RCAST_Model, bbC, bbD );
 
 	box_result.clear	();
-	for (CDB::RESULT* I=DB.r_begin(); I!=DB.r_end(); I++) box_result.push_back(I->id);
+	if (DB.r_count() != 0)
+	{
+		for (CDB::RESULT* I = DB.r_begin(); I != DB.r_begin() + DB.r_count(); I++)
+			box_result.push_back(I->id);
+	}
 	if (box_result.empty())	
 		return false; 
 		//continue;

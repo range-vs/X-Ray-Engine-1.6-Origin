@@ -14,7 +14,7 @@
 
 //#pragma comment(lib, "stack_wolker_b")
 
-#include "../../../SDK/include/stackwalker/StackWalker.h"
+//#include "../../../SDK/include/stackwalker/StackWalker.h"
 
 //USEFORM("Unit1.cpp", Form1);
 //---------------------------------------------------------------------------
@@ -27,7 +27,7 @@ int WINAPI _tWinMain(HINSTANCE hInst, HINSTANCE, LPTSTR, int)
 	//StackWalker stackWolker;
 	//stackWolker.ShowCallstack();
 
-	try
+	/*try
 	{
 		Application->Run();
 	}
@@ -35,6 +35,24 @@ int WINAPI _tWinMain(HINSTANCE hInst, HINSTANCE, LPTSTR, int)
 	{
 		Application->ShowException(&exception);
 	}
-	return 0;
+	return 0;  */
+
+	HMODULE h;
+	try
+	{
+		h = LoadLibrary("c:\\X-Ray-Engine-1.6-Origin\\bins\\Win64\\Debug\\XRSOUNDB.DLL");
+		h = LoadLibrary("c:\\X-Ray-Engine-1.6-Origin\\bins\\Win64\\Debug\\XRECOREB.DLL");
+	}
+	catch(...)
+	{
+        int a = 46;
+	}
+	h = LoadLibrary("c:\\X-Ray-Engine-1.6-Origin\\bins\\Win64\\Debug\\XREPROPSB.DLL");
+	h = LoadLibrary("c:\\X-Ray-Engine-1.6-Origin\\bins\\Win64\\Debug\\XRCOREB.DLL");
+	h = LoadLibrary("c:\\X-Ray-Engine-1.6-Origin\\bins\\Win64\\Debug\\CC32C270MT.DLL");
+
+    int a = 45;
+
+    return 0;
 }
 

@@ -47,26 +47,34 @@ void CScriptBinder::clear			()
 
 void CScriptBinder::reinit			()
 {
-#ifdef DEBUG_MEMORY_MANAGER
-	u32									start = 0;
-	if (g_bMEMO)
-		start							= Memory.mem_usage();
-#endif // DEBUG_MEMORY_MANAGER
-	if (m_object) {
-		try {
-			m_object->reinit	();
+//#ifdef DEBUG_MEMORY_MANAGER
+//	u32									start = 0;
+//	if (g_bMEMO)
+//		start = Memory.mem_usage();
+//#endif // DEBUG_MEMORY_MANAGER
+	if (m_object) 
+	{
+		try 
+		{
+			/*if(std::string(m_object->m_object->Name()).find("zat_b42_mayron") != std::string::npos)
+				OutputDebugString("MAYRON\n");*/
+			m_object->reinit();
 		}
-		catch(...) {
-			clear			();
+		catch (...) 
+		{
+			/*OutputDebugString("ERROR_LUA_FOR_RANGE: ");
+			OutputDebugString(m_object->m_object->Name());
+			OutputDebugString("\n");*/
+			clear();
 		}
 	}
-#ifdef DEBUG_MEMORY_MANAGER
-	if (g_bMEMO) {
-//		lua_gc				(ai().script_engine().lua(),LUA_GCCOLLECT,0);
-//		lua_gc				(ai().script_engine().lua(),LUA_GCCOLLECT,0);
-		Msg					("CScriptBinder::reinit() : %d",Memory.mem_usage() - start);
-	}
-#endif // DEBUG_MEMORY_MANAGER
+//#ifdef DEBUG_MEMORY_MANAGER
+//	if (g_bMEMO) {
+//		//		lua_gc				(ai().script_engine().lua(),LUA_GCCOLLECT,0);
+//		//		lua_gc				(ai().script_engine().lua(),LUA_GCCOLLECT,0);
+//		Msg("CScriptBinder::reinit() : %d", Memory.mem_usage() - start);
+//		}
+//#endif // DEBUG_MEMORY_MANAGER
 }
 
 void CScriptBinder::Load			(LPCSTR section)
@@ -75,11 +83,11 @@ void CScriptBinder::Load			(LPCSTR section)
 
 void CScriptBinder::reload			(LPCSTR section)
 {
-#ifdef DEBUG_MEMORY_MANAGER
-	u32									start = 0;
-	if (g_bMEMO)
-		start							= Memory.mem_usage();
-#endif // DEBUG_MEMORY_MANAGER
+//#ifdef DEBUG_MEMORY_MANAGER
+//	u32									start = 0;
+//	if (g_bMEMO)
+//		start							= Memory.mem_usage();
+//#endif // DEBUG_MEMORY_MANAGER
 #ifndef DBG_DISABLE_SCRIPTS
 	VERIFY					(!m_object);
 	if (!pSettings->line_exist(section,"script_binding"))
@@ -92,40 +100,63 @@ void CScriptBinder::reload			(LPCSTR section)
 	}
 	
 	CGameObject				*game_object = smart_cast<CGameObject*>(this);
+//
+//	try {
+//		lua_function		(game_object ? game_object->lua_game_object() : 0);
+//	}
+//	catch(...) {
+//		clear				();
+//		return;
+//	}
+//
+//	if (m_object) {
+//		try {
+//			m_object->reload(section);
+//		}
+//		catch(...) {
+//			clear			();
+//		}
+//	}
+//#endif
+//#ifdef DEBUG_MEMORY_MANAGER
+//	if (g_bMEMO) {
+////		lua_gc				(ai().script_engine().lua(),LUA_GCCOLLECT,0);
+////		lua_gc				(ai().script_engine().lua(),LUA_GCCOLLECT,0);
+//		Msg					("CScriptBinder::reload() : %d",Memory.mem_usage() - start);
+//	}
+//#endif // DEBUG_MEMORY_MANAGER
 
-	try {
-		lua_function		(game_object ? game_object->lua_game_object() : 0);
+	try
+	{
+		lua_function(game_object->lua_game_object());
 	}
-	catch(...) {
-		clear				();
+	catch (...)
+	{
+		clear();
 		return;
 	}
 
-	if (m_object) {
-		try {
+	if (m_object)
+	{
+		try
+		{
 			m_object->reload(section);
 		}
-		catch(...) {
-			clear			();
+		catch (...)
+		{
+			clear();
 		}
 	}
 #endif
-#ifdef DEBUG_MEMORY_MANAGER
-	if (g_bMEMO) {
-//		lua_gc				(ai().script_engine().lua(),LUA_GCCOLLECT,0);
-//		lua_gc				(ai().script_engine().lua(),LUA_GCCOLLECT,0);
-		Msg					("CScriptBinder::reload() : %d",Memory.mem_usage() - start);
-	}
-#endif // DEBUG_MEMORY_MANAGER
 }
 
 BOOL CScriptBinder::net_Spawn		(CSE_Abstract* DC)
 {
-#ifdef DEBUG_MEMORY_MANAGER
-	u32									start = 0;
-	if (g_bMEMO)
-		start							= Memory.mem_usage();
-#endif // DEBUG_MEMORY_MANAGER
+//#ifdef DEBUG_MEMORY_MANAGER
+//	u32									start = 0;
+//	if (g_bMEMO)
+//		start							= Memory.mem_usage();
+//#endif // DEBUG_MEMORY_MANAGER
 	CSE_Abstract			*abstract = (CSE_Abstract*)DC;
 	CSE_ALifeObject			*object = smart_cast<CSE_ALifeObject*>(abstract);
 	if (object && m_object) {
@@ -137,13 +168,13 @@ BOOL CScriptBinder::net_Spawn		(CSE_Abstract* DC)
 		}
 	}
 
-#ifdef DEBUG_MEMORY_MANAGER
-	if (g_bMEMO) {
-//		lua_gc				(ai().script_engine().lua(),LUA_GCCOLLECT,0);
-//		lua_gc				(ai().script_engine().lua(),LUA_GCCOLLECT,0);
-		Msg					("CScriptBinder::net_Spawn() : %d",Memory.mem_usage() - start);
-	}
-#endif // DEBUG_MEMORY_MANAGER
+//#ifdef DEBUG_MEMORY_MANAGER
+//	if (g_bMEMO) {
+////		lua_gc				(ai().script_engine().lua(),LUA_GCCOLLECT,0);
+////		lua_gc				(ai().script_engine().lua(),LUA_GCCOLLECT,0);
+//		Msg					("CScriptBinder::net_Spawn() : %d",Memory.mem_usage() - start);
+//	}
+//#endif // DEBUG_MEMORY_MANAGER
 
 	return					(TRUE);
 }
@@ -169,7 +200,9 @@ void CScriptBinder::set_object		(CScriptBinderObject *object)
 	if (IsGameTypeSingle()) {
 		VERIFY2				(!m_object,"Cannot bind to the object twice!");
 #ifdef _DEBUG
-		Msg					("* Core object %s is binded with the script object",smart_cast<CGameObject*>(this) ? *smart_cast<CGameObject*>(this)->cName() : "");
+		Msg("* Core object %s is binded with the script object", smart_cast<CGameObject*>(this) ? *smart_cast<CGameObject*>(this)->cName() : "");
+		if (std::string(*smart_cast<CGameObject*>(this)->cName()).find("zat_b42_mayron") != std::string::npos)
+			OutputDebugString("MAYRON\n");
 #endif // _DEBUG
 		m_object			= object;
 	} else {

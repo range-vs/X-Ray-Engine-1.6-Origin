@@ -29,28 +29,112 @@ static HWND hwTime		= 0;
 static HWND hwPText		= 0;
 static HWND hwPhaseTime	= 0;
 
+// range
+HWND   logWindow = NULL;
+volatile HANDLE mainThread = NULL; // идентификатор потока(здесь вс€ выполн€етс€ компил€ци€)
+volatile char* args = NULL; // аргументы командной строки(глобальные)
+static    HMENU  hMenu = NULL; // верхнее меню окна(здесь кнопка паузы)
+static    bool        isMainThread = true; // флаг паузы(истина - значит паузы нет)
+extern  const char* h_str; // информаци€ о ключах
+
+#define HOTKEY_PAUSE WM_USER + 2000 // id гор€чей клавиши(клавиша pause)
+//
+
 //************************* Log-thread data
-static INT_PTR CALLBACK logDlgProc( HWND hw, UINT msg, WPARAM wp, LPARAM lp )
+
+// range
+void PressButtonPause() // главна€ функци€ обратки кнопки
 {
-	switch( msg ){
-		case WM_DESTROY:
+	if (isMainThread) // если пауза не активна
+	{
+		// измен€ем текст меню и ставим галочку
+		ModifyMenu(hMenu, ID_MAINMENU_PAUSE, MF_BYCOMMAND | MF_STRING, ID_MAINMENU_PAUSE, "ѕауза компил€ции: активна\tPause");
+		CheckMenuItem(hMenu, ID_MAINMENU_PAUSE, MF_BYCOMMAND | MF_CHECKED);
+	}
+	else
+	{
+		// иначе измен€ем текст и снимаем галочку
+		ModifyMenu(hMenu, ID_MAINMENU_PAUSE, MF_BYCOMMAND | MF_STRING, ID_MAINMENU_PAUSE, "ѕауза компил€ции: не активна\tPause");
+		CheckMenuItem(hMenu, ID_MAINMENU_PAUSE, MF_BYCOMMAND | MF_UNCHECKED);
+	}
+	DrawMenuBar(hwLog); // перерисовываем меню
+
+	if (isMainThread)// если паузка не активна
+		SuspendThread(mainThread); // ставим поток на паузу
+	else
+		ResumeThread(mainThread); // иначе размораживаем поток
+	isMainThread = isMainThread == true ? false : true; // реверсируем флаг
+}
+//
+
+static INT_PTR CALLBACK logDlgProc(HWND hw, UINT msg, WPARAM wp, LPARAM lp)
+{
+	switch (msg)
+	{
+	case WM_INITDIALOG:
+	{
+		hMenu = GetMenu(hw); // получаем идетификатор меню
+		// мен€ем текст и устанавливаем текст гор€чей клавиши
+		ModifyMenu(hMenu, ID_MAINMENU_PAUSE, MF_STRING, ID_MAINMENU_PAUSE, "ѕауза компил€ции: не активна\tPause");
+		// регистрируем гор€чую клавишу
+		RegisterHotKey(hw, HOTKEY_PAUSE, NULL, VK_PAUSE);
+		break;
+	}
+
+	case WM_DESTROY:
+		break;
+	case WM_CLOSE:
+	{
+		ExitProcess(0);
+		//			bClose = TRUE;
+		break;
+	}
+
+	// range
+	case WM_HOTKEY: // отловили гор€чую клавишу
+	{
+		if (wp == HOTKEY_PAUSE) // узнали, что нажали паузу
+			PressButtonPause(); // запускаем обработку нажати€
+		break;
+	}
+
+	case WM_COMMAND:
+	{
+		switch (LOWORD(wp))
+		{
+			// range
+		case ID_MAINMENU_PAUSE: // отловили нажатие кнопки в меню
+		{
+			PressButtonPause(); // запускаем обработку нажати€
 			break;
-		case WM_CLOSE:
-			ExitProcess		(0);
-//			bClose = TRUE;
+		}
+
+		case ID_INSTRUCTION:
+		{
+			MessageBox(0, h_str, "Command line options", MB_OK | MB_ICONINFORMATION);
 			break;
-		case WM_COMMAND:
-			if( LOWORD(wp)==IDCANCEL )
-			{
-				ExitProcess	(0);
-//				bClose = TRUE;
-			}
+		}
+		//
+
+		case IDCANCEL:
+			ExitProcess(0);
+			//				bClose = TRUE;
 			break;
+
 		default:
-			return FALSE;
+			break;
+		}
+
+		break;
+	}
+
+	default:
+		return FALSE;
 	}
 	return TRUE;
 }
+
+
 static void _process_messages(void)
 {
 	MSG msg;
@@ -121,7 +205,7 @@ void Phase			(const char *phase_name)
 	csLog.Leave			();
 }
 
-HWND logWindow=0;
+//HWND logWindow=0;
 void logThread(void *dummy)
 {
 	SetProcessPriorityBoost	(GetCurrentProcess(),TRUE);
@@ -133,7 +217,7 @@ void logThread(void *dummy)
 	if (!logWindow) {
 		R_CHK			(GetLastError());
 	};
-	SetWindowPos(logWindow,HWND_NOTOPMOST,0,0,0,0,SWP_NOMOVE|SWP_NOSIZE|SWP_SHOWWINDOW);
+	SetWindowPos(logWindow, HWND_NOTOPMOST, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE | SWP_SHOWWINDOW);
 	hwLog		= GetDlgItem(logWindow, IDC_LOG);
 	hwProgress	= GetDlgItem(logWindow, IDC_PROGRESS);
 	hwInfo		= GetDlgItem(logWindow, IDC_INFO);

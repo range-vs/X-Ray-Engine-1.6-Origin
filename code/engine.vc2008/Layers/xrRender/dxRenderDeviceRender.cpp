@@ -335,7 +335,7 @@ void dxRenderDeviceRender::End()
 	if (HW.Caps.SceneMode)	overdrawEnd();
 
 	RCache.OnFrameEnd	();
-	Memory.dbg_check		();
+	//Memory.dbg_check		();
 
 	DoAsyncScreenshot();
 

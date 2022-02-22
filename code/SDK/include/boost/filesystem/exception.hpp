@@ -1,105 +1,100 @@
-//  boost/filesystem/exception.hpp  ------------------------------------------//
+//  boost/filesystem/exception.hpp  -----------------------------------------------------//
 
-// < ----------------------------------------------------------------------- > 
-// <   Copyright © 2002 Beman Dawes                                          > 
-// <   Copyright © 2001 Dietmar Kühl, All Rights Reserved                    > 
-// <                                                                         > 
-// <   Permission to use, copy, modify, distribute and sell this             > 
-// <   software for any purpose is hereby granted without fee, provided      > 
-// <   that the above copyright notice appears in all copies and that        > 
-// <   both that copyright notice and this permission notice appear in       > 
-// <   supporting documentation. The authors make no representations about   > 
-// <   the suitability of this software for any purpose. It is provided      > 
-// <   "as is" without express or implied warranty.                          > 
-// < ----------------------------------------------------------------------- > 
+//  Copyright Beman Dawes 2003
+//  Copyright Andrey Semashev 2019
 
-//  See http://www.boost.org/libs/filesystem for documentation.
+//  Distributed under the Boost Software License, Version 1.0.
+//  See http://www.boost.org/LICENSE_1_0.txt
 
-//----------------------------------------------------------------------------// 
+//  Library home page: http://www.boost.org/libs/filesystem
 
-#ifndef BOOST_FILESYSTEM_EXCEPTION_HPP
-#define BOOST_FILESYSTEM_EXCEPTION_HPP
+#ifndef BOOST_FILESYSTEM3_EXCEPTION_HPP
+#define BOOST_FILESYSTEM3_EXCEPTION_HPP
 
+#include <boost/config.hpp>
+
+# if defined( BOOST_NO_STD_WSTRING )
+#   error Configuration not supported: Boost.Filesystem V3 and later requires std::wstring support
+# endif
+
+#include <boost/filesystem/config.hpp>
 #include <boost/filesystem/path.hpp>
 
 #include <string>
-#include <stdexcept>
+#include <boost/system/error_code.hpp>
+#include <boost/system/system_error.hpp>
+#include <boost/smart_ptr/intrusive_ptr.hpp>
+#include <boost/smart_ptr/intrusive_ref_counter.hpp>
 
-//----------------------------------------------------------------------------// 
+#include <boost/config/abi_prefix.hpp> // must be the last #include
 
-namespace boost
+#if defined(BOOST_MSVC)
+#pragma warning(push)
+// 'm_A' : class 'A' needs to have dll-interface to be used by clients of class 'B'
+#pragma warning(disable: 4251)
+// non dll-interface class 'A' used as base for dll-interface class 'B'
+#pragma warning(disable: 4275)
+#endif
+
+namespace boost {
+namespace filesystem {
+
+//--------------------------------------------------------------------------------------//
+//                                                                                      //
+//                            class filesystem_error                                    //
+//                                                                                      //
+//--------------------------------------------------------------------------------------//
+
+class BOOST_FILESYSTEM_DECL filesystem_error :
+  public system::system_error
 {
-  namespace filesystem
+  // see http://www.boost.org/more/error_handling.html for design rationale
+
+public:
+  filesystem_error(const std::string& what_arg, system::error_code ec);
+  filesystem_error(const std::string& what_arg, const path& path1_arg, system::error_code ec);
+  filesystem_error(const std::string& what_arg, const path& path1_arg, const path& path2_arg, system::error_code ec);
+
+  filesystem_error(filesystem_error const& that);
+  filesystem_error& operator= (filesystem_error const& that);
+
+  ~filesystem_error() BOOST_NOEXCEPT_OR_NOTHROW;
+
+  const path& path1() const BOOST_NOEXCEPT
   {
-    namespace detail
-    {
-      int system_error_code(); // artifact of POSIX and WINDOWS error reporting
-    }
+    return m_imp_ptr.get() ? m_imp_ptr->m_path1 : get_empty_path();
+  }
+  const path& path2() const BOOST_NOEXCEPT
+  {
+    return m_imp_ptr.get() ? m_imp_ptr->m_path2 : get_empty_path();
+  }
 
-    enum error_code
-    {
-      no_error = 0,
-      system_error,     // system generated error; if possible, is translated
-                        // to one of the more specific errors below.
-      other_error,      // library generated error
-      security_error,   // includes access rights, permissions failures
-      read_only_error,
-      io_error,
-      path_error,
-      not_found_error,
-      not_directory_error,
-      busy_error,       // implies trying again might succeed
-      already_exists_error,
-      not_empty_error,
-      is_directory_error,
-      out_of_space_error,
-      out_of_memory_error,
-      out_of_resource_error
-    };
+  const char* what() const BOOST_NOEXCEPT_OR_NOTHROW BOOST_OVERRIDE;
 
+private:
+  static const path& get_empty_path() BOOST_NOEXCEPT;
 
-    class filesystem_error : public std::runtime_error
-    {
-    public:
+private:
+  struct impl :
+    public boost::intrusive_ref_counter< impl >
+  {
+    path         m_path1; // may be empty()
+    path         m_path2; // may be empty()
+    std::string  m_what;  // not built until needed
 
-      filesystem_error(
-        const std::string & who,
-        const std::string & message ); // assumed to be error_code::other_error
+    BOOST_DEFAULTED_FUNCTION(impl(), {})
+    explicit impl(path const& path1) : m_path1(path1) {}
+    impl(path const& path1, path const& path2) : m_path1(path1), m_path2(path2) {}
+  };
+  boost::intrusive_ptr< impl > m_imp_ptr;
+};
 
-      filesystem_error(
-        const std::string & who,
-        const path & path1,
-        const std::string & message ); // assumed to be error_code::other_error
-
-      filesystem_error(
-        const std::string & who,
-        const path & path1,
-        int sys_err_code );
-
-      filesystem_error(
-        const std::string & who,
-        const path & path1,
-        const path & path2,
-        int sys_err_code );
-
-      ~filesystem_error() throw();
-
-      int             native_error() const { return m_sys_err; }
-      // Note: a value of 0 implies a library (rather than system) error
-      error_code      error() const { return m_err; }
-      const std::string &  who() const; // name of who throwing exception
-      const path &    path1() const; // argument 1 to who; may be empty()
-      const path &    path2() const; // argument 2 to who; may be empty()
-
-    private:
-      int             m_sys_err;
-      error_code      m_err;
-      std::string     m_who;
-      path            m_path1;
-      path            m_path2;
-    };
-
-  } // namespace filesystem
+} // namespace filesystem
 } // namespace boost
 
-#endif // BOOST_FILESYSTEM_EXCEPTION_HPP
+#if defined(BOOST_MSVC)
+#pragma warning(pop)
+#endif
+
+#include <boost/config/abi_suffix.hpp> // pops abi_prefix.hpp pragmas
+#endif // BOOST_FILESYSTEM3_EXCEPTION_HPP

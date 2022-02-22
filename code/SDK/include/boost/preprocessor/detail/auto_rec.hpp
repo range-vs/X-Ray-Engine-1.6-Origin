@@ -1,14 +1,23 @@
 # /* **************************************************************************
 #  *                                                                          *
-#  *     (C) Copyright Paul Mensonides 2002.  Permission to copy, use,        *
-#  *     modify, sell, and distribute this software is granted provided       *
-#  *     this copyright notice appears in all copies.  This software is       *
-#  *     provided "as is" without express or implied warranty, and with       *
-#  *     no claim at to its suitability for any purpose.                      *
+#  *     (C) Copyright Paul Mensonides 2002.
+#  *     Distributed under the Boost Software License, Version 1.0. (See
+#  *     accompanying file LICENSE_1_0.txt or copy at
+#  *     http://www.boost.org/LICENSE_1_0.txt)
 #  *                                                                          *
 #  ************************************************************************** */
 #
+# /* Revised by Edward Diener (2020) */
+#
 # /* See http://www.boost.org for most recent version. */
+#
+# include <boost/preprocessor/config/config.hpp>
+#
+# if ~BOOST_PP_CONFIG_FLAGS() & BOOST_PP_CONFIG_STRICT()
+#
+# if BOOST_PP_CONFIG_FLAGS() & BOOST_PP_CONFIG_DMC()
+#     include <boost/preprocessor/detail/dmc/auto_rec.hpp>
+# else
 #
 # ifndef BOOST_PREPROCESSOR_DETAIL_AUTO_REC_HPP
 # define BOOST_PREPROCESSOR_DETAIL_AUTO_REC_HPP
@@ -283,5 +292,43 @@
 #                        define BOOST_PP_NODE_254(p) BOOST_PP_IIF(p(254), BOOST_PP_NODE_253, BOOST_PP_NODE_255)
 #                            define BOOST_PP_NODE_253(p) BOOST_PP_IIF(p(253), 253, 254)
 #                            define BOOST_PP_NODE_255(p) BOOST_PP_IIF(p(255), 255, 256)
+#
+# endif
+#
+# endif
+#
+# else
+#
+# if BOOST_PP_CONFIG_FLAGS() & BOOST_PP_CONFIG_DMC()
+#     include <boost/preprocessor/detail/dmc/auto_rec.hpp>
+# else
+#
+# ifndef BOOST_PREPROCESSOR_DETAIL_AUTO_REC_HPP
+# define BOOST_PREPROCESSOR_DETAIL_AUTO_REC_HPP
+#
+# /* BOOST_PP_AUTO_REC */
+#
+# include <boost/preprocessor/control/iif.hpp>
+#
+# define BOOST_PP_AUTO_REC(pred, n) BOOST_PP_NODE_ENTRY_ ## n(pred)
+#
+# include <boost/preprocessor/config/limits.hpp>
+#
+# if BOOST_PP_LIMIT_MAG == 256
+# include <boost/preprocessor/detail/limits/auto_rec_256.hpp>
+# elif BOOST_PP_LIMIT_MAG == 512
+# include <boost/preprocessor/detail/limits/auto_rec_256.hpp>
+# include <boost/preprocessor/detail/limits/auto_rec_512.hpp>
+# elif BOOST_PP_LIMIT_MAG == 1024
+# include <boost/preprocessor/detail/limits/auto_rec_256.hpp>
+# include <boost/preprocessor/detail/limits/auto_rec_512.hpp>
+# include <boost/preprocessor/detail/limits/auto_rec_1024.hpp>
+# else
+# error Incorrect value for the BOOST_PP_LIMIT_MAG limit
+# endif
+#
+# endif
+#
+# endif
 #
 # endif

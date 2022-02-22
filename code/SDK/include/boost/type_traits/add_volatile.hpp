@@ -1,20 +1,16 @@
 
 //  (C) Copyright Dave Abrahams, Steve Cleary, Beman Dawes, Howard
-//  Hinnant & John Maddock 2000.  Permission to copy, use, modify,
-//  sell and distribute this software is granted provided this
-//  copyright notice appears in all copies. This software is provided
-//  "as is" without express or implied warranty, and with no claim as
-//  to its suitability for any purpose.
+//  Hinnant & John Maddock 2000.
+//  Use, modification and distribution are subject to the Boost Software License,
+//  Version 1.0. (See accompanying file LICENSE_1_0.txt or copy at
+//  http://www.boost.org/LICENSE_1_0.txt).
 //
-//  See http://www.boost.org for most recent version including documentation.
+//  See http://www.boost.org/libs/type_traits for most recent version including documentation.
 
 #ifndef BOOST_TT_ADD_VOLATILE_HPP_INCLUDED
 #define BOOST_TT_ADD_VOLATILE_HPP_INCLUDED
 
-#include "boost/config.hpp"
-
-// should be the last #include
-#include "boost/type_traits/detail/type_trait_def.hpp"
+#include <boost/config.hpp>
 
 namespace boost {
 
@@ -31,18 +27,20 @@ namespace boost {
 #   pragma warning(disable:4181) // warning C4181: qualifier applied to reference type ignored
 #endif 
 
-BOOST_TT_AUX_TYPE_TRAIT_DEF1(add_volatile,T,T volatile)
+template <class T> struct add_volatile{ typedef T volatile type; };
 
 #if defined(BOOST_MSVC)
 #   pragma warning(pop)
 #endif 
 
-#ifndef BOOST_NO_TEMPLATE_PARTIAL_SPECIALIZATION
-BOOST_TT_AUX_TYPE_TRAIT_PARTIAL_SPEC1_1(typename T,add_volatile,T&,T&)
+template <class T> struct add_volatile<T&>{ typedef T& type; };
+
+#if !defined(BOOST_NO_CXX11_TEMPLATE_ALIASES)
+
+   template <class T> using add_volatile_t = typename add_volatile<T>::type;
+
 #endif
 
 } // namespace boost
-
-#include "boost/type_traits/detail/type_trait_undef.hpp"
 
 #endif // BOOST_TT_ADD_VOLATILE_HPP_INCLUDED

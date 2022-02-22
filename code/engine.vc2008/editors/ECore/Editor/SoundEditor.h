@@ -78,7 +78,7 @@ private:	// User declarations
 
 	void __fastcall 	RegisterModifiedTHM	();
 
-    void 				OnModified			();
+    void __stdcall				OnModified			();
     void __fastcall 	UpdateLib			();
 
     bool 				bFormLocked;

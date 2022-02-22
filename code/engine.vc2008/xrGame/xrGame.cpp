@@ -12,8 +12,8 @@
 #include "xr_level_controller.h"
 #include "profiler.h"
 
-#include "library_linkage.h"
-#include "luabind/library_linkage.h"
+//#include "library_linkage.h"
+//#include "luabind/library_linkage.h"
 
 //#pragma comment(lib,"ode.lib")
 #pragma comment(lib,"xrEngine.lib")

@@ -5,13 +5,16 @@
 //
 //  Copyright (c) 2001 Peter Dimov and Multi Media Ltd.
 //
-//  Permission to copy, use, modify, sell and distribute this software
-//  is granted provided this copyright notice appears in all copies.
-//  This software is provided "as is" without express or implied
-//  warranty, and with no claim as to its suitability for any purpose.
+// Distributed under the Boost Software License, Version 1.0. (See
+// accompanying file LICENSE_1_0.txt or copy at
+// http://www.boost.org/LICENSE_1_0.txt)
 //
 //  See http://www.boost.org/libs/bind/mem_fn.html for documentation.
 //
+
+#if !defined(BOOST_NO_FUNCTION_TEMPLATE_ORDERING)
+# define BOOST_MEM_FN_ENABLE_CONST_OVERLOADS
+#endif
 
 // mf0
 
@@ -48,12 +51,33 @@ public:
 
     template<class U> R operator()(U & u) const
     {
-        BOOST_MEM_FN_RETURN call(u, &u);
+        U const * p = 0;
+        BOOST_MEM_FN_RETURN call(u, p);
     }
+
+#ifdef BOOST_MEM_FN_ENABLE_CONST_OVERLOADS
+
+    template<class U> R operator()(U const & u) const
+    {
+        U const * p = 0;
+        BOOST_MEM_FN_RETURN call(u, p);
+    }
+
+#endif
 
     R operator()(T & t) const
     {
         BOOST_MEM_FN_RETURN (t.*f_)();
+    }
+
+    bool operator==(BOOST_MEM_FN_NAME(mf0) const & rhs) const
+    {
+        return f_ == rhs.f_;
+    }
+
+    bool operator!=(BOOST_MEM_FN_NAME(mf0) const & rhs) const
+    {
+        return f_ != rhs.f_;
     }
 };
 
@@ -87,12 +111,23 @@ public:
 
     template<class U> R operator()(U const & u) const
     {
-        BOOST_MEM_FN_RETURN call(u, &u);
+        U const * p = 0;
+        BOOST_MEM_FN_RETURN call(u, p);
     }
 
     R operator()(T const & t) const
     {
         BOOST_MEM_FN_RETURN (t.*f_)();
+    }
+
+    bool operator==(BOOST_MEM_FN_NAME(cmf0) const & rhs) const
+    {
+        return f_ == rhs.f_;
+    }
+
+    bool operator!=(BOOST_MEM_FN_NAME(cmf0) const & rhs) const
+    {
+        return f_ != rhs.f_;
     }
 };
 
@@ -132,12 +167,33 @@ public:
 
     template<class U> R operator()(U & u, A1 a1) const
     {
-        BOOST_MEM_FN_RETURN call(u, &u, a1);
+        U const * p = 0;
+        BOOST_MEM_FN_RETURN call(u, p, a1);
     }
+
+#ifdef BOOST_MEM_FN_ENABLE_CONST_OVERLOADS
+
+    template<class U> R operator()(U const & u, A1 a1) const
+    {
+        U const * p = 0;
+        BOOST_MEM_FN_RETURN call(u, p, a1);
+    }
+
+#endif
 
     R operator()(T & t, A1 a1) const
     {
         BOOST_MEM_FN_RETURN (t.*f_)(a1);
+    }
+
+    bool operator==(BOOST_MEM_FN_NAME(mf1) const & rhs) const
+    {
+        return f_ == rhs.f_;
+    }
+
+    bool operator!=(BOOST_MEM_FN_NAME(mf1) const & rhs) const
+    {
+        return f_ != rhs.f_;
     }
 };
 
@@ -172,12 +228,23 @@ public:
 
     template<class U> R operator()(U const & u, A1 a1) const
     {
-        BOOST_MEM_FN_RETURN call(u, &u, a1);
+        U const * p = 0;
+        BOOST_MEM_FN_RETURN call(u, p, a1);
     }
 
     R operator()(T const & t, A1 a1) const
     {
         BOOST_MEM_FN_RETURN (t.*f_)(a1);
+    }
+
+    bool operator==(BOOST_MEM_FN_NAME(cmf1) const & rhs) const
+    {
+        return f_ == rhs.f_;
+    }
+
+    bool operator!=(BOOST_MEM_FN_NAME(cmf1) const & rhs) const
+    {
+        return f_ != rhs.f_;
     }
 };
 
@@ -215,12 +282,33 @@ public:
 
     template<class U> R operator()(U & u, A1 a1, A2 a2) const
     {
-        BOOST_MEM_FN_RETURN call(u, &u, a1, a2);
+        U const * p = 0;
+        BOOST_MEM_FN_RETURN call(u, p, a1, a2);
     }
+
+#ifdef BOOST_MEM_FN_ENABLE_CONST_OVERLOADS
+
+    template<class U> R operator()(U const & u, A1 a1, A2 a2) const
+    {
+        U const * p = 0;
+        BOOST_MEM_FN_RETURN call(u, p, a1, a2);
+    }
+
+#endif
 
     R operator()(T & t, A1 a1, A2 a2) const
     {
         BOOST_MEM_FN_RETURN (t.*f_)(a1, a2);
+    }
+
+    bool operator==(BOOST_MEM_FN_NAME(mf2) const & rhs) const
+    {
+        return f_ == rhs.f_;
+    }
+
+    bool operator!=(BOOST_MEM_FN_NAME(mf2) const & rhs) const
+    {
+        return f_ != rhs.f_;
     }
 };
 
@@ -253,12 +341,23 @@ public:
 
     template<class U> R operator()(U const & u, A1 a1, A2 a2) const
     {
-        BOOST_MEM_FN_RETURN call(u, &u, a1, a2);
+        U const * p = 0;
+        BOOST_MEM_FN_RETURN call(u, p, a1, a2);
     }
 
     R operator()(T const & t, A1 a1, A2 a2) const
     {
         BOOST_MEM_FN_RETURN (t.*f_)(a1, a2);
+    }
+
+    bool operator==(BOOST_MEM_FN_NAME(cmf2) const & rhs) const
+    {
+        return f_ == rhs.f_;
+    }
+
+    bool operator!=(BOOST_MEM_FN_NAME(cmf2) const & rhs) const
+    {
+        return f_ != rhs.f_;
     }
 };
 
@@ -296,12 +395,33 @@ public:
 
     template<class U> R operator()(U & u, A1 a1, A2 a2, A3 a3) const
     {
-        BOOST_MEM_FN_RETURN call(u, &u, a1, a2, a3);
+        U const * p = 0;
+        BOOST_MEM_FN_RETURN call(u, p, a1, a2, a3);
     }
+
+#ifdef BOOST_MEM_FN_ENABLE_CONST_OVERLOADS
+
+    template<class U> R operator()(U const & u, A1 a1, A2 a2, A3 a3) const
+    {
+        U const * p = 0;
+        BOOST_MEM_FN_RETURN call(u, p, a1, a2, a3);
+    }
+
+#endif
 
     R operator()(T & t, A1 a1, A2 a2, A3 a3) const
     {
         BOOST_MEM_FN_RETURN (t.*f_)(a1, a2, a3);
+    }
+
+    bool operator==(BOOST_MEM_FN_NAME(mf3) const & rhs) const
+    {
+        return f_ == rhs.f_;
+    }
+
+    bool operator!=(BOOST_MEM_FN_NAME(mf3) const & rhs) const
+    {
+        return f_ != rhs.f_;
     }
 };
 
@@ -334,12 +454,23 @@ public:
 
     template<class U> R operator()(U const & u, A1 a1, A2 a2, A3 a3) const
     {
-        BOOST_MEM_FN_RETURN call(u, &u, a1, a2, a3);
+        U const * p = 0;
+        BOOST_MEM_FN_RETURN call(u, p, a1, a2, a3);
     }
 
     R operator()(T const & t, A1 a1, A2 a2, A3 a3) const
     {
         BOOST_MEM_FN_RETURN (t.*f_)(a1, a2, a3);
+    }
+
+    bool operator==(BOOST_MEM_FN_NAME(cmf3) const & rhs) const
+    {
+        return f_ == rhs.f_;
+    }
+
+    bool operator!=(BOOST_MEM_FN_NAME(cmf3) const & rhs) const
+    {
+        return f_ != rhs.f_;
     }
 };
 
@@ -377,12 +508,33 @@ public:
 
     template<class U> R operator()(U & u, A1 a1, A2 a2, A3 a3, A4 a4) const
     {
-        BOOST_MEM_FN_RETURN call(u, &u, a1, a2, a3, a4);
+        U const * p = 0;
+        BOOST_MEM_FN_RETURN call(u, p, a1, a2, a3, a4);
     }
+
+#ifdef BOOST_MEM_FN_ENABLE_CONST_OVERLOADS
+
+    template<class U> R operator()(U const & u, A1 a1, A2 a2, A3 a3, A4 a4) const
+    {
+        U const * p = 0;
+        BOOST_MEM_FN_RETURN call(u, p, a1, a2, a3, a4);
+    }
+
+#endif
 
     R operator()(T & t, A1 a1, A2 a2, A3 a3, A4 a4) const
     {
         BOOST_MEM_FN_RETURN (t.*f_)(a1, a2, a3, a4);
+    }
+
+    bool operator==(BOOST_MEM_FN_NAME(mf4) const & rhs) const
+    {
+        return f_ == rhs.f_;
+    }
+
+    bool operator!=(BOOST_MEM_FN_NAME(mf4) const & rhs) const
+    {
+        return f_ != rhs.f_;
     }
 };
 
@@ -415,12 +567,23 @@ public:
 
     template<class U> R operator()(U const & u, A1 a1, A2 a2, A3 a3, A4 a4) const
     {
-        BOOST_MEM_FN_RETURN call(u, &u, a1, a2, a3, a4);
+        U const * p = 0;
+        BOOST_MEM_FN_RETURN call(u, p, a1, a2, a3, a4);
     }
 
     R operator()(T const & t, A1 a1, A2 a2, A3 a3, A4 a4) const
     {
         BOOST_MEM_FN_RETURN (t.*f_)(a1, a2, a3, a4);
+    }
+
+    bool operator==(BOOST_MEM_FN_NAME(cmf4) const & rhs) const
+    {
+        return f_ == rhs.f_;
+    }
+
+    bool operator!=(BOOST_MEM_FN_NAME(cmf4) const & rhs) const
+    {
+        return f_ != rhs.f_;
     }
 };
 
@@ -458,12 +621,33 @@ public:
 
     template<class U> R operator()(U & u, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5) const
     {
-        BOOST_MEM_FN_RETURN call(u, &u, a1, a2, a3, a4, a5);
+        U const * p = 0;
+        BOOST_MEM_FN_RETURN call(u, p, a1, a2, a3, a4, a5);
     }
+
+#ifdef BOOST_MEM_FN_ENABLE_CONST_OVERLOADS
+
+    template<class U> R operator()(U const & u, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5) const
+    {
+        U const * p = 0;
+        BOOST_MEM_FN_RETURN call(u, p, a1, a2, a3, a4, a5);
+    }
+
+#endif
 
     R operator()(T & t, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5) const
     {
         BOOST_MEM_FN_RETURN (t.*f_)(a1, a2, a3, a4, a5);
+    }
+
+    bool operator==(BOOST_MEM_FN_NAME(mf5) const & rhs) const
+    {
+        return f_ == rhs.f_;
+    }
+
+    bool operator!=(BOOST_MEM_FN_NAME(mf5) const & rhs) const
+    {
+        return f_ != rhs.f_;
     }
 };
 
@@ -496,12 +680,23 @@ public:
 
     template<class U> R operator()(U const & u, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5) const
     {
-        BOOST_MEM_FN_RETURN call(u, &u, a1, a2, a3, a4, a5);
+        U const * p = 0;
+        BOOST_MEM_FN_RETURN call(u, p, a1, a2, a3, a4, a5);
     }
 
     R operator()(T const & t, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5) const
     {
         BOOST_MEM_FN_RETURN (t.*f_)(a1, a2, a3, a4, a5);
+    }
+
+    bool operator==(BOOST_MEM_FN_NAME(cmf5) const & rhs) const
+    {
+        return f_ == rhs.f_;
+    }
+
+    bool operator!=(BOOST_MEM_FN_NAME(cmf5) const & rhs) const
+    {
+        return f_ != rhs.f_;
     }
 };
 
@@ -539,12 +734,33 @@ public:
 
     template<class U> R operator()(U & u, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6) const
     {
-        BOOST_MEM_FN_RETURN call(u, &u, a1, a2, a3, a4, a5, a6);
+        U const * p = 0;
+        BOOST_MEM_FN_RETURN call(u, p, a1, a2, a3, a4, a5, a6);
     }
+
+#ifdef BOOST_MEM_FN_ENABLE_CONST_OVERLOADS
+
+    template<class U> R operator()(U const & u, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6) const
+    {
+        U const * p = 0;
+        BOOST_MEM_FN_RETURN call(u, p, a1, a2, a3, a4, a5, a6);
+    }
+
+#endif
 
     R operator()(T & t, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6) const
     {
         BOOST_MEM_FN_RETURN (t.*f_)(a1, a2, a3, a4, a5, a6);
+    }
+
+    bool operator==(BOOST_MEM_FN_NAME(mf6) const & rhs) const
+    {
+        return f_ == rhs.f_;
+    }
+
+    bool operator!=(BOOST_MEM_FN_NAME(mf6) const & rhs) const
+    {
+        return f_ != rhs.f_;
     }
 };
 
@@ -577,12 +793,23 @@ public:
 
     template<class U> R operator()(U const & u, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6) const
     {
-        BOOST_MEM_FN_RETURN call(u, &u, a1, a2, a3, a4, a5, a6);
+        U const * p = 0;
+        BOOST_MEM_FN_RETURN call(u, p, a1, a2, a3, a4, a5, a6);
     }
 
     R operator()(T const & t, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6) const
     {
         BOOST_MEM_FN_RETURN (t.*f_)(a1, a2, a3, a4, a5, a6);
+    }
+
+    bool operator==(BOOST_MEM_FN_NAME(cmf6) const & rhs) const
+    {
+        return f_ == rhs.f_;
+    }
+
+    bool operator!=(BOOST_MEM_FN_NAME(cmf6) const & rhs) const
+    {
+        return f_ != rhs.f_;
     }
 };
 
@@ -620,12 +847,33 @@ public:
 
     template<class U> R operator()(U & u, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7) const
     {
-        BOOST_MEM_FN_RETURN call(u, &u, a1, a2, a3, a4, a5, a6, a7);
+        U const * p = 0;
+        BOOST_MEM_FN_RETURN call(u, p, a1, a2, a3, a4, a5, a6, a7);
     }
+
+#ifdef BOOST_MEM_FN_ENABLE_CONST_OVERLOADS
+
+    template<class U> R operator()(U const & u, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7) const
+    {
+        U const * p = 0;
+        BOOST_MEM_FN_RETURN call(u, p, a1, a2, a3, a4, a5, a6, a7);
+    }
+
+#endif
 
     R operator()(T & t, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7) const
     {
         BOOST_MEM_FN_RETURN (t.*f_)(a1, a2, a3, a4, a5, a6, a7);
+    }
+
+    bool operator==(BOOST_MEM_FN_NAME(mf7) const & rhs) const
+    {
+        return f_ == rhs.f_;
+    }
+
+    bool operator!=(BOOST_MEM_FN_NAME(mf7) const & rhs) const
+    {
+        return f_ != rhs.f_;
     }
 };
 
@@ -658,12 +906,23 @@ public:
 
     template<class U> R operator()(U const & u, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7) const
     {
-        BOOST_MEM_FN_RETURN call(u, &u, a1, a2, a3, a4, a5, a6, a7);
+        U const * p = 0;
+        BOOST_MEM_FN_RETURN call(u, p, a1, a2, a3, a4, a5, a6, a7);
     }
 
     R operator()(T const & t, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7) const
     {
         BOOST_MEM_FN_RETURN (t.*f_)(a1, a2, a3, a4, a5, a6, a7);
+    }
+
+    bool operator==(BOOST_MEM_FN_NAME(cmf7) const & rhs) const
+    {
+        return f_ == rhs.f_;
+    }
+
+    bool operator!=(BOOST_MEM_FN_NAME(cmf7) const & rhs) const
+    {
+        return f_ != rhs.f_;
     }
 };
 
@@ -701,12 +960,33 @@ public:
 
     template<class U> R operator()(U & u, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8) const
     {
-        BOOST_MEM_FN_RETURN call(u, &u, a1, a2, a3, a4, a5, a6, a7, a8);
+        U const * p = 0;
+        BOOST_MEM_FN_RETURN call(u, p, a1, a2, a3, a4, a5, a6, a7, a8);
     }
+
+#ifdef BOOST_MEM_FN_ENABLE_CONST_OVERLOADS
+
+    template<class U> R operator()(U const & u, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8) const
+    {
+        U const * p = 0;
+        BOOST_MEM_FN_RETURN call(u, p, a1, a2, a3, a4, a5, a6, a7, a8);
+    }
+
+#endif
 
     R operator()(T & t, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8) const
     {
         BOOST_MEM_FN_RETURN (t.*f_)(a1, a2, a3, a4, a5, a6, a7, a8);
+    }
+
+    bool operator==(BOOST_MEM_FN_NAME(mf8) const & rhs) const
+    {
+        return f_ == rhs.f_;
+    }
+
+    bool operator!=(BOOST_MEM_FN_NAME(mf8) const & rhs) const
+    {
+        return f_ != rhs.f_;
     }
 };
 
@@ -744,12 +1024,24 @@ public:
 
     template<class U> R operator()(U const & u, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8) const
     {
-        BOOST_MEM_FN_RETURN call(u, &u, a1, a2, a3, a4, a5, a6, a7, a8);
+        U const * p = 0;
+        BOOST_MEM_FN_RETURN call(u, p, a1, a2, a3, a4, a5, a6, a7, a8);
     }
 
     R operator()(T const & t, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8) const
     {
         BOOST_MEM_FN_RETURN (t.*f_)(a1, a2, a3, a4, a5, a6, a7, a8);
     }
+
+    bool operator==(BOOST_MEM_FN_NAME(cmf8) const & rhs) const
+    {
+        return f_ == rhs.f_;
+    }
+
+    bool operator!=(BOOST_MEM_FN_NAME(cmf8) const & rhs) const
+    {
+        return f_ != rhs.f_;
+    }
 };
 
+#undef BOOST_MEM_FN_ENABLE_CONST_OVERLOADS

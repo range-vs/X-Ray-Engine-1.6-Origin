@@ -241,29 +241,32 @@ public:
 		}
 
 		// test items
-		xr_vector<ISpatial*>::iterator _it	=	N->items.begin	();
-		xr_vector<ISpatial*>::iterator _end	=	N->items.end	();
-		for (; _it!=_end; _it++)
-		{
-			ISpatial*		S	= *_it;
-			if (mask!=(S->spatial.type&mask))	continue;
-			Fsphere&		sS	= S->spatial.sphere;
-			int				quantity;
-			float			afT[2];
-			Fsphere::ERP_Result	result	= sS.intersect(ray.pos,ray.fwd_dir,range,quantity,afT);
+        for (auto& it : N->items)
+        {
+            ISpatial* S = it;
+            if (mask != (S->spatial.type & mask))
+                continue;
+            Fsphere& sS = S->spatial.sphere;
+            int quantity;
+            float afT[2];
+            Fsphere::ERP_Result result = sS.intersect(ray.pos, ray.fwd_dir, range, quantity, afT);
 
-			if (result==Fsphere::rpOriginInside || ((result==Fsphere::rpOriginOutside)&&(afT[0]<range))){
-				if (b_nearest)				{ 
-					switch(result){
-					case Fsphere::rpOriginInside:	range	= afT[0]<range?afT[0]:range;	break;
-					case Fsphere::rpOriginOutside:	range	= afT[0];						break;
-					}
-					range2			=range*range; 
-				}
-				space->q_result->push_back	(S);
-				if (b_first)				return;
-			}
-		}
+            if (result == Fsphere::rpOriginInside || ((result == Fsphere::rpOriginOutside) && (afT[0] < range)))
+            {
+                if (b_nearest)
+                {
+                    switch (result)
+                    {
+                    case Fsphere::rpOriginInside: range = afT[0] < range ? afT[0] : range; break;
+                    case Fsphere::rpOriginOutside: range = afT[0]; break;
+                    }
+                    range2 = range * range;
+                }
+                space->q_result->push_back(S);
+                if (b_first)
+                    return;
+            }
+        }
 
 		// recurse
 		float	c_R		= n_R/2;
@@ -281,7 +284,7 @@ void	ISpatial_DB::q_ray	(xr_vector<ISpatial*>& R, u32 _o, u32 _mask_and, const F
 {
 	cs.Enter						();
 	q_result						= &R;
-	q_result->clear_not_free		();
+	q_result->clear		();
 	if (CPU::ID.features & (u32)CpuFeature::Sse) { // range fix
 		if (_o & O_ONLYFIRST)
 		{

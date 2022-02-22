@@ -763,35 +763,40 @@ void line_edit_control::SwitchKL()
 
 void remove_spaces( PSTR str ) // in & out
 {
-	u32 str_size = xr_strlen( str );
-	if ( str_size < 1 )
+	const size_t str_size = xr_strlen(str);
+	if (str_size < 1)
 	{
 		return;
 	}
-	PSTR new_str = (PSTR)_alloca( (str_size + 1) * sizeof(char) );
+	pstr new_str = (pstr)_alloca((str_size + 1) * sizeof(char));
 	new_str[0] = 0;
 
-	u32 a = 0, b = 0, i = 0;
-	while ( b < str_size )
+	size_t a = 0, b = 0, i = 0;
+	while (b < str_size)
 	{
 		a = b;
-		while ( a < str_size && str[a] == ' ' ) { ++a; }
+
+		while (a < str_size && str[a] == ' ')
+			++a;
+
 		b = a;
-		while ( b < str_size && str[b] != ' ' ) { ++b; }
-		strncpy_s( new_str + i, str_size+1, str + a, b - a );
-		i += (b-a);
-		if ( i < str_size ) 
-		{
+
+		while (b < str_size && str[b] != ' ')
+			++b;
+
+		strncpy_s(new_str + i, str_size - i + 1, str + a, b - a);
+		i += (b - a);
+
+		if (i < str_size)
 			new_str[i] = ' ';
-		}
+
 		++b;
 		++i;
 	}
 	--i;
-	if ( i < str_size )
-	{
-		strncpy_s( str, str_size, new_str, i );
-	}
+
+	if (i < str_size)
+		strncpy_s(str, str_size, new_str, i);
 }
 
 void split_cmd( PSTR first, PSTR second, LPCSTR str )

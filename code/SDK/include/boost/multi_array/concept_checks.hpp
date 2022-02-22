@@ -1,17 +1,17 @@
-// Copyright (C) 2002 Ronald Garcia
-//
-// Permission to copy, use, sell and distribute this software is granted
-// provided this copyright notice appears in all copies. 
-// Permission to modify the code and to distribute modified code is granted
-// provided this copyright notice appears in all copies, and a notice 
-// that the code was modified is included with the copyright notice.
-//
-// This software is provided "as is" without express or implied warranty, 
-// and with no claim as to its suitability for any purpose.
-//
+// Copyright 2002 The Trustees of Indiana University.
 
-#ifndef BOOST_MULTI_ARRAY_CONCEPT_CHECKS_RG110101_HPP
-#define BOOST_MULTI_ARRAY_CONCEPT_CHECKS_RG110101_HPP
+// Use, modification and distribution is subject to the Boost Software 
+// License, Version 1.0. (See accompanying file LICENSE_1_0.txt or copy at
+// http://www.boost.org/LICENSE_1_0.txt)
+
+//  Boost.MultiArray Library
+//  Authors: Ronald Garcia
+//           Jeremy Siek
+//           Andrew Lumsdaine
+//  See http://www.boost.org/libs/multi_array for documentation.
+
+#ifndef BOOST_MULTI_ARRAY_CONCEPT_CHECKS_HPP
+#define BOOST_MULTI_ARRAY_CONCEPT_CHECKS_HPP
 
 //
 // concept-checks.hpp - Checks out Const MultiArray and MultiArray
@@ -19,11 +19,12 @@
 //
 
 #include "boost/concept_check.hpp"
+#include "boost/iterator/iterator_concepts.hpp"
 
 namespace boost {
-namespace detail {
-namespace multi_array {
+namespace multi_array_concepts {
 
+namespace detail {
   //
   // idgen_helper -
   //   This is a helper for generating index_gen instantiations with
@@ -38,8 +39,6 @@ namespace multi_array {
 
     template <typename Array, typename IdxGen, typename Call_Type>
     static void call(Array& a, const IdxGen& idgen, Call_Type c) {
-      typedef typename Array::index_range index_range;
-      typedef typename Array::index index;
       idgen_helper<N-1>::call(a,idgen[c],c);
     }
   };
@@ -49,29 +48,34 @@ namespace multi_array {
 
     template <typename Array, typename IdxGen, typename Call_Type>
     static void call(Array& a, const IdxGen& idgen, Call_Type) {
-      typedef typename Array::index_range index_range;
-      typedef typename Array::index index;
       a[ idgen ];
     }
   };
+
+} // namespace detail
 
 
   template <typename Array, std::size_t NumDims >
   struct ConstMultiArrayConcept
   {
     void constraints() {
-      //    function_requires< CopyConstructibleConcept<Array> >();
+    //    function_requires< CopyConstructibleConcept<Array> >();
+    function_requires< boost_concepts::ForwardTraversalConcept<iterator> >();
+    function_requires< boost_concepts::ReadableIteratorConcept<iterator> >();
+    function_requires< boost_concepts::ForwardTraversalConcept<const_iterator> >();
+    function_requires< boost_concepts::ReadableIteratorConcept<const_iterator> >();
 
       // RG - a( CollectionArchetype) when available...
       a[ id ];
       // Test slicing, keeping only the first dimension, losing the rest
-      idgen_helper<NumDims-1>::call(a,idgen[range],id);
+      detail::idgen_helper<NumDims-1>::call(a,idgen[range],id);
 
       // Test slicing, keeping all dimensions.
-      idgen_helper<NumDims-1>::call(a,idgen[range],range);
+      detail::idgen_helper<NumDims-1>::call(a,idgen[range],range);
 
       st = a.size();
       st = a.num_dimensions();
+      st = Array::dimensionality;
       st = a.num_elements();
       stp = a.shape();
       idp = a.strides();
@@ -118,14 +122,21 @@ namespace multi_array {
     void constraints() {
       //    function_requires< CopyConstructibleConcept<Array> >();
 
+      function_requires< boost_concepts::ForwardTraversalConcept<iterator> >();
+      function_requires< boost_concepts::ReadableIteratorConcept<iterator> >();
+      function_requires< boost_concepts::WritableIteratorConcept<iterator> >();
+      function_requires< boost_concepts::ForwardTraversalConcept<const_iterator> >();
+      function_requires< boost_concepts::ReadableIteratorConcept<const_iterator> >();
+      function_requires< boost::OutputIterator<iterator,value_type> >();
+      
       // RG - a( CollectionArchetype) when available...
       value_type vt = a[ id ];
 
       // Test slicing, keeping only the first dimension, losing the rest
-      idgen_helper<NumDims-1>::call(a,idgen[range],id);
+      detail::idgen_helper<NumDims-1>::call(a,idgen[range],id);
 
       // Test slicing, keeping all dimensions.
-      idgen_helper<NumDims-1>::call(a,idgen[range],range);
+      detail::idgen_helper<NumDims-1>::call(a,idgen[range],range);
 
       st = a.size();
       st = a.num_dimensions();
@@ -146,10 +157,10 @@ namespace multi_array {
       //      value_type vt = a[ id ];
 
       // Test slicing, keeping only the first dimension, losing the rest
-      idgen_helper<NumDims-1>::call(a,idgen[range],id);
+      detail::idgen_helper<NumDims-1>::call(a,idgen[range],id);
 
       // Test slicing, keeping all dimensions.
-      idgen_helper<NumDims-1>::call(a,idgen[range],range);
+      detail::idgen_helper<NumDims-1>::call(a,idgen[range],range);
 
       st = a.size();
       st = a.num_dimensions();
@@ -196,8 +207,15 @@ namespace multi_array {
 
 
 } // namespace multi_array
-} // namespace detail
+
+namespace detail {
+  namespace multi_array { // Old locations for these
+    using boost::multi_array_concepts::ConstMultiArrayConcept;
+    using boost::multi_array_concepts::MutableMultiArrayConcept;
+  }
+}
+
 } // namespace boost
 
 
-#endif // BOOST_MULTI_ARRAY_CONCEPT_CHECKS_RG110101_HPP
+#endif

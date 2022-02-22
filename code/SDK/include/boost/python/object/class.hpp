@@ -1,15 +1,11 @@
-// Copyright David Abrahams 2001. Permission to copy, use,
-// modify, sell and distribute this software is granted provided this
-// copyright notice appears in all copies. This software is provided
-// "as is" without express or implied warranty, and with no claim as
-// to its suitability for any purpose.
+// Copyright David Abrahams 2001.
+// Distributed under the Boost Software License, Version 1.0. (See
+// accompanying file LICENSE_1_0.txt or copy at
+// http://www.boost.org/LICENSE_1_0.txt)
 #ifndef CLASS_DWA20011214_HPP
 # define CLASS_DWA20011214_HPP
 
-# include <boost/python/detail/wrap_python.hpp>
-# include <boost/python/detail/config.hpp>
-# include <boost/utility.hpp>
-# include <boost/python/instance_holder.hpp>
+# include <boost/python/detail/prefix.hpp>
 # include <boost/python/object_core.hpp>
 # include <boost/python/type_id.hpp>
 # include <cstddef>
@@ -34,12 +30,18 @@ struct BOOST_PYTHON_DECL class_base : python::api::object
 
     // Implementation detail. Hiding this in the private section would
     // require use of template friend declarations.
-    void enable_pickling(bool getstate_manages_dict);
+    void enable_pickling_(bool getstate_manages_dict);
 
  protected:
+    void add_property(
+        char const* name, object const& fget, char const* docstr);
+    void add_property(char const* name, 
+        object const& fget, object const& fset, char const* docstr);
+
+    void add_static_property(char const* name, object const& fget);
+    void add_static_property(char const* name, object const& fget, object const& fset);
+    
     // Retrieve the underlying object
-    void add_property(char const* name, object const& fget);
-    void add_property(char const* name, object const& fget, object const& fset);
     void setattr(char const* name, object const&);
 
     // Set a special attribute in the class which tells Boost.Python

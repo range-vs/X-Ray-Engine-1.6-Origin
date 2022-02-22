@@ -17,6 +17,7 @@
 #include "bottombar.h"
 #include "../ECore/Editor/ImageManager.h"
 #include "../ECORE/Editor/D3DUtils.h"
+#include "../../include/stack_trace.h"
 
 static const u32 DETMGR_VERSION = 0x0003ul;
 //------------------------------------------------------------------------------
@@ -464,6 +465,17 @@ void EDetailManager::SaveSelection(IWriter& F)
 	SaveStream(F);
 }
 
+void _intToBytes(std::vector<BYTE>& result, u32 value)
+{
+	result.push_back(value >> 24);
+	result.push_back(value >> 16);
+    result.push_back(value >>  8);
+    result.push_back(value      );
+}
+
+//#include <SOIL.h>
+//#pragma comment(lib, "opengl32.lib")
+
 bool EDetailManager::Export(LPCSTR path) 
 {
     AnsiString fn		= AnsiString(path)+"build.details";
@@ -475,8 +487,8 @@ bool EDetailManager::Export(LPCSTR path)
     pb->Inc				("merge textures");
     Fvector2Vec			offsets;
     Fvector2Vec			scales;
-    boolVec				rotated;
-    RStringSet 			textures_set;
+	boolVec				rotated;
+	RStringSet 			textures_set;
     RStringVec 			textures;
     U32Vec				remap;
     U8Vec remap_object	(objects.size(),u8(-1));
@@ -492,17 +504,59 @@ bool EDetailManager::Export(LPCSTR path)
             }
         }
     }
-    textures.assign		(textures_set.begin(),textures_set.end());
+	textures.assign		(textures_set.begin(),textures_set.end());
 
     U8It remap_object_it= remap_object.begin();
 
     u32 new_idx			= 0;
     for (DetailIt d_it=objects.begin(); d_it!=objects.end(); d_it++,remap_object_it++)
-    	if ((*remap_object_it==1)&&(textures_set.find(((EDetail*)(*d_it))->GetTextureName())!=textures_set.end()))
-	    	*remap_object_it	= (u8)new_idx++;
+		if ((*remap_object_it==1)&&(textures_set.find(((EDetail*)(*d_it))->GetTextureName())!=textures_set.end()))
+			*remap_object_it	= (u8)new_idx++;
 
-    AnsiString 			do_tex_name = ChangeFileExt(fn,"_details");
-    int res				= ImageLib.CreateMergedTexture(textures,do_tex_name.c_str(),STextureParams::tfADXT1,256,1024,256,1024,offsets,scales,rotated,remap);
+// ---------------------------------------------------------------------------- //
+// Ќ≈ «јЅџ“№ ќ“ Ћё„»“№ ќѕ≈– √Ћ
+	// вар 1
+//    int width, height;
+//	int ch = 0;
+//	unsigned char* image = SOIL_load_image("e:\\Program Files\\X-Ray CoP SDK\\editors\\gamedata\\textures\\det\\\det_kustsux1_black.dds",
+//	 &width, &height, &ch, SOIL_LOAD_RGBA);
+
+//	SSimpleImage img;
+//   	img.layers.resize(1);
+//	ImageLib.LoadTextureData		(textures[0].c_str(),img.layers.back(),img.w,img.h);
+//	AnsiString _fn		= ChangeFileExt	((std::string("E://") + textures[0].c_str() + "_old").c_str(),".dds");
+//    STextureParams			fmt;
+//	fmt.fmt					= STextureParams::tfDXT5;
+//	fmt.width = img.w;
+//    fmt.height = img.h;
+//	fmt.flags.set			(STextureParams::flDitherColor,		TRUE);
+//	fmt.flags.set			(STextureParams::flGenerateMipMaps,	TRUE);
+//	fmt.type				= STextureParams::ttImage;
+//	fmt.mip_filter		= STextureParams::kMIPFilterBox;
+//	BYTE*	raw_data		= LPBYTE(&*img.layers.back().begin());
+//	ImageLib.dXTCompress(_fn.c_str(),raw_data, 0, img.w,img.h, img.w*4, &fmt, 4);
+//    ImageLib.MakeGameTexture		(_fn.c_str(),raw_data,fmt);
+
+	// вар 2
+//	SSimpleImage img;
+//	img.layers.resize(1);
+//	string_path		t_name;
+//	//FS.update_path	(t_name,_game_textures_,textures[0].c_str());  // TODO указать полный путь к текстуре
+//	ImageLib.LoadTextureData		(textures[0].c_str(),img.layers.back(),img.w,img.h);
+//	// сохран€ем эту текстуру
+//	/*std::vector<BYTE> raw_data;
+//	for(auto&& e: img.layers.back())
+//	   _intToBytes(raw_data, 1);   */
+//
+//	int ch = 4;
+//	BYTE*	raw_data		= LPBYTE(&*img.layers.back().begin());
+//	int stat = SOIL_save_image((std::string("E://") + textures[0].c_str() + "_new.dds").c_str(),
+//		SOIL_SAVE_TYPE_DDS, img.w, img.h, ch, raw_data);
+
+// ----------------------------------------------------------------------- //
+
+	AnsiString 			do_tex_name = ChangeFileExt(fn,"_details");
+	int res				= ImageLib.CreateMergedTexture(textures,do_tex_name.c_str(),STextureParams::tfADXT1,256,1024,256,1024,offsets,scales,rotated,remap);
     if (1!=res)			bRes=FALSE;
 
     pb->Inc				("export geometry");

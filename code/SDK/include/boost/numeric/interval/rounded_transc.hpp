@@ -1,16 +1,10 @@
 /* Boost interval/rounded_transc.hpp template implementation file
  *
- * Copyright Hervé Brönnimann, Guillaume Melquiond, Sylvain Pion 2002-2003
- * Permission to use, copy, modify, sell, and distribute this software
- * is hereby granted without fee provided that the above copyright notice
- * appears in all copies and that both that copyright notice and this
- * permission notice appear in supporting documentation,
+ * Copyright 2002-2003 HervÃ© BrÃ¶nnimann, Guillaume Melquiond, Sylvain Pion
  *
- * None of the above authors nor Polytechnic University make any
- * representation about the suitability of this software for any
- * purpose. It is provided "as is" without express or implied warranty.
- *
- * $Id: rounded_transc.hpp,v 1.3 2003/02/05 17:34:30 gmelquio Exp $
+ * Distributed under the Boost Software License, Version 1.0.
+ * (See accompanying file LICENSE_1_0.txt or
+ * copy at http://www.boost.org/LICENSE_1_0.txt)
  */
 
 #ifndef BOOST_NUMERIC_INTERVAL_ROUNDED_TRANSC_HPP
@@ -18,7 +12,7 @@
 
 #include <boost/numeric/interval/rounding.hpp>
 #include <boost/numeric/interval/detail/bugs.hpp>
-#include <cmath>
+#include <boost/config/no_tr1/cmath.hpp>
 
 namespace boost {
 namespace numeric {

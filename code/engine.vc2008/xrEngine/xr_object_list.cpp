@@ -182,7 +182,7 @@ void CObjectList::clear_crow_vec(Objects& o)
 //		Msg				("[%d][0x%08x]IAmNotACrowAnyMore (clear_crow_vec)", Device.dwFrame, dynamic_cast<void*>(o[_it]));
 		o[_it]->IAmNotACrowAnyMore();
 	}
-	o.clear_not_free();
+	o.clear();
 }
 
 void CObjectList::Update		(bool bForce)
@@ -200,7 +200,7 @@ void CObjectList::Update		(bool bForce)
 			{
 				Objects& crows1			= m_crows[1];
 				crows.insert			(crows.end(), crows1.begin(), crows1.end());
-				crows1.clear_not_free	();
+				crows1.clear	();
 			}
 
 #if 0
@@ -241,7 +241,7 @@ void CObjectList::Update		(bool bForce)
 			CObject** objects			= (CObject**)_alloca(objects_count*sizeof(CObject*));
 			std::copy					( workload->begin(), workload->end(), objects );
 
-			crows.clear_not_free		();
+			crows.clear		();
 
 			CObject** b					= objects;
 			CObject** e					= objects + objects_count;
@@ -261,40 +261,44 @@ void CObjectList::Update		(bool bForce)
 	if (!destroy_queue.empty()) 
 	{
 		// Info
-		for (Objects::iterator oit=objects_active.begin(); oit!=objects_active.end(); oit++)
-			for (int it = destroy_queue.size()-1; it>=0; it--){	
-				(*oit)->net_Relcase		(destroy_queue[it]);
+		for (Objects::iterator oit = objects_active.begin(); oit != objects_active.end(); ++oit)
+			for (int it = destroy_queue.size() - 1; it >= 0; it--)
+			{
+				(*oit)->net_Relcase(destroy_queue[it]);
 			}
-		for (Objects::iterator oit=objects_sleeping.begin(); oit!=objects_sleeping.end(); oit++)
-			for (int it = destroy_queue.size()-1; it>=0; it--)	(*oit)->net_Relcase	(destroy_queue[it]);
+		for (Objects::iterator oit = objects_sleeping.begin(); oit != objects_sleeping.end(); ++oit)
+			for (int it = destroy_queue.size() - 1; it >= 0; it--)
+				(*oit)->net_Relcase(destroy_queue[it]);
 
-		for (int it = destroy_queue.size()-1; it>=0; it--)	Sound->object_relcase	(destroy_queue[it]);
-		
-		RELCASE_CALLBACK_VEC::iterator It	= m_relcase_callbacks.begin();
-		RELCASE_CALLBACK_VEC::iterator Ite	= m_relcase_callbacks.end();
-		for(;It!=Ite; ++It)	{
-			VERIFY			(*(*It).m_ID==(It-m_relcase_callbacks.begin()));
-			Objects::iterator dIt	= destroy_queue.begin();
-			Objects::iterator dIte	= destroy_queue.end();
-			for (;dIt!=dIte; ++dIt) {
-				(*It).m_Callback(*dIt);
-				g_hud->net_Relcase	(*dIt);
+		for (int it = destroy_queue.size() - 1; it >= 0; it--)
+			::Sound->object_relcase(destroy_queue[it]);
+
+		RELCASE_CALLBACK_VEC::iterator it = m_relcase_callbacks.begin();
+		const RELCASE_CALLBACK_VEC::iterator ite = m_relcase_callbacks.end();
+		for (; it != ite; ++it)
+		{
+			VERIFY(*(*it).m_ID == (it - m_relcase_callbacks.begin()));
+			for (auto& dit : destroy_queue)
+			{
+				(*it).m_Callback(dit);
+				g_hud->net_Relcase(dit);
 			}
 		}
 
 		// Destroy
-		for (int it = destroy_queue.size()-1; it>=0; it--)
+		for (int it = destroy_queue.size() - 1; it >= 0; it--)
 		{
-			CObject*		O	= destroy_queue[it];
-//			Msg				("Object [%x]", O);
+			CObject* O = destroy_queue[it];
+			// Msg ("Object [%x]", O);
 #ifdef DEBUG
-			if( debug_destroy )
-				Msg			("Destroying object[%x][%x] [%d][%s] frame[%d]",dynamic_cast<void*>(O), O, O->ID(),*O->cName(), Device.dwFrame);
+			if (debug_destroy)
+				Msg("Destroying object[%x][%x] [%d][%s] frame[%d]", dynamic_cast<void*>(O), O, O->ID(), *O->cName(),
+					Device.dwFrame);
 #endif // DEBUG
-			O->net_Destroy	( );
-			Destroy			(O);
+			O->net_Destroy();
+			Destroy(O);
 		}
-		destroy_queue.clear	();
+		destroy_queue.clear();
 	}
 }
 
@@ -460,7 +464,7 @@ void		CObjectList::Destroy			( CObject*	O		)
 			for (u32 j=0; i != e; ++i, ++j )
 				Msg							( "%d %s", j, (*i)->cName().c_str() );
 			VERIFY							( Device.Paused() || m_crows[1].empty() );
-			m_crows[1].clear_not_free		();
+			m_crows[1].clear		();
 		}
 	}
 	else {

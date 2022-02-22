@@ -31,7 +31,7 @@ IC void _rect_register(U8Vec& mask, int dest_width, int dest_height, Irect& R)
 {
     u32     s_x                     = R.width()+1;
     u32     s_y                     = R.height()+1;
-        
+
     // Normal (and fastest way)
 	for (u32 y=0; y<s_y; y++){
 		// range fix
@@ -67,8 +67,8 @@ IC bool _rect_place(U8Vec& mask, int dest_width, int dest_height, Irect& r, BOOL
 
     // Normal
     if ((r.rb.x<dest_width)&&(r.rb.y<dest_height)){
-        u32 x_max = dest_width -r.rb.x; 
-        u32 y_max = dest_height-r.rb.y; 
+        u32 x_max = dest_width -r.rb.x;
+        u32 y_max = dest_height-r.rb.y;
 	    bRotated = FALSE;
         for (u32 _Y=0; _Y<y_max; _Y++){
             for (u32 _X=0; _X<x_max; _X++){
@@ -85,8 +85,8 @@ IC bool _rect_place(U8Vec& mask, int dest_width, int dest_height, Irect& r, BOOL
 
     // Rotated
     if ((r.rb.y<dest_width)&&(r.rb.x<dest_height)){
-        u32 x_max = dest_width -r.rb.y; 
-        u32 y_max = dest_height-r.rb.x; 
+        u32 x_max = dest_width -r.rb.y;
+        u32 y_max = dest_height-r.rb.x;
 	    bRotated = TRUE;
         for (u32 _Y=0; _Y<y_max; _Y++){
             for (u32 _X=0; _X<x_max; _X++){
@@ -100,12 +100,17 @@ IC bool _rect_place(U8Vec& mask, int dest_width, int dest_height, Irect& r, BOOL
             }
         }
     }
-        
+
     return false;
 };
 
 bool item_area_sort_pred(const SSimpleImage& item0, const SSimpleImage& item1){return ((item0.Area()>item1.Area())||(item0.LongestEdge()>item1.LongestEdge()));}
 extern bool Surface_Load(LPCSTR full_name, U32Vec& data, u32& w, u32& h, u32& a);
+
+bool CImageManager::SurfaceLoad(LPCSTR full_name, U32Vec& data, u32& w, u32& h, u32& a)
+{
+	return  Surface_Load(full_name, data, w, h, a);
+}
 
 int CImageManager::CreateMergedTexture(u32 layer_cnt, SSimpleImageVec& src_images, SSimpleImage& dst_image, int dest_width, int dest_height, Fvector2Vec& dest_offset, Fvector2Vec& dest_scale, boolVec& dest_rotate, U32Vec& dest_remap)
 {
@@ -118,8 +123,8 @@ int CImageManager::CreateMergedTexture(u32 layer_cnt, SSimpleImageVec& src_image
 
     SSimpleImage::DATAVec dest_layers(layer_cnt);
     for (SSimpleImage::DATAIt layer_it=dest_layers.begin(); layer_it!=dest_layers.end(); layer_it++)
-    	layer_it->resize(dest_width*dest_height,0);
-	U8Vec 	dest_mask	(dest_width*dest_height,0); 
+		layer_it->resize(dest_width*dest_height,0);
+	U8Vec 	dest_mask	(dest_width*dest_height,0);
 
     int max_area		= dest_width*dest_height;
     int calc_area		= 0;
@@ -193,9 +198,9 @@ int CImageManager::CreateMergedTexture(const RStringVec& _names, LPCSTR dest_nam
     dest_remap.resize	(src_names.size());
     std::sort			(src_names.begin(),src_names.end());
     src_names.erase		(std::unique(src_names.begin(),src_names.end()),src_names.end());
-    
-	U32Vec 	dest_pixels	(dest_width*dest_height,0); 
-	U8Vec 	dest_mask	(dest_width*dest_height,0); 
+
+	U32Vec 	dest_pixels	(dest_width*dest_height,0);
+	U8Vec 	dest_mask	(dest_width*dest_height,0);
 
     int max_area		= dest_width*dest_height;
     int calc_area		= 0;
@@ -206,31 +211,33 @@ int CImageManager::CreateMergedTexture(const RStringVec& _names, LPCSTR dest_nam
     	s_it->layers.resize(1);
     	string_path		t_name;
 //.        FS.update_path	(t_name,_textures_,**n_it);
-        FS.update_path	(t_name,_game_textures_,**n_it);
+		FS.update_path	(t_name,_game_textures_,**n_it);
         if (!Surface_Load(EFS.ChangeFileExt(t_name,".dds"/*".tga"*/).c_str(),s_it->layers.back(),s_it->w,s_it->h,s_it->a)){
             ELog.DlgMsg	(mtError,"Can't load texture '%s'. Check file existence.",**n_it);
             return -1;
         }
         calc_area		+= (s_it->w*s_it->h);
-        if (calc_area>max_area) 
+        if (calc_area>max_area)
         	return 0;
         s_it->name		= *n_it;
     }
 
-    std::sort			(src_items.begin(),src_items.end(),item_area_sort_pred);
+	std::sort			(src_items.begin(),src_items.end(),item_area_sort_pred);
 
     for (u32 k=0; k<_names.size(); k++){
     	shared_str nm	= _names[k];
         s_it			= std::find(src_items.begin(),src_items.end(),nm); VERIFY(s_it!=src_items.end());
     	dest_remap[k]	= s_it-src_items.begin();
-    }
-    
+	}
+
+	BYTE*	raw_data = LPBYTE(&*dest_pixels.begin());
+
     for (s_it = src_items.begin(); s_it!=src_items.end(); s_it++){
 		Irect R;		R.set(0,0, s_it->w-1,s_it->h-1);
         BOOL bRotated;
         if (!_rect_place(dest_mask,dest_width,dest_height,R,bRotated)) return 0;
 		Fvector2 offs,scale;
-        offs.x			= float(R.lt.x)/float(dest_width);
+		offs.x			= float(R.lt.x)/float(dest_width);
         offs.y			= float(R.lt.y)/float(dest_height);
         scale.x			= float(R.width()+1)/float(dest_width);
         scale.y			= float(R.height()+1)/float(dest_height);
@@ -239,8 +246,10 @@ int CImageManager::CreateMergedTexture(const RStringVec& _names, LPCSTR dest_nam
         dest_rotate.push_back	(bRotated);
 		// Perform BLIT
 		// range fix begin replace &xxx.at(0)
-		if (!bRotated) 	blit	(&*dest_pixels.begin(),dest_width,dest_height,&*s_it->layers.back().begin(),s_it->w,s_it->h,R.lt.x,R.lt.y);
-		else            blit_r  (&*dest_pixels.begin(),dest_width,dest_height,&*s_it->layers.back().begin(),s_it->w,s_it->h,R.lt.x,R.lt.y);
+		if (!bRotated)
+			blit	(&*dest_pixels.begin(),dest_width,dest_height,&*s_it->layers.back().begin(),s_it->w,s_it->h,R.lt.x,R.lt.y);
+		else
+			blit_r  (&*dest_pixels.begin(),dest_width,dest_height,&*s_it->layers.back().begin(),s_it->w,s_it->h,R.lt.x,R.lt.y);
 	}
 
     // all right. make texture.
@@ -250,9 +259,12 @@ int CImageManager::CreateMergedTexture(const RStringVec& _names, LPCSTR dest_nam
     tp.height			= dest_height;
     tp.fmt				= fmt;
     tp.type				= STextureParams::ttImage;
-    tp.mip_filter		= STextureParams::kMIPFilterAdvanced;
-    tp.flags.assign		(STextureParams::flDitherColor|STextureParams::flGenerateMipMaps);
-    MakeGameTexture		(fn.c_str(),&*dest_pixels.begin(),tp); // range fix
+    //tp.mip_filter		= STextureParams::kMIPFilterAdvanced;
+	//tp.flags.assign		(STextureParams::flDitherColor|STextureParams::flGenerateMipMaps);
+	tp.mip_filter		= STextureParams::kMIPFilterBox;
+	tp.flags.set			(STextureParams::flDitherColor,		TRUE);
+	tp.flags.set			(STextureParams::flGenerateMipMaps,	TRUE);
+	MakeGameTexture		(fn.c_str(),raw_data,tp); // range fix
 
     return 1;
 }
@@ -283,4 +295,4 @@ void CImageManager::MergedTextureRemapUV(float& dest_u, float& dest_v, float src
         dest_v	= scale.y*src_v+offs.y;
     }
 }
- 
+

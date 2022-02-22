@@ -13,9 +13,9 @@ private:
 	std::stack<u16>	subchunk_pos;
 	void		revbytes		( void *bp, int elsize, int elcount )
 	{
-#ifndef _WIN64
+/*#ifndef _WIN64
 		register
-#endif
+#endif  */
 		unsigned char *p, *q;
 
 		p = ( unsigned char * ) bp;

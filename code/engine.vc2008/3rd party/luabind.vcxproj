@@ -1,0 +1,275 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build" ToolsVersion="14.0">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="..\PropertyGeneral64Debug.props" />
+  </ImportGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{CCD4AFAE-AA10-42C6-A452-FDEE497CCDF1}</ProjectGuid>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="..\PropertyGeneral86Debug.props" />
+  </ImportGroup>
+  <PropertyGroup Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <PlatformToolset>v142</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="..\PropertyGeneral86Release.props" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="..\PropertyGeneral64Release.props" />
+  </ImportGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>..\..\..\bins\$(PlatformXray)\$(Configuration)\</OutDir>
+    <IntDir>..\..\..\intermedia\$(ProjectName)\$(PlatformXray)\$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>..\..\..\bins\$(PlatformXray)\$(Configuration)\</OutDir>
+    <IntDir>..\..\..\intermedia\$(ProjectName)\$(PlatformXray)\$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <OutDir>..\..\..\bins\$(PlatformXray)\$(Configuration)\</OutDir>
+    <IntDir>..\..\..\intermedia\$(ProjectName)\$(PlatformXray)\$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <OutDir>..\..\..\bins\$(PlatformXray)\$(Configuration)\</OutDir>
+    <IntDir>..\..\..\intermedia\$(ProjectName)\$(PlatformXray)\$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <DisableSpecificWarnings>4251;4275;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">LuaJit/src;../../sdk/include/;../../sdk/include/luabind;LuaJit/src;../../sdk/include/;../../sdk/include/luabind</AdditionalIncludeDirectories>
+      <MultiProcessorCompilation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</MultiProcessorCompilation>
+      <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">DEBUG;_DEBUG;LUABIND_DYNAMIC_LINK;MSVC;dSINGLE;WIN32;_SECURE_SCL=0;_CRT_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;USE_CRYPTOPP;_WINDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">MultiThreadedDebugDLL</RuntimeLibrary>
+      <BufferSecurityCheck Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</BufferSecurityCheck>
+      <FunctionLevelLinking Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</FunctionLevelLinking>
+      <EnableEnhancedInstructionSet Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
+      <FloatingPointModel Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Fast</FloatingPointModel>
+      <RuntimeTypeInfo Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</RuntimeTypeInfo>
+      <WarningLevel Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Level2</WarningLevel>
+      <DebugInformationFormat Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EditAndContinue</DebugInformationFormat>
+      <ConformanceMode Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ConformanceMode>
+      <LanguageStandard Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">stdcpp17</LanguageStandard>
+      <SupportJustMyCode Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</SupportJustMyCode>
+      <TreatWarningAsError Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</TreatWarningAsError>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">LuaJit/src;../../sdk/include/;../../sdk/include/luabind;LuaJit/src;../../sdk/include/;../../sdk/include/luabind</AdditionalIncludeDirectories>
+      <SupportJustMyCode Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</SupportJustMyCode>
+      <WarningLevel Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Level1</WarningLevel>
+      <MultiProcessorCompilation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" />
+      <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">MaxSpeed</Optimization>
+      <RuntimeLibrary Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">MultiThreadedDLL</RuntimeLibrary>
+      <BufferSecurityCheck Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</BufferSecurityCheck>
+      <FunctionLevelLinking Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" />
+      <EnableEnhancedInstructionSet Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotSet</EnableEnhancedInstructionSet>
+      <FloatingPointModel Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Precise</FloatingPointModel>
+      <LanguageStandard Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">stdcpp17</LanguageStandard>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">LuaJit/src;../../sdk/include/;../../sdk/include/luabind;LuaJit/src;../../sdk/include/;../../sdk/include/luabind</AdditionalIncludeDirectories>
+      <TreatWarningAsError Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</TreatWarningAsError>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">_WINDLL;DEBUG;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <FunctionLevelLinking Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</FunctionLevelLinking>
+      <EnableEnhancedInstructionSet Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotSet</EnableEnhancedInstructionSet>
+      <ConformanceMode Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ConformanceMode>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|x64'">LuaJit/src;../../sdk/include/;../../sdk/include/luabind;</AdditionalIncludeDirectories>
+      <RuntimeLibrary Condition="'$(Configuration)|$(Platform)'=='Release|x64'">MultiThreadedDLL</RuntimeLibrary>
+    </ClCompile>
+    <Link>
+      <ImportLibrary Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\..\libraries\$(PlatformXray)\$(Configuration)\$(TargetName).lib</ImportLibrary>
+    </Link>
+    <Link>
+      <ImportLibrary Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\..\libraries\$(PlatformXray)\$(Configuration)\$(TargetName).lib</ImportLibrary>
+    </Link>
+    <Link>
+      <ImportLibrary Condition="'$(Configuration)|$(Platform)'=='ReleaseAndDebug|Win32'">..\..\..\libraries\$(PlatformXray)\$(Configuration)\$(TargetName).lib</ImportLibrary>
+    </Link>
+    <Link>
+      <ImportLibrary Condition="'$(Configuration)|$(Platform)'=='ReleaseSdk|Win32'">..\..\..\libraries\$(PlatformXray)\$(Configuration)\$(TargetName).lib</ImportLibrary>
+    </Link>
+    <Link>
+      <ImportLibrary Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">..\..\..\libraries\$(PlatformXray)\$(Configuration)\$(TargetName).lib</ImportLibrary>
+      <SubSystem Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Windows</SubSystem>
+      <LargeAddressAware Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</LargeAddressAware>
+    </Link>
+    <Link>
+      <ImportLibrary Condition="'$(Configuration)|$(Platform)'=='Release|x64'">..\..\..\libraries\$(PlatformXray)\$(Configuration)\$(TargetName).lib</ImportLibrary>
+    </Link>
+    <Link>
+      <ImportLibrary Condition="'$(Configuration)|$(Platform)'=='ReleaseAndDebug|x64'">..\..\..\libraries\$(PlatformXray)\$(Configuration)\$(TargetName).lib</ImportLibrary>
+    </Link>
+    <Link>
+      <ImportLibrary Condition="'$(Configuration)|$(Platform)'=='ReleaseSdk|x64'">..\..\..\libraries\$(PlatformXray)\$(Configuration)\$(TargetName).lib</ImportLibrary>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="luabind\src\class.cpp" />
+    <ClCompile Include="luabind\src\class_info.cpp" />
+    <ClCompile Include="luabind\src\class_registry.cpp" />
+    <ClCompile Include="luabind\src\class_rep.cpp" />
+    <ClCompile Include="luabind\src\create_class.cpp" />
+    <ClCompile Include="luabind\src\error.cpp" />
+    <ClCompile Include="luabind\src\exception_handler.cpp" />
+    <ClCompile Include="luabind\src\function.cpp" />
+    <ClCompile Include="luabind\src\function_introspection.cpp" />
+    <ClCompile Include="luabind\src\headertest.cpp" />
+    <ClCompile Include="luabind\src\inheritance.cpp" />
+    <ClCompile Include="luabind\src\link_compatibility.cpp" />
+    <ClCompile Include="luabind\src\memory.cpp" />
+    <ClCompile Include="luabind\src\object_rep.cpp" />
+    <ClCompile Include="luabind\src\open.cpp" />
+    <ClCompile Include="luabind\src\operator.cpp" />
+    <ClCompile Include="luabind\src\pcall.cpp" />
+    <ClCompile Include="luabind\src\scope.cpp" />
+    <ClCompile Include="luabind\src\set_package_preload.cpp" />
+    <ClCompile Include="luabind\src\stack_content_by_name.cpp" />
+    <ClCompile Include="luabind\src\weak_ref.cpp" />
+    <ClCompile Include="luabind\src\wrapper_base.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="LuaJIT-proj\LuaJIT.vcxproj">
+      <Project>{632aeeb6-dc06-4e15-9551-b2b09a4b73c5}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\SDK\include\luabind\adopt_policy.hpp" />
+    <ClInclude Include="..\..\SDK\include\luabind\back_reference.hpp" />
+    <ClInclude Include="..\..\SDK\include\luabind\back_reference_fwd.hpp" />
+    <ClInclude Include="..\..\SDK\include\luabind\class.hpp" />
+    <ClInclude Include="..\..\SDK\include\luabind\class_info.hpp" />
+    <ClInclude Include="..\..\SDK\include\luabind\config.hpp" />
+    <ClInclude Include="..\..\SDK\include\luabind\container_policy.hpp" />
+    <ClInclude Include="..\..\SDK\include\luabind\copy_policy.hpp" />
+    <ClInclude Include="..\..\SDK\include\luabind\dependency_policy.hpp" />
+    <ClInclude Include="..\..\SDK\include\luabind\detail\call.hpp" />
+    <ClInclude Include="..\..\SDK\include\luabind\detail\call_function.hpp" />
+    <ClInclude Include="..\..\SDK\include\luabind\detail\call_member.hpp" />
+    <ClInclude Include="..\..\SDK\include\luabind\detail\call_shared.hpp" />
+    <ClInclude Include="..\..\SDK\include\luabind\detail\call_traits.hpp" />
+    <ClInclude Include="..\..\SDK\include\luabind\detail\class_registry.hpp" />
+    <ClInclude Include="..\..\SDK\include\luabind\detail\class_rep.hpp" />
+    <ClInclude Include="..\..\SDK\include\luabind\detail\constructor.hpp" />
+    <ClInclude Include="..\..\SDK\include\luabind\detail\conversion_policies\conversion_base.hpp" />
+    <ClInclude Include="..\..\SDK\include\luabind\detail\conversion_policies\conversion_policies.hpp" />
+    <ClInclude Include="..\..\SDK\include\luabind\detail\conversion_policies\enum_converter.hpp" />
+    <ClInclude Include="..\..\SDK\include\luabind\detail\conversion_policies\function_converter.hpp" />
+    <ClInclude Include="..\..\SDK\include\luabind\detail\conversion_policies\lua_proxy_converter.hpp" />
+    <ClInclude Include="..\..\SDK\include\luabind\detail\conversion_policies\native_converter.hpp" />
+    <ClInclude Include="..\..\SDK\include\luabind\detail\conversion_policies\pointer_converter.hpp" />
+    <ClInclude Include="..\..\SDK\include\luabind\detail\conversion_policies\reference_converter.hpp" />
+    <ClInclude Include="..\..\SDK\include\luabind\detail\conversion_policies\value_converter.hpp" />
+    <ClInclude Include="..\..\SDK\include\luabind\detail\conversion_storage.hpp" />
+    <ClInclude Include="..\..\SDK\include\luabind\detail\crtp_iterator.hpp" />
+    <ClInclude Include="..\..\SDK\include\luabind\detail\debug.hpp" />
+    <ClInclude Include="..\..\SDK\include\luabind\detail\decorate_type.hpp" />
+    <ClInclude Include="..\..\SDK\include\luabind\detail\deduce_signature.hpp" />
+    <ClInclude Include="..\..\SDK\include\luabind\detail\enum_maker.hpp" />
+    <ClInclude Include="..\..\SDK\include\luabind\detail\format_signature.hpp" />
+    <ClInclude Include="..\..\SDK\include\luabind\detail\garbage_collector.hpp" />
+    <ClInclude Include="..\..\SDK\include\luabind\detail\inheritance.hpp" />
+    <ClInclude Include="..\..\SDK\include\luabind\detail\instance_holder.hpp" />
+    <ClInclude Include="..\..\SDK\include\luabind\detail\link_compatibility.hpp" />
+    <ClInclude Include="..\..\SDK\include\luabind\detail\make_instance.hpp" />
+    <ClInclude Include="..\..\SDK\include\luabind\detail\meta.hpp" />
+    <ClInclude Include="..\..\SDK\include\luabind\detail\object.hpp" />
+    <ClInclude Include="..\..\SDK\include\luabind\detail\object_rep.hpp" />
+    <ClInclude Include="..\..\SDK\include\luabind\detail\open.hpp" />
+    <ClInclude Include="..\..\SDK\include\luabind\detail\operator_id.hpp" />
+    <ClInclude Include="..\..\SDK\include\luabind\detail\other.hpp" />
+    <ClInclude Include="..\..\SDK\include\luabind\detail\pcall.hpp" />
+    <ClInclude Include="..\..\SDK\include\luabind\detail\policy.hpp" />
+    <ClInclude Include="..\..\SDK\include\luabind\detail\primitives.hpp" />
+    <ClInclude Include="..\..\SDK\include\luabind\detail\property.hpp" />
+    <ClInclude Include="..\..\SDK\include\luabind\detail\push_to_lua.hpp" />
+    <ClInclude Include="..\..\SDK\include\luabind\detail\ref.hpp" />
+    <ClInclude Include="..\..\SDK\include\luabind\detail\signature_match.hpp" />
+    <ClInclude Include="..\..\SDK\include\luabind\detail\stack_utils.hpp" />
+    <ClInclude Include="..\..\SDK\include\luabind\detail\type_traits.hpp" />
+    <ClInclude Include="..\..\SDK\include\luabind\discard_result_policy.hpp" />
+    <ClInclude Include="..\..\SDK\include\luabind\error.hpp" />
+    <ClInclude Include="..\..\SDK\include\luabind\error_callback_fun.hpp" />
+    <ClInclude Include="..\..\SDK\include\luabind\exception_handler.hpp" />
+    <ClInclude Include="..\..\SDK\include\luabind\from_stack.hpp" />
+    <ClInclude Include="..\..\SDK\include\luabind\function.hpp" />
+    <ClInclude Include="..\..\SDK\include\luabind\function_introspection.hpp" />
+    <ClInclude Include="..\..\SDK\include\luabind\functor.hpp" />
+    <ClInclude Include="..\..\SDK\include\luabind\get_main_thread.hpp" />
+    <ClInclude Include="..\..\SDK\include\luabind\handle.hpp" />
+    <ClInclude Include="..\..\SDK\include\luabind\iterator_policy.hpp" />
+    <ClInclude Include="..\..\SDK\include\luabind\luabind.hpp" />
+    <ClInclude Include="..\..\SDK\include\luabind\lua_argument_proxy.hpp" />
+    <ClInclude Include="..\..\SDK\include\luabind\lua_extensions.hpp" />
+    <ClInclude Include="..\..\SDK\include\luabind\lua_include.hpp" />
+    <ClInclude Include="..\..\SDK\include\luabind\lua_index_proxy.hpp" />
+    <ClInclude Include="..\..\SDK\include\luabind\lua_iterator_proxy.hpp" />
+    <ClInclude Include="..\..\SDK\include\luabind\lua_proxy.hpp" />
+    <ClInclude Include="..\..\SDK\include\luabind\lua_proxy_interface.hpp" />
+    <ClInclude Include="..\..\SDK\include\luabind\lua_state_fwd.hpp" />
+    <ClInclude Include="..\..\SDK\include\luabind\make_function.hpp" />
+    <ClInclude Include="..\..\SDK\include\luabind\memory.hpp" />
+    <ClInclude Include="..\..\SDK\include\luabind\memory_allocator.hpp" />
+    <ClInclude Include="..\..\SDK\include\luabind\nil.hpp" />
+    <ClInclude Include="..\..\SDK\include\luabind\no_dependency.hpp" />
+    <ClInclude Include="..\..\SDK\include\luabind\object.hpp" />
+    <ClInclude Include="..\..\SDK\include\luabind\open.hpp" />
+    <ClInclude Include="..\..\SDK\include\luabind\operator.hpp" />
+    <ClInclude Include="..\..\SDK\include\luabind\out_value_policy.hpp" />
+    <ClInclude Include="..\..\SDK\include\luabind\pointer_traits.hpp" />
+    <ClInclude Include="..\..\SDK\include\luabind\prefix.hpp" />
+    <ClInclude Include="..\..\SDK\include\luabind\raw_policy.hpp" />
+    <ClInclude Include="..\..\SDK\include\luabind\return_reference_to_policy.hpp" />
+    <ClInclude Include="..\..\SDK\include\luabind\scope.hpp" />
+    <ClInclude Include="..\..\SDK\include\luabind\set_package_preload.hpp" />
+    <ClInclude Include="..\..\SDK\include\luabind\shared_ptr_converter.hpp" />
+    <ClInclude Include="..\..\SDK\include\luabind\typeid.hpp" />
+    <ClInclude Include="..\..\SDK\include\luabind\types.hpp" />
+    <ClInclude Include="..\..\SDK\include\luabind\version.hpp" />
+    <ClInclude Include="..\..\SDK\include\luabind\weak_ref.hpp" />
+    <ClInclude Include="..\..\SDK\include\luabind\wrapper_base.hpp" />
+    <ClInclude Include="..\..\SDK\include\luabind\yield_policy.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\..\SDK\include\luabind\CMakeLists.txt" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

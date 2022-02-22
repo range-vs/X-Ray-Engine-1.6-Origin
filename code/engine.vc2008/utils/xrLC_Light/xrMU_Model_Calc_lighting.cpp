@@ -123,9 +123,16 @@ void xrMU_Model::calc_lighting	(xr_vector<base_color>& dest, const Fmatrix& xfor
 		mapVertIt	it2			= it;
 
 		// Decrement to the start and inc to end
-		while (it!=g_trans.begin() && ((it->first+eps2)>key)) it--;
-		while (it2!=g_trans.end() && ((it2->first-eps2)<key)) it2++;
-		if (it2!=g_trans.end())	it2++;
+		while (it != g_trans.end() && it != g_trans.begin() && ((it->first + eps2) > key))
+		{
+			it--;
+		}
+		while (it2 != g_trans.end() && it2 != g_trans.end() && ((it2->first - eps2) < key))
+		{
+			it2++;
+		}
+		if (it2!=g_trans.end())	
+			it2++;
 
 		// Search
 		BOOL	found = FALSE;

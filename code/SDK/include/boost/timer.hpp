@@ -1,9 +1,8 @@
 //  boost timer.hpp header file  ---------------------------------------------//
 
-//  (C) Copyright Beman Dawes 1994-99. Permission to copy, use, modify, sell and
-//  distribute this software is granted provided this copyright notice appears
-//  in all copies. This software is provided "as is" without express or implied
-//  warranty, and with no claim as to its suitability for any purpose.
+//  Copyright Beman Dawes 1994-99.  Distributed under the Boost
+//  Software License, Version 1.0. (See accompanying file
+//  LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
 
 //  See http://www.boost.org/libs/timer for documentation.
 
@@ -17,6 +16,9 @@
 
 #ifndef BOOST_TIMER_HPP
 #define BOOST_TIMER_HPP
+
+#include <boost/config/header_deprecated.hpp>
+BOOST_HEADER_DEPRECATED( "the facilities in <boost/timer/timer.hpp>" )
 
 #include <boost/config.hpp>
 #include <ctime>
@@ -57,7 +59,7 @@ class timer
   // Portability warning: elapsed_max() may return too high a value on systems
   // where std::clock_t overflows or resets at surprising values.
   {
-    return (double(std::numeric_limits<std::clock_t>::max())
+    return (double((std::numeric_limits<std::clock_t>::max)())
        - double(_start_time)) / double(CLOCKS_PER_SEC); 
   }
 

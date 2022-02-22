@@ -1,29 +1,22 @@
 /* Boost interval/detail/ppc_rounding_control.hpp file
  *
- * Copyright Jens Maurer 2000
- * Copyright Hervé Brönnimann, Guillaume Melquiond, Sylvain Pion 2002
- * Permission to use, copy, modify, sell, and distribute this software
- * is hereby granted without fee provided that the above copyright notice
- * appears in all copies and that both that copyright notice and this
- * permission notice appear in supporting documentation,
+ * Copyright 2000 Jens Maurer
+ * Copyright 2002 HervÃ© BrÃ¶nnimann, Guillaume Melquiond, Sylvain Pion
+ * Copyright 2005 Guillaume Melquiond
  *
- * None of the above authors nor Polytechnic University make any
- * representation about the suitability of this software for any
- * purpose. It is provided "as is" without express or implied warranty.
- *
- * $Id: ppc_rounding_control.hpp,v 1.2 2003/02/05 17:34:32 gmelquio Exp $
+ * Distributed under the Boost Software License, Version 1.0.
+ * (See accompanying file LICENSE_1_0.txt or
+ * copy at http://www.boost.org/LICENSE_1_0.txt)
  */
 
 #ifndef BOOST_NUMERIC_INTERVAL_DETAIL_PPC_ROUNDING_CONTROL_HPP
 #define BOOST_NUMERIC_INTERVAL_DETAIL_PPC_ROUNDING_CONTROL_HPP
 
-#ifndef __GNUC__
-#error This header only works with GNU CC.
-#endif
-
 #if !defined(powerpc) && !defined(__powerpc__) && !defined(__ppc__)
 #error This header only works on PPC CPUs.
 #endif
+
+#if defined(__GNUC__ ) || (__IBMCPP__ >= 700)
 
 namespace boost {
 namespace numeric {
@@ -31,14 +24,14 @@ namespace interval_lib {
 namespace detail {
 
 typedef union {
-  long long int imode;
+   ::boost::long_long_type imode;
   double dmode;
 } rounding_mode_struct;
 
 static const rounding_mode_struct mode_upward      = { 0xFFF8000000000002LL };
 static const rounding_mode_struct mode_downward    = { 0xFFF8000000000003LL };
-static const rounding_mode_struct mode_to_nearest  = { 0xFFF8000000000001LL };
-static const rounding_mode_struct mode_toward_zero = { 0xFFF8000000000000LL };
+static const rounding_mode_struct mode_to_nearest  = { 0xFFF8000000000000LL };
+static const rounding_mode_struct mode_toward_zero = { 0xFFF8000000000001LL };
 
 struct ppc_rounding_control
 {
@@ -58,10 +51,14 @@ struct ppc_rounding_control
 
 } // namespace detail
 
+// Do not declare the following C99 symbols if <math.h> provides them.
+// Otherwise, conflicts may occur, due to differences between prototypes.
+#if !defined(_ISOC99_SOURCE) && !defined(__USE_ISOC99)
 extern "C" {
   float rintf(float);
   double rint(double);
 }
+#endif
 
 template<>
 struct rounding_control<float>:
@@ -95,5 +92,8 @@ struct rounding_control<long double>:
 } // namespace interval_lib
 } // namespace numeric
 } // namespace boost
+
+#undef BOOST_NUMERIC_INTERVAL_NO_HARDWARE
+#endif
 
 #endif /* BOOST_NUMERIC_INTERVAL_DETAIL_PPC_ROUNDING_CONTROL_HPP */

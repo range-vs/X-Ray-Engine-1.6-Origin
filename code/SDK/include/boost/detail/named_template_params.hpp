@@ -1,8 +1,7 @@
-// (C) Copyright Jeremy Siek 2001. Permission to copy, use, modify,
-// sell and distribute this software is granted provided this
-// copyright notice appears in all copies. This software is provided
-// "as is" without express or implied warranty, and with no claim as
-// to its suitability for any purpose.
+// (C) Copyright Jeremy Siek 2001.
+// Distributed under the Boost Software License, Version 1.0. (See
+// accompanying file LICENSE_1_0.txt or copy at
+// http://www.boost.org/LICENSE_1_0.txt)
 
 // Revision History:
 
@@ -12,9 +11,10 @@
 #ifndef BOOST_DETAIL_NAMED_TEMPLATE_PARAMS_HPP
 #define BOOST_DETAIL_NAMED_TEMPLATE_PARAMS_HPP
 
+#include <boost/config.hpp>
 #include <boost/type_traits/conversion_traits.hpp>
 #include <boost/type_traits/composite_traits.hpp> // for is_reference
-#if defined(__BORLANDC__)
+#if defined(BOOST_BORLANDC)
 #include <boost/type_traits/ice.hpp>
 #endif
 
@@ -58,7 +58,7 @@ namespace boost {
       };
     };
 
-#if defined(__BORLANDC__)
+#if defined(BOOST_BORLANDC)
     template <class UseDefault>
     struct choose_arg_or_default { typedef choose_arg type; };
     template <>
@@ -76,7 +76,7 @@ namespace boost {
     
     template <class Arg, class DefaultGen, class Base, class Traits>
     class resolve_default {
-#if defined(__BORLANDC__)
+#if defined(BOOST_BORLANDC)
       typedef typename choose_arg_or_default<typename is_default<Arg>::type>::type Selector;
 #else
       // This usually works for Borland, but I'm seeing weird errors in

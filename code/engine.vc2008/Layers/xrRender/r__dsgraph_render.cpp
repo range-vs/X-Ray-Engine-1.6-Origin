@@ -20,242 +20,330 @@ ICF float calcLOD	(float ssa/*fDistSq*/, float R)
 	return			_sqrt(clampr((ssa - r_ssaGLOD_end)/(r_ssaGLOD_start-r_ssaGLOD_end),0.f,1.f));
 }
 
-// NORMAL
-IC	bool	cmp_normal_items		(const _NormalItem& N1, const _NormalItem& N2)
-{	return (N1.ssa > N2.ssa);		}
+template <class T> IC bool cmp_second_ssa(const T& lhs, const T& rhs) { return (lhs->second.ssa > rhs->second.ssa); }
+template <class T> IC bool cmp_ssa(const T& lhs, const T& rhs) { return (lhs.ssa > rhs.ssa); }
 
-void __fastcall mapNormal_Render	(mapNormalItems& N)
-{
-	// *** DIRECT ***
-	std::sort				(N.begin(),N.end(),cmp_normal_items);
-	_NormalItem				*I=&*N.begin(), *E = &*N.end();
-	for (; I!=E; I++)		{
-		_NormalItem&		Ni	= *I;
-		float LOD = calcLOD(Ni.ssa,Ni.pVisual->vis.sphere.R);
-#ifdef USE_DX11
-		RCache.LOD.set_LOD(LOD);
-#endif
-		Ni.pVisual->Render	(LOD);
-	}
-}
-
-// Matrix
-IC	bool	cmp_matrix_items		(const _MatrixItem& N1, const _MatrixItem& N2)
-{	return (N1.ssa > N2.ssa);		}
-
-void __fastcall mapMatrix_Render	(mapMatrixItems& N)
-{
-	// *** DIRECT ***
-	std::sort				(N.begin(),N.end(),cmp_matrix_items);
-	_MatrixItem				*I=&*N.begin(), *E = &*N.end();
-	for (; I!=E; I++)		{
-		_MatrixItem&	Ni				= *I;
-		RCache.set_xform_world			(Ni.Matrix);
-		RImplementation.apply_object	(Ni.pObject);
-		RImplementation.apply_lmaterial	();
-
-		float LOD = calcLOD(Ni.ssa,Ni.pVisual->vis.sphere.R);
-#ifdef USE_DX11
-		RCache.LOD.set_LOD(LOD);
-#endif
-		Ni.pVisual->Render(LOD);
-	}
-	N.clear	();
-}
-
-// ALPHA
-void __fastcall sorted_L1		(mapSorted_Node *N)
-{
-	VERIFY (N);
-	dxRender_Visual *V				= N->val.pVisual;
-	VERIFY (V && V->shader._get());
-	RCache.set_Element				(N->val.se);
-	RCache.set_xform_world			(N->val.Matrix);
-	RImplementation.apply_object	(N->val.pObject);
-	RImplementation.apply_lmaterial	();
-	V->Render						(calcLOD(N->key,V->vis.sphere.R));
-}
-
-IC	bool	cmp_vs_nrm			(mapNormalVS::TNode* N1, mapNormalVS::TNode* N2)
-{
-	return (N1->val.ssa > N2->val.ssa);
-}
-IC	bool	cmp_vs_mat			(mapMatrixVS::TNode* N1, mapMatrixVS::TNode* N2)
-{
-	return (N1->val.ssa > N2->val.ssa);
-}
-
-IC	bool	cmp_ps_nrm			(mapNormalPS::TNode* N1, mapNormalPS::TNode* N2)
+template <class T> IC bool cmp_ps_second_ssa(const T& lhs, const T& rhs)
 {
 #ifdef USE_DX11
-	return (N1->val.mapCS.ssa > N2->val.mapCS.ssa);
+	return (lhs->second.mapCS.ssa > rhs->second.mapCS.ssa);
 #else
-	return (N1->val.ssa > N2->val.ssa);
-#endif
-}
-IC	bool	cmp_ps_mat			(mapMatrixPS::TNode* N1, mapMatrixPS::TNode* N2)
-{
-#ifdef USE_DX11
-	return (N1->val.mapCS.ssa > N2->val.mapCS.ssa);
-#else
-	return (N1->val.ssa > N2->val.ssa);
+	return (lhs->second.ssa > rhs->second.ssa);
 #endif
 }
 
-#if defined(USE_DX10) || defined(USE_DX11)
-IC	bool	cmp_gs_nrm			(mapNormalGS::TNode* N1, mapNormalGS::TNode* N2)			{	return (N1->val.ssa > N2->val.ssa);		}
-IC	bool	cmp_gs_mat			(mapMatrixGS::TNode* N1, mapMatrixGS::TNode* N2)			{	return (N1->val.ssa > N2->val.ssa);		}
-#endif	//	USE_DX10
-
-IC	bool	cmp_cs_nrm			(mapNormalCS::TNode* N1, mapNormalCS::TNode* N2)			{	return (N1->val.ssa > N2->val.ssa);		}
-IC	bool	cmp_cs_mat			(mapMatrixCS::TNode* N1, mapMatrixCS::TNode* N2)			{	return (N1->val.ssa > N2->val.ssa);		}
-
-IC	bool	cmp_states_nrm		(mapNormalStates::TNode* N1, mapNormalStates::TNode* N2)	{	return (N1->val.ssa > N2->val.ssa);		}
-IC	bool	cmp_states_mat		(mapMatrixStates::TNode* N1, mapMatrixStates::TNode* N2)	{	return (N1->val.ssa > N2->val.ssa);		}
-
-IC	bool	cmp_textures_lex2_nrm	(mapNormalTextures::TNode* N1, mapNormalTextures::TNode* N2){	
-	STextureList*	t1			= N1->key;
-	STextureList*	t2			= N2->key;
-	if ((*t1)[0] < (*t2)[0])	return true;
-	if ((*t1)[0] > (*t2)[0])	return false;
-	if ((*t1)[1] < (*t2)[1])	return true;
-	else						return false;
-}
-IC	bool	cmp_textures_lex2_mat	(mapMatrixTextures::TNode* N1, mapMatrixTextures::TNode* N2){	
-	STextureList*	t1			= N1->key;
-	STextureList*	t2			= N2->key;
-	if ((*t1)[0] < (*t2)[0])	return true;
-	if ((*t1)[0] > (*t2)[0])	return false;
-	if ((*t1)[1] < (*t2)[1])	return true;
-	else						return false;
-}
-IC	bool	cmp_textures_lex3_nrm	(mapNormalTextures::TNode* N1, mapNormalTextures::TNode* N2){	
-	STextureList*	t1			= N1->key;
-	STextureList*	t2			= N2->key;
-	if ((*t1)[0] < (*t2)[0])	return true;
-	if ((*t1)[0] > (*t2)[0])	return false;
-	if ((*t1)[1] < (*t2)[1])	return true;
-	if ((*t1)[1] > (*t2)[1])	return false;
-	if ((*t1)[2] < (*t2)[2])	return true;
-	else						return false;
-}
-IC	bool	cmp_textures_lex3_mat	(mapMatrixTextures::TNode* N1, mapMatrixTextures::TNode* N2){	
-	STextureList*	t1			= N1->key;
-	STextureList*	t2			= N2->key;
-	if ((*t1)[0] < (*t2)[0])	return true;
-	if ((*t1)[0] > (*t2)[0])	return false;
-	if ((*t1)[1] < (*t2)[1])	return true;
-	if ((*t1)[1] > (*t2)[1])	return false;
-	if ((*t1)[2] < (*t2)[2])	return true;
-	else						return false;
-}
-IC	bool	cmp_textures_lexN_nrm	(mapNormalTextures::TNode* N1, mapNormalTextures::TNode* N2){	
-	STextureList*	t1			= N1->key;
-	STextureList*	t2			= N2->key;
-	return std::lexicographical_compare(t1->begin(),t1->end(),t2->begin(),t2->end());
-}
-IC	bool	cmp_textures_lexN_mat	(mapMatrixTextures::TNode* N1, mapMatrixTextures::TNode* N2){	
-	STextureList*	t1			= N1->key;
-	STextureList*	t2			= N2->key;
-	return std::lexicographical_compare(t1->begin(),t1->end(),t2->begin(),t2->end());
-}
-IC	bool	cmp_textures_ssa_nrm	(mapNormalTextures::TNode* N1, mapNormalTextures::TNode* N2){	
-	return (N1->val.ssa > N2->val.ssa);		
-}
-IC	bool	cmp_textures_ssa_mat	(mapMatrixTextures::TNode* N1, mapMatrixTextures::TNode* N2){	
-	return (N1->val.ssa > N2->val.ssa);		
-}
-
-void		sort_tlist_nrm			
-(
- xr_vector<mapNormalTextures::TNode*,render_alloc<mapNormalTextures::TNode*> >& lst, 
- xr_vector<mapNormalTextures::TNode*,render_alloc<mapNormalTextures::TNode*> >& temp, 
- mapNormalTextures&					textures, 
- BOOL	bSSA
- )
+template <class T> IC bool cmp_textures_lex2(const T& lhs, const T& rhs)
 {
-	int amount			= textures.begin()->key->size();
-	if (bSSA)	
+	auto t1 = lhs->first;
+	auto t2 = rhs->first;
+
+	if ((*t1)[0] < (*t2)[0]) return true;
+	if ((*t1)[0] > (*t2)[0]) return false;
+	if ((*t1)[1] < (*t2)[1]) return true;
+	else               return false;
+}
+template <class T> IC bool cmp_textures_lex3(const T& lhs, const T& rhs)
+{
+	auto t1 = lhs->first;
+	auto t2 = rhs->first;
+
+	if ((*t1)[0] < (*t2)[0]) return true;
+	if ((*t1)[0] > (*t2)[0]) return false;
+	if ((*t1)[1] < (*t2)[1]) return true;
+	if ((*t1)[1] > (*t2)[1]) return false;
+	if ((*t1)[2] < (*t2)[2]) return true;
+	else               return false;
+}
+template <class T> IC bool cmp_textures_lexN(const T& lhs, const T& rhs)
+{
+	auto t1 = lhs->first;
+	auto t2 = rhs->first;
+
+	return std::lexicographical_compare(t1->begin(), t1->end(), t2->begin(), t2->end());
+}
+
+template <class T> void sort_tlist(xr_vector<typename T::value_type*>& lst, xr_vector<typename T::value_type*>& temp, T& textures)
+{
+	int amount = textures.begin()->first->size();
+
+	if (amount <= 1)
 	{
-		if (amount<=1)
-		{
-			// Just sort by SSA
-			textures.getANY_P			(lst);
-			std::sort					(lst.begin(), lst.end(), cmp_textures_ssa_nrm);
-		} 
-		else 
-		{
-			// Split into 2 parts
-			mapNormalTextures::TNode* _it	= textures.begin	();
-			mapNormalTextures::TNode* _end	= textures.end		();
-			for (; _it!=_end; _it++)	{
-				if (_it->val.ssa > r_ssaHZBvsTEX)	lst.push_back	(_it);
-				else								temp.push_back	(_it);
-			}
-
-			// 1st - part - SSA, 2nd - lexicographically
-			std::sort					(lst.begin(),	lst.end(),	cmp_textures_ssa_nrm);
-			if (2==amount)				std::sort	(temp.begin(),	temp.end(),	cmp_textures_lex2_nrm);
-			else if (3==amount)			std::sort	(temp.begin(),	temp.end(),	cmp_textures_lex3_nrm);
-			else						std::sort	(temp.begin(),	temp.end(),	cmp_textures_lexN_nrm);
-
-			// merge lists
-			lst.insert					(lst.end(),temp.begin(),temp.end());
-		}
+		// Just sort by SSA
+		textures.get_any_p(lst);
+		std::sort(lst.begin(), lst.end(), cmp_second_ssa<typename T::value_type*>);
 	}
-	else 
+	else
 	{
-		textures.getANY_P			(lst);
-		if (2==amount)				std::sort	(lst.begin(),	lst.end(),	cmp_textures_lex2_nrm);
-		else if (3==amount)			std::sort	(lst.begin(),	lst.end(),	cmp_textures_lex3_nrm);
-		else						std::sort	(lst.begin(),	lst.end(),	cmp_textures_lexN_nrm);
+		// Split into 2 parts
+		for (auto& it : textures)
+		{
+			if (it.second.ssa > r_ssaHZBvsTEX)
+				lst.push_back(&it);
+			else
+				temp.push_back(&it);
+		}
+
+		// 1st - part - SSA, 2nd - lexicographically
+		std::sort(lst.begin(), lst.end(), cmp_second_ssa<typename T::value_type*>);
+		if (2 == amount)
+			std::sort(temp.begin(), temp.end(), cmp_textures_lex2<typename T::value_type*>);
+		else if (3 == amount)
+			std::sort(temp.begin(), temp.end(), cmp_textures_lex3<typename T::value_type*>);
+		else
+			std::sort(temp.begin(), temp.end(), cmp_textures_lexN<typename T::value_type*>);
+
+		// merge lists
+		lst.insert(lst.end(), temp.begin(), temp.end());
 	}
 }
 
-void		sort_tlist_mat			
-(
- xr_vector<mapMatrixTextures::TNode*,render_alloc<mapMatrixTextures::TNode*> >& lst,
- xr_vector<mapMatrixTextures::TNode*,render_alloc<mapMatrixTextures::TNode*> >& temp,
- mapMatrixTextures&					textures,
- BOOL	bSSA
- )
+//// NORMAL
+//IC	bool	cmp_normal_items		(const _NormalItem& N1, const _NormalItem& N2)
+//{	return (N1.ssa > N2.ssa);		}
+//
+//void __fastcall mapNormal_Render	(mapNormalItems& N)
+//{
+//	// *** DIRECT ***
+//	std::sort				(N.begin(),N.end(),cmp_normal_items);
+//	_NormalItem				*I=&*N.begin(), *E = &*N.end();
+//	for (; I!=E; I++)		{
+//		_NormalItem&		Ni	= *I;
+//		float LOD = calcLOD(Ni.ssa,Ni.pVisual->vis.sphere.R);
+//#ifdef USE_DX11
+//		RCache.LOD.set_LOD(LOD);
+//#endif
+//		Ni.pVisual->Render	(LOD);
+//	}
+//}
+
+//// Matrix
+//IC	bool	cmp_matrix_items		(const _MatrixItem& N1, const _MatrixItem& N2)
+//{	return (N1.ssa > N2.ssa);		}
+
+
+//template<class T>
+//void __fastcall sorted_L1		(const T& item)
+//{
+//	dxRender_Visual* V = item.second.pVisual;
+//	VERIFY(V && V->shader._get());
+//	RCache.set_Element(item.second.se);
+//	RCache.set_xform_world(item.second.Matrix);
+//	RImplementation.apply_object(item.second.pObject);
+//	RImplementation.apply_lmaterial();
+//	V->Render(calcLOD(item.first, V->vis.sphere.R));
+//}
+
+//IC	bool	cmp_vs_nrm			(mapNormalVS::value_type* N1, mapNormalVS::value_type* N2)
+//{
+//	return (N1->second.ssa > N2->second.ssa);
+//}
+//IC	bool	cmp_vs_mat			(mapMatrixVS::value_type* N1, mapMatrixVS::value_type* N2)
+//{
+//	return (N1->second.ssa > N2->second.ssa);
+//}
+//
+//IC	bool	cmp_ps_nrm			(mapNormalPS::value_type* N1, mapNormalPS::value_type* N2)
+//{
+//#ifdef USE_DX11
+//	return (N1->second.mapCS.ssa > N2->second.mapCS.ssa);
+//#else
+//	return (N1->second.ssa > N2->second.ssa);
+//#endif
+//}
+//IC	bool	cmp_ps_mat			(mapMatrixPS::value_type* N1, mapMatrixPS::value_type* N2)
+//{
+//#ifdef USE_DX11
+//	return (N1->second.mapCS.ssa > N2->second.mapCS.ssa);
+//#else
+//	return (N1->second.ssa > N2->second.ssa);
+//#endif
+//}
+//
+//#if defined(USE_DX10) || defined(USE_DX11)
+//IC	bool	cmp_gs_nrm			(mapNormalGS::value_type* N1, mapNormalGS::value_type* N2)			{	return (N1->second.ssa > N2->second.ssa);		}
+//IC	bool	cmp_gs_mat			(mapMatrixGS::value_type* N1, mapMatrixGS::value_type* N2)			{	return (N1->second.ssa > N2->second.ssa);		}
+//#endif	//	USE_DX10
+//
+//IC	bool	cmp_cs_nrm			(mapNormalCS::value_type* N1, mapNormalCS::value_type* N2)			{	return (N1->second.ssa > N2->second.ssa);		}
+//IC	bool	cmp_cs_mat			(mapMatrixCS::value_type* N1, mapMatrixCS::value_type* N2)			{	return (N1->second.ssa > N2->second.ssa);		}
+//
+//IC	bool	cmp_states_nrm		(mapNormalStates::value_type* N1, mapNormalStates::value_type* N2)	{	return (N1->second.ssa > N2->second.ssa);		}
+//IC	bool	cmp_states_mat		(mapMatrixStates::value_type* N1, mapMatrixStates::value_type* N2)	{	return (N1->second.ssa > N2->second.ssa);		}
+//
+//IC	bool	cmp_textures_lex2_nrm	(mapNormalTextures::value_type* N1, mapNormalTextures::value_type* N2){	
+//	STextureList*	t1			= N1->first;
+//	STextureList*	t2			= N2->first;
+//	if ((*t1)[0] < (*t2)[0])	return true;
+//	if ((*t1)[0] > (*t2)[0])	return false;
+//	if ((*t1)[1] < (*t2)[1])	return true;
+//	else						return false;
+//}
+//IC	bool	cmp_textures_lex2_mat	(mapMatrixTextures::value_type* N1, mapMatrixTextures::value_type* N2){	
+//	STextureList*	t1			= N1->first;
+//	STextureList*	t2			= N2->first;
+//	if ((*t1)[0] < (*t2)[0])	return true;
+//	if ((*t1)[0] > (*t2)[0])	return false;
+//	if ((*t1)[1] < (*t2)[1])	return true;
+//	else						return false;
+//}
+//IC	bool	cmp_textures_lex3_nrm	(mapNormalTextures::value_type* N1, mapNormalTextures::value_type* N2){	
+//	STextureList*	t1			= N1->first;
+//	STextureList*	t2			= N2->first;
+//	if ((*t1)[0] < (*t2)[0])	return true;
+//	if ((*t1)[0] > (*t2)[0])	return false;
+//	if ((*t1)[1] < (*t2)[1])	return true;
+//	if ((*t1)[1] > (*t2)[1])	return false;
+//	if ((*t1)[2] < (*t2)[2])	return true;
+//	else						return false;
+//}
+//IC	bool	cmp_textures_lex3_mat	(mapMatrixTextures::value_type* N1, mapMatrixTextures::value_type* N2){	
+//	STextureList*	t1			= N1->first;
+//	STextureList*	t2			= N2->first;
+//	if ((*t1)[0] < (*t2)[0])	return true;
+//	if ((*t1)[0] > (*t2)[0])	return false;
+//	if ((*t1)[1] < (*t2)[1])	return true;
+//	if ((*t1)[1] > (*t2)[1])	return false;
+//	if ((*t1)[2] < (*t2)[2])	return true;
+//	else						return false;
+//}
+//IC	bool	cmp_textures_lexN_nrm	(mapNormalTextures::value_type* N1, mapNormalTextures::value_type* N2){	
+//	STextureList*	t1			= N1->first;
+//	STextureList*	t2			= N2->first;
+//	return std::lexicographical_compare(t1->begin(),t1->end(),t2->begin(),t2->end());
+//}
+//IC	bool	cmp_textures_lexN_mat	(mapMatrixTextures::value_type* N1, mapMatrixTextures::value_type* N2){	
+//	STextureList*	t1			= N1->first;
+//	STextureList*	t2			= N2->first;
+//	return std::lexicographical_compare(t1->begin(),t1->end(),t2->begin(),t2->end());
+//}
+//IC	bool	cmp_textures_ssa_nrm	(mapNormalTextures::value_type* N1, mapNormalTextures::value_type* N2){	
+//	return (N1->second.ssa > N2->second.ssa);		
+//}
+//IC	bool	cmp_textures_ssa_mat	(mapMatrixTextures::value_type* N1, mapMatrixTextures::value_type* N2){	
+//	return (N1->second.ssa > N2->second.ssa);		
+//}
+
+//void		sort_tlist_nrm			
+//(
+// xr_vector<mapNormalTextures::value_type*>& lst, 
+// xr_vector<mapNormalTextures::value_type* >& temp, 
+// mapNormalTextures&					textures, 
+// BOOL	bSSA
+// )
+//{
+//	int amount			= textures.begin()->first->size();
+//	if (bSSA)	
+//	{
+//		if (amount<=1)
+//		{
+//			// Just sort by SSA
+//			textures.get_any_p			(lst);
+//			std::sort					(lst.begin(), lst.end(), cmp_textures_ssa_nrm);
+//		} 
+//		else 
+//		{
+//			// Split into 2 parts
+//			mapNormalTextures::value_type* _it	= textures.begin	();
+//			mapNormalTextures::value_type* _end	= textures.end		();
+//			for (; _it!=_end; _it++)	{
+//				if (_it->second.ssa > r_ssaHZBvsTEX)	lst.push_back	(_it);
+//				else								temp.push_back	(_it);
+//			}
+//
+//			// 1st - part - SSA, 2nd - lexicographically
+//			std::sort					(lst.begin(),	lst.end(),	cmp_textures_ssa_nrm);
+//			if (2==amount)				std::sort	(temp.begin(),	temp.end(),	cmp_textures_lex2_nrm);
+//			else if (3==amount)			std::sort	(temp.begin(),	temp.end(),	cmp_textures_lex3_nrm);
+//			else						std::sort	(temp.begin(),	temp.end(),	cmp_textures_lexN_nrm);
+//
+//			// merge lists
+//			lst.insert					(lst.end(),temp.begin(),temp.end());
+//		}
+//	}
+//	else 
+//	{
+//		textures.get_any_p			(lst);
+//		if (2==amount)				std::sort	(lst.begin(),	lst.end(),	cmp_textures_lex2_nrm);
+//		else if (3==amount)			std::sort	(lst.begin(),	lst.end(),	cmp_textures_lex3_nrm);
+//		else						std::sort	(lst.begin(),	lst.end(),	cmp_textures_lexN_nrm);
+//	}
+//}
+//
+//void		sort_tlist_mat			
+//(
+// xr_vector<mapMatrixTextures::value_type* >& lst,
+// xr_vector<mapMatrixTextures::value_type* >& temp,
+// mapMatrixTextures&					textures,
+// BOOL	bSSA
+// )
+//{
+//	int amount			= textures.begin()->first->size();
+//	if (bSSA)	
+//	{
+//		if (amount<=1)
+//		{
+//			// Just sort by SSA
+//			textures.get_any_p			(lst);
+//			std::sort					(lst.begin(), lst.end(), cmp_textures_ssa_mat);
+//		} 
+//		else 
+//		{
+//			// Split into 2 parts
+//			mapMatrixTextures::value_type* _it	= textures.begin	();
+//			mapMatrixTextures::value_type* _end	= textures.end		();
+//			for (; _it!=_end; _it++)	{
+//				if (_it->second.ssa > r_ssaHZBvsTEX)	lst.push_back	(_it);
+//				else								temp.push_back	(_it);
+//			}
+//
+//			// 1st - part - SSA, 2nd - lexicographically
+//			std::sort					(lst.begin(),	lst.end(),	cmp_textures_ssa_mat);
+//			if (2==amount)				std::sort	(temp.begin(),	temp.end(),	cmp_textures_lex2_mat);
+//			else if (3==amount)			std::sort	(temp.begin(),	temp.end(),	cmp_textures_lex3_mat);
+//			else						std::sort	(temp.begin(),	temp.end(),	cmp_textures_lexN_mat);
+//
+//			// merge lists
+//			lst.insert					(lst.end(),temp.begin(),temp.end());
+//		}
+//	}
+//	else 
+//	{
+//		textures.get_any_p			(lst);
+//		if (2==amount)				std::sort	(lst.begin(),	lst.end(),	cmp_textures_lex2_mat);
+//		else if (3==amount)			std::sort	(lst.begin(),	lst.end(),	cmp_textures_lex3_mat);
+//		else						std::sort	(lst.begin(),	lst.end(),	cmp_textures_lexN_mat);
+//	}
+//}
+
+template<class T>
+void __fastcall render_item(const T& item)
 {
-	int amount			= textures.begin()->key->size();
-	if (bSSA)	
-	{
-		if (amount<=1)
-		{
-			// Just sort by SSA
-			textures.getANY_P			(lst);
-			std::sort					(lst.begin(), lst.end(), cmp_textures_ssa_mat);
-		} 
-		else 
-		{
-			// Split into 2 parts
-			mapMatrixTextures::TNode* _it	= textures.begin	();
-			mapMatrixTextures::TNode* _end	= textures.end		();
-			for (; _it!=_end; _it++)	{
-				if (_it->val.ssa > r_ssaHZBvsTEX)	lst.push_back	(_it);
-				else								temp.push_back	(_it);
-			}
+	dxRender_Visual* V = item.second.pVisual;
+	VERIFY(V && V->shader._get());
+	RCache.set_Element(item.second.se);
+	RCache.set_xform_world(item.second.Matrix);
+	RImplementation.apply_object(item.second.pObject);
+	RImplementation.apply_lmaterial();
+	//--#SM+#-- Обновляем шейдерные данные модели [update shader values for this model]
+	//RCache.hemi.c_update(V);
+	V->Render(calcLOD(item.first, V->vis.sphere.R));
+}
 
-			// 1st - part - SSA, 2nd - lexicographically
-			std::sort					(lst.begin(),	lst.end(),	cmp_textures_ssa_mat);
-			if (2==amount)				std::sort	(temp.begin(),	temp.end(),	cmp_textures_lex2_mat);
-			else if (3==amount)			std::sort	(temp.begin(),	temp.end(),	cmp_textures_lex3_mat);
-			else						std::sort	(temp.begin(),	temp.end(),	cmp_textures_lexN_mat);
+template <class T> IC bool cmp_first_l(const T& lhs, const T& rhs) { return (lhs.first < rhs.first); }
+template <class T> IC bool cmp_first_h(const T& lhs, const T& rhs) { return (lhs.first > rhs.first); }
 
-			// merge lists
-			lst.insert					(lst.end(),temp.begin(),temp.end());
-		}
-	}
-	else 
-	{
-		textures.getANY_P			(lst);
-		if (2==amount)				std::sort	(lst.begin(),	lst.end(),	cmp_textures_lex2_mat);
-		else if (3==amount)			std::sort	(lst.begin(),	lst.end(),	cmp_textures_lex3_mat);
-		else						std::sort	(lst.begin(),	lst.end(),	cmp_textures_lexN_mat);
-	}
+template<class T>
+ICF void sort_front_to_back_render_and_clean(T& vec)
+{
+	vec.traverse_left_right(render_item);
+	vec.clear();
+}
+
+template<class T>
+ICF void sort_back_to_front_render_and_clean(T& vec)
+{
+	vec.traverse_right_left(render_item);
+	vec.clear();
 }
 
 void R_dsgraph_structure::r_dsgraph_render_graph	(u32	_priority, bool _clear)
@@ -275,68 +363,90 @@ void R_dsgraph_structure::r_dsgraph_render_graph	(u32	_priority, bool _clear)
 		{
 			//mapNormalVS&	vs				= mapNormal	[_priority];
 			mapNormalVS&	vs				= mapNormalPasses[_priority][iPass];
-			vs.getANY_P						(nrmVS);
-			std::sort						(nrmVS.begin(), nrmVS.end(), cmp_vs_nrm);
+			vs.get_any_p						(nrmVS);
+			std::sort						(nrmVS.begin(), nrmVS.end(), cmp_second_ssa<mapNormalVS::value_type*>);
 			for (u32 vs_id=0; vs_id<nrmVS.size(); vs_id++)
 			{
-				mapNormalVS::TNode*	Nvs			= nrmVS[vs_id];
-				RCache.set_VS					(Nvs->key);
+				mapNormalVS::value_type*	Nvs			= nrmVS[vs_id];
+				RCache.set_VS					(Nvs->first);
 
 #if defined(USE_DX10) || defined(USE_DX11)
 				//	GS setup
-				mapNormalGS&		gs			= Nvs->val;		gs.ssa	= 0;
+				mapNormalGS&		gs			= Nvs->second;		gs.ssa	= 0;
 
-				gs.getANY_P						(nrmGS);
-				std::sort						(nrmGS.begin(), nrmGS.end(), cmp_gs_nrm);
+				gs.get_any_p						(nrmGS);
+				std::sort						(nrmGS.begin(), nrmGS.end(), cmp_second_ssa<mapNormalGS::value_type*>);
 				for (u32 gs_id=0; gs_id<nrmGS.size(); gs_id++)
 				{
-					mapNormalGS::TNode*	Ngs			= nrmGS[gs_id];
-					RCache.set_GS					(Ngs->key);	
+					mapNormalGS::value_type*	Ngs			= nrmGS[gs_id];
+					RCache.set_GS					(Ngs->first);	
 
-					mapNormalPS&		ps			= Ngs->val;		ps.ssa	= 0;
+					mapNormalPS&		ps			= Ngs->second;		ps.ssa	= 0;
 #else	//	USE_DX10
-					mapNormalPS&		ps			= Nvs->val;		ps.ssa	= 0;
+					mapNormalPS&		ps			= Nvs->second;		ps.ssa	= 0;
 #endif	//	USE_DX10
 
-					ps.getANY_P						(nrmPS);
-					std::sort						(nrmPS.begin(), nrmPS.end(), cmp_ps_nrm);
+					ps.get_any_p						(nrmPS);
+					std::sort						(nrmPS.begin(), nrmPS.end(), cmp_ps_second_ssa<mapNormalPS::value_type*>);
 					for (u32 ps_id=0; ps_id<nrmPS.size(); ps_id++)
 					{
-						mapNormalPS::TNode*	Nps			= nrmPS[ps_id];
-						RCache.set_PS					(Nps->key);	
+						mapNormalPS::value_type*	Nps			= nrmPS[ps_id];
+						RCache.set_PS					(Nps->first);	
 #ifdef USE_DX11
-						mapNormalCS&		cs			= Nps->val.mapCS;		cs.ssa	= 0;
-						RCache.set_HS(Nps->val.hs);
-						RCache.set_DS(Nps->val.ds);
+						mapNormalCS&		cs			= Nps->second.mapCS;		cs.ssa	= 0;
+						RCache.set_HS(Nps->second.hs);
+						RCache.set_DS(Nps->second.ds);
 #else
-						mapNormalCS&		cs			= Nps->val;		cs.ssa	= 0;
+						mapNormalCS&		cs			= Nps->second;		cs.ssa	= 0;
 #endif
-						cs.getANY_P						(nrmCS);
-						std::sort						(nrmCS.begin(), nrmCS.end(), cmp_cs_nrm);
+						cs.get_any_p						(nrmCS);
+						std::sort						(nrmCS.begin(), nrmCS.end(), cmp_second_ssa<mapNormalCS::value_type*>);
 						for (u32 cs_id=0; cs_id<nrmCS.size(); cs_id++)
 						{
-							mapNormalCS::TNode*	Ncs			= nrmCS[cs_id];
-							RCache.set_Constants			(Ncs->key);
+							mapNormalCS::value_type*	Ncs			= nrmCS[cs_id];
+							RCache.set_Constants			(Ncs->first);
 
-							mapNormalStates&	states		= Ncs->val;		states.ssa	= 0;
-							states.getANY_P					(nrmStates);
-							std::sort						(nrmStates.begin(), nrmStates.end(), cmp_states_nrm);
+							mapNormalStates&	states		= Ncs->second;		states.ssa	= 0;
+							states.get_any_p					(nrmStates);
+							std::sort						(nrmStates.begin(), nrmStates.end(), cmp_second_ssa<mapNormalStates::value_type*>);
 							for (u32 state_id=0; state_id<nrmStates.size(); state_id++)
 							{
-								mapNormalStates::TNode*	Nstate		= nrmStates[state_id];
-								RCache.set_States					(Nstate->key);
+								mapNormalStates::value_type*	Nstate		= nrmStates[state_id];
+								RCache.set_States					(Nstate->first);
 
-								mapNormalTextures&		tex			= Nstate->val;	tex.ssa =	0;
-								sort_tlist_nrm						(nrmTextures,nrmTexturesTemp,tex,true);
-								for (u32 tex_id=0; tex_id<nrmTextures.size(); tex_id++)
+								mapNormalTextures&		tex			= Nstate->second;	tex.ssa =	0;
+								sort_tlist<mapNormalTextures>(nrmTextures,nrmTexturesTemp,tex);
+								/*for (u32 tex_id=0; tex_id<nrmTextures.size(); tex_id++)
 								{
-									mapNormalTextures::TNode*	Ntex	= nrmTextures[tex_id];
-									RCache.set_Textures					(Ntex->key);
+									mapNormalTextures::value_type*	Ntex	= nrmTextures[tex_id];
+									RCache.set_Textures					(Ntex->first);
 									RImplementation.apply_lmaterial		();
 
-									mapNormalItems&				items	= Ntex->val;		items.ssa	= 0;
+									mapNormalItems&				items	= Ntex->second;		items.ssa	= 0;
 									mapNormal_Render					(items);
 									if (_clear)				items.clear	();
+								}*/
+								for (auto& tex_it : nrmTextures)
+								{
+									RCache.set_Textures(tex_it->first);
+									RImplementation.apply_lmaterial();
+
+									mapNormalItems& items = tex_it->second;
+									items.ssa = 0;
+
+									std::sort(items.begin(), items.end(), cmp_ssa<_NormalItem>);
+									for (auto& it_it : items)
+									{
+										float LOD = calcLOD(it_it.ssa, it_it.pVisual->vis.sphere.R);
+#ifdef USE_DX11
+										RCache.LOD.set_LOD(LOD);
+#endif
+										//--#SM+#-- Обновляем шейдерные данные модели [update shader values for this model]
+										//RCache.hemi.c_update(it_it.pVisual);
+
+										it_it.pVisual->Render(LOD);
+									}
+									items.clear();
 								}
 								nrmTextures.clear		();
 								nrmTexturesTemp.clear	();
@@ -370,70 +480,109 @@ void R_dsgraph_structure::r_dsgraph_render_graph	(u32	_priority, bool _clear)
 	{
 		//mapMatrixVS&	vs				= mapMatrix	[_priority];
 		mapMatrixVS&	vs				= mapMatrixPasses[_priority][iPass];
-		vs.getANY_P						(matVS);
-		std::sort						(matVS.begin(), matVS.end(), cmp_vs_mat);
+		vs.get_any_p						(matVS);
+		std::sort						(matVS.begin(), matVS.end(), cmp_second_ssa<mapMatrixVS::value_type*>);
 		for (u32 vs_id=0; vs_id<matVS.size(); vs_id++)	{
-			mapMatrixVS::TNode*	Nvs			= matVS[vs_id];
-			RCache.set_VS					(Nvs->key);	
+			mapMatrixVS::value_type*	Nvs			= matVS[vs_id];
+			RCache.set_VS					(Nvs->first);	
 
 #if defined(USE_DX10) || defined(USE_DX11)
-			mapMatrixGS&		gs			= Nvs->val;		gs.ssa	= 0;
+			mapMatrixGS&		gs			= Nvs->second;		gs.ssa	= 0;
 
-			gs.getANY_P						(matGS);
-			std::sort						(matGS.begin(), matGS.end(), cmp_gs_mat);
+			gs.get_any_p						(matGS);
+			std::sort						(matGS.begin(), matGS.end(), cmp_second_ssa<mapMatrixGS::value_type*>);
 			for (u32 gs_id=0; gs_id<matGS.size(); gs_id++)
 			{
-				mapMatrixGS::TNode*	Ngs			= matGS[gs_id];
-				RCache.set_GS					(Ngs->key);	
+				mapMatrixGS::value_type*	Ngs			= matGS[gs_id];
+				RCache.set_GS					(Ngs->first);	
 
-				mapMatrixPS&		ps			= Ngs->val;		ps.ssa	= 0;
+				mapMatrixPS&		ps			= Ngs->second;		ps.ssa	= 0;
 #else	//	USE_DX10
-				mapMatrixPS&		ps			= Nvs->val;		ps.ssa	= 0;
+				mapMatrixPS&		ps			= Nvs->second;		ps.ssa	= 0;
 #endif	//	USE_DX10
 
-				ps.getANY_P						(matPS);
-				std::sort						(matPS.begin(), matPS.end(), cmp_ps_mat);
+				ps.get_any_p						(matPS);
+				std::sort						(matPS.begin(), matPS.end(), cmp_ps_second_ssa<mapMatrixPS::value_type*>);
 				for (u32 ps_id=0; ps_id<matPS.size(); ps_id++)
 				{
-					mapMatrixPS::TNode*	Nps			= matPS[ps_id];
-					RCache.set_PS					(Nps->key);	
+					mapMatrixPS::value_type*	Nps			= matPS[ps_id];
+					RCache.set_PS					(Nps->first);	
 
 #ifdef USE_DX11
-					mapMatrixCS&		cs			= Nps->val.mapCS;		cs.ssa	= 0;
-					RCache.set_HS(Nps->val.hs);
-					RCache.set_DS(Nps->val.ds);
+					mapMatrixCS&		cs			= Nps->second.mapCS;		cs.ssa	= 0;
+					RCache.set_HS(Nps->second.hs);
+					RCache.set_DS(Nps->second.ds);
 #else
-					mapMatrixCS&		cs			= Nps->val;		cs.ssa	= 0;
+					mapMatrixCS&		cs			= Nps->second;		cs.ssa	= 0;
 #endif
-					cs.getANY_P						(matCS);
-					std::sort						(matCS.begin(), matCS.end(), cmp_cs_mat);
+					cs.get_any_p						(matCS);
+					std::sort						(matCS.begin(), matCS.end(), cmp_second_ssa<mapMatrixCS::value_type*>);
 					for (u32 cs_id=0; cs_id<matCS.size(); cs_id++)
 					{
-						mapMatrixCS::TNode*	Ncs			= matCS[cs_id];
-						RCache.set_Constants			(Ncs->key);
+						mapMatrixCS::value_type*	Ncs			= matCS[cs_id];
+						RCache.set_Constants			(Ncs->first);
 
-						mapMatrixStates&	states		= Ncs->val;		states.ssa	= 0;
-						states.getANY_P					(matStates);
-						std::sort						(matStates.begin(), matStates.end(), cmp_states_mat);
+						mapMatrixStates&	states		= Ncs->second;		states.ssa	= 0;
+						states.get_any_p					(matStates);
+						/*std::sort						(matStates.begin(), matStates.end(), cmp_states_mat);
 						for (u32 state_id=0; state_id<matStates.size(); state_id++)
 						{
-							mapMatrixStates::TNode*	Nstate		= matStates[state_id];
-							RCache.set_States					(Nstate->key);
+							mapMatrixStates::value_type*	Nstate		= matStates[state_id];
+							RCache.set_States					(Nstate->first);
 
-							mapMatrixTextures&		tex			= Nstate->val;	tex.ssa =	0;
+							mapMatrixTextures&		tex			= Nstate->second;	tex.ssa =	0;
 							sort_tlist_mat						(matTextures,matTexturesTemp,tex,true);
 							for (u32 tex_id=0; tex_id<matTextures.size(); tex_id++)
 							{
-								mapMatrixTextures::TNode*	Ntex	= matTextures[tex_id];
-								RCache.set_Textures					(Ntex->key);
+								mapMatrixTextures::value_type*	Ntex	= matTextures[tex_id];
+								RCache.set_Textures					(Ntex->first);
 								RImplementation.apply_lmaterial		();
 
-								mapMatrixItems&				items	= Ntex->val;		items.ssa	= 0;
+								mapMatrixItems&				items	= Ntex->second;		items.ssa	= 0;
 								mapMatrix_Render					(items);
 							}
 							matTextures.clear		();
 							matTexturesTemp.clear	();
 							if(_clear) tex.clear	();
+						}*/
+						std::sort(matStates.begin(), matStates.end(), cmp_second_ssa<mapMatrixStates::value_type*>);
+						for (auto& state_it : matStates)
+						{
+							RCache.set_States(state_it->first);
+
+							mapMatrixTextures& tex = state_it->second;
+							tex.ssa = 0;
+
+							sort_tlist<mapMatrixTextures>(matTextures, matTexturesTemp, tex);
+							for (auto& tex_it : matTextures)
+							{
+								RCache.set_Textures(tex_it->first);
+								RImplementation.apply_lmaterial();
+
+								mapMatrixItems& items = tex_it->second;
+								items.ssa = 0;
+
+								std::sort(items.begin(), items.end(), cmp_ssa<_MatrixItem>);
+								for (auto& ni_it : items)
+								{
+									RCache.set_xform_world(ni_it.Matrix);
+									RImplementation.apply_object(ni_it.pObject);
+									RImplementation.apply_lmaterial();
+
+									float LOD = calcLOD(ni_it.ssa, ni_it.pVisual->vis.sphere.R);
+#ifdef USE_DX11
+									RCache.LOD.set_LOD(LOD);
+#endif
+									//--#SM+#-- Обновляем шейдерные данные модели [update shader values for this model]
+									//RCache.hemi.c_update(ni_it.pVisual);
+
+									ni_it.pVisual->Render(LOD);
+								}
+								items.clear();
+							}
+							matTexturesTemp.clear();
+							matTextures.clear();
+							tex.clear();
 						}
 						matStates.clear			();
 						if(_clear) states.clear	();
@@ -477,8 +626,7 @@ void R_dsgraph_structure::r_dsgraph_render_hud	()
 
 	// Rendering
 	rmNear						();
-	mapHUD.traverseLR			(sorted_L1);
-	mapHUD.clear				();
+	sort_front_to_back_render_and_clean(mapHUD);
 
 #if	RENDER==R_R1
 	if (g_hud && g_hud->RenderActiveItemUIQuery())
@@ -574,8 +722,7 @@ void R_dsgraph_structure::r_dsgraph_render_hud_ui()
 void	R_dsgraph_structure::r_dsgraph_render_sorted	()
 {
 	// Sorted (back to front)
-	mapSorted.traverseRL	(sorted_L1);
-	mapSorted.clear			();
+	sort_back_to_front_render_and_clean(mapSorted);
 }
 
 //////////////////////////////////////////////////////////////////////////
@@ -584,8 +731,7 @@ void	R_dsgraph_structure::r_dsgraph_render_emissive	()
 {
 #if	RENDER!=R_R1
 	// Sorted (back to front)
-	mapEmissive.traverseLR	(sorted_L1);
-	mapEmissive.clear		();
+	sort_front_to_back_render_and_clean(mapEmissive);
 
 	//	HACK: Calculate this only once
 
@@ -605,8 +751,7 @@ void	R_dsgraph_structure::r_dsgraph_render_emissive	()
 	// Rendering
 	rmNear						();
 	// Sorted (back to front)
-	mapHUDEmissive.traverseLR	(sorted_L1);
-	mapHUDEmissive.clear		();
+	sort_front_to_back_render_and_clean(mapEmissive);
 
 	rmNormal					();
 
@@ -623,8 +768,8 @@ void	R_dsgraph_structure::r_dsgraph_render_wmarks	()
 {
 #if	RENDER!=R_R1
 	// Sorted (back to front)
-	mapWmark.traverseLR	(sorted_L1);
-	mapWmark.clear		();
+	sort_front_to_back_render_and_clean(mapWmark);
+
 #endif
 }
 
@@ -633,8 +778,7 @@ void	R_dsgraph_structure::r_dsgraph_render_wmarks	()
 void	R_dsgraph_structure::r_dsgraph_render_distort	()
 {
 	// Sorted (back to front)
-	mapDistort.traverseRL	(sorted_L1);
-	mapDistort.clear		();
+	sort_back_to_front_render_and_clean(mapDistort);
 }
 
 //////////////////////////////////////////////////////////////////////////

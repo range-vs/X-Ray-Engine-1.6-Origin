@@ -9,11 +9,11 @@
 
 #include <string>
 //---------------------------------------------------------------------------
-USEFORM("BottomBar.cpp", fraBottomBar); /* TFrame: File Type */
 USEFORM("KeyBar.cpp", frmKeyBar);
 USEFORM("LeftBar.cpp", fraLeftBar); /* TFrame: File Type */
-USEFORM("BonePart.cpp", frmBonePart);
 USEFORM("main.cpp", frmMain);
+USEFORM("BottomBar.cpp", fraBottomBar); /* TFrame: File Type */
+USEFORM("BonePart.cpp", frmBonePart);
 USEFORM("Splash.cpp", frmSplash);
 USEFORM("TopBar.cpp", fraTopBar); /* TFrame: File Type */
 //---------------------------------------------------------------------------

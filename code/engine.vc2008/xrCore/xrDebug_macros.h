@@ -1,3 +1,4 @@
+#include "xrDebug.h"
 #ifndef xrDebug_macrosH
 #define xrDebug_macrosH
 #pragma once
@@ -19,7 +20,6 @@
 #else
 	#define _TRE(arg)	arg
 #endif
-
 
 #	define CHECK_OR_EXIT(expr,message)	do {if (!(expr)) ::Debug.do_exit(message);} while (0)
 

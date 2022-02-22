@@ -180,7 +180,8 @@ namespace ETOOLS{
 		xr_delete			(M);
 	}
 	ETOOLS_API CDB::RESULT*	 __stdcall r_begin	()	{	return XRC.r_begin();		};
-	ETOOLS_API CDB::RESULT*	 __stdcall r_end	()	{	return XRC.r_end();			};
+	ETOOLS_API xr_vector<CDB::RESULT>*	 __stdcall r_get	()	{	return XRC.r_get();		};
+	//ETOOLS_API CDB::RESULT*	 __stdcall r_end	()	{	return XRC.r_end();			};
 	ETOOLS_API int	 __stdcall r_count			()	{	return XRC.r_count();		};
 	ETOOLS_API void  __stdcall ray_options	(u32 flags)
 	{

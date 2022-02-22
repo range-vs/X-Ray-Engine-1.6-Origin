@@ -1,10 +1,9 @@
 #if !defined(BOOST_PP_IS_ITERATING)
 
-// Copyright David Abrahams 2002. Permission to copy, use,
-// modify, sell and distribute this software is granted provided this
-// copyright notice appears in all copies. This software is provided
-// "as is" without express or implied warranty, and with no claim as
-// to its suitability for any purpose.
+// Copyright David Abrahams 2002.
+// Distributed under the Boost Software License, Version 1.0. (See
+// accompanying file LICENSE_1_0.txt or copy at
+// http://www.boost.org/LICENSE_1_0.txt)
 
 # ifndef RESULT_DWA2002521_HPP
 #  define RESULT_DWA2002521_HPP
@@ -12,8 +11,8 @@
 #  include <boost/type.hpp>
 
 #  include <boost/python/detail/preprocessor.hpp>
+#  include <boost/python/detail/type_traits.hpp>
 
-#  include <boost/type_traits/object_traits.hpp>
 #  include <boost/mpl/if.hpp>
 
 #  include <boost/preprocessor/comma_if.hpp>
@@ -44,9 +43,7 @@ namespace boost { namespace python { namespace detail {
 template <class R, class T>
 boost::type<R>* result(R (T::*), int = 0) { return 0; }
 
-#  if (defined(BOOST_MSVC) && _MSC_FULL_VER <= 13102140)  \
-   || (defined(__GNUC__) && __GNUC__ < 3)                 \
-   || (defined(__MWERKS__) && __MWERKS__ < 0x3000)
+#  if (defined(__MWERKS__) && __MWERKS__ < 0x3000)
 // This code actually works on all implementations, but why use it when we don't have to?
 template <class T>
 struct get_result_type
@@ -87,13 +84,19 @@ result(X const&, short = 0) { return 0; }
 # endif // RESULT_DWA2002521_HPP
 
 /* --------------- function pointers --------------- */
-#elif BOOST_PP_ITERATION_DEPTH() == 1 && BOOST_PP_ITERATION_FLAGS() == BOOST_PYTHON_FUNCTION_POINTER
-# line BOOST_PP_LINE(__LINE__, result.hpp(function pointers))
+// For gcc 4.4 compatability, we must include the
+// BOOST_PP_ITERATION_DEPTH test inside an #else clause.
+#else // BOOST_PP_IS_ITERATING
+#if BOOST_PP_ITERATION_DEPTH() == 1 && BOOST_PP_ITERATION_FLAGS() == BOOST_PYTHON_FUNCTION_POINTER
+# if !(BOOST_WORKAROUND(__MWERKS__, > 0x3100)                      \
+        && BOOST_WORKAROUND(__MWERKS__, BOOST_TESTED_AT(0x3201)))
+#  line BOOST_PP_LINE(__LINE__, result.hpp(function pointers))
+# endif
 
 # define N BOOST_PP_ITERATION()
 
 template <class R BOOST_PP_ENUM_TRAILING_PARAMS_Z(1, N, class A)>
-boost::type<R>* result(R (*pf)(BOOST_PP_ENUM_PARAMS_Z(1, N, A)), int = 0)
+boost::type<R>* result(R (*)(BOOST_PP_ENUM_PARAMS_Z(1, N, A)), int = 0)
 {
     return 0;
 }
@@ -108,14 +111,17 @@ boost::type<R>* result(R (*pf)(BOOST_PP_ENUM_PARAMS_Z(1, N, A)), int = 0)
 # include BOOST_PP_ITERATE()
 
 #elif BOOST_PP_ITERATION_DEPTH() == 2
-# line BOOST_PP_LINE(__LINE__, result.hpp(pointers-to-members))
+# if !(BOOST_WORKAROUND(__MWERKS__, > 0x3100)                      \
+        && BOOST_WORKAROUND(__MWERKS__, BOOST_TESTED_AT(0x3201)))
+#  line BOOST_PP_LINE(__LINE__, result.hpp(pointers-to-members))
+# endif 
 // Inner over arities
 
 # define N BOOST_PP_ITERATION()
 # define Q BOOST_PYTHON_CV_QUALIFIER(BOOST_PP_RELATIVE_ITERATION(1))
 
 template <class R, class T BOOST_PP_ENUM_TRAILING_PARAMS_Z(1, N, class A)>
-boost::type<R>* result(R (T::*pmf)(BOOST_PP_ENUM_PARAMS_Z(1, N, A)) Q, int = 0)
+boost::type<R>* result(R (T::*)(BOOST_PP_ENUM_PARAMS_Z(1, N, A)) Q, int = 0)
 {
     return 0;
 }
@@ -123,4 +129,5 @@ boost::type<R>* result(R (T::*pmf)(BOOST_PP_ENUM_PARAMS_Z(1, N, A)) Q, int = 0)
 # undef N
 # undef Q
 
+#endif // BOOST_PP_ITERATION_DEPTH()
 #endif

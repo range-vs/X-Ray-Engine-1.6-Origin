@@ -1,88 +1,95 @@
-// Copyright (C) 2001-2003
-// William E. Kempf
-//
-// Permission to use, copy, modify, distribute and sell this software
-// and its documentation for any purpose is hereby granted without fee,
-// provided that the above copyright notice appear in all copies and
-// that both that copyright notice and this permission notice appear
-// in supporting documentation.  William E. Kempf makes no representations
-// about the suitability of this software for any purpose.
-// It is provided "as is" without express or implied warranty.
+#ifndef BOOST_THREAD_TSS_HPP
+#define BOOST_THREAD_TSS_HPP
+// Distributed under the Boost Software License, Version 1.0. (See
+// accompanying file LICENSE_1_0.txt or copy at
+// http://www.boost.org/LICENSE_1_0.txt)
+// (C) Copyright 2007-8 Anthony Williams
 
-#ifndef BOOST_TSS_WEK070601_HPP
-#define BOOST_TSS_WEK070601_HPP
-
-#include <boost/config.hpp>
-#ifndef BOOST_HAS_THREADS
-#   error   Thread support is unavailable!
-#endif
-
-#include <boost/utility.hpp>
 #include <boost/thread/detail/config.hpp>
 
-#if defined(BOOST_HAS_PTHREADS)
-#   include <pthread.h>
-#elif defined(BOOST_HAS_MPTASKS)
-#   include <Multiprocessing.h>
-#endif
+#include <boost/type_traits/add_reference.hpp>
 
-namespace boost {
+#include <boost/config/abi_prefix.hpp>
 
-namespace detail {
-class BOOST_THREAD_DECL tss : private noncopyable
+namespace boost
 {
-public:
-    tss(void (*cleanup)(void*)=0);
-    ~tss();
-
-    void* get() const;
-    bool set(void* value);
-
-private:
-#if defined(BOOST_HAS_WINTHREADS)
-    unsigned long m_key;
-    void (*m_cleanup)(void*);
-#elif defined(BOOST_HAS_PTHREADS)
-    pthread_key_t m_key;
-#elif defined(BOOST_HAS_MPTASKS)
-    TaskStorageIndex m_key;
-    void (*m_cleanup)(void*);
-#endif
-};
-
-#if defined(BOOST_HAS_MPTASKS)
-void thread_cleanup();
-#endif
-}
-
-template <typename T>
-class thread_specific_ptr : private noncopyable
-{
-public:
-    thread_specific_ptr() : m_tss(&thread_specific_ptr<T>::cleanup) { }
-
-    T* get() const { return static_cast<T*>(m_tss.get()); }
-    T* operator->() const { return get(); }
-    T& operator*() const { return *get(); }
-    T* release() { T* temp = get(); m_tss.set(0); return temp; }
-    void reset(T* p=0)
+    namespace detail
     {
-        T* cur = get();
-        if (cur == p) return;
-        delete cur;
-        m_tss.set(p);
+        namespace thread
+        {
+            typedef void(*cleanup_func_t)(void*);
+            typedef void(*cleanup_caller_t)(cleanup_func_t, void*);
+        }
+
+        BOOST_THREAD_DECL void set_tss_data(void const* key,detail::thread::cleanup_caller_t caller,detail::thread::cleanup_func_t func,void* tss_data,bool cleanup_existing);
+        BOOST_THREAD_DECL void* get_tss_data(void const* key);
     }
 
-private:
-    static void cleanup(void* p) { delete static_cast<T*>(p); }
+    template <typename T>
+    class thread_specific_ptr
+    {
+    private:
+        thread_specific_ptr(thread_specific_ptr&);
+        thread_specific_ptr& operator=(thread_specific_ptr&);
 
-    mutable detail::tss m_tss;
-};
+        typedef void(*original_cleanup_func_t)(T*);
 
-} // namespace boost
+        static void default_deleter(T* data)
+        {
+            delete data;
+        }
 
-// Change Log:
-//   6 Jun 01  WEKEMPF Initial version.
+        static void cleanup_caller(detail::thread::cleanup_func_t cleanup_function,void* data)
+        {
+            reinterpret_cast<original_cleanup_func_t>(cleanup_function)(static_cast<T*>(data));
+        }
 
-#endif // BOOST_TSS_WEK070601_HPP
 
+        detail::thread::cleanup_func_t cleanup;
+
+    public:
+        typedef T element_type;
+
+        thread_specific_ptr():
+            cleanup(reinterpret_cast<detail::thread::cleanup_func_t>(&default_deleter))
+        {}
+        explicit thread_specific_ptr(void (*func_)(T*))
+          : cleanup(reinterpret_cast<detail::thread::cleanup_func_t>(func_))
+        {}
+        ~thread_specific_ptr()
+        {
+            detail::set_tss_data(this,0,0,0,true);
+        }
+
+        T* get() const
+        {
+            return static_cast<T*>(detail::get_tss_data(this));
+        }
+        T* operator->() const
+        {
+            return get();
+        }
+        typename add_reference<T>::type operator*() const
+        {
+            return *get();
+        }
+        T* release()
+        {
+            T* const temp=get();
+            detail::set_tss_data(this,0,0,0,false);
+            return temp;
+        }
+        void reset(T* new_value=0)
+        {
+            T* const current_value=get();
+            if(current_value!=new_value)
+            {
+                detail::set_tss_data(this,&cleanup_caller,cleanup,new_value,true);
+            }
+        }
+    };
+}
+
+#include <boost/config/abi_suffix.hpp>
+
+#endif

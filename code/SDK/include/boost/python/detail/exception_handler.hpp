@@ -1,8 +1,7 @@
-// Copyright David Abrahams 2002. Permission to copy, use,
-// modify, sell and distribute this software is granted provided this
-// copyright notice appears in all copies. This software is provided
-// "as is" without express or implied warranty, and with no claim as
-// to its suitability for any purpose.
+// Copyright David Abrahams 2002.
+// Distributed under the Boost Software License, Version 1.0. (See
+// accompanying file LICENSE_1_0.txt or copy at
+// http://www.boost.org/LICENSE_1_0.txt)
 #ifndef EXCEPTION_HANDLER_DWA2002810_HPP
 # define EXCEPTION_HANDLER_DWA2002810_HPP
 
@@ -12,7 +11,7 @@
 
 namespace boost { namespace python { namespace detail {
 
-struct BOOST_PYTHON_DECL exception_handler;
+struct exception_handler;
 
 typedef function2<bool, exception_handler const&, function0<void> const&> handler_function;
 

@@ -11,6 +11,8 @@
 #include "ai_script_lua_extension.h"
 #include "ai_script_space.h"
 
+#include "../xrCore/lua_helper.h"
+
 #ifdef XRRENDER_R4_EXPORTS
 #define ENGINE_BUILD
 #endif	//	XRRENDER_R4_EXPORTS
@@ -234,9 +236,40 @@ void vfCopyGlobals(CLuaVirtualMachine *tpLuaVM)
 	}
 }
 
+bool Script::parse_namespace(pcstr caNamespaceName, pstr b, size_t b_size, pstr c, size_t c_size)
+{
+	*b = 0;
+	*c = 0;
+	pstr S2;
+	STRCONCAT(S2, caNamespaceName);
+	pstr S = S2;
+	for (int i = 0;; i++)
+	{
+		if (!xr_strlen(S))
+		{
+			FATAL("Lua Error : the namespace name %s is incorrect!", caNamespaceName);
+			return false;
+		}
+		pstr S1 = strchr(S, '.');
+		if (S1)
+			*S1 = 0;
+		if (i)
+			xr_strcat(b, b_size, "{");
+		xr_strcat(b, b_size, S);
+		xr_strcat(b, b_size, "=");
+		if (i)
+			xr_strcat(c, c_size, "}");
+		if (S1)
+			S = ++S1;
+		else
+			break;
+	}
+	return true;
+}
+
 bool Script::bfLoadBuffer(CLuaVirtualMachine *tpLuaVM, LPCSTR caBuffer, size_t tSize, LPCSTR caScriptName, LPCSTR caNameSpaceName)
 {
-	int				l_iErrorCode;
+	/*int				l_iErrorCode;
 	if (caNameSpaceName) {
 		string256		insert;
 		xr_sprintf		(insert,sizeof(insert),"local this = %s\n",caNameSpaceName);
@@ -257,7 +290,33 @@ bool Script::bfLoadBuffer(CLuaVirtualMachine *tpLuaVM, LPCSTR caBuffer, size_t t
 #endif
 		return			(false);
 	}
-	return			(true);
+	return			(true);*/
+
+	int l_iErrorCode;
+	if (caNameSpaceName && xr_strcmp("_G", caNameSpaceName))
+	{
+		string512 insert, a, b;
+		LPCSTR header = file_header;
+		if (!parse_namespace(caNameSpaceName, a, sizeof(a), b, sizeof(b)))
+			return false;
+		xr_sprintf(insert, header, caNameSpaceName, a, b);
+		const size_t str_len = xr_strlen(insert);
+		const size_t total_size = str_len + tSize;
+		ScriptBuffer::getInstance()->resize(total_size);
+		xr_strcpy(ScriptBuffer::getInstance()->scriptBuffer, total_size, insert);
+		CopyMemory(ScriptBuffer::getInstance()->scriptBuffer + str_len, caBuffer, tSize);
+		l_iErrorCode = luaL_loadbuffer(tpLuaVM, ScriptBuffer::getInstance()->scriptBuffer, tSize + str_len, caScriptName);
+	}
+	else
+		l_iErrorCode = luaL_loadbuffer(tpLuaVM, caBuffer, tSize, caScriptName);
+	if (l_iErrorCode) {
+#ifdef DEBUG
+		if (!bfPrintOutput(tpLuaVM, caScriptName, l_iErrorCode))
+			vfPrintError(tpLuaVM, l_iErrorCode);
+#endif
+		return false;
+	}
+	return true;
 }
 
 bool bfDoFile(CLuaVirtualMachine *tpLuaVM, LPCSTR caScriptName, LPCSTR caNameSpaceName, bool bCall)
@@ -432,7 +491,7 @@ luabind::object Script::lua_namespace_table(CLuaVirtualMachine *tpLuaVM, LPCSTR 
 	string256			S1;
 	xr_strcpy				(S1,namespace_name);
 	LPSTR				S = S1;
-	luabind::object		lua_namespace = luabind::get_globals(tpLuaVM);
+	luabind::object		lua_namespace = luabind::globals(tpLuaVM);
 	for (;;) {
 		if (!xr_strlen(S))
 			return		(lua_namespace);
@@ -444,3 +503,31 @@ luabind::object Script::lua_namespace_table(CLuaVirtualMachine *tpLuaVM, LPCSTR 
 		S				= I + 1;
 	}
 }
+
+//std::unique_ptr<ScriptBuffer> ScriptBuffer::instanse(nullptr);
+//
+//ScriptBuffer::~ScriptBuffer()
+//{
+//	if (scriptBuffer)
+//		xr_free(scriptBuffer);
+//}
+//
+//void ScriptBuffer::resize(size_t total_size)
+//{
+//	if (total_size >= scriptBufferSize)
+//	{
+//		scriptBufferSize = total_size;
+//		scriptBuffer = (char*)xr_realloc(scriptBuffer, scriptBufferSize);
+//	}
+//}
+//
+//std::unique_ptr<ScriptBuffer>& ScriptBuffer::getInstance()
+//{
+//	if (!instanse)
+//	{
+//		instanse.reset(new ScriptBuffer);
+//		instanse->scriptBufferSize = 1024 * 1024;
+//		instanse->scriptBuffer = xr_alloc<char>(instanse->scriptBufferSize);
+//	}
+//	return instanse;
+//}

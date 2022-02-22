@@ -1,17 +1,2 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<BorlandProject>
-	<Transactions>
-    <Transaction>1899.12.30 00:00:00.000.139,=E:\src_cop_x64\code\engine.vc2008\editors\dxut\DXUT.cpp</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.097,E:\src_cop_x64\code\engine.vc2008\editors\dxut\DXUT.cpp=</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.591,E:\src_cop_x64\code\engine.vc2008\editors\dxut\DXUTDevice11.cpp=</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.024,E:\src_cop_x64\code\engine.vc2008\editors\dxut\DXUTmisc.cpp=</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.183,=E:\src_cop_x64\code\engine.vc2008\editors\dxut\DXUTmisc.cpp</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.984,E:\src_cop_x64\code\engine.vc2008\editors\dxut\dxut.cbproj=E:\src_cop_x64\code\engine.vc2008\editors\dxut\dxerr.cbproj</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.398,=E:\src_cop_x64\code\engine.vc2008\editors\dxut\dxerr.cpp</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.689,=E:\src_cop_x64\code\engine.vc2008\editors\dxut\dxerr.cpp</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.131,C:\Users\admin_test\Documents\Embarcadero\Studio\Projects\Project1.cbproj=E:\src_cop_x64\code\engine.vc2008\editors\dxut\dxut.cbproj</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.160,=E:\src_cop_x64\code\engine.vc2008\editors\dxut\DXUTDevice11.cpp</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.816,E:\src_cop_x64\code\engine.vc2008\editors\dxerr\dxerr.cbproj=E:\src_cop_x64\code\engine.vc2008\editors\dxerr\dxerr_b.cbproj</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.908,E:\src_cop_x64\code\engine.vc2008\editors\dxut\dxerr.cpp=</Transaction>
-  </Transactions>
-</BorlandProject>
+<BorlandProject/>

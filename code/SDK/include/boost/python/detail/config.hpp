@@ -1,7 +1,7 @@
-//  (C) Copyright David Abrahams 2000. Permission to copy, use, modify, sell and
-//  distribute this software is granted provided this copyright notice appears
-//  in all copies. This software is provided "as is" without express or implied
-//  warranty, and with no claim as to its suitability for any purpose.
+//  (C) Copyright David Abrahams 2000.
+// Distributed under the Boost Software License, Version 1.0. (See
+// accompanying file LICENSE_1_0.txt or copy at
+// http://www.boost.org/LICENSE_1_0.txt)
 //
 //  The author gratefully acknowleges the support of Dragon Systems, Inc., in
 //  producing this work.
@@ -12,10 +12,8 @@
 #ifndef CONFIG_DWA052200_H_
 # define CONFIG_DWA052200_H_
 
-#if defined(__ALPHA) && defined(__osf__) && defined(__DECCXX_VER)
-# include <pyconfig.h>
-#endif
 # include <boost/config.hpp>
+# include <boost/detail/workaround.hpp>
 
 # ifdef BOOST_NO_OPERATORS_IN_NAMESPACE
    // A gcc bug forces some symbols into the global namespace
@@ -31,14 +29,11 @@
 # endif
 
 # if defined(BOOST_MSVC)
-#  if _MSC_VER <= 1200
-#   define BOOST_MSVC6_OR_EARLIER 1
-#  endif
 
-# pragma warning (disable : 4786) // disable truncated debug symbols
-# pragma warning (disable : 4251) // disable exported dll function
-# pragma warning (disable : 4800) //'int' : forcing value to bool 'true' or 'false'
-# pragma warning (disable : 4275) // non dll-interface class
+#  pragma warning (disable : 4786) // disable truncated debug symbols
+#  pragma warning (disable : 4251) // disable exported dll function
+#  pragma warning (disable : 4800) //'int' : forcing value to bool 'true' or 'false'
+#  pragma warning (disable : 4275) // non dll-interface class
 
 # elif defined(__ICL) && __ICL < 600 // Intel C++ 5
 
@@ -49,7 +44,7 @@
 // The STLport puts all of the standard 'C' library names in std (as far as the
 // user is concerned), but without it you need a fix if you're using MSVC or
 // Intel C++
-# if defined(BOOST_MSVC_STD_ITERATOR)
+# if defined(BOOST_NO_STDC_NAMESPACE)
 #  define BOOST_CSTD_
 # else
 #  define BOOST_CSTD_ std
@@ -68,47 +63,72 @@
 #  define BOOST_PYTHON_DYNAMIC_LIB
 #endif
 
-#if defined(__MWERKS__) \
-  || (defined(__DECCXX_VER) && __DECCXX_VER <= 60590002) \
-  || (defined(__sgi) && defined(_COMPILER_VERSION) && _COMPILER_VERSION <= 730)
-# define BOOST_PYTHON_NO_TEMPLATE_EXPORT
-#endif
-
-#if defined(BOOST_PYTHON_DYNAMIC_LIB) && defined(_WIN32)
-#  if defined(BOOST_PYTHON_SOURCE)
-#     define BOOST_PYTHON_DECL __declspec(dllexport)
-#     define BOOST_PYTHON_BUILD_DLL
-#  else
-#     define BOOST_PYTHON_DECL __declspec(dllimport)
+#if defined(BOOST_PYTHON_DYNAMIC_LIB)
+#  if defined(BOOST_SYMBOL_EXPORT)
+#     if defined(BOOST_PYTHON_SOURCE)
+#        define BOOST_PYTHON_DECL           BOOST_SYMBOL_EXPORT
+#        define BOOST_PYTHON_DECL_FORWARD   BOOST_SYMBOL_FORWARD_EXPORT
+#        define BOOST_PYTHON_DECL_EXCEPTION BOOST_EXCEPTION_EXPORT
+#        define BOOST_PYTHON_BUILD_DLL
+#     else
+#        define BOOST_PYTHON_DECL           BOOST_SYMBOL_IMPORT
+#        define BOOST_PYTHON_DECL_FORWARD   BOOST_SYMBOL_FORWARD_IMPORT
+#        define BOOST_PYTHON_DECL_EXCEPTION BOOST_EXCEPTION_IMPORT
+#     endif
 #  endif
-
-// MinGW, at least, has some problems exporting template instantiations
-#  if defined(__GNUC__) && __GNUC__ < 3 && !defined(__CYGWIN__)
-#   define BOOST_PYTHON_NO_TEMPLATE_EXPORT
-#  endif
-
 #endif
 
 #ifndef BOOST_PYTHON_DECL
 #  define BOOST_PYTHON_DECL
 #endif
 
-#ifndef BOOST_PYTHON_EXPORT
-# define BOOST_PYTHON_EXPORT extern
-#endif 
-
-#if !defined(BOOST_PYTHON_NO_TEMPLATE_EXPORT)
-# define BOOST_PYTHON_EXPORT_CLASS_TEMPLATE(instantiation) BOOST_PYTHON_EXPORT template class BOOST_PYTHON_DECL instantiation
-#else
-# define BOOST_PYTHON_EXPORT_CLASS_TEMPLATE(instantiation) struct ThIsTyPeNeVeRuSeD
+#ifndef BOOST_PYTHON_DECL_FORWARD
+#  define BOOST_PYTHON_DECL_FORWARD
 #endif
 
-#if (defined(__DECCXX_VER) && __DECCXX_VER <= 60590031)
+#ifndef BOOST_PYTHON_DECL_EXCEPTION
+#  define BOOST_PYTHON_DECL_EXCEPTION
+#endif
+
+#if BOOST_WORKAROUND(__DECCXX_VER, BOOST_TESTED_AT(60590042))
 // Replace broken Tru64/cxx offsetof macro
 # define BOOST_PYTHON_OFFSETOF(s_name, s_member) \
         ((size_t)__INTADDR__(&(((s_name *)0)->s_member)))
 #else
 # define BOOST_PYTHON_OFFSETOF offsetof
+#endif
+
+//  enable automatic library variant selection  ------------------------------// 
+
+#if !defined(BOOST_PYTHON_SOURCE) && !defined(BOOST_ALL_NO_LIB) && !defined(BOOST_PYTHON_NO_LIB)
+//
+// Set the name of our library, this will get undef'ed by auto_link.hpp
+// once it's done with it:
+//
+#define _BOOST_PYTHON_CONCAT(N, M, m) N ## M ## m
+#define BOOST_PYTHON_CONCAT(N, M, m) _BOOST_PYTHON_CONCAT(N, M, m)
+#define BOOST_LIB_NAME BOOST_PYTHON_CONCAT(boost_python, PY_MAJOR_VERSION, PY_MINOR_VERSION)
+//
+// If we're importing code from a dll, then tell auto_link.hpp about it:
+//
+#ifdef BOOST_PYTHON_DYNAMIC_LIB
+#  define BOOST_DYN_LINK
+#endif
+//
+// And include the header that does the work:
+//
+#include <boost/config/auto_link.hpp>
+#endif  // auto-linking disabled
+
+#undef BOOST_PYTHON_CONCAT
+#undef _BOOST_PYTHON_CONCAT
+
+#ifndef BOOST_PYTHON_NO_PY_SIGNATURES
+#define BOOST_PYTHON_SUPPORTS_PY_SIGNATURES // enables smooth transition
+#endif
+
+#if !defined(BOOST_ATTRIBUTE_UNUSED) && defined(__GNUC__) && (__GNUC__ >= 4)
+#  define BOOST_ATTRIBUTE_UNUSED __attribute__((unused))
 #endif
 
 #endif // CONFIG_DWA052200_H_

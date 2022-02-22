@@ -1,30 +1,35 @@
-//-----------------------------------------------------------------------------
-// boost mpl/list/aux_/include_preprocessed.hpp header file
-// See http://www.boost.org for updates, documentation, and revision history.
-//-----------------------------------------------------------------------------
+
+// Copyright Aleksey Gurtovoy 2001-2006
 //
-// Copyright (c) 2001-02
-// Aleksey Gurtovoy
+// Distributed under the Boost Software License, Version 1.0. 
+// (See accompanying file LICENSE_1_0.txt or copy at 
+// http://www.boost.org/LICENSE_1_0.txt)
 //
-// Permission to use, copy, modify, distribute and sell this software
-// and its documentation for any purpose is hereby granted without fee, 
-// provided that the above copyright notice appears in all copies and 
-// that both the copyright notice and this permission notice appear in 
-// supporting documentation. No representations are made about the 
-// suitability of this software for any purpose. It is provided "as is" 
-// without express or implied warranty.
+// See http://www.boost.org/libs/mpl for documentation.
 
-// no include guards, the header is intended for multiple inclusion!
+// $Id$
+// $Date$
+// $Revision$
 
-#include "boost/preprocessor/cat.hpp"
-#include "boost/preprocessor/stringize.hpp"
+// NO INCLUDE GUARDS, THE HEADER IS INTENDED FOR MULTIPLE INCLUSION!
 
-#   define AUX_PREPROCESSED_HEADER \
+#include <boost/mpl/aux_/config/workaround.hpp>
+
+#include <boost/preprocessor/cat.hpp>
+#include <boost/preprocessor/stringize.hpp>
+
+#   define AUX778076_HEADER \
     aux_/preprocessed/plain/BOOST_MPL_PREPROCESSED_HEADER \
 /**/
 
-#   include BOOST_PP_STRINGIZE(boost/mpl/list/AUX_PREPROCESSED_HEADER)
+#if BOOST_WORKAROUND(__IBMCPP__, BOOST_TESTED_AT(700))
+#   define AUX778076_INCLUDE_STRING BOOST_PP_STRINGIZE(boost/mpl/list/AUX778076_HEADER)
+#   include AUX778076_INCLUDE_STRING
+#   undef AUX778076_INCLUDE_STRING
+#else
+#   include BOOST_PP_STRINGIZE(boost/mpl/list/AUX778076_HEADER)
+#endif
 
-#   undef AUX_PREPROCESSED_HEADER
+#   undef AUX778076_HEADER
 
 #undef BOOST_MPL_PREPROCESSED_HEADER

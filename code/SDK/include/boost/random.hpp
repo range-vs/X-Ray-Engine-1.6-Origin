@@ -1,18 +1,13 @@
 /* boost random.hpp header file
  *
  * Copyright Jens Maurer 2000-2001
- * Permission to use, copy, modify, sell, and distribute this software
- * is hereby granted without fee provided that the above copyright notice
- * appears in all copies and that both that copyright notice and this
- * permission notice appear in supporting documentation,
- *
- * Jens Maurer makes no representations about the suitability of this
- * software for any purpose. It is provided "as is" without express or
- * implied warranty.
+ * Distributed under the Boost Software License, Version 1.0. (See
+ * accompanying file LICENSE_1_0.txt or copy at
+ * http://www.boost.org/LICENSE_1_0.txt)
  *
  * See http://www.boost.org/libs/random for documentation.
  *
- * $Id: random.hpp,v 1.17 2002/12/27 16:51:53 beman_dawes Exp $
+ * $Id$
  *
  * Revision history
  *  2000-02-18  portability fixes (thanks to Beman Dawes)
@@ -38,40 +33,59 @@
 #define BOOST_RANDOM_HPP
 
 // generators
-#include <boost/random/linear_congruential.hpp>
 #include <boost/random/additive_combine.hpp>
+#include <boost/random/discard_block.hpp>
+#include <boost/random/independent_bits.hpp>
 #include <boost/random/inversive_congruential.hpp>
-#include <boost/random/shuffle_output.hpp>
-#include <boost/random/mersenne_twister.hpp>
 #include <boost/random/lagged_fibonacci.hpp>
-#include <boost/random/ranlux.hpp>
+#include <boost/random/linear_congruential.hpp>
 #include <boost/random/linear_feedback_shift.hpp>
+#include <boost/random/mersenne_twister.hpp>
+#include <boost/random/ranlux.hpp>
+#include <boost/random/shuffle_order.hpp>
+#include <boost/random/shuffle_output.hpp>
+#include <boost/random/subtract_with_carry.hpp>
+#include <boost/random/taus88.hpp>
 #include <boost/random/xor_combine.hpp>
 
-namespace boost {
-  typedef random::xor_combine<random::xor_combine<random::linear_feedback_shift<uint32_t, 32, 31, 13, 12, 0>, 0,
-    random::linear_feedback_shift<uint32_t, 32, 29, 2, 4, 0>, 0, 0>, 0,
-                      random::linear_feedback_shift<uint32_t, 32, 28, 3, 17, 0>, 0, 0> taus88;
-} // namespace  boost
-
 // misc
+#include <boost/random/generate_canonical.hpp>
+#include <boost/random/seed_seq.hpp>
 #include <boost/random/random_number_generator.hpp>
+#include <boost/random/variate_generator.hpp>
 
 // distributions
-#include <boost/random/uniform_smallint.hpp>
-#include <boost/random/uniform_int.hpp>
-#include <boost/random/uniform_01.hpp>
-#include <boost/random/uniform_real.hpp>
-#include <boost/random/triangle_distribution.hpp>
 #include <boost/random/bernoulli_distribution.hpp>
-#include <boost/random/cauchy_distribution.hpp>
-#include <boost/random/exponential_distribution.hpp>
-#include <boost/random/geometric_distribution.hpp>
-#include <boost/random/normal_distribution.hpp>
-#include <boost/random/lognormal_distribution.hpp>
-#include <boost/random/poisson_distribution.hpp>
-#include <boost/random/gamma_distribution.hpp>
+#include <boost/random/beta_distribution.hpp>
 #include <boost/random/binomial_distribution.hpp>
+#include <boost/random/cauchy_distribution.hpp>
+#include <boost/random/chi_squared_distribution.hpp>
+#include <boost/random/discrete_distribution.hpp>
+#include <boost/random/exponential_distribution.hpp>
+#include <boost/random/extreme_value_distribution.hpp>
+#include <boost/random/fisher_f_distribution.hpp>
+#include <boost/random/gamma_distribution.hpp>
+#include <boost/random/geometric_distribution.hpp>
+#include <boost/random/hyperexponential_distribution.hpp>
+#include <boost/random/laplace_distribution.hpp>
+#include <boost/random/lognormal_distribution.hpp>
+#include <boost/random/negative_binomial_distribution.hpp>
+#include <boost/random/non_central_chi_squared_distribution.hpp>
+#include <boost/random/normal_distribution.hpp>
+#include <boost/random/piecewise_constant_distribution.hpp>
+#include <boost/random/piecewise_linear_distribution.hpp>
+#include <boost/random/poisson_distribution.hpp>
+#include <boost/random/student_t_distribution.hpp>
+#include <boost/random/triangle_distribution.hpp>
+#include <boost/random/uniform_01.hpp>
+#include <boost/random/uniform_int.hpp>
+#include <boost/random/uniform_int_distribution.hpp>
 #include <boost/random/uniform_on_sphere.hpp>
+#include <boost/random/uniform_real.hpp>
+#include <boost/random/uniform_real_distribution.hpp>
+#include <boost/random/uniform_smallint.hpp>
+#include <boost/random/weibull_distribution.hpp>
+
+#include <boost/random/generate_canonical.hpp>
 
 #endif // BOOST_RANDOM_HPP

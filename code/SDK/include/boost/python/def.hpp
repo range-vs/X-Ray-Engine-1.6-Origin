@@ -1,10 +1,11 @@
-// Copyright David Abrahams 2002. Permission to copy, use,
-// modify, sell and distribute this software is granted provided this
-// copyright notice appears in all copies. This software is provided
-// "as is" without express or implied warranty, and with no claim as
-// to its suitability for any purpose.
+// Copyright David Abrahams 2002.
+// Distributed under the Boost Software License, Version 1.0. (See
+// accompanying file LICENSE_1_0.txt or copy at
+// http://www.boost.org/LICENSE_1_0.txt)
 #ifndef DEF_DWA200292_HPP
 # define DEF_DWA200292_HPP
+
+# include <boost/python/detail/prefix.hpp>
 
 # include <boost/python/object_fwd.hpp>
 # include <boost/python/make_function.hpp>
@@ -36,7 +37,7 @@ namespace detail
       // Must not try to use default implementations except with method definitions.
       typedef typename error::multiple_functions_passed_to_def<
           Helper::has_default_implementation
-          >::type assertion;
+          >::type assertion BOOST_ATTRIBUTE_UNUSED;
       
       detail::scope_setattr_doc(
           name, boost::python::make_function(

@@ -25,21 +25,20 @@ public:
 		if		(fcvNone==F->testAABB(BB.data(),fmask))	return;
 
 		// test items
-		xr_vector<ISpatial*>::iterator _it	=	N->items.begin	();
-		xr_vector<ISpatial*>::iterator _end	=	N->items.end	();
-		for (; _it!=_end; _it++)
-		{
-			ISpatial*		S	= *_it;
-			if (0==(S->spatial.type&mask))	continue;
+        for (auto& it : N->items)
+        {
+            ISpatial* S = it;
+            if (0 == (S->spatial.type & mask))
+                continue;
 
-			Fvector&		sC		= S->spatial.sphere.P;
-			float			sR		= S->spatial.sphere.R;
-			u32				tmask	= fmask;
-			if (fcvNone==F->testSphere(sC,sR,tmask))	continue;
+            Fvector& sC = S->spatial.sphere.P;
+            float sR = S->spatial.sphere.R;
+            u32 tmask = fmask;
+            if (fcvNone == F->testSphere(sC, sR, tmask))
+                continue;
 
-			space->q_result->push_back	(S);
-		}
-
+            space->q_result->push_back(S);
+        }
 		// recurse
 		float	c_R		= n_R/2;
 		for (u32 octant=0; octant<8; octant++)
@@ -55,7 +54,7 @@ void	ISpatial_DB::q_frustum		(xr_vector<ISpatial*>& R, u32 _o, u32 _mask, const 
 {
 	cs.Enter			();
 	q_result			= &R;
-	q_result->clear_not_free();
+	q_result->clear();
 	walker				W(this,_mask,&_frustum); W.walk(m_root,m_center,m_bounds,_frustum.getMask()); 
 	cs.Leave			();
 }

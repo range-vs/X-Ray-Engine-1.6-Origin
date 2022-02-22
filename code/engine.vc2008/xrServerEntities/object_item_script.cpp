@@ -15,54 +15,44 @@
 
 ObjectFactory::CLIENT_BASE_CLASS *CObjectItemScript::client_object	() const
 {
-	ObjectFactory::CLIENT_SCRIPT_BASE_CLASS	*object;
-	try {
-		object	= luabind::object_cast<ObjectFactory::CLIENT_SCRIPT_BASE_CLASS*>(m_client_creator(),luabind::adopt(luabind::result));
+	ObjectFactory::CLIENT_SCRIPT_BASE_CLASS* object = nullptr;
+	try
+	{
+		object = m_client_creator();
 	}
-	catch(...) {
-		return	(0);
+	catch (...)
+	{
+		return (0);
 	}
-	R_ASSERT	(object);
-	return		(object->_construct());
+	R_ASSERT(object);
+	return (object->_construct());
 }
 
 #endif
 
 ObjectFactory::SERVER_BASE_CLASS *CObjectItemScript::server_object	(LPCSTR section) const
 {
-	typedef ObjectFactory::SERVER_SCRIPT_BASE_CLASS		SERVER_SCRIPT_BASE_CLASS;
-	typedef ObjectFactory::SERVER_BASE_CLASS			SERVER_BASE_CLASS;
-	SERVER_SCRIPT_BASE_CLASS	*object;
+	ObjectFactory::SERVER_BASE_CLASS* object = nullptr;
 
-	try {
-		luabind::object	*instance = 0;
-		try {
-			instance	= xr_new<luabind::object>((luabind::object)(m_server_creator(section)));
-		}
-		catch(std::exception e) {
-			Msg			("Exception [%s] raised while creating server object from section [%s]", e.what(),section);
-			return		(0);
-		}
-		catch(...) {
-			Msg			("Exception raised while creating server object from section [%s]",section);
-			return		(0);
-		}
-		object			= luabind::object_cast<ObjectFactory::SERVER_SCRIPT_BASE_CLASS*>(*instance,luabind::adopt(luabind::result));
-		xr_delete		(instance);
+	try
+	{
+		object = m_server_creator(section);
 	}
-	catch(std::exception e) {
-		Msg				("Exception [%s] raised while casting and adopting script server object from section [%s]", e.what(),section);
-		return			(0);
+	catch (const std::exception& e)
+	{
+		Msg("Exception [%s] raised while creating server object from section [%s]", e.what(), section);
+		return (nullptr);
 	}
-	catch(...) {
-		Msg				("Exception raised while creating script server object from section [%s]", section);
-		return			(0);
+	catch (...)
+	{
+		Msg("Exception raised while creating server object from section [%s]", section);
+		return (nullptr);
 	}
 
-	R_ASSERT			(object);
-	SERVER_BASE_CLASS	*o = object->init();
-	R_ASSERT			(o);
-	return				(o);
+	R_ASSERT(object);
+	object = object->init();
+	R_ASSERT(object);
+	return (object);
 }
 
 CObjectItemScript::CObjectItemScript	(

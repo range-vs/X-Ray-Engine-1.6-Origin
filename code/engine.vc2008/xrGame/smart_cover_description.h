@@ -23,7 +23,7 @@ namespace transitions {
 }
 
 class description : 
-	private debug::make_final<description>, 
+	//private debug::make_final<description>, 
 	private boost::noncopyable, 
 	public  detail::intrusive_base_time
 {

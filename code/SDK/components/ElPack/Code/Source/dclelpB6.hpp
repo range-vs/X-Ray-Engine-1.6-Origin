@@ -145,7 +145,7 @@
 #include <ToolWnds.hpp>	// (designide)
 #include <ColnEdit.hpp>	// (designide)
 // PRG_EXT: .bpl
-// BPI_DIR: ..\..\..\..\..\bins\Win32\Release
+// BPI_DIR: c:\program files (x86)\embarcadero\studio\21.0\bin
 // OBJ_DIR: ..\..\..\..\..\libraries\Win32\Release
 // OBJ_EXT: .obj
 

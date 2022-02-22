@@ -1,33 +1,25 @@
-//  (C) Copyright Gennadiy Rozental 2001-2002.
-//  Permission to copy, use, modify, sell and distribute this software
-//  is granted provided this copyright notice appears in all copies.
-//  This software is provided "as is" without express or implied warranty,
-//  and with no claim as to its suitability for any purpose.
+//  (C) Copyright Gennadiy Rozental 2001.
+//  Distributed under the Boost Software License, Version 1.0.
+//  (See accompanying file LICENSE_1_0.txt or copy at
+//  http://www.boost.org/LICENSE_1_0.txt)
 
-//  See http://www.boost.org for most recent version including documentation.
+//  See http://www.boost.org/libs/test for the library home page.
 //
-//  File        : $RCSfile: prg_exec_monitor.hpp,v $
+//  File        : $RCSfile$
 //
-//  Version     : $Id: prg_exec_monitor.hpp,v 1.1 2002/08/26 09:09:00 rogeeff Exp $
+//  Version     : $Revision$
 //
 //  Description : included (vs. linked ) version of Program Execution Monitor
 // ***************************************************************************
 
-#ifndef BOOST_INCLUDED_PRG_EXEC_MONITOR_HPP
-#define BOOST_INCLUDED_PRG_EXEC_MONITOR_HPP
+#ifndef BOOST_INCLUDED_PRG_EXEC_MONITOR_HPP_071894GER
+#define BOOST_INCLUDED_PRG_EXEC_MONITOR_HPP_071894GER
 
-#include <libs/test/src/execution_monitor.cpp>
+#include <boost/test/impl/execution_monitor.ipp>
+#include <boost/test/impl/debug.ipp>
+#include <boost/test/impl/cpp_main.ipp>
 
-#include <libs/test/src/cpp_main.cpp>
+#define BOOST_TEST_INCLUDED
+#include <boost/test/prg_exec_monitor.hpp>
 
-// ***************************************************************************
-//  Revision History :
-//  
-//  $Log: prg_exec_monitor.hpp,v $
-//  Revision 1.1  2002/08/26 09:09:00  rogeeff
-//  Initial commit
-//
-
-// ***************************************************************************
-
-#endif // BOOST_INCLUDED_PRG_EXEC_MONITOR_HPP
+#endif // BOOST_INCLUDED_PRG_EXEC_MONITOR_HPP_071894GER

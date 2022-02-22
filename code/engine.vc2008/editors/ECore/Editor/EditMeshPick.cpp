@@ -190,8 +190,10 @@ bool CEditableMesh::BoxPick(const Fbox& box, const Fmatrix& inv_parent, SBoxPick
     if (ETOOLS::r_count()){
     	pinf.push_back(SBoxPickInfo());
 		pinf.back().e_obj 	= m_Parent;
-	    pinf.back().e_mesh	= this;
-	    for (CDB::RESULT* I=ETOOLS::r_begin(); I!=ETOOLS::r_end(); I++) pinf.back().AddRESULT(m_CFModel,I);
+		pinf.back().e_mesh	= this;
+		for (auto& I : *ETOOLS::r_get())
+		//for (CDB::RESULT* I=ETOOLS::r_begin(); I!=ETOOLS::r_end(); I++)
+			pinf.back().AddRESULT(m_CFModel,&I);
         return true;
     }
     return false;

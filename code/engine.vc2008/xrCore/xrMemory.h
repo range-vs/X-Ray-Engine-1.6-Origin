@@ -1,152 +1,366 @@
-#ifndef xrMemoryH
-#define xrMemoryH
 #pragma once
 
-#include <psapi.h>
-#ifndef _EDITOR
-#pragma comment(lib, "psapi.lib")
-#endif
+#include "_types.h"
 
-#include "memory_monitor.h"
-
-#ifdef USE_MEMORY_MONITOR
-#	define DEBUG_MEMORY_NAME
-#endif // USE_MEMORY_MONITOR
-
-#ifndef M_BORLAND
-#	if 0//def DEBUG
-#		define DEBUG_MEMORY_MANAGER
-#	endif // DEBUG
-#endif // M_BORLAND
-
-#ifdef DEBUG_MEMORY_MANAGER
-	XRCORE_API	extern BOOL	g_bMEMO;
-#	ifndef DEBUG_MEMORY_NAME
-#		define DEBUG_MEMORY_NAME
-#	endif // DEBUG_MEMORY_NAME
-	extern XRCORE_API	void dump_phase	();
-#	define DUMP_PHASE	do {dump_phase();} while (0)
-#else // DEBUG_MEMORY_MANAGER
-#	define DUMP_PHASE	do {} while (0)
-#endif // DEBUG_MEMORY_MANAGER
+#include <new>
 
 #include "xrMemory_pso.h"
-#include "xrMemory_POOL.h"
 
-class XRCORE_API		xrMemory
-{
+#ifndef __BORLANDC__
+
+class XRCORE_API xrMemory {
 public:
-	struct				mdbg {
-		void*			_p;
-		size_t 			_size;
-		const char*		_name;
-		u32				_dummy;
-	};
-public:
-	xrMemory			();
-	void				_initialize		(BOOL _debug_mode=FALSE);
-	void				_destroy		();
+	xrMemory();
+	void _initialize();
+	void _destroy();
 
-#ifdef DEBUG_MEMORY_MANAGER
-	BOOL				debug_mode;
-	xrCriticalSection	debug_cs;
-	std::vector<mdbg>	debug_info;
-	u32					debug_info_update;
-	u32					stat_strcmp		;
-	u32					stat_strdock	;
-#endif // DEBUG_MEMORY_MANAGER
+	u32 stat_calls;
 
-	u32					stat_calls;
-	s32					stat_counter;
-public:
-	void				dbg_register	(void* _p,	size_t _size, const char* _name);
-	void				dbg_unregister	(void* _p);
-	void				dbg_check		();
+	size_t mem_usage();
+	void mem_compact();
 
-	u32					mem_usage		(u32* pBlocksUsed=NULL, u32* pBlocksFree=NULL);
-	void				mem_compact		();
-	void				mem_counter_set	(u32 _val)	{ stat_counter = _val;	}
-	u32					mem_counter_get	()			{ return stat_counter;	}
+	void* mem_alloc(size_t size, const char* name = nullptr);
+	void* mem_alloc(size_t size, size_t alignment, const char* name = nullptr);
+	void* mem_alloc(size_t size, const std::nothrow_t&, const char* name =
+		nullptr) noexcept;
+	void* mem_alloc(size_t size, size_t alignment, const std::nothrow_t&,
+		const char* name = nullptr) noexcept;
+	void* mem_realloc(void* ptr, size_t size, const char* name = nullptr);
+	void* mem_realloc(void* ptr, size_t size, size_t alignment,
+		const char* name = nullptr);
+	void mem_free(void* ptr);
+	void mem_free(void* ptr, size_t alignment);
 
-#ifdef DEBUG_MEMORY_NAME
-	void				mem_statistic	(LPCSTR fn);
-	void*				mem_alloc		(size_t	size				, const char* _name);
-	void*				mem_realloc		(void*	p, size_t size		, const char* _name);
-#else // DEBUG_MEMORY_NAME
-	void*				mem_alloc		(size_t	size				);
-	void*				mem_realloc		(void*	p, size_t size		);
-#endif // DEBUG_MEMORY_NAME
-	void				mem_free		(void*	p					);
-
-	pso_MemCopy*		mem_copy;
-	pso_MemFill*		mem_fill;
-	pso_MemFill32*		mem_fill32;
+	pso_MemCopy* mem_copy;
+	pso_MemFill* mem_fill;
+	pso_MemFill32* mem_fill32;
 };
 
-extern XRCORE_API	xrMemory	Memory;
+extern XRCORE_API xrMemory Memory;
 
-#undef	ZeroMemory
-#undef	CopyMemory
-#undef	FillMemory
-#define ZeroMemory(a,b)		Memory.mem_fill(a,0,b)
-#define CopyMemory(a,b,c)	memcpy(a,b,c)			//. CopyMemory(a,b,c)
-#define FillMemory(a,b,c)	Memory.mem_fill(a,c,b)
+// Global C++ new/delete overrides.
+[[nodiscard]]
 
-// delete
-#ifdef __BORLANDC__
-	#include "xrMemory_subst_borland.h"
-#else
-	#include "xrMemory_subst_msvc.h"
-#endif
+inline void* operator new(size_t size) {
+	return Memory.mem_alloc(size);
+}
 
-// generic "C"-like allocations/deallocations
+[[nodiscard]]
+
+inline void* operator new(size_t size, const std::nothrow_t&) noexcept {
+	return Memory.mem_alloc(size);
+}
+
+inline void operator delete(void* ptr) noexcept {
+	Memory.mem_free(ptr);
+}
+
+inline void operator delete(void* ptr, size_t) noexcept {
+	Memory.mem_free(ptr);
+}
+
 #ifdef DEBUG_MEMORY_NAME
-	#include <typeinfo>
+// new(0)
+#include "../editors/Include/stack_trace.h"
 
-	template <class T>
-	IC T*		xr_alloc	(u32 count)				{	return  (T*)Memory.mem_alloc(count*sizeof(T),typeid(T).name());	}
-	template <class T>
-	IC void		xr_free		(T* &P)					{	if (P) { Memory.mem_free((void*)P); P=NULL;	};	}
-	IC void*	xr_malloc	(size_t size)			{	return	Memory.mem_alloc(size,"xr_malloc");				}
-	IC void*	xr_realloc	(void* P, size_t size)	{	return Memory.mem_realloc(P,size,"xr_realloc");			}
+template<class T>
+IC T* xr_new() {
+	T* ptr = (T*)Memory.mem_alloc(sizeof(T), typeid(T).name());
+	return new(ptr) T();
+}
+
+// new(1)
+template<class T, class P1>
+IC T* xr_new(const P1& p1) {
+	T* ptr = (T*)Memory.mem_alloc(sizeof(T), typeid(T).name());
+	return new(ptr) T(p1);
+}
+
+// new(2)
+template<class T, class P1, class P2>
+IC T* xr_new(const P1& p1, const P2& p2) {
+	T* ptr = (T*)Memory.mem_alloc(sizeof(T), typeid(T).name());
+	return new(ptr) T(p1, p2);
+}
+
+// new(3)
+template<class T, class P1, class P2, class P3>
+IC T* xr_new(const P1& p1, const P2& p2, const P3& p3) {
+	T* ptr = (T*)Memory.mem_alloc(sizeof(T), typeid(T).name());
+	return new(ptr) T(p1, p2, p3);
+}
+
+// new(4)
+template<class T, class P1, class P2, class P3, class P4>
+IC T* xr_new(const P1& p1, const P2& p2, const P3& p3, const P4& p4) {
+	T* ptr = (T*)Memory.mem_alloc(sizeof(T), typeid(T).name());
+	return new(ptr) T(p1, p2, p3, p4);
+}
+
+// new(5)
+template<class T, class P1, class P2, class P3, class P4, class P5>
+IC T* xr_new(const P1& p1, const P2& p2, const P3& p3, const P4& p4,
+	const P5& p5) {
+	T* ptr = (T*)Memory.mem_alloc(sizeof(T), typeid(T).name());
+	return new(ptr) T(p1, p2, p3, p4, p5);
+}
+
+// new(6)
+template<class T, class P1, class P2, class P3, class P4, class P5, class P6>
+IC T* xr_new(const P1& p1, const P2& p2, const P3& p3, const P4& p4,
+	const P5& p5, const P6& p6) {
+	T* ptr = (T*)Memory.mem_alloc(sizeof(T), typeid(T).name());
+	return new(ptr) T(p1, p2, p3, p4, p5, p6);
+}
+
+// new(7)
+template<class T, class P1, class P2, class P3, class P4, class P5, class P6,
+	class P7>
+IC T* xr_new(const P1& p1, const P2& p2, const P3& p3, const P4& p4,
+	const P5& p5, const P6& p6, const P7& p7) {
+	T* ptr = (T*)Memory.mem_alloc(sizeof(T), typeid(T).name());
+	return new(ptr) T(p1, p2, p3, p4, p5, p6, p7);
+}
+
+// new(8)
+template<class T, class P1, class P2, class P3, class P4, class P5, class P6,
+	class P7, class P8>
+IC T* xr_new(const P1& p1, const P2& p2, const P3& p3, const P4& p4,
+	const P5& p5, const P6& p6, const P7& p7, const P8& p8) {
+	T* ptr = (T*)Memory.mem_alloc(sizeof(T), typeid(T).name());
+	return new(ptr) T(p1, p2, p3, p4, p5, p6, p7, p8);
+}
+
+// new(9)
+template<class T, class P1, class P2, class P3, class P4, class P5, class P6,
+	class P7, class P8, class P9>
+IC T* xr_new(const P1& p1, const P2& p2, const P3& p3, const P4& p4,
+	const P5& p5, const P6& p6, const P7& p7, const P8& p8, const P8& p9) {
+	T* ptr = (T*)Memory.mem_alloc(sizeof(T), typeid(T).name());
+	return new(ptr) T(p1, p2, p3, p4, p5, p6, p7, p8, p9);
+}
 #else // DEBUG_MEMORY_NAME
-	template <class T>
-	IC T*		xr_alloc	(u32 count)				{	return  (T*)Memory.mem_alloc(count*sizeof(T));	}
-	template <class T>
-	IC void		xr_free		(T* &P)					{	if (P) { Memory.mem_free((void*)P); P=NULL;	};	}
-	IC void*	xr_malloc	(size_t size)			{	return	Memory.mem_alloc(size);					}
-	IC void*	xr_realloc	(void* P, size_t size)	{	return Memory.mem_realloc(P,size);				}
+
+// new(0)
+template<class T>
+IC T* xr_new() {
+	T* ptr = (T*)Memory.mem_alloc(sizeof(T));
+	return new(ptr) T();
+}
+
+// new(1)
+template<class T, class P1>
+IC T* xr_new(const P1& p1) {
+	T* ptr = (T*)Memory.mem_alloc(sizeof(T));
+	return new(ptr) T(p1);
+}
+
+// new(2)
+template<class T, class P1, class P2>
+IC T* xr_new(const P1& p1, const P2& p2) {
+	T* ptr = (T*)Memory.mem_alloc(sizeof(T));
+	return new(ptr) T(p1, p2);
+}
+
+// new(3)
+template<class T, class P1, class P2, class P3>
+IC T* xr_new(const P1& p1, const P2& p2, const P3& p3) {
+	T* ptr = (T*)Memory.mem_alloc(sizeof(T));
+	return new(ptr) T(p1, p2, p3);
+}
+
+// new(4)
+template<class T, class P1, class P2, class P3, class P4>
+IC T* xr_new(const P1& p1, const P2& p2, const P3& p3, const P4& p4) {
+	T* ptr = (T*)Memory.mem_alloc(sizeof(T));
+	return new(ptr) T(p1, p2, p3, p4);
+}
+
+// new(5)
+template<class T, class P1, class P2, class P3, class P4, class P5>
+IC T* xr_new(const P1& p1, const P2& p2, const P3& p3, const P4& p4,
+	const P5& p5) {
+	T* ptr = (T*)Memory.mem_alloc(sizeof(T));
+	return new(ptr) T(p1, p2, p3, p4, p5);
+}
+
+// new(6)
+template<class T, class P1, class P2, class P3, class P4, class P5, class P6>
+IC T* xr_new(const P1& p1, const P2& p2, const P3& p3, const P4& p4,
+	const P5& p5, const P6& p6) {
+	T* ptr = (T*)Memory.mem_alloc(sizeof(T));
+	return new(ptr) T(p1, p2, p3, p4, p5, p6);
+}
+
+// new(7)
+template<class T, class P1, class P2, class P3, class P4, class P5, class P6,
+	class P7>
+IC T* xr_new(const P1& p1, const P2& p2, const P3& p3, const P4& p4,
+	const P5& p5, const P6& p6, const P7& p7) {
+	T* ptr = (T*)Memory.mem_alloc(sizeof(T));
+	return new(ptr) T(p1, p2, p3, p4, p5, p6, p7);
+}
+
+// new(8)
+template<class T, class P1, class P2, class P3, class P4, class P5, class P6,
+	class P7, class P8>
+IC T* xr_new(const P1& p1, const P2& p2, const P3& p3, const P4& p4,
+	const P5& p5, const P6& p6, const P7& p7, const P8& p8) {
+	T* ptr = (T*)Memory.mem_alloc(sizeof(T));
+	return new(ptr) T(p1, p2, p3, p4, p5, p6, p7, p8);
+}
+
+// new(9)
+template<class T, class P1, class P2, class P3, class P4, class P5, class P6,
+	class P7, class P8, class P9>
+IC T* xr_new(const P1& p1, const P2& p2, const P3& p3, const P4& p4,
+	const P5& p5, const P6& p6, const P7& p7, const P8& p8, const P8& p9) {
+	T* ptr = (T*)Memory.mem_alloc(sizeof(T));
+	return new(ptr) T(p1, p2, p3, p4, p5, p6, p7, p8, p9);
+}
 #endif // DEBUG_MEMORY_NAME
 
-XRCORE_API	char* 	xr_strdup	(const char* string);
+template<bool _is_pm, typename T>
+struct xr_special_free {
+	IC void operator()(T*& ptr) {
+		void* _real_ptr = dynamic_cast<void*>(ptr);
+		ptr->~T();
+		Memory.mem_free(_real_ptr);
+	}
 
-#ifdef DEBUG_MEMORY_NAME
-// Global new/delete override
-#	if !(defined(__BORLANDC__) || defined(NO_XRNEW))
-	IC void*	operator new		(size_t size)		{	return Memory.mem_alloc(size?size:1, "C++ NEW");	}
-	IC void		operator delete		(void *p)			{	xr_free(p);											}
-	IC void*	operator new[]		(size_t size)		{	return Memory.mem_alloc(size?size:1, "C++ NEW");	}
-	IC void		operator delete[]	(void* p)			{	xr_free(p);											}
-#	endif
-#else // DEBUG_MEMORY_NAME
-#	if !(defined(__BORLANDC__) || defined(NO_XRNEW))
-	IC void*	operator new		(size_t size)		{	return Memory.mem_alloc(size?size:1);				}
-	IC void		operator delete		(void *p)			{	xr_free(p);											}
-	IC void*	operator new[]		(size_t size)		{	return Memory.mem_alloc(size?size:1);				}
-	IC void		operator delete[]	(void* p)			{	xr_free(p);											}
-#	endif
-#endif // DEBUG_MEMORY_MANAGER
+};
+
+template<typename T>
+struct xr_special_free<false, T> {
+	IC void operator()(T*& ptr) {
+		ptr->~T();
+		Memory.mem_free(ptr);
+	}
+};
+
+template<class T>
+IC void xr_delete(T*& ptr) {
+	if (ptr) {
+		xr_special_free<std::is_polymorphic<T>::value, T>()(ptr);
+		ptr = NULL;
+	}
+}
+
+template<class T>
+IC void xr_delete(T* const & ptr) {
+	if (ptr) {
+		xr_special_free<std::is_polymorphic<T>::value, T>(ptr);
+		const_cast<T*&>(ptr) = NULL;
+	}
+}
+
+#else
+
+class XRCORE_API xrMemory {
+public:
+	xrMemory();
+	void _initialize();
+	void _destroy();
+
+	size_t mem_usage();
+	void mem_compact();
+
+	void* mem_alloc(size_t size, const char* name = nullptr);
+	void* mem_realloc(void* ptr, size_t size, const char* name = nullptr);
+	void mem_free(void* ptr);
+
+	pso_MemCopy* mem_copy;
+	pso_MemFill* mem_fill;
+	pso_MemFill32* mem_fill32;
+};
+
+extern XRCORE_API xrMemory Memory;
+
+template <class T>
+IC	T*		xr_new		()
+{
+	return new T();
+}
+// new(1)
+template <class T, class P1>
+IC	T*		xr_new		(P1 p1) {
+	return new T(p1);
+}
+// new(2)
+template <class T, class P1, class P2>
+IC	T*		xr_new		(P1 p1, P2 p2)
+{
+	return new T(p1,p2);
+}
+// new(3)
+template <class T, class P1, class P2, class P3>
+IC	T*		xr_new		(P1 p1, P2 p2, P3 p3) {
+	return new T(p1,p2,p3);
+}
+// new(4)
+template <class T, class P1, class P2, class P3, class P4>
+IC	T*		xr_new		(P1 p1, P2 p2, P3 p3, P4 p4) {
+	return new T(p1,p2,p3,p4);
+}
+// new(5)
+template <class T, class P1, class P2, class P3, class P4, class P5>
+IC	T*		xr_new		(P1 p1, P2 p2, P3 p3, P4 p4, P5 p5) {
+	return new T(p1,p2,p3,p4,p5);
+}
+// new(6)
+template <class T, class P1, class P2, class P3, class P4, class P5, class P6>
+IC	T*		xr_new		(P1 p1, P2 p2, P3 p3, P4 p4, P5 p5, P6 p6) {
+	return new T(p1,p2,p3,p4,p5,p6);
+}
+// new(7)
+template <class T, class P1, class P2, class P3, class P4, class P5, class P6, class P7>
+IC	T*		xr_new		(P1 p1, P2 p2, P3 p3, P4 p4, P5 p5, P6 p6, P7 p7) {
+	return new T(p1,p2,p3,p4,p5,p6,p7);
+}
+
+//	#define xr_delete(ptr) if (ptr){delete ptr; ptr=0;}
+template <class T>
+IC	void	xr_delete	(T* &ptr)
+{
+	if (ptr)
+	{
+		delete ptr;
+		const_cast<T*&>(ptr) = NULL;
+	}
+}
+
+#endif
+
+#undef ZeroMemory
+#undef CopyMemory
+#undef FillMemory
+#define ZeroMemory(dst, size) memset(dst, 0, size)
+#define CopyMemory(dst, src, size) memcpy(dst, src, size)
+#define FillMemory(dst, size, val) memset(dst, val, size)
 
 
-// POOL-ing
-const		u32			mem_pools_count			=	54;
-const		u32			mem_pools_ebase			=	16;
-const		u32			mem_generic				=	mem_pools_count+1;
-extern		MEMPOOL		mem_pools				[mem_pools_count];
-extern		BOOL		mem_initialized;
+// generic "C"-like allocations/deallocations
+template<class T>
+inline T* xr_alloc(size_t count) {
+	return (T*)Memory.mem_alloc(count * sizeof(T));
+}
 
-XRCORE_API void vminfo			(size_t *_free, size_t *reserved, size_t *committed);
-XRCORE_API void log_vminfo		();
-XRCORE_API u32	mem_usage_impl	(HANDLE heap_handle, u32* pBlocksUsed, u32* pBlocksFree);
+template<class T>
+inline void xr_free(T*& ptr) noexcept {
+	if (ptr) {
+		Memory.mem_free((void*)ptr);
+		ptr = nullptr;
+	}
+}
 
-#endif // xrMemoryH
+inline void* xr_malloc(size_t size) {
+	return Memory.mem_alloc(size);
+}
+
+inline void* xr_realloc(void* ptr, size_t size) {
+	return Memory.mem_realloc(ptr, size);
+}
+
+XRCORE_API pstr xr_strdup(pcstr string);
+
+XRCORE_API void log_vminfo();

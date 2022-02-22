@@ -1,36 +1,31 @@
 // tuple_comparison.hpp -----------------------------------------------------
-//  
-// Copyright (C) 2001 Jaakko Järvi (jaakko.jarvi@cs.utu.fi)
+//
+// Copyright (C) 2001 Jaakko Jarvi (jaakko.jarvi@cs.utu.fi)
 // Copyright (C) 2001 Gary Powell (gary.powell@sierra.com)
 //
-// Permission to copy, use, sell and distribute this software is granted
-// provided this copyright notice appears in all copies. 
-// Permission to modify the code and to distribute modified code is granted
-// provided this copyright notice appears in all copies, and a notice 
-// that the code was modified is included with the copyright notice.
-// 
-// This software is provided "as is" without express or implied warranty, 
-// and with no claim as to its suitability for any purpose.
-// 
+// Distributed under the Boost Software License, Version 1.0. (See
+// accompanying file LICENSE_1_0.txt or copy at
+// http://www.boost.org/LICENSE_1_0.txt)
+//
 // For more information, see http://www.boost.org
-// 
+//
 // (The idea and first impl. of comparison operators was from Doug Gregor)
 
-// ----------------------------------------------------------------- 
+// -----------------------------------------------------------------
 
 #ifndef BOOST_TUPLE_COMPARISON_HPP
 #define BOOST_TUPLE_COMPARISON_HPP
 
-#include "boost/tuple/tuple.hpp"
+#include <boost/tuple/tuple.hpp>
 
 // -------------------------------------------------------------
-// equality and comparison operators 
+// equality and comparison operators
 //
 // == and != compare tuples elementwise
 // <, >, <= and >= use lexicographical ordering
 //
 // Any operator between tuples of different length fails at compile time
-// No dependencies between operators are assumed 
+// No dependencies between operators are assumed
 // (i.e. !(a<b)  does not imply a>=b, a!=b does not imply a==b etc.
 // so any weirdnesses of elementary operators are respected).
 //
@@ -51,7 +46,7 @@ inline bool operator>(const null_type&, const null_type&) { return false; }
 namespace detail {
   // comparison operators check statically the length of its operands and
   // delegate the comparing task to the following functions. Hence
-  // the static check is only made once (should help the compiler).  
+  // the static check is only made once (should help the compiler).
   // These functions assume tuples to be of the same length.
 
 
@@ -74,8 +69,8 @@ inline bool neq<null_type,null_type>(const null_type&, const null_type&) { retur
 template<class T1, class T2>
 inline bool lt(const T1& lhs, const T2& rhs) {
   return lhs.get_head() < rhs.get_head()  ||
-            !(rhs.get_head() < lhs.get_head()) &&
-            lt(lhs.get_tail(), rhs.get_tail());
+          ( !(rhs.get_head() < lhs.get_head()) &&
+            lt(lhs.get_tail(), rhs.get_tail()));
 }
 template<>
 inline bool lt<null_type,null_type>(const null_type&, const null_type&) { return false; }
@@ -83,8 +78,8 @@ inline bool lt<null_type,null_type>(const null_type&, const null_type&) { return
 template<class T1, class T2>
 inline bool gt(const T1& lhs, const T2& rhs) {
   return lhs.get_head() > rhs.get_head()  ||
-            !(rhs.get_head() > lhs.get_head()) &&
-            gt(lhs.get_tail(), rhs.get_tail());
+          ( !(rhs.get_head() > lhs.get_head()) &&
+            gt(lhs.get_tail(), rhs.get_tail()));
 }
 template<>
 inline bool gt<null_type,null_type>(const null_type&, const null_type&) { return false; }

@@ -6,6 +6,14 @@
 #include		"../../xrEngine/bone.h"
 #include		"../../Include/xrRender/Kinematics.h"
 
+#ifdef _EDITOR
+#include "d3d9/d3d9.h"
+#include "d3d9/d3dx9mesh.h"
+#include "d3d9/d3dx9shader.h"
+#include "d3d9/d3d9types.h"
+#include "FVF.h"
+#endif
+
 // consts
 extern	xrCriticalSection	UCalc_Mutex			;
 
@@ -204,7 +212,11 @@ public:
 	u16						_BCL	LL_GetBoneRoot		()					{	return iRoot;													}
 	void							LL_SetBoneRoot		(u16 bone_id)		{	VERIFY(bone_id<LL_BoneCount());	iRoot=bone_id;					}
 
-    BOOL					_BCL	LL_GetBoneVisible	(u16 bone_id)		{	VERIFY(bone_id<LL_BoneCount()); return visimask.is(u64(1)<<bone_id);	}
+	BOOL					_BCL	LL_GetBoneVisible(u16 bone_id)
+	{ 
+		VERIFY(bone_id < LL_BoneCount()); 
+		return visimask.is(u64(1) << bone_id);
+	}
 	void							LL_SetBoneVisible	(u16 bone_id, BOOL val, BOOL bRecursive);
 	u64						_BCL	LL_GetBonesVisible	()					{	return visimask.get();	}
 	void							LL_SetBonesVisible	(u64 mask);

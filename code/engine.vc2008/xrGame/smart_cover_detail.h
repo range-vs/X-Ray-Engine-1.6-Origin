@@ -11,6 +11,8 @@
 #include "restriction_space.h"
 #include "script_space_forward.h"
 
+#include <luabind/luabind.hpp>
+
 namespace smart_cover {
 
 	namespace detail {

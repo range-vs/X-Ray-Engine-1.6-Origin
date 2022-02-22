@@ -11,7 +11,7 @@
 #include <boost/noncopyable.hpp>
 #include "smart_cover_detail.h"
 #include "script_space_forward.h"
-#include "associative_vector.h"
+#include "Associative_Vector.h"
 #include "graph_abstract.h"
 #include "smart_cover_action.h"
 
@@ -20,7 +20,7 @@ namespace smart_cover {
 class object;
 
 class loophole : 
-	private debug::make_final<loophole>, 
+	//private debug::make_final<loophole>, 
 	private boost::noncopyable 
 {
 private:
@@ -33,7 +33,7 @@ private:
 		}
 };
 public:
-	typedef associative_vector<shared_str, action*, action_predicate>	ActionList;
+	typedef AssociativeVector<shared_str, action*, action_predicate>	ActionList;
 	typedef xr_vector<shared_str>										TransitionData;
 	typedef smart_cover::action::Animations								Animations;
 	typedef CGraphAbstract<

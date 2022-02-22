@@ -15,7 +15,7 @@ using namespace luabind;
 #pragma optimize("s",on)
 void CActionPlannerAction<CScriptGameObject>::script_register(lua_State *L)
 {
-	module(L)
+	/*module(L)
 	[
 		class_<CScriptActionPlannerAction,CScriptActionPlannerActionWrapper,bases<CScriptActionPlanner,CScriptActionBase> >("planner_action")
 			.def(								constructor<>())
@@ -29,5 +29,23 @@ void CActionPlannerAction<CScriptGameObject>::script_register(lua_State *L)
 			.def("show",						&CScriptActionPlannerAction::show)
 #endif
 			.def("weight",						&CScriptActionPlannerAction::weight,		&CScriptActionPlannerActionWrapper::weight_static)
-	];
+	];*/
+    module(L)[class_<CScriptActionPlannerAction, bases<CScriptActionPlanner, CScriptActionBase>, default_holder,
+        CScriptActionPlannerActionWrapper>("planner_action")
+        .def(constructor<>())
+        .def(constructor<CScriptGameObject*>())
+        .def(constructor<CScriptGameObject*, LPCSTR>())
+        .def("setup", &CScriptActionPlannerAction::setup,
+            &CScriptActionPlannerActionWrapper::setup_static)
+        .def("initialize", &CScriptActionPlannerAction::initialize,
+            &CScriptActionPlannerActionWrapper::initialize_static)
+        .def("execute", &CScriptActionPlannerAction::execute,
+            &CScriptActionPlannerActionWrapper::execute_static)
+        .def("finalize", &CScriptActionPlannerAction::finalize,
+            &CScriptActionPlannerActionWrapper::finalize_static)
+#ifdef LOG_ACTION
+        .def("show", &CScriptActionPlannerAction::show)
+#endif
+        .def("weight", &CScriptActionPlannerAction::weight,
+            &CScriptActionPlannerActionWrapper::weight_static)];
 }

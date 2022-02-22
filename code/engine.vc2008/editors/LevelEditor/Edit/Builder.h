@@ -155,7 +155,9 @@ public:
 	BOOL 	MakeSOM					();
     BOOL	MakeAIMap				();
 
-    void	OnRender				();
+	void	OnRender				();
+
+    void testSave();
 };
 
 extern SceneBuilder Builder;

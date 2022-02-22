@@ -1,10 +1,9 @@
 ///////////////////////////////////////////////////////////////////////////////
 //
-// Copyright David Abrahams 2002, Joel de Guzman, 2002. Permission to copy,
-// use, modify, sell and distribute this software is granted provided this
-// copyright notice appears in all copies. This software is provided "as is"
-// without express or implied warranty, and with no claim as to its
-// suitability for any purpose.
+// Copyright David Abrahams 2002, Joel de Guzman, 2002.
+// Distributed under the Boost Software License, Version 1.0. (See
+// accompanying file LICENSE_1_0.txt or copy at
+// http://www.boost.org/LICENSE_1_0.txt)
 //
 ///////////////////////////////////////////////////////////////////////////////
 #ifndef DEFAULTS_GEN_JDG20020807_HPP
@@ -26,7 +25,8 @@
 #include <boost/config.hpp>
 #include <boost/mpl/begin_end.hpp>
 #include <boost/mpl/next.hpp>
-#include <boost/mpl/apply.hpp>
+#include <boost/mpl/deref.hpp>
+#include <cstddef>
 
 namespace boost { namespace python {
 
@@ -119,7 +119,7 @@ namespace detail
 #define BOOST_PYTHON_TYPEDEF_GEN(z, index, data)                                \
     typedef typename ::boost::mpl::next<BOOST_PP_CAT(iter, index)>::type        \
         BOOST_PP_CAT(iter, BOOST_PP_INC(index));                                \
-    typedef typename ::boost::mpl::apply0<BOOST_PP_CAT(iter, index)>::type      \
+    typedef typename ::boost::mpl::deref<BOOST_PP_CAT(iter, index)>::type       \
         BOOST_PP_CAT(T, index);
 
 #define BOOST_PYTHON_FUNC_WRAPPER_GEN(z, index, data)                   \
@@ -145,7 +145,7 @@ namespace detail
         struct gen                                                              \
         {                                                                       \
             typedef typename ::boost::mpl::begin<SigT>::type rt_iter;           \
-            typedef typename ::boost::mpl::apply0<rt_iter>::type RT;            \
+            typedef typename ::boost::mpl::deref<rt_iter>::type RT;             \
             typedef typename ::boost::mpl::next<rt_iter>::type iter0;           \
                                                                                 \
             BOOST_PP_REPEAT_2ND(                                                \
@@ -184,10 +184,10 @@ namespace detail
         struct gen                                                              \
         {                                                                       \
             typedef typename ::boost::mpl::begin<SigT>::type rt_iter;           \
-            typedef typename ::boost::mpl::apply0<rt_iter>::type RT;            \
+            typedef typename ::boost::mpl::deref<rt_iter>::type RT;             \
                                                                                 \
             typedef typename ::boost::mpl::next<rt_iter>::type class_iter;      \
-            typedef typename ::boost::mpl::apply0<class_iter>::type ClassT;     \
+            typedef typename ::boost::mpl::deref<class_iter>::type ClassT;      \
             typedef typename ::boost::mpl::next<class_iter>::type iter0;        \
                                                                                 \
             BOOST_PP_REPEAT_2ND(                                                \
@@ -203,26 +203,26 @@ namespace detail
         };                                                                      \
     };
 
-#define BOOST_PYTHON_OVERLOAD_CONSTRUCTORS(fstubs_name, n_args, n_dflts)        \
-    fstubs_name(char const* doc = 0)                                            \
-        : ::boost::python::detail::overloads_common<fstubs_name>(doc) {}        \
-    template <class Keywords>                                                   \
-    fstubs_name(char const* doc, Keywords const& keywords)                      \
-        : ::boost::python::detail::overloads_common<fstubs_name>(               \
-            doc, keywords.range())                                              \
-    {                                                                           \
-        typedef typename ::boost::python::detail::                              \
-            error::more_keywords_than_function_arguments<                       \
-                Keywords::size,n_args>::too_many_keywords assertion;            \
-    }                                                                           \
-    template <class Keywords>                                                   \
-    fstubs_name(Keywords const& keywords, char const* doc = 0)                  \
-        : ::boost::python::detail::overloads_common<fstubs_name>(               \
-            doc, keywords.range())                                              \
-    {                                                                           \
-        typedef typename ::boost::python::detail::                              \
-            error::more_keywords_than_function_arguments<                       \
-                Keywords::size,n_args>::too_many_keywords assertion;            \
+#define BOOST_PYTHON_OVERLOAD_CONSTRUCTORS(fstubs_name, n_args, n_dflts)                    \
+    fstubs_name(char const* doc = 0)                                                        \
+        : ::boost::python::detail::overloads_common<fstubs_name>(doc) {}                    \
+    template <std::size_t N>                                                                \
+    fstubs_name(char const* doc, ::boost::python::detail::keywords<N> const& keywords)      \
+        : ::boost::python::detail::overloads_common<fstubs_name>(                           \
+            doc, keywords.range())                                                          \
+    {                                                                                       \
+        typedef typename ::boost::python::detail::                                          \
+            error::more_keywords_than_function_arguments<                                   \
+                N,n_args>::too_many_keywords assertion BOOST_ATTRIBUTE_UNUSED;              \
+    }                                                                                       \
+    template <std::size_t N>                                                                \
+    fstubs_name(::boost::python::detail::keywords<N> const& keywords, char const* doc = 0)  \
+        : ::boost::python::detail::overloads_common<fstubs_name>(                           \
+            doc, keywords.range())                                                          \
+    {                                                                                       \
+        typedef typename ::boost::python::detail::                                          \
+            error::more_keywords_than_function_arguments<                                   \
+                N,n_args>::too_many_keywords assertion BOOST_ATTRIBUTE_UNUSED;              \
     }
 
 # if defined(BOOST_NO_VOID_RETURNS)
@@ -248,7 +248,7 @@ namespace detail
         BOOST_PYTHON_GEN_MEM_FUNCTION(                                                  \
             fname, void_return_type, n_args, n_dflts, ;)                                \
                                                                                         \
-        BOOST_PYTHON_OVERLOAD_CONSTRUCTORS(fstubs_name, n_args, n_dflts)                \
+        BOOST_PYTHON_OVERLOAD_CONSTRUCTORS(fstubs_name, n_args + 1, n_dflts)            \
     };
 
 # else // !defined(BOOST_NO_VOID_RETURNS)
@@ -273,7 +273,7 @@ namespace detail
             fname, non_void_return_type, n_args, n_dflts, return)                       \
                                                                                         \
         typedef non_void_return_type void_return_type;                                  \
-        BOOST_PYTHON_OVERLOAD_CONSTRUCTORS(fstubs_name, n_args, n_dflts)                \
+        BOOST_PYTHON_OVERLOAD_CONSTRUCTORS(fstubs_name, n_args + 1, n_dflts)            \
     };
 
 # endif // !defined(BOOST_NO_VOID_RETURNS)

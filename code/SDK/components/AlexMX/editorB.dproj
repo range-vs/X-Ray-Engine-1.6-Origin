@@ -5,7 +5,7 @@
         <ProjectVersion>19.1</ProjectVersion>
         <FrameworkType>VCL</FrameworkType>
         <Base>True</Base>
-        <Config Condition="'$(Config)'==''">Debug</Config>
+        <Config Condition="'$(Config)'==''">Release</Config>
         <Platform Condition="'$(Platform)'==''">Win64</Platform>
         <TargetedPlatforms>3</TargetedPlatforms>
         <AppType>Package</AppType>
@@ -86,6 +86,11 @@
         <BT_BuildType>Debug</BT_BuildType>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
         <VerInfo_Locale>1033</VerInfo_Locale>
+        <PostBuildEvent><![CDATA[copy /Y ..\..\..\..\bins\$(Platform)\$(Config)\elpackB6.bpl "$(BDS)\bin\elpackB6.bpl"
+copy /Y ..\..\..\..\bins\$(Platform)\$(Config)\elpkdbB6.bpl "$(BDS)\bin\elpkdbB6.bpl"
+copy /Y ..\..\..\..\bins\$(Platform)\$(Config)\elpproB6.bpl "$(BDS)\bin\elpproB6.bpl"
+copy /Y ..\..\..\..\bins\$(Platform)\$(Config)\editorB.bpl "$(BDS)\bin\editorB.bpl"
+$(PostBuildEvent)]]></PostBuildEvent>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win64)'!=''">
         <DCC_Namespace>Winapi;System.Win;Data.Win;Datasnap.Win;Web.Win;Soap.Win;Xml.Win;$(DCC_Namespace)</DCC_Namespace>
@@ -95,6 +100,11 @@
         <DynamicRTL>false</DynamicRTL>
         <UsePackages>false</UsePackages>
         <LinkPackageStatics>rtl.lib;vcl.lib;bcbsmp.lib;vclx.lib;xmlrtl.lib;vclactnband.lib</LinkPackageStatics>
+        <PostBuildEvent><![CDATA[copy /Y ..\..\..\..\bins\$(Platform)\$(Config)\elpackB6.bpl "$(BDS)\bin64\elpackB6.bpl"
+copy /Y ..\..\..\..\bins\$(Platform)\$(Config)\elpkdbB6.bpl "$(BDS)\bin64\elpkdbB6.bpl"
+copy /Y ..\..\..\..\bins\$(Platform)\$(Config)\elpproB6.bpl "$(BDS)\bin64\elpproB6.bpl"
+copy /Y ..\..\..\..\bins\$(Platform)\$(Config)\editorB.bpl "$(BDS)\bin64\editorB.bpl"
+$(PostBuildEvent)]]></PostBuildEvent>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1)'!=''">
         <DCC_Define>DEBUG;$(DCC_Define)</DCC_Define>
@@ -108,12 +118,14 @@
         <DCC_RemoteDebug>false</DCC_RemoteDebug>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
         <VerInfo_Locale>1033</VerInfo_Locale>
+        <DCC_ObjOutput>..\..\..\..\libraries\$(Platform)\$(Config)</DCC_ObjOutput>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1_Win64)'!=''">
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
         <VerInfo_Locale>1033</VerInfo_Locale>
         <Debugger_HostApplication>E:\Program Files\X-Ray CoP SDK\editors\bin\designer_2020\LevelEditor.exe</Debugger_HostApplication>
         <Debugger_CWD>E:\Program Files\X-Ray CoP SDK\editors</Debugger_CWD>
+        <DCC_ObjOutput>..\..\..\..\libraries\$(Platform)\$(Config)</DCC_ObjOutput>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2)'!=''">
         <DCC_LocalDebugSymbols>false</DCC_LocalDebugSymbols>
@@ -124,10 +136,12 @@
     <PropertyGroup Condition="'$(Cfg_2_Win32)'!=''">
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
         <VerInfo_Locale>1033</VerInfo_Locale>
+        <DCC_ObjOutput>..\..\..\..\libraries\$(Platform)\$(Config)</DCC_ObjOutput>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2_Win64)'!=''">
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
         <VerInfo_Locale>1033</VerInfo_Locale>
+        <DCC_ObjOutput>..\..\..\..\libraries\$(Platform)\$(Config)</DCC_ObjOutput>
     </PropertyGroup>
     <ItemGroup>
         <DelphiCompile Include="$(MainSource)">
@@ -182,6 +196,10 @@
                     <Source Name="MainSource">editorB.dpk</Source>
                 </Source>
                 <Excluded_Packages>
+                    <Excluded_Packages Name="C:\X-Ray-Engine-1.6-Origin\bins\Win32\Debug\editor.bpl">File C:\X-Ray-Engine-1.6-Origin\bins\Win32\Debug\editor.bpl not found</Excluded_Packages>
+                    <Excluded_Packages Name="C:\X-Ray-Engine-1.6-Origin\bins\Win32\Debug\dclelpB6.bpl">File C:\X-Ray-Engine-1.6-Origin\bins\Win32\Debug\dclelpB6.bpl not found</Excluded_Packages>
+                    <Excluded_Packages Name="C:\X-Ray-Engine-1.6-Origin\bins\Win32\Debug\dcelppB6.bpl">File C:\X-Ray-Engine-1.6-Origin\bins\Win32\Debug\dcelppB6.bpl not found</Excluded_Packages>
+                    <Excluded_Packages Name="$(BDSBIN)\dclDataSnapNativeServer270.bpl">Embarcadero DBExpress DataSnap Native Server Components</Excluded_Packages>
                     <Excluded_Packages Name="$(BDSBIN)\bcboffice2k270.bpl">Embarcadero C++Builder Office 2000 Servers Package</Excluded_Packages>
                     <Excluded_Packages Name="$(BDSBIN)\bcbofficexp270.bpl">Embarcadero C++Builder Office XP Servers Package</Excluded_Packages>
                     <Excluded_Packages Name="$(BDSBIN)\dcloffice2k270.bpl">Microsoft Office 2000 Sample Automation Server Wrapper Components</Excluded_Packages>
@@ -910,4 +928,36 @@
     <Import Project="$(BDS)\Bin\CodeGear.Delphi.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Delphi.Targets')"/>
     <Import Project="$(APPDATA)\Embarcadero\$(BDSAPPDATABASEDIR)\$(PRODUCTVERSION)\UserTools.proj" Condition="Exists('$(APPDATA)\Embarcadero\$(BDSAPPDATABASEDIR)\$(PRODUCTVERSION)\UserTools.proj')"/>
     <Import Project="$(MSBuildProjectName).deployproj" Condition="Exists('$(MSBuildProjectName).deployproj')"/>
+    <PropertyGroup Condition="'$(Config)'=='Debug' And '$(Platform)'=='Win32'">
+        <PreBuildEvent/>
+        <PreBuildEventIgnoreExitCode>False</PreBuildEventIgnoreExitCode>
+        <PreLinkEvent/>
+        <PreLinkEventIgnoreExitCode>False</PreLinkEventIgnoreExitCode>
+        <PostBuildEvent>copy /Y ..\..\..\..\bins\$(Platform)\$(Config)\elpackB6.bpl &quot;$(BDS)\bin\elpackB6.bpl&quot;&amp;&amp;copy /Y ..\..\..\..\bins\$(Platform)\$(Config)\elpkdbB6.bpl &quot;$(BDS)\bin\elpkdbB6.bpl&quot;&amp;&amp;copy /Y ..\..\..\..\bins\$(Platform)\$(Config)\elpproB6.bpl &quot;$(BDS)\bin\elpproB6.bpl&quot;&amp;&amp;copy /Y ..\..\..\..\bins\$(Platform)\$(Config)\editorB.bpl &quot;$(BDS)\bin\editorB.bpl&quot;</PostBuildEvent>
+        <PostBuildEventIgnoreExitCode>False</PostBuildEventIgnoreExitCode>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Config)'=='Debug' And '$(Platform)'=='Win64'">
+        <PreBuildEvent/>
+        <PreBuildEventIgnoreExitCode>False</PreBuildEventIgnoreExitCode>
+        <PreLinkEvent/>
+        <PreLinkEventIgnoreExitCode>False</PreLinkEventIgnoreExitCode>
+        <PostBuildEvent>copy /Y ..\..\..\..\bins\$(Platform)\$(Config)\elpackB6.bpl &quot;$(BDS)\bin64\elpackB6.bpl&quot;&amp;&amp;copy /Y ..\..\..\..\bins\$(Platform)\$(Config)\elpkdbB6.bpl &quot;$(BDS)\bin64\elpkdbB6.bpl&quot;&amp;&amp;copy /Y ..\..\..\..\bins\$(Platform)\$(Config)\elpproB6.bpl &quot;$(BDS)\bin64\elpproB6.bpl&quot;&amp;&amp;copy /Y ..\..\..\..\bins\$(Platform)\$(Config)\editorB.bpl &quot;$(BDS)\bin64\editorB.bpl&quot;</PostBuildEvent>
+        <PostBuildEventIgnoreExitCode>False</PostBuildEventIgnoreExitCode>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Config)'=='Release' And '$(Platform)'=='Win32'">
+        <PreBuildEvent/>
+        <PreBuildEventIgnoreExitCode>False</PreBuildEventIgnoreExitCode>
+        <PreLinkEvent/>
+        <PreLinkEventIgnoreExitCode>False</PreLinkEventIgnoreExitCode>
+        <PostBuildEvent>copy /Y ..\..\..\..\bins\$(Platform)\$(Config)\elpackB6.bpl &quot;$(BDS)\bin\elpackB6.bpl&quot;&amp;&amp;copy /Y ..\..\..\..\bins\$(Platform)\$(Config)\elpkdbB6.bpl &quot;$(BDS)\bin\elpkdbB6.bpl&quot;&amp;&amp;copy /Y ..\..\..\..\bins\$(Platform)\$(Config)\elpproB6.bpl &quot;$(BDS)\bin\elpproB6.bpl&quot;&amp;&amp;copy /Y ..\..\..\..\bins\$(Platform)\$(Config)\editorB.bpl &quot;$(BDS)\bin\editorB.bpl&quot;</PostBuildEvent>
+        <PostBuildEventIgnoreExitCode>False</PostBuildEventIgnoreExitCode>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Config)'=='Release' And '$(Platform)'=='Win64'">
+        <PreBuildEvent/>
+        <PreBuildEventIgnoreExitCode>False</PreBuildEventIgnoreExitCode>
+        <PreLinkEvent/>
+        <PreLinkEventIgnoreExitCode>False</PreLinkEventIgnoreExitCode>
+        <PostBuildEvent>copy /Y ..\..\..\..\bins\$(Platform)\$(Config)\elpackB6.bpl &quot;$(BDS)\bin64\elpackB6.bpl&quot;&amp;&amp;copy /Y ..\..\..\..\bins\$(Platform)\$(Config)\elpkdbB6.bpl &quot;$(BDS)\bin64\elpkdbB6.bpl&quot;&amp;&amp;copy /Y ..\..\..\..\bins\$(Platform)\$(Config)\elpproB6.bpl &quot;$(BDS)\bin64\elpproB6.bpl&quot;&amp;&amp;copy /Y ..\..\..\..\bins\$(Platform)\$(Config)\editorB.bpl &quot;$(BDS)\bin64\editorB.bpl&quot;</PostBuildEvent>
+        <PostBuildEventIgnoreExitCode>False</PostBuildEventIgnoreExitCode>
+    </PropertyGroup>
 </Project>

@@ -34,11 +34,13 @@ __fastcall TfrmSoundLib::TfrmSoundLib(TComponent* Owner)
 void __fastcall TfrmSoundLib::FormCreate(TObject *Sender)
 {
 	m_ItemProps = TProperties::CreateForm	("SoundED",paProperties,alClient);
+	//using TfrmSoundLib_OnModified = void (__stdcall TfrmSoundLib::*)();
+	//m_ItemProps->SetModifiedEvent			(fastdelegate::bind<TOnModifiedEvent, TfrmSoundLib*, TfrmSoundLib_OnModified>(this,&TfrmSoundLib::OnModified));
     m_ItemProps->SetModifiedEvent			(fastdelegate::bind<TOnModifiedEvent>(this,&TfrmSoundLib::OnModified));
-    m_ItemList	= TItemList::CreateForm		("Items",paItems,alClient,TItemList::ilMultiSelect/*|TItemList::ilEditMenu|TItemList::ilDragAllowed*/);
-    m_ItemList->SetOnItemsFocusedEvent		(fastdelegate::bind<TOnILItemsFocused>(this,&TfrmSoundLib::OnItemsFocused));
-    TOnItemRemove on_remove; on_remove.bind	(this,&TfrmSoundLib::RemoveSound);
-    TOnItemRename on_rename; on_rename.bind	(this,&TfrmSoundLib::RenameSound);
+	m_ItemList	= TItemList::CreateForm		("Items",paItems,alClient,TItemList::ilMultiSelect/*|TItemList::ilEditMenu|TItemList::ilDragAllowed*/);
+	m_ItemList->SetOnItemsFocusedEvent		(fastdelegate::bind<TOnILItemsFocused>(this,&TfrmSoundLib::OnItemsFocused));
+	TOnItemRemove on_remove; on_remove.bind	(this,&TfrmSoundLib::RemoveSound);
+	TOnItemRename on_rename; on_rename.bind	(this,&TfrmSoundLib::RenameSound);
     m_ItemList->SetOnItemRemoveEvent		(on_remove);
 	m_ItemList->SetOnItemRenameEvent		(on_rename);
     m_ItemList->SetImages					(ImageList);
@@ -76,7 +78,7 @@ void __fastcall TfrmSoundLib::EditLib(AnsiString& title)
 }
 //---------------------------------------------------------------------------
 
-void TfrmSoundLib::OnModified()
+void __stdcall TfrmSoundLib::OnModified()
 {
 	m_ItemProps->RefreshForm();
 }

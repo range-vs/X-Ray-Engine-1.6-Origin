@@ -1,52 +1,46 @@
 
 // (C) Copyright Steve Cleary, Beman Dawes, Howard Hinnant & John Maddock 2000.
-// Permission to copy, use, modify, sell and distribute this software is 
-// granted provided this copyright notice appears in all copies. This software 
-// is provided "as is" without express or implied warranty, and with no claim 
-// as to its suitability for any purpose.
+//  Use, modification and distribution are subject to the Boost Software License,
+//  Version 1.0. (See accompanying file LICENSE_1_0.txt or copy at
+//  http://www.boost.org/LICENSE_1_0.txt).
 //
-// See http://www.boost.org for most recent version including documentation.
+//  See http://www.boost.org/libs/type_traits for most recent version including documentation.
 
 #ifndef BOOST_TT_ADD_POINTER_HPP_INCLUDED
 #define BOOST_TT_ADD_POINTER_HPP_INCLUDED
 
-#include "boost/type_traits/remove_reference.hpp"
-
-// should be the last #include
-#include "boost/type_traits/detail/type_trait_def.hpp"
+#include <boost/type_traits/remove_reference.hpp>
 
 namespace boost {
 
-namespace detail {
-
-#ifdef __BORLANDC__
+#if defined(BOOST_BORLANDC) && (BOOST_BORLANDC < 0x5A0)
 //
 // For some reason this implementation stops Borlands compiler
 // from dropping cv-qualifiers, it still fails with references
 // to arrays for some reason though (shrug...) (JM 20021104)
 //
 template <typename T>
-struct add_pointer_impl
+struct add_pointer
 {
     typedef T* type;
 };
 template <typename T>
-struct add_pointer_impl<T&>
+struct add_pointer<T&>
 {
     typedef T* type;
 };
 template <typename T>
-struct add_pointer_impl<T&const>
+struct add_pointer<T&const>
 {
     typedef T* type;
 };
 template <typename T>
-struct add_pointer_impl<T&volatile>
+struct add_pointer<T&volatile>
 {
     typedef T* type;
 };
 template <typename T>
-struct add_pointer_impl<T&const volatile>
+struct add_pointer<T&const volatile>
 {
     typedef T* type;
 };
@@ -54,7 +48,7 @@ struct add_pointer_impl<T&const volatile>
 #else
 
 template <typename T>
-struct add_pointer_impl
+struct add_pointer
 {
     typedef typename remove_reference<T>::type no_ref_type;
     typedef no_ref_type* type;
@@ -62,12 +56,12 @@ struct add_pointer_impl
 
 #endif
 
-} // namespace detail
+#if !defined(BOOST_NO_CXX11_TEMPLATE_ALIASES)
 
-BOOST_TT_AUX_TYPE_TRAIT_DEF1(add_pointer,T,typename detail::add_pointer_impl<T>::type)
+   template <class T> using add_pointer_t = typename add_pointer<T>::type;
+
+#endif
 
 } // namespace boost
-
-#include "boost/type_traits/detail/type_trait_undef.hpp"
 
 #endif // BOOST_TT_ADD_POINTER_HPP_INCLUDED

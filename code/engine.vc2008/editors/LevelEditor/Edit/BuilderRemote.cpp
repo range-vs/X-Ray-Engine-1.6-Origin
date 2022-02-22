@@ -1,4 +1,4 @@
-#include "stdafx.h"      
+#include "stdafx.h"
 #pragma hdrstop          
                               
 #include "Builder.h"  
@@ -23,6 +23,7 @@
 
 #include "ESceneLightTools.h"
 
+#include "../../include/stack_trace.h"
 //------------------------------------------------------------------------------
 // !!! использовать prefix если нужно имя !!! (Связано с группами)
 //------------------------------------------------------------------------------
@@ -339,48 +340,294 @@ void SceneBuilder::SaveBuildAsObject()
     FS.w_close		(F);
 }
 
+void SceneBuilder::testSave()
+{
+//	{
+//		xr_string fn	= MakeLevelPath("build_EB_Version.prj");
+//		IWriter* F		= FS.w_open(fn.c_str());
+//		if (F)
+//		{
+//			F->open_chunk	(EB_Version);
+//			F->w_u32   		(XRCL_CURRENT_VERSION);
+//			F->close_chunk	();
+//		}
+//		FS.w_close		(F);
+//	 }
+//     {
+//		xr_string fn	= MakeLevelPath("build_EB_Parameters.prj");
+//		IWriter* F		= FS.w_open(fn.c_str());
+//		if (F)
+//		{
+//			F->open_chunk	(EB_Parameters);
+//			F->w	  		(&Scene->m_LevelOp.m_BuildParams,sizeof(b_params));
+//			F->close_chunk	();
+//		}
+//        FS.w_close		(F);
+//	 }
+//     {
+//		xr_string fn	= MakeLevelPath("build_EB_Vertices.prj");
+//		IWriter* F		= FS.w_open(fn.c_str());
+//		if (F)
+//		{
+//			F->open_chunk	(EB_Vertices);
+//			F->w		  	(l_verts,sizeof(b_vertex)*l_vert_it); 	//. l_vert_cnt
+//			F->close_chunk	();
+//		}
+//        FS.w_close		(F);
+//	 }
+//	 {
+//		xr_string fn	= MakeLevelPath("build_EB_Faces.prj");
+//		IWriter* F		= FS.w_open(fn.c_str());
+//		if (F)
+//		{
+//			F->open_chunk	(EB_Faces);
+//			std::ofstream file(MakeLevelPath("build_EB_Faces_vertexs.txt"));
+//			file << l_face_it << " " <<  sizeof(b_face) << std::endl;
+//			for(int i(0); i <  l_face_it; ++i)
+//			{
+//				 file << l_faces[i].v[0] << "       " << l_faces[i].v[1] << "       " << l_faces[i].v[2] << "       " <<
+//				 l_faces[i].t[0].x << "       " <<
+//				 l_faces[i].t[0].y << "       " <<
+//				 l_faces[i].t[1].x << "       " <<
+//				 l_faces[i].t[1].y << "       " <<
+//				 l_faces[i].t[2].x << "       " <<
+//				 l_faces[i].t[2].y << "       " <<
+//				 l_faces[i].dwMaterial << "       " << l_faces[i].dwMaterialGame << std::endl;
+//			}
+//			F->w		  	(l_faces,sizeof(b_face)*l_face_it); 	//. l_face_cnt
+//			F->close_chunk	();
+//		}
+//		FS.w_close		(F);
+//	 }
+//     {
+//		xr_string fn	= MakeLevelPath("build_EB_SmoothGroups.prj");
+//		IWriter* F		= FS.w_open(fn.c_str());
+//		if (F)
+//		{
+//			F->open_chunk	(EB_SmoothGroups);
+//			F->w		  	(l_smgroups, sizeof(u32)*l_face_it); 	//. l_face_cnt
+//			F->close_chunk	();
+//		}
+//		FS.w_close		(F);
+//	 }
+//     {
+//		xr_string fn	= MakeLevelPath("build_EB_Materials.prj");
+//		IWriter* F		= FS.w_open(fn.c_str());
+//		if (F)
+//		{
+//			F->open_chunk	(EB_Materials);
+//			F->w	   		(&*l_materials.begin(),sizeof(b_material)*l_materials.size());
+//			F->close_chunk	();
+//		}
+//		FS.w_close		(F);
+//	 }
+//     {
+//		xr_string fn	= MakeLevelPath("build_EB_Shaders_Render.prj");
+//		IWriter* F		= FS.w_open(fn.c_str());
+//		if (F)
+//		{
+//			F->open_chunk	(EB_Shaders_Render);
+//			F->w			(&*l_shaders.begin(),sizeof(b_shader)*l_shaders.size());
+//			F->close_chunk	();
+//		}
+//		FS.w_close		(F);
+//	 }
+//     {
+//		xr_string fn	= MakeLevelPath("build_EB_Shaders_Compile.prj");
+//		IWriter* F		= FS.w_open(fn.c_str());
+//		if (F)
+//		{
+//			F->open_chunk	(EB_Shaders_Compile);
+//			F->w			(&*l_shaders_xrlc.begin(),sizeof(b_shader)*l_shaders_xrlc.size());
+//			F->close_chunk	();
+//		}
+//		FS.w_close		(F);
+//	 }
+//     {
+//		xr_string fn	= MakeLevelPath("build_EB_Textures.prj");
+//		IWriter* F		= FS.w_open(fn.c_str());
+//		std::ofstream file(MakeLevelPath("build_EB_Textures_text.txt"));
+//		if (F)
+//		{
+//			F->open_chunk	(EB_Textures);
+//			F->w			(&*l_textures.begin(),sizeof(b_texture)*l_textures.size());
+//			for(int i = 0; i < l_textures.size(); ++i)
+//			{
+//				 file << sizeof(l_textures[i].name) << " " << l_textures[i].name << std::endl <<
+//				 sizeof(l_textures[i].dwWidth) << " " << l_textures[i].dwWidth << std::endl <<
+//				 sizeof(l_textures[i].dwHeight) << " " << l_textures[i].dwHeight << std::endl <<
+//				 sizeof(l_textures[i].bHasAlpha) << " " << l_textures[i].bHasAlpha << std::endl <<
+//				 sizeof(l_textures[i].pSurface) << " " << l_textures[i].pSurface << std::endl;
+//			}
+//            file.close();
+//			F->close_chunk	();
+//		}
+//		FS.w_close		(F);
+//	 }
+//     {
+//		xr_string fn	= MakeLevelPath("build_EB_Glows.prj");
+//		IWriter* F		= FS.w_open(fn.c_str());
+//		if (F)
+//		{
+//			F->open_chunk 	(EB_Glows);
+//			F->w			(&*l_glows.begin(),sizeof(b_glow)*l_glows.size());
+//			F->close_chunk	();
+//		}
+//		FS.w_close		(F);
+//	 }
+//     {
+//		xr_string fn	= MakeLevelPath("build_EB_Portals.prj");
+//		IWriter* F		= FS.w_open(fn.c_str());
+//		if (F)
+//		{
+//			F->open_chunk	(EB_Portals);
+//			F->w			(&*l_portals.begin(),sizeof(b_portal)*l_portals.size());
+//			F->close_chunk	();
+//		}
+//		FS.w_close		(F);
+//	 }
+//     {
+//		xr_string fn	= MakeLevelPath("build_EB_Light_control.prj");
+//		IWriter* F		= FS.w_open(fn.c_str());
+//		if (F)
+//		{
+//			F->open_chunk	(EB_Light_control);
+//			for (xr_vector<sb_light_control>::iterator lc_it=l_light_control.begin(); lc_it!=l_light_control.end(); lc_it++)
+//			{
+//				F->w		(lc_it->name,sizeof(lc_it->name));
+//				F->w_u32 	(lc_it->data.size());
+//				F->w	 	(&*lc_it->data.begin(),sizeof(u32)*lc_it->data.size());
+//			}
+//			F->close_chunk	();
+//		}
+//		FS.w_close		(F);
+//	 }
+//     {
+//		xr_string fn	= MakeLevelPath("build_EB_Light_static.prj");
+//		IWriter* F		= FS.w_open(fn.c_str());
+//		if (F)
+//		{
+//			F->open_chunk	(EB_Light_static);
+//			F->w		 	(&*l_light_static.begin(),sizeof(b_light_static)*l_light_static.size());
+//			F->close_chunk	();
+//		}
+//		FS.w_close		(F);
+//	 }
+//     {
+//		xr_string fn	= MakeLevelPath("build_EB_Light_dynamic.prj");
+//		IWriter* F		= FS.w_open(fn.c_str());
+//		if (F)
+//		{
+//			F->open_chunk	(EB_Light_dynamic);
+//			F->w		  	(&*l_light_dynamic.begin(),sizeof(b_light_dynamic)*l_light_dynamic.size());
+//			F->close_chunk	();
+//		}
+//		FS.w_close		(F);
+//	 }
+//     {
+//		xr_string fn	= MakeLevelPath("build_EB_LOD_models.prj");
+//		IWriter* F		= FS.w_open(fn.c_str());
+//		if (F)
+//		{
+//			F->open_chunk	(EB_LOD_models);
+//			for (int k=0; k<(int)l_lods.size(); ++k)
+//				F->w	  	(&l_lods[k].lod,sizeof(b_lod));
+//			F->close_chunk	();
+//		}
+//		FS.w_close		(F);
+//	 }
+//     {
+//		xr_string fn	= MakeLevelPath("build_EB_MU_models.prj");
+//		IWriter* F		= FS.w_open(fn.c_str());
+//		if (F)
+//		{
+//			F->open_chunk	(EB_MU_models);
+//			for (int k=0; k<(int)l_mu_models.size(); ++k)
+//			{
+//				b_mu_model&	m= l_mu_models[k];
+//				// name
+//				F->w_stringZ(m.name);
+//				// vertices
+//				F->w_u32	(m.m_iVertexCount);
+//				F->w		(m.m_pVertices,sizeof(b_vertex)*m.m_iVertexCount);
+//				// faces
+//				F->w_u32	(m.m_iFaceCount);
+//				F->w		(m.m_pFaces,sizeof(b_face)*m.m_iFaceCount);
+//				// lod_id
+//				F->w_u16	(m.lod_id);
+//				F->w		(m.m_smgroups,sizeof(int)*m.m_iFaceCount);
+//			}
+//			F->close_chunk	();
+//		}
+//		FS.w_close		(F);
+//	 }
+//     {
+//		xr_string fn	= MakeLevelPath("build_EB_MU_refs.prj");
+//		IWriter* F		= FS.w_open(fn.c_str());
+//		if (F)
+//		{
+//			F->open_chunk	(EB_MU_refs);
+//			DEBUG_MESSAGE((std::string("sizeof(b_mu_reference): ") + std::to_string(sizeof(b_mu_reference))).c_str());
+//			F->w			(&*l_mu_refs.begin(),sizeof(b_mu_reference)*l_mu_refs.size());
+//			F->close_chunk	();
+//		}
+//		FS.w_close		(F);
+//	 }
+}
+
 void SceneBuilder::SaveBuild()
 {
-    xr_string fn	= MakeLevelPath("build.prj");
+	testSave();
+
+	xr_string fn	= MakeLevelPath("build.prj");
 	IWriter* F		= FS.w_open(fn.c_str());
-    if (F){
-        F->open_chunk	(EB_Version);
-        F->w_u32   		(XRCL_CURRENT_VERSION);
+	if (F){
+		F->open_chunk	(EB_Version);
+		F->w_u32   		(XRCL_CURRENT_VERSION);
+		F->close_chunk	();
+
+		F->open_chunk	(EB_Parameters);
+		F->w	  		(&Scene->m_LevelOp.m_BuildParams,sizeof(b_params));
+		F->close_chunk	();
+
+		F->open_chunk	(EB_Vertices);
+		F->w		  	(l_verts,sizeof(b_vertex)*l_vert_it); 	//. l_vert_cnt
         F->close_chunk	();
 
-        F->open_chunk	(EB_Parameters);
-        F->w	  		(&Scene->m_LevelOp.m_BuildParams,sizeof(b_params));
-        F->close_chunk	();
+		F->open_chunk	(EB_Faces);
+		F->w		  	(l_faces,sizeof(b_face)*l_face_it); 	//. l_face_cnt
+		F->close_chunk	();
 
-        F->open_chunk	(EB_Vertices);
-        F->w		  	(l_verts,sizeof(b_vertex)*l_vert_it); 	//. l_vert_cnt
-        F->close_chunk	();
-
-        F->open_chunk	(EB_Faces);
-        F->w		  	(l_faces,sizeof(b_face)*l_face_it); 	//. l_face_cnt
-        F->close_chunk	();
-
-        F->open_chunk	(EB_SmoothGroups);
+		F->open_chunk	(EB_SmoothGroups);
         F->w		  	(l_smgroups, sizeof(u32)*l_face_it); 	//. l_face_cnt
-        F->close_chunk	();
+		F->close_chunk	();
 
-        F->open_chunk	(EB_Materials);
+		F->open_chunk	(EB_Materials);
 		F->w	   		(&*l_materials.begin(),sizeof(b_material)*l_materials.size());
         F->close_chunk	();
 
-        F->open_chunk	(EB_Shaders_Render);
+		F->open_chunk	(EB_Shaders_Render);
 		F->w			(&*l_shaders.begin(),sizeof(b_shader)*l_shaders.size());
         F->close_chunk	();
 
 		F->open_chunk	(EB_Shaders_Compile);
 		F->w			(&*l_shaders_xrlc.begin(),sizeof(b_shader)*l_shaders_xrlc.size());
-        F->close_chunk	();
+		F->close_chunk	();
 
-        F->open_chunk	(EB_Textures);
-		F->w			(&*l_textures.begin(),sizeof(b_texture)*l_textures.size());
-        F->close_chunk	();
+		F->open_chunk	(EB_Textures);
+		//F->w			(&*l_textures.begin(),sizeof(b_texture)*l_textures.size());
+		s32 dummy(-1);
+        for(int i = 0; i < l_textures.size(); ++i)
+			{
+				 F->w(l_textures[i].name, sizeof(l_textures[i].name));
+				 F->w((void*)&l_textures[i].dwWidth, sizeof(l_textures[i].dwWidth));
+				 F->w((void*)&l_textures[i].dwHeight, sizeof(l_textures[i].dwHeight));
+				 F->w((void*)&l_textures[i].bHasAlpha, sizeof(l_textures[i].bHasAlpha));
+				 F->w((void*)&dummy, sizeof(dummy));
+			}
+		F->close_chunk	();
 
-        F->open_chunk 	(EB_Glows);
+		F->open_chunk 	(EB_Glows);
 		F->w			(&*l_glows.begin(),sizeof(b_glow)*l_glows.size());
         F->close_chunk	();
 
@@ -394,29 +641,29 @@ void SceneBuilder::SaveBuild()
             F->w_u32 	(lc_it->data.size());
 			F->w	 	(&*lc_it->data.begin(),sizeof(u32)*lc_it->data.size());
         }
-        F->close_chunk	();
+		F->close_chunk	();
 
-        F->open_chunk	(EB_Light_static);
+		F->open_chunk	(EB_Light_static);
 		F->w		 	(&*l_light_static.begin(),sizeof(b_light_static)*l_light_static.size());
         F->close_chunk	();
 
-        F->open_chunk	(EB_Light_dynamic);
+		F->open_chunk	(EB_Light_dynamic);
 		F->w		  	(&*l_light_dynamic.begin(),sizeof(b_light_dynamic)*l_light_dynamic.size());
-        F->close_chunk	();
+		F->close_chunk	();
 
-        F->open_chunk	(EB_LOD_models);
+		F->open_chunk	(EB_LOD_models);
 		for (int k=0; k<(int)l_lods.size(); ++k)
 			F->w	  	(&l_lods[k].lod,sizeof(b_lod));
         F->close_chunk	();
 
-        F->open_chunk	(EB_MU_models);
+		F->open_chunk	(EB_MU_models);
 		for (int k=0; k<(int)l_mu_models.size(); ++k)
         {
             b_mu_model&	m= l_mu_models[k];
             // name
             F->w_stringZ(m.name);
             // vertices
-            F->w_u32	(m.m_iVertexCount);
+			F->w_u32	(m.m_iVertexCount);
             F->w		(m.m_pVertices,sizeof(b_vertex)*m.m_iVertexCount);
             // faces
             F->w_u32	(m.m_iFaceCount);
@@ -429,7 +676,7 @@ void SceneBuilder::SaveBuild()
 
 		F->open_chunk	(EB_MU_refs);
 		F->w			(&*l_mu_refs.begin(),sizeof(b_mu_reference)*l_mu_refs.size());
-        F->close_chunk	();
+		F->close_chunk	();
 
         FS.w_close		(F);
     }
@@ -506,7 +753,7 @@ BOOL  GetStaticCformData( const Fmatrix& parent,   CEditableMesh* mesh, CEditabl
     //Fmatrix parent 			= object->_Transform();
     
      BOOL bResult = TRUE;
-     int point_offs = vert_it;  // save offset
+     u32 point_offs = vert_it;  // save offset // int
      // fill vertices
 	 for (u32 pt_id=0; pt_id<mesh->GetVCount(); pt_id++){
     	R_ASSERT(vert_it<vert_cnt);
@@ -569,7 +816,6 @@ BOOL  GetStaticCformData( const Fmatrix& parent,   CEditableMesh* mesh, CEditabl
 
 
 
-
 BOOL SceneBuilder::BuildMesh(	const Fmatrix& parent,
 								CEditableObject* object,
                                 CEditableMesh* mesh,
@@ -584,14 +830,14 @@ BOOL SceneBuilder::BuildMesh(	const Fmatrix& parent,
                                 const Fmatrix& real_transform)
 {
 	BOOL bResult = TRUE;
-    int point_offs;
+    u32 point_offs;  // int
     point_offs = vert_it;  // save offset
 
     // fill vertices
 	for (u32 pt_id=0; pt_id<mesh->GetVCount(); pt_id++){
-    	R_ASSERT(vert_it<vert_cnt);
-    	parent.transform_tiny(verts[vert_it++],mesh->m_Vertices[pt_id]);
-    }
+		R_ASSERT(vert_it<vert_cnt);
+		parent.transform_tiny(verts[vert_it++],mesh->m_Vertices[pt_id]);
+	}
 
     if (object->IsDynamic())
 	{
@@ -688,30 +934,34 @@ BOOL SceneBuilder::BuildMesh(	const Fmatrix& parent,
 				smgroups[face_it]			&= ~(1<<3);
 
                 first_face.dwMaterial 		= (u16)m_id;
-                first_face.dwMaterialGame 	= gm_id;
+				first_face.dwMaterialGame 	= gm_id;
+
                 for (int k=0; k<3; ++k)
                 {
                     st_FaceVert& fv = face.pv[k];
-                    // vertex index
+					// vertex index
                     R_ASSERT2((fv.pindex+point_offs)<vert_it,"Index out of range");
-                    first_face.v[k] = fv.pindex+point_offs;
-                    // uv maps
+					first_face.v[k] = fv.pindex+point_offs; // (round((fv.pindex+point_offs) * 1000.f)) / 1000.f;
+
+					// uv maps
                     int offs = 0;
                     for (u32 t=0; t<dwTexCnt; ++t)
-                    {
+					{
                         st_VMapPt& vm_pt 	= mesh->m_VMRefs[fv.vmref].pts[t];
                         st_VMap& vmap		= *mesh->m_VMaps[vm_pt.vmap_index];
                         if (vmap.type!=vmtUV)
                         {
                             ++offs;
                             --t;
-                            continue;
-                        }
-                        first_face.t[k].set(vmap.getUV(vm_pt.index));
-                    }
-                }
-            ++face_it;
-            }
+							continue;
+						}
+						first_face.t[k].set(vmap.getUV(vm_pt.index));
+						//first_face.t[k].x = round(first_face.t[k].x * 1000.f) / 1000.f;
+						//first_face.t[k].y = round(first_face.t[k].y * 1000.f) / 1000.f;
+					}
+				}
+			++face_it;
+			}
 
 	        if (surf->m_Flags.is(CSurface::sf2Sided))
             {
@@ -1421,7 +1671,10 @@ BOOL SceneBuilder::CompileStatic(bool b_selected_only)
             ESceneToolBase* mt = t_it->second;
             if (mt)
                 if (!mt->ExportStatic(this,b_selected_only))
-                    {bResult = FALSE; break;}
+				{
+					bResult = FALSE;
+					break;
+				}
         }
     }
 	UI->ProgressEnd(pb);
@@ -1457,11 +1710,16 @@ BOOL SceneBuilder::CompileStatic(bool b_selected_only)
             tp.height			= merged_image.h;
             tp.fmt				= STextureParams::tfDXT5;
             tp.type				= STextureParams::ttImage;
-            tp.mip_filter		= STextureParams::kMIPFilterAdvanced;
-            tp.flags.assign		(STextureParams::flDitherColor|STextureParams::flGenerateMipMaps);
-			ImageLib.MakeGameTexture		(fn_color.c_str(),&*merged_image.layers[0].begin(), tp); // range fixc
-			ImageLib.MakeGameTexture		(fn_normal.c_str(),&*merged_image.layers[1].begin(),tp);  // range fixc
-	        for (int k=0; k<(int)l_lods.size(); k++){
+            //tp.mip_filter		= STextureParams::kMIPFilterAdvanced;
+			//tp.flags.assign		(STextureParams::flDitherColor|STextureParams::flGenerateMipMaps);
+			tp.mip_filter		= STextureParams::kMIPFilterBox;
+			tp.flags.set			(STextureParams::flDitherColor,		TRUE);
+			tp.flags.set			(STextureParams::flGenerateMipMaps,	TRUE);
+			BYTE*	raw_data1		= LPBYTE(&*merged_image.layers[0].begin());
+			BYTE*	raw_data2		= LPBYTE(&*merged_image.layers[1].begin());
+			ImageLib.MakeGameTexture		(fn_color.c_str(),raw_data1, tp); // range fixc
+			ImageLib.MakeGameTexture		(fn_normal.c_str(),raw_data2,tp);  // range fixc
+			for (int k=0; k<(int)l_lods.size(); k++){
 	            e_b_lod& l	= l_lods[k];         
                 for (u32 f=0; f<8; f++){
                 	for (u32 t=0; t<4; t++){
@@ -1508,6 +1766,6 @@ BOOL SceneBuilder::CompileStatic(bool b_selected_only)
 
 BOOL SceneBuilder::BuildSceneStat()
 {
-    xr_string dest_name = MakeLevelPath(LEVEL_DI_TEX_NAME);
+	xr_string dest_name = MakeLevelPath(LEVEL_DI_TEX_NAME);
     return l_scene_stat->flush(dest_name.c_str());
 }

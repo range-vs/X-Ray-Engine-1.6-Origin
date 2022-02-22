@@ -1,12 +1,11 @@
-// Copyright David Abrahams 2002. Permission to copy, use,
-// modify, sell and distribute this software is granted provided this
-// copyright notice appears in all copies. This software is provided
-// "as is" without express or implied warranty, and with no claim as
-// to its suitability for any purpose.
+// Copyright David Abrahams 2002.
+// Distributed under the Boost Software License, Version 1.0. (See
+// accompanying file LICENSE_1_0.txt or copy at
+// http://www.boost.org/LICENSE_1_0.txt)
 #ifndef OBJ_MGR_ARG_FROM_PYTHON_DWA2002628_HPP
 # define OBJ_MGR_ARG_FROM_PYTHON_DWA2002628_HPP
 
-# include <boost/python/detail/wrap_python.hpp>
+# include <boost/python/detail/prefix.hpp>
 # include <boost/python/detail/referent_storage.hpp>
 # include <boost/python/detail/destroy.hpp>
 # include <boost/python/detail/construct.hpp>
@@ -27,7 +26,7 @@ struct object_manager_value_arg_from_python
     
     object_manager_value_arg_from_python(PyObject*);
     bool convertible() const;
-    T operator()(PyObject*) const;
+    T operator()() const;
  private:
     PyObject* m_source;
 };
@@ -48,7 +47,7 @@ struct object_manager_ref_arg_from_python
     
     object_manager_ref_arg_from_python(PyObject*);
     bool convertible() const;
-    Ref operator()(PyObject*) const;
+    Ref operator()() const;
     ~object_manager_ref_arg_from_python();
  private:
     typename python::detail::referent_storage<Ref>::type m_result;
@@ -71,9 +70,9 @@ inline bool object_manager_value_arg_from_python<T>::convertible() const
 }
 
 template <class T>
-inline T object_manager_value_arg_from_python<T>::operator()(PyObject* x) const
+inline T object_manager_value_arg_from_python<T>::operator()() const
 {
-    return T(python::detail::borrowed_reference(x));
+    return T(python::detail::borrowed_reference(m_source));
 }
 
 template <class Ref>
@@ -111,7 +110,7 @@ inline bool object_manager_ref_arg_from_python<Ref>::convertible() const
 }
 
 template <class Ref>
-inline Ref object_manager_ref_arg_from_python<Ref>::operator()(PyObject*) const
+inline Ref object_manager_ref_arg_from_python<Ref>::operator()() const
 {
     return python::detail::void_ptr_to_reference(
         this->m_result.bytes, (Ref(*)())0);

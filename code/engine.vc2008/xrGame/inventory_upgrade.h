@@ -10,6 +10,7 @@
 #define INVENTORY_UPGRADE_H_INCLUDED
 
 #include "inventory_upgrade_base.h"
+#include <luabind/functor.hpp>
 
 namespace inventory
 {

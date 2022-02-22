@@ -11,20 +11,20 @@
 #include "../Include/stack_trace.h"
 
 //---------------------------------------------------------------------------
-USEFORM("FrameObject.cpp", fraObject);
-USEFORM("FramePortal.cpp", fraPortal);
+USEFORM("FrameAIMap.cpp", fraAIMap);
+USEFORM("FrameDetObj.cpp", fraDetailObject);
 USEFORM("FramePS.cpp", fraPS);
 USEFORM("FrameSector.cpp", fraSector);
 USEFORM("FrameShape.cpp", fraShape);
-USEFORM("FrameAIMap.cpp", fraAIMap);
-USEFORM("FrameDetObj.cpp", fraDetailObject);
+USEFORM("FrameSpawn.cpp", fraSpawn);
+USEFORM("FrameWayPoint.cpp", fraWayPoint);
 USEFORM("FrameFogVol.cpp", fraFogVol);
 USEFORM("FrameGroup.cpp", fraGroup);
 USEFORM("FrameLight.cpp", fraLight);
-USEFORM("FrameSpawn.cpp", fraSpawn);
+USEFORM("FrameObject.cpp", fraObject);
+USEFORM("FramePortal.cpp", fraPortal);
 USEFORM("TopBar.cpp", fraTopBar); /* TFrame: File Type */
 USEFORM("LeftBar.cpp", fraLeftBar); /* TFrame: File Type */
-USEFORM("FrameWayPoint.cpp", fraWayPoint);
 USEFORM("FrmDBXpacker.cpp", DB_packer);
 USEFORM("LEClipEditor.cpp", ClipMaker);
 USEFORM("PropertiesEObject.cpp", frmPropertiesEObject);

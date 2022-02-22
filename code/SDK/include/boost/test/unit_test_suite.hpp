@@ -1,329 +1,409 @@
-//  (C) Copyright Gennadiy Rozental 2001-2002.
-//  (C) Copyright Ullrich Koethe 2001.
-//  Permission to copy, use, modify, sell and distribute this software
-//  is granted provided this copyright notice appears in all copies.
-//  This software is provided "as is" without express or implied warranty,
-//  and with no claim as to its suitability for any purpose.
+//  (C) Copyright Gennadiy Rozental 2001.
+//  Distributed under the Boost Software License, Version 1.0.
+//  (See accompanying file LICENSE_1_0.txt or copy at
+//  http://www.boost.org/LICENSE_1_0.txt)
 
-//  See http://www.boost.org for most recent version including documentation.
+//  See http://www.boost.org/libs/test for the library home page.
 //
-//  File        : $RCSfile: unit_test_suite.hpp,v $
-//
-//  Version     : $Id: unit_test_suite.hpp,v 1.13 2003/02/13 08:23:08 rogeeff Exp $
-//
-//  Description : defines all classes in test_case hierarchy and object generators
-//  for them.
+/// @file
+/// @brief Defines Unit Test Framework public API
 // ***************************************************************************
 
-#ifndef BOOST_UNIT_TEST_SUITE_HPP
-#define BOOST_UNIT_TEST_SUITE_HPP
+#ifndef BOOST_TEST_UNIT_TEST_SUITE_HPP_071894GER
+#define BOOST_TEST_UNIT_TEST_SUITE_HPP_071894GER
 
 // Boost.Test
-#include <boost/test/detail/unit_test_monitor.hpp>
-#include <boost/test/detail/unit_test_config.hpp>
-#include <boost/test/detail/class_properties.hpp>
+#include <boost/test/detail/config.hpp>
+#include <boost/test/framework.hpp>
+#include <boost/test/tree/auto_registration.hpp>
+#include <boost/test/tree/test_case_template.hpp>
+#include <boost/test/tree/global_fixture.hpp>
 
-// BOOST
-#include <boost/shared_ptr.hpp>
 
-// STL
-#include <string>  // for std::string
+#include <boost/test/detail/suppress_warnings.hpp>
 
-#define BOOST_TEST_CASE( function ) \
-boost::unit_test_framework::create_test_case((function), #function )
-#define BOOST_CLASS_TEST_CASE( function, tc_instance ) \
-boost::unit_test_framework::create_test_case((function), #function, tc_instance )
-#define BOOST_PARAM_TEST_CASE( function, begin, end ) \
-boost::unit_test_framework::create_test_case((function), #function, (begin), (end) )
-#define BOOST_PARAM_CLASS_TEST_CASE( function, tc_instance, begin, end ) \
-boost::unit_test_framework::create_test_case((function), #function, tc_instance, (begin), (end) )
+
+#include <boost/test/detail/pp_variadic.hpp>
+
+
+
+//____________________________________________________________________________//
+
+// ************************************************************************** //
+// **************    Non-auto (explicit) test case interface   ************** //
+// ************************************************************************** //
+
+#define BOOST_TEST_CASE_NAME( test_function, test_name )                   \
+boost::unit_test::make_test_case( boost::function<void ()>(test_function), \
+                                  test_name ,                              \
+                                  __FILE__, __LINE__ )
+#define BOOST_TEST_CASE( test_function )                                   \
+BOOST_TEST_CASE_NAME(test_function, BOOST_TEST_STRINGIZE( test_function) )
+#define BOOST_CLASS_TEST_CASE( test_function, tc_instance )                \
+boost::unit_test::make_test_case( (test_function),                         \
+                                  BOOST_TEST_STRINGIZE( test_function ),   \
+                                  __FILE__, __LINE__, tc_instance )
+
+// ************************************************************************** //
+// **************               BOOST_TEST_SUITE               ************** //
+// ************************************************************************** //
+
 #define BOOST_TEST_SUITE( testsuite_name ) \
-( new boost::unit_test_framework::test_suite( testsuite_name ) )
-
-namespace boost {
-
-namespace unit_test_framework {
+( new boost::unit_test::test_suite( testsuite_name, __FILE__, __LINE__ ) )
 
 // ************************************************************************** //
-// **************                   test_case                  ************** //
+// **************             BOOST_AUTO_TEST_SUITE            ************** //
 // ************************************************************************** //
 
-class test_case {
-public:
-    typedef detail::unit_test_monitor::error_level error_level_type;
+#define BOOST_AUTO_TEST_SUITE_WITH_DECOR( suite_name, decorators )      \
+namespace suite_name {                                                  \
+BOOST_AUTO_TU_REGISTRAR( suite_name )(                                  \
+    BOOST_STRINGIZE( suite_name ),                                      \
+    __FILE__, __LINE__,                                                 \
+    decorators );                                                       \
+/**/
 
-    // Destructor
-    virtual             ~test_case()    {}
+#define BOOST_AUTO_TEST_SUITE_NO_DECOR( suite_name )                    \
+    BOOST_AUTO_TEST_SUITE_WITH_DECOR(                                   \
+        suite_name,                                                     \
+        boost::unit_test::decorator::collector_t::instance() )          \
+/**/
 
-    // number of tests in this test case
-    virtual unit_test_counter size() const;
+#if BOOST_PP_VARIADICS
+#define BOOST_AUTO_TEST_SUITE( ... )                                    \
+    BOOST_TEST_INVOKE_IF_N_ARGS( 1,                                     \
+        BOOST_AUTO_TEST_SUITE_NO_DECOR,                                 \
+        BOOST_AUTO_TEST_SUITE_WITH_DECOR,                               \
+        __VA_ARGS__)                                                    \
+/**/
 
-    // execute this method to run the test case
-    void                run();
+#else /* BOOST_PP_VARIADICS */
 
-    // public properties
-    BOOST_READONLY_PROPERTY( int, 2, (test_case,test_suite) )
-                        p_timeout;                  // timeout for the excecution monitor
-    BOOST_READONLY_PROPERTY( unit_test_counter, 1, (test_suite) )
-                        p_expected_failures;        // number of aseertions that are expected to fail in this test case
-    BOOST_READONLY_PROPERTY( bool, 0, () )
-                        p_type;                     // true = test case, false - test suite
-    BOOST_READONLY_PROPERTY( std::string, 0, () )
-                        p_name;                     // name for this test case
+#define BOOST_AUTO_TEST_SUITE( suite_name )                             \
+    BOOST_AUTO_TEST_SUITE_NO_DECOR( suite_name )                        \
+/**/
 
 
-protected:
-    // protected properties
-    BOOST_READONLY_PROPERTY( bool, 2, (test_case,test_suite) )
-                        p_compound_stage;           // used to properly manage progress report
-    BOOST_READWRITE_PROPERTY( unit_test_counter )
-                        p_stages_amount;            // number of stages this test consist of; stage could be another test case
-                                                    // like with test_suite, another parameterized test for parameterized_test_case
-                                                    // or 1 stage that reflect single test_case behaviour
-
-    // access methods
-    void                curr_stage_is_compound();
-
-    // Constructor
-    explicit            test_case( std::string const&   name_,
-                                   bool                 type_,
-                                   unit_test_counter    stages_number_,
-                                   bool                 monitor_run_    = true );
-
-    // test case implementation hooks to be called with unit_test_monitor or alone
-    virtual void        do_init()       {}
-    virtual void        do_run()        {}
-    virtual void        do_destroy()    {}
-
-private:
-    // Data members
-    bool                m_monitor_run;              // true - unit_test_monitor will be user to monitor running
-                                                    // of implementation function
-    static bool         s_abort_testing;            // used to flag critical error and try gracefully stop testing
-};
-
-//____________________________________________________________________________//
+#endif /* BOOST_PP_VARIADICS */
 
 // ************************************************************************** //
-// **************              function_test_case              ************** //
+// **************            BOOST_FIXTURE_TEST_SUITE          ************** //
 // ************************************************************************** //
 
-class function_test_case : public test_case {
-public:
-    typedef void  (*function_type)();
+#define BOOST_FIXTURE_TEST_SUITE_WITH_DECOR(suite_name, F, decorators)  \
+    BOOST_AUTO_TEST_SUITE_WITH_DECOR( suite_name, decorators )          \
+typedef F BOOST_AUTO_TEST_CASE_FIXTURE;                                 \
+/**/
 
-    // Constructor
-    function_test_case( function_type f_, std::string const& name_ )
-    : test_case( name_, true, 1 ), m_function( f_ ) {}
+#define BOOST_FIXTURE_TEST_SUITE_NO_DECOR( suite_name, F )              \
+    BOOST_AUTO_TEST_SUITE_NO_DECOR( suite_name )                        \
+typedef F BOOST_AUTO_TEST_CASE_FIXTURE;                                 \
+/**/
 
-protected:
-    // test case implementation
-    void                do_run()        { m_function(); }
+#if BOOST_PP_VARIADICS
 
-private:
-    // Data members
-    function_type       m_function;
-};
+#define BOOST_FIXTURE_TEST_SUITE( ... )                                 \
+    BOOST_TEST_INVOKE_IF_N_ARGS( 2,                                     \
+        BOOST_FIXTURE_TEST_SUITE_NO_DECOR,                              \
+        BOOST_FIXTURE_TEST_SUITE_WITH_DECOR,                            \
+        __VA_ARGS__)                                                    \
+/**/
 
-// ************************************************************************** //
-// **************                class_test_case               ************** //
-// ************************************************************************** //
+#else /* BOOST_PP_VARIADICS */
 
-template<class UserTestCase>
-class class_test_case : public test_case {
-public:
-    typedef void  (UserTestCase::*function_type)();
+#define BOOST_FIXTURE_TEST_SUITE( suite_name, F  )                      \
+   BOOST_FIXTURE_TEST_SUITE_NO_DECOR( suite_name, F )                   \
+/**/
 
-    // Constructor
-    class_test_case( function_type f_, std::string const& name_, boost::shared_ptr<UserTestCase> const& user_test_case_ )
-    : test_case( name_, true, 1 ), m_user_test_case( user_test_case_ ), m_function( f_ ) 
-    {}
 
-private:
-    // test case implementation
-    void                do_run()
-    { 
-        if( (!!m_user_test_case) && m_function ) 
-            ((*m_user_test_case).*m_function)();
-    }
-    void                do_destroy()
-    { 
-        m_user_test_case.reset(); // t ofree the reference to the shared use test case instance
-    }
+#endif /* BOOST_PP_VARIADICS */
 
-    // Data members
-    boost::shared_ptr<UserTestCase> m_user_test_case;
-    function_type       m_function;
-};
 
 // ************************************************************************** //
-// **************        parametrized_function_test_case       ************** //
+// **************           BOOST_AUTO_TEST_SUITE_END          ************** //
 // ************************************************************************** //
 
-template <typename ParamIterator, typename ParameterType>
-class parametrized_function_test_case : public test_case {
-public:
-    typedef void  (*function_type)( ParameterType );
-
-    // Constructor
-    parametrized_function_test_case( function_type f_, std::string const& name_,
-                                     ParamIterator const& par_begin_, ParamIterator const& par_end_ )
-    : test_case( name_, true, 0 ), m_first_parameter( par_begin_ ), m_last_parameter( par_end_ ), m_function( f_ )
-    {
-       // the typecasts are here to keep Borland C++ Builder 5 happy, for other compilers they have no effect:
-       p_stages_amount.set( detail::distance( (ParamIterator)par_begin_, (ParamIterator)par_end_ ) );
-    }
-
-    // test case implementation
-    void                do_init()       { m_curr_parameter = m_first_parameter; }
-    void                do_run()        { m_function( *m_curr_parameter++ ); }
-
-private:
-    // Data members
-    ParamIterator       m_first_parameter;
-    ParamIterator       m_last_parameter;
-    ParamIterator       m_curr_parameter;
-
-    function_type       m_function;
-};
+#define BOOST_AUTO_TEST_SUITE_END()             \
+BOOST_AUTO_TU_REGISTRAR( end_suite )( 1 );      \
+}                                               \
+/**/
 
 // ************************************************************************** //
-// **************         parametrized_class_test_case         ************** //
+// **************    BOOST_AUTO_TEST_CASE_EXPECTED_FAILURES    ************** //
 // ************************************************************************** //
 
-template <class UserTestCase, class ParamIterator, typename ParameterType>
-class parametrized_class_test_case : public test_case {
-public:
-    typedef void  (UserTestCase::*function_type)( ParameterType );
-
-    // Constructor
-    parametrized_class_test_case( function_type f_, std::string const& name_, boost::shared_ptr<UserTestCase>const & user_test_case_,
-                                  ParamIterator const& par_begin_, ParamIterator const& par_end_ )
-    : test_case( name_, true, 0 ), m_first_parameter( par_begin_ ), m_last_parameter( par_end_ ),
-      m_user_test_case( user_test_case_ ), m_function( f_ )
-    {
-       // the typecasts are here to keep Borland C++ Builder 5 happy, for other compilers they have no effect:
-       p_stages_amount.set( detail::distance( (ParamIterator)par_begin_, (ParamIterator)par_end_ ) );
-    }
-
-    // test case implementation
-    void                do_init()       { m_curr_parameter = m_first_parameter; }
-    void                do_run()        { ((*m_user_test_case).*m_function)( *m_curr_parameter++ ); }
-    void                do_destroy()    { m_user_test_case.reset(); }
-
-private:
-    // Data members
-    ParamIterator       m_first_parameter;
-    ParamIterator       m_last_parameter;
-    ParamIterator       m_curr_parameter;
-
-    boost::shared_ptr<UserTestCase> m_user_test_case;
-    function_type       m_function;
-};
+/// @deprecated use decorator instead
+#define BOOST_AUTO_TEST_CASE_EXPECTED_FAILURES( test_name, n )          \
+BOOST_TEST_DECORATOR( * boost::unit_test::expected_failures( n ) )      \
+/**/
 
 // ************************************************************************** //
-// **************                  test_suite                  ************** //
+// **************            BOOST_FIXTURE_TEST_CASE           ************** //
 // ************************************************************************** //
 
-class test_suite : public test_case {
-public:
-    // Constructor
-    explicit test_suite( std::string const& name_ = "Master" );
+#define BOOST_FIXTURE_TEST_CASE_WITH_DECOR( test_name, F, decorators )  \
+struct test_name : public F { void test_method(); };                    \
+                                                                        \
+static void BOOST_AUTO_TC_INVOKER( test_name )()                        \
+{                                                                       \
+    BOOST_TEST_CHECKPOINT('"' << #test_name << "\" fixture ctor");      \
+    test_name t;                                                        \
+    BOOST_TEST_CHECKPOINT('"' << #test_name << "\" fixture setup");     \
+    boost::unit_test::setup_conditional(t);                             \
+    BOOST_TEST_CHECKPOINT('"' << #test_name << "\" test entry");        \
+    t.test_method();                                                    \
+    BOOST_TEST_CHECKPOINT('"' << #test_name << "\" fixture teardown");  \
+    boost::unit_test::teardown_conditional(t);                          \
+    BOOST_TEST_CHECKPOINT('"' << #test_name << "\" fixture dtor");      \
+}                                                                       \
+                                                                        \
+struct BOOST_AUTO_TC_UNIQUE_ID( test_name ) {};                         \
+                                                                        \
+BOOST_AUTO_TU_REGISTRAR( test_name )(                                   \
+    boost::unit_test::make_test_case(                                   \
+        &BOOST_AUTO_TC_INVOKER( test_name ),                            \
+        #test_name, __FILE__, __LINE__ ),                               \
+        decorators );                                                   \
+                                                                        \
+void test_name::test_method()                                           \
+/**/
 
-    // Destructor
-    virtual             ~test_suite();
+#define BOOST_FIXTURE_TEST_CASE_NO_DECOR( test_name, F )                \
+BOOST_FIXTURE_TEST_CASE_WITH_DECOR( test_name, F,                       \
+    boost::unit_test::decorator::collector_t::instance() )              \
+/**/
 
-    // test case list management
-    void                add( test_case* tc_, unit_test_counter expected_failures_ = 0, int timeout_ = 0 );
+#if BOOST_PP_VARIADICS
 
-    // access methods
-    unit_test_counter   size() const;
+#define BOOST_FIXTURE_TEST_CASE( ... )                                  \
+    BOOST_TEST_INVOKE_IF_N_ARGS( 2,                                     \
+        BOOST_FIXTURE_TEST_CASE_NO_DECOR,                               \
+        BOOST_FIXTURE_TEST_CASE_WITH_DECOR,                             \
+         __VA_ARGS__)                                                   \
+/**/
 
-    // test case implementation
-    void                do_init();
-    void                do_run();
+#else /* BOOST_PP_VARIADICS */
 
-private:
-    // Data members
-    struct Impl;
-    boost::shared_ptr<Impl> m_pimpl;
-};
+#define BOOST_FIXTURE_TEST_CASE( test_name, F )                         \
+     BOOST_FIXTURE_TEST_CASE_NO_DECOR(test_name, F)                     \
+/**/
+
+
+#endif /* BOOST_PP_VARIADICS */
 
 // ************************************************************************** //
-// **************               object generators              ************** //
+// **************             BOOST_AUTO_TEST_CASE             ************** //
 // ************************************************************************** //
 
-namespace detail {
+#define BOOST_AUTO_TEST_CASE_NO_DECOR( test_name )                      \
+    BOOST_FIXTURE_TEST_CASE_NO_DECOR( test_name,                        \
+        BOOST_AUTO_TEST_CASE_FIXTURE )                                  \
+/**/
 
-std::string const& normalize_test_case_name( std::string& name_ );
+#define BOOST_AUTO_TEST_CASE_WITH_DECOR( test_name, decorators )        \
+    BOOST_FIXTURE_TEST_CASE_WITH_DECOR( test_name,                      \
+        BOOST_AUTO_TEST_CASE_FIXTURE, decorators )                      \
+/**/
 
-} // namespace detail
+#if BOOST_PP_VARIADICS
 
-//____________________________________________________________________________//
+#define BOOST_AUTO_TEST_CASE( ... )                                     \
+    BOOST_TEST_INVOKE_IF_N_ARGS( 1,                                     \
+        BOOST_AUTO_TEST_CASE_NO_DECOR,                                  \
+        BOOST_AUTO_TEST_CASE_WITH_DECOR,                                \
+         __VA_ARGS__)                                                   \
+/**/
 
-inline test_case*
-create_test_case( void (*fct_)(), std::string name_ )
-{
-    return new function_test_case( fct_, detail::normalize_test_case_name( name_ ) );
-}
+#else /* BOOST_PP_VARIADICS */
 
-//____________________________________________________________________________//
+#define BOOST_AUTO_TEST_CASE( test_name )                               \
+    BOOST_AUTO_TEST_CASE_NO_DECOR( test_name )                          \
+/**/
 
-template<class UserTestCase>
-inline test_case*
-create_test_case( void (UserTestCase::*fct_)(), std::string name_, boost::shared_ptr<UserTestCase> const& user_test_case_ )
-{
-    return new class_test_case<UserTestCase>( fct_, detail::normalize_test_case_name( name_ ), user_test_case_ );
-}
 
-//____________________________________________________________________________//
+#endif /* BOOST_PP_VARIADICS */
 
-template<typename ParamIterator, typename ParamType>
-inline test_case*
-create_test_case( void (*fct_)( ParamType ), std::string name_, ParamIterator const& par_begin_, ParamIterator const& par_end_ )
-{
-    return new parametrized_function_test_case<ParamIterator,ParamType>(
-        fct_, detail::normalize_test_case_name( name_ ), par_begin_, par_end_ );
-}
+// ************************************************************************** //
+// **************       BOOST_FIXTURE_TEST_CASE_TEMPLATE       ************** //
+// ************************************************************************** //
 
-//____________________________________________________________________________//
+#define BOOST_FIXTURE_TEST_CASE_TEMPLATE( test_name, type_name, TL, F ) \
+template<typename type_name>                                            \
+struct test_name : public F                                             \
+{ void test_method(); };                                                \
+                                                                        \
+struct BOOST_AUTO_TC_INVOKER( test_name ) {                             \
+    template<typename TestType>                                         \
+    static void run( boost::type<TestType>* = 0 )                       \
+    {                                                                   \
+        BOOST_TEST_CHECKPOINT('"' << #test_name << "\" fixture ctor");  \
+        test_name<TestType> t;                                          \
+        BOOST_TEST_CHECKPOINT('"' << #test_name << "\" fixture setup"); \
+        boost::unit_test::setup_conditional(t);                         \
+        BOOST_TEST_CHECKPOINT('"' << #test_name << "\" test entry");    \
+        t.test_method();                                                \
+        BOOST_TEST_CHECKPOINT('"' << #test_name << "\" fixture teardown");\
+        boost::unit_test::teardown_conditional(t);                      \
+        BOOST_TEST_CHECKPOINT('"' << #test_name << "\" fixture dtor");  \
+    }                                                                   \
+};                                                                      \
+                                                                        \
+BOOST_AUTO_TU_REGISTRAR( test_name )(                                   \
+    boost::unit_test::ut_detail::template_test_case_gen<                \
+        BOOST_AUTO_TC_INVOKER( test_name ),TL >(                        \
+          BOOST_STRINGIZE( test_name ), __FILE__, __LINE__ ),           \
+    boost::unit_test::decorator::collector_t::instance() );             \
+                                                                        \
+template<typename type_name>                                            \
+void test_name<type_name>::test_method()                                \
+/**/
 
-template<class UserTestCase, typename ParamIterator, typename ParamType>
-inline test_case*
-create_test_case( void (UserTestCase::*fct_)( ParamType ), std::string name_, boost::shared_ptr<UserTestCase> const& user_test_case_,
-                  ParamIterator const& par_begin_, ParamIterator const& par_end_ )
-{
-    return new parametrized_class_test_case<UserTestCase,ParamIterator,ParamType>(
-        fct_, detail::normalize_test_case_name( name_ ), user_test_case_, par_begin_, par_end_ );
-}
+// ************************************************************************** //
+// **************        BOOST_AUTO_TEST_CASE_TEMPLATE         ************** //
+// ************************************************************************** //
 
-//____________________________________________________________________________//
+#define BOOST_AUTO_TEST_CASE_TEMPLATE( test_name, type_name, TL )       \
+BOOST_FIXTURE_TEST_CASE_TEMPLATE( test_name, type_name, TL,             \
+    BOOST_AUTO_TEST_CASE_FIXTURE )                                      \
+/**/
 
-} // unit_test_framework
+// ************************************************************************** //
+// **************           BOOST_TEST_CASE_TEMPLATE           ************** //
+// ************************************************************************** //
 
+#define BOOST_TEST_CASE_TEMPLATE( name, typelist )                      \
+    boost::unit_test::ut_detail::template_test_case_gen<name,typelist>( \
+        BOOST_TEST_STRINGIZE( name ), __FILE__, __LINE__ )              \
+/**/
+
+// ************************************************************************** //
+// **************      BOOST_TEST_CASE_TEMPLATE_FUNCTION       ************** //
+// ************************************************************************** //
+
+#define BOOST_TEST_CASE_TEMPLATE_FUNCTION( name, type_name )            \
+template<typename type_name>                                            \
+void BOOST_JOIN( name, _impl )( boost::type<type_name>* );              \
+                                                                        \
+struct name {                                                           \
+    template<typename TestType>                                         \
+    static void run( boost::type<TestType>* frwrd = 0 )                 \
+    {                                                                   \
+       BOOST_JOIN( name, _impl )( frwrd );                              \
+    }                                                                   \
+};                                                                      \
+                                                                        \
+template<typename type_name>                                            \
+void BOOST_JOIN( name, _impl )( boost::type<type_name>* )               \
+/**/
+
+// ************************************************************************** //
+// **************              BOOST_GLOBAL_FIXTURE            ************** //
+// ************************************************************************** //
+
+#define BOOST_GLOBAL_FIXTURE( F ) \
+static boost::unit_test::ut_detail::global_configuration_impl<F> BOOST_JOIN( gf_, F ) \
+/**/
+
+// ************************************************************************** //
+// **************      BOOST_TEST_GLOBAL_CONFIGURATION         ************** //
+// ************************************************************************** //
+
+#define BOOST_TEST_GLOBAL_CONFIGURATION( F ) \
+static boost::unit_test::ut_detail::global_configuration_impl<F> BOOST_JOIN( gf_, F ) \
+/**/
+
+// ************************************************************************** //
+// **************         BOOST_TEST_GLOBAL_FIXTURE            ************** //
+// ************************************************************************** //
+
+#define BOOST_TEST_GLOBAL_FIXTURE( F ) \
+static boost::unit_test::ut_detail::global_fixture_impl<F> BOOST_JOIN( gf_, F ) \
+/**/
+
+// ************************************************************************** //
+// **************             BOOST_TEST_DECORATOR             ************** //
+// ************************************************************************** //
+
+#define BOOST_TEST_DECORATOR( D )                                       \
+static boost::unit_test::decorator::collector_t const&                  \
+BOOST_TEST_APPEND_UNIQUE_ID(decorator_collector) BOOST_ATTRIBUTE_UNUSED = D; \
+/**/
+
+// ************************************************************************** //
+// **************         BOOST_AUTO_TEST_CASE_FIXTURE         ************** //
+// ************************************************************************** //
+
+namespace boost { namespace unit_test { namespace ut_detail {
+
+struct nil_t {};
+
+} // namespace ut_detail
+} // unit_test
 } // namespace boost
 
-// ***************************************************************************
-//  Revision History :
-//  
-//  $Log: unit_test_suite.hpp,v $
-//  Revision 1.13  2003/02/13 08:23:08  rogeeff
-//  C strings eliminated
-//  type: virtual method -> property
-//  const added to user test case shared instance reference
-//
-//  Revision 1.12  2002/12/08 17:51:04  rogeeff
-//  notion of number of stages is separated from number of test cases, so that
-//  parameterized test case in reported as one test case
-//  fixed bug in both parameterized function/class test cases with not iterating
-//  parameter iterator if exception occured
-//  switched to use c_string_literal
-//
-//  Revision 1.11  2002/11/02 19:31:04  rogeeff
-//  merged into the main trank
-//
+// Intentionally is in global namespace, so that FIXTURE_TEST_SUITE can reset it in user code.
+typedef ::boost::unit_test::ut_detail::nil_t BOOST_AUTO_TEST_CASE_FIXTURE;
 
-// ***************************************************************************
+// ************************************************************************** //
+// **************   Auto registration facility helper macros   ************** //
+// ************************************************************************** //
 
-#endif // BOOST_UNIT_TEST_SUITE_HPP
+// Facility for having a unique name based on __LINE__ and __COUNTER__ (later if available)
+#if defined(__COUNTER__)
+  #define BOOST_TEST_INTERNAL_HAS_COUNTER
+#endif
+
+#if defined(BOOST_TEST_INTERNAL_HAS_COUNTER)
+  #define BOOST_TEST_APPEND_UNIQUE_ID( name ) \
+  BOOST_JOIN( BOOST_JOIN( name, __LINE__ ), __COUNTER__)
+  /**/
+#else
+  #define BOOST_TEST_APPEND_UNIQUE_ID( name ) \
+  BOOST_JOIN( name, __LINE__ )
+  /**/
+#endif
+/**/
+
+#define BOOST_AUTO_TU_REGISTRAR( test_name )                       \
+static boost::unit_test::ut_detail::auto_test_unit_registrar       \
+BOOST_TEST_APPEND_UNIQUE_ID( BOOST_JOIN( test_name, _registrar ) ) BOOST_ATTRIBUTE_UNUSED \
+/**/
+#define BOOST_AUTO_TC_INVOKER( test_name )      BOOST_JOIN( test_name, _invoker )
+#define BOOST_AUTO_TC_UNIQUE_ID( test_name )    BOOST_JOIN( test_name, _id )
+
+// ************************************************************************** //
+// **************                BOOST_TEST_MAIN               ************** //
+// ************************************************************************** //
+
+#if defined(BOOST_TEST_MAIN)
+
+// initializing the master test suite name from the user defined macros
+// this function should be seen exactly once.
+#ifdef BOOST_TEST_MODULE
+static const boost::unit_test::framework::impl::master_test_suite_name_setter mtsetter(BOOST_TEST_STRINGIZE( BOOST_TEST_MODULE ).trim( "\"" ));
+#endif
+
+#ifdef BOOST_TEST_ALTERNATIVE_INIT_API
+bool init_unit_test()                   {
+#else
+::boost::unit_test::test_suite*
+init_unit_test_suite( int, char* [] )   {
+#endif
+
+#ifdef BOOST_TEST_ALTERNATIVE_INIT_API
+    return true;
+}
+#else
+    return 0;
+}
+#endif
+
+#endif
+
+//____________________________________________________________________________//
+
+#include <boost/test/detail/enable_warnings.hpp>
+
+
+#endif // BOOST_TEST_UNIT_TEST_SUITE_HPP_071894GER
 

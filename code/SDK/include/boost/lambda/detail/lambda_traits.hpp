@@ -1,15 +1,10 @@
 // - lambda_traits.hpp --- Boost Lambda Library ----------------------------
 //
-// Copyright (C) 1999, 2000 Jaakko Järvi (jaakko.jarvi@cs.utu.fi)
+// Copyright (C) 1999, 2000 Jaakko Jarvi (jaakko.jarvi@cs.utu.fi)
 //
-// Permission to copy, use, sell and distribute this software is granted
-// provided this copyright notice appears in all copies. 
-// Permission to modify the code and to distribute modified code is granted
-// provided this copyright notice appears in all copies, and a notice 
-// that the code was modified is included with the copyright notice.
-//
-// This software is provided "as is" without express or implied warranty, 
-// and with no claim as to its suitability for any purpose.
+// Distributed under the Boost Software License, Version 1.0. (See
+// accompanying file LICENSE_1_0.txt or copy at
+// http://www.boost.org/LICENSE_1_0.txt)
 //
 // For more information, see www.boost.org
 // -------------------------------------------------------------------------
@@ -21,6 +16,7 @@
 #include "boost/type_traits/cv_traits.hpp"
 #include "boost/type_traits/function_traits.hpp"
 #include "boost/type_traits/object_traits.hpp"
+#include "boost/tuple/tuple.hpp"
 
 namespace boost {
 namespace lambda {
@@ -286,6 +282,11 @@ struct const_copy_argument<void> {
   typedef void type;
 };
 
+template<>
+struct const_copy_argument<void const> {
+  typedef void type;
+};
+
 
 // Does the same as const_copy_argument, but passes references through as such
 template<class T>
@@ -433,6 +434,56 @@ template<class T, int n>  struct bind_traits<volatile T[n]> {
 template<class T, int n> 
 struct bind_traits<const volatile T[n]> {
   typedef const volatile T (&type)[n];
+};
+
+template<class R>
+struct bind_traits<R()> {
+    typedef R(&type)();
+};
+
+template<class R, class Arg1>
+struct bind_traits<R(Arg1)> {
+    typedef R(&type)(Arg1);
+};
+
+template<class R, class Arg1, class Arg2>
+struct bind_traits<R(Arg1, Arg2)> {
+    typedef R(&type)(Arg1, Arg2);
+};
+
+template<class R, class Arg1, class Arg2, class Arg3>
+struct bind_traits<R(Arg1, Arg2, Arg3)> {
+    typedef R(&type)(Arg1, Arg2, Arg3);
+};
+
+template<class R, class Arg1, class Arg2, class Arg3, class Arg4>
+struct bind_traits<R(Arg1, Arg2, Arg3, Arg4)> {
+    typedef R(&type)(Arg1, Arg2, Arg3, Arg4);
+};
+
+template<class R, class Arg1, class Arg2, class Arg3, class Arg4, class Arg5>
+struct bind_traits<R(Arg1, Arg2, Arg3, Arg4, Arg5)> {
+    typedef R(&type)(Arg1, Arg2, Arg3, Arg4, Arg5);
+};
+
+template<class R, class Arg1, class Arg2, class Arg3, class Arg4, class Arg5, class Arg6>
+struct bind_traits<R(Arg1, Arg2, Arg3, Arg4, Arg5, Arg6)> {
+    typedef R(&type)(Arg1, Arg2, Arg3, Arg4, Arg5, Arg6);
+};
+
+template<class R, class Arg1, class Arg2, class Arg3, class Arg4, class Arg5, class Arg6, class Arg7>
+struct bind_traits<R(Arg1, Arg2, Arg3, Arg4, Arg5, Arg6, Arg7)> {
+    typedef R(&type)(Arg1, Arg2, Arg3, Arg4, Arg5, Arg6, Arg7);
+};
+
+template<class R, class Arg1, class Arg2, class Arg3, class Arg4, class Arg5, class Arg6, class Arg7, class Arg8>
+struct bind_traits<R(Arg1, Arg2, Arg3, Arg4, Arg5, Arg6, Arg7, Arg8)> {
+    typedef R(&type)(Arg1, Arg2, Arg3, Arg4, Arg5, Arg6, Arg7, Arg8);
+};
+
+template<class R, class Arg1, class Arg2, class Arg3, class Arg4, class Arg5, class Arg6, class Arg7, class Arg8, class Arg9>
+struct bind_traits<R(Arg1, Arg2, Arg3, Arg4, Arg5, Arg6, Arg7, Arg8, Arg9)> {
+    typedef R(&type)(Arg1, Arg2, Arg3, Arg4, Arg5, Arg6, Arg7, Arg8, Arg9);
 };
 
 template<class T> 

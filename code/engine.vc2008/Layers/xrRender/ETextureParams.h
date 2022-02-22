@@ -111,7 +111,7 @@ struct ECORE_API STextureParams{
 		Clear();
 	}
 
-#if defined(_LEVEL_EDITOR) && defined(_WIN64)
+#ifdef _EDITOR
 STextureParams(const STextureParams& ctp)
 {
 	fmt = ctp.fmt;

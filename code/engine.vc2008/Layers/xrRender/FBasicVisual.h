@@ -8,6 +8,14 @@
 
 #define VLOAD_NOVERTICES		(1<<0)
 
+#ifdef _EDITOR
+#include "../../xrEngine/Fmesh.h"
+#endif
+
+#ifdef _EDITOR
+struct ogf_desc;
+#endif
+
 // The class itself
 class					CKinematicsAnimated;
 class					CKinematics;
@@ -45,7 +53,7 @@ public:
 #endif
 #ifdef DEBUG
 	shared_str					dbg_name	;
-	virtual shared_str	_BCL	getDebugName() ;
+	virtual shared_str	_BCL	getDebugName() { return dbg_name; }
 #endif
 public:
 	// Common data for rendering

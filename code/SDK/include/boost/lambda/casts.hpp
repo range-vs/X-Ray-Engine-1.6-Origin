@@ -1,16 +1,11 @@
 // - casts.hpp -- BLambda Library -------------
 //
 // Copyright (C) 2000 Gary Powell (powellg@amazon.com)
-// Copyright (C) 1999, 2000 Jaakko Järvi (jaakko.jarvi@cs.utu.fi)
+// Copyright (C) 1999, 2000 Jaakko Jarvi (jaakko.jarvi@cs.utu.fi)
 //
-// Permission to copy, use, sell and distribute this software is granted
-// provided this copyright notice appears in all copies. 
-// Permission to modify the code and to distribute modified code is granted
-// provided this copyright notice appears in all copies, and a notice 
-// that the code was modified is included with the copyright notice.
-//
-// This software is provided "as is" without express or implied warranty, 
-// and with no claim as to its suitability for any purpose.
+// Distributed under the Boost Software License, Version 1.0. (See
+// accompanying file LICENSE_1_0.txt or copy at
+// http://www.boost.org/LICENSE_1_0.txt)
 //
 // For more information, see http://www.boost.org
 
@@ -19,10 +14,16 @@
 #if !defined(BOOST_LAMBDA_CASTS_HPP)
 #define BOOST_LAMBDA_CASTS_HPP
 
+#include "boost/lambda/detail/suppress_unused.hpp"
+#include "boost/lambda/core.hpp"
+
 #include <typeinfo>
 
 namespace boost { 
 namespace lambda {
+
+template<class Act, class Args>
+struct return_type_N;
 
 template<class T> class cast_action;
 
@@ -69,11 +70,12 @@ public:
   }
 };
 
-  // typedid action
+// typeid action
 class typeid_action {
 public:
   template<class RET, class Arg1>
   static RET apply(Arg1 &a1) {
+    detail::suppress_unused_variable_warnings(a1);
     return typeid(a1);
   }
 };

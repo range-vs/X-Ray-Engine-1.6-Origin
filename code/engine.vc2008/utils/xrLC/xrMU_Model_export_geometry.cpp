@@ -99,7 +99,11 @@ void	export_geometry		( xrMU_Model &	mu_model )
 		}
 
 		// Indices
-		g_IB.Register	(LPWORD(&*it->ogf->data.faces.begin()),LPWORD(&*it->ogf->data.faces.end()),&it->ib_id,&it->ib_start);
+		auto f = LPWORD(&*it->ogf->data.faces.begin());
+		auto s = LPWORD(&*it->ogf->data.faces.begin() + it->ogf->data.faces.size());
+		auto _3 = &it->ib_id;
+		auto _4 = &it->ib_start;
+		g_IB.Register	(f,s,_3,_4);
 
 		// SW
 		if (it->ogf->progressive_test())

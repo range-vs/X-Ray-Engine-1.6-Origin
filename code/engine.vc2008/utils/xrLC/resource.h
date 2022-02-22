@@ -1,6 +1,6 @@
 //{{NO_DEPENDENCIES}}
-// Microsoft Visual C++ generated include file.
-// Used by resource.rc
+// Включаемый файл, созданный в Microsoft Visual C++.
+// Используется resource.rc
 //
 #define ID_VIEW_NDEPTH                  2
 #define IDDEBUG                         3
@@ -17,6 +17,7 @@
 #define IDD_VERIFY                      104
 #define IDD_STEP                        105
 #define IDD_NVIEW                       107
+#define IDR_MENU1                       109
 #define IDC_LOG                         1000
 #define IDC_FILE                        1001
 #define IDC_LINE                        1002
@@ -31,14 +32,22 @@
 #define IDC_P_TEXT                      1013
 #define IDC_PHASE_TIME                  1014
 #define IDC_PROGRESS1                   1015
+#define IDC_MFCSHELLTREE1               1017
+#define IDC_BUTTON1                     1018
+#define IDC_PAUSE                       1018
+#define ID_40001                        40001
+#define ID_MAINMENU                     40002
+#define ID_40003                        40003
+#define ID_MAINMENU_PAUSE               40004
+#define ID_INSTRUCTION                  40005
 
-// Next default values for _new objects
+// Next default values for new objects
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        108
-#define _APS_NEXT_COMMAND_VALUE         40001
-#define _APS_NEXT_CONTROL_VALUE         1016
+#define _APS_NEXT_RESOURCE_VALUE        110
+#define _APS_NEXT_COMMAND_VALUE         40006
+#define _APS_NEXT_CONTROL_VALUE         1019
 #define _APS_NEXT_SYMED_VALUE           101
 #endif
 #endif

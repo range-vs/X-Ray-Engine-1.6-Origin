@@ -38,6 +38,7 @@
 #include "xrServer_Objects_ALife_Monsters.h"
 
 using namespace luabind;
+using namespace luabind::policy;
 
 LPCSTR command_line	()
 {
@@ -866,8 +867,8 @@ void CLevel::script_register(lua_State *L)
 		.def("setHMS"				,&xrTime::setHMS)
 		.def("setHMSms"				,&xrTime::setHMSms)
 		.def("set"					,&xrTime::set)
-		.def("get"					,&xrTime::get, out_value(_2) + out_value(_3) + out_value(_4) + out_value(_5) + out_value(_6) + out_value(_7) + out_value(_8))
-		.def("dateToString"			,&xrTime::dateToString)
+		.def("get", &xrTime::get, policy_list<out_value<2>, out_value<3>, out_value<4>,
+				out_value<5>, out_value<6>, out_value<7>, out_value<8>>()).def("dateToString"			,&xrTime::dateToString)
 		.def("timeToString"			,&xrTime::timeToString),
 		// declarations
 		def("time",					get_time),

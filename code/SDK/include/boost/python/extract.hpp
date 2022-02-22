@@ -1,25 +1,38 @@
-// Copyright David Abrahams 2002. Permission to copy, use,
-// modify, sell and distribute this software is granted provided this
-// copyright notice appears in all copies. This software is provided
-// "as is" without express or implied warranty, and with no claim as
-// to its suitability for any purpose.
+// Copyright David Abrahams 2002.
+// Distributed under the Boost Software License, Version 1.0. (See
+// accompanying file LICENSE_1_0.txt or copy at
+// http://www.boost.org/LICENSE_1_0.txt)
 #ifndef EXTRACT_DWA200265_HPP
 # define EXTRACT_DWA200265_HPP
+
+# include <boost/python/detail/prefix.hpp>
 
 # include <boost/python/converter/object_manager.hpp>
 # include <boost/python/converter/from_python.hpp>
 # include <boost/python/converter/rvalue_from_python_data.hpp>
 # include <boost/python/converter/registered.hpp>
 # include <boost/python/converter/registered_pointee.hpp>
-# include <boost/call_traits.hpp>
+
 # include <boost/python/object_core.hpp>
 # include <boost/python/refcount.hpp>
-# include <boost/utility.hpp>
+
 # include <boost/python/detail/copy_ctor_mutates_rhs.hpp>
 # include <boost/python/detail/void_ptr.hpp>
 # include <boost/python/detail/void_return.hpp>
+# include <boost/call_traits.hpp>
+
+#if BOOST_WORKAROUND(BOOST_INTEL_WIN, <= 900)
+# define BOOST_EXTRACT_WORKAROUND ()
+#else
+# define BOOST_EXTRACT_WORKAROUND
+#endif
 
 namespace boost { namespace python {
+
+namespace api
+{
+  class object;
+}
 
 namespace converter
 {
@@ -124,7 +137,7 @@ struct extract
     }
     
     extract(PyObject*);
-    extract(object const&);
+    extract(api::object const&);
 };
 
 //
@@ -137,7 +150,7 @@ inline extract<T>::extract(PyObject* o)
 }
 
 template <class T>
-inline extract<T>::extract(object const& o)
+inline extract<T>::extract(api::object const& o)
     : base(o.ptr())
 {
 }

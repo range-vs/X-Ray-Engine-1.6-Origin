@@ -20,7 +20,7 @@ namespace transitions {
 class animation_action;
 
 class action :
-	private debug::make_final<action>,
+	//////private debug::make_final<action>,
 	private boost::noncopyable 
 {
 

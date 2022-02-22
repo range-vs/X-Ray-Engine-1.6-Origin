@@ -10,6 +10,7 @@
 #include "script_fcolor.h"
 
 using namespace luabind;
+using namespace luabind::policy;
 
 #pragma optimize("s",on)
 void CScriptFcolor::script_register(lua_State *L)
@@ -22,8 +23,8 @@ void CScriptFcolor::script_register(lua_State *L)
 			.def_readwrite("b",					&Fcolor::b)
 			.def_readwrite("a",					&Fcolor::a)
 			.def(								constructor<>())
-			.def("set",							(Fcolor & (Fcolor::*)(float,float,float,float))(&Fcolor::set),														return_reference_to(_1))
-			.def("set",							(Fcolor & (Fcolor::*)(const Fcolor &))(&Fcolor::set),																return_reference_to(_1))
-			.def("set",							(Fcolor & (Fcolor::*)(u32))(&Fcolor::set),																			return_reference_to(_1))
+			.def("set",							(Fcolor & (Fcolor::*)(float,float,float,float))(&Fcolor::set),														return_reference_to<1>())
+			.def("set",							(Fcolor & (Fcolor::*)(const Fcolor &))(&Fcolor::set),																return_reference_to<1>())
+			.def("set",							(Fcolor & (Fcolor::*)(u32))(&Fcolor::set),																			return_reference_to<1>())
 	];
 }

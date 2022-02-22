@@ -46,7 +46,7 @@ public:
     public:
     	CSE_Motion*		source;
         CObjectAnimator*animator;
-        void 			OnChangeMotion	();
+        void   __stdcall			OnChangeMotion	();
         void 			PlayMotion		();
     public:
 						CLE_Motion		(CSE_Motion* src);
@@ -94,7 +94,7 @@ public:
 		void    		OnFrame			();
     	void __stdcall	OnAnimControlClick		(ButtonValue* value, bool& bModif, bool& bSafe);  
         
-		virtual void get_bone_xform				(LPCSTR name, Fmatrix& xform);
+		virtual void __stdcall get_bone_xform				(LPCSTR name, Fmatrix& xform);
 	};
 
 	SSpawnData    	m_SpawnData;

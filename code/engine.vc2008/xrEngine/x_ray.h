@@ -79,4 +79,10 @@ public:
 
 extern ENGINE_API	CApplication*	pApp;
 
+extern "C" __declspec(dllexport) int WinMainGlobal(HINSTANCE hInstance,
+	HINSTANCE hPrevInstance,
+	char* lpCmdLine,
+	int       nCmdShow,
+	HWND logo);
+
 #endif //__XR_BASE_H__

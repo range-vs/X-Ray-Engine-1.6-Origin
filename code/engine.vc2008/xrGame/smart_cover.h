@@ -13,6 +13,7 @@
 #include "cover_point.h"
 #include "smart_cover_loophole.h"
 #include "smart_cover_object.h"
+#include <luabind/luabind.hpp>
 
 namespace smart_cover {
 
@@ -28,7 +29,7 @@ struct loophole_data {
 
 class cover : 
 	public  CCoverPoint,
-	private debug::make_final<cover>, 
+	//private debug::make_final<cover>, 
 	private boost::noncopyable 
 {
 public:

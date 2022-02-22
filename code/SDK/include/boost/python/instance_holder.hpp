@@ -1,13 +1,13 @@
-// Copyright David Abrahams 2002. Permission to copy, use,
-// modify, sell and distribute this software is granted provided this
-// copyright notice appears in all copies. This software is provided
-// "as is" without express or implied warranty, and with no claim as
-// to its suitability for any purpose.
+// Copyright David Abrahams 2002.
+// Distributed under the Boost Software License, Version 1.0. (See
+// accompanying file LICENSE_1_0.txt or copy at
+// http://www.boost.org/LICENSE_1_0.txt)
 #ifndef INSTANCE_HOLDER_DWA2002517_HPP
 # define INSTANCE_HOLDER_DWA2002517_HPP
 
-# include <boost/python/detail/config.hpp>
-# include <boost/utility.hpp>
+# include <boost/python/detail/prefix.hpp>
+
+# include <boost/noncopyable.hpp>
 # include <boost/python/type_id.hpp>
 # include <cstddef>
 
@@ -23,7 +23,13 @@ struct BOOST_PYTHON_DECL instance_holder : private noncopyable
     // return the next holder in a chain
     instance_holder* next() const;
 
-    virtual void* holds(type_info) = 0;
+    // When the derived holder actually holds by [smart] pointer and
+    // null_ptr_only is set, only report that the type is held when
+    // the pointer is null.  This is needed for proper shared_ptr
+    // support, to prevent holding shared_ptrs from being found when
+    // converting from python so that we can use the conversion method
+    // that always holds the Python object.
+    virtual void* holds(type_info, bool null_ptr_only) = 0;
 
     void install(PyObject* inst) throw();
 

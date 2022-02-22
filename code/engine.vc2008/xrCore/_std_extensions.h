@@ -77,6 +77,7 @@ struct XRCORE_API xr_token
 {
 	LPCSTR	name;
 	int 	id;
+
 };
 
 IC LPCSTR get_token_name(xr_token* tokens, int key)
@@ -212,16 +213,20 @@ inline errno_t xr_strcat		( LPSTR destination, size_t const buffer_size, LPCSTR 
 inline int __cdecl xr_sprintf	( LPSTR destination, size_t const buffer_size, LPCSTR format_string, ... )
 {
 	va_list args;
-	va_start					( args, format_string);
-	return						vsprintf_s( destination, buffer_size, format_string, args );
+	va_start(args, format_string);
+	const int result = vsprintf_s(destination, buffer_size, format_string, args);
+	va_end(args);
+	return result;
 }
 
 template <int count>
 inline int __cdecl xr_sprintf	( char (&destination)[count], LPCSTR format_string, ... )
 {
 	va_list args;
-	va_start					( args, format_string);
-	return						vsprintf_s( destination, count, format_string, args );
+	va_start(args, format_string);
+	const int result = vsprintf_s(destination, count, format_string, args);
+	va_end(args);
+	return result;
 }
 #else // #ifndef MASTER_GOLD
 

@@ -497,6 +497,11 @@ static Sphere UpdateSupport4 (int i, Vector3** apkPerm, Support& rkSupp)
         iIndex = 13;
     }
 
+    if (iIndex == -1)
+    {
+        int fsd = 45;
+    }
+
     assert( iIndex != -1 );
 
     Sphere kMinimal = akS[iIndex];

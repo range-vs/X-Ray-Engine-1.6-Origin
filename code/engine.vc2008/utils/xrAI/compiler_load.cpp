@@ -110,16 +110,35 @@ void xrLoad(LPCSTR name, bool draft_mode)
 			{
 				Surface_Init		();
 				F = fs->open_chunk	(EB_Textures);
-				u32 tex_count		= F->length()/sizeof(b_texture);
+				/*u32 tex_count		= F->length()/sizeof(b_texture);*/
+				b_texture		TEX;
+				s32 _size = sizeof(TEX.name) + sizeof(TEX.dwHeight) + sizeof(TEX.dwWidth) +
+					sizeof(TEX.bHasAlpha) + sizeof(s32);
+				u32 tex_count = F->length() / _size; // sizeof(b_texture);
 				for (u32 t=0; t<tex_count; t++)
 				{
 					Progress		(float(t)/float(tex_count));
 
-					b_texture		TEX;
+					/*b_texture		TEX;
 					F->r			(&TEX,sizeof(TEX));
+					TEX.pSurface = nullptr;
 
 					b_BuildTexture	BT;
-					CopyMemory		(&BT,&TEX,sizeof(TEX));
+					CopyMemory		(&BT,&TEX,sizeof(TEX));*/
+
+					//b_texture		TEX;
+					s32 _size = sizeof(TEX.name) + sizeof(TEX.dwHeight) + sizeof(TEX.dwWidth) +
+						sizeof(TEX.bHasAlpha) + sizeof(s32);
+					F->r(&TEX,/*sizeof(TEX)*/_size);
+					TEX.pSurface = nullptr;
+
+					b_BuildTexture	BT;
+					//CopyMemory		(&BT,&TEX,sizeof(TEX));
+					BT.bHasAlpha = TEX.bHasAlpha;
+					BT.dwHeight = TEX.dwHeight;
+					BT.dwWidth = TEX.dwWidth;
+					strcpy(BT.name, TEX.name);
+					BT.pSurface = TEX.pSurface;
 
 					// load thumbnail
 					string128		&N = BT.name;

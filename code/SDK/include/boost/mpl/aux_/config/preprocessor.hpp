@@ -1,30 +1,39 @@
-//-----------------------------------------------------------------------------
-// boost mpl/aux_/config/preprocessor.hpp header file
-// See http://www.boost.org for updates, documentation, and revision history.
-//-----------------------------------------------------------------------------
-//
-// Copyright (c) 2000-02
-// Aleksey Gurtovoy
-//
-// Permission to use, copy, modify, distribute and sell this software
-// and its documentation for any purpose is hereby granted without fee, 
-// provided that the above copyright notice appears in all copies and 
-// that both the copyright notice and this permission notice appear in 
-// supporting documentation. No representations are made about the 
-// suitability of this software for any purpose. It is provided "as is" 
-// without express or implied warranty.
 
 #ifndef BOOST_MPL_AUX_CONFIG_PREPROCESSOR_HPP_INCLUDED
 #define BOOST_MPL_AUX_CONFIG_PREPROCESSOR_HPP_INCLUDED
 
-#include "boost/config.hpp"
+// Copyright Aleksey Gurtovoy 2000-2004
+//
+// Distributed under the Boost Software License, Version 1.0. 
+// (See accompanying file LICENSE_1_0.txt or copy at 
+// http://www.boost.org/LICENSE_1_0.txt)
+//
+// See http://www.boost.org/libs/mpl for documentation.
 
-#if defined(__MWERKS__) && (__MWERKS__ <= 0x3003 || !defined(BOOST_STRICT_CONFIG)) \
- || defined(__BORLANDC__) && (__BORLANDC__ <= 0x561 || !defined(BOOST_STRICT_CONFIG)) \
- || defined(__IBMCPP__) && (__IBMCPP__ <= 502 || !defined(BOOST_STRICT_CONFIG))
-#   define BOOST_MPL_BROKEN_PP_MACRO_EXPANSION
+// $Id$
+// $Date$
+// $Revision$
+
+#include <boost/mpl/aux_/config/workaround.hpp>
+
+#if !defined(BOOST_MPL_CFG_BROKEN_PP_MACRO_EXPANSION) \
+    && (   BOOST_WORKAROUND(__MWERKS__, <= 0x3003) \
+        || BOOST_WORKAROUND(BOOST_BORLANDC, < 0x582) \
+        || BOOST_WORKAROUND(__IBMCPP__, BOOST_TESTED_AT(502)) \
+        )
+
+#   define BOOST_MPL_CFG_BROKEN_PP_MACRO_EXPANSION
+
 #endif
 
-//#define BOOST_MPL_NO_OWN_PP_PRIMITIVES
+#if !defined(BOOST_MPL_CFG_NO_OWN_PP_PRIMITIVES)
+#   define BOOST_MPL_CFG_NO_OWN_PP_PRIMITIVES
+#endif
+
+#if !defined(BOOST_NEEDS_TOKEN_PASTING_OP_FOR_TOKENS_JUXTAPOSING) \
+    && BOOST_WORKAROUND(__DMC__, BOOST_TESTED_AT(0x840))
+#   define BOOST_NEEDS_TOKEN_PASTING_OP_FOR_TOKENS_JUXTAPOSING
+#endif
+
 
 #endif // BOOST_MPL_AUX_CONFIG_PREPROCESSOR_HPP_INCLUDED

@@ -101,7 +101,7 @@ void CGameSpawnConstructor::load_spawns	(LPCSTR name, bool no_separator_check)
 		level.m_name					= (*I).m_name;
 		level.m_id						= (*I).m_id;
 		Msg								("%9s %2d %s","level",level.id(),*(*I).m_name);
-		//m_level_spawns.push_back		(xr_new<CLevelSpawnConstructor>(level,this,no_separator_check));
+		m_level_spawns.push_back		(xr_new<CLevelSpawnConstructor>(level,this,no_separator_check));
 	}
 
 	string256							temp;

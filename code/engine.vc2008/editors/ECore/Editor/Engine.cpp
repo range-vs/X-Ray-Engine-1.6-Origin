@@ -10,6 +10,8 @@
 
 #include "stack_trace.h"
 
+#include "../../../xrCore/xr_ini.h"
+
 xrDispatchTable	PSGP;                
 CEngine	Engine;
 
@@ -75,7 +77,7 @@ void CEngine::Initialize(void)
 
 void CEngine::ReloadSettings()
 {
-	xr_delete				(pSettings);
+	xr_delete				((CInifile*&)pSettings);
 	// game configure
 	string_path 			si_name;
 	FS.update_path			(si_name,"$game_config$","system.ltx");
@@ -84,6 +86,6 @@ void CEngine::ReloadSettings()
 
 void CEngine::Destroy()
 {
-    xr_delete				(pSettings);
+    xr_delete				((CInifile*&)pSettings);
 	if (hPSGP)	{ FreeLibrary(hPSGP); hPSGP=0; }
 }

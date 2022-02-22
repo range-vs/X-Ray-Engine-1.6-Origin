@@ -34,7 +34,12 @@ u32		version		= 0;
 extern void logThread(void *dummy);
 extern volatile bool bClose;
 
-static const char* h_str = 
+// range
+extern volatile HANDLE mainThread; // идентификатор потока
+extern volatile char* args; // аргументы командной строки
+extern HWND logWindow; // дескриптор главного окна
+
+const char* h_str = 
 	"The following keys are supported / required:\n"
 	"-? or -h	== this help\n"
 	"-o			== modify build options\n"
@@ -50,8 +55,17 @@ void Help()
 
 typedef int __cdecl xrOptions(b_params* params, u32 version, bool bRunBuild);
 
-void Startup(LPSTR     lpCmdLine)
+void CreateMainWindow()
 {
+	// Give a LOG-thread a chance to startup
+	InitCommonControls();
+	thread_spawn(logThread, "log-update", 1024 * 1024, 0); // создаем поток с окном
+	Sleep(150); // засыпаем на 150 мс
+}
+
+DWORD WINAPI Startup(LPVOID lParam)
+{
+	char* lpCmdLine = (char*)args; // (char*)lParam;
 	create_global_data();
 
 	char cmd[512],name[256];
@@ -59,8 +73,10 @@ void Startup(LPSTR     lpCmdLine)
 
 	xr_strcpy(cmd,lpCmdLine);
 	strlwr(cmd);
-	if (strstr(cmd,"-?") || strstr(cmd,"-h"))			{ Help(); return; }
-	if (strstr(cmd,"-f")==0)							{ Help(); return; }
+	ShowWindow(logWindow, SW_SHOW); // range
+
+	if (strstr(cmd,"-?") || strstr(cmd,"-h"))			{ Help(); return 0; }
+	if (strstr(cmd,"-f")==0)							{ Help(); return 0; }
 	if (strstr(cmd,"-o"))								bModifyOptions	= TRUE;
 	if (strstr(cmd,"-gi"))								g_build_options.b_radiosity		= TRUE;
 	if (strstr(cmd,"-noise"))							g_build_options.b_noise			= TRUE;
@@ -71,10 +87,11 @@ void Startup(LPSTR     lpCmdLine)
 	
 	// Give a LOG-thread a chance to startup
 	//_set_sbh_threshold(1920);
-	InitCommonControls		();
+	/*InitCommonControls		();
 	thread_spawn			(logThread, "log-update",	1024*1024,0);
 	Sleep					(150);
-	
+	*/
+
 	// Faster FPU 
 	SetPriorityClass		(GetCurrentProcess(),NORMAL_PRIORITY_CLASS);
 
@@ -106,7 +123,7 @@ void Startup(LPSTR     lpCmdLine)
 		xr_sprintf				(inf,"Build failed!\nCan't find level: '%s'",name);
 		clMsg				(inf);
 		MessageBox			(logWindow,inf,"Error!",MB_OK|MB_ICONERROR);
-		return;
+		return 0;
 	}
 
 	// Version
@@ -160,11 +177,14 @@ void Startup(LPSTR     lpCmdLine)
 	Sleep					(500);
 }
 
-//typedef void DUMMY_STUFF (const void*,const u32&,void*);
-//XRCORE_API DUMMY_STUFF	*g_temporary_stuff;
-//XRCORE_API DUMMY_STUFF	*g_dummy_stuff;
-
-
+void CreateMainThread(char* lpCmdLine)
+{
+	args = lpCmdLine; // присваиваем разделяемой переменной аргументы команднйо строки
+	DWORD mainThreadId; // статус создания потока
+	mainThread = CreateThread(NULL, 0, Startup, NULL, 0, &mainThreadId); // создаем поток - и присваиваем хэндл глобальной переменной
+	if (mainThread == NULL) // поток не создался
+		MessageBox(NULL, "Error create main build thread!", "Error", MB_OK | MB_ICONERROR); // сообщение
+}
 
 int APIENTRY WinMain(HINSTANCE hInst,
                      HINSTANCE hPrevInstance,
@@ -174,20 +194,30 @@ int APIENTRY WinMain(HINSTANCE hInst,
 //	g_temporary_stuff	= &trivial_encryptor::decode;
 //	g_dummy_stuff		= &trivial_encryptor::encode;
 
-	// Initialize debugging
-	Debug._initialize	(false);
-	Core._initialize	("xrLC");
+	//// Initialize debugging
+	//Debug._initialize	(false);
+	//Core._initialize	("xrLC");
+	//
+	//if(strstr(Core.Params,"-nosmg"))
+	//	g_using_smooth_groups = false;
+
+	//Startup				(lpCmdLine);
+	//Core._destroy		();
+	//
+	//return 0;
 	
-	if(strstr(Core.Params,"-nosmg"))
+	// Initialize debugging
+	Debug._initialize(false);
+	Core._initialize("xrLC");
+
+	if (strstr(Core.Params, "-nosmg"))
 		g_using_smooth_groups = false;
 
-	Startup				(lpCmdLine);
-	Core._destroy		();
-	
+	// range
+	CreateMainWindow(); // создаем окно
+	CreateMainThread(lpCmdLine); // создаём и запускаем поток
+	WaitForSingleObject(mainThread, INFINITE); // здесь ждем завершения вышесозданного потока
+	Core._destroy(); // здесь выгружаем ресурсы
+
 	return 0;
 }
-
-// починить баг адресации в dll
-// запустить, отладить
-// внедрить правку по паузе компилятора
-// внедрить рекурсивную правку (возможно уже есть)

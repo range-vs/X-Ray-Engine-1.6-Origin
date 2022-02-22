@@ -15,6 +15,7 @@
 #include "character_info_defs.h"
 #include "game_graph_space.h"
 #include "game_location_selector.h"
+#include <luabind/functor.hpp>
 
 enum EPdaMsg;
 enum ESoundTypes;
@@ -128,8 +129,8 @@ struct CSightParams {
 };
 
 namespace luabind {
-	template <typename return_type>
-	class functor;
+	//template <typename return_type>
+	//class functor;
 
 	class object;
 } // namespace luabind

@@ -320,6 +320,13 @@ void	IWriter::w_printf(const char* format, ...)
 	w		( buf, xr_strlen(buf) );
 }
 
+void IWriter::VPrintf(const char* format, va_list args)
+{
+	char buf[1024];
+	std::vsnprintf(buf, sizeof(buf), format, args);
+	w(buf, xr_strlen(buf));
+}
+
 //---------------------------------------------------
 // base stream
 IReader*	IReader::open_chunk(u32 ID)

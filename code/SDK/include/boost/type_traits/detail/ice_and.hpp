@@ -1,16 +1,22 @@
-// (C) Copyright John Maddock and Steve Cleary 2000.
+//  (C) Copyright John Maddock and Steve Cleary 2000.
 //
-// Permission to copy, use, modify, sell and distribute this software is 
-// granted provided this copyright notice appears in all copies. This software 
-// is provided "as is" without express or implied warranty, and with no claim 
-// as to its suitability for any purpose.
+//  Use, modification and distribution are subject to the Boost Software License,
+//  Version 1.0. (See accompanying file LICENSE_1_0.txt or copy at
+//  http://www.boost.org/LICENSE_1_0.txt).
 //
-// See http://www.boost.org for most recent version including documentation.
+//  See http://www.boost.org/libs/type_traits for most recent version including documentation.
 
 #ifndef BOOST_TT_DETAIL_ICE_AND_HPP_INCLUDED
 #define BOOST_TT_DETAIL_ICE_AND_HPP_INCLUDED
 
-#include "boost/config.hpp"
+#include <boost/config.hpp>
+
+//
+// This header is deprecated and no longer used by type_traits:
+//
+#if defined(__GNUC__) || defined(_MSC_VER)
+# pragma message("NOTE: Use of this header (ice_and.hpp) is deprecated")
+#endif
 
 namespace boost {
 namespace type_traits {

@@ -297,7 +297,7 @@ void	CKinematics::Load(const char* N, IReader *data, u32 dwFlags)
 				std::sort						(faces.begin(),faces.end());
 				CBoneData::FacesVecIt new_end	= std::unique(faces.begin(),faces.end());
 				faces.erase						(new_end,faces.end());
-				B->child_faces[child_idx].clear_and_free();
+				B->child_faces[child_idx].clear();
 				B->child_faces[child_idx]		= faces;
 			}
 		}
@@ -660,7 +660,7 @@ void CKinematics::AddWallmark(const Fmatrix* parent_xform, const Fvector3& start
 }
 
 static const float LIFE_TIME=30.f;
-struct zero_wm_pred : public std::unary_function<intrusive_ptr<CSkeletonWallmark>, bool>
+struct zero_wm_pred //: public std::unary_function<intrusive_ptr<CSkeletonWallmark>, bool>
 {
 	bool operator()(const intrusive_ptr<CSkeletonWallmark> x){ return x==0; }
 };

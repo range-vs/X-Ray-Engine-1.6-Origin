@@ -1,51 +1,47 @@
-// Copyright Gottfried Ganﬂauge 2003. Permission to copy, use,
-// modify, sell and distribute this software is granted provided this
-// copyright notice appears in all copies. This software is provided
-// "as is" without express or implied warranty, and with no claim as
-// to its suitability for any purpose.
+// Copyright Gottfried Gan√üauge 2003.
+// Distributed under the Boost Software License, Version 1.0. (See
+// accompanying file LICENSE_1_0.txt or copy at
+// http://www.boost.org/LICENSE_1_0.txt)
 /*
  * Generic Return value converter generator for opaque C++-pointers
  */
 # ifndef RETURN_OPAQUE_POINTER_HPP_
 # define RETURN_OPAQUE_POINTER_HPP_
+
+# include <boost/python/detail/prefix.hpp>
 # include <boost/python/opaque_pointer_converter.hpp>
-# include <boost/python/detail/indirect_traits.hpp>
-# include <boost/mpl/if.hpp>
+# include <boost/python/detail/force_instantiate.hpp>
+# include <boost/python/to_python_value.hpp>
+# include <boost/python/detail/value_arg.hpp>
+# include <boost/mpl/assert.hpp>
 
 namespace boost { namespace python {
-    namespace detail {
-        template <class Pointer>
-        struct opaque_conversion_holder {
-            inline PyObject *operator () (Pointer p) {
-                static opaque_pointer_converter<Pointer> converter (
-                    typeid (Pointer).name());
 
-                return converter.convert(p);
-            }
-        };
+namespace detail
+{
+  template <class Pointee>
+  static void opaque_pointee(Pointee const volatile*)
+  {
+      force_instantiate(opaque<Pointee>::instance);
+  }
+}
 
-        template <class R>
-        struct return_opaque_pointer_requires_a_pointer_type
-# if defined(__GNUC__) && __GNUC__ >= 3 || defined(__EDG__)
-        {}
-# endif
-        ;
-    }
-    
-    struct return_opaque_pointer
+struct return_opaque_pointer
+{
+    template <class R>
+    struct apply
     {
-        template <class R>
-        struct apply
-        {
-            BOOST_STATIC_CONSTANT(
-                bool, ok = is_pointer<R>::value);
+        BOOST_MPL_ASSERT_MSG( is_pointer<R>::value, RETURN_OPAQUE_POINTER_EXPECTS_A_POINTER_TYPE, (R));
         
-            typedef typename mpl::if_c<
-                ok
-                , detail::opaque_conversion_holder<R>
-                , detail::return_opaque_pointer_requires_a_pointer_type<R>
-            >::type type;
+        struct type :  
+          boost::python::to_python_value<
+              typename detail::value_arg<R>::type
+          >
+        {
+            type() { detail::opaque_pointee(R()); }
         };
     };
+};
+
 }} // namespace boost::python
 # endif // RETURN_OPAQUE_POINTER_HPP_

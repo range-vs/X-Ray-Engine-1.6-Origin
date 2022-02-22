@@ -11,6 +11,7 @@
 #include "leftbar.h"
 #include "../../Layers/xrRender/SkeletonAnimated.h"
 #include "../xrEProps/ItemList.h"
+#include "../../xrCore/xrCore.h"
 //------------------------------------------------------------------------------
 
 void CActorTools::OnObjectItemFocused(ListItemsVec& items)
@@ -658,7 +659,8 @@ void CActorTools::FillBoneProperties(PropItemVec& items, LPCSTR pref, ListItem* 
         PHelper().CreateFlag16		(items, PrepareKey(pref,"Bone\\Shape\\Flags\\Remove After Break"),	&BONE->shape.flags,SBoneShape::sfRemoveAfterBreak);
         PHelper().CreateFlag16		(items, PrepareKey(pref,"Bone\\Shape\\Flags\\No Fog Collider"),	&BONE->shape.flags,SBoneShape::sfNoFogCollider);
         
-		V=PHelper().CreateToken16	(items,	PrepareKey(pref,"Bone\\Shape\\Type"),				&BONE->shape.type, shape_types);			V->OnChangeEvent.bind	(this,&CActorTools::OnShapeTypeChange);
+		V=PHelper().CreateToken16	(items,	PrepareKey(pref,"Bone\\Shape\\Type"),				&BONE->shape.type, shape_types);
+		V->OnChangeEvent.bind	(this,&CActorTools::OnShapeTypeChange);
         switch (BONE->shape.type){
         case SBoneShape::stBox:
 	        PHelper().CreateVector	(items, PrepareKey(pref,"Bone\\Shape\\Box\\Center"),		&BONE->shape.box.m_translate, -10000.f, 10000.f);
@@ -700,7 +702,8 @@ void CActorTools::FillBoneProperties(PropItemVec& items, LPCSTR pref, ListItem* 
 	        PHelper().CreateFloat 	(items, PrepareKey(pref,"Bone\\Joint\\Break Force"),		&data.break_force, 	0.f, 1000000000.f);
 	        PHelper().CreateFloat 	(items, PrepareKey(pref,"Bone\\Joint\\Break Torque"),		&data.break_torque, 0.f, 1000000000.f);
         }
-		V=PHelper().CreateToken32	(items,	PrepareKey(pref,"Bone\\Joint\\Type"),				(u32*)&data.type,	joint_types);  	V->OnChangeEvent.bind	(this,&CActorTools::OnJointTypeChange);
+		V=PHelper().CreateToken32	(items,	PrepareKey(pref,"Bone\\Joint\\Type"),				(u32*)&data.type,	joint_types);
+		V->OnChangeEvent.bind	(this,&CActorTools::OnJointTypeChange);
         switch (data.type){
         case jtRigid: 
         break; 

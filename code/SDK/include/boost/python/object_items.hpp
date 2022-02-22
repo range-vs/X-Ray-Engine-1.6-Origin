@@ -1,10 +1,11 @@
-// Copyright David Abrahams 2002. Permission to copy, use,
-// modify, sell and distribute this software is granted provided this
-// copyright notice appears in all copies. This software is provided
-// "as is" without express or implied warranty, and with no claim as
-// to its suitability for any purpose.
+// Copyright David Abrahams 2002.
+// Distributed under the Boost Software License, Version 1.0. (See
+// accompanying file LICENSE_1_0.txt or copy at
+// http://www.boost.org/LICENSE_1_0.txt)
 #ifndef OBJECT_ITEMS_DWA2002615_HPP
 # define OBJECT_ITEMS_DWA2002615_HPP
+
+# include <boost/python/detail/prefix.hpp>
 
 # include <boost/python/proxy.hpp>
 # include <boost/python/object_core.hpp>
@@ -43,7 +44,6 @@ object_operators<U>::operator[](object_cref key) const
     return const_object_item(x, key);
 }
 
-# if !defined(BOOST_MSVC) || BOOST_MSVC > 1300
 template <class U>
 template <class T>
 inline const_object_item
@@ -59,8 +59,6 @@ object_operators<U>::operator[](T const& key)
 {
     return (*this)[object(key)];
 }
-# endif 
-
 
 inline object const_item_policies::get(object const& target, object const& key)
 {

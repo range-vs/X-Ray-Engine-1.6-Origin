@@ -3,9 +3,11 @@
 #ifndef LightAnimLibraryH
 #define LightAnimLibraryH
 //---------------------------------------------------------------------------
-#ifdef _EDITOR
+/*#ifdef _EDITOR
+	#include "../xrCore/xrCore.h"
+    #include "../xrEngine/stdafx.h"
 	#include "../xrEProps/FolderLib.h"              
-#endif
+#endif     */
 
 class ENGINE_API CLAItem				{
 public:
@@ -48,8 +50,8 @@ public:
 					ELightAnimLibrary	();
 					~ELightAnimLibrary	();
 #ifdef _EDITOR       
-    void  			RemoveObject		(LPCSTR fname, EItemType type, bool& res);
-    void		 	RenameObject		(LPCSTR fn0, LPCSTR fn1, EItemType type);
+	void  	__stdcall		RemoveObject		(LPCSTR fname, EItemType type, bool& res);
+    void	__stdcall	 	RenameObject		(LPCSTR fn0, LPCSTR fn1, EItemType type);
 #endif
 
     void			OnCreate			();

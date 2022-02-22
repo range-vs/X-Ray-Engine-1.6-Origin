@@ -410,7 +410,7 @@ void CCar::UpdateEx			(float fov)
 	{
 		cam_Update(Device.fTimeDelta, fov);
 		OwnerActor()->Cameras().UpdateFromCamera(Camera());
-		OwnerActor()->Cameras().ApplyDevice(VIEWPORT_NEAR);
+		OwnerActor()->Cameras().ApplyDevice();
 	}
 
 	

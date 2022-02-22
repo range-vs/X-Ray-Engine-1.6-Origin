@@ -1,16 +1,11 @@
 // -- core.hpp -- Boost Lambda Library -------------------------------------
 //
 // Copyright (C) 2000 Gary Powell (powellg@amazon.com)
-// Copyright (C) 1999, 2000 Jaakko Järvi (jaakko.jarvi@cs.utu.fi)
+// Copyright (C) 1999, 2000 Jaakko Jarvi (jaakko.jarvi@cs.utu.fi)
 //
-// Permission to copy, use, sell and distribute this software is granted
-// provided this copyright notice appears in all copies. 
-// Permission to modify the code and to distribute modified code is granted
-// provided this copyright notice appears in all copies, and a notice 
-// that the code was modified is included with the copyright notice.
-//
-// This software is provided "as is" without express or implied warranty, 
-// and with no claim as to its suitability for any purpose.
+// Distributed under the Boost Software License, Version 1.0. (See
+// accompanying file LICENSE_1_0.txt or copy at
+// http://www.boost.org/LICENSE_1_0.txt)
 //
 // For more information, see www.boost.org
 // 
@@ -26,6 +21,8 @@
 
 #ifndef BOOST_LAMBDA_CORE_HPP
 #define BOOST_LAMBDA_CORE_HPP
+
+#include "boost/config.hpp"
 
 #include "boost/type_traits/transform_traits.hpp"
 #include "boost/type_traits/cv_traits.hpp"
@@ -71,9 +68,9 @@ namespace {
   boost::lambda::placeholder2_type free2 = boost::lambda::placeholder2_type();
   boost::lambda::placeholder3_type free3 = boost::lambda::placeholder3_type();
 
-  boost::lambda::placeholder1_type& _1 = free1;
-  boost::lambda::placeholder2_type& _2 = free2;
-  boost::lambda::placeholder3_type& _3 = free3;
+  boost::lambda::placeholder1_type& BOOST_ATTRIBUTE_UNUSED _1 = free1;
+  boost::lambda::placeholder2_type& BOOST_ATTRIBUTE_UNUSED _2 = free2;
+  boost::lambda::placeholder3_type& BOOST_ATTRIBUTE_UNUSED _3 = free3;
   // _1, _2, ... naming scheme by Peter Dimov
 } // unnamed
    

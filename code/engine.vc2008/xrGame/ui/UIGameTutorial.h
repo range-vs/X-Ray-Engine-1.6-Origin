@@ -1,5 +1,6 @@
 #pragma once
 #include "xr_level_controller.h"
+#include <luabind/functor.hpp>
 
 class CUIWindow;
 class CUIStatic;

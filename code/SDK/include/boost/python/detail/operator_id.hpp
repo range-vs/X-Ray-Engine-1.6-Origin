@@ -1,8 +1,7 @@
-// Copyright David Abrahams 2002. Permission to copy, use,
-// modify, sell and distribute this software is granted provided this
-// copyright notice appears in all copies. This software is provided
-// "as is" without express or implied warranty, and with no claim as
-// to its suitability for any purpose.
+// Copyright David Abrahams 2002.
+// Distributed under the Boost Software License, Version 1.0. (See
+// accompanying file LICENSE_1_0.txt or copy at
+// http://www.boost.org/LICENSE_1_0.txt)
 #ifndef OPERATOR_ID_DWA2002531_HPP
 # define OPERATOR_ID_DWA2002531_HPP
 
@@ -47,7 +46,16 @@ enum operator_id
     op_iand,
     op_ixor,
     op_ior,
-    op_complex
+    op_complex,
+#if PY_VERSION_HEX >= 0x03000000
+    op_bool,
+#else
+    op_nonzero,
+#endif
+    op_repr
+#if PY_VERSION_HEX >= 0x03000000
+    ,op_truediv
+#endif
 };
 
 }}} // namespace boost::python::detail

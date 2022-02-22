@@ -110,7 +110,7 @@ int SetBackTrajectoryCnt(const dReal* p,const dReal*last_pos,Triangle &neg_tri, 
 //		debug_output().dbg_total_saved_tries()-=data->cashed_tries.size();
 //		debug_output().dbg_new_queries_per_step()++;
 //#endif
-//		data->cashed_tries								.clear_not_free()		;
+//		data->cashed_tries								.clear()		;
 //		for (CDB::RESULT* Res=R_begin; Res!=R_end; ++Res)
 //		{
 //			data->cashed_tries.push_back(Res->id);
@@ -475,13 +475,8 @@ IC int dcTriListCollider::dSortTriPrimitiveCollide(
 #endif
 		data->cashed_tries.clear();
 
-		CDB::RESULT* R_begin = XRC.r_begin();
-		CDB::RESULT* R_end = XRC.r_end();
-		for (CDB::RESULT* Res = R_begin; Res != R_end; ++Res)
-		{
-			data->cashed_tries.push_back(Res->id);
-		}
-
+		for (auto& Res : *XRC.r_get())
+			data->cashed_tries.push_back(Res.id);
 
 #ifdef DEBUG
 		debug_output().dbg_total_saved_tries() += data->cashed_tries.size();

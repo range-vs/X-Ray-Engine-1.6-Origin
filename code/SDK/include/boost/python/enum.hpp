@@ -1,10 +1,11 @@
-// Copyright David Abrahams 2002. Permission to copy, use,
-// modify, sell and distribute this software is granted provided this
-// copyright notice appears in all copies. This software is provided
-// "as is" without express or implied warranty, and with no claim as
-// to its suitability for any purpose.
+// Copyright David Abrahams 2002.
+// Distributed under the Boost Software License, Version 1.0. (See
+// accompanying file LICENSE_1_0.txt or copy at
+// http://www.boost.org/LICENSE_1_0.txt)
 #ifndef ENUM_DWA200298_HPP
 # define ENUM_DWA200298_HPP
+
+# include <boost/python/detail/prefix.hpp>
 
 # include <boost/python/object/enum_base.hpp>
 # include <boost/python/converter/rvalue_from_python_data.hpp>
@@ -18,7 +19,7 @@ struct enum_ : public objects::enum_base
     typedef objects::enum_base base;
 
     // Declare a new enumeration type in the current scope()
-    enum_(char const* name);
+    enum_(char const* name, char const* doc = 0);
 
     // Add a new enumeration value with the given name and value.
     inline enum_<T>& value(char const* name, T);
@@ -33,13 +34,15 @@ struct enum_ : public objects::enum_base
 };
 
 template <class T>
-inline enum_<T>::enum_(char const* name)
+inline enum_<T>::enum_(char const* name, char const* doc )
     : base(
         name
         , &enum_<T>::to_python
         , &enum_<T>::convertible_from_python
         , &enum_<T>::construct
-        , type_id<T>())
+        , type_id<T>()
+        , doc
+        )
 {
 }
 
@@ -76,7 +79,11 @@ void* enum_<T>::convertible_from_python(PyObject* obj)
 template <class T>
 void enum_<T>::construct(PyObject* obj, converter::rvalue_from_python_stage1_data* data)
 {
+#if PY_VERSION_HEX >= 0x03000000
+    T x = static_cast<T>(PyLong_AS_LONG(obj));
+#else
     T x = static_cast<T>(PyInt_AS_LONG(obj));
+#endif
     void* const storage = ((converter::rvalue_from_python_storage<T>*)data)->storage.bytes;
     new (storage) T(x);
     data->convertible = storage;

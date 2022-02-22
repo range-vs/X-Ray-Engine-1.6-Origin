@@ -361,7 +361,7 @@ float getLastRP_Scale(CDB::COLLIDER* DB, CDB::MODEL* MDL, R_Light& L, Face* skip
 
 			// Access to texture
 			CDB::TRI& clT										= MDL->get_tris()[rpinf.id];
-			base_Face* F										= (base_Face*)(*((void**)&clT.dummy));
+			base_Face* F = (base_Face*)((void**)clT.dummy); // (base_Face*)(*((void**)&clT.dummy));
 			if (0==F)											continue;
 			if (skip==F)										continue;
 
@@ -451,7 +451,9 @@ void LightPoint(CDB::COLLIDER* DB, CDB::MODEL* MDL, base_color_c &C, Fvector &P,
 	if (0==(flags&LP_dont_rgb))
 	{
 		DB->ray_options	(0);
-		R_Light	*L	= &*lights.rgb.begin(), *E = &*lights.rgb.end();
+		//R_Light	*L	= &*lights.rgb.begin(), *E = &*lights.rgb.end();
+		auto L = lights.rgb.begin();
+		auto E = lights.rgb.end();
 		for (;L!=E; L++)
 		{
 			switch (L->type)
@@ -537,7 +539,9 @@ void LightPoint(CDB::COLLIDER* DB, CDB::MODEL* MDL, base_color_c &C, Fvector &P,
 	if (0==(flags&LP_dont_sun))
 	{
 		DB->ray_options	(0);
-		R_Light	*L		= &*(lights.sun.begin()), *E = &*(lights.sun.end());
+		//R_Light	*L		= &*(lights.sun.begin()), *E = &*(lights.sun.end());
+		auto L = lights.sun.begin();
+		auto E = lights.sun.end();
 		for (;L!=E; L++)
 		{
 			if (L->type==LT_DIRECT) {
@@ -571,7 +575,10 @@ void LightPoint(CDB::COLLIDER* DB, CDB::MODEL* MDL, base_color_c &C, Fvector &P,
 	}
 	if (0==(flags&LP_dont_hemi))
 	{
-		R_Light	*L	= &*lights.hemi.begin(), *E = &*lights.hemi.end();
+		/*R_Light* L = &*lights.hemi.begin();
+		R_Light*E = &*lights.hemi.end();*/
+		auto L = lights.hemi.begin();
+		auto E = lights.hemi.end();
 		for (;L!=E; L++)
 		{
 			if (L->type==LT_DIRECT) {

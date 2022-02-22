@@ -6,7 +6,7 @@
 #define D3DUtilsH_included
 
 
-#if defined(_WIN64) && defined(_LEVEL_EDITOR)
+#ifdef _EDITOR
 #include "stdafx.h"
 #include "device.h"
 #endif
@@ -26,7 +26,7 @@
 class CEditableObject;
 
 struct SPrimitiveBuffer{
-    ref_geom				pGeom;
+	ref_geom				pGeom;
     u32						v_cnt;
     u32						i_cnt;
     D3DPRIMITIVETYPE 		p_type;

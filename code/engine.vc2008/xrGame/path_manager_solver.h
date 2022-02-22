@@ -40,13 +40,25 @@ template <
 			_iteration_type
 		>
 {
-protected:
-	typedef CProblemSolver<T1,T2,T3,T4,T5,T6,T7,T8>	_Graph;
-	typedef typename _Graph::_edge_type				_edge_type;
+//protected:
+//	typedef CProblemSolver<T1,T2,T3,T4,T5,T6,T7,T8>	_Graph;
+//	typedef typename _Graph::_edge_type				_edge_type;
+//	typedef CProblemSolver<T1, T2, T3, T4, T5, T6, T7, T8>::const_iterator	const_iterator;
+//
+//protected:
+//	xr_vector<_edge_type>							*m_edge_path;
+//	const_iterator									m_iterator;
+
+public:
+	using inherited = CPathManagerGeneric<CProblemSolver<T1, T2, T3, T4, T5, T6, T7, T8>, _DataStorage,
+		_Parameters, _dist_type, _index_type, _iteration_type>;
+	using const_iterator = typename inherited::const_iterator;
 
 protected:
-	xr_vector<_edge_type>							*m_edge_path;
-	const_iterator									m_iterator;
+	typedef CProblemSolver<T1, T2, T3, T4, T5, T6, T7, T8> _Graph;
+	typedef typename _Graph::_edge_type _edge_type;
+	xr_vector<_edge_type>* m_edge_path;
+	const_iterator m_iterator;
 
 public:
 	virtual						~CPathManager	();
@@ -54,7 +66,7 @@ public:
 	IC		bool				is_goal_reached	(const _index_type &vertex_id) const;
 	IC		const _index_type	&get_value		(const_iterator &i, bool reverse_search = typename _Graph::reverse_search) const;
 	IC		const _edge_type	&edge			(const_iterator &i) const;
-	IC		_dist_type			evaluate		(const _index_type &node_index1, const _index_type &node_index2, const const_iterator &i) const;
+	IC		_dist_type			evaluate(const _index_type& node_index1, const _index_type& node_index2, const const_iterator& i) const;
 	IC		_dist_type			estimate		(const _index_type &vertex_id) const;
 	IC		void				init_path		();
 	template <typename T>

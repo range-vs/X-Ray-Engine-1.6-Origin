@@ -10,6 +10,9 @@
 
 //#include "../../xrCore/xrCore.h"
 
+#include "resource.h"
+#include <windows.h>
+
 #include "../xrLC_Light/xrLC_Light.h"
 
 

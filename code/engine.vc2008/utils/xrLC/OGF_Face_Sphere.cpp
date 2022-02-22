@@ -4,6 +4,8 @@
 #pragma warning(disable:4995)
 #include <freemagic/MgcCont3DMinSphere.h>
 
+#include <fstream>
+
 #pragma comment(lib,"MagicFM.lib")
 
 BOOL	f_valid		(float f)
@@ -26,6 +28,7 @@ BOOL				SphereValid	(xr_vector<Fvector>& geom, Fsphere& test)
 
 void				OGF_Base::CalcBounds	() 
 {
+	static int i(0);
 	// get geometry
 	static xr_vector<Fvector>		V;
 	xr_vector<Fvector>::iterator	I;
@@ -55,6 +58,16 @@ void				OGF_Base::CalcBounds	()
 	BOOL B2						= SphereValid(V,S2);
 
 	// 3: calc magic-fm
+	//OutputDebugString(("CalcBounds: " + std::to_string(i) + "\n").c_str());
+	//if (i == 843)
+	//{
+	//	int asd = 45;
+	//	std::ofstream f("E://file.txt");
+	//	f << sizeof(const Mgc::Vector3) << std::endl;
+	//	for (auto&& v : V)
+	//		f << v.x << " " << v.y << " " << v.z << std::endl;
+	//} 
+	i++;
 	Mgc::Sphere _S3				= Mgc::MinSphere((u32)V.size(), (const Mgc::Vector3*) &*V.begin());
 	Fsphere	S3;
 	S3.P.set					(_S3.Center().x,_S3.Center().y,_S3.Center().z);

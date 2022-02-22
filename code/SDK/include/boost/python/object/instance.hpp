@@ -1,18 +1,17 @@
-// Copyright David Abrahams 2002. Permission to copy, use,
-// modify, sell and distribute this software is granted provided this
-// copyright notice appears in all copies. This software is provided
-// "as is" without express or implied warranty, and with no claim as
-// to its suitability for any purpose.
+// Copyright David Abrahams 2002.
+// Distributed under the Boost Software License, Version 1.0. (See
+// accompanying file LICENSE_1_0.txt or copy at
+// http://www.boost.org/LICENSE_1_0.txt)
 #ifndef INSTANCE_DWA200295_HPP
 # define INSTANCE_DWA200295_HPP
 
-# include <boost/python/detail/wrap_python.hpp>
-# include <boost/type_traits/alignment_traits.hpp>
+# include <boost/python/detail/prefix.hpp>
+
 # include <cstddef>
 
 namespace boost { namespace python
 {
-  struct BOOST_PYTHON_DECL instance_holder;
+  struct instance_holder;
 }} // namespace boost::python
 
 namespace boost { namespace python { namespace objects { 
@@ -26,8 +25,9 @@ struct instance
     PyObject* weakrefs; 
     instance_holder* objects;
 
-    BOOST_STATIC_CONSTANT(std::size_t, alignment = alignment_of<Data>::value);
-    typedef typename type_with_alignment<alignment>::type align_t;
+    typedef typename boost::python::detail::type_with_alignment<
+        boost::python::detail::alignment_of<Data>::value
+    >::type align_t;
           
     union
     {

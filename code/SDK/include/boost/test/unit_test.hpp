@@ -1,32 +1,71 @@
-//  (C) Copyright Gennadiy Rozental 2001-2002.
-//  Permission to copy, use, modify, sell and distribute this software
-//  is granted provided this copyright notice appears in all copies.
-//  This software is provided "as is" without express or implied warranty,
-//  and with no claim as to its suitability for any purpose.
+//  (C) Copyright Gennadiy Rozental 2001.
+//  Distributed under the Boost Software License, Version 1.0.
+//  (See accompanying file LICENSE_1_0.txt or copy at
+//  http://www.boost.org/LICENSE_1_0.txt)
 
-//  See http://www.boost.org for most recent version including documentation.
+//  See http://www.boost.org/libs/test for the library home page.
 //
-//  File        : $RCSfile: unit_test.hpp,v $
-//
-//  Version     : $Id: unit_test.hpp,v 1.6 2002/11/02 19:31:04 rogeeff Exp $
-//
-//  Description : wrapper include . To be used by end-user
+/// @file
+/// @brief Entry point into the Unit Test Framework
+///
+/// This header should be the only header necessary to include to start using the framework
 // ***************************************************************************
 
-#ifndef BOOST_UNIT_TEST_HPP
-#define BOOST_UNIT_TEST_HPP
+#ifndef BOOST_TEST_UNIT_TEST_HPP_071894GER
+#define BOOST_TEST_UNIT_TEST_HPP_071894GER
 
+// Boost.Test
 #include <boost/test/test_tools.hpp>
 #include <boost/test/unit_test_suite.hpp>
 
-// ***************************************************************************
-//  Revision History :
-//  
-//  $Log: unit_test.hpp,v $
-//  Revision 1.6  2002/11/02 19:31:04  rogeeff
-//  merged into the main trank
-//
+//____________________________________________________________________________//
 
-// ***************************************************************************
+// ************************************************************************** //
+// **************                 Auto Linking                 ************** //
+// ************************************************************************** //
 
-#endif // BOOST_UNIT_TEST_HPP
+#if !defined(BOOST_ALL_NO_LIB) && !defined(BOOST_TEST_NO_LIB) && \
+    !defined(BOOST_TEST_SOURCE) && !defined(BOOST_TEST_INCLUDED) && \
+    defined(BOOST_TEST_MAIN)
+#  define BOOST_LIB_NAME boost_unit_test_framework
+
+#  if defined(BOOST_ALL_DYN_LINK) || defined(BOOST_TEST_DYN_LINK)
+#    define BOOST_DYN_LINK
+#  endif
+
+#  include <boost/config/auto_link.hpp>
+
+#endif  // auto-linking disabled
+
+// ************************************************************************** //
+// **************                  unit_test_main              ************** //
+// ************************************************************************** //
+
+namespace boost { namespace unit_test {
+
+int BOOST_TEST_DECL unit_test_main( init_unit_test_func init_func, int argc, char* argv[] );
+
+}
+
+// !! ?? to remove
+namespace unit_test_framework=unit_test;
+
+}
+
+#if defined(BOOST_TEST_DYN_LINK) && defined(BOOST_TEST_MAIN) && !defined(BOOST_TEST_NO_MAIN)
+
+// ************************************************************************** //
+// **************        main function for tests using dll     ************** //
+// ************************************************************************** //
+
+int BOOST_TEST_CALL_DECL
+main( int argc, char* argv[] )
+{
+    return ::boost::unit_test::unit_test_main( &init_unit_test, argc, argv );
+}
+
+//____________________________________________________________________________//
+
+#endif // BOOST_TEST_DYN_LINK && BOOST_TEST_MAIN && !BOOST_TEST_NO_MAIN
+
+#endif // BOOST_TEST_UNIT_TEST_HPP_071894GER

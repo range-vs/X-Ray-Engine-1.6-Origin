@@ -50,7 +50,7 @@ struct b_texture
 	string128			name;
 	u32					dwWidth;
 	u32					dwHeight;
-	BOOL				bHasAlpha;
+	/*BOOL*/s32				bHasAlpha;
 	u32*				pSurface;
 };
 

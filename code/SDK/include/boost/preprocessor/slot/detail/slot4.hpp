@@ -1,10 +1,9 @@
 # /* **************************************************************************
 #  *                                                                          *
-#  *     (C) Copyright Paul Mensonides 2002.  Permission to copy, use,        *
-#  *     modify, sell, and distribute this software is granted provided       *
-#  *     this copyright notice appears in all copies.  This software is       *
-#  *     provided "as is" without express or implied warranty, and with       *
-#  *     no claim at to its suitability for any purpose.                      *
+#  *     (C) Copyright Paul Mensonides 2002.
+#  *     Distributed under the Boost Software License, Version 1.0. (See
+#  *     accompanying file LICENSE_1_0.txt or copy at
+#  *     http://www.boost.org/LICENSE_1_0.txt)
 #  *                                                                          *
 #  ************************************************************************** */
 #
@@ -248,7 +247,7 @@
 # if BOOST_PP_SLOT_4_DIGIT_10
 #    define BOOST_PP_SLOT_4() BOOST_PP_SLOT_CC_10(BOOST_PP_SLOT_4_DIGIT_10, BOOST_PP_SLOT_4_DIGIT_9, BOOST_PP_SLOT_4_DIGIT_8, BOOST_PP_SLOT_4_DIGIT_7, BOOST_PP_SLOT_4_DIGIT_6, BOOST_PP_SLOT_4_DIGIT_5, BOOST_PP_SLOT_4_DIGIT_4, BOOST_PP_SLOT_4_DIGIT_3, BOOST_PP_SLOT_4_DIGIT_2, BOOST_PP_SLOT_4_DIGIT_1)
 # elif BOOST_PP_SLOT_4_DIGIT_9
-#    define BOOST_PP_SLOT_4 BOOST_PP_SLOT_CC_9(BOOST_PP_SLOT_4_DIGIT_9, BOOST_PP_SLOT_4_DIGIT_8, BOOST_PP_SLOT_4_DIGIT_7, BOOST_PP_SLOT_4_DIGIT_6, BOOST_PP_SLOT_4_DIGIT_5, BOOST_PP_SLOT_4_DIGIT_4, BOOST_PP_SLOT_4_DIGIT_3, BOOST_PP_SLOT_4_DIGIT_2, BOOST_PP_SLOT_4_DIGIT_1)
+#    define BOOST_PP_SLOT_4() BOOST_PP_SLOT_CC_9(BOOST_PP_SLOT_4_DIGIT_9, BOOST_PP_SLOT_4_DIGIT_8, BOOST_PP_SLOT_4_DIGIT_7, BOOST_PP_SLOT_4_DIGIT_6, BOOST_PP_SLOT_4_DIGIT_5, BOOST_PP_SLOT_4_DIGIT_4, BOOST_PP_SLOT_4_DIGIT_3, BOOST_PP_SLOT_4_DIGIT_2, BOOST_PP_SLOT_4_DIGIT_1)
 # elif BOOST_PP_SLOT_4_DIGIT_8
 #    define BOOST_PP_SLOT_4() BOOST_PP_SLOT_CC_8(BOOST_PP_SLOT_4_DIGIT_8, BOOST_PP_SLOT_4_DIGIT_7, BOOST_PP_SLOT_4_DIGIT_6, BOOST_PP_SLOT_4_DIGIT_5, BOOST_PP_SLOT_4_DIGIT_4, BOOST_PP_SLOT_4_DIGIT_3, BOOST_PP_SLOT_4_DIGIT_2, BOOST_PP_SLOT_4_DIGIT_1)
 # elif BOOST_PP_SLOT_4_DIGIT_7

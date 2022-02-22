@@ -1,48 +1,40 @@
-//  (C) Copyright Gennadiy Rozental 2001-2002.
-//  Permission to copy, use, modify, sell and distribute this software
-//  is granted provided this copyright notice appears in all copies.
-//  This software is provided "as is" without express or implied warranty,
-//  and with no claim as to its suitability for any purpose.
+//  (C) Copyright Gennadiy Rozental 2001.
+//  Distributed under the Boost Software License, Version 1.0.
+//  (See accompanying file LICENSE_1_0.txt or copy at
+//  http://www.boost.org/LICENSE_1_0.txt)
 
-//  See http://www.boost.org for most recent version including documentation.
+//  See http://www.boost.org/libs/test for the library home page.
 //
-//  File        : $RCSfile: test_exec_monitor.hpp,v $
 //
-//  Version     : $Id: test_exec_monitor.hpp,v 1.2 2002/11/02 19:31:05 rogeeff Exp $
-//
-//  Description : included (vs. linked) version of Test Execution Monitor
+/// @file
+/// @brief Included (vs. linked) version of Test Execution Monitor
 // ***************************************************************************
 
-#ifndef BOOST_INCLUDED_TEST_EXEC_MONITOR_HPP
-#define BOOST_INCLUDED_TEST_EXEC_MONITOR_HPP
+#ifndef BOOST_INCLUDED_TEST_EXEC_MONITOR_HPP_071894GER
+#define BOOST_INCLUDED_TEST_EXEC_MONITOR_HPP_071894GER
 
-#include <boost/test/detail/unit_test_config.hpp> //!! for borland workaround
-#include <libs/test/src/execution_monitor.cpp>
+#include <boost/test/impl/compiler_log_formatter.ipp>
+#include <boost/test/impl/junit_log_formatter.ipp>
+#include <boost/test/impl/debug.ipp>
+#include <boost/test/impl/decorator.ipp>
+#include <boost/test/impl/execution_monitor.ipp>
+#include <boost/test/impl/framework.ipp>
+#include <boost/test/impl/plain_report_formatter.ipp>
+#include <boost/test/impl/progress_monitor.ipp>
+#include <boost/test/impl/results_collector.ipp>
+#include <boost/test/impl/results_reporter.ipp>
+#include <boost/test/impl/test_framework_init_observer.ipp>
+#include <boost/test/impl/test_main.ipp>
+#include <boost/test/impl/test_tools.ipp>
+#include <boost/test/impl/test_tree.ipp>
+#include <boost/test/impl/unit_test_log.ipp>
+#include <boost/test/impl/unit_test_main.ipp>
+#include <boost/test/impl/unit_test_monitor.ipp>
+#include <boost/test/impl/unit_test_parameters.ipp>
+#include <boost/test/impl/xml_log_formatter.ipp>
+#include <boost/test/impl/xml_report_formatter.ipp>
 
-#include <libs/test/src/test_tools.cpp>
+#define BOOST_TEST_INCLUDED
+#include <boost/test/test_exec_monitor.hpp>
 
-#include <libs/test/src/unit_test_result.cpp>
-#include <libs/test/src/unit_test_suite.cpp>
-#include <libs/test/src/unit_test_parameters.cpp>
-#include <libs/test/src/unit_test_log.cpp>
-#include <libs/test/src/unit_test_monitor.cpp>
-
-#include <libs/test/src/test_main.cpp>
-
-// ***************************************************************************
-//  Revision History :
-//  
-//  $Log: test_exec_monitor.hpp,v $
-//  Revision 1.2  2002/11/02 19:31:05  rogeeff
-//  merged into the main trank
-//
-//  Revision 1.1.2.1  2002/10/01 17:25:29  rogeeff
-//  borland bug workaround
-//
-//  Revision 1.1  2002/08/26 09:09:00  rogeeff
-//  Initial commit
-//
-
-// ***************************************************************************
-
-#endif // BOOST_INCLUDED_TEST_EXEC_MONITOR_HPP
+#endif // BOOST_INCLUDED_TEST_EXEC_MONITOR_HPP_071894GER

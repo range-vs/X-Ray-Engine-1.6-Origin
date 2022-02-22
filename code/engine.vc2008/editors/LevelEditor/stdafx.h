@@ -51,14 +51,14 @@ __inline long _lseek(int handle, long offset, int fromwhere){ return ::lseek(han
 // range fix
 //#define fmodf fmod
 __inline int _dup    (int handle)                           { return ::dup(handle);}
-#ifndef _WIN64
+/*#ifndef _WIN64
 __inline float modff(float a, float *b){
 	double x,y;
     y = modf(double(a),&x);
     *b = x;
 	return float(y);
 }
-#endif
+#endif  */
 //__inline float expf	(float val)                           	{ return ::exp(val);}
 
 

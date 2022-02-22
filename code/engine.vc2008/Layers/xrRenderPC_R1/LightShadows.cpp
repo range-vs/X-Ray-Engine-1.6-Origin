@@ -448,43 +448,49 @@ void CLightShadows::render	()
 			if (0==xrc.r_count())	continue;
 
 			// Clip polys by frustum
-			tess.clear				();
-			for (CDB::RESULT* p = xrc.r_begin(); p!=xrc.r_end(); p++)
+			tess.clear();
+			for (auto& p : *xrc.r_get())
 			{
-				VERIFY((p->id>=0)&&(p->id<DB->get_tris_count()));
-				// 
-				CDB::TRI&	t		= TRIS[p->id];
-				if (t.suppress_shadows) continue;
-				sPoly		A,B;
-				A.push_back			(VERTS[t.verts[0]]);
-				A.push_back			(VERTS[t.verts[1]]);
-				A.push_back			(VERTS[t.verts[2]]);
+				VERIFY((p.id >= 0) && (p.id < DB->get_tris_count()));
+				//
+				CDB::TRI& t = TRIS[p.id];
+				if (t.suppress_shadows)
+					continue;
+				sPoly A, B;
+				A.push_back(VERTS[t.verts[0]]);
+				A.push_back(VERTS[t.verts[1]]);
+				A.push_back(VERTS[t.verts[2]]);
 
 				// Calc plane, throw away degenerate tris and invisible to light polygons
-				Fplane				P;	float mag = 0;
-				Fvector				t1,t2,n;
-				t1.sub				(A[0],A[1]);
-				t2.sub				(A[0],A[2]);
-				n.crossproduct		(t1,t2);
-				mag	= n.square_magnitude();
-				if (mag<EPS_S)						continue;
-				n.mul				(1.f/_sqrt(mag));
-				P.build_unit_normal	(A[0],n);
-				float	DOT_Fade	= P.classify(S.L->position);
-				if (DOT_Fade<0)		continue;
+				Fplane P;
+				float mag = 0;
+				Fvector t1, t2, n;
+				t1.sub(A[0], A[1]);
+				t2.sub(A[0], A[2]);
+				n.crossproduct(t1, t2);
+				mag = n.square_magnitude();
+				if (mag < EPS_S)
+					continue;
+				n.mul(1.f / _sqrt(mag));
+				P.build_unit_normal(A[0], n);
+				float DOT_Fade = P.classify(S.L->position);
+				if (DOT_Fade < 0)
+					continue;
 
 				// Clip polygon
-				sPoly*		clip	= F.ClipPoly	(A,B);
-				if (0==clip)		continue;
+				sPoly* clip = F.ClipPoly(A, B);
+				if (nullptr == clip)
+					continue;
 
-				// Triangulate poly 
-				for (u32 v=2; v<clip->size(); v++)	{
-					tess.push_back	(tess_tri());
-					tess_tri& T		= tess.back();
-					T.v[0]			= (*clip)[0];
-					T.v[1]			= (*clip)[v-1];
-					T.v[2]			= (*clip)[v];
-					T.N				= P.n;
+				// Triangulate poly
+				for (u32 v = 2; v < clip->size(); v++)
+				{
+					tess.push_back(tess_tri());
+					tess_tri& T = tess.back();
+					T.v[0] = (*clip)[0];
+					T.v[1] = (*clip)[v - 1];
+					T.v[2] = (*clip)[v];
+					T.N = P.n;
 				}
 			}
 

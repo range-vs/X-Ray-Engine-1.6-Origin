@@ -12,7 +12,7 @@
 #ifdef INGAME_EDITOR
 
 #include <boost/noncopyable.hpp>
-#include "../xrserverentities/associative_vector.h"
+#include "../xrserverentities/Associative_Vector.h"
 
 namespace editor {
 
@@ -49,7 +49,7 @@ private:
 		}
 	}; // struct predicate
 
-	typedef associative_vector<shared_str, std::pair<LPCSTR, shared_str>, predicate>	levels_container_type;
+	typedef AssociativeVector<shared_str, std::pair<LPCSTR, shared_str>, predicate>	levels_container_type;
 
 private:
 	levels_container_type						m_levels;

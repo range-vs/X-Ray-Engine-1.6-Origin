@@ -1,13 +1,18 @@
-#ifndef POSIX_TIME_TYPES_HPP___
-#define POSIX_TIME_TYPES_HPP___
-/* Copyright (c) 2002 CrystalClear Software, Inc.
- * Disclaimer & Full Copyright at end of file
+/* Copyright (c) 2002,2003 CrystalClear Software, Inc.
+ * Use, modification and distribution is subject to the 
+ * Boost Software License, Version 1.0. (See accompanying
+ * file LICENSE_1_0.txt or http://www.boost.org/LICENSE_1_0.txt)
  * Author: Jeff Garland 
  */
+#ifndef POSIX_TIME_TYPES_HPP___
+#define POSIX_TIME_TYPES_HPP___
 
 #include "boost/date_time/time_clock.hpp"
 #include "boost/date_time/microsec_time_clock.hpp"
 #include "boost/date_time/posix_time/ptime.hpp"
+#if defined(BOOST_DATE_TIME_OPTIONAL_GREGORIAN_TYPES)
+#include "boost/date_time/posix_time/date_duration_operators.hpp"
+#endif
 #include "boost/date_time/posix_time/posix_time_duration.hpp"
 #include "boost/date_time/posix_time/posix_time_system.hpp"
 #include "boost/date_time/posix_time/time_period.hpp"
@@ -26,9 +31,9 @@ namespace posix_time {
   //! A time clock that has a resolution of one second
   /*! \ingroup time_basics
    */
-  typedef date_time::second_clock<ptime::date_type, ptime> second_clock;
+  typedef date_time::second_clock<ptime> second_clock;
 
-#ifdef BOOST_DATE_TIME_HAS_GETTIMEOFDAY_HIGH_PRECISION_CLOCK
+#ifdef BOOST_DATE_TIME_HAS_HIGH_PRECISION_CLOCK
   //! A time clock that has a resolution of one microsecond
   /*! \ingroup time_basics
    */
@@ -45,18 +50,6 @@ namespace posix_time {
 
 
 
-/* Copyright (c) 2002
- * CrystalClear Software, Inc.
- *
- * Permission to use, copy, modify, distribute and sell this software
- * and its documentation for any purpose is hereby granted without fee,
- * provided that the above copyright notice appear in all copies and
- * that both that copyright notice and this permission notice appear
- * in supporting documentation.  CrystalClear Software makes no
- * representations about the suitability of this software for any
- * purpose.  It is provided "as is" without express or implied warranty.
- *
- */
 
 #endif
 

@@ -1,10 +1,11 @@
-// Copyright David Abrahams 2002. Permission to copy, use,
-// modify, sell and distribute this software is granted provided this
-// copyright notice appears in all copies. This software is provided
-// "as is" without express or implied warranty, and with no claim as
-// to its suitability for any purpose.
+// Copyright David Abrahams 2002.
+// Distributed under the Boost Software License, Version 1.0. (See
+// accompanying file LICENSE_1_0.txt or copy at
+// http://www.boost.org/LICENSE_1_0.txt)
 #ifndef LONG_DWA2002627_HPP
 # define LONG_DWA2002627_HPP
+
+# include <boost/python/detail/prefix.hpp>
 
 # include <boost/python/object.hpp>
 # include <boost/python/converter/pytype_object_mgr_traits.hpp>
@@ -23,8 +24,8 @@ namespace detail
       BOOST_PYTHON_FORWARD_OBJECT_CONSTRUCTORS(long_base, object)
           
    private:
-      static detail::new_non_null_reference call(object const&);
-      static detail::new_non_null_reference call(object const&, object const&);
+      static detail::new_reference call(object const&);
+      static detail::new_reference call(object const&, object const&);
   };
 }
 
@@ -36,13 +37,13 @@ class long_ : public detail::long_base
 
     template <class T>
     explicit long_(T const& rhs)
-        : base(object(rhs))
+        : detail::long_base(object(rhs))
     {
     }
 
     template <class T, class U>
     explicit long_(T const& rhs, U const& base)
-        : base(object(rhs), object(base))
+        : detail::long_base(object(rhs), object(base))
     {
     }
     

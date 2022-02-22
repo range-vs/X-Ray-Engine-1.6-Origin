@@ -967,14 +967,6 @@
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="splash_xrcs_en.bmp">
-      <Filter>General\Resources</Filter>
-    </Image>
-    <Image Include="stalker_cs.ico">
-      <Filter>General\Resources</Filter>
-    </Image>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="My Amplifier Results\r000hs\r000hs.ampl">
       <Filter>My Amplifier Results</Filter>
     </None>
@@ -990,5 +982,14 @@
     <Text Include="Effects description.txt" />
     <Text Include="features.txt" />
     <Text Include="TODO.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\xrEntry\stalker_cs.ico" />
+    <Image Include="splash_xrcs_en.bmp">
+      <Filter>General\Resources</Filter>
+    </Image>
+    <Image Include="stalker_cs.ico">
+      <Filter>General\Resources</Filter>
+    </Image>
   </ItemGroup>
 </Project>

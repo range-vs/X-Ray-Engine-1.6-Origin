@@ -1,22 +1,17 @@
 /* Boost interval/checking.hpp template implementation file
  *
- * Copyright Hervé Brönnimann, Guillaume Melquiond, Sylvain Pion 2002
- * Permission to use, copy, modify, sell, and distribute this software
- * is hereby granted without fee provided that the above copyright notice
- * appears in all copies and that both that copyright notice and this
- * permission notice appear in supporting documentation,
+ * Copyright 2002 HervÃ© BrÃ¶nnimann, Guillaume Melquiond, Sylvain Pion
  *
- * None of the above authors nor Polytechnic University make any
- * representation about the suitability of this software for any
- * purpose. It is provided "as is" without express or implied warranty.
- *
- * $Id: checking.hpp,v 1.2 2003/02/05 17:34:29 gmelquio Exp $
+ * Distributed under the Boost Software License, Version 1.0.
+ * (See accompanying file LICENSE_1_0.txt or
+ * copy at http://www.boost.org/LICENSE_1_0.txt)
  */
 
 #ifndef BOOST_NUMERIC_INTERVAL_CHECKING_HPP
 #define BOOST_NUMERIC_INTERVAL_CHECKING_HPP
 
 #include <stdexcept>
+#include <string>
 #include <cassert>
 #include <boost/limits.hpp>
 
@@ -43,10 +38,15 @@ struct exception_invalid_number
 template<class T>
 struct checking_base
 {
-  static T inf()
+  static T pos_inf()
   {
     assert(std::numeric_limits<T>::has_infinity);
     return std::numeric_limits<T>::infinity();
+  }
+  static T neg_inf()
+  {
+    assert(std::numeric_limits<T>::has_infinity);
+    return -std::numeric_limits<T>::infinity();
   }
   static T nan()
   {
@@ -60,12 +60,12 @@ struct checking_base
   static T empty_lower()
   {
     return (std::numeric_limits<T>::has_quiet_NaN ?
-            std::numeric_limits<T>::quiet_NaN() : T(1));
+            std::numeric_limits<T>::quiet_NaN() : static_cast<T>(1));
   }
   static T empty_upper()
   {
     return (std::numeric_limits<T>::has_quiet_NaN ?
-            std::numeric_limits<T>::quiet_NaN() : T(0));
+            std::numeric_limits<T>::quiet_NaN() : static_cast<T>(0));
   }
   static bool is_empty(const T& l, const T& u)
   {
@@ -120,16 +120,10 @@ struct checking_catch_nan: Checking
 
 template<class T>
 struct checking_strict:
-  checking_catch_nan<T, checking_no_empty<T> >
+  checking_no_nan<T, checking_no_empty<T> >
 {};
 
-namespace detail {
-
-template <class T> inline bool is_nan(const T& x) { return x != x; }
-
-} // namespace detail
-
-} // namespace interval
+} // namespace interval_lib
 } // namespace numeric
 } // namespace boost
 

@@ -2,30 +2,27 @@
 #ifndef BOOST_MPL_IF_HPP_INCLUDED
 #define BOOST_MPL_IF_HPP_INCLUDED
 
-// + file: boost/mpl/if.hpp
-// + last modified: 10/mar/03
-
-// Copyright (c) 2000-03 Boost.org
+// Copyright Aleksey Gurtovoy 2000-2004
 //
-// Permission to use, copy, modify, distribute and sell this software
-// and its documentation for any purpose is hereby granted without fee, 
-// provided that the above copyright notice appears in all copies and 
-// that both the copyright notice and this permission notice appear in 
-// supporting documentation. No representations are made about the 
-// suitability of this software for any purpose. It is provided "as is" 
-// without express or implied warranty.
+// Distributed under the Boost Software License, Version 1.0. 
+// (See accompanying file LICENSE_1_0.txt or copy at 
+// http://www.boost.org/LICENSE_1_0.txt)
 //
 // See http://www.boost.org/libs/mpl for documentation.
 
-#include "boost/mpl/aux_/value_wknd.hpp"
-#include "boost/mpl/aux_/ice_cast.hpp"
-#include "boost/mpl/aux_/void_spec.hpp"
-#include "boost/mpl/aux_/lambda_support.hpp"
-#include "boost/mpl/aux_/config/workaround.hpp"
-#include "boost/config.hpp"
+// $Id$
+// $Date$
+// $Revision$
 
-namespace boost {
-namespace mpl {
+#include <boost/mpl/aux_/value_wknd.hpp>
+#include <boost/mpl/aux_/static_cast.hpp>
+#include <boost/mpl/aux_/na_spec.hpp>
+#include <boost/mpl/aux_/lambda_support.hpp>
+#include <boost/mpl/aux_/config/integral.hpp>
+#include <boost/mpl/aux_/config/ctps.hpp>
+#include <boost/mpl/aux_/config/workaround.hpp>
+
+namespace boost { namespace mpl {
 
 #if !defined(BOOST_NO_TEMPLATE_PARTIAL_SPECIALIZATION)
 
@@ -48,71 +45,31 @@ struct if_c<false,T1,T2>
     typedef T2 type;
 };
 
+// agurt, 05/sep/04: nondescriptive parameter names for the sake of DigitalMars
+// (and possibly MWCW < 8.0); see https://lists.boost.org/Archives/boost/2004/09/71383.php
 template<
-      typename BOOST_MPL_AUX_VOID_SPEC_PARAM(C)
-    , typename BOOST_MPL_AUX_VOID_SPEC_PARAM(T1)
-    , typename BOOST_MPL_AUX_VOID_SPEC_PARAM(T2)
+      typename BOOST_MPL_AUX_NA_PARAM(T1)
+    , typename BOOST_MPL_AUX_NA_PARAM(T2)
+    , typename BOOST_MPL_AUX_NA_PARAM(T3)
     >
 struct if_
 {
  private:
     // agurt, 02/jan/03: two-step 'type' definition for the sake of aCC 
     typedef if_c<
-#if BOOST_WORKAROUND(__BORLANDC__, BOOST_TESTED_AT(0x561))
-          BOOST_MPL_AUX_VALUE_WKND(C)::value
+#if defined(BOOST_MPL_CFG_BCC_INTEGRAL_CONSTANTS)
+          BOOST_MPL_AUX_VALUE_WKND(T1)::value
 #else
-          BOOST_MPL_AUX_ICE_CAST(bool, BOOST_MPL_AUX_VALUE_WKND(C)::value)
+          BOOST_MPL_AUX_STATIC_CAST(bool, BOOST_MPL_AUX_VALUE_WKND(T1)::value)
 #endif
-        , T1
         , T2
+        , T3
         > almost_type_;
  
  public:
     typedef typename almost_type_::type type;
     
-    BOOST_MPL_AUX_LAMBDA_SUPPORT(3,if_,(C,T1,T2))
-};
-
-#elif defined(BOOST_MSVC) && (BOOST_MSVC <= 1300)
-
-// MSVC6.5-specific version
-
-template<
-      bool C_
-    , typename T1
-    , typename T2
-    >
-struct if_c
-{
- private:
-    template<bool> struct answer        { typedef T1 type; };
-    template<>     struct answer<false> { typedef T2 type; };
- 
- public:
-    typedef typename answer< C_ >::type type;
-};
-
-// (almost) copy & paste in order to save one more 
-// recursively nested template instantiation to user
-template<
-      typename C_
-    , typename T1
-    , typename T2
-    >
-struct if_
-{
- private:
-    template<bool> struct answer        { typedef T1 type; };
-    template<>     struct answer<false> { typedef T2 type; };
-
-    // agurt, 17/sep/02: in some situations MSVC 7.0 doesn't 
-    // handle 'answer<C::value>' expression very well
-    enum { c_ = C_::value };
-
- public:
-    typedef typename answer< BOOST_MPL_AUX_ICE_CAST(bool, c_) >::type type;
-
-    BOOST_MPL_AUX_LAMBDA_SUPPORT(3,if_,(C_,T1,T2))
+    BOOST_MPL_AUX_LAMBDA_SUPPORT(3,if_,(T1,T2,T3))
 };
 
 #else
@@ -142,36 +99,37 @@ struct if_impl<false>
 } // namespace aux
 
 template<
-      bool C
+      bool C_
     , typename T1
     , typename T2
     >
 struct if_c
 {
-    typedef typename aux::if_impl< C >
+    typedef typename aux::if_impl< C_ >
         ::template result_<T1,T2>::type type;
 };
 
 // (almost) copy & paste in order to save one more 
 // recursively nested template instantiation to user
 template<
-      typename BOOST_MPL_AUX_VOID_SPEC_PARAM(C)
-    , typename BOOST_MPL_AUX_VOID_SPEC_PARAM(T1)
-    , typename BOOST_MPL_AUX_VOID_SPEC_PARAM(T2)
+      typename BOOST_MPL_AUX_NA_PARAM(C_)
+    , typename BOOST_MPL_AUX_NA_PARAM(T1)
+    , typename BOOST_MPL_AUX_NA_PARAM(T2)
     >
 struct if_
 {
-    typedef typename aux::if_impl< BOOST_MPL_AUX_ICE_CAST(bool, C::value) >
+    enum { msvc_wknd_ = BOOST_MPL_AUX_MSVC_VALUE_WKND(C_)::value };
+
+    typedef typename aux::if_impl< BOOST_MPL_AUX_STATIC_CAST(bool, msvc_wknd_) >
         ::template result_<T1,T2>::type type;
 
-    BOOST_MPL_AUX_LAMBDA_SUPPORT(3,if_,(C,T1,T2))
+    BOOST_MPL_AUX_LAMBDA_SUPPORT(3,if_,(C_,T1,T2))
 };
 
 #endif // BOOST_NO_TEMPLATE_PARTIAL_SPECIALIZATION
 
-BOOST_MPL_AUX_VOID_SPEC(3, if_)
+BOOST_MPL_AUX_NA_SPEC(3, if_)
 
-} // namespace mpl
-} // namespace boost
+}}
 
 #endif // BOOST_MPL_IF_HPP_INCLUDED

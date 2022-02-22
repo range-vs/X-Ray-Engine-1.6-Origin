@@ -1,19 +1,15 @@
-// Copyright David Abrahams 2002. Permission to copy, use,
-// modify, sell and distribute this software is granted provided this
-// copyright notice appears in all copies. This software is provided
-// "as is" without express or implied warranty, and with no claim as
-// to its suitability for any purpose.
+// Copyright David Abrahams 2002.
+// Distributed under the Boost Software License, Version 1.0. (See
+// accompanying file LICENSE_1_0.txt or copy at
+// http://www.boost.org/LICENSE_1_0.txt)
+
+// DEPRECATED HEADER (2006 Jan 12)
+// Provided only for backward compatibility.
+// The boost::python::len() function is now defined in object.hpp.
+
 #ifndef BOOST_PYTHON_API_PLACE_HOLDER_HPP
 #define BOOST_PYTHON_API_PLACE_HOLDER_HPP
 
-namespace boost { namespace python {
-
-    inline long len(object const& obj)
-    {
-        long result = PyObject_Length(obj.ptr());
-        if (PyErr_Occurred()) throw_error_already_set();
-        return result;
-    }
-}} // namespace boost::python
+#include <boost/python/object.hpp>
 
 #endif // BOOST_PYTHON_API_PLACE_HOLDER_HPP

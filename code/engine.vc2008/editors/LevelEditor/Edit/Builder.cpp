@@ -17,7 +17,7 @@
 SceneBuilder Builder;
 //----------------------------------------------------
 
-ICF static void simple_hemi_callback(float x, float y, float z, float E, LPVOID P)
+ICF static void __stdcall simple_hemi_callback(float x, float y, float z, float E, LPVOID P)
 {
     SceneBuilder::BLVec* dst 	= (SceneBuilder::BLVec*)P;
     SceneBuilder::SBuildLight 	T;
@@ -175,14 +175,21 @@ BOOL SceneBuilder::MakeAIMap()
 BOOL SceneBuilder::MakeDetails()
 {
 	AnsiString error_text;
-    do{
+	do
+	{
 		VERIFY_COMPILE(PreparePath(),				"Failed to prepare level path.","");
-        // save details
-		VERIFY_COMPILE(Scene->GetTool(OBJCLASS_DO)->Export(m_LevelPath), "Export failed.","");
-    }while(0);
-    if (!error_text.IsEmpty()) 	ELog.DlgMsg(mtError,error_text.c_str());
-    else if (UI->NeedAbort())	ELog.DlgMsg(mtInformation,"Building terminated.");
-    else						ELog.DlgMsg(mtInformation,"Details succesfully exported.");
+		// save details
+		auto tool = Scene->GetTool(OBJCLASS_DO);
+		auto res = tool->Export(m_LevelPath);
+		VERIFY_COMPILE(res, "Export failed.","");
+	}
+	while(0);
+	if (!error_text.IsEmpty())
+		ELog.DlgMsg(mtError,error_text.c_str());
+	else if (UI->NeedAbort())
+		ELog.DlgMsg(mtInformation,"Building terminated.");
+	else
+		ELog.DlgMsg(mtInformation,"Details succesfully exported.");
 
 	return error_text.IsEmpty();
 }

@@ -155,12 +155,11 @@ XRCORE_API full_memory_stats_callback_type g_full_memory_stats_callback;
 static void full_memory_stats	( )
 {
 	Memory.mem_compact		();
-	u32		_crt_heap		= mem_usage_impl((HANDLE)_get_heap_handle(),0,0);
-	u32		_process_heap	= mem_usage_impl(GetProcessHeap(),0,0);
-#ifdef SEVERAL_ALLOCATORS
-	u32		_game_lua		= game_lua_memory_usage();
-	u32		_render			= ::Render->memory_usage();
-#endif // SEVERAL_ALLOCATORS
+	u32		_crt_heap = Memory.mem_usage();// mem_usage_impl((HANDLE)_get_heap_handle(), 0, 0);
+	u32		_process_heap = Memory.mem_usage();//mem_usage_impl(GetProcessHeap(),0,0);
+//#ifdef SEVERAL_ALLOCATORS
+//	u32		_game_lua		= game_lua_memory_usage();
+//#endif // SEVERAL_ALLOCATORS
 	int		_eco_strings	= (int)g_pStringContainer->stat_economy			();
 	int		_eco_smem		= (int)g_pSharedMemoryContainer->stat_economy	();
 	u32		m_base=0,c_base=0,m_lmaps=0,c_lmaps=0;
@@ -177,7 +176,7 @@ static void full_memory_stats	( )
 #ifndef SEVERAL_ALLOCATORS
 	Msg		("* [x-ray]: crt heap[%d K], process heap[%d K]",_crt_heap/1024,_process_heap/1024);
 #else // SEVERAL_ALLOCATORS
-	Msg		("* [x-ray]: crt heap[%d K], process heap[%d K], game lua[%d K], render[%d K]",_crt_heap/1024,_process_heap/1024,_game_lua/1024,_render/1024);
+	Msg		("* [x-ray]: crt heap[%d K], process heap[%d K], game lua[%d K]",_crt_heap/1024,_process_heap/1024/*,_game_lua/1024*/);
 #endif // SEVERAL_ALLOCATORS
 
 	Msg		("* [x-ray]: economy: strings[%d K], smem[%d K]",_eco_strings/1024,_eco_smem);
@@ -206,7 +205,7 @@ public:
 	CCC_MemCheckpoint(LPCSTR N) : IConsole_Command(N)  { bEmptyArgsHandled = FALSE; };
 	virtual void Execute(LPCSTR args) 
 	{
-		memory_monitor::make_checkpoint(args);
+		//memory_monitor::make_checkpoint(args);
 	}
 	virtual void	Save	(IWriter *F)	{}
 };
@@ -488,7 +487,7 @@ bool valid_saved_game_name(LPCSTR file_name)
 void get_files_list( xr_vector<shared_str>& files, LPCSTR dir, LPCSTR file_ext )
 {
 	VERIFY( dir && file_ext );
-	files.clear_not_free();
+	files.clear();
 
 	FS_Path* P = FS.get_path( dir );
 	P->m_Flags.set( FS_Path::flNeedRescan, TRUE );
@@ -743,7 +742,7 @@ class CCC_ClearLog : public IConsole_Command {
 public:
 	CCC_ClearLog(LPCSTR N) : IConsole_Command(N)  { bEmptyArgsHandled = true; };
 	virtual void Execute(LPCSTR) {
-		LogFile->clear_not_free	();
+		LogFile->clear	();
 		FlushLog				();
 		Msg						("* Log file has been cleaned successfully!");
 	}
@@ -1141,15 +1140,15 @@ public:
 };
 
 #ifdef DEBUG
-extern void print_help(lua_State *L);
-
-struct CCC_LuaHelp : public IConsole_Command {
-	CCC_LuaHelp(LPCSTR N) : IConsole_Command(N)  { bEmptyArgsHandled = true; };
-
-	virtual void Execute(LPCSTR args) {
-		print_help(ai().script_engine().lua());
-	}
-};
+//extern void print_help(lua_State *L);
+//
+//struct CCC_LuaHelp : public IConsole_Command {
+//	CCC_LuaHelp(LPCSTR N) : IConsole_Command(N)  { bEmptyArgsHandled = true; };
+//
+//	virtual void Execute(LPCSTR args) {
+//		print_help(ai().script_engine().lua());
+//	}
+//};
 
 struct CCC_ShowSmartCastStats : public IConsole_Command {
 	CCC_ShowSmartCastStats(LPCSTR N) : IConsole_Command(N)  { bEmptyArgsHandled = true; };
@@ -1990,7 +1989,7 @@ CMD4(CCC_Integer,			"hit_anims_tune",						&tune_hit_anims,		0, 1);
 	CMD3(CCC_Mask,		"g_important_save",		&psActorFlags,	AF_IMPORTANT_SAVE);
 	
 #ifdef DEBUG
-	CMD1(CCC_LuaHelp,				"lua_help");
+	//CMD1(CCC_LuaHelp,				"lua_help");
 	CMD1(CCC_ShowSmartCastStats,	"show_smart_cast_stats");
 	CMD1(CCC_ClearSmartCastStats,	"clear_smart_cast_stats");
 

@@ -156,7 +156,7 @@ BOOL CObjectSpace::RayQuery		(collide::rq_results& dest, const collide::ray_defs
 {
 	Lock.Enter					();
 	BOOL						_res = _RayQuery2(dest,R,CB,user_data,tb,ignore_object);
-	r_spatial.clear_not_free	();
+	r_spatial.clear	();
 	Lock.Leave					();
 	return						(_res);
 }
@@ -173,15 +173,13 @@ BOOL CObjectSpace::_RayQuery2	(collide::rq_results& r_dest, const collide::ray_d
 	u32			d_flags =	STYPE_COLLIDEABLE|((R.tgt&rqtObstacle)?STYPE_OBSTACLE:0)|((R.tgt&rqtShape)?STYPE_SHAPE:0);
 
 	// Test static
-	if (R.tgt&s_mask){ 
-		xrc.ray_options	(R.flags);
-		xrc.ray_query	(&Static,R.start,R.dir,R.range);
-		if (xrc.r_count()){	
-			CDB::RESULT* _I	= xrc.r_begin();
-			CDB::RESULT* _E = xrc.r_end	();
-			for (; _I!=_E; _I++)
-				r_temp.append_result(rq_result().set(0,_I->range,_I->id));
-		}
+	if (R.tgt & s_mask)
+	{
+		xrc.ray_options(R.flags);
+		xrc.ray_query(&Static, R.start, R.dir, R.range);
+
+		for (auto& i : *xrc.r_get())
+			r_temp.append_result(rq_result().set(0, i.range, i.id));
 	}
 	// Test dynamic
 	if (R.tgt&d_mask){ 
@@ -199,14 +197,16 @@ BOOL CObjectSpace::_RayQuery2	(collide::rq_results& r_dest, const collide::ray_d
 			}
 		}
 	}
-	if (r_temp.r_count()){
-		r_temp.r_sort		();
-		collide::rq_result* _I = r_temp.r_begin	();
-		collide::rq_result* _E = r_temp.r_end	();
-		for (; _I!=_E; _I++){
-			r_dest.append_result(*_I);
-			if (!(CB?CB(*_I,user_data):TRUE))						return r_dest.r_count();
-			if (R.flags&(CDB::OPT_ONLYNEAREST|CDB::OPT_ONLYFIRST))	return r_dest.r_count();
+	if (r_temp.r_count())
+	{
+		r_temp.r_sort();
+		for (auto& i : *r_temp.r_get())
+		{
+			r_dest.append_result(i);
+			if (!(CB ? CB(i, user_data) : TRUE))
+				return r_dest.r_count();
+			if (R.flags & (CDB::OPT_ONLYNEAREST | CDB::OPT_ONLYFIRST))
+				return r_dest.r_count();
 		}
 	}
 	return r_dest.r_count();
@@ -276,13 +276,14 @@ BOOL CObjectSpace::_RayQuery3	(collide::rq_results& r_dest, const collide::ray_d
 		d_range				= R.range-s_rd.range;
 		if (r_temp.r_count()){
 			r_temp.r_sort		();
-			collide::rq_result* _I = r_temp.r_begin	();
-			collide::rq_result* _E = r_temp.r_end	();
-			for (; _I!=_E; _I++){
-				r_dest.append_result(*_I);
-				if (!(CB?CB(*_I,user_data):TRUE))	return r_dest.r_count();
-				if (R.flags&CDB::OPT_ONLYFIRST)		return r_dest.r_count();
-			}
+			for (auto &i : *r_temp.r_get())
+            {
+                r_dest.append_result(i);
+                if (!(CB ? CB(i, user_data) : TRUE))
+                    return r_dest.r_count();
+                if (R.flags & CDB::OPT_ONLYFIRST)
+                    return r_dest.r_count();
+            }
 		}
 		if ((R.flags&(CDB::OPT_ONLYNEAREST|CDB::OPT_ONLYFIRST)) && r_dest.r_count()) return r_dest.r_count();
 	}while(r_temp.r_count());

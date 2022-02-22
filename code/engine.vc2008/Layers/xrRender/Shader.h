@@ -37,7 +37,6 @@ struct	 ECORE_API		STextureList	: public xr_resource_flagged, public xr_vector<s
 							return TRUE;
 						}
 	virtual		void	clear();
-	virtual		void	clear_not_free();
 
 	//	Avoid using this function.
 	//	If possible use precompiled texture list.

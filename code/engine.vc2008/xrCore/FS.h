@@ -95,6 +95,8 @@ public:
 	void			w_chunk		(u32 type, void* data, u32 size);
 	virtual bool	valid		()									{return true;}
 	virtual	void	flush		() = 0;
+
+	void VPrintf(const char* format, va_list args);
 };
 
 class XRCORE_API CMemoryWriter : public IWriter

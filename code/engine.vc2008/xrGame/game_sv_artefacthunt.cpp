@@ -414,7 +414,7 @@ void	game_sv_ArtefactHunt::SetRP					(CSE_Abstract* E, RPoint* pRP)
 	}
 }
 
-struct RemoveBlockedRPointPredicate : public std::unary_function<RPoint*, bool>
+struct RemoveBlockedRPointPredicate //: public std::unary_function<RPoint*, bool>
 {
 	bool operator () (RPoint* rp) const
 	{

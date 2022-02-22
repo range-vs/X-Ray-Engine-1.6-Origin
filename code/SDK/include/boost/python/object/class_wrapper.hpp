@@ -1,12 +1,14 @@
-// Copyright David Abrahams 2001. Permission to copy, use,
-// modify, sell and distribute this software is granted provided this
-// copyright notice appears in all copies. This software is provided
-// "as is" without express or implied warranty, and with no claim as
-// to its suitability for any purpose.
+// Copyright David Abrahams 2001.
+// Distributed under the Boost Software License, Version 1.0. (See
+// accompanying file LICENSE_1_0.txt or copy at
+// http://www.boost.org/LICENSE_1_0.txt)
 #ifndef CLASS_WRAPPER_DWA20011221_HPP
 # define CLASS_WRAPPER_DWA20011221_HPP
 
 # include <boost/python/to_python_converter.hpp>
+#ifndef BOOST_PYTHON_NO_PY_SIGNATURES
+# include <boost/python/converter/pytype_function.hpp>
+#endif
 # include <boost/ref.hpp>
 
 namespace boost { namespace python { namespace objects { 
@@ -20,22 +22,28 @@ namespace boost { namespace python { namespace objects {
 
 template <class Src, class MakeInstance>
 struct class_cref_wrapper
-    : to_python_converter<Src,class_cref_wrapper<Src,MakeInstance> >
+    : to_python_converter<Src,class_cref_wrapper<Src,MakeInstance> ,true>
 {
     static PyObject* convert(Src const& x)
     {
         return MakeInstance::execute(boost::ref(x));
     }
+#ifndef BOOST_PYTHON_NO_PY_SIGNATURES
+    static PyTypeObject const *get_pytype() { return converter::registered_pytype_direct<Src>::get_pytype(); }
+#endif
 };
 
 template <class Src, class MakeInstance>
 struct class_value_wrapper
-    : to_python_converter<Src,class_value_wrapper<Src,MakeInstance> >
+    : to_python_converter<Src,class_value_wrapper<Src,MakeInstance> ,true>
 {
     static PyObject* convert(Src x)
     {
         return MakeInstance::execute(x);
     }
+#ifndef BOOST_PYTHON_NO_PY_SIGNATURES
+    static PyTypeObject const *get_pytype() { return MakeInstance::get_pytype(); }
+#endif
 };
 
 }}} // namespace boost::python::objects

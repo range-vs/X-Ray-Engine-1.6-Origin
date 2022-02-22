@@ -3,6 +3,7 @@
 #include "UITabButton.h"
 
 using namespace luabind;
+using namespace luabind::policy;
 
 #pragma optimize("s",on)
 void CUITabControl::script_register(lua_State *L)
@@ -11,7 +12,7 @@ void CUITabControl::script_register(lua_State *L)
 	[
 		class_<CUITabControl, CUIWindow>("CUITabControl")
 		.def(							constructor<>())
-		.def("AddItem",					(bool (CUITabControl::*)(CUITabButton*))(&CUITabControl::AddItem), adopt(_2))
+		.def("AddItem",					(bool (CUITabControl::*)(CUITabButton*))(&CUITabControl::AddItem), adopt<2>())
 		.def("AddItem",					(bool (CUITabControl::*)(LPCSTR, LPCSTR,Fvector2,Fvector2))	&CUITabControl::AddItem)
 		.def("RemoveAll",				&CUITabControl::RemoveAll)
 		.def("GetActiveId",				&CUITabControl::GetActiveId_script)

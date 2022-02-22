@@ -16,6 +16,17 @@
 
 #include	"../xrRender/dxRenderDeviceRender.h"
 
+extern "C" {
+#include <lua.h>
+#include <lualib.h>
+#include <lauxlib.h>
+}
+#include <luabind/class_info.hpp>
+#include "../../xrCore/_types.h"
+
+using namespace				luabind;
+using namespace luabind::policy;
+
 //#ifdef NDEBUG
 //
 //namespace std
@@ -32,11 +43,12 @@
 
 using namespace				luabind;
 
-#ifdef	DEBUG
-#define MDB	Memory.dbg_check()
-#else
+//#ifdef	DEBUG
+//#define MDB	Memory.dbg_check()
+//#else
+//#define MDB
+//#endif
 #define MDB
-#endif
 
 class	adopt_dx10options
 {
@@ -44,6 +56,7 @@ public:
 	bool	_dx10_msaa_alphatest_atoc()			{	return (RImplementation.o.dx10_msaa_alphatest==CRender::MSAA_ATEST_DX10_0_ATOC); }
 };
 
+using namespace luabind::policy;
 // wrapper
 class	adopt_dx10sampler
 {
@@ -138,6 +151,22 @@ class	adopt_stencil_op
 public:
 };
 
+struct luajit
+{
+	static void open_lib(lua_State* L, pcstr module_name, lua_CFunction function)
+	{
+		lua_pushcfunction(L, function);
+		lua_pushstring(L, module_name);
+		lua_call(L, 1, 0);
+	}
+
+	static void allow_escape_sequences(bool allowed)
+	{
+		lj_allow_escape_sequences(allowed ? 1 : 0);
+	}
+};
+
+
 
 void LuaLog(LPCSTR caMessage)
 {
@@ -149,100 +178,40 @@ void LuaError(lua_State* L)
 	Debug.fatal(DEBUG_INFO,"LUA error: %s",lua_tostring(L,-1));
 }
 
-#ifndef PURE_ALLOC
-//#	ifndef USE_MEMORY_MONITOR
-#		define USE_DL_ALLOCATOR
-//#	endif // USE_MEMORY_MONITOR
-#endif // PURE_ALLOC
-
-#ifndef USE_DL_ALLOCATOR
-static void *lua_alloc	(void *ud, void *ptr, size_t osize, size_t nsize) {
+static void* lua_alloc(void* ud, void* ptr, size_t osize, size_t nsize)
+{
 	(void)ud;
 	(void)osize;
-	if (nsize == 0) {
-		xr_free	(ptr);
-		return	NULL;
+	if (!nsize)
+	{
+		xr_free(ptr);
+		return nullptr;
 	}
-	else
-#ifdef DEBUG_MEMORY_NAME
-		return Memory.mem_realloc		(ptr, nsize, "LUA");
-#else // DEBUG_MEMORY_MANAGER
-		return Memory.mem_realloc		(ptr, nsize);
-#endif // DEBUG_MEMORY_MANAGER
+	return xr_realloc(ptr, nsize);
 }
-#else // USE_DL_ALLOCATOR
-
-#include "../../xrCore/memory_allocator_options.h"
-
-#ifdef USE_ARENA_ALLOCATOR
-	static const u32	s_arena_size = 8*1024*1024;
-	static char			s_fake_array[s_arena_size];
-	doug_lea_allocator	g_render_lua_allocator( s_fake_array, s_arena_size, "render:lua" );
-#else // #ifdef USE_ARENA_ALLOCATOR
-	doug_lea_allocator	g_render_lua_allocator( 0, 0, "render:lua" );
-#endif // #ifdef USE_ARENA_ALLOCATOR
-
-static void *lua_alloc		(void *ud, void *ptr, size_t osize, size_t nsize) {
-#ifndef USE_MEMORY_MONITOR
-	(void)ud;
-	(void)osize;
-	if ( !nsize )	{
-		g_render_lua_allocator.free_impl	(ptr);
-		return					0;
-	}
-
-	if ( !ptr )
-		return					g_render_lua_allocator.malloc_impl((u32)nsize);
-
-	return g_render_lua_allocator.realloc_impl(ptr, (u32)nsize);
-#else // #ifndef USE_MEMORY_MONITOR
-	if ( !nsize )	{
-		memory_monitor::monitor_free(ptr);
-		g_render_lua_allocator.free_impl		(ptr);
-		return						NULL;
-	}
-
-	if ( !ptr ) {
-		void* const result			= 
-			g_render_lua_allocator.malloc_impl((u32)nsize);
-		memory_monitor::monitor_alloc (result,nsize,"render:LUA");
-		return						result;
-	}
-
-	memory_monitor::monitor_free	(ptr);
-	void* const result				= g_render_lua_allocator.realloc_impl(ptr, (u32)nsize);
-	memory_monitor::monitor_alloc	(result,nsize,"render:LUA");
-	return							result;
-#endif // #ifndef USE_MEMORY_MONITOR
-}
-#endif // USE_DL_ALLOCATOR
 
 // export
 void	CResourceManager::LS_Load			()
 {
-	LSVM			= lua_newstate(lua_alloc, NULL);
-	if (!LSVM)		{
-		Msg			("! ERROR : Cannot initialize LUA VM!");
+	LSVM = lua_newstate(lua_alloc, NULL);
+	if (!LSVM)
+	{
+		Msg("! ERROR : Cannot initialize LUA VM!");
 		return;
 	}
 
 	// initialize lua standard library functions 
-	luaopen_base	(LSVM); 
-	luaopen_table	(LSVM);
-	luaopen_string	(LSVM);
-	luaopen_math	(LSVM);
-	luaopen_jit		(LSVM);
+	luabind::open(LSVM);
+	luabind::bind_class_info(LSVM);
 
-	luabind::open						(LSVM);
 #if !XRAY_EXCEPTIONS
-	if (0==luabind::get_error_callback())
-		luabind::set_error_callback		(LuaError);
+	if (0 == luabind::get_error_callback())
+		luabind::set_error_callback(LuaError);
 #endif
-
-	function		(LSVM, "log",	LuaLog);
 
 	module			(LSVM)
 	[
+		def("log", &LuaLog),
 		class_<adopt_dx10options>("_dx10options")
 		.def("dx10_msaa_alphatest_atoc",	&adopt_dx10options::_dx10_msaa_alphatest_atoc		)
 		//.def("",					&adopt_dx10options::_dx10Options		),	// returns options-object
@@ -250,48 +219,48 @@ void	CResourceManager::LS_Load			()
 
 
 		class_<adopt_dx10sampler>("_dx10sampler")
-		//.def("texture",						&adopt_sampler::_texture		,return_reference_to(_1))
-		//.def("project",						&adopt_sampler::_projective		,return_reference_to(_1))
-		//.def("clamp",						&adopt_sampler::_clamp			,return_reference_to(_1))
-		//.def("wrap",						&adopt_sampler::_wrap			,return_reference_to(_1))
-		//.def("mirror",						&adopt_sampler::_mirror			,return_reference_to(_1))
-		//.def("f_anisotropic",				&adopt_sampler::_f_anisotropic	,return_reference_to(_1))
-		//.def("f_trilinear",					&adopt_sampler::_f_trilinear	,return_reference_to(_1))
-		//.def("f_bilinear",					&adopt_sampler::_f_bilinear		,return_reference_to(_1))
-		//.def("f_linear",					&adopt_sampler::_f_linear		,return_reference_to(_1))
-		//.def("f_none",						&adopt_sampler::_f_none			,return_reference_to(_1))
-		//.def("fmin_none",					&adopt_sampler::_fmin_none		,return_reference_to(_1))
-		//.def("fmin_point",					&adopt_sampler::_fmin_point		,return_reference_to(_1))
-		//.def("fmin_linear",					&adopt_sampler::_fmin_linear	,return_reference_to(_1))
-		//.def("fmin_aniso",					&adopt_sampler::_fmin_aniso		,return_reference_to(_1))
-		//.def("fmip_none",					&adopt_sampler::_fmip_none		,return_reference_to(_1))
-		//.def("fmip_point",					&adopt_sampler::_fmip_point		,return_reference_to(_1))
-		//.def("fmip_linear",					&adopt_sampler::_fmip_linear	,return_reference_to(_1))
-		//.def("fmag_none",					&adopt_sampler::_fmag_none		,return_reference_to(_1))
-		//.def("fmag_point",					&adopt_sampler::_fmag_point		,return_reference_to(_1))
-		//.def("fmag_linear",					&adopt_sampler::_fmag_linear	,return_reference_to(_1))
+		//.def("texture",						&adopt_sampler::_texture		,return_reference_to<1>())
+		//.def("project",						&adopt_sampler::_projective		,return_reference_to<1>())
+		//.def("clamp",						&adopt_sampler::_clamp			,return_reference_to<1>())
+		//.def("wrap",						&adopt_sampler::_wrap			,return_reference_to<1>())
+		//.def("mirror",						&adopt_sampler::_mirror			,return_reference_to<1>())
+		//.def("f_anisotropic",				&adopt_sampler::_f_anisotropic	,return_reference_to<1>())
+		//.def("f_trilinear",					&adopt_sampler::_f_trilinear	,return_reference_to<1>())
+		//.def("f_bilinear",					&adopt_sampler::_f_bilinear		,return_reference_to<1>())
+		//.def("f_linear",					&adopt_sampler::_f_linear		,return_reference_to<1>())
+		//.def("f_none",						&adopt_sampler::_f_none			,return_reference_to<1>())
+		//.def("fmin_none",					&adopt_sampler::_fmin_none		,return_reference_to<1>())
+		//.def("fmin_point",					&adopt_sampler::_fmin_point		,return_reference_to<1>())
+		//.def("fmin_linear",					&adopt_sampler::_fmin_linear	,return_reference_to<1>())
+		//.def("fmin_aniso",					&adopt_sampler::_fmin_aniso		,return_reference_to<1>())
+		//.def("fmip_none",					&adopt_sampler::_fmip_none		,return_reference_to<1>())
+		//.def("fmip_point",					&adopt_sampler::_fmip_point		,return_reference_to<1>())
+		//.def("fmip_linear",					&adopt_sampler::_fmip_linear	,return_reference_to<1>())
+		//.def("fmag_none",					&adopt_sampler::_fmag_none		,return_reference_to<1>())
+		//.def("fmag_point",					&adopt_sampler::_fmag_point		,return_reference_to<1>())
+		//.def("fmag_linear",					&adopt_sampler::_fmag_linear	,return_reference_to<1>())
 		,
 
 		class_<adopt_compiler>("_compiler")
 			.def(								constructor<const adopt_compiler&>())
-			.def("begin",						&adopt_compiler::_pass			,return_reference_to(_1))
-			.def("begin",						&adopt_compiler::_passgs		,return_reference_to(_1))
-			.def("sorting",						&adopt_compiler::_options		,return_reference_to(_1))
-			.def("emissive",					&adopt_compiler::_o_emissive	,return_reference_to(_1))
-			.def("distort",						&adopt_compiler::_o_distort		,return_reference_to(_1))
-			.def("wmark",						&adopt_compiler::_o_wmark		,return_reference_to(_1))
-			.def("fog",							&adopt_compiler::_fog			,return_reference_to(_1))
-			.def("zb",							&adopt_compiler::_ZB			,return_reference_to(_1))
-			.def("blend",						&adopt_compiler::_blend			,return_reference_to(_1))
-			.def("aref",						&adopt_compiler::_aref			,return_reference_to(_1))
+			.def("begin",						&adopt_compiler::_pass			,return_reference_to<1>())
+			.def("begin",						&adopt_compiler::_passgs		,return_reference_to<1>())
+			.def("sorting",						&adopt_compiler::_options		,return_reference_to<1>())
+			.def("emissive",					&adopt_compiler::_o_emissive	,return_reference_to<1>())
+			.def("distort",						&adopt_compiler::_o_distort		,return_reference_to<1>())
+			.def("wmark",						&adopt_compiler::_o_wmark		,return_reference_to<1>())
+			.def("fog",							&adopt_compiler::_fog			,return_reference_to<1>())
+			.def("zb",							&adopt_compiler::_ZB			,return_reference_to<1>())
+			.def("blend",						&adopt_compiler::_blend			,return_reference_to<1>())
+			.def("aref",						&adopt_compiler::_aref			,return_reference_to<1>())
 			//	For compatibility only
-			.def("dx10color_write_enable",		&adopt_compiler::_dx10color_write_enable,return_reference_to(_1))
-			.def("color_write_enable",			&adopt_compiler::_dx10color_write_enable,return_reference_to(_1))
-			.def("dx10texture",					&adopt_compiler::_dx10texture	,return_reference_to(_1))
-			.def("dx10stencil",					&adopt_compiler::_dx10Stencil	,return_reference_to(_1))
-			.def("dx10stencil_ref",				&adopt_compiler::_dx10StencilRef,return_reference_to(_1))
-			.def("dx10atoc",					&adopt_compiler::_dx10ATOC		,return_reference_to(_1))
-			.def("dx10zfunc",					&adopt_compiler::_dx10ZFunc		,return_reference_to(_1))			
+			.def("dx10color_write_enable",		&adopt_compiler::_dx10color_write_enable,return_reference_to<1>())
+			.def("color_write_enable",			&adopt_compiler::_dx10color_write_enable,return_reference_to<1>())
+			.def("dx10texture",					&adopt_compiler::_dx10texture	,return_reference_to<1>())
+			.def("dx10stencil",					&adopt_compiler::_dx10Stencil	,return_reference_to<1>())
+			.def("dx10stencil_ref",				&adopt_compiler::_dx10StencilRef,return_reference_to<1>())
+			.def("dx10atoc",					&adopt_compiler::_dx10ATOC		,return_reference_to<1>())
+			.def("dx10zfunc",					&adopt_compiler::_dx10ZFunc		,return_reference_to<1>())			
 
 			.def("dx10sampler",					&adopt_compiler::_dx10sampler		)	// returns sampler-object
 			.def("dx10Options",					&adopt_compiler::_dx10Options		),	// returns options-object			
@@ -339,6 +308,19 @@ void	CResourceManager::LS_Load			()
 				value("decr",					int(D3DSTENCILOP_DECR))
 			]
 	];
+
+	luajit::open_lib(LSVM, "", luaopen_base);
+	luajit::open_lib(LSVM, LUA_LOADLIBNAME, luaopen_package);
+	luajit::open_lib(LSVM, LUA_TABLIBNAME, luaopen_table);
+	luajit::open_lib(LSVM, LUA_IOLIBNAME, luaopen_io);
+	luajit::open_lib(LSVM, LUA_OSLIBNAME, luaopen_os);
+	luajit::open_lib(LSVM, LUA_MATHLIBNAME, luaopen_math);
+	luajit::open_lib(LSVM, LUA_STRLIBNAME, luaopen_string);
+	luajit::open_lib(LSVM, LUA_BITLIBNAME, luaopen_bit);
+	luajit::open_lib(LSVM, LUA_FFILIBNAME, luaopen_ffi);
+#ifdef DEBUG
+	luajit::open_lib(LSVM, LUA_DBLIBNAME, luaopen_debug);
+#endif
 
 	// load shaders
 	xr_vector<char*>*	folder			= FS.file_list_open	("$game_shaders$",::Render->getShaderPath(),FS_ListFiles|FS_RootOnly);
@@ -481,7 +463,7 @@ ShaderElement*		CBlender_Compile::_lua_Compile	(LPCSTR namesp, LPCSTR name)
 	LPCSTR				t_1		= (L_textures.size() > 1)	? *L_textures[1] : "null";
 	LPCSTR				t_d		= detail_texture			? detail_texture : "null" ;
 	lua_State*			LSVM	= dxRenderDeviceRender::Instance().Resources->LSVM;
-	object				shader	= get_globals(LSVM)[namesp];
+	object				shader	= globals(LSVM)[namesp];
 	functor<void>		element	= object_cast<functor<void> >(shader[name]);
 	bool				bFirstPass = false;
 	adopt_compiler		ac		= adopt_compiler(this, bFirstPass);

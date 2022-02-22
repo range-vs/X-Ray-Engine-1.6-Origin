@@ -9,7 +9,7 @@
 #include "UIComboBox.h"
 
 using namespace luabind;
-
+using namespace luabind::policy;
 
 struct CUIListBoxItemWrapper : public CUIListBoxItem, public luabind::wrap_base 
 {
@@ -26,7 +26,7 @@ struct CUIListBoxItemMsgChainWrapper : public CUIListBoxItemMsgChain, public lua
 void CUIListBox::script_register(lua_State *L)
 {
 
-	module(L)
+	/*module(L)
 	[
 
 		class_<CUIListBox, CUIScrollView>("CUIListBox")
@@ -41,7 +41,7 @@ void CUIListBox::script_register(lua_State *L)
 		.def("GetItem",					&CUIListBox::GetItem)		
 		.def("RemoveItem",				&CUIListBox::RemoveWindow)
 		.def("AddTextItem",				&CUIListBox::AddTextItem)
-		.def("AddExistingItem",         &CUIListBox::AddExistingItem, adopt(_2)),
+		.def("AddExistingItem",         &CUIListBox::AddExistingItem, adopt<2>()),
 
 		class_<CUIListBoxItem, CUIFrameLineWnd, CUIListBoxItemWrapper>("CUIListBoxItem")
 		.def(							constructor<float>())
@@ -112,5 +112,34 @@ void CUIListBox::script_register(lua_State *L)
 			value("eGameIDCaptureTheArtefact",int(eGameIDCaptureTheArtefact))
 		]
 		
-	];
+	];*/
+	module(L)
+		[
+			class_<CUIListBox, CUIScrollView>("CUIListBox")
+			.def(constructor<>())
+		.def("ShowSelectedItem", &CUIListBox::Show)
+		.def("RemoveAll", &CUIListBox::Clear)
+		.def("GetSize", &CUIListBox::GetSize)
+		.def("GetSelectedItem", &CUIListBox::GetSelectedItem)
+		.def("GetSelectedIndex", &CUIListBox::GetSelectedIDX)
+		.def("SetSelectedIndex", &CUIListBox::SetSelectedIDX)
+		.def("SetItemHeight", &CUIListBox::SetItemHeight)
+		.def("GetItemHeight", &CUIListBox::GetItemHeight)
+		.def("GetItemByIndex", &CUIListBox::GetItemByIDX)
+		.def("GetItem", &CUIListBox::GetItem)
+		.def("RemoveItem", &CUIListBox::RemoveWindow)
+		.def("AddTextItem", &CUIListBox::AddTextItem)
+		.def("AddExistingItem", &CUIListBox::AddExistingItem, adopt<2>()),
+
+		class_<CUIListBoxItem, CUIFrameLineWnd, default_holder, CUIListBoxItemWrapper>("CUIListBoxItem")
+		.def(constructor<float>())
+		.def("GetTextItem", &CUIListBoxItem::GetTextItem)
+		.def("AddTextField", &CUIListBoxItem::AddTextField)
+		.def("AddIconField", &CUIListBoxItem::AddIconField)
+		.def("SetTextColor", &CUIListBoxItem::SetTextColor),
+
+		class_<CUIListBoxItemMsgChain, CUIListBoxItem, default_holder, CUIListBoxItemMsgChainWrapper>("CUIListBoxItemMsgChain")
+		.def(constructor<float>())
+
+		];
 }

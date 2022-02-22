@@ -1,61 +1,75 @@
-// Copyright David Abrahams 2002. Permission to copy, use,
-// modify, sell and distribute this software is granted provided this
-// copyright notice appears in all copies. This software is provided
-// "as is" without express or implied warranty, and with no claim as
-// to its suitability for any purpose.
+// Copyright David Abrahams 2002.
+// Distributed under the Boost Software License, Version 1.0. (See
+// accompanying file LICENSE_1_0.txt or copy at
+// http://www.boost.org/LICENSE_1_0.txt)
 #ifndef MODULE_INIT_DWA20020722_HPP
 # define MODULE_INIT_DWA20020722_HPP
 
-# include <boost/python/detail/wrap_python.hpp>
-# include <boost/python/detail/config.hpp>
+# include <boost/python/detail/prefix.hpp>
+# include <boost/preprocessor/cat.hpp>
+# include <boost/preprocessor/stringize.hpp>
 
 # ifndef BOOST_PYTHON_MODULE_INIT
 
 namespace boost { namespace python { namespace detail {
 
-BOOST_PYTHON_DECL void init_module(char const* name, void(*)());
+#  if PY_VERSION_HEX >= 0x03000000
+
+BOOST_PYTHON_DECL PyObject* init_module(PyModuleDef&, void(*)());
+
+#else
+
+BOOST_PYTHON_DECL PyObject* init_module(char const* name, void(*)());
+
+#endif
 
 }}}
 
-#  if (defined(_WIN32) || defined(__CYGWIN__)) && !defined(BOOST_PYTHON_STATIC_MODULE)
+#  if PY_VERSION_HEX >= 0x03000000
 
-#   define BOOST_PYTHON_MODULE_INIT(name)               \
-void init_module_##name();                              \
-extern "C" __declspec(dllexport) void init##name()      \
+#   define _BOOST_PYTHON_MODULE_INIT(name) \
+  PyObject* BOOST_PP_CAT(PyInit_, name)()  \
+  { \
+    static PyModuleDef_Base initial_m_base = { \
+        PyObject_HEAD_INIT(NULL) \
+        0, /* m_init */ \
+        0, /* m_index */ \
+        0 /* m_copy */ };  \
+    static PyMethodDef initial_methods[] = { { 0, 0, 0, 0 } }; \
+ \
+    static struct PyModuleDef moduledef = { \
+        initial_m_base, \
+        BOOST_PP_STRINGIZE(name), \
+        0, /* m_doc */ \
+        -1, /* m_size */ \
+        initial_methods, \
+        0,  /* m_reload */ \
+        0, /* m_traverse */ \
+        0, /* m_clear */ \
+        0,  /* m_free */ \
+    }; \
+ \
+    return boost::python::detail::init_module( \
+        moduledef, BOOST_PP_CAT(init_module_, name) ); \
+  } \
+  void BOOST_PP_CAT(init_module_, name)()
+
+#  else
+
+#   define _BOOST_PYTHON_MODULE_INIT(name)              \
+  void BOOST_PP_CAT(init,name)()                        \
 {                                                       \
     boost::python::detail::init_module(                 \
-        #name,&init_module_##name);                     \
+        BOOST_PP_STRINGIZE(name),&BOOST_PP_CAT(init_module_,name)); \
 }                                                       \
-void init_module_##name()
-
-#  elif defined(_AIX) && !defined(BOOST_PYTHON_STATIC_MODULE)
-
-#   include <boost/python/detail/aix_init_module.hpp>
-#   define BOOST_PYTHON_MODULE_INIT(name)                               \
-void init_module_##name();                                              \
-extern "C"                                                              \
-{                                                                       \
-    extern PyObject* _PyImport_LoadDynamicModule(char*, char*, FILE *); \
-    void init##name()                                                   \
-    {                                                                   \
-        boost::python::detail::aix_init_module(                         \
-            _PyImport_LoadDynamicModule, #name, &init_module_##name);   \
-    }                                                                   \
-}                                                                       \
-void init_module_##name()
-
-# else
-
-#   define BOOST_PYTHON_MODULE_INIT(name)                               \
-void init_module_##name();                                              \
-extern "C"  void init##name()                                           \
-{                                                                       \
-    boost::python::detail::init_module(#name, &init_module_##name);     \
-}                                                                       \
-void init_module_##name()
+  void BOOST_PP_CAT(init_module_,name)()
 
 #  endif
 
-# endif 
+#  define BOOST_PYTHON_MODULE_INIT(name)                       \
+  void BOOST_PP_CAT(init_module_,name)();                      \
+extern "C" BOOST_SYMBOL_EXPORT _BOOST_PYTHON_MODULE_INIT(name)
+
+# endif
 
 #endif // MODULE_INIT_DWA20020722_HPP

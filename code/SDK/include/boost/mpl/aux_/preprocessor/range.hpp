@@ -1,26 +1,30 @@
-//-----------------------------------------------------------------------------
-// boost mpl/aux_/preprocessor/range.hpp header file
-// See http://www.boost.org for updates, documentation, and revision history.
-//-----------------------------------------------------------------------------
-//
-// Copyright (c) 2002
-// Aleksey Gurtovoy
-//
-// Permission to use, copy, modify, distribute and sell this software
-// and its documentation for any purpose is hereby granted without fee, 
-// provided that the above copyright notice appears in all copies and 
-// that both the copyright notice and this permission notice appear in 
-// supporting documentation. No representations are made about the 
-// suitability of this software for any purpose. It is provided "as is" 
-// without express or implied warranty.
 
 #ifndef BOOST_MPL_AUX_PREPROCESSOR_RANGE_HPP_INCLUDED
 #define BOOST_MPL_AUX_PREPROCESSOR_RANGE_HPP_INCLUDED
 
-#include "boost/preprocessor/seq/subseq.hpp"
+// Copyright Aleksey Gurtovoy 2002-2004
+//
+// Distributed under the Boost Software License, Version 1.0. 
+// (See accompanying file LICENSE_1_0.txt or copy at 
+// http://www.boost.org/LICENSE_1_0.txt)
+//
+// See http://www.boost.org/libs/mpl for documentation.
+
+// $Id$
+// $Date$
+// $Revision$
+
+#include <boost/preprocessor/seq/subseq.hpp>
+#include <boost/preprocessor/repetition/repeat.hpp>
+#include <boost/preprocessor/arithmetic/add.hpp>
+
+#define BOOST_MPL_PP_RANGE_ITEM(z,n,_) (n)
 
 #define BOOST_MPL_PP_RANGE(first, length) \
-    BOOST_PP_SEQ_SUBSEQ((0)(1)(2)(3)(4)(5)(6)(7)(8)(9), first, length) \
+    BOOST_PP_SEQ_SUBSEQ( \
+        BOOST_PP_REPEAT(BOOST_PP_ADD(first,length), BOOST_MPL_PP_RANGE_ITEM, _), \
+        first, length \
+    ) \
 /**/
 
 #endif // BOOST_MPL_AUX_PREPROCESSOR_RANGE_HPP_INCLUDED

@@ -1,12 +1,12 @@
-// Copyright David Abrahams 2002. Permission to copy, use,
-// modify, sell and distribute this software is granted provided this
-// copyright notice appears in all copies. This software is provided
-// "as is" without express or implied warranty, and with no claim as
-// to its suitability for any purpose.
+// Copyright David Abrahams 2002.
+// Distributed under the Boost Software License, Version 1.0. (See
+// accompanying file LICENSE_1_0.txt or copy at
+// http://www.boost.org/LICENSE_1_0.txt)
 #ifndef HANDLE_DWA200269_HPP
 # define HANDLE_DWA200269_HPP
 
-# include <boost/python/detail/wrap_python.hpp>
+# include <boost/python/detail/prefix.hpp>
+
 # include <boost/python/cast.hpp>
 # include <boost/python/errors.hpp>
 # include <boost/python/borrowed.hpp>
@@ -80,9 +80,12 @@ class handle
     {
     }
 
-    handle& operator=(handle const& r);
-
-#if !defined(BOOST_MSVC) || (BOOST_MSVC > 1200)
+    handle& operator=(handle const& r)
+    {
+        python::xdecref(m_p);
+        m_p = python::xincref(r.m_p);
+        return *this;
+    }
 
     template<typename Y>
     handle& operator=(handle<Y> const & r) // never throws
@@ -91,8 +94,6 @@ class handle
         m_p = python::xincref(python::upcast<T>(r.get()));
         return *this;
     }
-
-#endif
 
     template <typename Y>
     handle(handle<Y> const& r)
@@ -131,12 +132,29 @@ class handle
     T* m_p;
 };
 
+#ifdef BOOST_NO_ARGUMENT_DEPENDENT_LOOKUP
+} // namespace python
+#endif
+
+template<class T> inline T * get_pointer(python::handle<T> const & p)
+{
+    return p.get();
+}
+
+#ifdef BOOST_NO_ARGUMENT_DEPENDENT_LOOKUP
+namespace python {
+#else
+
+// We don't want get_pointer above to hide the others
+using boost::get_pointer;
+
+#endif
+
 typedef handle<PyTypeObject> type_handle;
 
 //
 // Compile-time introspection
 //
-# ifndef BOOST_NO_TEMPLATE_PARTIAL_SPECIALIZATION
 template<typename T>
 class is_handle
 {
@@ -150,28 +168,6 @@ class is_handle<handle<T> >
  public:
     BOOST_STATIC_CONSTANT(bool, value = true);
 };
-# else
-namespace detail
-{
-  typedef char (&yes_handle_t)[1];
-  typedef char (&no_handle_t)[2];
-      
-  no_handle_t is_handle_test(...);
-
-  template<typename T>
-  yes_handle_t is_handle_test(boost::type< handle<T> >);
-}
-
-template<typename T>
-class is_handle
-{
- public:
-    BOOST_STATIC_CONSTANT(
-        bool, value = (
-            sizeof(detail::is_handle_test(boost::type<T>()))
-            == sizeof(detail::yes_handle_t)));
-};
-# endif
 
 //
 // implementations
@@ -186,14 +182,6 @@ template <class T>
 inline handle<T>::~handle()
 {
     python::xdecref(m_p);
-}
-
-template <class T>
-inline handle<T>& handle<T>::operator=(handle<T> const& r)
-{
-    python::xdecref(m_p);
-    m_p = python::xincref(r.m_p);
-    return *this;
 }
 
 template <class T>

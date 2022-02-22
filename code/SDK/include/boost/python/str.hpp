@@ -1,10 +1,11 @@
-// Copyright David Abrahams 2002. Permission to copy, use,
-// modify, sell and distribute this software is granted provided this
-// copyright notice appears in all copies. This software is provided
-// "as is" without express or implied warranty, and with no claim as
-// to its suitability for any purpose.
+// Copyright David Abrahams 2002.
+// Distributed under the Boost Software License, Version 1.0. (See
+// accompanying file LICENSE_1_0.txt or copy at
+// http://www.boost.org/LICENSE_1_0.txt)
 #ifndef STR_20020703_HPP
 #define STR_20020703_HPP
+
+# include <boost/python/detail/prefix.hpp>
 
 #include <boost/python/object.hpp>
 #include <boost/python/list.hpp>
@@ -36,10 +37,12 @@ namespace detail
     
       long count(object_cref sub, object_cref start, object_cref end) const;
 
+#if PY_VERSION_HEX < 0x03000000
       object decode() const;
       object decode(object_cref encoding) const;
 
       object decode(object_cref encoding, object_cref errors) const;
+#endif
 
       object encode() const;
       object encode(object_cref encoding) const;
@@ -124,6 +127,11 @@ namespace detail
       str_base(); // new str
     
       str_base(const char* s); // new str
+
+      str_base(char const* start, char const* finish);
+      
+      str_base(char const* start, std::size_t length);
+      
       explicit str_base(object_cref other);
 
       BOOST_PYTHON_FORWARD_OBJECT_CONSTRUCTORS(str_base, object)
@@ -140,6 +148,14 @@ class str : public detail::str_base
     str() {} // new str
     
     str(const char* s) : base(s) {} // new str
+    
+    str(char const* start, char const* finish) // new str
+      : base(start, finish)
+    {}
+    
+    str(char const* start, std::size_t length) // new str
+      : base(start, length)
+    {}
     
     template <class T>
     explicit str(T const& other)
@@ -168,9 +184,10 @@ class str : public detail::str_base
     template<class T1, class T2, class T3>
     long count(T1 const& sub,T2 const& start, T3 const& end) const
     {
-        return base::count(object(sub), object(start));
+        return base::count(object(sub), object(start), object(end));
     }
 
+#if PY_VERSION_HEX < 0x03000000
     object decode() const { return base::decode(); }
     
     template<class T>
@@ -184,6 +201,7 @@ class str : public detail::str_base
     {
         return base::decode(object(encoding),object(errors));
     }
+#endif
 
     object encode() const { return base::encode(); }
 
@@ -390,7 +408,11 @@ namespace converter
 {
   template <>
   struct object_manager_traits<str>
+#if PY_VERSION_HEX >= 0x03000000
+      : pytype_object_manager_traits<&PyUnicode_Type,str>
+#else
       : pytype_object_manager_traits<&PyString_Type,str>
+#endif
   {
   };
 }

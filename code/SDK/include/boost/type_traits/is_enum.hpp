@@ -1,35 +1,73 @@
 
-// (C) Copyright Dave Abrahams, Steve Cleary, Beman Dawes, Howard
-// Hinnant & John Maddock 2000.  Permission to copy, use, modify,
-// sell and distribute this software is granted provided this
-// copyright notice appears in all copies. This software is provided
-// "as is" without express or implied warranty, and with no claim as
-// to its suitability for any purpose.
+//  (C) Copyright Dave Abrahams, Steve Cleary, Beman Dawes, Howard
+//  Hinnant & John Maddock 2000.  
+//  Use, modification and distribution are subject to the Boost Software License,
+//  Version 1.0. (See accompanying file LICENSE_1_0.txt or copy at
+//  http://www.boost.org/LICENSE_1_0.txt).
 //
-// See http://www.boost.org for most recent version including documentation.
+//  See http://www.boost.org/libs/type_traits for most recent version including documentation.
+
 
 #ifndef BOOST_TT_IS_ENUM_HPP_INCLUDED
 #define BOOST_TT_IS_ENUM_HPP_INCLUDED
 
-#include "boost/type_traits/add_reference.hpp"
-#include "boost/type_traits/is_arithmetic.hpp"
-#include "boost/type_traits/is_reference.hpp"
-#include "boost/type_traits/is_convertible.hpp"
-#include "boost/type_traits/config.hpp"
-
-#ifdef BOOST_TT_HAS_CONFORMING_IS_CLASS_IMPLEMENTATION
-#   include "boost/type_traits/is_class.hpp"
+#include <boost/type_traits/intrinsics.hpp>
+#include <boost/type_traits/integral_constant.hpp>
+#ifndef BOOST_IS_ENUM
+#include <boost/type_traits/add_reference.hpp>
+#include <boost/type_traits/is_arithmetic.hpp>
+#include <boost/type_traits/is_reference.hpp>
+#include <boost/type_traits/is_convertible.hpp>
+#include <boost/type_traits/is_array.hpp>
+#ifdef __GNUC__
+#include <boost/type_traits/is_function.hpp>
 #endif
-
-// should be the last #include
-#include "boost/type_traits/detail/bool_trait_def.hpp"
+#include <boost/type_traits/detail/config.hpp>
+#if defined(BOOST_TT_HAS_CONFORMING_IS_CLASS_IMPLEMENTATION) 
+#  include <boost/type_traits/is_class.hpp>
+#  include <boost/type_traits/is_union.hpp>
+#endif
+#endif
 
 namespace boost {
 
-#if !(defined(__BORLANDC__) && (__BORLANDC__ <= 0x551))
+#ifndef BOOST_IS_ENUM
+#if !(defined(BOOST_BORLANDC) && (BOOST_BORLANDC <= 0x551))
 
 namespace detail {
-  
+
+#if defined(BOOST_TT_HAS_CONFORMING_IS_CLASS_IMPLEMENTATION) 
+
+template <typename T>
+struct is_class_or_union
+{
+   BOOST_STATIC_CONSTANT(bool, value = ::boost::is_class<T>::value || ::boost::is_union<T>::value);
+};
+
+#else
+
+template <typename T>
+struct is_class_or_union
+{
+# if BOOST_WORKAROUND(BOOST_BORLANDC, BOOST_TESTED_AT(0x581))// we simply can't detect it this way.
+    BOOST_STATIC_CONSTANT(bool, value = false);
+# else
+    template <class U> static ::boost::type_traits::yes_type is_class_or_union_tester(void(U::*)(void));
+
+#  if BOOST_WORKAROUND(__MWERKS__, <= 0x3000) // no SFINAE
+    static ::boost::type_traits::no_type is_class_or_union_tester(...);
+    BOOST_STATIC_CONSTANT(
+        bool, value = sizeof(is_class_or_union_tester(0)) == sizeof(::boost::type_traits::yes_type));
+#  else
+    template <class U>
+    static ::boost::type_traits::no_type is_class_or_union_tester(...);
+    BOOST_STATIC_CONSTANT(
+        bool, value = sizeof(is_class_or_union_tester<T>(0)) == sizeof(::boost::type_traits::yes_type));
+#  endif
+# endif
+};
+#endif
+
 struct int_convertible
 {
     int_convertible(int);
@@ -50,73 +88,79 @@ template <>
 struct is_enum_helper<false>
 {
     template <typename T> struct type
-        : ::boost::is_convertible<T,::boost::detail::int_convertible>
     {
+       static const bool value = ::boost::is_convertible<typename boost::add_reference<T>::type, ::boost::detail::int_convertible>::value;
     };
 };
 
 template <typename T> struct is_enum_impl
 {
-   typedef ::boost::add_reference<T> ar_t;
-   typedef typename ar_t::type r_type;
-       
-#if defined(BOOST_TT_HAS_CONFORMING_IS_CLASS_IMPLEMENTATION)
+   //typedef ::boost::add_reference<T> ar_t;
+   //typedef typename ar_t::type r_type;
+
+#if defined(__GNUC__)
+
+#ifdef BOOST_TT_HAS_CONFORMING_IS_CLASS_IMPLEMENTATION
+    
+   // We MUST check for is_class_or_union on conforming compilers in
+   // order to correctly deduce that noncopyable types are not enums
+   // (dwa 2002/04/15)...
    BOOST_STATIC_CONSTANT(bool, selector =
-      (::boost::type_traits::ice_or<
            ::boost::is_arithmetic<T>::value
-         , ::boost::is_reference<T>::value
-       // We MUST do this on conforming compilers in order to
-       // correctly deduce that noncopyable types are not enums (dwa
-       // 2002/04/15)...
-         , ::boost::is_class<T>::value
-      >::value));
-#else 
+         || ::boost::is_reference<T>::value
+         || ::boost::is_function<T>::value
+         || is_class_or_union<T>::value
+         || is_array<T>::value);
+#else
+   // ...however, not checking is_class_or_union on non-conforming
+   // compilers prevents a dependency recursion.
    BOOST_STATIC_CONSTANT(bool, selector =
-      (::boost::type_traits::ice_or<
            ::boost::is_arithmetic<T>::value
-         , ::boost::is_reference<T>::value
-       // However, not doing this on non-conforming compilers prevents
-       // a dependency recursion.
-      >::value));
+         || ::boost::is_reference<T>::value
+         || ::boost::is_function<T>::value
+         || is_array<T>::value);
+#endif // BOOST_TT_HAS_CONFORMING_IS_CLASS_IMPLEMENTATION
+
+#else // !defined(__GNUC__):
+    
+   BOOST_STATIC_CONSTANT(bool, selector =
+           ::boost::is_arithmetic<T>::value
+         || ::boost::is_reference<T>::value
+         || is_class_or_union<T>::value
+         || is_array<T>::value);
+    
 #endif
 
-#ifdef __BORLANDC__
+#if BOOST_WORKAROUND(BOOST_BORLANDC, < 0x600)
     typedef ::boost::detail::is_enum_helper<
           ::boost::detail::is_enum_impl<T>::selector
         > se_t;
 #else
     typedef ::boost::detail::is_enum_helper<selector> se_t;
 #endif
-    typedef typename se_t::template type<r_type> helper;
+
+    typedef typename se_t::template type<T> helper;
     BOOST_STATIC_CONSTANT(bool, value = helper::value);
 };
 
-// Specializations suppress some nasty warnings with GCC
-BOOST_TT_AUX_BOOL_TRAIT_IMPL_SPEC1(is_enum,float,false)
-BOOST_TT_AUX_BOOL_TRAIT_IMPL_SPEC1(is_enum,double,false)
-BOOST_TT_AUX_BOOL_TRAIT_IMPL_SPEC1(is_enum,long double,false)
-// these help on compilers with no partial specialization support:
-BOOST_TT_AUX_BOOL_TRAIT_IMPL_SPEC1(is_enum,void,false)
-#ifndef BOOST_NO_CV_VOID_SPECIALIZATIONS
-BOOST_TT_AUX_BOOL_TRAIT_IMPL_SPEC1(is_enum,void const,false)
-BOOST_TT_AUX_BOOL_TRAIT_IMPL_SPEC1(is_enum,void volatile,false)
-BOOST_TT_AUX_BOOL_TRAIT_IMPL_SPEC1(is_enum,void const volatile,false)
-#endif
-
 } // namespace detail
 
-BOOST_TT_AUX_BOOL_TRAIT_DEF1(is_enum,T,::boost::detail::is_enum_impl<T>::value)
+template <class T> struct is_enum : public integral_constant<bool, ::boost::detail::is_enum_impl<T>::value> {};
 
-#else // __BORLANDC__
+#else // BOOST_BORLANDC
 //
-// buggy is_convertible prevents working 
+// buggy is_convertible prevents working
 // implementation of is_enum:
-BOOST_TT_AUX_BOOL_TRAIT_DEF1(is_enum,T,false)
+template <class T> struct is_enum : public integral_constant<bool, false> {};
+
+#endif
+
+#else // BOOST_IS_ENUM
+
+template <class T> struct is_enum : public integral_constant<bool, BOOST_IS_ENUM(T)> {};
 
 #endif
 
 } // namespace boost
-
-#include "boost/type_traits/detail/bool_trait_undef.hpp"
 
 #endif // BOOST_TT_IS_ENUM_HPP_INCLUDED

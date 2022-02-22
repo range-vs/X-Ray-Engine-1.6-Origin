@@ -9,7 +9,30 @@
 #pragma once
 
 #include "ai_script_space.h"
+#include "../common/Noncopyable.hpp"
+#include <memory>
 //struct CLuaVirtualMachine;
+
+//class ScriptBuffer
+//{
+//	static std::unique_ptr< ScriptBuffer> instanse;
+//
+//public:
+//	char* scriptBuffer = nullptr;
+//	size_t scriptBufferSize = 0;
+//
+//public:
+//	ScriptBuffer() = default;
+//	ScriptBuffer(ScriptBuffer&) = delete;
+//	ScriptBuffer& operator=(ScriptBuffer&) = delete;
+//	ScriptBuffer(ScriptBuffer&&) = delete;
+//	const ScriptBuffer& operator=(ScriptBuffer&&) = delete;
+//	~ScriptBuffer();
+//
+//	void resize(size_t total_size);
+//
+//	static std::unique_ptr< ScriptBuffer>& getInstance();
+//};
 
 namespace Script {
 #ifndef ENGINE_BUILD
@@ -46,4 +69,7 @@ namespace Script {
 	bool				bfIsObjectPresent			(CLuaVirtualMachine *tpLuaVM, LPCSTR	caIdentifier,	int type);
 	bool				bfIsObjectPresent			(CLuaVirtualMachine *tpLuaVM, LPCSTR	caNamespaceName, LPCSTR	caIdentifier, int type);
 	luabind::object		lua_namespace_table			(CLuaVirtualMachine *tpLuaVM, LPCSTR namespace_name);
+
+	bool parse_namespace(pcstr caNamespaceName, pstr b, size_t b_size, pstr c, size_t c_size);
+
 };

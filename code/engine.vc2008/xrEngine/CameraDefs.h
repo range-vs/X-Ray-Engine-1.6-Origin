@@ -17,6 +17,7 @@ struct ENGINE_API SCamEffectorInfo
 	Fvector		n;
 	Fvector		r;
 	float		fFov; 
+	float		fNear;
 	float		fFar; 
 	float		fAspect; 
 	bool		dont_apply;
@@ -24,16 +25,17 @@ struct ENGINE_API SCamEffectorInfo
 	SCamEffectorInfo();
 	SCamEffectorInfo& operator	= (const SCamEffectorInfo& other)
 	{
-		p					= other.p; 
-		d					= other.d; 
-		n					= other.n;
-		r					= other.r;
-		fFov				= other.fFov; 
-		fFar				= other.fFar; 
-		fAspect				= other.fAspect; 
-		dont_apply			= other.dont_apply;
-		affected_on_hud		= other.affected_on_hud;
-		return				*this;
+		p = other.p;
+		d = other.d;
+		n = other.n;
+		r = other.r;
+		fFov = other.fFov;
+		fNear = other.fNear;
+		fFar = other.fFar;
+		fAspect = other.fAspect;
+		dont_apply = other.dont_apply;
+		affected_on_hud = other.affected_on_hud;
+		return *this;
 	}
 };
 

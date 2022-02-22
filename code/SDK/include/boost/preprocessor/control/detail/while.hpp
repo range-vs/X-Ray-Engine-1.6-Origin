@@ -2,18 +2,22 @@
 #  * Housemarque Oy
 #  * http://www.housemarque.com
 #  *
-#  * Permission to copy, use, modify, sell and distribute this software is
-#  * granted provided this copyright notice appears in all copies. This
-#  * software is provided "as is" without express or implied warranty, and
-#  * with no claim as to its suitability for any purpose.
+#  * Distributed under the Boost Software License, Version 1.0. (See
+#  * accompanying file LICENSE_1_0.txt or copy at
+#  * http://www.boost.org/LICENSE_1_0.txt)
 #  */
 #
 # /* Revised by Paul Mensonides (2002) */
+# /* Revised by Edward Diener (2020) */
 #
 # /* See http://www.boost.org for most recent version. */
 #
 # ifndef BOOST_PREPROCESSOR_CONTROL_DETAIL_WHILE_HPP
 # define BOOST_PREPROCESSOR_CONTROL_DETAIL_WHILE_HPP
+#
+# include <boost/preprocessor/config/config.hpp>
+#
+# if ~BOOST_PP_CONFIG_FLAGS() & BOOST_PP_CONFIG_STRICT()
 #
 # include <boost/preprocessor/control/iif.hpp>
 # include <boost/preprocessor/logical/bool.hpp>
@@ -533,5 +537,27 @@
 # define BOOST_PP_WHILE_255_C(c, p, o, s) BOOST_PP_IIF(c, BOOST_PP_WHILE_256, s BOOST_PP_TUPLE_EAT_3)(p, o, BOOST_PP_IIF(c, o, BOOST_PP_NIL BOOST_PP_TUPLE_EAT_2)(256, s))
 # define BOOST_PP_WHILE_256_C(c, p, o, s) BOOST_PP_IIF(c, BOOST_PP_WHILE_257, s BOOST_PP_TUPLE_EAT_3)(p, o, BOOST_PP_IIF(c, o, BOOST_PP_NIL BOOST_PP_TUPLE_EAT_2)(257, s))
 #
+# else
+#
+# include <boost/preprocessor/control/iif.hpp>
+# include <boost/preprocessor/logical/bool.hpp>
+# include <boost/preprocessor/tuple/eat.hpp>
+#
+# include <boost/preprocessor/config/limits.hpp>
+#
+# if BOOST_PP_LIMIT_WHILE == 256
+# include <boost/preprocessor/control/detail/limits/while_256.hpp>
+# elif BOOST_PP_LIMIT_WHILE == 512
+# include <boost/preprocessor/control/detail/limits/while_256.hpp>
+# include <boost/preprocessor/control/detail/limits/while_512.hpp>
+# elif BOOST_PP_LIMIT_WHILE == 1024
+# include <boost/preprocessor/control/detail/limits/while_256.hpp>
+# include <boost/preprocessor/control/detail/limits/while_512.hpp>
+# include <boost/preprocessor/control/detail/limits/while_1024.hpp>
+# else
+# error Incorrect value for the BOOST_PP_LIMIT_WHILE limit
+# endif
+#
+# endif
 #
 # endif

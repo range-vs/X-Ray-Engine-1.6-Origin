@@ -172,12 +172,12 @@ void CHOM::Render_DB			(CFrustum& base)
 	if (0==xrc.r_count())		return;
 
 	// Prepare
-	CDB::RESULT*	it			= xrc.r_begin	();
-	CDB::RESULT*	end			= xrc.r_end		();
-	
-	Fvector			COP			= Device.vCameraPosition;
-	end				= std::remove_if	(it,end,pred_fb(m_pTris));
-	std::sort		(it,end,pred_fb(m_pTris,COP));
+	auto it = xrc.r_get()->begin();
+	auto end = xrc.r_get()->end();
+
+	Fvector COP = Device.vCameraPosition;
+	end = std::remove_if(it, end, pred_fb(m_pTris));
+	std::sort(it, end, pred_fb(m_pTris, COP));
 
 	// Build frustum with near plane only
 	CFrustum					clip;

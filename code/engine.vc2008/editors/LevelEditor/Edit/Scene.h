@@ -94,7 +94,7 @@ protected:
 	void			CreateSceneTools			();
 	void			DestroySceneTools			();
 
-    void 			FindObjectByNameCB			(LPCSTR new_name, bool& res){res=!!FindObjectByName(new_name,(CCustomObject*)0);}
+    void __stdcall			FindObjectByNameCB			(LPCSTR new_name, bool& res){res=!!FindObjectByName(new_name,(CCustomObject*)0);}
 
 	void __stdcall 	OnBuildControlClick			(ButtonValue* sender, bool& bModif, bool& bSafe);
 	void __stdcall 	OnRTFlagsChange				(PropValue* sender);
@@ -160,7 +160,10 @@ public:
 	IC void 		unlock				()          	{ m_Locked--; }
 	IC void 		waitlock			()        		{ while( locked() ) Sleep(0); }
 
-	IC ESceneToolBase* 		GetTool		(ObjClassID cat)	{ return m_SceneTools[cat];}
+	IC ESceneToolBase* 		GetTool		(ObjClassID cat)
+	{
+		return m_SceneTools[cat];
+	}
 
 	IC ESceneCustomOTool* 	GetOTool	(ObjClassID cat)	{ return dynamic_cast<ESceneCustomOTool*>(GetTool(cat)); }
 

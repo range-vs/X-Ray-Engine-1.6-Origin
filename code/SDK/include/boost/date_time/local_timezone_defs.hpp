@@ -1,8 +1,12 @@
 #ifndef DATE_TIME_LOCAL_TIMEZONE_DEFS_HPP__
 #define DATE_TIME_LOCAL_TIMEZONE_DEFS_HPP__
-/* Copyright (c) 2002 CrystalClear Software, Inc.
- * Disclaimer & Full Copyright at end of file
+
+/* Copyright (c) 2002,2003 CrystalClear Software, Inc.
+ * Use, modification and distribution is subject to the 
+ * Boost Software License, Version 1.0. (See accompanying
+ * file LICENSE_1_0.txt or http://www.boost.org/LICENSE_1_0.txt)
  * Author: Jeff Garland 
+ * $Date$
  */
 
 #include "boost/date_time/dst_rules.hpp"
@@ -51,12 +55,47 @@ namespace boost {
      {
        typedef typename date_type::day_of_week_type day_of_week_type;
        typedef typename date_type::month_type month_type;
-       typedef date_time::first_kday_of_month<date_type> start_rule_functor;
-       typedef date_time::last_kday_of_month<date_type> end_rule_functor;
-       static day_of_week_type start_day() {return Sunday;}
-       static month_type start_month() {return Apr;}
-       static day_of_week_type end_day() {return Sunday;}
-       static month_type end_month() {return Oct;}
+       typedef typename date_type::year_type year_type;
+       typedef date_time::nth_kday_of_month<date_type> start_rule_functor;
+       typedef date_time::first_kday_of_month<date_type> end_rule_functor;
+       typedef date_time::first_kday_of_month<date_type> start_rule_functor_pre2007;
+       typedef date_time::last_kday_of_month<date_type> end_rule_functor_pre2007;
+       static day_of_week_type start_day(year_type) {return Sunday;}
+       static month_type start_month(year_type y) 
+       {
+         if (y < 2007) return Apr;
+         return Mar;
+       }
+       static day_of_week_type end_day(year_type) {return Sunday;}
+       static month_type end_month(year_type y) 
+       {
+         if (y < 2007) return Oct;
+         return Nov;
+       }
+       static date_type local_dst_start_day(year_type year)
+       {
+         if (year < 2007) {
+           start_rule_functor_pre2007 start1(start_day(year), 
+                                             start_month(year));
+           return start1.get_date(year);
+         }
+         start_rule_functor start(start_rule_functor::second,
+                                  start_day(year), 
+                                  start_month(year));
+         return start.get_date(year);
+          
+       }
+       static date_type local_dst_end_day(year_type year)
+       {
+         if (year < 2007) {
+           end_rule_functor_pre2007 end_rule(end_day(year), 
+                                             end_month(year));
+           return end_rule.get_date(year);
+         }
+         end_rule_functor end(end_day(year), 
+                              end_month(year));
+         return end.get_date(year);      
+       }
        static int dst_start_offset_minutes() { return 120;}
        static int dst_end_offset_minutes() { return 120; }
        static int dst_shift_length_minutes() { return 60; }
@@ -75,15 +114,28 @@ namespace boost {
     {
       typedef typename date_type::day_of_week_type day_of_week_type;
       typedef typename date_type::month_type month_type;
+      typedef typename date_type::year_type year_type;
       typedef date_time::last_kday_of_month<date_type> start_rule_functor;
       typedef date_time::last_kday_of_month<date_type> end_rule_functor;
-      static day_of_week_type start_day() {return Sunday;}
-      static month_type start_month() {return Mar;}
-      static day_of_week_type end_day() {return Sunday;}
-      static month_type end_month() {return Oct;}
+      static day_of_week_type start_day(year_type) {return Sunday;}
+      static month_type start_month(year_type) {return Mar;}
+      static day_of_week_type end_day(year_type) {return Sunday;}
+      static month_type end_month(year_type) {return Oct;}
       static int dst_start_offset_minutes() { return 120;}
       static int dst_end_offset_minutes() { return 180; }
       static int dst_shift_length_minutes() { return 60; }
+      static date_type local_dst_start_day(year_type year)
+      {
+        start_rule_functor start(start_day(year), 
+                                 start_month(year));
+        return start.get_date(year);      
+      }
+      static date_type local_dst_end_day(year_type year)
+      {
+        end_rule_functor end(end_day(year), 
+                             end_month(year));
+        return end.get_date(year);      
+      }
     };
 
     //! Alternative dst traits for some parts of the United Kingdom
@@ -106,15 +158,28 @@ namespace boost {
     {
       typedef typename date_type::day_of_week_type day_of_week_type;
       typedef typename date_type::month_type month_type;
+      typedef typename date_type::year_type year_type;
       typedef date_time::last_kday_of_month<date_type> start_rule_functor;
       typedef date_time::last_kday_of_month<date_type> end_rule_functor;
-      static day_of_week_type start_day() {return Sunday;}
-      static month_type start_month() {return Oct;}
-      static day_of_week_type end_day() {return Sunday;}
-      static month_type end_month() {return Mar;}
+      static day_of_week_type start_day(year_type) {return Sunday;}
+      static month_type start_month(year_type) {return Oct;}
+      static day_of_week_type end_day(year_type) {return Sunday;}
+      static month_type end_month(year_type) {return Mar;}
       static int dst_start_offset_minutes() { return 120;}
-      static int dst_end_offset_minutes() { return 120; }
+      static int dst_end_offset_minutes() { return 180; }
       static int dst_shift_length_minutes() { return 60; }
+      static date_type local_dst_start_day(year_type year)
+      {
+        start_rule_functor start(start_day(year), 
+                                 start_month(year));
+        return start.get_date(year);      
+      }
+      static date_type local_dst_end_day(year_type year)
+      {
+        end_rule_functor end(end_day(year), 
+                             end_month(year));
+        return end.get_date(year);      
+      }
     };
     
     
@@ -124,17 +189,5 @@ namespace boost {
 
 } } //namespace boost::date_time
 
-/* Copyright (c) 2002
- * CrystalClear Software, Inc.
- *
- * Permission to use, copy, modify, distribute and sell this software
- * and its documentation for any purpose is hereby granted without fee,
- * provided that the above copyright notice appear in all copies and
- * that both that copyright notice and this permission notice appear
- * in supporting documentation.  CrystalClear Software makes no
- * representations about the suitability of this software for any
- * purpose.  It is provided "as is" without express or implied warranty.
- *
- */
 
 #endif

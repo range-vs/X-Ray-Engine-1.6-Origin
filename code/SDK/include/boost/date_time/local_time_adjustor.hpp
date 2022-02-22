@@ -1,17 +1,25 @@
 #ifndef DATE_TIME_LOCAL_TIME_ADJUSTOR_HPP__
 #define DATE_TIME_LOCAL_TIME_ADJUSTOR_HPP__
-/* Copyright (c) 2002 CrystalClear Software, Inc.
- * Disclaimer & Full Copyright at end of file
+
+/* Copyright (c) 2002,2003 CrystalClear Software, Inc.
+ * Use, modification and distribution is subject to the 
+ * Boost Software License, Version 1.0. (See accompanying
+ * file LICENSE_1_0.txt or http://www.boost.org/LICENSE_1_0.txt)
  * Author: Jeff Garland 
+ * $Date$
  */
 
 /*! @file local_time_adjustor.hpp
   Time adjustment calculations for local times
 */
 
-#include "boost/date_time/date_generators.hpp"
-#include "boost/date_time/dst_rules.hpp"
 #include <stdexcept>
+#include <boost/throw_exception.hpp>
+#include <boost/date_time/compiler_config.hpp>
+#include <boost/date_time/date_generators.hpp>
+#include <boost/date_time/dst_rules.hpp>
+#include <boost/date_time/time_defs.hpp> // boost::date_time::dst_flags
+#include <boost/date_time/special_defs.hpp> // not_a_date_time
 
 namespace boost {
   namespace date_time {
@@ -52,7 +60,7 @@ namespace boost {
       time_duration_type utc_offset(bool is_dst) 
       { 
         if (is_dst) {
-          return utc_offset_ + dst_offset();
+          return utc_offset_ + this->dst_offset();
         }
         else {
           return utc_offset_;
@@ -101,54 +109,55 @@ namespace boost {
       static time_duration_type utc_to_local_offset(const time_type& t)
       {
         //get initial local time guess by applying utc offset
-        time_type initial = t + utc_to_local_base_offset();
+        time_type initial = t + utc_offset_rules::utc_to_local_base_offset();
         time_is_dst_result dst_flag = 
           dst_rules::local_is_dst(initial.date(), initial.time_of_day());
         switch(dst_flag) {
-        case is_in_dst:        return utc_to_local_base_offset() + dst_offset();
-        case is_not_in_dst:    return utc_to_local_base_offset();
-        case invalid_time_label:return utc_to_local_base_offset() + dst_offset();
+        case is_in_dst:        return utc_offset_rules::utc_to_local_base_offset() + dst_rules::dst_offset();
+        case is_not_in_dst:    return utc_offset_rules::utc_to_local_base_offset();
+        case invalid_time_label:return utc_offset_rules::utc_to_local_base_offset() + dst_rules::dst_offset();
         case ambiguous: {
-          time_type retry = initial + dst_offset();
+          time_type retry = initial + dst_rules::dst_offset();
           dst_flag = dst_rules::local_is_dst(retry.date(), retry.time_of_day());
           //if still ambibuous then the utc time still translates to a dst time
           if (dst_flag == ambiguous) {
-            return utc_to_local_base_offset() + dst_offset();
+            return utc_offset_rules::utc_to_local_base_offset() + dst_rules::dst_offset();
           }
           // we are past the dst boundary
           else {
-            return utc_to_local_base_offset();
+            return utc_offset_rules::utc_to_local_base_offset();
           }
         }
         }//case
-        //TODO  better excpetion type
-        throw std::out_of_range("Unreachable case");
-
+        //TODO  better exception type
+        boost::throw_exception(std::out_of_range("Unreachable case"));
+        BOOST_DATE_TIME_UNREACHABLE_EXPRESSION(return time_duration_type(not_a_date_time)); // should never reach
       }
 
       //! Get the offset to UTC given a local time
       static time_duration_type local_to_utc_offset(const time_type& t, 
                                                     date_time::dst_flags dst=date_time::calculate) 
-      { 
+      {
         switch (dst) {
         case is_dst:
-          return local_to_utc_base_offset() - dst_offset();
+          return utc_offset_rules::local_to_utc_base_offset() - dst_rules::dst_offset();
         case not_dst:
-          return local_to_utc_base_offset();
+          return utc_offset_rules::local_to_utc_base_offset();
         case calculate:
           time_is_dst_result res = 
             dst_rules::local_is_dst(t.date(), t.time_of_day());
           switch(res) {
-          case is_in_dst:      return local_to_utc_base_offset() - dst_offset();
-          case is_not_in_dst:      return local_to_utc_base_offset();
-          case ambiguous:          return local_to_utc_base_offset();
-          case invalid_time_label: throw std::out_of_range("Time label invalid");
+          case is_in_dst:      return utc_offset_rules::local_to_utc_base_offset() - dst_rules::dst_offset();
+          case is_not_in_dst:      return utc_offset_rules::local_to_utc_base_offset();
+          case ambiguous:          return utc_offset_rules::local_to_utc_base_offset();
+          case invalid_time_label: break;
           }
-        }  
-        throw std::out_of_range("Time label invalid");
+        }
+        boost::throw_exception(std::out_of_range("Time label invalid"));
+        BOOST_DATE_TIME_UNREACHABLE_EXPRESSION(return time_duration_type(not_a_date_time)); // should never reach
       }
 
-    
+
     private:
 
     };
@@ -205,17 +214,5 @@ namespace boost {
   } } //namespace date_time
 
 
-/* Copyright (c) 2002
- * CrystalClear Software, Inc.
- *
- * Permission to use, copy, modify, distribute and sell this software
- * and its documentation for any purpose is hereby granted without fee,
- * provided that the above copyright notice appear in all copies and
- * that both that copyright notice and this permission notice appear
- * in supporting documentation.  CrystalClear Software makes no
- * representations about the suitability of this software for any
- * purpose.  It is provided "as is" without express or implied warranty.
- *
- */
 
 #endif

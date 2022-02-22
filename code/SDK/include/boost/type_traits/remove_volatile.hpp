@@ -1,70 +1,39 @@
 
-// (C) Copyright Dave Abrahams, Steve Cleary, Beman Dawes, Howard
-// Hinnant & John Maddock 2000.  Permission to copy, use, modify,
-// sell and distribute this software is granted provided this
-// copyright notice appears in all copies. This software is provided
-// "as is" without express or implied warranty, and with no claim as
-// to its suitability for any purpose.
+//  (C) Copyright Dave Abrahams, Steve Cleary, Beman Dawes, Howard
+//  Hinnant & John Maddock 2000.  
+//  Use, modification and distribution are subject to the Boost Software License,
+//  Version 1.0. (See accompanying file LICENSE_1_0.txt or copy at
+//  http://www.boost.org/LICENSE_1_0.txt).
 //
-// See http://www.boost.org for most recent version including documentation.
+//  See http://www.boost.org/libs/type_traits for most recent version including documentation.
+
 
 #ifndef BOOST_TT_REMOVE_VOLATILE_HPP_INCLUDED
 #define BOOST_TT_REMOVE_VOLATILE_HPP_INCLUDED
 
-#include "boost/type_traits/is_const.hpp"
-#include "boost/type_traits/broken_compiler_spec.hpp"
-#include "boost/type_traits/detail/cv_traits_impl.hpp"
-#include "boost/config.hpp"
-
-#include <cstddef>
-
-// should be the last #include
-#include "boost/type_traits/detail/type_trait_def.hpp"
+#include <boost/config.hpp>
+#include <boost/detail/workaround.hpp>
+#include <cstddef> // size_t
 
 namespace boost {
 
-#ifndef BOOST_NO_TEMPLATE_PARTIAL_SPECIALIZATION
+   //  convert a type T to a non-cv-qualified type - remove_volatile<T>
+   template <class T> struct remove_volatile{ typedef T type; };
+   template <class T> struct remove_volatile<T volatile>{ typedef T type; };
 
-namespace detail {
+#if !defined(BOOST_NO_ARRAY_TYPE_SPECIALIZATIONS)
+   template <class T, std::size_t N> struct remove_volatile<T volatile[N]>{ typedef T type[N]; };
+#if !BOOST_WORKAROUND(BOOST_BORLANDC, < 0x600) && !defined(__IBMCPP__) &&  !BOOST_WORKAROUND(__DMC__, BOOST_TESTED_AT(0x840))
+   template <class T> struct remove_volatile<T volatile[]>{ typedef T type[]; };
+#endif
+#endif
 
-template <typename T, bool is_const>
-struct remove_volatile_helper
-{
-    typedef T type;
-};
+#if !defined(BOOST_NO_CXX11_TEMPLATE_ALIASES)
 
-template <typename T>
-struct remove_volatile_helper<T,true>
-{
-    typedef T const type;
-};
+   template <class T> using remove_volatile_t = typename remove_volatile<T>::type;
 
-template <typename T>
-struct remove_volatile_impl
-{
-    typedef typename remove_volatile_helper<
-          typename cv_traits_imp<T*>::unqualified_type
-        , ::boost::is_const<T>::value
-        >::type type;
-};
-
-} // namespace detail
-
-// * convert a type T to a non-volatile type - remove_volatile<T>
-
-BOOST_TT_AUX_TYPE_TRAIT_DEF1(remove_volatile,T,typename detail::remove_volatile_impl<T>::type)
-BOOST_TT_AUX_TYPE_TRAIT_PARTIAL_SPEC1_1(typename T,remove_volatile,T&,T&)
-BOOST_TT_AUX_TYPE_TRAIT_PARTIAL_SPEC1_2(typename T,std::size_t N,remove_volatile,T volatile[N],T type[N])
-BOOST_TT_AUX_TYPE_TRAIT_PARTIAL_SPEC1_2(typename T,std::size_t N,remove_volatile,T const volatile[N],T const type[N])
-
-#else
-
-BOOST_TT_AUX_TYPE_TRAIT_DEF1(remove_volatile,T,typename detail::remove_volatile_impl<T>::type)
-
-#endif // BOOST_NO_TEMPLATE_PARTIAL_SPECIALIZATION
+#endif
 
 } // namespace boost
-
-#include "boost/type_traits/detail/type_trait_undef.hpp"
 
 #endif // BOOST_TT_REMOVE_VOLATILE_HPP_INCLUDED

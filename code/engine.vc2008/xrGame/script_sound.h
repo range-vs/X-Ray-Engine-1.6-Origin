@@ -10,6 +10,7 @@
 
 #include "script_export_space.h"
 #include "ai_sounds.h"
+#include <luabind/luabind.hpp>
 
 class CScriptGameObject;
 

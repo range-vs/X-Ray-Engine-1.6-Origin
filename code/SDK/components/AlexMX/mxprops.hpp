@@ -30,7 +30,6 @@ namespace Mxprops
 class DELPHICLASS TPropInfoList;
 class DELPHICLASS TPropsStorage;
 //-- type declarations -------------------------------------------------------
-#pragma pack(push,4)
 class PASCALIMPLEMENTATION TPropInfoList : public System::TObject
 {
 	typedef System::TObject inherited;
@@ -55,7 +54,6 @@ public:
 	__property System::Typinfo::PPropInfo Items[int Index] = {read=Get/*, default*/};
 };
 
-#pragma pack(pop)
 
 typedef System::UnicodeString __fastcall (__closure *TReadStrEvent)(const System::UnicodeString ASection, const System::UnicodeString Item, const System::UnicodeString Default);
 

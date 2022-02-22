@@ -1,17 +1,12 @@
 // Boost Lambda Library -- if.hpp ------------------------------------------
 
-// Copyright (C) 1999, 2000 Jaakko Järvi (jaakko.jarvi@cs.utu.fi)
+// Copyright (C) 1999, 2000 Jaakko Jarvi (jaakko.jarvi@cs.utu.fi)
 // Copyright (C) 2000 Gary Powell (powellg@amazon.com)
 // Copyright (C) 2001-2002 Joel de Guzman
 //
-// Permission to copy, use, sell and distribute this software is granted
-// provided this copyright notice appears in all copies. 
-// Permission to modify the code and to distribute modified code is granted
-// provided this copyright notice appears in all copies, and a notice 
-// that the code was modified is included with the copyright notice.
-//
-// This software is provided "as is" without express or implied warranty, 
-// and with no claim as to its suitability for any purpose.
+// Distributed under the Boost Software License, Version 1.0. (See
+// accompanying file LICENSE_1_0.txt or copy at
+// http://www.boost.org/LICENSE_1_0.txt)
 //
 // For more information, see www.boost.org
 
@@ -324,33 +319,6 @@ public:
   // The code below is from Joel de Guzman, some name changes etc. 
   // has been made.
 
-/*=============================================================================
-
-    Copyright (c) 2001-2002 Joel de Guzman
-
-    This software is provided 'as-is', without any express or implied
-    warranty. In no event will the copyright holder be held liable for
-    any damages arising from the use of this software.
-
-    Permission is granted to anyone to use this software for any purpose,
-    including commercial applications, and to alter it and redistribute
-    it freely, subject to the following restrictions:
-
-    1.  The origin of this software must not be misrepresented; you must
-        not claim that you wrote the original software. If you use this
-        software in a product, an acknowledgment in the product documentation
-        would be appreciated but is not required.
-
-    2.  Altered source versions must be plainly marked as such, and must
-        not be misrepresented as being the original software.
-
-    3.  This notice may not be removed or altered from any source
-        distribution.
-
-    URL: http://spirit.sourceforge.net/
-
-==============================================================================*/
-
 ///////////////////////////////////////////////////////////////////////////////
 //
 //  if_then_else_composite
@@ -377,7 +345,7 @@ public:
 //      is true, the true_statement (again an lambda_functor) is executed
 //      otherwise, the false_statement (another lambda_functor) is executed. The
 //      result type of this is void. Note the trailing underscore after
-//      if_ and the the leading dot and the trailing underscore before
+//      if_ and the leading dot and the trailing underscore before
 //      and after .else_.
 //
 ///////////////////////////////////////////////////////////////////////////////

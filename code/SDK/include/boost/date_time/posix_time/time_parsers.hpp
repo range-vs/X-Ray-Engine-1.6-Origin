@@ -1,8 +1,12 @@
 #ifndef POSIXTIME_PARSERS_HPP___
 #define POSIXTIME_PARSERS_HPP___
-/* Copyright (c) 2002 CrystalClear Software, Inc.
- * Disclaimer & Full Copyright at end of file
+
+/* Copyright (c) 2002,2003 CrystalClear Software, Inc.
+ * Use, modification and distribution is subject to the 
+ * Boost Software License, Version 1.0. (See accompanying
+ * file LICENSE_1_0.txt or http://www.boost.org/LICENSE_1_0.txt)
  * Author: Jeff Garland 
+ * $Date$
  */
 
 #include "boost/date_time/gregorian/gregorian.hpp"
@@ -14,6 +18,11 @@ namespace boost {
 
 namespace posix_time {
 
+  //! Creates a time_duration object from a delimited string
+  /*! Expected format for string is "[-]h[h][:mm][:ss][.fff]".
+   * A negative duration will be created if the first character in
+   * string is a '-', all other '-' will be treated as delimiters.
+   * Accepted delimiters are "-:,.". */
   inline time_duration duration_from_string(const std::string& s) {
     return date_time::parse_delimited_time_duration<time_duration>(s);
   }
@@ -26,21 +35,14 @@ namespace posix_time {
     return date_time::parse_iso_time<ptime>(s, 'T');
   }
 
+  inline ptime from_iso_extended_string(const std::string& s) {
+    return date_time::parse_delimited_time<ptime>(s, 'T');
+  }
+
 
 
 } } //namespace posix_time
 
 
-/* Copyright (c) 2002
- * CrystalClear Software, Inc.
- *
- * Permission to use, copy, modify, distribute and sell this software
- * and its documentation for any purpose is hereby granted without fee,
- * provided that the above copyright notice appear in all copies and
- * that both that copyright notice and this permission notice appear
- * in supporting documentation.  CrystalClear Software makes no
- * representations about the suitability of this software for any
- * purpose.  It is provided "as is" without express or implied warranty.
- */
 #endif
 

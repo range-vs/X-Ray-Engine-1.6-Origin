@@ -107,8 +107,8 @@ void CWalmarkManager::StartWorkflow()
 
 	CDB::TRI*		T_array					= Level().ObjectSpace.GetStaticTris();
 	Fvector*		V_array					= Level().ObjectSpace.GetStaticVerts();
-	CDB::RESULT*	R_begin                 = XRC.r_begin();
-	CDB::RESULT*    R_end                   = XRC.r_end();
+	//CDB::RESULT*	R_begin                 = XRC.r_begin();
+	//CDB::RESULT*    R_end                   = XRC.r_end();
 //.	Triangle		ntri;
 //.	float			ndist					= phInfinity;
 //.	Fvector			npoint;
@@ -126,8 +126,8 @@ void CWalmarkManager::StartWorkflow()
 	
 	CTimer T; T.Start();
 */
-	for (CDB::RESULT* Res=R_begin; Res!=R_end; ++Res)
-	{
+    for (auto& Res : *XRC.r_get())
+    {
 //.		DBG_DrawTri(Res, D3DCOLOR_XRGB(0,255,0) );
 
 		if(wm_count >= max_wallmarks_count) break;
@@ -144,7 +144,7 @@ void CWalmarkManager::StartWorkflow()
 //.		float dist					= DistToTri(&tri,cast_fp(m_pos),cast_fp(pdir),cast_fp(end_point),c,V_array);
 		Fvector						_tri[3];
 
-		CDB::TRI*		_t			= T_array + Res->id;
+		CDB::TRI*		_t			= T_array + Res.id;
 
 		_tri[0]						= V_array[_t->verts[0]];
 		_tri[1]						= V_array[_t->verts[1]];

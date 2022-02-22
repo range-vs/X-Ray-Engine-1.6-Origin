@@ -1,20 +1,14 @@
 /* Boost interval/detail/sparc_rounding_control.hpp file
  *
- * Copyright Jens Maurer 2000
- * Copyright Hervé Brönnimann, Guillaume Melquiond, Sylvain Pion 2002
- * Permission to use, copy, modify, sell, and distribute this software
- * is hereby granted without fee provided that the above copyright notice
- * appears in all copies and that both that copyright notice and this
- * permission notice appear in supporting documentation,
+ * Copyright 2000 Jens Maurer
+ * Copyright 2002 HervÃ© BrÃ¶nnimann, Guillaume Melquiond, Sylvain Pion
  *
- * None of the above authors nor Polytechnic University make any
- * representation about the suitability of this software for any
- * purpose. It is provided "as is" without express or implied warranty.
+ * Distributed under the Boost Software License, Version 1.0.
+ * (See accompanying file LICENSE_1_0.txt or
+ * copy at http://www.boost.org/LICENSE_1_0.txt)
  *
- * $Id: sparc_rounding_control.hpp,v 1.2 2003/02/05 17:34:32 gmelquio Exp $
+ * The basic code in this file was kindly provided by Jeremy Siek.
  */
-
-/* The basic code in this file was kindly provided by Jeremy Siek. */
 
 #ifndef BOOST_NUMERIC_INTERVAL_DETAIL_SPARC_ROUNDING_CONTROL_HPP
 #define BOOST_NUMERIC_INTERVAL_DETAIL_SPARC_ROUNDING_CONTROL_HPP
@@ -112,5 +106,7 @@ struct rounding_control<long double>:
 } // namespace interval_lib
 } // namespace numeric
 } // namespace boost
+
+#undef BOOST_NUMERIC_INTERVAL_NO_HARDWARE
 
 #endif /* BOOST_NUMERIC_INTERVAL_DETAIL_SPARC_ROUNDING_CONTROL_HPP */

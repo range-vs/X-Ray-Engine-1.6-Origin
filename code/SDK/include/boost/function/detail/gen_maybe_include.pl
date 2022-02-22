@@ -2,7 +2,7 @@
 #
 # Boost.Function library
 #
-# Copyright (C) 2001-2003 Doug Gregor (gregod@cs.rpi.edu)
+# Copyright (C) 2001-2003 Douglas Gregor (gregod@cs.rpi.edu)
 #
 # Permission to copy, use, sell and distribute this software is granted
 # provided this copyright notice appears in all copies.
@@ -27,6 +27,8 @@ for($on_arg = 0; $on_arg <= $max_args; ++$on_arg) {
 	print OUT "#elif";
     }
     print OUT " BOOST_FUNCTION_NUM_ARGS == $on_arg\n";
+    print OUT "#  undef BOOST_FUNCTION_MAX_ARGS_DEFINED\n";
+    print OUT "#  define BOOST_FUNCTION_MAX_ARGS_DEFINED $on_arg\n";
     print OUT "#  ifndef BOOST_FUNCTION_$on_arg\n";
     print OUT "#    define BOOST_FUNCTION_$on_arg\n";
     print OUT "#    include <boost/function/function_template.hpp>\n";

@@ -1,17 +1,17 @@
-// Copyright (C) 2002 Ronald Garcia
-//
-// Permission to copy, use, sell and distribute this software is granted
-// provided this copyright notice appears in all copies. 
-// Permission to modify the code and to distribute modified code is granted
-// provided this copyright notice appears in all copies, and a notice 
-// that the code was modified is included with the copyright notice.
-//
-// This software is provided "as is" without express or implied warranty, 
-// and with no claim as to its suitability for any purpose.
-//
+// Copyright 2002 The Trustees of Indiana University.
 
-#ifndef COPY_ARRAY_RG092101_HPP
-#define COPY_ARRAY_RG092101_HPP
+// Use, modification and distribution is subject to the Boost Software 
+// License, Version 1.0. (See accompanying file LICENSE_1_0.txt or copy at
+// http://www.boost.org/LICENSE_1_0.txt)
+
+//  Boost.MultiArray Library
+//  Authors: Ronald Garcia
+//           Jeremy Siek
+//           Andrew Lumsdaine
+//  See http://www.boost.org/libs/multi_array for documentation.
+
+#ifndef BOOST_MULTI_ARRAY_COPY_ARRAY_HPP
+#define BOOST_MULTI_ARRAY_COPY_ARRAY_HPP
 
 //
 // copy_array.hpp - generic code for copying the contents of one
@@ -19,7 +19,7 @@
 // shape
 //
 #include "boost/type.hpp"
-#include <cassert>
+#include "boost/assert.hpp"
 
 namespace boost {
 namespace detail {
@@ -52,8 +52,8 @@ private:
 
 template <typename Array1, typename Array2>
 void copy_array (Array1& source, Array2& dest) {
-  assert(std::equal(source.shape(),source.shape()+source.num_dimensions(),
-                    dest.shape()));
+  BOOST_ASSERT(std::equal(source.shape(),source.shape()+source.num_dimensions(),
+                          dest.shape()));
   // Dispatch to the proper function
   typedef typename Array1::element element_type;
   copy_dispatch<element_type>::
@@ -65,4 +65,4 @@ void copy_array (Array1& source, Array2& dest) {
 } // namespace detail
 } // namespace boost
 
-#endif // COPY_ARRAY_RG092101_HPP
+#endif

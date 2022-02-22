@@ -1,51 +1,67 @@
-//  (C) Copyright Gennadiy Rozental 2002.
-//  Permission to copy, use, modify, sell and distribute this software
-//  is granted provided this copyright notice appears in all copies.
-//  This software is provided "as is" without express or implied warranty,
-//  and with no claim as to its suitability for any purpose.
+//  (C) Copyright Gennadiy Rozental 2001.
+//  Distributed under the Boost Software License, Version 1.0.
+//  (See accompanying file LICENSE_1_0.txt or copy at
+//  http://www.boost.org/LICENSE_1_0.txt)
 
-//  See http://www.boost.org for most recent version including documentation.
+//  See http://www.boost.org/libs/test for the library home page.
 //
-//  File        : $RCSfile: minimal.hpp,v $
-//
-//  Version     : $Id: minimal.hpp,v 1.7 2002/12/08 17:41:57 rogeeff Exp $
-//
-//  Description : simple minimal testing definitions and implementation
+/// @file
+/// @brief Deprecated implementation of simple minimal testing
+/// @deprecated
+/// To convert to Unit Test Framework simply rewrite:
+/// @code
+/// #include <boost/test/minimal.hpp>
+///
+/// int test_main( int, char *[] )
+/// {
+///   ...
+/// }
+/// @endcode
+/// as
+/// @code
+/// #include <boost/test/included/unit_test.hpp>
+///
+/// BOOST_AUTO_TEST_CASE(test_main)
+/// {
+///   ...
+/// }
+/// @endcode
 // ***************************************************************************
 
-#ifndef BOOST_TEST_MINIMAL_HPP
-#define BOOST_TEST_MINIMAL_HPP
+#ifndef BOOST_TEST_MINIMAL_HPP_071894GER
+#define BOOST_TEST_MINIMAL_HPP_071894GER
+
+#include <boost/config/header_deprecated.hpp>
+BOOST_HEADER_DEPRECATED( "<boost/test/included/unit_test.hpp>" )
+#if defined(BOOST_ALLOW_DEPRECATED_HEADERS)
+BOOST_PRAGMA_MESSAGE( "Boost.Test minimal is deprecated. Please convert to the header only variant of Boost.Test." )
+#endif
 
 #define BOOST_CHECK(exp)       \
   ( (exp)                      \
       ? static_cast<void>(0)   \
-      : boost::minimal_test::the_monitor->report_error(#exp,__FILE__,__LINE__, BOOST_CURRENT_FUNCTION) )
+      : boost::minimal_test::report_error(#exp,__FILE__,__LINE__, BOOST_CURRENT_FUNCTION) )
 
 #define BOOST_REQUIRE(exp)     \
   ( (exp)                      \
       ? static_cast<void>(0)   \
-      : boost::minimal_test::the_monitor->report_critical_error(#exp,__FILE__,__LINE__,BOOST_CURRENT_FUNCTION))
+      : boost::minimal_test::report_critical_error(#exp,__FILE__,__LINE__,BOOST_CURRENT_FUNCTION))
 
 #define BOOST_ERROR( msg_ )    \
-        boost::minimal_test::the_monitor->report_error( (msg_),__FILE__,__LINE__, BOOST_CURRENT_FUNCTION, true )
+        boost::minimal_test::report_error( (msg_),__FILE__,__LINE__, BOOST_CURRENT_FUNCTION, true )
 #define BOOST_FAIL( msg_ )     \
-        boost::minimal_test::the_monitor->report_critical_error( (msg_),__FILE__,__LINE__, BOOST_CURRENT_FUNCTION, true )
-
-//____________________________________________________________________________//
-
-// deprecated interface
-
-#define BOOST_TEST(predicate_)           BOOST_CHECK(predicate_)
-#define BOOST_CRITICAL_TEST(predicate_)  BOOST_REQUIRE(predicate_)
-#define BOOST_CRITICAL_ERROR(message_)   BOOST_FAIL(message_)
+        boost::minimal_test::report_critical_error( (msg_),__FILE__,__LINE__, BOOST_CURRENT_FUNCTION, true )
 
 //____________________________________________________________________________//
 
 // Boost.Test
-#include <libs/test/src/execution_monitor.cpp>
-#include <boost/test/detail/class_properties.hpp>
+#include <boost/test/detail/global_typedef.hpp>
+#include <boost/test/impl/execution_monitor.ipp>
+#include <boost/test/impl/debug.ipp>
+#include <boost/test/utils/class_properties.hpp>
+#include <boost/test/utils/basic_cstring/io.hpp>
 
-// BOOST
+// Boost
 #include <boost/cstdlib.hpp>            // for exit codes
 #include <boost/current_function.hpp>   // for BOOST_CURRENT_FUNCTION
 
@@ -53,50 +69,52 @@
 #include <iostream>                     // std::cerr, std::endl
 #include <string>                       // std::string
 
+#include <boost/test/detail/suppress_warnings.hpp>
+
 //____________________________________________________________________________//
 
-int test_main( int argc, char* argv[] );  // prototype for user's test_main()
+int test_main( int argc, char* argv[] );  // prototype for users test_main()
 
 namespace boost {
 namespace minimal_test {
 
-class monitor : public boost::execution_monitor {
-    typedef unit_test_framework::c_string_literal c_string_literal;
+typedef boost::unit_test::const_string const_string;
+
+inline unit_test::counter_t& errors_counter() { static unit_test::counter_t ec = 0; return ec; }
+
+inline void
+report_error( const char* msg, const char* file, int line, const_string func_name, bool is_msg = false )
+{
+    ++errors_counter();
+    std::cerr << file << "(" << line << "): ";
+
+    if( is_msg )
+        std::cerr << msg;
+    else
+        std::cerr << "test " << msg << " failed";
+
+    if( func_name != "(unknown)" )
+        std::cerr << " in function: '" << func_name << "'";
+
+    std::cerr << std::endl;
+}
+
+inline void
+report_critical_error( const char* msg, const char* file, int line, const_string func_name, bool is_msg = false )
+{
+    report_error( msg, file, line, func_name, is_msg );
+
+    throw boost::execution_aborted();
+}
+
+class caller {
 public:
     // constructor
-    monitor( int argc, char** argv )
-    : p_errors_counter( 0 ), m_argc( argc ), m_argv( argv ) {}
+    caller( int argc, char** argv )
+    : m_argc( argc ), m_argv( argv ) {}
 
     // execution monitor hook implementation
-    virtual int function()
-    {
-        return test_main( m_argc, m_argv );
-    }
-
-    void        report_error( const char* msg_, const char* file_, int line_, c_string_literal func_name_, bool is_msg_ = false )
-    {
-        ++p_errors_counter.value;
-        std::cerr << file_ << "(" << line_ << "): ";
-        
-        if( is_msg_ )
-            std::cerr << msg_;
-        else
-            std::cerr << "test " << msg_ << " failed";
-
-        if( std::string( func_name_ ) != "(unknown)" )
-            std::cerr << " in function: '" << func_name_ << "'";
-        
-        std::cerr << std::endl;
-    }
-
-    void        report_critical_error( const char* msg_, const char* file_, int line_, c_string_literal func_name_, bool is_msg_ = false )
-    {
-        report_error( msg_, file_, line_, func_name_, is_msg_ );
-        throw boost::execution_exception( boost::execution_exception::no_error, "" );
-    }
-
-    // public properties
-    BOOST_READONLY_PROPERTY( int, 1, ( monitor ) ) p_errors_counter;
+    int operator()() { return test_main( m_argc, m_argv ); }
 
 private:
     // Data members
@@ -104,21 +122,18 @@ private:
     char**      m_argv;
 }; // monitor
 
-monitor* the_monitor;
-
 } // namespace minimal_test
 } // namespace boost
 
 //____________________________________________________________________________//
 
-int main( int argc, char* argv[] )
+int BOOST_TEST_CALL_DECL main( int argc, char* argv[] )
 {
-    using boost::minimal_test::the_monitor;
-
-    the_monitor = new boost::minimal_test::monitor( argc, argv );
+    using namespace boost::minimal_test;
 
     try {
-        int run_result = boost::minimal_test::the_monitor->execute();
+        ::boost::execution_monitor ex_mon;
+        int run_result = ex_mon.execute( caller( argc, argv ) );
 
         BOOST_CHECK( run_result == 0 || run_result == boost::exit_success );
     }
@@ -128,32 +143,20 @@ int main( int argc, char* argv[] )
         std::cerr << "\n**** Testing aborted.";
     }
 
-    if( boost::minimal_test::the_monitor->p_errors_counter != 0 ) {
-        std::cerr << "\n**** " << the_monitor->p_errors_counter.get()
-                  << " error" << (the_monitor->p_errors_counter > 1 ? "s" : "" ) << " detected\n";
+    if( boost::minimal_test::errors_counter() != 0 ) {
+        std::cerr << "\n**** " << errors_counter()
+                  << " error" << (errors_counter() > 1 ? "s" : "" ) << " detected\n";
 
-        delete the_monitor;
         return boost::exit_test_failure;
     }
 
     std::cout << "\n**** no errors detected\n";
-    
-    delete the_monitor;
+
     return boost::exit_success;
 }
 
-// ***************************************************************************
-//  Revision History :
-//  
-//  $Log: minimal.hpp,v $
-//  Revision 1.7  2002/12/08 17:41:57  rogeeff
-//  switched to use c_string_literal
-//
-//  Revision 1.6  2002/11/02 19:31:04  rogeeff
-//  merged into the main trank
-//
+//____________________________________________________________________________//
 
-// ***************************************************************************
+#include <boost/test/detail/enable_warnings.hpp>
 
-
-#endif // BOOST_TEST_MINIMAL_HPP
+#endif // BOOST_TEST_MINIMAL_HPP_071894GER

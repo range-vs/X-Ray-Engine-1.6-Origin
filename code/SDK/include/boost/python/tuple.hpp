@@ -1,10 +1,11 @@
-// Copyright David Abrahams 2002. Permission to copy, use,
-// modify, sell and distribute this software is granted provided this
-// copyright notice appears in all copies. This software is provided
-// "as is" without express or implied warranty, and with no claim as
-// to its suitability for any purpose.
+// Copyright David Abrahams 2002.
+// Distributed under the Boost Software License, Version 1.0. (See
+// accompanying file LICENSE_1_0.txt or copy at
+// http://www.boost.org/LICENSE_1_0.txt)
 #ifndef TUPLE_20020706_HPP
 #define TUPLE_20020706_HPP
+
+# include <boost/python/detail/prefix.hpp>
 
 #include <boost/python/object.hpp>
 #include <boost/python/converter/pytype_object_mgr_traits.hpp>

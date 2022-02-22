@@ -82,6 +82,12 @@
     <Filter Include="OS">
       <UniqueIdentifier>{46a5a71c-6d7f-4899-af03-cd18ca556906}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Threading">
+      <UniqueIdentifier>{d96f2bc3-6c32-4e65-b235-5276a41bf56b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lua">
+      <UniqueIdentifier>{10e8d2fd-568b-4a6f-853b-1ad5f0f6b19c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="FTimer.cpp">
@@ -156,22 +162,10 @@
     <ClCompile Include="file_stream_reader.cpp">
       <Filter>FS\file_stream_reader</Filter>
     </ClCompile>
-    <ClCompile Include="memory_allocation_stats.cpp">
-      <Filter>Memory manager</Filter>
-    </ClCompile>
-    <ClCompile Include="memory_usage.cpp">
-      <Filter>Memory manager</Filter>
-    </ClCompile>
     <ClCompile Include="xrMemory.cpp">
       <Filter>Memory manager</Filter>
     </ClCompile>
     <ClCompile Include="xrMemory_align.cpp">
-      <Filter>Memory manager</Filter>
-    </ClCompile>
-    <ClCompile Include="xrMemory_debug.cpp">
-      <Filter>Memory manager</Filter>
-    </ClCompile>
-    <ClCompile Include="xrMemory_POOL.cpp">
       <Filter>Memory manager</Filter>
     </ClCompile>
     <ClCompile Include="xrMemory_pso_Copy.cpp">
@@ -181,12 +175,6 @@
       <Filter>Memory manager</Filter>
     </ClCompile>
     <ClCompile Include="xrMemory_pso_Fill32.cpp">
-      <Filter>Memory manager</Filter>
-    </ClCompile>
-    <ClCompile Include="xrMemory_subst_borland.cpp">
-      <Filter>Memory manager</Filter>
-    </ClCompile>
-    <ClCompile Include="xrMemory_subst_msvc.cpp">
       <Filter>Memory manager</Filter>
     </ClCompile>
     <ClCompile Include="ptmalloc3\malloc.c">
@@ -240,6 +228,13 @@
     <ClCompile Include="xrSyncronize.cpp" />
     <ClCompile Include="..\..\SDK\sources\stackwalker\StackWalker.cpp">
       <Filter>Kernel</Filter>
+    </ClCompile>
+    <ClCompile Include="Threading\Lock.cpp">
+      <Filter>Threading</Filter>
+    </ClCompile>
+    <ClCompile Include="PPInfo.cpp" />
+    <ClCompile Include="lua_helper.cpp">
+      <Filter>lua</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -414,19 +409,7 @@
     <ClInclude Include="xrMemory_align.h">
       <Filter>Memory manager</Filter>
     </ClInclude>
-    <ClInclude Include="xrMEMORY_POOL.h">
-      <Filter>Memory manager</Filter>
-    </ClInclude>
     <ClInclude Include="xrMemory_pso.h">
-      <Filter>Memory manager</Filter>
-    </ClInclude>
-    <ClInclude Include="xrMemory_pure.h">
-      <Filter>Memory manager</Filter>
-    </ClInclude>
-    <ClInclude Include="xrMemory_subst_borland.h">
-      <Filter>Memory manager</Filter>
-    </ClInclude>
-    <ClInclude Include="xrMemory_subst_msvc.h">
       <Filter>Memory manager</Filter>
     </ClInclude>
     <ClInclude Include="ptmalloc3\malloc-2.8.3.h">
@@ -501,6 +484,13 @@
     <ClInclude Include="xrSyncronize.h" />
     <ClInclude Include="..\..\SDK\include\stackwalker\StackWalker.h">
       <Filter>Kernel</Filter>
+    </ClInclude>
+    <ClInclude Include="Threading\Lock.hpp">
+      <Filter>Threading</Filter>
+    </ClInclude>
+    <ClInclude Include="PPInfo.hpp" />
+    <ClInclude Include="lua_helper.h">
+      <Filter>lua</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

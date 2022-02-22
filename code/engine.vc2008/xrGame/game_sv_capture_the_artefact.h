@@ -45,15 +45,15 @@ private:
 	};
 	typedef std::pair<ETeam, MyTeam> TeamPair;
 	// For balancing team players count
-	struct MinPlayersFunctor : public std::binary_function<TeamPair, TeamPair, bool>
+	struct MinPlayersFunctor// : public std::binary_function<TeamPair, TeamPair, bool>
 	{
 		bool operator()(const TeamPair & left, const TeamPair & right) const;
 	};
-	struct SearchArtefactIdFunctor : public std::binary_function<TeamPair, u16, bool>
+	struct SearchArtefactIdFunctor// : public std::binary_function<TeamPair, u16, bool>
 	{
 		bool operator()(const TeamPair & tr, u16 artefactId) const;
 	};
-	struct SearchOwnerIdFunctor : public std::binary_function<TeamPair, u16, bool>
+	struct SearchOwnerIdFunctor //: public std::binary_function<TeamPair, u16, bool>
 	{
 		bool operator()(const TeamPair & tr, u16 actorId) const;
 	};
@@ -145,7 +145,7 @@ private:
 		buyMenuPlayerReadyToSpawn		= 2		// this value set in RespawnDeadPlayers
 	};
 
-	typedef associative_vector<xrClientData const *, buyMenuPlayerState> TBuyMenuPlayerStates;
+	typedef AssociativeVector<xrClientData const *, buyMenuPlayerState> TBuyMenuPlayerStates;
 	TBuyMenuPlayerStates				m_buyMenuPlayerStates;
 	virtual void OnPlayerOpenBuyMenu(xrClientData const * pclient);				//this method invokes only if player dead
 	virtual void OnPlayerCloseBuyMenu(xrClientData const * pclient);			//if client state buyMenuPlayerReadyToSpawn respawn player
@@ -187,7 +187,7 @@ private:
 	bool teams_swaped;
 
 
-	typedef associative_vector<ClientID, u32> InvincibilityTimeouts;
+	typedef AssociativeVector<ClientID, u32> InvincibilityTimeouts;
 	InvincibilityTimeouts m_invTimeouts;
 	void ResetTimeoutInvincibility(u32 currentTime);
 	bool ResetInvincibility(ClientID const clientId);

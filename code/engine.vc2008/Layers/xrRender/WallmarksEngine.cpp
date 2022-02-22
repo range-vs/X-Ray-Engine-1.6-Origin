@@ -101,12 +101,12 @@ void		CWallmarksEngine::static_wm_render		(CWallmarksEngine::static_wallmark*	W,
 	float		a		= 1-(W->ttl/ps_r__WallmarkTTL);
 	int			aC		= iFloor	( a * 255.f);	clamp	(aC,0,255);
 	u32			C		= color_rgba(128,128,128,aC);
-	FVF::LIT*	S		= &*W->verts.begin	();
-	FVF::LIT*	E		= &*W->verts.end	();
-	for (; S!=E; S++, V++){
-		V->p.set		(S->p);
-		V->color		= C;
-		V->t.set		(S->t);
+	for (auto& i : W->verts)
+	{
+		V->p.set(i.p);
+		V->color = C;
+		V->t.set(i.t);
+		V++;
 	}
 }
 //--------------------------------------------------------------------------------
@@ -234,12 +234,12 @@ void CWallmarksEngine::AddWallmark_internal	(CDB::TRI* pTri, const Fvector* pVer
 		return; 
 	}else 
 	{
-		Fbox bb;	bb.invalidate();
+		Fbox bb;
+		bb.invalidate();
 
-		FVF::LIT* I=&*W->verts.begin	();
-		FVF::LIT* E=&*W->verts.end		();
-		for (; I!=E; I++)	bb.modify	(I->p);
-		bb.getsphere					(W->bounds.P, W->bounds.R);
+		for (auto& i : W->verts)
+			bb.modify(i.p);
+		bb.getsphere(W->bounds.P, W->bounds.R);
 	}
 
 //	if (W->bounds.R < 1.f)	
@@ -248,15 +248,13 @@ void CWallmarksEngine::AddWallmark_internal	(CDB::TRI* pTri, const Fvector* pVer
 		wm_slot* slot			= FindSlot	(hShader);
 		if (slot)
 		{
-			StaticWMVecIt it	=	slot->static_items.begin	();
-			StaticWMVecIt end	=	slot->static_items.end	();
-			for (; it!=end; it++)	
+			for (auto& it : slot->static_items)
 			{
-				static_wallmark* wm		=	*it;
-				if (wm->bounds.P.similar(W->bounds.P,0.02f))
+				static_wallmark* wm = it;
+				if (wm->bounds.P.similar(W->bounds.P, 0.02f))
 				{ // replace
-					static_wm_destroy	(wm);
-					*it					=	W;
+					static_wm_destroy(wm);
+					it = W;
 					return;
 				}
 			}

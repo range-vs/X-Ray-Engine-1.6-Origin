@@ -1,14 +1,16 @@
-// Copyright David Abrahams 2002. Permission to copy, use,
-// modify, sell and distribute this software is granted provided this
-// copyright notice appears in all copies. This software is provided
-// "as is" without express or implied warranty, and with no claim as
-// to its suitability for any purpose.
+// Copyright David Abrahams 2002.
+// Distributed under the Boost Software License, Version 1.0. (See
+// accompanying file LICENSE_1_0.txt or copy at
+// http://www.boost.org/LICENSE_1_0.txt)
 #ifndef BY_VALUE_DWA20021015_HPP
 # define BY_VALUE_DWA20021015_HPP
 
+# include <boost/python/detail/prefix.hpp>
+
 # include <boost/python/to_python_value.hpp>
-# include <boost/type_traits/add_reference.hpp>
-# include <boost/type_traits/add_const.hpp>
+# include <boost/python/detail/type_traits.hpp>
+
+# include <boost/python/detail/value_arg.hpp>
 
 namespace boost { namespace python { 
 
@@ -18,9 +20,7 @@ struct return_by_value
     struct apply
     {
        typedef to_python_value<
-           typename add_reference<
-               typename add_const<R>::type
-           >::type
+           typename detail::value_arg<R>::type
        > type;
     };
 };

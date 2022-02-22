@@ -1,9 +1,8 @@
 #ifndef BOOST_PP_IS_ITERATING
-// Copyright David Abrahams 2002. Permission to copy, use,
-// modify, sell and distribute this software is granted provided this
-// copyright notice appears in all copies. This software is provided
-// "as is" without express or implied warranty, and with no claim as
-// to its suitability for any purpose.
+// Copyright David Abrahams 2002.
+// Distributed under the Boost Software License, Version 1.0. (See
+// accompanying file LICENSE_1_0.txt or copy at
+// http://www.boost.org/LICENSE_1_0.txt)
 # ifndef TYPE_LIST_IMPL_DWA2002913_HPP
 #  define TYPE_LIST_IMPL_DWA2002913_HPP
 
@@ -21,7 +20,7 @@ namespace boost { namespace python { namespace detail {
 
 template <BOOST_PP_ENUM_PARAMS_WITH_A_DEFAULT(BOOST_PYTHON_LIST_SIZE, class T, mpl::void_)>
 struct type_list
-    : BOOST_PP_CAT(mpl::list,BOOST_PYTHON_LIST_SIZE)<BOOST_PP_ENUM_PARAMS_Z(1, BOOST_PYTHON_LIST_SIZE, T)>
+    : BOOST_PP_CAT(mpl::vector,BOOST_PYTHON_LIST_SIZE)<BOOST_PP_ENUM_PARAMS_Z(1, BOOST_PYTHON_LIST_SIZE, T)>
 {
 };
 
@@ -48,7 +47,7 @@ struct type_list<
     BOOST_PP_ENUM(
         BOOST_PYTHON_VOID_ARGS, BOOST_PYTHON_FIXED, mpl::void_)
     >
-   : BOOST_PP_CAT(mpl::list,N)<BOOST_PP_ENUM_PARAMS_Z(1, N, T)>
+   : BOOST_PP_CAT(mpl::vector,N)<BOOST_PP_ENUM_PARAMS_Z(1, N, T)>
 {
 };
 

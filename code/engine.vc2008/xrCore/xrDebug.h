@@ -79,6 +79,8 @@
 //#define xrDebugH
 #pragma once
 
+#include <string>
+
 //typedef	void		crashhandler		(void);
 typedef	void		on_dialog(bool before);
 
@@ -135,7 +137,7 @@ public:
 
 // warning
 // this function can be used for debug purposes only
-IC	std::string __cdecl	make_string(LPCSTR format, ...)
+inline	std::string __cdecl	make_string(LPCSTR format, ...)
 {
 	va_list		args;
 	va_start(args, format);

@@ -31,7 +31,6 @@ class DELPHICLASS EPrinterError;
 class DELPHICLASS TElPrinter;
 class DELPHICLASS TElControlPrinter;
 //-- type declarations -------------------------------------------------------
-#pragma pack(push,4)
 class PASCALIMPLEMENTATION EPrinterError : public System::Sysutils::Exception
 {
 	typedef System::Sysutils::Exception inherited;
@@ -53,7 +52,6 @@ public:
 	
 };
 
-#pragma pack(pop)
 
 typedef void __fastcall (__closure *TPageEvent)(System::TObject* Sender, int PageNumber);
 
@@ -123,7 +121,7 @@ public:
 	__property int PageWidth = {read=FPageWidth, nodefault};
 	__property int PrintOffsetX = {read=FPrintOffsetX, nodefault};
 	__property int PrintOffsetY = {read=FPrintOffsetY, nodefault};
-	__property HDC PrinterDC = {read=FDC, nodefault};
+	__property HDC PrinterDC = {read=FDC};
 	
 __published:
 	__property int BottomMargin = {read=FBottomMargin, write=SetBottomMargin, default=2000};

@@ -1,14 +1,17 @@
-// Copyright David Abrahams 2002. Permission to copy, use,
-// modify, sell and distribute this software is granted provided this
-// copyright notice appears in all copies. This software is provided
-// "as is" without express or implied warranty, and with no claim as
-// to its suitability for any purpose.
+// Copyright David Abrahams 2002.
+// Distributed under the Boost Software License, Version 1.0. (See
+// accompanying file LICENSE_1_0.txt or copy at
+// http://www.boost.org/LICENSE_1_0.txt)
 #ifndef DEFAULT_CALL_POLICIES_DWA2002131_HPP
 # define DEFAULT_CALL_POLICIES_DWA2002131_HPP
-# include <boost/python/detail/wrap_python.hpp>
+
+# include <boost/python/detail/prefix.hpp>
 # include <boost/mpl/if.hpp>
 # include <boost/python/to_python_value.hpp>
-# include <boost/type_traits/transform_traits.hpp>
+# include <boost/python/detail/type_traits.hpp>
+# include <boost/python/detail/value_arg.hpp>
+# include <boost/mpl/or.hpp>
+# include <boost/mpl/front.hpp>
 
 namespace boost { namespace python { 
 
@@ -18,7 +21,7 @@ namespace detail
 {
 // for "readable" error messages
   template <class T> struct specify_a_return_value_policy_to_wrap_functions_returning
-# if defined(__GNUC__) && __GNUC__ >= 3 || defined(__EDG__)
+# if defined(__GNUC__) || defined(__EDG__)
   {}
 # endif 
   ;
@@ -28,19 +31,29 @@ struct default_result_converter;
 
 struct default_call_policies
 {
-    // Nothing to do
-    static bool precall(PyObject*)
+    // Ownership of this argument tuple will ultimately be adopted by
+    // the caller.
+    template <class ArgumentPackage>
+    static bool precall(ArgumentPackage const&)
     {
         return true;
     }
 
     // Pass the result through
-    static PyObject* postcall(PyObject*, PyObject* result)
+    template <class ArgumentPackage>
+    static PyObject* postcall(ArgumentPackage const&, PyObject* result)
     {
         return result;
     }
 
     typedef default_result_converter result_converter;
+    typedef PyObject* argument_package;
+
+    template <class Sig> 
+    struct extract_return_type : mpl::front<Sig>
+    {
+    };
+
 };
 
 struct default_result_converter
@@ -48,14 +61,12 @@ struct default_result_converter
     template <class R>
     struct apply
     {
-        BOOST_STATIC_CONSTANT(bool, is_illegal = is_reference<R>::value || is_pointer<R>::value);
-        
-        typedef typename mpl::if_c<
-            is_illegal
-            , detail::specify_a_return_value_policy_to_wrap_functions_returning<R>
-            , boost::python::to_python_value<
-                typename add_reference<typename add_const<R>::type>::type
-                >
+        typedef typename mpl::if_<
+            mpl::or_<detail::is_pointer<R>, detail::is_reference<R> >
+          , detail::specify_a_return_value_policy_to_wrap_functions_returning<R>
+          , boost::python::to_python_value<
+                typename detail::value_arg<R>::type
+            >
         >::type type;
     };
 };

@@ -1,0 +1,15 @@
+prefix=S:/OSSCICD/workspace/pyside_maya/src/pyside3_install/py3.7-qt5.15.2-64bit-relwithdebinfo
+exec_prefix=S:/OSSCICD/workspace/pyside_maya/src/pyside3_install/py3.7-qt5.15.2-64bit-relwithdebinfo
+libdir=lib
+includedir=S:/OSSCICD/workspace/pyside_maya/src/pyside3_install/py3.7-qt5.15.2-64bit-relwithdebinfo/include/PySide2
+typesystemdir=S:/OSSCICD/workspace/pyside_maya/src/pyside3_install/py3.7-qt5.15.2-64bit-relwithdebinfo/share/PySide2/typesystems
+gluedir=S:/OSSCICD/workspace/pyside_maya/src/pyside3_install/py3.7-qt5.15.2-64bit-relwithdebinfo/share/PySide2/glue
+pythonpath=S:/OSSCICD/workspace/pyside_maya/src/pyside3_install/py3.7-qt5.15.2-64bit-relwithdebinfo/Lib/site-packages
+
+Name: PySide2
+Description: Support library for Python bindings of Qt5-based libraries.
+Version: 5.15.2
+Libs: -L${libdir} -lpyside2.cp37-win_amd64
+Cflags: -I${includedir}
+Requires: shiboken2
+

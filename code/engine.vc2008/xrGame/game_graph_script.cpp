@@ -11,6 +11,7 @@
 #include "ai_space.h"
 
 using namespace luabind;
+using namespace luabind::policy;
 
 const CGameGraph *get_game_graph		()
 {
@@ -67,7 +68,7 @@ void CGameGraph::script_register		(lua_State *L)
 			.def("valid_vertex_id",	&CGameGraph::valid_vertex_id)
 			.def("vertex",			&CGameGraph::vertex)
 			.def("vertex_id",		&CGameGraph::vertex_id)
-			.def("levels",			&get_levels, return_stl_iterator),
+			.def("levels",			&get_levels, return_stl_iterator()),
 
 		class_<CVertex>("GameGraph__CVertex")
 			.def("level_point",		&CVertex__level_point)

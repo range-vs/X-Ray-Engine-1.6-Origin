@@ -777,7 +777,6 @@ __published:
 };
 
 
-#pragma pack(push,4)
 class PASCALIMPLEMENTATION TButtonImage : public System::TObject
 {
 	typedef System::TObject inherited;
@@ -809,7 +808,6 @@ public:
 	__property bool WordWrap = {read=GetWordWrap, write=SetWordWrap, nodefault};
 };
 
-#pragma pack(pop)
 
 class PASCALIMPLEMENTATION TMxButtonGlyph : public System::TObject
 {

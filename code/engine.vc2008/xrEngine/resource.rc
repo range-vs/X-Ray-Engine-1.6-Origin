@@ -7,30 +7,17 @@
 //
 // Generated from the TEXTINCLUDE 2 resource.
 //
-//#include "afxres.h" // range fix
-#include "WinResrc.h"
-#define IDC_STATIC  -1
+#include "Windows.h"
 
 /////////////////////////////////////////////////////////////////////////////
 #undef APSTUDIO_READONLY_SYMBOLS
 
 /////////////////////////////////////////////////////////////////////////////
-// Russian resources
+// Русский (Россия) resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_RUS)
-#ifdef _WIN32
 LANGUAGE LANG_RUSSIAN, SUBLANG_DEFAULT
 #pragma code_page(1251)
-#endif //_WIN32
-
-/////////////////////////////////////////////////////////////////////////////
-//
-// Icon
-//
-
-// Icon with lowest ID value placed first to ensure application icon
-// remains consistent on all systems.
-IDI_ICON1               ICON                    "stalker_cs.ico"
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -38,6 +25,7 @@ IDI_ICON1               ICON                    "stalker_cs.ico"
 //
 
 IDB_BITMAP1             BITMAP                  "splash_xrcs_en.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -77,18 +65,26 @@ BEGIN
     END
 END
 
-#endif    // Russian resources
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDI_ICON1               ICON                    "C:\\X-Ray-Engine-1.6-Origin\\code\\engine.vc2008\\xrEntry\\stalker_cs.ico"
+
+#endif    // Русский (Россия) resources
 /////////////////////////////////////////////////////////////////////////////
 
 
 /////////////////////////////////////////////////////////////////////////////
-// Ukrainian resources
+// Украинский (Украина) resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_UKR)
-#ifdef _WIN32
 LANGUAGE LANG_UKRAINIAN, SUBLANG_DEFAULT
 #pragma code_page(1251)
-#endif //_WIN32
 
 #ifdef APSTUDIO_INVOKED
 /////////////////////////////////////////////////////////////////////////////
@@ -115,18 +111,16 @@ END
 
 #endif    // APSTUDIO_INVOKED
 
-#endif    // Ukrainian resources
+#endif    // Украинский (Украина) resources
 /////////////////////////////////////////////////////////////////////////////
 
 
 /////////////////////////////////////////////////////////////////////////////
-// English (U.S.) resources
+// Английский (США) resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
-#ifdef _WIN32
 LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
 #pragma code_page(1252)
-#endif //_WIN32
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -137,7 +131,7 @@ IDD_STARTUP DIALOGEX 0, 0, 333, 165
 STYLE DS_ABSALIGN | DS_SETFONT | DS_SETFOREGROUND | DS_CENTER | WS_POPUP | WS_VISIBLE
 FONT 8, "MS Sans Serif", 0, 0, 0x0
 BEGIN
-    CONTROL         123,IDC_STATIC_LOGO,"Static",SS_BITMAP | SS_REALSIZEIMAGE,0,0,333,165
+    CONTROL         IDB_BITMAP1,IDC_STATIC_LOGO,"Static",SS_BITMAP | SS_REALSIZEIMAGE,0,0,333,165
 END
 
 
@@ -147,7 +141,7 @@ END
 //
 
 #ifdef APSTUDIO_INVOKED
-GUIDELINES DESIGNINFO 
+GUIDELINES DESIGNINFO
 BEGIN
     IDD_STARTUP, DIALOG
     BEGIN
@@ -156,7 +150,7 @@ BEGIN
 END
 #endif    // APSTUDIO_INVOKED
 
-#endif    // English (U.S.) resources
+#endif    // Английский (США) resources
 /////////////////////////////////////////////////////////////////////////////
 
 

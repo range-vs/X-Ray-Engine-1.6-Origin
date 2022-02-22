@@ -1,42 +1,55 @@
-//-----------------------------------------------------------------------------
-// boost mpl/vector/aux_/include_preprocessed.hpp header file
-// See http://www.boost.org for updates, documentation, and revision history.
-//-----------------------------------------------------------------------------
+
+// NO INCLUDE GUARDS, THE HEADER IS INTENDED FOR MULTIPLE INCLUSION
+
+// Copyright Aleksey Gurtovoy 2000-2006
 //
-// Copyright (c) 2001-02
-// Aleksey Gurtovoy
+// Distributed under the Boost Software License, Version 1.0. 
+// (See accompanying file LICENSE_1_0.txt or copy at 
+// http://www.boost.org/LICENSE_1_0.txt)
 //
-// Permission to use, copy, modify, distribute and sell this software
-// and its documentation for any purpose is hereby granted without fee, 
-// provided that the above copyright notice appears in all copies and 
-// that both the copyright notice and this permission notice appear in 
-// supporting documentation. No representations are made about the 
-// suitability of this software for any purpose. It is provided "as is" 
-// without express or implied warranty.
+// See http://www.boost.org/libs/mpl for documentation.
 
-// no include guards, the header is intended for multiple inclusion!
+// $Id$
+// $Date$
+// $Revision$
 
-#include "boost/mpl/aux_/config/vector.hpp"
-#include "boost/mpl/aux_/config/ctps.hpp"
-#include "boost/preprocessor/cat.hpp"
-#include "boost/preprocessor/stringize.hpp"
+#include <boost/mpl/aux_/config/typeof.hpp>
+#include <boost/mpl/aux_/config/ctps.hpp>
+#include <boost/mpl/aux_/config/preprocessor.hpp>
+#include <boost/mpl/aux_/config/workaround.hpp>
 
-#if defined(BOOST_MPL_TYPEOF_BASED_VECTOR_IMPL)
-#   define AUX_VECTOR_INCLIDE_DIR typeof_based
+#include <boost/preprocessor/cat.hpp>
+#include <boost/preprocessor/stringize.hpp>
+
+#if defined(BOOST_MPL_CFG_TYPEOF_BASED_SEQUENCES)
+#   define AUX778076_INCLUDE_DIR typeof_based
 #elif defined(BOOST_NO_TEMPLATE_PARTIAL_SPECIALIZATION) \
-   || defined(BOOST_NO_NON_TYPE_TEMPLATE_PARTIAL_SPECIALIZATION)
-#   define AUX_VECTOR_INCLIDE_DIR no_ctps
+   || defined(BOOST_MPL_CFG_NO_NONTYPE_TEMPLATE_PARTIAL_SPEC)
+#   define AUX778076_INCLUDE_DIR no_ctps
 #else
-#   define AUX_VECTOR_INCLIDE_DIR plain
+#   define AUX778076_INCLUDE_DIR plain
 #endif
 
-#   define AUX_PREPROCESSED_HEADER \
-    aux_/preprocessed/AUX_VECTOR_INCLIDE_DIR/BOOST_MPL_PREPROCESSED_HEADER \
+#if !defined(BOOST_NEEDS_TOKEN_PASTING_OP_FOR_TOKENS_JUXTAPOSING)
+#   define AUX778076_HEADER \
+    AUX778076_INCLUDE_DIR/BOOST_MPL_PREPROCESSED_HEADER \
 /**/
+#else
+#   define AUX778076_HEADER \
+    BOOST_PP_CAT(AUX778076_INCLUDE_DIR,/)##BOOST_MPL_PREPROCESSED_HEADER \
+/**/
+#endif
 
-#   include BOOST_PP_STRINGIZE(boost/mpl/vector/AUX_PREPROCESSED_HEADER)
 
-#   undef AUX_PREPROCESSED_HEADER
-#   undef AUX_VECTOR_INCLIDE_DIR
+#if BOOST_WORKAROUND(__IBMCPP__, BOOST_TESTED_AT(700))
+#   define AUX778076_INCLUDE_STRING BOOST_PP_STRINGIZE(boost/mpl/vector/aux_/preprocessed/AUX778076_HEADER)
+#   include AUX778076_INCLUDE_STRING
+#   undef AUX778076_INCLUDE_STRING
+#else
+#   include BOOST_PP_STRINGIZE(boost/mpl/vector/aux_/preprocessed/AUX778076_HEADER)
+#endif
+
+#   undef AUX778076_HEADER
+#   undef AUX778076_INCLUDE_DIR
 
 #undef BOOST_MPL_PREPROCESSED_HEADER

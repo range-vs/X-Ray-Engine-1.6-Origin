@@ -1,17 +1,17 @@
-// Copyright (C) 2002 Ronald Garcia
-//
-// Permission to copy, use, sell and distribute this software is granted
-// provided this copyright notice appears in all copies. 
-// Permission to modify the code and to distribute modified code is granted
-// provided this copyright notice appears in all copies, and a notice 
-// that the code was modified is included with the copyright notice.
-//
-// This software is provided "as is" without express or implied warranty, 
-// and with no claim as to its suitability for any purpose.
-//
+// Copyright 2002 The Trustees of Indiana University.
 
-#ifndef BOOST_INDEX_RANGE_RG071801_HPP
-#define BOOST_INDEX_RANGE_RG071801_HPP
+// Use, modification and distribution is subject to the Boost Software 
+// License, Version 1.0. (See accompanying file LICENSE_1_0.txt or copy at
+// http://www.boost.org/LICENSE_1_0.txt)
+
+//  Boost.MultiArray Library
+//  Authors: Ronald Garcia
+//           Jeremy Siek
+//           Andrew Lumsdaine
+//  See http://www.boost.org/libs/multi_array for documentation.
+
+#ifndef BOOST_MULTI_ARRAY_INDEX_RANGE_HPP
+#define BOOST_MULTI_ARRAY_INDEX_RANGE_HPP
 
 #include <boost/config.hpp>
 #include <utility>
@@ -35,6 +35,15 @@ namespace multi_array {
     typedef Index index;
     typedef SizeType size_type;
 
+  private:
+    static index from_start()
+      { return (std::numeric_limits<index>::min)(); }
+
+    static index to_end()
+      { return (std::numeric_limits<index>::max)(); }
+
+  public:
+
     index_range()
     {
       start_ = from_start();
@@ -46,27 +55,27 @@ namespace multi_array {
     explicit index_range(index pos)
     {
       start_ = pos;
-      finish_ = pos;
+      finish_ = pos+1;
       stride_ = 1;
       degenerate_ = true;
     }
 
     explicit index_range(index start, index finish, index stride=1)
       : start_(start), finish_(finish), stride_(stride),
-        degenerate_(start_ == finish_)
+        degenerate_(false)
     { }
 
 
     // These are for chaining assignments to an index_range
     index_range& start(index s) {
       start_ = s;
-      degenerate_ = (start_ == finish_);
+      degenerate_ = false;
       return *this;
     }
 
     index_range& finish(index f) {
       finish_ = f;
-      degenerate_ = (start_ == finish_);
+      degenerate_ = false;
       return *this;
     }
 
@@ -77,7 +86,7 @@ namespace multi_array {
       return start_; 
     }
 
-    index get_start(index low_index_range = 0) const
+    index get_start(index low_index_range = index_range::from_start()) const
     { 
       if (start_ == from_start())
         return low_index_range;
@@ -89,26 +98,19 @@ namespace multi_array {
       return finish_;
     }
 
-    index get_finish(index high_index_range = 0) const
+    index get_finish(index high_index_range = index_range::to_end()) const
     {
       if (finish_ == to_end())
         return high_index_range;
       return finish_;
     }
 
-    size_type size(index recommended_length = 0) const
-    {
-      if ((start_ == from_start()) || (finish_ == to_end()))
-        return recommended_length;
-      else 
-        return (finish_ - start_) / stride_;
-    }
-
     index stride() const { return stride_; }
 
-    bool is_ascending_contiguous() const
+    size_type size(index idx) const
     {
-      return (start_ < finish_) && is_unit_stride();
+      return (start_ == from_start() || finish_ == to_end())
+        ? idx : ((finish_ - start_) / stride_);
     }
 
     void set_index_range(index start, index finish, index stride=1)
@@ -120,9 +122,6 @@ namespace multi_array {
 
     static index_range all() 
     { return index_range(from_start(), to_end(), 1); }
-
-    bool is_unit_stride() const
-    { return stride_ == 1; }
 
     bool is_degenerate() const { return degenerate_; }
 
@@ -148,12 +147,6 @@ namespace multi_array {
 
     // add conversion to std::slice?
 
-  private:
-    static index from_start()
-      { return std::numeric_limits<index>::min(); }
-
-    static index to_end()
-      { return std::numeric_limits<index>::max(); }
   public:
     index start_, finish_, stride_;
     bool degenerate_;
@@ -198,4 +191,4 @@ namespace multi_array {
 } // namespace detail  
 } // namespace boost
 
-#endif // BOOST_INDEX_RANGE_RG071801_HPP
+#endif

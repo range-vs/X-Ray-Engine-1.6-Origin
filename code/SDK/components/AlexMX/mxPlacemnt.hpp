@@ -45,7 +45,6 @@ enum DECLSPEC_DENUM TPlacementOperation : unsigned char { poSave, poRestore };
 
 enum DECLSPEC_DENUM TPlacementRegRoot : unsigned char { prCurrentUser, prLocalMachine, prCurrentConfig, prClassesRoot, prUsers, prDynData };
 
-#pragma pack(push,4)
 class PASCALIMPLEMENTATION TWinMinMaxInfo : public System::Classes::TPersistent
 {
 	typedef System::Classes::TPersistent inherited;
@@ -77,7 +76,6 @@ public:
 	
 };
 
-#pragma pack(pop)
 
 class PASCALIMPLEMENTATION TFormPlacement : public System::Classes::TComponent
 {
@@ -273,7 +271,6 @@ public:
 };
 
 
-#pragma pack(push,4)
 class PASCALIMPLEMENTATION TStoredValues : public System::Classes::TOwnedCollection
 {
 	typedef System::Classes::TOwnedCollection inherited;
@@ -304,7 +301,6 @@ public:
 	
 };
 
-#pragma pack(pop)
 
 //-- var, const, procedure ---------------------------------------------------
 }	/* namespace Mxplacemnt */

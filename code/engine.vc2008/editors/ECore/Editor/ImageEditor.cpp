@@ -136,7 +136,7 @@ void __fastcall TfrmImageLib::UpdateLib()
     VERIFY			(!bReadonlyMode);
     RegisterModifiedTHM	        ();
 	SaveUsedTHM			();
-    DEBUG_MESSAGE("error create image");
+	//DEBUG_MESSAGE("error create image");
     if (bImportMode && !texture_map.empty())
     {
     	AStringVec modif;
@@ -167,13 +167,13 @@ void __fastcall TfrmImageLib::UpdateLib()
     // save game textures
         if (modif_map.size())
 		{
-			DEBUG_MESSAGE("start st");
+			//DEBUG_MESSAGE("start st");
             AStringVec modif;
 	    	LockForm();
             ImageLib.SynchronizeTextures(true,true,true,&modif_map,&modif);
             UnlockForm();
 			ImageLib.RefreshTextures(&modif);
-			DEBUG_MESSAGE("end st");
+			//DEBUG_MESSAGE("end st");
 		}
     }
 }

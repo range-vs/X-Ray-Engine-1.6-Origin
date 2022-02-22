@@ -1,13 +1,12 @@
-// Copyright David Abrahams 2002. Permission to copy, use,
-// modify, sell and distribute this software is granted provided this
-// copyright notice appears in all copies. This software is provided
-// "as is" without express or implied warranty, and with no claim as
-// to its suitability for any purpose.
+// Copyright David Abrahams 2002.
+// Distributed under the Boost Software License, Version 1.0. (See
+// accompanying file LICENSE_1_0.txt or copy at
+// http://www.boost.org/LICENSE_1_0.txt)
 #ifndef POINTER_TYPE_ID_DWA2002222_HPP
 # define POINTER_TYPE_ID_DWA2002222_HPP
 
 # include <boost/python/type_id.hpp>
-# include <boost/type_traits/composite_traits.hpp>
+# include <boost/python/detail/type_traits.hpp>
 
 namespace boost { namespace python { namespace converter { 
 
@@ -60,7 +59,7 @@ template <class T>
 type_info pointer_type_id(T(*)() = 0)
 {
     return detail::pointer_typeid_select<
-          is_reference<T>::value
+          boost::python::detail::is_lvalue_reference<T>::value
         >::execute((T(*)())0);
 }
 

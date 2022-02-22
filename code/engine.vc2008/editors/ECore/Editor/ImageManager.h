@@ -11,7 +11,7 @@ struct SSimpleImage{
 	shared_str	name;
     typedef xr_vector< U32Vec > DATAVec; typedef DATAVec::iterator DATAIt;
 	DATAVec		layers;
-    u32			w,h,a;
+	u32			w,h,a;
     u32			tag;
     int 		LongestEdge()const 	{return (w>h)?w:h;}
     int			Area()const			{return w*h;}
@@ -21,7 +21,7 @@ IC bool operator < (const SSimpleImage& a, const SSimpleImage& b){return a.name<
 typedef xr_vector< SSimpleImage > SSimpleImageVec; typedef SSimpleImageVec::iterator SSimpleImageVecIt;
 
 class ECORE_API CImageManager{
-    bool		MakeGameTexture		(ETextureThumbnail* THM, LPCSTR game_name, u32* data);
+    bool		MakeGameTexture		(ETextureThumbnail* THM, LPCSTR game_name, u8* data);
 public:
     static void		MakeThumbnailImage	(ETextureThumbnail* THM, u32* data, u32 w, u32 h, u32 a);
 public:
@@ -41,7 +41,7 @@ public:
     void 		SynchronizeTexture	(LPCSTR tex_name, int age);
 //	void		ChangeFileAgeTo		(FS_FileSet* source_map, int age);
 	// make/update routines
-    bool		MakeGameTexture		(LPCSTR game_name, u32* data, const STextureParams& tp);
+	bool		MakeGameTexture		(LPCSTR game_name, u8* data, const STextureParams& tp);
     void		CreateTextureThumbnail(ETextureThumbnail* THM, const AnsiString& src_name, LPCSTR path=0, bool bSetDefParam=true);
     BOOL		CreateOBJThumbnail	(LPCSTR tex_name, CEditableObject* obj, int age);
     void		CreateLODTexture	(CEditableObject* object, U32Vec& lod_pixels, U32Vec& nm_pixels, u32 tgt_w, u32 tgt_h, int samples, int quality);
@@ -51,9 +51,10 @@ public:
 
     // result 0-can't fit images, 1-ok, -1 can't load image 
     void		MergedTextureRemapUV(float& dest_u, float& dest_v, float src_u, float src_v, const Fvector2& offs, const Fvector2& scale, bool bRotate);
-    int			CreateMergedTexture	(const RStringVec& src_names, LPCSTR dest_name, STextureParams::ETFormat fmt, int dest_width, int dest_height, Fvector2Vec& dest_offset, Fvector2Vec& dest_scale, boolVec& dest_rotate, U32Vec& remap);
-    int			CreateMergedTexture	(const RStringVec& src_names, LPCSTR dest_name, STextureParams::ETFormat fmt, int dest_width_min, int dest_width_max, int dest_height_min, int dest_height_max, Fvector2Vec& dest_offset, Fvector2Vec& dest_scale, boolVec& dest_rotate, U32Vec& remap);
-    int			CreateMergedTexture	(u32 layer_cnt, SSimpleImageVec& src_images, SSimpleImage& dst_image, int dest_width, int dest_height, Fvector2Vec& dest_offset, Fvector2Vec& dest_scale, boolVec& dest_rotate, U32Vec& remap);
+	int			CreateMergedTexture	(const RStringVec& src_names, LPCSTR dest_name, STextureParams::ETFormat fmt, int dest_width, int dest_height, Fvector2Vec& dest_offset, Fvector2Vec& dest_scale, boolVec& dest_rotate, U32Vec& remap);
+	int			CreateMergedTexture	(const RStringVec& src_names, LPCSTR dest_name, STextureParams::ETFormat fmt, int dest_width_min, int dest_width_max, int dest_height_min, int dest_height_max, Fvector2Vec& dest_offset, Fvector2Vec& dest_scale, boolVec& dest_rotate, U32Vec& remap);
+
+	int			CreateMergedTexture	(u32 layer_cnt, SSimpleImageVec& src_images, SSimpleImage& dst_image, int dest_width, int dest_height, Fvector2Vec& dest_offset, Fvector2Vec& dest_scale, boolVec& dest_rotate, U32Vec& remap);
 	int			CreateMergedTexture	(u32 layer_cnt, SSimpleImageVec& src_images, SSimpleImage& dst_image, int dest_width_min, int dest_width_max, int dest_height_min, int dest_height_max, Fvector2Vec& dest_offset, Fvector2Vec& dest_scale, boolVec& dest_rotate, U32Vec& remap);
 	void 		ApplyBorders		(U32Vec& tgt_data, u32 w, u32 h);
 
@@ -65,7 +66,13 @@ public:
 
     void		WriteAssociation	(CInifile* ltx_ini, LPCSTR base_name, const STextureParams& fmt);
 
-    BOOL		CreateSmallerCubeMap(LPCSTR src_name, LPCSTR dst_name);
+	BOOL		CreateSmallerCubeMap(LPCSTR src_name, LPCSTR dst_name);
+
+	bool SurfaceLoad(LPCSTR full_name, U32Vec& data, u32& w, u32& h, u32& a);
+
+    int dXTCompress(LPCSTR out_name,
+	u8* raw_data, u8* ext_data, u32 w, u32 h, u32 pitch,
+	STextureParams* options, u32 depth);
 };
 
 extern ECORE_API CImageManager ImageLib;

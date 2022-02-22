@@ -1,5 +1,6 @@
+#pragma once
 // new(0)
-#include "../editors/Include/stack_trace.h"
+/*#include "../editors/Include/stack_trace.h"
 
 template <class T>
 IC	T*		xr_new		()
@@ -53,3 +54,4 @@ IC	void	xr_delete	(T* &ptr)
 		const_cast<T*&>(ptr) = NULL;
 	}
 }
+*/

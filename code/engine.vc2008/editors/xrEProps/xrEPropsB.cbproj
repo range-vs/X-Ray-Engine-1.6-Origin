@@ -88,14 +88,13 @@
         <ILINK_FullDebugInfo>true</ILINK_FullDebugInfo>
         <FinalOutputDir>..\..\..\..\bins\$(Platform)\$(Config)</FinalOutputDir>
         <PackageImports>bcbsmp;elpackB6;elpproB6;rtl;vcl;vclx;editorB;$(PackageImports)</PackageImports>
-        <ILINK_LibraryPath>..\Include\;$(BDS)\lib;..\..\..\..\libraries\$(Platform)\$(Config);..\..\..\SDK\components\libraries\$(Platform)\$(Config);..\..\..\SDK\components\bins\$(Platform)\$(Config);..\..\..\SDK\components\ElPack\Code\Source;..\..\..\..\bins\$(Platform)\$(Config);$(ILINK_LibraryPath)</ILINK_LibraryPath>
+        <ILINK_LibraryPath>..\Include\;..\..\..\..\libraries\$(Platform)\$(Config);..\..\..\SDK\components\libraries\$(Platform)\$(Config);..\..\..\SDK\components\bins\$(Platform)\$(Config);..\..\..\SDK\components\ElPack\Code\Source;..\..\..\..\bins\$(Platform)\$(Config);$(ILINK_LibraryPath)</ILINK_LibraryPath>
         <BRCC_OutputDir>..\..\..\..\intermedia\xrEPropsB\$(Platform)\$(Config)</BRCC_OutputDir>
         <TASM_IncludePath>$(BDS)\include;..\..\xrCore;..\..\..\SDK\components\ElPack\Code\Source;..\..\..\SDK\components\AlexMX;$(TASM_IncludePath)</TASM_IncludePath>
         <DCC_CBuilderOutput>JPHNE</DCC_CBuilderOutput>
         <DCC_ObjOutput>..\..\..\..\intermedia\xrEPropsB\$(Platform)\$(Config)</DCC_ObjOutput>
         <ILINK_WinAppType>DLL</ILINK_WinAppType>
         <AllPackageLibs>rtl.lib;vcl.lib;editorB.lib;bcbsmp.lib;vclx.lib;elpackB6.lib;xmlrtl.lib;vclactnband.lib;vclimg.lib</AllPackageLibs>
-        <UsePackages>true</UsePackages>
         <BCC_PCHCache>true</BCC_PCHCache>
         <ILINK_BpiLibOutputDir>..\..\..\..\libraries\Mixed</ILINK_BpiLibOutputDir>
         <IncludePath>..\Include\;..\..\..\SDK\include\stackwolker\;..\..\..\SDK\include\;..\editors\Include\;$(IncludePath)</IncludePath>
@@ -110,6 +109,8 @@
         <BCC_UserSuppliedOptions> -tWM -a4 -Q -6 -ps -Vms -ff -Vx -r- -xp -k -tWD -Ve -xf</BCC_UserSuppliedOptions>
         <TASM_Defines>_EDITOR XR_EPROPS_EXPORTS _DEBUG __MIXED __MIXED_CONFMANAGER;$(TASM_Defines)</TASM_Defines>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
+        <BCC_UseClassicCompiler>false</BCC_UseClassicCompiler>
+        <ILINK_wdup>false</ILINK_wdup>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win64)'!=''">
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
@@ -117,26 +118,27 @@
         <BRCC_Defines>_EDITOR;XR_EPROPS_EXPORTS;_DEBUG;__MIXED;__MIXED_CONFMANAGER;$(BRCC_Defines)</BRCC_Defines>
         <BCC_Defines>_EDITOR;XR_EPROPS_EXPORTS;$(BCC_Defines)</BCC_Defines>
         <TASM_Defines>_EDITOR XR_EPROPS_EXPORTS _DEBUG __MIXED __MIXED_CONFMANAGER;$(TASM_Defines)</TASM_Defines>
+        <UsePackages>true</UsePackages>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1)'!=''">
         <DCC_AdditionalSwitches> -M -V</DCC_AdditionalSwitches>
         <TASM_DisplaySourceLines>true</TASM_DisplaySourceLines>
         <ILINK_DisableIncrementalLinking>true</ILINK_DisableIncrementalLinking>
-        <ILINK_LibraryPath>$(BDS)\lib\debug;$(ILINK_LibraryPath);$(ILINK_LibraryPath)</ILINK_LibraryPath>
+        <ILINK_LibraryPath>$(ILINK_LibraryPath);$(ILINK_LibraryPath)</ILINK_LibraryPath>
         <DCC_DebugInfoInExe>true</DCC_DebugInfoInExe>
         <DCC_Define>DEBUG;$(DCC_Define);$(DCC_Define)</DCC_Define>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1_Win32)'!=''">
-        <LinkPackageStatics>xmlrtl.lib;vclactnband.lib;vclimg.lib</LinkPackageStatics>
-        <LinkPackageImports>rtl.bpi;vcl.bpi;editorB.bpi;bcbsmp.bpi;vclx.bpi;elpackB6.bpi</LinkPackageImports>
-        <ILINK_LibraryPath>$(BDS)\lib\win32\release\;..\..\..\SDK\components\bins\Win32\Debug\;$(ILINK_LibraryPath)</ILINK_LibraryPath>
+        <LinkPackageStatics>rtl.lib;vcl.lib;editorB.lib;bcbsmp.lib;vclx.lib;elpackB6.lib;xmlrtl.lib;vclactnband.lib;vclimg.lib</LinkPackageStatics>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
         <BCC_Defines>_DEBUG;$(BCC_Defines);$(BCC_Defines)</BCC_Defines>
+        <BCC_UserSuppliedOptions> -tWM -tWD</BCC_UserSuppliedOptions>
+        <ILINK_LibraryPath>..\..\..\..\libraries\Win32\Debug;$(ILINK_LibraryPath)</ILINK_LibraryPath>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1_Win64)'!=''">
         <PackageImports>vclsmp200;$(PackageImports)</PackageImports>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
-        <ILINK_LibraryPath>$(BDS)\lib\win64\release\;$(ILINK_LibraryPath)</ILINK_LibraryPath>
+        <ILINK_LibraryPath>$(BDS)\lib\win64\release\;..\..\..\..\libraries\Win64\Debug;$(ILINK_LibraryPath)</ILINK_LibraryPath>
         <BCC_Defines>_DEBUG;$(BCC_Defines);$(BCC_Defines)</BCC_Defines>
         <LinkPackageImports>rtl.bpi;vcl.bpi;editorB.bpi;bcbsmp.bpi;vclx.bpi;elpackB6.bpi;xmlrtl.bpi;vclactnband.bpi;vclimg.bpi</LinkPackageImports>
     </PropertyGroup>
@@ -145,14 +147,13 @@
         <BCC_InlineFunctionExpansion>true</BCC_InlineFunctionExpansion>
         <TASM_Debugging>None</TASM_Debugging>
         <BCC_OptimizationLevel>Level2</BCC_OptimizationLevel>
-        <ILINK_LibraryPath>$(BDS)\lib\release;$(ILINK_LibraryPath);$(ILINK_LibraryPath)</ILINK_LibraryPath>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2_Win32)'!=''">
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
         <BCC_Defines>NDEBUG;$(BCC_Defines);$(BCC_Defines)</BCC_Defines>
-        <BCC_UserSuppliedOptions> -tWM -a4 -Q -6 -ps -Vms -ff -Vx -r- -xp -k -tWD -Ve -xf -r</BCC_UserSuppliedOptions>
-        <LinkPackageImports>rtl.bpi;vcl.bpi;editorB.bpi;bcbsmp.bpi;vclx.bpi;elpackB6.bpi</LinkPackageImports>
-        <LinkPackageStatics>xmlrtl.lib;vclactnband.lib;vclimg.lib</LinkPackageStatics>
+        <BCC_UserSuppliedOptions> -tWM -tWD</BCC_UserSuppliedOptions>
+        <LinkPackageStatics>rtl.lib;vcl.lib;editorB.lib;bcbsmp.lib;vclx.lib;elpackB6.lib;xmlrtl.lib;vclactnband.lib;vclimg.lib</LinkPackageStatics>
+        <ILINK_LibraryPath>..\..\..\..\libraries\Win32\Release;$(ILINK_LibraryPath)</ILINK_LibraryPath>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2_Win64)'!=''">
         <BCC_Defines>NDEBUG;$(BCC_Defines);$(BCC_Defines)</BCC_Defines>
@@ -529,13 +530,13 @@
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile Condition="'$(DynamicRTL)'=='true'" LocalName="$(BDS)\Redist\osx64\libcgcrtl.dylib" Class="DependencyModule">
-                    <Platform Name="OSX64">
+                <DeployFile Condition="'$(DynamicRTL)'=='true' And '$(Multithreaded)'=='true'" LocalName="$(BDS)\bin\cc32c270mt.dll" Class="DependencyModule">
+                    <Platform Name="Win32">
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile Condition="'$(DynamicRTL)'=='true' And '$(Multithreaded)'=='true'" LocalName="$(BDS)\bin\cc32c270mt.dll" Class="DependencyModule">
-                    <Platform Name="Win32">
+                <DeployFile Condition="'$(DynamicRTL)'=='true'" LocalName="$(BDS)\Redist\osx64\libcgcrtl.dylib" Class="DependencyModule">
+                    <Platform Name="OSX64">
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>

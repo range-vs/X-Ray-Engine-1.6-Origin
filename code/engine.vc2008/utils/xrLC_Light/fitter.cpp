@@ -76,7 +76,7 @@ void vfOptimizeParameters(xr_vector<xr_vector<REAL> > &A, xr_vector<xr_vector<RE
 	u32						i = 0;
 	REAL					dFunctional = dfComputeEvalResults(daEvalResults,A,B,C,D), dPreviousFunctional;
 	//clMsg					("***MU-fitter***: %6d : %17.8f (%17.8f)",i,dFunctional,dFunctional/dwTestCount);
-	do {
+	/*do {
 		dPreviousFunctional = dFunctional;
 		dafGradient			(daEvalResults,			daGradient,			B,					dNormaFactor);
 		std::transform		(daGradient.begin(),	daGradient.end(),	daGradient.begin(),	std::bind2nd(std::multiplies<REAL>(), -dAlpha));
@@ -93,6 +93,28 @@ void vfOptimizeParameters(xr_vector<xr_vector<REAL> > &A, xr_vector<xr_vector<RE
 		std::transform		(daDelta.begin(),		daDelta.end(),		daDelta.begin(),	std::bind2nd(std::multiplies<REAL>(), -1));
 		std::transform		(C.begin(),				C.end(),			daDelta.begin(),	C.begin(),			std::plus<REAL>());
 		std::transform		(D.begin(),				D.end(),			daDelta.begin(),	D.begin(),			std::plus<REAL>());
+	}*/
+	do
+	{
+		dPreviousFunctional = dFunctional;
+		dafGradient(daEvalResults, daGradient, B, dNormaFactor);
+		std::transform(daGradient.begin(), daGradient.end(), daGradient.begin(),
+			std::bind(std::multiplies<REAL>(), std::placeholders::_1, -dAlpha));
+		std::transform(daDelta.begin(), daDelta.end(), daDelta.begin(),
+			std::bind(std::multiplies<REAL>(), std::placeholders::_1, dBeta));
+		std::transform(daGradient.begin(), daGradient.end(), daDelta.begin(), daDelta.begin(), std::plus<REAL>());
+		std::transform(C.begin(), C.end(), daDelta.begin(), C.begin(), std::plus<REAL>());
+		std::transform(D.begin(), D.end(), daDelta.begin(), D.begin(), std::plus<REAL>());
+		dFunctional = dfComputeEvalResults(daEvalResults, A, B, C, D);
+		i++;
+	} while ((((dPreviousFunctional - dFunctional) / dwTestCount) > dEpsilon) && (i <= dwMaxIterationCount));
+
+	if (dPreviousFunctional < dFunctional)
+	{
+		std::transform(daDelta.begin(), daDelta.end(), daDelta.begin(),
+			std::bind(std::multiplies<REAL>(), std::placeholders::_1, -1.f));
+		std::transform(C.begin(), C.end(), daDelta.begin(), C.begin(), std::plus<REAL>());
+		std::transform(D.begin(), D.end(), daDelta.begin(), D.begin(), std::plus<REAL>());
 	}
 	
 	dFunctional				= dfComputeEvalResults(daEvalResults,A,B,C,D);

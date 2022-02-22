@@ -115,9 +115,9 @@ protected:
 		_data_storage_constructor,
 		_iteration_type
 	>											inherited;
-	typedef typename CDataStorage::CGraphVertex CGraphVertex;
-	typedef typename CGraphVertex::_dist_type	_dist_type;
-	typedef typename CGraphVertex::_index_type	_index_type;
+	//typedef typename CDataStorage::CGraphVertex CGraphVertex;
+	//typedef typename CGraphVertex::_dist_type	_dist_type;
+	//typedef typename CGraphVertex::_index_type	_index_type;
 
 protected:
 	template <typename _PathManager>

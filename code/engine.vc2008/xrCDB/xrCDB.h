@@ -156,12 +156,14 @@ namespace CDB
 		void			frustum_query	(const MODEL *m_def, const CFrustum& F);
 
 		ICF RESULT*		r_begin			()	{	return &*rd.begin();		};
-		ICF RESULT*		r_end			()	{	return &*rd.end();			};
+		//ICF RESULT*		r_end			()	{	return &*rd.end();			};
 		RESULT&			r_add			()	;
 		void			r_free			()	;
 		ICF int			r_count			()	{	return rd.size();			};
-		ICF void		r_clear			()	{	rd.clear_not_free();		};
-		ICF void		r_clear_compact	()	{	rd.clear_and_free();		};
+		ICF void		r_clear			()	{	rd.clear();		};
+		ICF void		r_clear_compact	()	{	rd.clear();		};
+		ICF xr_vector<RESULT>* r_get() { return &rd; };
+
 	};
 
 	//

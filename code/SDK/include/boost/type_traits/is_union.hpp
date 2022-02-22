@@ -1,37 +1,31 @@
 
-// (C) Copyright Dave Abrahams, Steve Cleary, Beman Dawes, Howard
-// Hinnant & John Maddock 2000.  Permission to copy, use, modify,
-// sell and distribute this software is granted provided this
-// copyright notice appears in all copies. This software is provided
-// "as is" without express or implied warranty, and with no claim as
-// to its suitability for any purpose.
+//  (C) Copyright Dave Abrahams, Steve Cleary, Beman Dawes, Howard
+//  Hinnant & John Maddock 2000.  
+//  Use, modification and distribution are subject to the Boost Software License,
+//  Version 1.0. (See accompanying file LICENSE_1_0.txt or copy at
+//  http://www.boost.org/LICENSE_1_0.txt).
 //
-// See http://www.boost.org for most recent version including documentation.
+//  See http://www.boost.org/libs/type_traits for most recent version including documentation.
+
 
 #ifndef BOOST_TT_IS_UNION_HPP_INCLUDED
 #define BOOST_TT_IS_UNION_HPP_INCLUDED
 
-#include "boost/type_traits/remove_cv.hpp"
-#include "boost/type_traits/config.hpp"
-#include "boost/type_traits/intrinsics.hpp"
-
-// should be the last #include
-#include "boost/type_traits/detail/bool_trait_def.hpp"
+#include <boost/type_traits/intrinsics.hpp>
+#include <boost/type_traits/integral_constant.hpp>
 
 namespace boost {
 
-namespace detail {
-template <typename T> struct is_union_impl
-{
-   typedef typename remove_cv<T>::type cvt;
-   BOOST_STATIC_CONSTANT(bool, value = BOOST_IS_UNION(cvt));
-};
-} // namespace detail
+#ifdef BOOST_IS_UNION
+template <class T> struct is_union : public integral_constant<bool, BOOST_IS_UNION(T)> {};
+#else
+template <class T> struct is_union : public integral_constant<bool, false> {};
+#endif
 
-BOOST_TT_AUX_BOOL_TRAIT_DEF1(is_union,T,::boost::detail::is_union_impl<T>::value)
+template <class T> struct is_union<T const> : public is_union<T>{};
+template <class T> struct is_union<T volatile const> : public is_union<T>{};
+template <class T> struct is_union<T volatile> : public is_union<T>{};
 
 } // namespace boost
-
-#include "boost/type_traits/detail/bool_trait_undef.hpp"
 
 #endif // BOOST_TT_IS_UNION_HPP_INCLUDED

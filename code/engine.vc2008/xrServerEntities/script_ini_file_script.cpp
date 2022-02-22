@@ -8,6 +8,9 @@
 
 #include "pch_script.h"
 #include "script_ini_file.h"
+#include <luabind/types.hpp>
+#include <luabind/out_value_policy.hpp>
+using namespace luabind::policy;
 
 using namespace luabind;
 
@@ -16,6 +19,17 @@ CScriptIniFile *get_system_ini()
 	return	((CScriptIniFile*)pSettings);
 }
 
+//Alundaio: The extended ability to reload system ini after application launch
+CScriptIniFile* reload_system_ini()
+{
+	pSettings->Destroy(const_cast<CInifile*>(pSettings));
+	string_path fname;
+	FS.update_path(fname, "$game_config$", "system.ltx");
+	pSettings = xr_new<CInifile>(fname);
+	return (CScriptIniFile*)pSettings;
+}
+//Alundaio: END
+
 #ifdef XRGAME_EXPORTS
 CScriptIniFile *get_game_ini()
 {
@@ -23,7 +37,7 @@ CScriptIniFile *get_game_ini()
 }
 #endif // XRGAME_EXPORTS
 
-bool r_line(CScriptIniFile *self, LPCSTR S, int L,	luabind::internal_string &N, luabind::internal_string &V)
+bool r_line(CScriptIniFile *self, LPCSTR S, int L,	luabind::string &N, luabind::string&V)
 {
 	THROW3			(self->section_exist(S),"Cannot find section",S);
 	THROW2			((int)self->line_count(S) > L,"Invalid line number");
@@ -78,12 +92,16 @@ void CScriptIniFile::script_register(lua_State *L)
 			.def("r_s32",			&CScriptIniFile::r_s32)
 			.def("r_float",			&CScriptIniFile::r_float)
 			.def("r_vector",		&CScriptIniFile::r_fvector3)
-			.def("r_line",			&::r_line, out_value(_4) + out_value(_5)),
-
-		def("system_ini",			&get_system_ini),
+			.def("r_line", &::r_line, policy_list<out_value<4>, out_value<5>>())
+			// XXX: uncomment after we check that out_value policy is working
+			//.def("r_line", &::r_line2, policy_list<out_value<4>, out_value<5>>())
+			,
 #ifdef XRGAME_EXPORTS
-		def("game_ini",				&get_game_ini),
-#endif // XRGAME_EXPORTS
-		def("create_ini_file",		&create_ini_file,	adopt(result))
+			def("game_ini", &get_game_ini),
+#endif
+			//Alundaio: extend
+			def("reload_system_ini", &reload_system_ini),
+			//Alundaio:: END
+			def("system_ini", &get_system_ini), def("create_ini_file", &create_ini_file, adopt<0>())
 	];
 }

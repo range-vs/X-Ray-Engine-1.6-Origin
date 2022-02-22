@@ -2,10 +2,9 @@
 #  * Housemarque Oy
 #  * http://www.housemarque.com
 #  *
-#  * Permission to copy, use, modify, sell and distribute this software is
-#  * granted provided this copyright notice appears in all copies. This
-#  * software is provided "as is" without express or implied warranty, and
-#  * with no claim as to its suitability for any purpose.
+#  * Distributed under the Boost Software License, Version 1.0. (See
+#  * accompanying file LICENSE_1_0.txt or copy at
+#  * http://www.boost.org/LICENSE_1_0.txt)
 #  */
 #
 # /* Revised by Paul Mensonides (2002) */
@@ -26,11 +25,11 @@
 #    define BOOST_PP_CAT_OO(par) BOOST_PP_CAT_I ## par
 # endif
 #
-# if ~BOOST_PP_CONFIG_FLAGS() & BOOST_PP_CONFIG_MSVC()
+# if (~BOOST_PP_CONFIG_FLAGS() & BOOST_PP_CONFIG_MSVC()) || (defined(__INTEL_COMPILER) && __INTEL_COMPILER >= 1700)
 #    define BOOST_PP_CAT_I(a, b) a ## b
 # else
-#    define BOOST_PP_CAT_I(a, b) BOOST_PP_CAT_II(a ## b)
-#    define BOOST_PP_CAT_II(res) res
+#    define BOOST_PP_CAT_I(a, b) BOOST_PP_CAT_II(~, a ## b)
+#    define BOOST_PP_CAT_II(p, res) res
 # endif
 #
 # endif

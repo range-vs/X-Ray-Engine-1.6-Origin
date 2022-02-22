@@ -6,6 +6,7 @@
 //	AlexMX		- Alexander Maksimchuk
 //-----------------------------------------------------------------------------
 #include "stdafx.h"
+
 #include "igame_level.h"
 #include "igame_persistent.h"
 
@@ -405,23 +406,23 @@ Memory.mem_usage();
 	destroyEngine();
 }
 
-static BOOL CALLBACK logDlgProc( HWND hw, UINT msg, WPARAM wp, LPARAM lp )
-{
-	switch( msg ){
-		case WM_DESTROY:
-			break;
-		case WM_CLOSE:
-			DestroyWindow( hw );
-			break;
-		case WM_COMMAND:
-			if( LOWORD(wp)==IDCANCEL )
-				DestroyWindow( hw );
-			break;
-		default:
-			return FALSE;
-	}
-	return TRUE;
-}
+//static BOOL CALLBACK logDlgProc( HWND hw, UINT msg, WPARAM wp, LPARAM lp )
+//{
+//	switch( msg ){
+//		case WM_DESTROY:
+//			break;
+//		case WM_CLOSE:
+//			DestroyWindow( hw );
+//			break;
+//		case WM_COMMAND:
+//			if( LOWORD(wp)==IDCANCEL )
+//				DestroyWindow( hw );
+//			break;
+//		default:
+//			return FALSE;
+//	}
+//	return TRUE;
+//}
 /*
 void	test_rtc	()
 {
@@ -634,6 +635,7 @@ BOOL IsOutOfVirtualMemory()
 }
 
 #include "xr_ioc_cmd.h"
+#include "../test_dll/test.h"
 
 //typedef void DUMMY_STUFF (const void*,const u32&,void*);
 //XRCORE_API DUMMY_STUFF	*g_temporary_stuff;
@@ -687,8 +689,10 @@ ENGINE_API	bool g_dedicated_server	= false;
 int APIENTRY WinMain_impl(HINSTANCE hInstance,
                      HINSTANCE hPrevInstance,
                      char *    lpCmdLine,
-                     int       nCmdShow)
+                     int       nCmdShow,
+					 HWND logo)
 {
+	logoWindow = logo;
 #ifdef DEDICATED_SERVER
 	Debug._initialize			(true);
 #else // DEDICATED_SERVER
@@ -755,27 +759,27 @@ int APIENTRY WinMain_impl(HINSTANCE hInstance,
 
 	SetThreadAffinityMask		(GetCurrentThread(),1);
 
-	// Title window
-	logoWindow					= CreateDialog(GetModuleHandle(NULL),	MAKEINTRESOURCE(IDD_STARTUP), 0, (DLGPROC)logDlgProc ); // range fix
-	
-	HWND logoPicture			= GetDlgItem(logoWindow, IDC_STATIC_LOGO);
-	RECT logoRect;
-	GetWindowRect(logoPicture, &logoRect);
-
-	SetWindowPos				(
-		logoWindow,
-#ifndef DEBUG
-		HWND_TOPMOST,
-#else
-		HWND_NOTOPMOST,
-#endif // NDEBUG
-		0,
-		0,
-		logoRect.right - logoRect.left,
-		logoRect.bottom - logoRect.top,
-		SWP_NOMOVE | SWP_SHOWWINDOW// | SWP_NOSIZE
-	);
-	UpdateWindow(logoWindow);
+//	// Title window
+//	logoWindow					= CreateDialog(GetModuleHandle(NULL),	MAKEINTRESOURCE(IDD_STARTUP), 0, (DLGPROC)logDlgProc ); // range fix
+//	
+//	HWND logoPicture			= GetDlgItem(logoWindow, IDC_STATIC_LOGO);
+//	RECT logoRect;
+//	GetWindowRect(logoPicture, &logoRect);
+//
+//	SetWindowPos				(
+//		logoWindow,
+//#ifndef DEBUG
+//		HWND_TOPMOST,
+//#else
+//		HWND_NOTOPMOST,
+//#endif // NDEBUG
+//		0,
+//		0,
+//		logoRect.right - logoRect.left,
+//		logoRect.bottom - logoRect.top,
+//		SWP_NOMOVE | SWP_SHOWWINDOW// | SWP_NOSIZE
+//	);
+//	UpdateWindow(logoWindow);
 
 	// AVI
 	g_bIntroFinished			= TRUE;
@@ -921,19 +925,21 @@ int exception_filter(int code, _EXCEPTION_POINTERS* ep)
 
 #include <boost/crc.hpp>
 
-int APIENTRY WinMain(HINSTANCE hInstance,
+extern "C" __declspec(dllexport) int WinMainGlobal(HINSTANCE hInstance,
                      HINSTANCE hPrevInstance,
                      char *    lpCmdLine,
-                     int       nCmdShow)
+                     int       nCmdShow,
+					 HWND logo)
 {
-	__try 
+	__try
 	{
-		WinMain_impl		(hInstance,hPrevInstance,lpCmdLine,nCmdShow);
-	}
+		WinMain_impl		(hInstance,hPrevInstance, lpCmdLine, nCmdShow, logo);
+	 }
 	__except(exception_filter(GetExceptionCode(), GetExceptionInformation()))
 	{
 		//_resetstkoflw();
-		std::exit(-1); // аварийный выход
+		//std::exit(-1); // аварийный выход
+		return -1;
 	}
 
 	return 0;
