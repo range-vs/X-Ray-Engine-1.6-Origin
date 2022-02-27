@@ -21,10 +21,12 @@ TODO
 * Embarcadero RAD Studio 10.4.2.
 
 Сборка:
+
 *** Перед сборкой:
 1) Открыть в rad studio 10.4.2 проект components (code\SDK\components\components.groupproj);
 2) Собрать проекты elpackB6, elpkdbB6, elpproB6, editorB(главный проект, собирает все) собрать в x86 Release;
 3) Собрать проекты dceldbB6, dcelppB6, dclelpB6, editor(главный проект, собирает все) собрать в x86 Release. Установить каждый компонент;
+
 *** Алгоритм сборки:
 4) Открыть движок (code\engine.vc2008\engine.sln) в Visual Studio 19, выбираем нужный конфиг и собираем xrEntry(главный проект, собирает все);
 5) Открыть в Rad studio 10.4.2 проект components;
