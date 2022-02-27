@@ -22,7 +22,7 @@ TODO
 
 Сборка:
 
-*** Перед сборкой:
+*** Перед сборкой (сделать это один раз):
 1) Открыть в rad studio 10.4.2 проект components (code\SDK\components\components.groupproj);
 2) Собрать проекты elpackB6, elpkdbB6, elpproB6, editorB(главный проект, собирает все) собрать в x86 Release;
 3) Собрать проекты dceldbB6, dcelppB6, dclelpB6, editor(главный проект, собирает все) собрать в x86 Release. Установить каждый компонент;
