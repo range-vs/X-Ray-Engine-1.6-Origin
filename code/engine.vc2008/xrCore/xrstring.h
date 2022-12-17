@@ -220,18 +220,4 @@ IC void	xr_strlwr		(shared_str& src)									{ if (*src){LPSTR lp=xr_strdup(*src
 
 #pragma pack(pop)
 
-
-// range fix
-#include <sstream>
-namespace universal_string
-{
-    template<class T>
-    std::string toString(const T& val)
-    {
-        std::ostringstream converter;
-        converter << val;
-        return converter.str();
-    }
-}
-
 #endif

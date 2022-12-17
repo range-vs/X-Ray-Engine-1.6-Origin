@@ -18,7 +18,7 @@
 #include <string.h>
 #include "encint.h"
 #if defined(OC_X86_ASM)
-# include "x86/x86enc.h"
+# include "x86_vc/x86enc.h"
 #endif
 
 

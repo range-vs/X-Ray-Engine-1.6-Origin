@@ -501,12 +501,15 @@ time_t CLocatorAPI::get_file_age(LPCSTR nm)
 
 void CLocatorAPI::set_file_age(LPCSTR nm, time_t age)
 {
-    // set file
-    _utimbuf	tm;
+	// set file
+	_utimbuf	tm;
     tm.actime	= age;
-    tm.modtime	= age;
-    int res 	= _utime(nm,&tm);
-    if (0!=res)	Msg("!Can't set file age: '%s'. Error: '%s'",nm,_sys_errlist[errno]);
+	tm.modtime	= age;
+	int res = _utime(nm, &tm);
+	if (0!=res)
+	{
+		Msg("!Can't set file age: '%s'. Error: '%s'",nm,_sys_errlist[errno]);
+    }
 }
 
 BOOL CLocatorAPI::can_write_to_folder(LPCSTR path)

@@ -1,4 +1,4 @@
-set pathToMkexp="C:\Program Files (x86)\Embarcadero\Studio\21.0\bin\mkexp.exe"
+set pathToMkexp="C:\Program Files (x86)\Embarcadero\Studio\22.0\bin\mkexp.exe"
 rem path to mkexp
 set pathToDlls=bins\Win64\Debug\
 rem path to compiled dlls

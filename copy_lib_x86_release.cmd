@@ -1,4 +1,4 @@
-set pathToCoff2Omf="C:\Program Files (x86)\Embarcadero\Studio\21.0\bin\coff2omf.exe"
+set pathToCoff2Omf="C:\Program Files (x86)\Embarcadero\Studio\22.0\bin\coff2omf.exe"
 rem path to coff2omf
 set pathToLibs=libraries\Win32\Release\
 rem path to compiled libs

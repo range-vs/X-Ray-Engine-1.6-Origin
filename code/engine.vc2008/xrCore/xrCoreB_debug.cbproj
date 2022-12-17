@@ -1,10 +1,10 @@
 ﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <PropertyGroup>
-        <ProjectGuid>{5C614D56-76E6-4B74-B6FA-AEB0D2E1DAEB}</ProjectGuid>
+        <ProjectGuid>{E24FBD74-6121-4E58-AEF5-21044EC5DB42}</ProjectGuid>
         <ProjectType>CppDynamicLibrary</ProjectType>
         <Base>True</Base>
         <Config Condition="'$(Config)'==''">Debug</Config>
-        <FrameworkType>Vcl</FrameworkType>
+        <FrameworkType>VCL</FrameworkType>
         <ProjectVersion>19.5</ProjectVersion>
         <Platform Condition="'$(Platform)'==''">Win32</Platform>
         <TargetedPlatforms>3</TargetedPlatforms>
@@ -59,89 +59,102 @@
         <Base>true</Base>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base)'!=''">
-        <BCC_DataAlignment>DWord</BCC_DataAlignment>
-        <BPILibOutputDir>..\..\..\..\libraries\$(Platform)\$(Config)</BPILibOutputDir>
-        <_TCHARMapping>char</_TCHARMapping>
-        <Manifest_File>$(BDS)\bin\default_app.manifest</Manifest_File>
-        <IntermediateOutputDir>..\..\..\..\intermedia\xrEPropsB\$(Platform)\$(Config)</IntermediateOutputDir>
         <BCC_InstructionSet>5</BCC_InstructionSet>
         <BCC_CallingConvention>stdcall</BCC_CallingConvention>
-        <SanitizedProjectName>xrEPropsB</SanitizedProjectName>
-        <VerInfo_Keys>CompanyName=;FileDescription=;FileVersion=1.0.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=;ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
+        <BCC_DataAlignment>DWord</BCC_DataAlignment>
+        <IntermediateOutputDir>..\..\..\intermedia\xrCoreB\$(Platform)\$(Config)</IntermediateOutputDir>
+        <BPILibOutputDir>..\..\..\libraries\$(Platform)\$(Config)</BPILibOutputDir>
+        <Manifest_File>$(BDS)\bin\default_app.manifest</Manifest_File>
+        <SanitizedProjectName>xrCoreB_debug</SanitizedProjectName>
+        <VerInfo_Keys>CompanyName=;FileDescription=;FileVersion=1.0.0.34;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=;ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
         <DCC_Namespace>System;Xml;Data;Datasnap;Web;Soap;$(DCC_Namespace)</DCC_Namespace>
-        <VerInfo_Locale>1033</VerInfo_Locale>
+        <VerInfo_Build>34</VerInfo_Build>
+        <VerInfo_Locale>1058</VerInfo_Locale>
         <BCC_DebugLineNumbers>true</BCC_DebugLineNumbers>
+        <ILINK_IntermediateOutputPath>..\..\..\intermedia\xrCoreB\$(Platform)\$(Config)</ILINK_IntermediateOutputPath>
         <ILINK_GenerateImportLibrary>true</ILINK_GenerateImportLibrary>
         <TASM_AdditionalSwitches> /mu</TASM_AdditionalSwitches>
         <BCC_DisableWarnings>true</BCC_DisableWarnings>
-        <BCC_OutputDir>..\..\..\..\intermedia\xrEPropsB\$(Platform)\$(Config)</BCC_OutputDir>
         <BCC_DisableOptimizations>true</BCC_DisableOptimizations>
         <DynamicRTL>true</DynamicRTL>
         <BCC_SourceDebuggingOn>true</BCC_SourceDebuggingOn>
         <DCC_AdditionalSwitches>-M</DCC_AdditionalSwitches>
-        <BCC_IncludePath>..\..\xrCore;..\..\..\SDK\components\ElPack\Code\Source;..\..\..\SDK\components\AlexMX;..\..\xrServerEntities;$(BCC_IncludePath)</BCC_IncludePath>
+        <BCC_IncludePath>.\;$(BDS)\include;..\utils\ETools;..\3rd party\lzo\include;.\;$(BCC_IncludePath)</BCC_IncludePath>
         <TASM_Debugging>Full</TASM_Debugging>
         <ILINK_AppType>Windows</ILINK_AppType>
-        <BRCC_IncludePath>$(BDS)\include;..\..\xrCore;..\..\..\SDK\components\ElPack\Code\Source;..\..\..\SDK\components\AlexMX;$(BRCC_IncludePath)</BRCC_IncludePath>
+        <BRCC_IncludePath>.\;$(DXSDK_DIR)\Include;$(BDS)\include;..\utils\ETools;$(BRCC_IncludePath)</BRCC_IncludePath>
         <DCC_IncludePath>.\;$(BDS)\lib;$(BDS)\lib\obj;$(DCC_IncludePath)</DCC_IncludePath>
         <BCC_InlineFunctionExpansion>false</BCC_InlineFunctionExpansion>
-        <DCC_UnitSearchPath>.\;$(BDS)\lib;$(BDS)\lib\obj;..\..\..\SDK\components\AlexMX;..\..\..\..\bins\$(Platform)\$(Config);$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
         <ILINK_FullDebugInfo>true</ILINK_FullDebugInfo>
-        <FinalOutputDir>..\..\..\..\bins\$(Platform)\$(Config)</FinalOutputDir>
-        <PackageImports>bcbsmp;elpackB6;elpproB6;rtl;vcl;vclx;editorB;$(PackageImports)</PackageImports>
-        <ILINK_LibraryPath>..\Include\;..\..\..\..\libraries\$(Platform)\$(Config);..\..\..\SDK\components\libraries\$(Platform)\$(Config);..\..\..\SDK\components\bins\$(Platform)\$(Config);..\..\..\SDK\components\ElPack\Code\Source;..\..\..\..\bins\$(Platform)\$(Config);$(ILINK_LibraryPath)</ILINK_LibraryPath>
-        <BRCC_OutputDir>..\..\..\..\intermedia\xrEPropsB\$(Platform)\$(Config)</BRCC_OutputDir>
-        <TASM_IncludePath>$(BDS)\include;..\..\xrCore;..\..\..\SDK\components\ElPack\Code\Source;..\..\..\SDK\components\AlexMX;$(TASM_IncludePath)</TASM_IncludePath>
+        <FinalOutputDir>..\..\..\bins\$(Platform)\$(Config)</FinalOutputDir>
+        <PackageImports>rtl.bpi;$(PackageImports)</PackageImports>
+        <ILINK_LibraryPath>.\;..\xrSound\;..\..\SDK\sources\stackwalker\;..\..\SDK\include\stackwalker\;..\editors\Include\;.\;..\..\SDK\components\libraries\$(Platform)\$(Config);..\..\SDK\include\;..\..\..\libraries\$(Platform)\$(Config);$(ILINK_LibraryPath)</ILINK_LibraryPath>
+        <BRCC_OutputDir>..\..\..\intermedia\xrCoreB\$(Platform)\$(Config)</BRCC_OutputDir>
+        <TASM_IncludePath>.\;$(DXSDK_DIR)\Include;$(BDS)\include;..\utils\ETools;$(TASM_IncludePath)</TASM_IncludePath>
         <DCC_CBuilderOutput>JPHNE</DCC_CBuilderOutput>
-        <DCC_ObjOutput>..\..\..\..\intermedia\xrEPropsB\$(Platform)\$(Config)</DCC_ObjOutput>
+        <DCC_ObjOutput>..\..\..\intermedia\xrCoreB\$(Platform)\$(Config)</DCC_ObjOutput>
+        <DCC_UnitSearchPath>.\;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
+        <AllPackageLibs>rtl.lib;vcl.lib;bcbsmp.lib;vclx.lib</AllPackageLibs>
         <ILINK_WinAppType>DLL</ILINK_WinAppType>
-        <AllPackageLibs>rtl.lib;vcl.lib;editorB.lib;bcbsmp.lib;vclx.lib;elpackB6.lib;xmlrtl.lib;vclactnband.lib;vclimg.lib</AllPackageLibs>
-        <BCC_PCHCache>true</BCC_PCHCache>
-        <ILINK_BpiLibOutputDir>..\..\..\..\libraries\Mixed</ILINK_BpiLibOutputDir>
-        <IncludePath>..\Include\;..\..\..\SDK\include\stackwolker\;..\..\..\SDK\include\;..\editors\Include\;$(IncludePath)</IncludePath>
-        <BCC_PCHInject>stdafx.h</BCC_PCHInject>
+        <ILINK_BpiLibOutputDir>..\..\..\libraries\Mixed</ILINK_BpiLibOutputDir>
+        <IncludePath>.\;..\..\SDK\sources\stackwalker\;..\..\SDK\include\stackwalker\;..\..\SDK\include\;..\editors\Include\;..\..\SDK\components\ElPack\Code\Source;..\..\SDK\components\AlexMX;..\xrEngine\;$(IncludePath)</IncludePath>
+        <Defines>CURRENT_THREAD_VIA_EXCEPTION;$(Defines)</Defines>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win32)'!=''">
-        <BCC_Defines>_EDITOR;XR_EPROPS_EXPORTS;__MIXED;__MIXED_CONFMANAGER;$(BCC_Defines)</BCC_Defines>
-        <BRCC_Defines>_EDITOR;XR_EPROPS_EXPORTS;_DEBUG;__MIXED;__MIXED_CONFMANAGER;$(BRCC_Defines)</BRCC_Defines>
+        <VerInfo_Build>0</VerInfo_Build>
+        <VerInfo_Keys>CompanyName=;FileDescription=;FileVersion=1.0.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=;ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
+        <BCC_Defines>_EDITOR;_XRCOREB;XRCORE_EXPORTS;NO_WIN32_LEAN_AND_MEAN;$(BCC_Defines)</BCC_Defines>
         <Debugger_RunParams>-wf x:\stalker_addon\resources</Debugger_RunParams>
         <DCC_Namespace>Winapi;System.Win;Data.Win;Datasnap.Win;Web.Win;Soap.Win;Xml.Win;Bde;$(DCC_Namespace)</DCC_Namespace>
-        <Debugger_HostApplication>x:\stalker_addon\binaries\ActorEditor.exe</Debugger_HostApplication>
-        <BCC_UserSuppliedOptions> -tWM -a4 -Q -6 -ps -Vms -ff -Vx -r- -xp -k -tWD -Ve -xf</BCC_UserSuppliedOptions>
-        <TASM_Defines>_EDITOR XR_EPROPS_EXPORTS _DEBUG __MIXED __MIXED_CONFMANAGER;$(TASM_Defines)</TASM_Defines>
+        <Debugger_HostApplication>x:\stalker_addon\binaries\LevelEditor.exe</Debugger_HostApplication>
+        <VerInfo_Locale>1033</VerInfo_Locale>
+        <BCC_UserSuppliedOptions> -tWM -tWD</BCC_UserSuppliedOptions>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
+        <BRCC_Defines>_EDITOR;_XRCOREB;XRCORE_EXPORTS;_DEBUG;NO_WIN32_LEAN_AND_MEAN;$(BRCC_Defines)</BRCC_Defines>
+        <TASM_Defines>_EDITOR _XRCOREB XRCORE_EXPORTS _DEBUG NO_WIN32_LEAN_AND_MEAN __MIXED_CONFMANAGER;_EDITOR _XRCOREB XRCORE_EXPORTS _DEBUG NO_WIN32_LEAN_AND_MEAN;$(TASM_Defines)</TASM_Defines>
         <BCC_UseClassicCompiler>false</BCC_UseClassicCompiler>
+        <DCC_UnitSearchPath>$(BDS)\lib\win32\release\;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
         <ILINK_wdup>false</ILINK_wdup>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win64)'!=''">
-        <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
+        <BCC_Defines>_EDITOR;_XRCOREB;XRCORE_EXPORTS;NO_WIN32_LEAN_AND_MEAN;__MIXED_CONFMANAGER;$(BCC_Defines)</BCC_Defines>
+        <BRCC_Defines>_EDITOR;_XRCOREB;XRCORE_EXPORTS;_DEBUG;NO_WIN32_LEAN_AND_MEAN;__MIXED_CONFMANAGER;$(BRCC_Defines)</BRCC_Defines>
+        <TASM_Defines>_EDITOR _XRCOREB XRCORE_EXPORTS _DEBUG NO_WIN32_LEAN_AND_MEAN __MIXED_CONFMANAGER;$(TASM_Defines)</TASM_Defines>
         <DCC_Namespace>Winapi;System.Win;Data.Win;Datasnap.Win;Web.Win;Soap.Win;Xml.Win;$(DCC_Namespace)</DCC_Namespace>
-        <BRCC_Defines>_EDITOR;XR_EPROPS_EXPORTS;_DEBUG;__MIXED;__MIXED_CONFMANAGER;$(BRCC_Defines)</BRCC_Defines>
-        <BCC_Defines>_EDITOR;XR_EPROPS_EXPORTS;$(BCC_Defines)</BCC_Defines>
-        <TASM_Defines>_EDITOR XR_EPROPS_EXPORTS _DEBUG __MIXED __MIXED_CONFMANAGER;$(TASM_Defines)</TASM_Defines>
+        <BT_BuildType>Debug</BT_BuildType>
+        <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
+        <VerInfo_Keys>CompanyName=;FileDescription=$(MSBuildProjectName);FileVersion=1.0.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProgramID=com.embarcadero.$(MSBuildProjectName);ProductName=$(MSBuildProjectName);ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
+        <VerInfo_Locale>1033</VerInfo_Locale>
+        <VerInfo_Build>0</VerInfo_Build>
         <UsePackages>true</UsePackages>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1)'!=''">
-        <DCC_AdditionalSwitches> -M -V</DCC_AdditionalSwitches>
+        <DCC_AdditionalSwitches>-M -V</DCC_AdditionalSwitches>
         <TASM_DisplaySourceLines>true</TASM_DisplaySourceLines>
         <ILINK_DisableIncrementalLinking>true</ILINK_DisableIncrementalLinking>
-        <ILINK_LibraryPath>$(ILINK_LibraryPath);$(ILINK_LibraryPath)</ILINK_LibraryPath>
+        <ILINK_LibraryPath>$(BDS)\lib\debug;$(ILINK_LibraryPath);$(ILINK_LibraryPath)</ILINK_LibraryPath>
         <DCC_DebugInfoInExe>true</DCC_DebugInfoInExe>
         <DCC_Define>DEBUG;$(DCC_Define);$(DCC_Define)</DCC_Define>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1_Win32)'!=''">
-        <LinkPackageStatics>rtl.lib;vcl.lib;editorB.lib;bcbsmp.lib;vclx.lib;elpackB6.lib;xmlrtl.lib;vclactnband.lib;vclimg.lib</LinkPackageStatics>
+        <Debugger_HostApplication>E:\src_cop_x64_old\bins\Win32\Debug\debug_project.exe</Debugger_HostApplication>
+        <ILINK_LibraryPath>..\..\SDK\components\libraries\Win32\Debug\;$(ILINK_LibraryPath)</ILINK_LibraryPath>
+        <LinkPackageStatics>rtl.lib;vcl.lib;bcbsmp.lib;vclx.lib</LinkPackageStatics>
+        <DCC_AdditionalSwitches>-M -V</DCC_AdditionalSwitches>
+        <VerInfo_Keys>CompanyName=;FileDescription=;FileVersion=1.0.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=;ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
+        <VerInfo_Locale>1033</VerInfo_Locale>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
+        <VerInfo_Build>0</VerInfo_Build>
         <BCC_Defines>_DEBUG;$(BCC_Defines);$(BCC_Defines)</BCC_Defines>
-        <BCC_UserSuppliedOptions> -tWM -tWD</BCC_UserSuppliedOptions>
-        <ILINK_LibraryPath>..\..\..\..\libraries\Win32\Debug;$(ILINK_LibraryPath)</ILINK_LibraryPath>
+        <AppDPIAwarenessMode>none</AppDPIAwarenessMode>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1_Win64)'!=''">
-        <PackageImports>vclsmp200;$(PackageImports)</PackageImports>
-        <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
-        <ILINK_LibraryPath>$(BDS)\lib\win64\release\;..\..\..\..\libraries\Win64\Debug;$(ILINK_LibraryPath)</ILINK_LibraryPath>
         <BCC_Defines>_DEBUG;$(BCC_Defines);$(BCC_Defines)</BCC_Defines>
-        <LinkPackageImports>rtl.bpi;vcl.bpi;editorB.bpi;bcbsmp.bpi;vclx.bpi;elpackB6.bpi;xmlrtl.bpi;vclactnband.bpi;vclimg.bpi</LinkPackageImports>
+        <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
+        <VerInfo_Build>0</VerInfo_Build>
+        <VerInfo_Locale>1033</VerInfo_Locale>
+        <VerInfo_Keys>CompanyName=;FileDescription=$(MSBuildProjectName);FileVersion=1.0.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProgramID=com.embarcadero.$(MSBuildProjectName);ProductName=$(MSBuildProjectName);ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
+        <LinkPackageImports>rtl.bpi;vcl.bpi;bcbsmp.bpi;vclx.bpi</LinkPackageImports>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2)'!=''">
         <DCC_AdditionalSwitches> -M -$O+</DCC_AdditionalSwitches>
@@ -150,123 +163,30 @@
         <BCC_OptimizationLevel>Level2</BCC_OptimizationLevel>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2_Win32)'!=''">
+        <VerInfo_Locale>1033</VerInfo_Locale>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
+        <VerInfo_Keys>CompanyName=;FileDescription=;FileVersion=1.0.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=;ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
+        <VerInfo_Build>0</VerInfo_Build>
         <BCC_Defines>NDEBUG;$(BCC_Defines);$(BCC_Defines)</BCC_Defines>
-        <BCC_UserSuppliedOptions> -tWM -tWD</BCC_UserSuppliedOptions>
-        <LinkPackageStatics>rtl.lib;vcl.lib;editorB.lib;bcbsmp.lib;vclx.lib;elpackB6.lib;xmlrtl.lib;vclactnband.lib;vclimg.lib</LinkPackageStatics>
-        <ILINK_LibraryPath>..\..\..\..\libraries\Win32\Release;$(ILINK_LibraryPath)</ILINK_LibraryPath>
+        <LinkPackageStatics>rtl.lib;vcl.lib;bcbsmp.lib;vclx.lib</LinkPackageStatics>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2_Win64)'!=''">
         <BCC_Defines>NDEBUG;$(BCC_Defines);$(BCC_Defines)</BCC_Defines>
-        <LinkPackageImports>rtl.bpi;vcl.bpi;editorB.bpi;bcbsmp.bpi;vclx.bpi;elpackB6.bpi;xmlrtl.bpi;vclactnband.bpi;vclimg.bpi</LinkPackageImports>
+        <LinkPackageImports>rtl.bpi;vcl.bpi;bcbsmp.bpi;vclx.bpi</LinkPackageImports>
     </PropertyGroup>
     <ItemGroup>
-        <CppCompile Include="..\Include\stack_trace.cpp">
-            <BuildOrder>19</BuildOrder>
+        <CppCompile Include="..\editors\Include\stack_trace.cpp">
+            <BuildOrder>95</BuildOrder>
         </CppCompile>
-        <CppCompile Include="ChoseForm.cpp">
-            <BuildOrder>7</BuildOrder>
-            <Form>frmChoseItem</Form>
-            <DependentOn>ChoseForm.h</DependentOn>
-            <BuildOrder>50</BuildOrder>
-        </CppCompile>
-        <CppCompile Include="ColorPicker.cpp">
-            <BuildOrder>35</BuildOrder>
-            <BuildOrder>2</BuildOrder>
-        </CppCompile>
-        <CppCompile Include="FolderLib.cpp">
-            <BuildOrder>9</BuildOrder>
-            <BuildOrder>32</BuildOrder>
-        </CppCompile>
-        <CppCompile Include="GameTypeForm.cpp">
-            <BuildOrder>6</BuildOrder>
-            <Form>fmGameType</Form>
-            <DependentOn>GameTypeForm.h</DependentOn>
-            <BuildOrder>59</BuildOrder>
-        </CppCompile>
-        <CppCompile Include="ItemDialog.cpp">
-            <BuildOrder>56</BuildOrder>
-            <Form>frmItemDialog</Form>
-            <DependentOn>ItemDialog.h</DependentOn>
-            <BuildOrder>5</BuildOrder>
-        </CppCompile>
-        <CppCompile Include="ItemList.cpp">
-            <BuildOrder>14</BuildOrder>
-            <Form>ItemList</Form>
-            <DependentOn>ItemList.h</DependentOn>
-            <BuildOrder>11</BuildOrder>
-        </CppCompile>
-        <CppCompile Include="ItemListHelper.cpp">
-            <BuildOrder>17</BuildOrder>
-            <BuildOrder>14</BuildOrder>
-        </CppCompile>
-        <CppCompile Include="ItemListTypes.cpp">
-            <BuildOrder>20</BuildOrder>
-            <BuildOrder>17</BuildOrder>
-        </CppCompile>
-        <CppCompile Include="NumericVector.cpp">
-            <BuildOrder>38</BuildOrder>
-            <Form>frmNumericVector</Form>
-            <DependentOn>NumericVector.h</DependentOn>
-            <BuildOrder>3</BuildOrder>
-        </CppCompile>
-        <CppCompile Include="PropertiesList.cpp">
-            <BuildOrder>23</BuildOrder>
-            <Form>Properties</Form>
-            <DependentOn>PropertiesList.h</DependentOn>
-            <BuildOrder>18</BuildOrder>
-        </CppCompile>
-        <CppCompile Include="PropertiesListHelper.cpp">
-            <BuildOrder>26</BuildOrder>
-            <BuildOrder>15</BuildOrder>
-        </CppCompile>
-        <CppCompile Include="PropertiesListTypes.cpp">
-            <BuildOrder>11</BuildOrder>
-            <BuildOrder>10</BuildOrder>
-        </CppCompile>
-        <ResFiles Include="resource.res">
-            <BuildOrder>8</BuildOrder>
-            <BuildOrder>53</BuildOrder>
-        </ResFiles>
-        <CppCompile Include="ShaderFunction.cpp">
-            <BuildOrder>41</BuildOrder>
-            <Form>frmShaderFunction</Form>
-            <DependentOn>ShaderFunction.h</DependentOn>
+        <CppCompile Include="ELocatorAPI.cpp">
             <BuildOrder>0</BuildOrder>
         </CppCompile>
-        <CppCompile Include="stdafx.cpp">
-            <BuildOrder>60</BuildOrder>
-        </CppCompile>
-        <PCHCompile Include="stdafx.h">
-            <BuildOrder>61</BuildOrder>
-            <PCH>true</PCH>
-        </PCHCompile>
-        <CppCompile Include="TextForm.cpp">
-            <BuildOrder>44</BuildOrder>
-            <Form>frmText</Form>
-            <DependentOn>TextForm.h</DependentOn>
-            <BuildOrder>1</BuildOrder>
-        </CppCompile>
-        <None Include="WaveForm.h">
-            <BuildOrder>29</BuildOrder>
-            <BuildOrder>16</BuildOrder>
+        <None Include="..\..\SDK\include\stackwalker\StackWalker.h">
+            <BuildOrder>95</BuildOrder>
         </None>
-        <CppCompile Include="xrEProps.cpp">
-            <BuildOrder>47</BuildOrder>
-            <BuildOrder>4</BuildOrder>
+        <CppCompile Include="..\..\SDK\sources\stackwalker\StackWalker.cpp">
+            <BuildOrder>96</BuildOrder>
         </CppCompile>
-        <ResFiles Include="xrEPropsB.res">
-            <BuildOrder>2</BuildOrder>
-            <BuildOrder>12</BuildOrder>
-        </ResFiles>
-        <FormResources Include="ShaderFunction.dfm"/>
-        <FormResources Include="TextForm.dfm"/>
-        <FormResources Include="PropertiesList.dfm"/>
-        <FormResources Include="GameTypeForm.dfm"/>
-        <FormResources Include="ChoseForm.dfm"/>
-        <FormResources Include="NumericVector.dfm"/>
-        <FormResources Include="ItemList.dfm"/>
-        <FormResources Include="ItemDialog.dfm"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>
@@ -291,19 +211,19 @@
                     <VersionInfo Name="MajorVer">1</VersionInfo>
                     <VersionInfo Name="MinorVer">0</VersionInfo>
                     <VersionInfo Name="Release">0</VersionInfo>
-                    <VersionInfo Name="Build">0</VersionInfo>
+                    <VersionInfo Name="Build">34</VersionInfo>
                     <VersionInfo Name="Debug">False</VersionInfo>
                     <VersionInfo Name="PreRelease">False</VersionInfo>
                     <VersionInfo Name="Special">False</VersionInfo>
                     <VersionInfo Name="Private">False</VersionInfo>
                     <VersionInfo Name="DLL">False</VersionInfo>
-                    <VersionInfo Name="Locale">1033</VersionInfo>
-                    <VersionInfo Name="CodePage">1252</VersionInfo>
+                    <VersionInfo Name="Locale">1058</VersionInfo>
+                    <VersionInfo Name="CodePage">1251</VersionInfo>
                 </VersionInfo>
                 <VersionInfoKeys>
                     <VersionInfoKeys Name="CompanyName"/>
                     <VersionInfoKeys Name="FileDescription"/>
-                    <VersionInfoKeys Name="FileVersion">1.0.0.0</VersionInfoKeys>
+                    <VersionInfoKeys Name="FileVersion">1.0.0.34</VersionInfoKeys>
                     <VersionInfoKeys Name="InternalName"/>
                     <VersionInfoKeys Name="LegalCopyright"/>
                     <VersionInfoKeys Name="LegalTrademarks"/>
@@ -313,93 +233,145 @@
                     <VersionInfoKeys Name="Comments"/>
                 </VersionInfoKeys>
                 <HistoryLists_hlIncludePath>
-                    <HistoryLists_hlIncludePath Name="Count">16</HistoryLists_hlIncludePath>
-                    <HistoryLists_hlIncludePath Name="Item0">$(BCB)\include;$(BCB)\include\vcl;$(BCB)\Include\Mfc;..\..\xrCore;..\..\..\SDK\components\ElPack\Code\Source;..\..\..\SDK\components\AlexMX</HistoryLists_hlIncludePath>
-                    <HistoryLists_hlIncludePath Name="Item1">$(BCB)\include;$(BCB)\include\vcl;$(BCB)\Include\Mfc;..\..\xrCore;..\..\..\SDK\components\ElPack\Code\Source</HistoryLists_hlIncludePath>
-                    <HistoryLists_hlIncludePath Name="Item2">$(BCB)\include;$(BCB)\include\vcl;$(BCB)\Include\Mfc;..\..\xrCore</HistoryLists_hlIncludePath>
-                    <HistoryLists_hlIncludePath Name="Item3">$(BCB)\include;$(BCB)\include\vcl;$(BCB)\Include\Mfc</HistoryLists_hlIncludePath>
-                    <HistoryLists_hlIncludePath Name="Item4">$(BCB)\include;$(BCB)\include\vcl;$(BCB)\Include\Mfc;$(CORE_DIR);$(COMPONENTS)\alexmx;$(COMPONENTS)\elpack\code\source</HistoryLists_hlIncludePath>
-                    <HistoryLists_hlIncludePath Name="Item5">$(VC_INCLUDE);$(BCB)\include;$(BCB)\include\vcl;$(BCB)\Include\Mfc;$(CORE_DIR);$(COMPONENTS)\alexmx;$(COMPONENTS)\elpack\code\source</HistoryLists_hlIncludePath>
-                    <HistoryLists_hlIncludePath Name="Item6">E:\Program Files\Borland\CBuilder6\Projects;$(BCB)\include;$(BCB)\include\vcl;$(BCB)\Include\Mfc;$(CORE_DIR);$(COMPONENTS)\alexmx;$(COMPONENTS)\elpack\code\source</HistoryLists_hlIncludePath>
-                    <HistoryLists_hlIncludePath Name="Item7">$(BCB)\include;$(BCB)\include\vcl;$(BCB)\Include\Mfc;$(CORE_DIR);$(COMPONENTS)\alexmx;$(COMPONENTS)\elpack</HistoryLists_hlIncludePath>
-                    <HistoryLists_hlIncludePath Name="Item8">$(BCB)\include;$(BCB)\include\vcl;$(BCB)\Include\Mfc;$(CORE_DIR)</HistoryLists_hlIncludePath>
-                    <HistoryLists_hlIncludePath Name="Item9">$(BCB)\include;$(BCB)\include\vcl;R:\Borland\Components6\AlexMX;R:\Borland\Components6\ElPack\Code\Source;R:\Borland\CBuilder6\Include\Mfc;P:\xrCore</HistoryLists_hlIncludePath>
-                    <HistoryLists_hlIncludePath Name="Item10">$(BCB)\include;$(BCB)\include\vcl;R:\Borland\Components6\AlexMX;R:\Borland\Components6\ElPack\Code\Source;R:\Borland\CBuilder6\Include\Mfc;P:\xrCore;R:\SDK\DirectX9.0_sum_2004\Include</HistoryLists_hlIncludePath>
-                    <HistoryLists_hlIncludePath Name="Item11">R:\SDK\DirectX9.0_sum_2004\Include;C:\Rad\Borland\CBuilder6\Projects;$(BCB)\include;$(BCB)\include\vcl;P:\MagicFM_Borland\Sdk\Include;R:\Borland\Components6\AlexMX;R:\Borland\Components6\ElPack\Code\Source;R:\Borland\CBuilder6\Include\Mfc;P:\xrCore</HistoryLists_hlIncludePath>
-                    <HistoryLists_hlIncludePath Name="Item12">C:\Rad\Borland\CBuilder6\Projects;R:\SDK\DirectX9.0\include;$(BCB)\include;$(BCB)\include\vcl;P:\MagicFM_Borland\Sdk\Include;R:\Borland\Components6\AlexMX;R:\Borland\Components6\ElPack\Code\Source;R:\Borland\CBuilder6\Include\Mfc;P:\xrCore</HistoryLists_hlIncludePath>
-                    <HistoryLists_hlIncludePath Name="Item13">R:\SDK\DirectX9.0\include;$(BCB)\include;$(BCB)\include\vcl;P:\MagicFM_Borland\Sdk\Include;R:\Borland\Components6\AlexMX;R:\Borland\Components6\ElPack\Code\Source;R:\Borland\CBuilder6\Include\Mfc;P:\xrCore</HistoryLists_hlIncludePath>
-                    <HistoryLists_hlIncludePath Name="Item14">R:\SDK\DirectX9.0\include;$(BCB)\include;$(BCB)\include\vcl;P:\MagicFM_Borland\Sdk\Include;R:\Borland\Components6\AlexMX;R:\Borland\Components6\ElPack\Code\Source;R:\Borland\CBuilder6\Include\Mfc</HistoryLists_hlIncludePath>
-                    <HistoryLists_hlIncludePath Name="Item15">R:\SDK\DirectX9.0\include;$(BCB)\include;$(BCB)\include\vcl;P:\MagicFM_Borland\Sdk\Include;R:\Borland\Components6\AlexMX;R:\Borland\Components6\ElPack\Code\Source;R:\VS7.NET\Vc7\atlmfc\include;R:\Borland\CBuilder6\Include\Mfc</HistoryLists_hlIncludePath>
+                    <HistoryLists_hlIncludePath Name="Count">30</HistoryLists_hlIncludePath>
+                    <HistoryLists_hlIncludePath Name="Item0">..\editors\ECore;blackbox;$(DXSDK_DIR)\Include;$(BCB)\include;$(BCB)\include\vcl;$(BCB)\Include\Mfc;C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\SDK\ScopeCppSDK\vc15\SDK\include\shared;..\utils\ETools</HistoryLists_hlIncludePath>
+                    <HistoryLists_hlIncludePath Name="Item1">..\editors\ECore;blackbox;$(DXSDK_DIR)\Include;$(BCB)\include;$(BCB)\include\vcl;$(BCB)\Include\Mfc;C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\include;..\utils\ETools</HistoryLists_hlIncludePath>
+                    <HistoryLists_hlIncludePath Name="Item2">..\editors\ECore;blackbox;$(DXSDK_DIR)\Include;$(BCB)\include;$(BCB)\include\vcl;$(BCB)\Include\Mfc;C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\include;..\..\utils\ETools</HistoryLists_hlIncludePath>
+                    <HistoryLists_hlIncludePath Name="Item3">..\editors\ECore;blackbox;$(DXSDK_DIR)\Include;$(BCB)\include;$(BCB)\include\vcl;$(BCB)\Include\Mfc;C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\include</HistoryLists_hlIncludePath>
+                    <HistoryLists_hlIncludePath Name="Item4">..\editors\ECore;blackbox;$(DXSDK_DIR)\Include;$(BCB)\include;$(BCB)\include\vcl;$(BCB)\Include\Mfc</HistoryLists_hlIncludePath>
+                    <HistoryLists_hlIncludePath Name="Item5">..\editors\ECore;E:\Program Files (x86)\Borland\CBuilder6\Projects;blackbox;$(ETOOLS_DIR);$(DXSDK_DIR)\Include;$(BCB)\include;$(BCB)\include\vcl;$(BCB)\Include\Mfc</HistoryLists_hlIncludePath>
+                    <HistoryLists_hlIncludePath Name="Item6">blackbox;$(ETOOLS_DIR);$(DXSDK_DIR)\Include;$(BCB)\include;$(BCB)\include\vcl;$(BCB)\Include\Mfc</HistoryLists_hlIncludePath>
+                    <HistoryLists_hlIncludePath Name="Item7">$(VC_INCLUDE);blackbox;$(ETOOLS_DIR);$(DXSDK_DIR)\Include;$(BCB)\include;$(BCB)\include\vcl;$(BCB)\Include\Mfc</HistoryLists_hlIncludePath>
+                    <HistoryLists_hlIncludePath Name="Item8">blackbox;$(ETOOLS_DIR);$(DXSDK_DIR)\Include;$(BCB)\_include_;$(BCB)\include\vcl;$(BCB)\Include\Mfc</HistoryLists_hlIncludePath>
+                    <HistoryLists_hlIncludePath Name="Item9">$(ETOOLS_DIR);$(DXSDK_DIR)\Include;$(BCB)\include;$(BCB)\include\vcl;$(BCB)\Include\Mfc</HistoryLists_hlIncludePath>
+                    <HistoryLists_hlIncludePath Name="Item10">$(DXSDK_DIR)\Include;$(BCB)\include;$(BCB)\include\vcl;$(BCB)\Include\Mfc</HistoryLists_hlIncludePath>
+                    <HistoryLists_hlIncludePath Name="Item11">$(DXSDK)\Include;$(BCB)\include;$(BCB)\include\vcl;$(BCB)\Include\Mfc</HistoryLists_hlIncludePath>
+                    <HistoryLists_hlIncludePath Name="Item12">I:\Program Files\Microsoft DirectX SDK (October 2006)\Include;$(BCB)\include;$(BCB)\include\vcl;R:\SDK\MagicFM_Borland\Sdk\Include;R:\Borland\Components6\AlexMX;R:\Borland\Components6\ElPack\Code\Source;$(BCB)\Include\Mfc</HistoryLists_hlIncludePath>
+                    <HistoryLists_hlIncludePath Name="Item13">R:\SDK\Microsoft DirectX 9.0 SDK (April 2005)\Include;$(BCB)\include;$(BCB)\include\vcl;R:\SDK\MagicFM_Borland\Sdk\Include;R:\Borland\Components6\AlexMX;R:\Borland\Components6\ElPack\Code\Source;$(BCB)\Include\Mfc</HistoryLists_hlIncludePath>
+                    <HistoryLists_hlIncludePath Name="Item14">R:\SDK\Microsoft DirectX 9.0 SDK (April 2005)\Include;$(BCB)\include;$(BCB)\include\vcl;R:\SDK\MagicFM_Borland\Sdk\Include;R:\Borland\Components6\AlexMX;R:\Borland\Components6\ElPack\Code\Source;R:\Borland\CBuilder6\Include\Mfc</HistoryLists_hlIncludePath>
+                    <HistoryLists_hlIncludePath Name="Item15">R:\SDK\Microsoft DirectX 9.0 SDK (February 2005)\Include;$(BCB)\include;$(BCB)\include\vcl;R:\SDK\MagicFM_Borland\Sdk\Include;R:\Borland\Components6\AlexMX;R:\Borland\Components6\ElPack\Code\Source;R:\Borland\CBuilder6\Include\Mfc;..\Tools\Etools</HistoryLists_hlIncludePath>
+                    <HistoryLists_hlIncludePath Name="Item16">R:\SDK\Microsoft DirectX 9.0 SDK (October 2004)\Include;$(BCB)\include;$(BCB)\include\vcl;R:\SDK\MagicFM_Borland\Sdk\Include;R:\Borland\Components6\AlexMX;R:\Borland\Components6\ElPack\Code\Source;R:\Borland\CBuilder6\Include\Mfc;..\Tools\Etools</HistoryLists_hlIncludePath>
+                    <HistoryLists_hlIncludePath Name="Item17">R:\SDK\DirectX9.0_sum_2004\Include;$(BCB)\include;$(BCB)\include\vcl;P:\MagicFM_Borland\Sdk\Include;R:\Borland\Components6\AlexMX;R:\Borland\Components6\ElPack\Code\Source;R:\Borland\CBuilder6\Include\Mfc;..\Tools\Etools</HistoryLists_hlIncludePath>
+                    <HistoryLists_hlIncludePath Name="Item18">R:\SDK\DirectX9.0_sum_2004\Include;$(BCB)\include;$(BCB)\include\vcl;P:\MagicFM_Borland\Sdk\Include;R:\Borland\Components6\AlexMX;R:\Borland\Components6\ElPack\Code\Source;R:\Borland\CBuilder6\Include\Mfc</HistoryLists_hlIncludePath>
+                    <HistoryLists_hlIncludePath Name="Item19">$(BCB)\include;$(BCB)\include\vcl;P:\MagicFM_Borland\Sdk\Include;R:\Borland\Components6\AlexMX;R:\Borland\Components6\ElPack\Code\Source;R:\Borland\CBuilder6\Include\Mfc</HistoryLists_hlIncludePath>
+                    <HistoryLists_hlIncludePath Name="Item20">R:\SDK\DirectX9.0\include;$(BCB)\include;$(BCB)\include\vcl;P:\MagicFM_Borland\Sdk\Include;R:\Borland\Components6\AlexMX;R:\Borland\Components6\ElPack\Code\Source;R:\Borland\CBuilder6\Include\Mfc</HistoryLists_hlIncludePath>
+                    <HistoryLists_hlIncludePath Name="Item21">R:\SDK\DirectX9.0\include;$(BCB)\include;$(BCB)\include\vcl;P:\MagicFM_Borland\Sdk\Include;R:\Borland\Components6\AlexMX;R:\Borland\Components6\ElPack\Code\Source;R:\VS7.NET\Vc7\atlmfc\include;R:\Borland\CBuilder6\Include\Mfc</HistoryLists_hlIncludePath>
+                    <HistoryLists_hlIncludePath Name="Item22">R:\SDK\DirectX9.0\include;$(BCB)\include;$(BCB)\include\vcl;P:\MagicFM_Borland\Sdk\Include;R:\Borland\Components6\AlexMX;R:\Borland\Components6\ElPack\Code\Source;R:\VS7.NET\Vc7\atlmfc\include</HistoryLists_hlIncludePath>
+                    <HistoryLists_hlIncludePath Name="Item23">R:\SDK\DirectX8.1\include;$(BCB)\include;$(BCB)\include\vcl;P:\MagicFM_Borland\Sdk\Include;R:\Borland\Components6\AlexMX;R:\Borland\Components6\ElPack\Code\Source;R:\VS7.NET\Vc7\atlmfc\include</HistoryLists_hlIncludePath>
+                    <HistoryLists_hlIncludePath Name="Item24">R:\SDK\DirectX8.0\include;$(BCB)\include;$(BCB)\include\vcl;P:\MagicFM_Borland\Sdk\Include;R:\Borland\Components6\AlexMX;R:\Borland\Components6\ElPack\Code\Source;R:\VS7.NET\Vc7\atlmfc\include</HistoryLists_hlIncludePath>
+                    <HistoryLists_hlIncludePath Name="Item25">R:\SDK\DirectX9.0\include;$(BCB)\include;$(BCB)\include\vcl;P:\MagicFM_Borland\Sdk\Include;R:\Borland\Components6\AlexMX;R:\Borland\Components6\ElPack\Code\Source;R:\VS7.NET\Vc7\atlmfc\include;$(BCB)\include\mfc</HistoryLists_hlIncludePath>
+                    <HistoryLists_hlIncludePath Name="Item26">R:\SDK\DirectX9.0\include;$(BCB)\include;$(BCB)\include\vcl;P:\MagicFM_Borland\Sdk\Include;R:\Borland\Components6\AlexMX;R:\Borland\Components6\ElPack\Code\Source;$(BCB)\include\mfc</HistoryLists_hlIncludePath>
+                    <HistoryLists_hlIncludePath Name="Item27">R:\SDK\DirectX9.0\include;$(BCB)\include;$(BCB)\include\vcl;P:\MagicFM_Borland\Sdk\Include;R:\Borland\Components6\AlexMX;R:\Borland\Components6\ElPack\Code\Source</HistoryLists_hlIncludePath>
+                    <HistoryLists_hlIncludePath Name="Item28">R:\DirectX9.0\include;$(BCB)\include;$(BCB)\include\vcl;P:\MagicFM_Borland\Sdk\Include;R:\Borland\Components6\AlexMX;R:\Borland\Components6\ElPack\Code\Source</HistoryLists_hlIncludePath>
+                    <HistoryLists_hlIncludePath Name="Item29">R:\DirectX9\include;$(BCB)\include;$(BCB)\include\vcl;P:\MagicFM_Borland\Sdk\Include;R:\Borland\Components6\AlexMX;R:\Borland\Components6\ElPack\Code\Source</HistoryLists_hlIncludePath>
                 </HistoryLists_hlIncludePath>
                 <HistoryLists_hlLibraryPath>
-                    <HistoryLists_hlLibraryPath Name="Count">21</HistoryLists_hlLibraryPath>
-                    <HistoryLists_hlLibraryPath Name="Item0">..\..\..\sdk\components\alexmx;..\..\..\sdk\components\elpack\code;$(BCB)\lib;$(BCB)\lib\obj;$(BCB)\Projects\Lib;$(BCB)\Lib\Psdk;..\..\..\sdk\components\elpack\code\Source;..\..\..\..\libraries\Mixed</HistoryLists_hlLibraryPath>
-                    <HistoryLists_hlLibraryPath Name="Item1">..\..\..\sdk\components\alexmx;..\..\..\sdk\components\elpack\code;$(BCB)\lib;$(BCB)\lib\obj;$(BCB)\Projects\Lib;$(BCB)\Lib\Psdk;..\..\..\..\libraries\Debug;..\..\..\sdk\components\elpack\code\Source</HistoryLists_hlLibraryPath>
-                    <HistoryLists_hlLibraryPath Name="Item2">..\..\..\sdk\components\alexmx;..\..\..\sdk\components\elpack\code;$(BCB)\lib;$(BCB)\lib\obj;$(BCB)\Projects\Lib;$(BCB)\Lib\Psdk;..\..\..\..\libraries\Debug</HistoryLists_hlLibraryPath>
-                    <HistoryLists_hlLibraryPath Name="Item3">..\..\..\sdk\components\alexmx;..\..\..\sdk\components\elpack\code;$(BCB)\lib;$(BCB)\lib\obj;$(BCB)\Projects\Lib;$(BCB)\Lib\Psdk;..\..\..\..\libraries</HistoryLists_hlLibraryPath>
-                    <HistoryLists_hlLibraryPath Name="Item4">..\..\..\sdk\components\alexmx;..\..\..\sdk\components\elpack\code;$(BCB)\lib;$(BCB)\lib\obj;$(BCB)\Projects\Lib;$(BCB)\Lib\Psdk</HistoryLists_hlLibraryPath>
-                    <HistoryLists_hlLibraryPath Name="Item5">..\..\..\sdk\components\alexmx;..\..\..\sdk\components\elpack\code;z:\Program Files (x86)\Borland\CBuilder6\Projects;$(BCB)\lib;$(BCB)\lib\obj;$(BCB)\Projects\Lib;$(BCB)\Lib\Psdk;$(COMPONENTS)\alexmx;$(COMPONENTS)\elpack\code;$(OUT_LIB_DIR)</HistoryLists_hlLibraryPath>
-                    <HistoryLists_hlLibraryPath Name="Item6">z:\Program Files (x86)\Borland\CBuilder6\Projects;$(BCB)\lib;$(BCB)\lib\obj;$(BCB)\Projects\Lib;$(BCB)\Lib\Psdk;$(COMPONENTS)\alexmx;$(COMPONENTS)\elpack\code;$(OUT_LIB_DIR)</HistoryLists_hlLibraryPath>
-                    <HistoryLists_hlLibraryPath Name="Item7">z:\Program Files (x86)\Borland\CBuilder6\Projects;$(BCB)\lib;$(BCB)\lib\obj;$(BCB)\Projects\Lib;$(BCB)\Lib\Psdk;$(COMPONENTS)\alexmx;$(COMPONENTS)\elpack\code;$(OUT_LIB_DIR);z:\Program Files (x86)\Borland\CBuilder6\Projects\Lib</HistoryLists_hlLibraryPath>
-                    <HistoryLists_hlLibraryPath Name="Item8">E:\Program Files\Borland\CBuilder6\Projects;$(BCB)\lib;$(BCB)\lib\obj;$(BCB)\Projects\Lib;$(BCB)\Lib\Psdk;$(COMPONENTS)\alexmx;$(COMPONENTS)\elpack\code;$(OUT_LIB_DIR)</HistoryLists_hlLibraryPath>
-                    <HistoryLists_hlLibraryPath Name="Item9">E:\Program Files\Borland\CBuilder6\Projects;$(BCB)\lib;$(BCB)\lib\obj;$(BCB)\Projects\Lib;$(BCB)\Lib\Psdk;$(COMPONENTS)\alexmx;$(COMPONENTS)\elpack\code</HistoryLists_hlLibraryPath>
-                    <HistoryLists_hlLibraryPath Name="Item10">E:\Program Files\Borland\CBuilder6\Projects;$(BCB)\lib;$(BCB)\lib\obj;$(BCB)\Projects\Lib;$(BCB)\Lib\Psdk;$(COMPONENTS)\alexmx</HistoryLists_hlLibraryPath>
-                    <HistoryLists_hlLibraryPath Name="Item11">E:\Program Files\Borland\CBuilder6\Projects;$(BCB)\lib;$(BCB)\lib\obj;$(BCB)\Projects\Lib;$(BCB)\Lib\Psdk;x:\stalker_addon\libraries;$(COMPONENTS)\alexmx;X:\stalker_addon\sources\sdk\components\ElPack\Code;x:\libraries</HistoryLists_hlLibraryPath>
-                    <HistoryLists_hlLibraryPath Name="Item12">E:\Program Files\Borland\CBuilder6\Projects;$(BCB)\lib;$(BCB)\lib\obj;$(BCB)\Projects\Lib;$(BCB)\Lib\Psdk;x:\stalker_addon\libraries;$(COMPONENTS)\alexmx;X:\stalker_addon\sources\sdk\components\ElPack\Code</HistoryLists_hlLibraryPath>
-                    <HistoryLists_hlLibraryPath Name="Item13">E:\Program Files\Borland\CBuilder6\Projects;$(BCB)\lib;$(BCB)\lib\obj;$(BCB)\Projects\Lib;$(BCB)\Lib\Psdk;x:\stalker_addon\libraries;$(COMPONENTS)\alexmx</HistoryLists_hlLibraryPath>
-                    <HistoryLists_hlLibraryPath Name="Item14">$(BCB)\lib;$(BCB)\lib\obj;$(BCB)\Projects\Lib;$(BCB)\Lib\Psdk;x:\stalker_addon\libraries;$(COMPONENTS)\alexmx</HistoryLists_hlLibraryPath>
-                    <HistoryLists_hlLibraryPath Name="Item15">I:\Projects\editors\components\ElPack\Code;$(BCB)\lib;$(BCB)\lib\obj;$(BCB)\Projects\Lib;$(BCB)\Lib\Psdk;x:\libraries;$(COMPONENTS)\alexmx</HistoryLists_hlLibraryPath>
-                    <HistoryLists_hlLibraryPath Name="Item16">$(BCB)\lib;$(BCB)\lib\obj;$(BCB)\Projects\Lib;$(BCB)\Lib\Psdk;x:\libraries;$(COMPONENTS)\alexmx</HistoryLists_hlLibraryPath>
-                    <HistoryLists_hlLibraryPath Name="Item17">$(BCB)\lib;$(BCB)\lib\obj;$(BCB)\Projects\Lib;$(BCB)\Lib\Psdk;x:\;x:\libraries</HistoryLists_hlLibraryPath>
-                    <HistoryLists_hlLibraryPath Name="Item18">C:\Rad\Borland\CBuilder6\Projects;$(BCB)\lib;$(BCB)\lib\obj;$(BCB)\Projects\Lib;R:\Borland\Components6\AlexMX;R:\Borland\Components6\ElPack\Code;R:\Borland\CBuilder6\Lib\Psdk;x:\</HistoryLists_hlLibraryPath>
-                    <HistoryLists_hlLibraryPath Name="Item19">$(BCB)\lib;$(BCB)\lib\obj;$(BCB)\Projects\Lib;R:\Borland\Components6\AlexMX;R:\Borland\Components6\ElPack\Code;R:\Borland\CBuilder6\Lib\Psdk;x:\</HistoryLists_hlLibraryPath>
-                    <HistoryLists_hlLibraryPath Name="Item20">c:\rad\borland\CBuilder5\Projects;$(BCB)\lib;$(BCB)\lib\obj;$(BCB)\Projects\Lib;R:\Borland\Components6\AlexMX;R:\Borland\Components6\ElPack\Code;R:\Borland\CBuilder6\Lib\Psdk;..\Editors\lib\dx;..\Editors\lib;x:\</HistoryLists_hlLibraryPath>
+                    <HistoryLists_hlLibraryPath Name="Count">30</HistoryLists_hlLibraryPath>
+                    <HistoryLists_hlLibraryPath Name="Item0">..\editors\ECore;blackbox;$(BCB)\lib;$(BCB)\lib\obj;$(BCB)\Projects\Lib;$(BCB)\lib\psdk;..\..\..\libraries\Mixed</HistoryLists_hlLibraryPath>
+                    <HistoryLists_hlLibraryPath Name="Item1">..\editors\ECore;blackbox;$(BCB)\lib;$(BCB)\lib\obj;$(BCB)\Projects\Lib;$(BCB)\lib\psdk;..\..\..\libraries\Debug</HistoryLists_hlLibraryPath>
+                    <HistoryLists_hlLibraryPath Name="Item2">..\editors\ECore;blackbox;$(BCB)\lib;$(BCB)\lib\obj;$(BCB)\Projects\Lib;$(BCB)\lib\psdk;..\..\..\libraries</HistoryLists_hlLibraryPath>
+                    <HistoryLists_hlLibraryPath Name="Item3">..\editors\ECore;blackbox;$(BCB)\lib;$(BCB)\lib\obj;$(BCB)\Projects\Lib;$(BCB)\lib\psdk;..\..\..\binaries</HistoryLists_hlLibraryPath>
+                    <HistoryLists_hlLibraryPath Name="Item4">..\editors\ECore;blackbox;$(BCB)\lib;$(BCB)\lib\obj;$(BCB)\Projects\Lib;$(BCB)\lib\psdk</HistoryLists_hlLibraryPath>
+                    <HistoryLists_hlLibraryPath Name="Item5">..\editors\ECore;E:\Program Files (x86)\Borland\CBuilder6\Projects;blackbox;$(BCB)\lib;$(BCB)\lib\obj;$(BCB)\Projects\Lib;$(BCB)\lib\psdk;$(OUT_LIB_DIR);$(COMPONENTS)\Elpack\Code;$(COMPONENTS)\AlexMX</HistoryLists_hlLibraryPath>
+                    <HistoryLists_hlLibraryPath Name="Item6">blackbox;$(BCB)\lib;$(BCB)\lib\obj;$(BCB)\Projects\Lib;$(BCB)\lib\psdk;$(OUT_LIB_DIR);$(COMPONENTS)\Elpack\Code;$(COMPONENTS)\AlexMX</HistoryLists_hlLibraryPath>
+                    <HistoryLists_hlLibraryPath Name="Item7">blackbox;$(BCB)\lib;$(BCB)\lib\obj;$(BCB)\Projects\Lib;$(BCB)\lib\psdk;$(COMPONENTS)\ElPack\Code;$(OUT_LIB_DIR)</HistoryLists_hlLibraryPath>
+                    <HistoryLists_hlLibraryPath Name="Item8">blackbox;$(BCB)\lib;$(BCB)\lib\obj;$(BCB)\Projects\Lib;$(BCB)\lib\psdk;$(COMPONENTS)\ElPack\Code;$(OUTPUT_LIBRARIES_DIR)</HistoryLists_hlLibraryPath>
+                    <HistoryLists_hlLibraryPath Name="Item9">blackbox;$(BCB)\lib;$(BCB)\lib\obj;$(BCB)\Projects\Lib;$(BCB)\lib\psdk;$(COMPONENTS)\ElPack\Code;$(OUTPUT_LINRARIES_DIR)</HistoryLists_hlLibraryPath>
+                    <HistoryLists_hlLibraryPath Name="Item10">blackbox;$(BCB)\lib;$(BCB)\lib\obj;$(BCB)\Projects\Lib;$(BCB)\lib\psdk;$(COMPONENTS)\ElPack\Code</HistoryLists_hlLibraryPath>
+                    <HistoryLists_hlLibraryPath Name="Item11">blackbox;$(BCB)\lib;$(BCB)\lib\obj;$(BCB)\Projects\Lib;$(BCB)\lib\psdk;$(COMPONENTS_DIR)\ElPack\Code</HistoryLists_hlLibraryPath>
+                    <HistoryLists_hlLibraryPath Name="Item12">blackbox;$(BCB)\lib;$(BCB)\lib\obj;$(BCB)\Projects\Lib;x:\stalker_addon\libraries;$(BCB)\lib\psdk;X:\stalker_addon\sources\sdk\components\ElPack\Code;x:\libraries;X:\sources\sdk\components\ElPack\Code</HistoryLists_hlLibraryPath>
+                    <HistoryLists_hlLibraryPath Name="Item13">blackbox;$(BCB)\lib;$(BCB)\lib\obj;$(BCB)\Projects\Lib;x:\stalker_addon\libraries;$(BCB)\lib\psdk;X:\stalker_addon\sources\sdk\components\ElPack\Code;x:\libraries</HistoryLists_hlLibraryPath>
+                    <HistoryLists_hlLibraryPath Name="Item14">blackbox;$(BCB)\lib;$(BCB)\lib\obj;$(BCB)\Projects\Lib;x:\stalker_addon\libraries;$(BCB)\lib\psdk;X:\stalker_addon\sources\sdk\components\ElPack\Code;x:\libraries\</HistoryLists_hlLibraryPath>
+                    <HistoryLists_hlLibraryPath Name="Item15">blackbox;$(BCB)\lib;$(BCB)\lib\obj;$(BCB)\Projects\Lib;x:\stalker_addon\libraries;$(BCB)\lib\psdk;X:\stalker_addon\sources\sdk\components\ElPack\Code</HistoryLists_hlLibraryPath>
+                    <HistoryLists_hlLibraryPath Name="Item16">blackbox;$(BCB)\lib;$(BCB)\lib\obj;$(BCB)\Projects\Lib;x:\stalker_addon\libraries;$(BCB)\lib\psdk</HistoryLists_hlLibraryPath>
+                    <HistoryLists_hlLibraryPath Name="Item17">blackbox;$(BCB)\lib;$(BCB)\lib\obj;$(BCB)\Projects\Lib;x:\libraries;$(BCB)\lib\psdk</HistoryLists_hlLibraryPath>
+                    <HistoryLists_hlLibraryPath Name="Item18">blackbox;$(BCB)\lib;$(BCB)\lib\obj;$(BCB)\Projects\Lib;x:\libraries</HistoryLists_hlLibraryPath>
+                    <HistoryLists_hlLibraryPath Name="Item19">$(BCB)\lib;$(BCB)\lib\obj;$(BCB)\Projects\Lib;x:\libraries</HistoryLists_hlLibraryPath>
+                    <HistoryLists_hlLibraryPath Name="Item20">i:\Projects\editors\components\Alexmx;$(BCB)\lib;$(BCB)\lib\obj;$(BCB)\Projects\Lib;x:\libraries</HistoryLists_hlLibraryPath>
+                    <HistoryLists_hlLibraryPath Name="Item21">$(BCB)\lib;$(BCB)\lib\obj;$(BCB)\Projects\Lib;$(COMPONENTS)\AlexMX;$(COMPONENTS)\ElPack\Code;x:\libraries</HistoryLists_hlLibraryPath>
+                    <HistoryLists_hlLibraryPath Name="Item22">$(BCB)\lib;$(BCB)\lib\obj;$(BCB)\Projects\Lib;$(COMPONENTS)\AlexMX;R:\Borland\Components6\ElPack\Code;R:\Borland\CBuilder6\Lib\Psdk;..\Editors\lib\dx;..\Editors\lib;x:\</HistoryLists_hlLibraryPath>
+                    <HistoryLists_hlLibraryPath Name="Item23">c:\rad\borland\CBuilder5\Projects;$(BCB)\lib;$(BCB)\lib\obj;$(BCB)\Projects\Lib;R:\Borland\Components6\AlexMX;R:\Borland\Components6\ElPack\Code;R:\Borland\CBuilder6\Lib\Psdk;..\Editors\lib\dx;..\Editors\lib;x:\</HistoryLists_hlLibraryPath>
+                    <HistoryLists_hlLibraryPath Name="Item24">c:\rad\borland\CBuilder5\Projects;$(BCB)\lib;$(BCB)\lib\obj;$(BCB)\Projects\Lib;R:\Borland\Components6\AlexMX;R:\Borland\Components6\ElPack\Code;R:\Borland\CBuilder6\Lib\Psdk;..\Editors\lib\dx;..\Editors\lib</HistoryLists_hlLibraryPath>
+                    <HistoryLists_hlLibraryPath Name="Item25">c:\rad\borland\CBuilder5\Projects;$(BCB)\lib;$(BCB)\lib\obj;$(BCB)\Projects\Lib;R:\Borland\Components6\AlexMX;R:\Borland\Components6\ElPack\Code;R:\Borland\CBuilder6\Lib\Psdk;..\lib\dx;..\lib</HistoryLists_hlLibraryPath>
+                    <HistoryLists_hlLibraryPath Name="Item26">c:\rad\borland\CBuilder5\Projects;$(BCB)\lib;$(BCB)\lib\obj;$(BCB)\Projects\Lib;R:\Borland\Components6\AlexMX;R:\Borland\Components6\ElPack\Code;R:\Borland\CBuilder6\Lib\Psdk;lib;lib\dx</HistoryLists_hlLibraryPath>
+                    <HistoryLists_hlLibraryPath Name="Item27">c:\rad\borland\CBuilder5\Projects;$(BCB)\lib;$(BCB)\lib\obj;$(BCB)\Projects\Lib;R:\Borland\Components6\AlexMX;R:\Borland\Components6\ElPack\Code;R:\Borland\CBuilder6\Lib\Psdk;lib</HistoryLists_hlLibraryPath>
+                    <HistoryLists_hlLibraryPath Name="Item28">c:\rad\borland\CBuilder5\Projects;$(BCB)\lib;$(BCB)\lib\obj;$(BCB)\Projects\Lib;R:\Borland\Components6\AlexMX;R:\Borland\Components6\ElPack\Code;R:\Borland\CBuilder6\Lib\Psdk</HistoryLists_hlLibraryPath>
+                    <HistoryLists_hlLibraryPath Name="Item29">c:\rad\borland\CBuilder5\Projects;$(BCB)\lib;$(BCB)\lib\obj;$(BCB)\Projects\Lib;R:\Borland\Components6\AlexMX;R:\Borland\Components6\ElPack\Code;R:\Borland\CBuilder6\Lib\Psdk\</HistoryLists_hlLibraryPath>
                 </HistoryLists_hlLibraryPath>
                 <HistoryLists_hlDebugSourcePath>
                     <HistoryLists_hlDebugSourcePath Name="Count">1</HistoryLists_hlDebugSourcePath>
                     <HistoryLists_hlDebugSourcePath Name="Item0">$(BCB)\source\vcl</HistoryLists_hlDebugSourcePath>
                 </HistoryLists_hlDebugSourcePath>
                 <HistoryLists_hlConditionals>
-                    <HistoryLists_hlConditionals Name="Count">6</HistoryLists_hlConditionals>
-                    <HistoryLists_hlConditionals Name="Item0">_EDITOR;XR_EPROPS_EXPORTS;_DEBUG;__MIXED</HistoryLists_hlConditionals>
-                    <HistoryLists_hlConditionals Name="Item1">_EDITOR;XR_EPROPS_EXPORTS;_DEBUG</HistoryLists_hlConditionals>
-                    <HistoryLists_hlConditionals Name="Item2">_EDITOR;XR_EPROPS_EXPORTS</HistoryLists_hlConditionals>
-                    <HistoryLists_hlConditionals Name="Item3">_EDITOR;_XR_EPROPSB;_DEBUG</HistoryLists_hlConditionals>
-                    <HistoryLists_hlConditionals Name="Item4">_EDITOR;_EPROPSB;_DEBUG</HistoryLists_hlConditionals>
-                    <HistoryLists_hlConditionals Name="Item5">_DEBUG</HistoryLists_hlConditionals>
+                    <HistoryLists_hlConditionals Name="Count">16</HistoryLists_hlConditionals>
+                    <HistoryLists_hlConditionals Name="Item0">_EDITOR;_XRCOREB;XRCORE_EXPORTS;_DEBUG;NO_WIN32_LEAN_AND_MEAN;__MIXED_CONFMANAGER</HistoryLists_hlConditionals>
+                    <HistoryLists_hlConditionals Name="Item1">_EDITOR;_XRCOREB;XRCORE_EXPORTS;_DEBUG;NO_WIN32_LEAN_AND_MEAN</HistoryLists_hlConditionals>
+                    <HistoryLists_hlConditionals Name="Item2">_EDITOR;_XRCOREB;XRCORE_EXPORTS;_DEBUG;NO_WIN32_LEAN_AND_MEAN</HistoryLists_hlConditionals>
+                    <HistoryLists_hlConditionals Name="Item3">_EDITOR;_XRCOREB;XRCORE_EXPORTS;_DEBUG;NO_WIN32_LEAN_AND_MEAN</HistoryLists_hlConditionals>
+                    <HistoryLists_hlConditionals Name="Item4">_EDITOR;_XRCOREB;XRCORE_EXPORTS;_DEBUG;NO_WIN32_LEAN_AND_MEAN</HistoryLists_hlConditionals>
+                    <HistoryLists_hlConditionals Name="Item5">_EDITOR;_XRCOREB;XRCORE_EXPORTS;_DEBUG;NO_WIN32_LEAN_AND_MEAN</HistoryLists_hlConditionals>
+                    <HistoryLists_hlConditionals Name="Item6">_EDITOR;_XRCOREB;XRCORE_EXPORTS;_DEBUG;NO_WIN32_LEAN_AND_MEAN</HistoryLists_hlConditionals>
+                    <HistoryLists_hlConditionals Name="Item7">_EDITOR;_XRCOREB;XRCORE_EXPORTS;_DEBUG;NO_WIN32_LEAN_AND_MEAN</HistoryLists_hlConditionals>
+                    <HistoryLists_hlConditionals Name="Item8">_EDITOR;_XRCOREB;XRCORE_EXPORTS;_DEBUG</HistoryLists_hlConditionals>
+                    <HistoryLists_hlConditionals Name="Item9">_EDITOR;_XRCOREB;XRCORE_EXPORTS</HistoryLists_hlConditionals>
+                    <HistoryLists_hlConditionals Name="Item10">_XRCOREB;XRCORE_EXPORTS</HistoryLists_hlConditionals>
+                    <HistoryLists_hlConditionals Name="Item11">_XRCOREB;XRCORE_EXPORTS;_DEBUG</HistoryLists_hlConditionals>
+                    <HistoryLists_hlConditionals Name="Item12">_XRCOREB</HistoryLists_hlConditionals>
+                    <HistoryLists_hlConditionals Name="Item13">_LEVEL_OPTIONS</HistoryLists_hlConditionals>
+                    <HistoryLists_hlConditionals Name="Item14">_OPTIONS</HistoryLists_hlConditionals>
+                    <HistoryLists_hlConditionals Name="Item15">_DEBUG</HistoryLists_hlConditionals>
                 </HistoryLists_hlConditionals>
                 <HistoryLists_hlIntOutputDir>
-                    <HistoryLists_hlIntOutputDir Name="Count">5</HistoryLists_hlIntOutputDir>
-                    <HistoryLists_hlIntOutputDir Name="Item0">..\..\..\..\intermediate\Mixed\xrEPropsB</HistoryLists_hlIntOutputDir>
-                    <HistoryLists_hlIntOutputDir Name="Item1">..\..\..\..\intermediate\Debug\xrEPropsB</HistoryLists_hlIntOutputDir>
-                    <HistoryLists_hlIntOutputDir Name="Item2">x:\intermediate_ed\eprops</HistoryLists_hlIntOutputDir>
-                    <HistoryLists_hlIntOutputDir Name="Item3">$(OUTPUT_INTERMEDIATE_DIR)\eprops</HistoryLists_hlIntOutputDir>
-                    <HistoryLists_hlIntOutputDir Name="Item4">intermediate</HistoryLists_hlIntOutputDir>
+                    <HistoryLists_hlIntOutputDir Name="Count">10</HistoryLists_hlIntOutputDir>
+                    <HistoryLists_hlIntOutputDir Name="Item0">..\..\..\intermediate\Mixed\xrCoreB</HistoryLists_hlIntOutputDir>
+                    <HistoryLists_hlIntOutputDir Name="Item1">..\..\..\intermediate\Debug\xrCoreB</HistoryLists_hlIntOutputDir>
+                    <HistoryLists_hlIntOutputDir Name="Item2">x:\intermediate_ed\core</HistoryLists_hlIntOutputDir>
+                    <HistoryLists_hlIntOutputDir Name="Item3">$(OUTPUT_INTERMEDIATE_DIR)\core</HistoryLists_hlIntOutputDir>
+                    <HistoryLists_hlIntOutputDir Name="Item4">$(OUTPUT_INTERMEDIATE_DIR)</HistoryLists_hlIntOutputDir>
+                    <HistoryLists_hlIntOutputDir Name="Item5">$(OUTPUT_INTERMEDIATE_DIR)\</HistoryLists_hlIntOutputDir>
+                    <HistoryLists_hlIntOutputDir Name="Item6">x:\intermediate_ed</HistoryLists_hlIntOutputDir>
+                    <HistoryLists_hlIntOutputDir Name="Item7">Intermediate</HistoryLists_hlIntOutputDir>
+                    <HistoryLists_hlIntOutputDir Name="Item8">XRLC_Intermediate</HistoryLists_hlIntOutputDir>
+                    <HistoryLists_hlIntOutputDir Name="Item9">xrLC_Options</HistoryLists_hlIntOutputDir>
                 </HistoryLists_hlIntOutputDir>
                 <HistoryLists_hlFinalOutputDir>
-                    <HistoryLists_hlFinalOutputDir Name="Count">12</HistoryLists_hlFinalOutputDir>
-                    <HistoryLists_hlFinalOutputDir Name="Item0">..\..\..\..\binaries\Mixed\</HistoryLists_hlFinalOutputDir>
-                    <HistoryLists_hlFinalOutputDir Name="Item1">..\..\..\..\binaries\Debug\</HistoryLists_hlFinalOutputDir>
-                    <HistoryLists_hlFinalOutputDir Name="Item2">..\..\..\..\binaries\Debug</HistoryLists_hlFinalOutputDir>
-                    <HistoryLists_hlFinalOutputDir Name="Item3">..\..\..\..\binaries\</HistoryLists_hlFinalOutputDir>
-                    <HistoryLists_hlFinalOutputDir Name="Item4">..\..\..\..\binaries</HistoryLists_hlFinalOutputDir>
+                    <HistoryLists_hlFinalOutputDir Name="Count">23</HistoryLists_hlFinalOutputDir>
+                    <HistoryLists_hlFinalOutputDir Name="Item0">..\..\..\binaries\Mixed\</HistoryLists_hlFinalOutputDir>
+                    <HistoryLists_hlFinalOutputDir Name="Item1">..\..\..\binaries\Debug\</HistoryLists_hlFinalOutputDir>
+                    <HistoryLists_hlFinalOutputDir Name="Item2">..\..\..\binaries\Debug</HistoryLists_hlFinalOutputDir>
+                    <HistoryLists_hlFinalOutputDir Name="Item3">..\..\..\binaries\</HistoryLists_hlFinalOutputDir>
+                    <HistoryLists_hlFinalOutputDir Name="Item4">..\..\..\binaries</HistoryLists_hlFinalOutputDir>
                     <HistoryLists_hlFinalOutputDir Name="Item5">$(OUTPUT_BINARIES_DIR)\</HistoryLists_hlFinalOutputDir>
                     <HistoryLists_hlFinalOutputDir Name="Item6">x:\stalker_addon\binaries\</HistoryLists_hlFinalOutputDir>
                     <HistoryLists_hlFinalOutputDir Name="Item7">x:\binaries\</HistoryLists_hlFinalOutputDir>
                     <HistoryLists_hlFinalOutputDir Name="Item8">x:\binaries</HistoryLists_hlFinalOutputDir>
-                    <HistoryLists_hlFinalOutputDir Name="Item9">x:\</HistoryLists_hlFinalOutputDir>
-                    <HistoryLists_hlFinalOutputDir Name="Item10">x:\build\</HistoryLists_hlFinalOutputDir>
-                    <HistoryLists_hlFinalOutputDir Name="Item11">x:\build</HistoryLists_hlFinalOutputDir>
+                    <HistoryLists_hlFinalOutputDir Name="Item9">C:\Program Files\THQ\S.T.A.L.K.E.R. - Shadow of Chernobyl\</HistoryLists_hlFinalOutputDir>
+                    <HistoryLists_hlFinalOutputDir Name="Item10">x:\</HistoryLists_hlFinalOutputDir>
+                    <HistoryLists_hlFinalOutputDir Name="Item11">x:\build\</HistoryLists_hlFinalOutputDir>
+                    <HistoryLists_hlFinalOutputDir Name="Item12">x:\build</HistoryLists_hlFinalOutputDir>
+                    <HistoryLists_hlFinalOutputDir Name="Item13">u:\preliminary\</HistoryLists_hlFinalOutputDir>
+                    <HistoryLists_hlFinalOutputDir Name="Item14">u:\preliminary</HistoryLists_hlFinalOutputDir>
+                    <HistoryLists_hlFinalOutputDir Name="Item15">s:\bin\</HistoryLists_hlFinalOutputDir>
+                    <HistoryLists_hlFinalOutputDir Name="Item16">z:\</HistoryLists_hlFinalOutputDir>
+                    <HistoryLists_hlFinalOutputDir Name="Item17">S:\build_zmey\</HistoryLists_hlFinalOutputDir>
+                    <HistoryLists_hlFinalOutputDir Name="Item18">S:\build_zmey</HistoryLists_hlFinalOutputDir>
+                    <HistoryLists_hlFinalOutputDir Name="Item19">x:\xrCoreB.dll\</HistoryLists_hlFinalOutputDir>
+                    <HistoryLists_hlFinalOutputDir Name="Item20">x:\xrCoreB.dll</HistoryLists_hlFinalOutputDir>
+                    <HistoryLists_hlFinalOutputDir Name="Item21">!run\</HistoryLists_hlFinalOutputDir>
+                    <HistoryLists_hlFinalOutputDir Name="Item22">!run</HistoryLists_hlFinalOutputDir>
                 </HistoryLists_hlFinalOutputDir>
                 <HistoryLists_hIBPIOutputDir>
-                    <HistoryLists_hIBPIOutputDir Name="Count">7</HistoryLists_hIBPIOutputDir>
-                    <HistoryLists_hIBPIOutputDir Name="Item0">..\..\..\..\libraries\Mixed</HistoryLists_hIBPIOutputDir>
-                    <HistoryLists_hIBPIOutputDir Name="Item1">..\..\..\..\libraries\Debug</HistoryLists_hIBPIOutputDir>
-                    <HistoryLists_hIBPIOutputDir Name="Item2">..\..\..\..\libraries</HistoryLists_hIBPIOutputDir>
+                    <HistoryLists_hIBPIOutputDir Name="Count">10</HistoryLists_hIBPIOutputDir>
+                    <HistoryLists_hIBPIOutputDir Name="Item0">..\..\..\libraries\Mixed</HistoryLists_hIBPIOutputDir>
+                    <HistoryLists_hIBPIOutputDir Name="Item1">..\..\..\libraries\Debug</HistoryLists_hIBPIOutputDir>
+                    <HistoryLists_hIBPIOutputDir Name="Item2">..\..\..\libraries</HistoryLists_hIBPIOutputDir>
                     <HistoryLists_hIBPIOutputDir Name="Item3">x:\stalker_addon\libraries</HistoryLists_hIBPIOutputDir>
-                    <HistoryLists_hIBPIOutputDir Name="Item4">$(OUTPUT_LIBRARIES_DIR)</HistoryLists_hIBPIOutputDir>
-                    <HistoryLists_hIBPIOutputDir Name="Item5">$(OUTPUT_LIBRARIES_DIR)\</HistoryLists_hIBPIOutputDir>
-                    <HistoryLists_hIBPIOutputDir Name="Item6">x:\libraries</HistoryLists_hIBPIOutputDir>
+                    <HistoryLists_hIBPIOutputDir Name="Item4">$(OUT_LIB_DIR)</HistoryLists_hIBPIOutputDir>
+                    <HistoryLists_hIBPIOutputDir Name="Item5">$(OUT_LIB_DIR)\</HistoryLists_hIBPIOutputDir>
+                    <HistoryLists_hIBPIOutputDir Name="Item6">$(OUTPUT_LIBRARIES_DIR)</HistoryLists_hIBPIOutputDir>
+                    <HistoryLists_hIBPIOutputDir Name="Item7">$(OUTPUT_LIBRARIES_DIR)\</HistoryLists_hIBPIOutputDir>
+                    <HistoryLists_hIBPIOutputDir Name="Item8">x:\libraries</HistoryLists_hIBPIOutputDir>
+                    <HistoryLists_hIBPIOutputDir Name="Item9">x:\libraries\</HistoryLists_hIBPIOutputDir>
                 </HistoryLists_hIBPIOutputDir>
                 <Debugging>
                     <Debugging Name="DebugSourceDirs">$(BCB)\source\vcl</Debugging>
@@ -409,7 +381,7 @@
                     <Parameters Name="Launcher"/>
                     <Parameters Name="UseLauncher">0</Parameters>
                     <Parameters Name="DebugCWD"/>
-                    <Parameters Name="HostApplication">x:\stalker_addon\binaries\ActorEditor.exe</Parameters>
+                    <Parameters Name="HostApplication">x:\stalker_addon\binaries\LevelEditor.exe</Parameters>
                     <Parameters Name="RemoteHost"/>
                     <Parameters Name="RemotePath"/>
                     <Parameters Name="RemoteLauncher"/>
@@ -433,11 +405,10 @@
                     <ProjectProperties Name="IndexFiles">False</ProjectProperties>
                 </ProjectProperties>
                 <Excluded_Packages>
-                    <Excluded_Packages Name="$(BDSBIN)\dclDataSnapNativeServer270.bpl">Embarcadero DBExpress DataSnap Native Server Components</Excluded_Packages>
-                    <Excluded_Packages Name="$(BDSBIN)\bcboffice2k270.bpl">Embarcadero C++Builder Office 2000 Servers Package</Excluded_Packages>
-                    <Excluded_Packages Name="$(BDSBIN)\bcbofficexp270.bpl">Embarcadero C++Builder Office XP Servers Package</Excluded_Packages>
-                    <Excluded_Packages Name="$(BDSBIN)\dcloffice2k270.bpl">Microsoft Office 2000 Sample Automation Server Wrapper Components</Excluded_Packages>
-                    <Excluded_Packages Name="$(BDSBIN)\dclofficexp270.bpl">Microsoft Office XP Sample Automation Server Wrapper Components</Excluded_Packages>
+                    <Excluded_Packages Name="$(BDSBIN)\bcboffice2k280.bpl">Embarcadero C++Builder Office 2000 Servers Package</Excluded_Packages>
+                    <Excluded_Packages Name="$(BDSBIN)\bcbofficexp280.bpl">Embarcadero C++Builder Office XP Servers Package</Excluded_Packages>
+                    <Excluded_Packages Name="$(BDSBIN)\dcloffice2k280.bpl">Microsoft Office 2000 Sample Automation Server Wrapper Components</Excluded_Packages>
+                    <Excluded_Packages Name="$(BDSBIN)\dclofficexp280.bpl">Microsoft Office XP Sample Automation Server Wrapper Components</Excluded_Packages>
                 </Excluded_Packages>
             </CPlusPlusBuilder.Personality>
             <Platforms>
@@ -450,6 +421,8 @@
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
+                <DeployFile Condition="'$(DynamicRTL)'=='true' And '$(Multithreaded)'!='true'" LocalName="$(BDS)\bin64\cc64150.dll" Class="DependencyModule"/>
+                <DeployFile Condition="'$(DynamicRTL)'=='true' And '$(Multithreaded)'=='true'" LocalName="$(BDS)\bin64\cc64150mt.dll" Class="DependencyModule"/>
                 <DeployFile Condition="'$(DynamicRTL)'=='true' And '$(Multithreaded)'!='true'" LocalName="$(BDS)\bin64\cc64260.dll" Class="DependencyModule"/>
                 <DeployFile Condition="'$(DynamicRTL)'=='true' And '$(Multithreaded)'=='true'" LocalName="$(BDS)\bin64\cc64260mt.dll" Class="DependencyModule"/>
                 <DeployFile Condition="'$(DynamicRTL)'=='true' And '$(Multithreaded)'!='true'" LocalName="$(BDS)\bin64\cc64270.dll" Class="DependencyModule"/>
@@ -469,6 +442,8 @@
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
+                <DeployFile Condition="'$(DynamicRTL)'=='true' And '$(Multithreaded)'!='true'" LocalName="$(BDS)\bin\cc32150.dll" Class="DependencyModule"/>
+                <DeployFile Condition="'$(DynamicRTL)'=='true' And '$(Multithreaded)'=='true'" LocalName="$(BDS)\bin\cc32150mt.dll" Class="DependencyModule"/>
                 <DeployFile Condition="'$(DynamicRTL)'=='true' And '$(Multithreaded)'!='true'" LocalName="$(BDS)\bin\cc32260.dll" Class="DependencyModule"/>
                 <DeployFile Condition="'$(DynamicRTL)'=='true' And '$(Multithreaded)'=='true'" LocalName="$(BDS)\bin\cc32260mt.dll" Class="DependencyModule"/>
                 <DeployFile Condition="'$(DynamicRTL)'=='true' And '$(Multithreaded)'!='true'" LocalName="$(BDS)\bin\cc32270.dll" Class="DependencyModule"/>
@@ -509,7 +484,10 @@
                 </DeployFile>
                 <DeployFile Condition="'$(DynamicRTL)'=='true'" LocalName="$(BDS)\Redist\osx64\libcgcrtl.dylib" Class="DependencyModule"/>
                 <DeployFile Condition="'$(DynamicRTL)'=='true'" LocalName="$(BDS)\Redist\osx64\libcgstl.dylib" Class="DependencyModule"/>
-                <DeployFile LocalName="..\..\..\..\bins\Win64\Debug\xrEPropsB.dll" Configuration="Debug" Class="ProjectOutput"/>
+                <DeployFile LocalName="..\..\..\bins\Win32\Debug\xrCoreB.dll" Configuration="Debug" Class="ProjectOutput"/>
+                <DeployFile LocalName="..\..\..\bins\Win32\Debug\xrCoreB.tds" Configuration="Debug" Class="DebugSymbols"/>
+                <DeployFile LocalName="..\..\..\bins\Win64\Debug\xrCoreB.dll" Configuration="Debug" Class="ProjectOutput"/>
+                <DeployFile LocalName="..\..\..\bins\Win64\Release\xrCoreB.dll" Configuration="Release" Class="ProjectOutput"/>
                 <DeployClass Name="AdditionalDebugSymbols">
                     <Platform Name="OSX32">
                         <Operation>1</Operation>
@@ -1224,6 +1202,7 @@
                 </DeployClass>
                 <ProjectRoot Platform="Android" Name="$(PROJECTNAME)"/>
                 <ProjectRoot Platform="Android64" Name="$(PROJECTNAME)"/>
+                <ProjectRoot Platform="iOSDevice" Name="$(PROJECTNAME).app"/>
                 <ProjectRoot Platform="iOSDevice32" Name="$(PROJECTNAME).app"/>
                 <ProjectRoot Platform="iOSDevice64" Name="$(PROJECTNAME).app"/>
                 <ProjectRoot Platform="iOSSimARM64" Name="$(PROJECTNAME).app"/>

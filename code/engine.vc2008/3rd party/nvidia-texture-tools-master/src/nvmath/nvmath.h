@@ -118,6 +118,9 @@ inline float asinf_assert(const float f)
 #endif
 
 #if NV_CC_MSVC
+#if _WIN64
+#pragma function(log2f, exp2f)
+#endif
 NV_FORCEINLINE float log2f(float x)
 {
     nvCheck(x >= 0);

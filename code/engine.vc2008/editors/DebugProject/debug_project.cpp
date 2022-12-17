@@ -8,6 +8,8 @@
 #include <string>
 #include <sstream>
 #include <algorithm>
+#include <utime.h>
+
 
 //#include "../Include/stack_trace.h"
 //#include "../../../SDK/include/stackwolker/StackWalker.h"
@@ -36,6 +38,11 @@ int WINAPI _tWinMain(HINSTANCE hInst, HINSTANCE, LPTSTR, int)
 		Application->ShowException(&exception);
 	}
 	return 0;  */
+
+    _utimbuf	tm;
+	tm.actime	= 0;
+	tm.modtime	= 1;
+	int res = utime("ddfd",&tm);
 
 	HMODULE h;
 	try

@@ -73,7 +73,7 @@ END
 
 // Icon with lowest ID value placed first to ensure application icon
 // remains consistent on all systems.
-IDI_ICON1               ICON                    "C:\\X-Ray-Engine-1.6-Origin\\code\\engine.vc2008\\xrEntry\\stalker_cs.ico"
+IDI_ICON1               ICON                    "stalker_cs.ico"
 
 #endif    // Русский (Россия) resources
 /////////////////////////////////////////////////////////////////////////////

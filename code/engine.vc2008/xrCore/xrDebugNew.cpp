@@ -77,7 +77,7 @@ std::string xrDebug::gather_info(const char* expression, const char* description
 	buffer += prefix + "Expression    : " + expression + endline;
 	buffer += prefix + "Function      : " + function + endline;
 	buffer += prefix + "File          : " + file + endline;
-	buffer += prefix + "Line          : " + universal_string::toString(line) + endline;
+	buffer += prefix + "Line          : " + std::to_string(line) + endline;
 	buffer += prefix + "Description   : " + description + endline;
 	if (argument0)
 	{
@@ -280,7 +280,7 @@ int out_of_memory_handler(size_t size)
 		Msg("* [x-ray]: economy: strings[%d K], smem[%d K]", eco_strings / 1024, eco_smem);
 	}
 
-	std::string desc = "Out of memory. Memory request: %d KB" + universal_string::toString(size / 1024);
+	std::string desc = "Out of memory. Memory request: %d KB" + std::to_string(size / 1024);
 	Debug.fatal(DEBUG_INFO, desc.c_str());
 	return					1;
 }
@@ -344,7 +344,7 @@ std::string xrDebug::getLastErrorWindows()
 	);
 	std::string msg = "Unknown error. See stack trace.";
 	if (error_code != 0)
-		msg = "[error][" + universal_string::toString(error_code) + "]    : " + (LPSTR)message + " See stack trace.";
+		msg = "[error][" + std::to_string(error_code) + "]    : " + (LPSTR)message + " See stack trace.";
 	return msg;
 }
 
