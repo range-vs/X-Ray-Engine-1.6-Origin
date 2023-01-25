@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<namespace name="ElColor" platform="Win64">
+  <function name="ColorToRGB" visibility="public" file="ElColor.pas" line="30">
+    <parameters>
+      <parameter name="Color" type="TColor" paramflags="const" />
+      <retval type="Integer" />
+    </parameters>
+  </function>
+  <function name="BrightColor" visibility="public" file="ElColor.pas" line="37">
+    <parameters>
+      <parameter name="Color" type="TColor" paramflags="const" />
+      <parameter name="Percent" type="Byte" paramflags="const" />
+      <retval type="TColor" />
+    </parameters>
+  </function>
+  <function name="DarkColor" visibility="public" file="ElColor.pas" line="58">
+    <parameters>
+      <parameter name="Color" type="TColor" paramflags="const" />
+      <parameter name="Percent" type="Byte" paramflags="const" />
+      <retval type="TColor" />
+    </parameters>
+  </function>
+  <function name="ColorToGray" visibility="public" file="ElColor.pas" line="78">
+    <parameters>
+      <parameter name="Color" type="TColor" paramflags="const" />
+      <retval type="TColor" />
+    </parameters>
+  </function>
+  <function name="ConvertColorToHTML" visibility="public" file="ElColor.pas" line="94">
+    <parameters>
+      <parameter name="Color" type="TColor" />
+      <retval type="Integer" />
+    </parameters>
+  </function>
+</namespace>

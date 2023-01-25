@@ -1,8 +1,8 @@
 ﻿// CodeGear C++Builder
-// Copyright (c) 1995, 2022 by Embarcadero Technologies, Inc.
+// Copyright (c) 1995, 2020 by Embarcadero Technologies, Inc.
 // All rights reserved
 
-// (DO NOT EDIT: machine generated header) 'mxFileUtil.pas' rev: 35.00 (Windows)
+// (DO NOT EDIT: machine generated header) 'mxFileUtil.pas' rev: 34.00 (Windows)
 
 #ifndef MxfileutilHPP
 #define MxfileutilHPP
@@ -44,6 +44,7 @@ public:
 };
 
 
+#pragma pack(push,4)
 class PASCALIMPLEMENTATION TRxFindFiles : public System::TObject
 {
 	typedef System::TObject inherited;
@@ -62,6 +63,7 @@ public:
 	
 };
 
+#pragma pack(pop)
 
 //-- var, const, procedure ---------------------------------------------------
 static const System::Int8 faNotFiles = System::Int8(0x10);

@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<namespace name="mxClipIcon" platform="Win64">
+  <variable name="CF_ICON" type="Word" file="MxClipIcon.pas" line="28" />
+  <procedure name="CopyIconToClipboard" visibility="public" file="MxClipIcon.pas" line="77">
+    <parameters>
+      <parameter name="Icon" type="TIcon" />
+      <parameter name="BackColor" type="TColor" />
+    </parameters>
+  </procedure>
+  <procedure name="AssignClipboardIcon" visibility="public" file="MxClipIcon.pas" line="129">
+    <parameters>
+      <parameter name="Icon" type="TIcon" />
+    </parameters>
+  </procedure>
+  <function name="CreateIconFromClipboard" visibility="public" file="MxClipIcon.pas" line="160">
+    <parameters>
+      <retval type="TIcon" />
+    </parameters>
+  </function>
+  <procedure name="GetIconSize" visibility="public" file="MxClipIcon.pas" line="413">
+    <parameters>
+      <parameter name="Icon" type="HICON" />
+      <parameter name="W" type="Integer" paramflags="var" />
+      <parameter name="H" type="Integer" paramflags="var" />
+    </parameters>
+  </procedure>
+  <function name="CreateRealSizeIcon" visibility="public" file="MxClipIcon.pas" line="459">
+    <parameters>
+      <parameter name="Icon" type="TIcon" />
+      <retval type="HICON" />
+    </parameters>
+  </function>
+  <procedure name="DrawRealSizeIcon" visibility="public" file="MxClipIcon.pas" line="486">
+    <parameters>
+      <parameter name="Canvas" type="TCanvas" />
+      <parameter name="Icon" type="TIcon" />
+      <parameter name="X" type="Integer" />
+      <parameter name="Y" type="Integer" />
+    </parameters>
+  </procedure>
+</namespace>

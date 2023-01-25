@@ -1,0 +1,235 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<namespace name="ElArray" platform="Win64">
+  <class name="TElArray" file="ElArray.pas" line="43">
+    <ancestor name="TObject" namespace="System">
+      <methodref name="Create" visibility="public" procflags="constructor">
+      </methodref>
+      <methodref name="Free" visibility="public">
+      </methodref>
+      <methodref name="DisposeOf" visibility="public" procflags="inline">
+      </methodref>
+      <methodref name="InitInstance" visibility="public" procflags="class">
+      </methodref>
+      <methodref name="CleanupInstance" visibility="public">
+      </methodref>
+      <methodref name="ClassType" visibility="public" procflags="inline">
+      </methodref>
+      <methodref name="ClassName" visibility="public" procflags="class">
+      </methodref>
+      <methodref name="ClassNameIs" visibility="public" procflags="class">
+      </methodref>
+      <methodref name="ClassParent" visibility="public" procflags="class">
+      </methodref>
+      <methodref name="ClassInfo" visibility="public" procflags="class inline">
+      </methodref>
+      <methodref name="InstanceSize" visibility="public" procflags="class inline">
+      </methodref>
+      <methodref name="InheritsFrom" visibility="public" procflags="class">
+      </methodref>
+      <methodref name="MethodAddress" visibility="public" procflags="class overload">
+      </methodref>
+      <methodref name="MethodAddress" visibility="public" procflags="class overload">
+      </methodref>
+      <methodref name="MethodName" visibility="public" procflags="class">
+      </methodref>
+      <methodref name="QualifiedClassName" visibility="public" procflags="class">
+      </methodref>
+      <methodref name="FieldAddress" visibility="public" procflags="overload">
+      </methodref>
+      <methodref name="FieldAddress" visibility="public" procflags="overload">
+      </methodref>
+      <methodref name="GetInterface" visibility="public">
+      </methodref>
+      <methodref name="GetInterfaceEntry" visibility="public" procflags="class">
+      </methodref>
+      <methodref name="GetInterfaceTable" visibility="public" procflags="class inline">
+      </methodref>
+      <methodref name="UnitName" visibility="public" procflags="class">
+      </methodref>
+      <methodref name="UnitScope" visibility="public" procflags="class">
+      </methodref>
+      <methodref name="Equals" visibility="public" procflags="virtual">
+      </methodref>
+      <methodref name="GetHashCode" visibility="public" procflags="virtual">
+      </methodref>
+      <methodref name="ToString" visibility="public" procflags="virtual">
+      </methodref>
+      <methodref name="SafeCallException" visibility="public" procflags="virtual">
+      </methodref>
+      <methodref name="AfterConstruction" visibility="public" procflags="virtual">
+      </methodref>
+      <methodref name="BeforeDestruction" visibility="public" procflags="virtual">
+      </methodref>
+      <methodref name="Dispatch" visibility="public" procflags="virtual">
+      </methodref>
+      <methodref name="DefaultHandler" visibility="public" procflags="virtual">
+      </methodref>
+      <methodref name="NewInstance" visibility="public" procflags="class virtual">
+      </methodref>
+      <methodref name="FreeInstance" visibility="public" procflags="virtual">
+      </methodref>
+      <methodref name="Destroy" visibility="public" procflags="destructor virtual">
+      </methodref>
+      <methodref name="CPP_ABI_1" visibility="public" procflags="virtual">
+      </methodref>
+      <methodref name="CPP_ABI_2" visibility="public" procflags="virtual">
+      </methodref>
+      <methodref name="CPP_ABI_3" visibility="public" procflags="virtual">
+      </methodref>
+      <methodref name="GetDisposed" visibility="protected" procflags="inline">
+      </methodref>
+      <methodref name="CheckDisposed" visibility="protected" procflags="inline">
+      </methodref>
+      <propertyref name="Disposed" visibility="protected">
+      </propertyref>
+    </ancestor>
+    <members>
+      <field name="FList" type="PPointerList" visibility="protected" size="8" offset="8" file="ElArray.pas" line="45" />
+      <field name="FCount" type="Integer" visibility="protected" size="4" offset="16" file="ElArray.pas" line="46" />
+      <field name="FCapacity" type="Integer" visibility="protected" size="4" offset="20" file="ElArray.pas" line="47" />
+      <field name="FAutoClearObjects" type="Boolean" visibility="protected" size="1" offset="24" file="ElArray.pas" line="48" />
+      <field name="FOnDelete" type="TElArrayDeleteEvent" visibility="protected" size="16" offset="32" file="ElArray.pas" line="49" />
+      <function name="Get" visibility="protected" procflags="virtual" file="ElArray.pas" line="50">
+        <parameters>
+          <parameter name="Index" type="Integer" />
+          <retval type="Pointer" />
+        </parameters>
+      </function>
+      <procedure name="Grow" visibility="protected" procflags="virtual" file="ElArray.pas" line="51">
+      </procedure>
+      <procedure name="Put" visibility="protected" procflags="virtual" file="ElArray.pas" line="52">
+        <parameters>
+          <parameter name="Index" type="Integer" />
+          <parameter name="Item" type="Pointer" />
+        </parameters>
+      </procedure>
+      <procedure name="SetCapacity" visibility="protected" file="ElArray.pas" line="53">
+        <parameters>
+          <parameter name="NewCapacity" type="Integer" />
+        </parameters>
+      </procedure>
+      <procedure name="SetCount" visibility="protected" file="ElArray.pas" line="54">
+        <parameters>
+          <parameter name="NewCount" type="Integer" />
+        </parameters>
+      </procedure>
+      <procedure name="TriggerDeleteEvent" visibility="protected" procflags="virtual" file="ElArray.pas" line="55">
+        <parameters>
+          <parameter name="Item" type="Pointer" />
+        </parameters>
+      </procedure>
+      <procedure name="Error" visibility="protected" procflags="class" file="ElArray.pas" line="56">
+        <parameters>
+          <parameter name="Msg" type="string" paramflags="const" />
+          <parameter name="Data" type="Integer" />
+        </parameters>
+      </procedure>
+      <constructor name="Create" visibility="public" file="ElArray.pas" line="58">
+        <parameters>
+        </parameters>
+      </constructor>
+      <destructor name="Destroy" visibility="public" file="ElArray.pas" line="59">
+        <parameters>
+        </parameters>
+      </destructor>
+      <function name="Add" visibility="public" file="ElArray.pas" line="60">
+        <parameters>
+          <parameter name="Item" type="Pointer" />
+          <retval type="Integer" />
+        </parameters>
+      </function>
+      <procedure name="Clear" visibility="public" file="ElArray.pas" line="61">
+      </procedure>
+      <procedure name="Assign" visibility="public" file="ElArray.pas" line="62">
+        <parameters>
+          <parameter name="AList" type="TElArray" />
+        </parameters>
+      </procedure>
+      <procedure name="Delete" visibility="public" procflags="virtual" file="ElArray.pas" line="63">
+        <parameters>
+          <parameter name="Index" type="Integer" />
+        </parameters>
+      </procedure>
+      <procedure name="Exchange" visibility="public" file="ElArray.pas" line="64">
+        <parameters>
+          <parameter name="Index1" type="Integer" />
+          <parameter name="Index2" type="Integer" />
+        </parameters>
+      </procedure>
+      <function name="Expand" visibility="public" file="ElArray.pas" line="65">
+        <parameters>
+          <retval type="TElArray" />
+        </parameters>
+      </function>
+      <function name="First" visibility="public" file="ElArray.pas" line="66">
+        <parameters>
+          <retval type="Pointer" />
+        </parameters>
+      </function>
+      <function name="IndexOf" visibility="public" file="ElArray.pas" line="67">
+        <parameters>
+          <parameter name="Item" type="Pointer" />
+          <retval type="Integer" />
+        </parameters>
+      </function>
+      <function name="IndexOfFrom" visibility="public" file="ElArray.pas" line="68">
+        <parameters>
+          <parameter name="StartIndex" type="Integer" />
+          <parameter name="Item" type="Pointer" />
+          <retval type="Integer" />
+        </parameters>
+      </function>
+      <function name="IndexOfBack" visibility="public" file="ElArray.pas" line="69">
+        <parameters>
+          <parameter name="StartIndex" type="Integer" />
+          <parameter name="Item" type="Pointer" />
+          <retval type="Integer" />
+        </parameters>
+      </function>
+      <procedure name="Insert" visibility="public" file="ElArray.pas" line="70">
+        <parameters>
+          <parameter name="Index" type="Integer" />
+          <parameter name="Item" type="Pointer" />
+        </parameters>
+      </procedure>
+      <function name="Last" visibility="public" file="ElArray.pas" line="71">
+        <parameters>
+          <retval type="Pointer" />
+        </parameters>
+      </function>
+      <procedure name="Move" visibility="public" file="ElArray.pas" line="72">
+        <parameters>
+          <parameter name="CurIndex" type="Integer" />
+          <parameter name="NewIndex" type="Integer" />
+        </parameters>
+      </procedure>
+      <procedure name="MoveRange" visibility="public" file="ElArray.pas" line="73">
+        <parameters>
+          <parameter name="CurStart" type="Integer" />
+          <parameter name="CurEnd" type="Integer" />
+          <parameter name="NewStart" type="Integer" />
+        </parameters>
+      </procedure>
+      <function name="Remove" visibility="public" file="ElArray.pas" line="74">
+        <parameters>
+          <parameter name="Item" type="Pointer" />
+          <retval type="Integer" />
+        </parameters>
+      </function>
+      <procedure name="Pack" visibility="public" file="ElArray.pas" line="75">
+      </procedure>
+      <procedure name="Sort" visibility="public" file="ElArray.pas" line="76">
+        <parameters>
+          <parameter name="Compare" type="TElArraySortCompare" />
+          <parameter name="Cargo" type="Pointer" />
+        </parameters>
+      </procedure>
+      <property name="Capacity" visibility="public" read="FCapacity" write="SetCapacity" type="Integer" default="0" file="ElArray.pas" line="77" />
+      <property name="Count" visibility="public" read="FCount" write="SetCount" type="Integer" default="0" file="ElArray.pas" line="78" />
+      <property name="Items[Index]" visibility="public" read="Get" write="Put" type="Pointer" file="ElArray.pas" line="79" />
+      <property name="List" visibility="public" read="FList" type="PPointerList" file="ElArray.pas" line="80" />
+      <property name="AutoClearObjects" visibility="public" read="FAutoClearObjects" write="FAutoClearObjects" type="Boolean" default="0" file="ElArray.pas" line="81" />
+      <event name="OnDelete" visibility="public" read="FOnDelete" write="FOnDelete" type="TElArrayDeleteEvent" file="ElArray.pas" line="82" />
+    </members>
+  </class>
+</namespace>

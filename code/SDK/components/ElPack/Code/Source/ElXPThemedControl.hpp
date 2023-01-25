@@ -1,8 +1,8 @@
 ﻿// CodeGear C++Builder
-// Copyright (c) 1995, 2022 by Embarcadero Technologies, Inc.
+// Copyright (c) 1995, 2020 by Embarcadero Technologies, Inc.
 // All rights reserved
 
-// (DO NOT EDIT: machine generated header) 'ElXPThemedControl.pas' rev: 35.00 (Windows)
+// (DO NOT EDIT: machine generated header) 'ElXPThemedControl.pas' rev: 34.00 (Windows)
 
 #ifndef ElxpthemedcontrolHPP
 #define ElxpthemedcontrolHPP
@@ -50,7 +50,7 @@ protected:
 public:
 	__fastcall virtual TElXPThemedControl(System::Classes::TComponent* AOwner);
 	bool __fastcall IsThemeApplied();
-	__property NativeUInt Theme = {read=FTheme};
+	__property NativeUInt Theme = {read=FTheme, nodefault};
 public:
 	/* TCustomControl.Destroy */ inline __fastcall virtual ~TElXPThemedControl() { }
 	

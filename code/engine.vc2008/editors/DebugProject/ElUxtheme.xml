@@ -1,0 +1,287 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<namespace name="ElUxTheme" platform="Win64">
+  <const name="DTT_GRAYED" type="Integer" file="ElUxTheme.pas" line="44">
+    <value>
+      $1
+    </value>
+  </const>
+  <const name="HTTB_BACKGROUNDSEG" type="Integer" file="ElUxTheme.pas" line="48">
+    <value>
+      $0
+    </value>
+  </const>
+  <const name="HTTB_FIXEDBORDER" type="Integer" file="ElUxTheme.pas" line="52">
+    <value>
+      $2
+    </value>
+  </const>
+  <const name="HTTB_CAPTION" type="Integer" file="ElUxTheme.pas" line="56">
+    <value>
+      $4
+    </value>
+  </const>
+  <const name="HTTB_RESIZINGBORDER_LEFT" type="Integer" file="ElUxTheme.pas" line="62">
+    <value>
+      $10
+    </value>
+  </const>
+  <const name="HTTB_RESIZINGBORDER_TOP" type="Integer" file="ElUxTheme.pas" line="63">
+    <value>
+      $20
+    </value>
+  </const>
+  <const name="HTTB_RESIZINGBORDER_RIGHT" type="Integer" file="ElUxTheme.pas" line="64">
+    <value>
+      $40
+    </value>
+  </const>
+  <const name="HTTB_RESIZINGBORDER_BOTTOM" type="Integer" file="ElUxTheme.pas" line="65">
+    <value>
+      $80
+    </value>
+  </const>
+  <const name="HTTB_RESIZINGBORDER" type="Integer" file="ElUxTheme.pas" line="66">
+    <value>
+      $F0
+    </value>
+  </const>
+  <const name="HTTB_USESIZINGTEMPLATE" type="Integer" file="ElUxTheme.pas" line="69">
+    <value>
+      $100
+    </value>
+  </const>
+  <const name="DTL_LEFT" type="Integer" file="ElUxTheme.pas" line="71">
+    <value>
+      $1
+    </value>
+  </const>
+  <const name="DTL_TOP" type="Integer" file="ElUxTheme.pas" line="72">
+    <value>
+      $2
+    </value>
+  </const>
+  <const name="DTL_RIGHT" type="Integer" file="ElUxTheme.pas" line="73">
+    <value>
+      $4
+    </value>
+  </const>
+  <const name="DTL_BOTTOM" type="Integer" file="ElUxTheme.pas" line="74">
+    <value>
+      $8
+    </value>
+  </const>
+  <const name="MAX_INTLIST_COUNT" type="Integer" file="ElUxTheme.pas" line="76">
+    <value>
+      $A
+    </value>
+  </const>
+  <const name="PO_STATE" type="Integer" file="ElUxTheme.pas" line="78">
+    <value>
+      $0
+    </value>
+  </const>
+  <const name="PO_PART" type="Integer" file="ElUxTheme.pas" line="79">
+    <value>
+      $1
+    </value>
+  </const>
+  <const name="PO_CLASS" type="Integer" file="ElUxTheme.pas" line="80">
+    <value>
+      $2
+    </value>
+  </const>
+  <const name="PO_GLOBAL" type="Integer" file="ElUxTheme.pas" line="81">
+    <value>
+      $3
+    </value>
+  </const>
+  <const name="PO_NOTFOUND" type="Integer" file="ElUxTheme.pas" line="82">
+    <value>
+      $4
+    </value>
+  </const>
+  <const name="STAP_ALLOW_NONCLIENT" type="Integer" file="ElUxTheme.pas" line="84">
+    <value>
+      $1
+    </value>
+  </const>
+  <const name="STAP_ALLOW_CONTROLS" type="Integer" file="ElUxTheme.pas" line="85">
+    <value>
+      $2
+    </value>
+  </const>
+  <const name="STAP_ALLOW_WEBCONTENT" type="Integer" file="ElUxTheme.pas" line="86">
+    <value>
+      $4
+    </value>
+  </const>
+  <const name="SZ_THDOCPROP_DISPLAYNAME" type="string" file="ElUxTheme.pas" line="88">
+    <value>
+      DisplayName
+    </value>
+  </const>
+  <const name="SZ_THDOCPROP_CANONICALNAME" type="string" file="ElUxTheme.pas" line="89">
+    <value>
+      ThemeName
+    </value>
+  </const>
+  <const name="SZ_THDOCPROP_TOOLTIP" type="string" file="ElUxTheme.pas" line="90">
+    <value>
+      ToolTip
+    </value>
+  </const>
+  <const name="SZ_THDOCPROP_AUTHOR" type="string" file="ElUxTheme.pas" line="91">
+    <value>
+      author
+    </value>
+  </const>
+  <const name="WM_THEMECHANGED" type="Integer" file="ElUxTheme.pas" line="93">
+    <value>
+      $31A
+    </value>
+  </const>
+  <const name="TS_MIN" type="Integer" file="ElUxTheme.pas" line="95">
+    <value>
+      $0
+    </value>
+  </const>
+  <const name="TS_TRUE" type="Integer" file="ElUxTheme.pas" line="96">
+    <value>
+      $1
+    </value>
+  </const>
+  <const name="TS_DRAW" type="Integer" file="ElUxTheme.pas" line="97">
+    <value>
+      $2
+    </value>
+  </const>
+  <struct name="TMargins" size="16" file="ElUxTheme.pas" line="101">
+    <field name="cxLeftWidth" type="Integer" visibility="public" size="4" offset="0" file="ElUxTheme.pas" line="102" />
+    <field name="cxRightWidth" type="Integer" visibility="public" size="4" offset="4" file="ElUxTheme.pas" line="103" />
+    <field name="cyTopHeight" type="Integer" visibility="public" size="4" offset="8" file="ElUxTheme.pas" line="104" />
+    <field name="cyBottomHeight" type="Integer" visibility="public" size="4" offset="12" file="ElUxTheme.pas" line="105" />
+  </struct>
+  <pointer name="PMargins" type="TMargins" indircnt="1" file="ElUxTheme.pas" line="108" />
+  <struct name="TIntList" size="44" file="ElUxTheme.pas" line="110">
+    <field name="iValueCount" type="Integer" visibility="public" size="4" offset="0" file="ElUxTheme.pas" line="111" />
+    <field name="iValues" visibility="public" size="40" offset="4" file="ElUxTheme.pas" line="112">
+      <array name="iValues" visibility="public" low="0" high="9">
+        <element type="Integer" />
+      </array>
+    </field>
+  </struct>
+  <pointer name="PIntList" type="TIntList" indircnt="1" file="ElUxTheme.pas" line="114" />
+  <struct name="TThemeErrorContext" size="2092" file="ElUxTheme.pas" line="122">
+    <field name="dwSize" type="Cardinal" visibility="public" size="4" offset="0" file="ElUxTheme.pas" line="123" />
+    <field name="hr" type="HRESULT" visibility="public" size="4" offset="4" file="ElUxTheme.pas" line="124" />
+    <field name="szMsgParam1" visibility="public" size="520" offset="8" file="ElUxTheme.pas" line="125">
+      <array name="szMsgParam1" visibility="public" low="0" high="259">
+        <element type="Char" />
+      </array>
+    </field>
+    <field name="szMsgParam2" visibility="public" size="520" offset="528" file="ElUxTheme.pas" line="126">
+      <array name="szMsgParam2" visibility="public" low="0" high="259">
+        <element type="Char" />
+      </array>
+    </field>
+    <field name="szFileName" visibility="public" size="520" offset="1048" file="ElUxTheme.pas" line="127">
+      <array name="szFileName" visibility="public" low="0" high="259">
+        <element type="Char" />
+      </array>
+    </field>
+    <field name="szSourceLine" visibility="public" size="520" offset="1568" file="ElUxTheme.pas" line="128">
+      <array name="szSourceLine" visibility="public" low="0" high="259">
+        <element type="Char" />
+      </array>
+    </field>
+    <field name="iLineNum" type="Integer" visibility="public" size="4" offset="2088" file="ElUxTheme.pas" line="129" />
+  </struct>
+  <pointer name="PThemeErrorContext" type="TThemeErrorContext" indircnt="1" file="ElUxTheme.pas" line="131" />
+  <type name="HTheme" type="Int64" file="System.pas" line="12" />
+  <type name="HIMAGELIST" type="Int64" file="System.pas" line="12" />
+  <variable name="IsThemeActive" type="IsThemeActiveProc" file="ElUxTheme.pas" line="928" />
+  <variable name="EnableTheming" type="EnableThemingProc" file="ElUxTheme.pas" line="929" />
+  <variable name="OpenThemeData" type="OpenThemeDataProc" file="ElUxTheme.pas" line="930" />
+  <variable name="CloseThemeData" type="CloseThemeDataProc" file="ElUxTheme.pas" line="931" />
+  <variable name="DrawThemeParentBackground" type="DrawThemeParentBackgroundProc" file="ElUxTheme.pas" line="932" />
+  <variable name="DrawThemeBackground" type="DrawThemeBackgroundProc" file="ElUxTheme.pas" line="933" />
+  <variable name="DrawThemeText" type="DrawThemeTextProc" file="ElUxTheme.pas" line="934" />
+  <variable name="GetThemeBackgroundContentRect" type="GetThemeBackgroundContentRectProc" file="ElUxTheme.pas" line="935" />
+  <variable name="GetThemeBackgroundExtent" type="GetThemeBackgroundExtentProc" file="ElUxTheme.pas" line="936" />
+  <variable name="GetThemePartSize" type="GetThemePartSizeProc" file="ElUxTheme.pas" line="937" />
+  <variable name="GetThemeTextExtent" type="GetThemeTextExtentProc" file="ElUxTheme.pas" line="938" />
+  <variable name="GetThemeTextMetrics" type="GetThemeTextMetricsProc" file="ElUxTheme.pas" line="939" />
+  <variable name="GetThemeBackgroundRegion" type="GetThemeBackgroundRegionProc" file="ElUxTheme.pas" line="940" />
+  <variable name="HitTestThemeBackground" type="HitTestThemeBackgroundProc" file="ElUxTheme.pas" line="941" />
+  <variable name="DrawThemeEdge" type="DrawThemeEdgeProc" file="ElUxTheme.pas" line="943" />
+  <variable name="DrawThemeIcon" type="DrawThemeIconProc" file="ElUxTheme.pas" line="945" />
+  <variable name="IsThemePartDefined" type="IsThemePartDefinedProc" file="ElUxTheme.pas" line="946" />
+  <variable name="IsThemeBackgroundPartiallyTransparent" type="IsThemeBackgroundPartiallyTransparentProc" file="ElUxTheme.pas" line="947" />
+  <variable name="GetThemeColor" type="GetThemeColorProc" file="ElUxTheme.pas" line="948" />
+  <variable name="GetThemeMetric" type="GetThemeMetricProc" file="ElUxTheme.pas" line="949" />
+  <variable name="GetThemeString" type="GetThemeStringProc" file="ElUxTheme.pas" line="950" />
+  <variable name="GetThemeBool" type="GetThemeBoolProc" file="ElUxTheme.pas" line="951" />
+  <variable name="GetThemeInt" type="GetThemeIntProc" file="ElUxTheme.pas" line="952" />
+  <variable name="GetThemeEnumValue" type="GetThemeEnumValueProc" file="ElUxTheme.pas" line="953" />
+  <variable name="GetThemePosition" type="GetThemePositionProc" file="ElUxTheme.pas" line="954" />
+  <variable name="GetThemeFont" type="GetThemeFontProc" file="ElUxTheme.pas" line="955" />
+  <variable name="GetThemeRect" type="GetThemeRectProc" file="ElUxTheme.pas" line="956" />
+  <variable name="GetThemeMargins" type="GetThemeMarginsProc" file="ElUxTheme.pas" line="957" />
+  <variable name="GetThemeIntList" type="GetThemeIntListProc" file="ElUxTheme.pas" line="958" />
+  <variable name="GetThemePropertyOrigin" type="GetThemePropertyOriginProc" file="ElUxTheme.pas" line="959" />
+  <variable name="SetWindowTheme" type="SetWindowThemeProc" file="ElUxTheme.pas" line="960" />
+  <variable name="GetThemeFilename" type="GetThemeFilenameProc" file="ElUxTheme.pas" line="961" />
+  <variable name="GetThemeSysColor" type="GetThemeSysColorProc" file="ElUxTheme.pas" line="962" />
+  <variable name="GetThemeSysColorBrush" type="GetThemeSysColorBrushProc" file="ElUxTheme.pas" line="963" />
+  <variable name="GetThemeSysSize" type="GetThemeSysSizeProc" file="ElUxTheme.pas" line="964" />
+  <variable name="GetThemeSysBool" type="GetThemeSysBoolProc" file="ElUxTheme.pas" line="965" />
+  <variable name="GetThemeSysFont" type="GetThemeSysFontProc" file="ElUxTheme.pas" line="966" />
+  <variable name="GetThemeSysString" type="GetThemeSysStringProc" file="ElUxTheme.pas" line="967" />
+  <variable name="GetThemeSysInt" type="GetThemeSysIntProc" file="ElUxTheme.pas" line="968" />
+  <variable name="IsAppThemed" type="IsAppThemedProc" file="ElUxTheme.pas" line="969" />
+  <variable name="GetWindowTheme" type="GetWindowThemeProc" file="ElUxTheme.pas" line="970" />
+  <variable name="EnableThemeDialogTexture" type="EnableThemeDialogTextureProc" file="ElUxTheme.pas" line="971" />
+  <variable name="IsThemeDialogTextureEnabled" type="IsThemeDialogTextureEnabledProc" file="ElUxTheme.pas" line="972" />
+  <variable name="GetThemeAppProperties" type="GetThemeAppPropertiesProc" file="ElUxTheme.pas" line="973" />
+  <variable name="SetThemeAppProperties" type="SetThemeAppPropertiesProc" file="ElUxTheme.pas" line="974" />
+  <variable name="GetCurrentThemeName" type="GetCurrentThemeNameProc" file="ElUxTheme.pas" line="975" />
+  <variable name="GetThemeDocumentationProperty" type="GetThemeDocumentationPropertyProc" file="ElUxTheme.pas" line="976" />
+  <variable name="ThemesAvailable" type="Boolean" file="ElUxTheme.pas" line="984" />
+  <function name="GetThemePartSizeTo" visibility="public" file="ElUxTheme.pas" line="1005">
+    <parameters>
+      <parameter name="pszClassList" type="PWideChar" />
+      <parameter name="hdc" type="HDC" />
+      <parameter name="iPartId" type="Integer" />
+      <parameter name="iStateId" type="Integer" />
+      <parameter name="rect" type="PRect" />
+      <parameter name="eSize" type="Integer" />
+      <parameter name="psz" type="TSize" paramflags="var" />
+      <retval type="HRESULT" />
+    </parameters>
+  </function>
+  <function name="DrawThemeTextTo" visibility="public" file="ElUxTheme.pas" line="1021">
+    <parameters>
+      <parameter name="pszClassList" type="PWideChar" />
+      <parameter name="hdc" type="HDC" />
+      <parameter name="iPartId" type="Integer" />
+      <parameter name="iStateId" type="Integer" />
+      <parameter name="pszText" type="PWideChar" />
+      <parameter name="iCharCount" type="Integer" />
+      <parameter name="dwTextFlags" type="Cardinal" />
+      <parameter name="dwTextFlags2" type="Cardinal" />
+      <parameter name="Rect" type="TRect" paramflags="var" />
+      <retval type="HRESULT" />
+    </parameters>
+  </function>
+  <function name="DrawThemeBackgroundTo" visibility="public" file="ElUxTheme.pas" line="1036">
+    <parameters>
+      <parameter name="pszClassList" type="PWideChar" />
+      <parameter name="hdc" type="HDC" />
+      <parameter name="iPartId" type="Integer" />
+      <parameter name="iStateId" type="Integer" />
+      <parameter name="pRect" type="TRect" paramflags="const" />
+      <parameter name="pClipRect" type="PRect" />
+      <retval type="HRESULT" />
+    </parameters>
+  </function>
+</namespace>

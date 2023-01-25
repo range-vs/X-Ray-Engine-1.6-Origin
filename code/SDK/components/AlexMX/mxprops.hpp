@@ -1,8 +1,8 @@
 ﻿// CodeGear C++Builder
-// Copyright (c) 1995, 2022 by Embarcadero Technologies, Inc.
+// Copyright (c) 1995, 2020 by Embarcadero Technologies, Inc.
 // All rights reserved
 
-// (DO NOT EDIT: machine generated header) 'MXProps.pas' rev: 35.00 (Windows)
+// (DO NOT EDIT: machine generated header) 'MXProps.pas' rev: 34.00 (Windows)
 
 #ifndef MxpropsHPP
 #define MxpropsHPP
@@ -30,6 +30,7 @@ namespace Mxprops
 class DELPHICLASS TPropInfoList;
 class DELPHICLASS TPropsStorage;
 //-- type declarations -------------------------------------------------------
+#pragma pack(push,4)
 class PASCALIMPLEMENTATION TPropInfoList : public System::TObject
 {
 	typedef System::TObject inherited;
@@ -54,6 +55,7 @@ public:
 	__property System::Typinfo::PPropInfo Items[int Index] = {read=Get/*, default*/};
 };
 
+#pragma pack(pop)
 
 typedef System::UnicodeString __fastcall (__closure *TReadStrEvent)(const System::UnicodeString ASection, const System::UnicodeString Item, const System::UnicodeString Default);
 

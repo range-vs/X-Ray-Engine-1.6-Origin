@@ -1,0 +1,275 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<namespace name="ElList" platform="Win64">
+  <const name="AlignMem" type="Integer" file="ElList.pas" line="28">
+    <value>
+      $500
+    </value>
+  </const>
+  <class name="TElList" file="ElList.pas" line="44">
+    <ancestor name="TPersistent" namespace="System.Classes">
+      <methodref name="AssignError" visibility="private">
+      </methodref>
+      <methodref name="AssignTo" visibility="protected" procflags="virtual">
+      </methodref>
+      <methodref name="DefineProperties" visibility="protected" procflags="virtual">
+      </methodref>
+      <methodref name="GetOwner" visibility="protected" procflags="dynamic">
+      </methodref>
+      <methodref name="Destroy" visibility="public" procflags="destructor override">
+      </methodref>
+      <methodref name="Assign" visibility="public" procflags="virtual">
+      </methodref>
+      <methodref name="GetNamePath" visibility="public" procflags="dynamic">
+      </methodref>
+      <ancestor name="TObject" namespace="System">
+        <methodref name="Create" visibility="public" procflags="constructor">
+        </methodref>
+        <methodref name="Free" visibility="public">
+        </methodref>
+        <methodref name="DisposeOf" visibility="public" procflags="inline">
+        </methodref>
+        <methodref name="InitInstance" visibility="public" procflags="class">
+        </methodref>
+        <methodref name="CleanupInstance" visibility="public">
+        </methodref>
+        <methodref name="ClassType" visibility="public" procflags="inline">
+        </methodref>
+        <methodref name="ClassName" visibility="public" procflags="class">
+        </methodref>
+        <methodref name="ClassNameIs" visibility="public" procflags="class">
+        </methodref>
+        <methodref name="ClassParent" visibility="public" procflags="class">
+        </methodref>
+        <methodref name="ClassInfo" visibility="public" procflags="class inline">
+        </methodref>
+        <methodref name="InstanceSize" visibility="public" procflags="class inline">
+        </methodref>
+        <methodref name="InheritsFrom" visibility="public" procflags="class">
+        </methodref>
+        <methodref name="MethodAddress" visibility="public" procflags="class overload">
+        </methodref>
+        <methodref name="MethodAddress" visibility="public" procflags="class overload">
+        </methodref>
+        <methodref name="MethodName" visibility="public" procflags="class">
+        </methodref>
+        <methodref name="QualifiedClassName" visibility="public" procflags="class">
+        </methodref>
+        <methodref name="FieldAddress" visibility="public" procflags="overload">
+        </methodref>
+        <methodref name="FieldAddress" visibility="public" procflags="overload">
+        </methodref>
+        <methodref name="GetInterface" visibility="public">
+        </methodref>
+        <methodref name="GetInterfaceEntry" visibility="public" procflags="class">
+        </methodref>
+        <methodref name="GetInterfaceTable" visibility="public" procflags="class inline">
+        </methodref>
+        <methodref name="UnitName" visibility="public" procflags="class">
+        </methodref>
+        <methodref name="UnitScope" visibility="public" procflags="class">
+        </methodref>
+        <methodref name="Equals" visibility="public" procflags="virtual">
+        </methodref>
+        <methodref name="GetHashCode" visibility="public" procflags="virtual">
+        </methodref>
+        <methodref name="ToString" visibility="public" procflags="virtual">
+        </methodref>
+        <methodref name="SafeCallException" visibility="public" procflags="virtual">
+        </methodref>
+        <methodref name="AfterConstruction" visibility="public" procflags="virtual">
+        </methodref>
+        <methodref name="BeforeDestruction" visibility="public" procflags="virtual">
+        </methodref>
+        <methodref name="Dispatch" visibility="public" procflags="virtual">
+        </methodref>
+        <methodref name="DefaultHandler" visibility="public" procflags="virtual">
+        </methodref>
+        <methodref name="NewInstance" visibility="public" procflags="class virtual">
+        </methodref>
+        <methodref name="FreeInstance" visibility="public" procflags="virtual">
+        </methodref>
+        <methodref name="Destroy" visibility="public" procflags="destructor virtual">
+        </methodref>
+        <methodref name="CPP_ABI_1" visibility="public" procflags="virtual">
+        </methodref>
+        <methodref name="CPP_ABI_2" visibility="public" procflags="virtual">
+        </methodref>
+        <methodref name="CPP_ABI_3" visibility="public" procflags="virtual">
+        </methodref>
+        <methodref name="GetDisposed" visibility="protected" procflags="inline">
+        </methodref>
+        <methodref name="CheckDisposed" visibility="protected" procflags="inline">
+        </methodref>
+        <propertyref name="Disposed" visibility="protected">
+        </propertyref>
+      </ancestor>
+    </ancestor>
+    <members>
+      <field name="FAutoClearObjects" type="Boolean" visibility="protected" size="1" offset="8" file="ElList.pas" line="46" />
+      <field name="FList" type="TList" visibility="protected" size="8" offset="16" file="ElList.pas" line="49" />
+      <field name="FOnDelete" type="TElListDeleteEvent" visibility="protected" size="16" offset="24" file="ElList.pas" line="50" />
+      <procedure name="Error" visibility="protected" procflags="class" file="ElList.pas" line="52">
+        <parameters>
+          <parameter name="Msg" type="string" paramflags="const" />
+          <parameter name="Data" type="Integer" />
+        </parameters>
+      </procedure>
+      <function name="Get" visibility="protected" procflags="virtual" file="ElList.pas" line="53">
+        <parameters>
+          <parameter name="Index" type="Integer" />
+          <retval type="Pointer" />
+        </parameters>
+      </function>
+      <procedure name="Put" visibility="protected" procflags="virtual" file="ElList.pas" line="55">
+        <parameters>
+          <parameter name="Index" type="Integer" />
+          <parameter name="Item" type="Pointer" />
+        </parameters>
+      </procedure>
+      <procedure name="SetCapacity" visibility="protected" file="ElList.pas" line="56">
+        <parameters>
+          <parameter name="NewCapacity" type="Integer" />
+        </parameters>
+      </procedure>
+      <procedure name="SetCount" visibility="protected" file="ElList.pas" line="57">
+        <parameters>
+          <parameter name="NewCount" type="Integer" />
+        </parameters>
+      </procedure>
+      <function name="GetCapacity" visibility="protected" file="ElList.pas" line="58">
+        <parameters>
+          <retval type="Integer" />
+        </parameters>
+      </function>
+      <function name="GetCount" visibility="protected" file="ElList.pas" line="59">
+        <parameters>
+          <retval type="Integer" />
+        </parameters>
+      </function>
+      <procedure name="TriggerDeleteEvent" visibility="protected" procflags="virtual" file="ElList.pas" line="61">
+        <parameters>
+          <parameter name="Item" type="Pointer" />
+        </parameters>
+      </procedure>
+      <constructor name="Create" visibility="public" file="ElList.pas" line="63">
+        <parameters>
+        </parameters>
+      </constructor>
+      <destructor name="Destroy" visibility="public" file="ElList.pas" line="64">
+        <parameters>
+        </parameters>
+      </destructor>
+      <function name="FastGet" visibility="public" file="ElList.pas" line="65">
+        <parameters>
+          <parameter name="Index" type="Integer" />
+          <retval type="Pointer" />
+        </parameters>
+      </function>
+      <function name="Add" visibility="public" file="ElList.pas" line="66">
+        <parameters>
+          <parameter name="Item" type="Pointer" />
+          <retval type="Integer" />
+        </parameters>
+      </function>
+      <procedure name="Assign" visibility="public" procflags="override" file="ElList.pas" line="67">
+        <parameters>
+          <parameter name="Source" type="TPersistent" />
+        </parameters>
+      </procedure>
+      <procedure name="Clear" visibility="public" procflags="virtual" file="ElList.pas" line="68">
+      </procedure>
+      <procedure name="Delete" visibility="public" procflags="virtual" file="ElList.pas" line="69">
+        <parameters>
+          <parameter name="Index" type="Integer" />
+        </parameters>
+      </procedure>
+      <procedure name="DeleteRange" visibility="public" procflags="virtual" file="ElList.pas" line="70">
+        <parameters>
+          <parameter name="StartIndex" type="Integer" />
+          <parameter name="EndIndex" type="Integer" />
+        </parameters>
+      </procedure>
+      <procedure name="Exchange" visibility="public" file="ElList.pas" line="71">
+        <parameters>
+          <parameter name="Index1" type="Integer" />
+          <parameter name="Index2" type="Integer" />
+        </parameters>
+      </procedure>
+      <function name="First" visibility="public" file="ElList.pas" line="73">
+        <parameters>
+          <retval type="Pointer" />
+        </parameters>
+      </function>
+      <function name="IndexOf" visibility="public" file="ElList.pas" line="74">
+        <parameters>
+          <parameter name="Item" type="Pointer" />
+          <retval type="Integer" />
+        </parameters>
+      </function>
+      <function name="IndexOfBack" visibility="public" file="ElList.pas" line="75">
+        <parameters>
+          <parameter name="StartIndex" type="Integer" />
+          <parameter name="Item" type="Pointer" />
+          <retval type="Integer" />
+        </parameters>
+      </function>
+      <function name="IndexOfFrom" visibility="public" file="ElList.pas" line="76">
+        <parameters>
+          <parameter name="StartIndex" type="Integer" />
+          <parameter name="Item" type="Pointer" />
+          <retval type="Integer" />
+        </parameters>
+      </function>
+      <procedure name="Insert" visibility="public" file="ElList.pas" line="77">
+        <parameters>
+          <parameter name="Index" type="Integer" />
+          <parameter name="Item" type="Pointer" />
+        </parameters>
+      </procedure>
+      <function name="Last" visibility="public" file="ElList.pas" line="78">
+        <parameters>
+          <retval type="Pointer" />
+        </parameters>
+      </function>
+      <procedure name="Move" visibility="public" file="ElList.pas" line="79">
+        <parameters>
+          <parameter name="CurIndex" type="Integer" />
+          <parameter name="NewIndex" type="Integer" />
+        </parameters>
+      </procedure>
+      <procedure name="MoveRange" visibility="public" file="ElList.pas" line="80">
+        <parameters>
+          <parameter name="CurStart" type="Integer" />
+          <parameter name="CurEnd" type="Integer" />
+          <parameter name="NewStart" type="Integer" />
+        </parameters>
+      </procedure>
+      <procedure name="Pack" visibility="public" file="ElList.pas" line="81">
+      </procedure>
+      <function name="Remove" visibility="public" file="ElList.pas" line="82">
+        <parameters>
+          <parameter name="Item" type="Pointer" />
+          <retval type="Integer" />
+        </parameters>
+      </function>
+      <procedure name="Sort" visibility="public" file="ElList.pas" line="83">
+        <parameters>
+          <parameter name="Compare" type="TElListSortCompare" />
+          <parameter name="Cargo" type="Pointer" />
+        </parameters>
+      </procedure>
+      <procedure name="SortC" visibility="public" file="ElList.pas" line="84">
+        <parameters>
+          <parameter name="Compare" type="TElListSortCompareEx" />
+          <parameter name="Cargo" type="Pointer" />
+        </parameters>
+      </procedure>
+      <property name="AutoClearObjects" visibility="public" read="FAutoClearObjects" write="FAutoClearObjects" type="Boolean" file="ElList.pas" line="85" />
+      <property name="Capacity" visibility="public" read="GetCapacity" write="SetCapacity" type="Integer" file="ElList.pas" line="87" />
+      <property name="Count" visibility="public" read="GetCount" write="SetCount" type="Integer" file="ElList.pas" line="88" />
+      <property name="Items[Index]" visibility="public" read="Get" write="Put" type="Pointer" file="ElList.pas" line="89" />
+      <property name="List" visibility="public" read="FList" type="TList" file="ElList.pas" line="90" />
+      <event name="OnDelete" visibility="public" read="FOnDelete" write="FOnDelete" type="TElListDeleteEvent" file="ElList.pas" line="91" />
+    </members>
+  </class>
+</namespace>

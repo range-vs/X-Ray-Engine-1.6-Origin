@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<namespace name="ElHandPt" platform="Win64">
+  <const name="crURLCursor" type="Integer" file="ElHandPt.pas" line="36">
+    <value>
+      $5B2
+    </value>
+  </const>
+</namespace>

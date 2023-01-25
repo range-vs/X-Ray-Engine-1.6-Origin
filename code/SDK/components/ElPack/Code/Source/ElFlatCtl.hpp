@@ -1,8 +1,8 @@
 ﻿// CodeGear C++Builder
-// Copyright (c) 1995, 2022 by Embarcadero Technologies, Inc.
+// Copyright (c) 1995, 2020 by Embarcadero Technologies, Inc.
 // All rights reserved
 
-// (DO NOT EDIT: machine generated header) 'ElFlatCtl.pas' rev: 35.00 (Windows)
+// (DO NOT EDIT: machine generated header) 'ElFlatCtl.pas' rev: 34.00 (Windows)
 
 #ifndef ElflatctlHPP
 #define ElflatctlHPP
@@ -99,6 +99,7 @@ __published:
 };
 
 
+#pragma pack(push,4)
 class PASCALIMPLEMENTATION TElFlatEntry : public System::Classes::TCollectionItem
 {
 	typedef System::Classes::TCollectionItem inherited;
@@ -149,7 +150,9 @@ __published:
 	__property bool UseXPThemes = {read=GetUseXPThemes, write=SetUseXPThemes, nodefault};
 };
 
+#pragma pack(pop)
 
+#pragma pack(push,4)
 class PASCALIMPLEMENTATION TElFlatEntries : public System::Classes::TCollection
 {
 	typedef System::Classes::TCollection inherited;
@@ -172,6 +175,7 @@ public:
 	
 };
 
+#pragma pack(pop)
 
 class PASCALIMPLEMENTATION TElFlatMultiController : public System::Classes::TComponent
 {

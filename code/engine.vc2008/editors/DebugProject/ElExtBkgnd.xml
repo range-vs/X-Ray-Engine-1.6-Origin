@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<namespace name="ElExtBkgnd" platform="Win64">
+  <procedure name="ExtDrawBkgnd2" visibility="public" file="ElExtBkgnd.pas" line="76">
+    <parameters>
+      <parameter name="DC" type="HDC" />
+      <parameter name="Wnd" type="HWND" />
+      <parameter name="R" type="TRect" />
+      <parameter name="DocRect" type="TRect" />
+      <parameter name="Origin" type="TPoint" />
+      <parameter name="FillColor" type="TColor" />
+      <parameter name="SourceBitmap" type="TBitmap" />
+      <parameter name="DrawMode" type="TElBkGndType" />
+    </parameters>
+  </procedure>
+  <procedure name="ExtDrawBkgnd" visibility="public" file="ElExtBkgnd.pas" line="234">
+    <parameters>
+      <parameter name="DC" type="HDC" />
+      <parameter name="Wnd" type="HWND" />
+      <parameter name="RectDoc" type="TRect" />
+      <parameter name="RectWindow" type="TRect" />
+      <parameter name="RectDC" type="TRect" />
+      <parameter name="RectOnDC" type="TRect" />
+      <parameter name="InvertedMode" type="Boolean" />
+      <parameter name="FillColor" type="TColor" />
+      <parameter name="OverColor" type="TColor" />
+      <parameter name="DoBlend" type="Boolean" />
+      <parameter name="SourceBitmap" type="TBitmap" />
+      <parameter name="DrawMode" type="TElBkGndType" />
+    </parameters>
+  </procedure>
+</namespace>

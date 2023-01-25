@@ -1,8 +1,8 @@
 ﻿// CodeGear C++Builder
-// Copyright (c) 1995, 2022 by Embarcadero Technologies, Inc.
+// Copyright (c) 1995, 2020 by Embarcadero Technologies, Inc.
 // All rights reserved
 
-// (DO NOT EDIT: machine generated header) 'ElFrmPers.pas' rev: 35.00 (Windows)
+// (DO NOT EDIT: machine generated header) 'ElFrmPers.pas' rev: 34.00 (Windows)
 
 #ifndef ElfrmpersHPP
 #define ElfrmpersHPP
@@ -46,6 +46,7 @@ enum DECLSPEC_DENUM TElPersistOption : unsigned char { epoState, epoPosition, ep
 
 typedef System::Set<TElPersistOption, TElPersistOption::epoState, TElPersistOption::epoSize> TElPersistOptions;
 
+#pragma pack(push,4)
 class PASCALIMPLEMENTATION TElMinMaxInfo : public System::Classes::TPersistent
 {
 	typedef System::Classes::TPersistent inherited;
@@ -73,7 +74,9 @@ public:
 	
 };
 
+#pragma pack(pop)
 
+#pragma pack(push,4)
 class PASCALIMPLEMENTATION TElStoredProps : public System::TObject
 {
 	typedef System::TObject inherited;
@@ -84,6 +87,7 @@ public:
 	
 };
 
+#pragma pack(pop)
 
 class PASCALIMPLEMENTATION TElFormPersist : public System::Classes::TComponent
 {

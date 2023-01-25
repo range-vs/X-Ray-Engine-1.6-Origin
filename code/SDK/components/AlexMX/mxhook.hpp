@@ -1,8 +1,8 @@
 ﻿// CodeGear C++Builder
-// Copyright (c) 1995, 2022 by Embarcadero Technologies, Inc.
+// Copyright (c) 1995, 2020 by Embarcadero Technologies, Inc.
 // All rights reserved
 
-// (DO NOT EDIT: machine generated header) 'mxHook.pas' rev: 35.00 (Windows)
+// (DO NOT EDIT: machine generated header) 'mxHook.pas' rev: 34.00 (Windows)
 
 #ifndef MxhookHPP
 #define MxhookHPP
@@ -64,7 +64,7 @@ public:
 	__fastcall virtual ~TRxWindowHook();
 	void __fastcall HookControl();
 	void __fastcall UnhookControl();
-	__property HWND HookWindow = {read=GetHookHandle};
+	__property HWND HookWindow = {read=GetHookHandle, nodefault};
 	
 __published:
 	__property bool Active = {read=FActive, write=SetActive, default=1};

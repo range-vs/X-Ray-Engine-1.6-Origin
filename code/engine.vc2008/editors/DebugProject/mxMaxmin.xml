@@ -1,0 +1,135 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<namespace name="mxMaxMin" platform="Win64">
+  <procedure name="SwapInt" visibility="public" file="mxMaxMin.pas" line="42">
+    <parameters>
+      <parameter name="Int1" type="Integer" paramflags="var" />
+      <parameter name="Int2" type="Integer" paramflags="var" />
+    </parameters>
+  </procedure>
+  <procedure name="SwapInt64" visibility="public" file="mxMaxMin.pas" line="50">
+    <parameters>
+      <parameter name="Int1" type="Int64" paramflags="var" />
+      <parameter name="Int2" type="Int64" paramflags="var" />
+    </parameters>
+  </procedure>
+  <procedure name="SwapLong" visibility="public" file="mxMaxMin.pas" line="58">
+    <parameters>
+      <parameter name="Int1" type="Integer" paramflags="var" />
+      <parameter name="Int2" type="Integer" paramflags="var" />
+    </parameters>
+  </procedure>
+  <function name="Max" visibility="public" file="mxMaxMin.pas" line="65">
+    <parameters>
+      <parameter name="A" type="Integer" />
+      <parameter name="B" type="Integer" />
+      <retval type="Integer" />
+    </parameters>
+  </function>
+  <function name="Min" visibility="public" file="mxMaxMin.pas" line="71">
+    <parameters>
+      <parameter name="A" type="Integer" />
+      <parameter name="B" type="Integer" />
+      <retval type="Integer" />
+    </parameters>
+  </function>
+  <function name="MaxInteger" visibility="public" file="mxMaxMin.pas" line="77">
+    <parameters>
+      <parameter name="Values" paramflags="const">
+        <array name="Values">
+          <element type="Integer" />
+        </array>
+      </parameter>
+      <retval type="Integer" />
+    </parameters>
+  </function>
+  <function name="MinInteger" visibility="public" file="mxMaxMin.pas" line="86">
+    <parameters>
+      <parameter name="Values" paramflags="const">
+        <array name="Values">
+          <element type="Integer" />
+        </array>
+      </parameter>
+      <retval type="Integer" />
+    </parameters>
+  </function>
+  <function name="MaxInt64" visibility="public" file="mxMaxMin.pas" line="97">
+    <parameters>
+      <parameter name="Values" paramflags="const">
+        <array name="Values">
+          <element type="Int64" />
+        </array>
+      </parameter>
+      <retval type="Int64" />
+    </parameters>
+  </function>
+  <function name="MinInt64" visibility="public" file="mxMaxMin.pas" line="106">
+    <parameters>
+      <parameter name="Values" paramflags="const">
+        <array name="Values">
+          <element type="Int64" />
+        </array>
+      </parameter>
+      <retval type="Int64" />
+    </parameters>
+  </function>
+  <function name="MaxFloat" visibility="public" file="mxMaxMin.pas" line="117">
+    <parameters>
+      <parameter name="Values" paramflags="const">
+        <array name="Values">
+          <element type="Extended" />
+        </array>
+      </parameter>
+      <retval type="Extended" />
+    </parameters>
+  </function>
+  <function name="MinFloat" visibility="public" file="mxMaxMin.pas" line="126">
+    <parameters>
+      <parameter name="Values" paramflags="const">
+        <array name="Values">
+          <element type="Extended" />
+        </array>
+      </parameter>
+      <retval type="Extended" />
+    </parameters>
+  </function>
+  <function name="MaxDateTime" visibility="public" file="mxMaxMin.pas" line="135">
+    <parameters>
+      <parameter name="Values" paramflags="const">
+        <array name="Values">
+          <element type="TDateTime" />
+        </array>
+      </parameter>
+      <retval type="TDateTime" />
+    </parameters>
+  </function>
+  <function name="MinDateTime" visibility="public" file="mxMaxMin.pas" line="144">
+    <parameters>
+      <parameter name="Values" paramflags="const">
+        <array name="Values">
+          <element type="TDateTime" />
+        </array>
+      </parameter>
+      <retval type="TDateTime" />
+    </parameters>
+  </function>
+  <function name="MaxOf" visibility="public" file="mxMaxMin.pas" line="153">
+    <parameters>
+      <parameter name="Values" paramflags="const">
+        <array name="Values">
+          <element type="Variant" />
+        </array>
+      </parameter>
+      <retval type="Variant" />
+    </parameters>
+  </function>
+  <function name="MinOf" visibility="public" file="mxMaxMin.pas" line="162">
+    <parameters>
+      <parameter name="Values" paramflags="const">
+        <array name="Values">
+          <element type="Variant" />
+        </array>
+      </parameter>
+      <retval type="Variant" />
+    </parameters>
+  </function>
+</namespace>

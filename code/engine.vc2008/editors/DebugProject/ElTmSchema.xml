@@ -1,0 +1,3703 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<namespace name="ElTmSchema" platform="Win64">
+  <const name="BT_IMAGEFILE" type="Integer" file="ElTmSchema.pas" line="27">
+    <value>
+      $0
+    </value>
+  </const>
+  <const name="BT_BORDERFILL" type="Integer" file="ElTmSchema.pas" line="28">
+    <value>
+      $1
+    </value>
+  </const>
+  <const name="BT_NTLFILE" type="Integer" file="ElTmSchema.pas" line="29">
+    <value>
+      $2
+    </value>
+  </const>
+  <const name="BT_NONE" type="Integer" file="ElTmSchema.pas" line="30">
+    <value>
+      $3
+    </value>
+  </const>
+  <const name="IL_HORIZONTAL" type="Integer" file="ElTmSchema.pas" line="32">
+    <value>
+      $0
+    </value>
+  </const>
+  <const name="IL_VERTICAL" type="Integer" file="ElTmSchema.pas" line="33">
+    <value>
+      $1
+    </value>
+  </const>
+  <const name="BT_RECT" type="Integer" file="ElTmSchema.pas" line="35">
+    <value>
+      $0
+    </value>
+  </const>
+  <const name="BT_ROUNDRECT" type="Integer" file="ElTmSchema.pas" line="36">
+    <value>
+      $1
+    </value>
+  </const>
+  <const name="BT_ELLIPSE" type="Integer" file="ElTmSchema.pas" line="37">
+    <value>
+      $2
+    </value>
+  </const>
+  <const name="FT_SOLID" type="Integer" file="ElTmSchema.pas" line="39">
+    <value>
+      $0
+    </value>
+  </const>
+  <const name="FT_VERTGRADIENT" type="Integer" file="ElTmSchema.pas" line="40">
+    <value>
+      $1
+    </value>
+  </const>
+  <const name="FT_HORZGRADIENT" type="Integer" file="ElTmSchema.pas" line="41">
+    <value>
+      $2
+    </value>
+  </const>
+  <const name="FT_RADIALGRADIENT" type="Integer" file="ElTmSchema.pas" line="42">
+    <value>
+      $3
+    </value>
+  </const>
+  <const name="FT_TILEIMAGE" type="Integer" file="ElTmSchema.pas" line="43">
+    <value>
+      $4
+    </value>
+  </const>
+  <const name="ST_TRUESIZE" type="Integer" file="ElTmSchema.pas" line="45">
+    <value>
+      $0
+    </value>
+  </const>
+  <const name="ST_STRETCH" type="Integer" file="ElTmSchema.pas" line="46">
+    <value>
+      $1
+    </value>
+  </const>
+  <const name="ST_TILE" type="Integer" file="ElTmSchema.pas" line="47">
+    <value>
+      $2
+    </value>
+  </const>
+  <const name="HA_LEFT" type="Integer" file="ElTmSchema.pas" line="49">
+    <value>
+      $0
+    </value>
+  </const>
+  <const name="HA_CENTER" type="Integer" file="ElTmSchema.pas" line="50">
+    <value>
+      $1
+    </value>
+  </const>
+  <const name="HA_RIGHT" type="Integer" file="ElTmSchema.pas" line="51">
+    <value>
+      $2
+    </value>
+  </const>
+  <const name="CA_LEFT" type="Integer" file="ElTmSchema.pas" line="53">
+    <value>
+      $0
+    </value>
+  </const>
+  <const name="CA_CENTER" type="Integer" file="ElTmSchema.pas" line="54">
+    <value>
+      $1
+    </value>
+  </const>
+  <const name="CA_RIGHT" type="Integer" file="ElTmSchema.pas" line="55">
+    <value>
+      $2
+    </value>
+  </const>
+  <const name="VA_TOP" type="Integer" file="ElTmSchema.pas" line="57">
+    <value>
+      $0
+    </value>
+  </const>
+  <const name="VA_CENTER" type="Integer" file="ElTmSchema.pas" line="58">
+    <value>
+      $1
+    </value>
+  </const>
+  <const name="VA_BOTTOM" type="Integer" file="ElTmSchema.pas" line="59">
+    <value>
+      $2
+    </value>
+  </const>
+  <const name="OT_TOPLEFT" type="Integer" file="ElTmSchema.pas" line="61">
+    <value>
+      $0
+    </value>
+  </const>
+  <const name="OT_TOPRIGHT" type="Integer" file="ElTmSchema.pas" line="62">
+    <value>
+      $1
+    </value>
+  </const>
+  <const name="OT_TOPMIDDLE" type="Integer" file="ElTmSchema.pas" line="63">
+    <value>
+      $2
+    </value>
+  </const>
+  <const name="OT_BOTTOMLEFT" type="Integer" file="ElTmSchema.pas" line="64">
+    <value>
+      $3
+    </value>
+  </const>
+  <const name="OT_BOTTOMRIGHT" type="Integer" file="ElTmSchema.pas" line="65">
+    <value>
+      $4
+    </value>
+  </const>
+  <const name="OT_BOTTOMMIDDLE" type="Integer" file="ElTmSchema.pas" line="66">
+    <value>
+      $5
+    </value>
+  </const>
+  <const name="OT_MIDDLELEFT" type="Integer" file="ElTmSchema.pas" line="67">
+    <value>
+      $6
+    </value>
+  </const>
+  <const name="OT_MIDDLERIGHT" type="Integer" file="ElTmSchema.pas" line="68">
+    <value>
+      $7
+    </value>
+  </const>
+  <const name="OT_LEFTOFCAPTION" type="Integer" file="ElTmSchema.pas" line="69">
+    <value>
+      $8
+    </value>
+  </const>
+  <const name="OT_RIGHTOFCAPTION" type="Integer" file="ElTmSchema.pas" line="70">
+    <value>
+      $9
+    </value>
+  </const>
+  <const name="OT_LEFTOFLASTBUTTON" type="Integer" file="ElTmSchema.pas" line="71">
+    <value>
+      $A
+    </value>
+  </const>
+  <const name="OT_RIGHTOFLASTBUTTON" type="Integer" file="ElTmSchema.pas" line="72">
+    <value>
+      $B
+    </value>
+  </const>
+  <const name="OT_ABOVELASTBUTTON" type="Integer" file="ElTmSchema.pas" line="73">
+    <value>
+      $C
+    </value>
+  </const>
+  <const name="OT_BELOWLASTBUTTON" type="Integer" file="ElTmSchema.pas" line="74">
+    <value>
+      $D
+    </value>
+  </const>
+  <const name="ICE_NONE" type="Integer" file="ElTmSchema.pas" line="76">
+    <value>
+      $0
+    </value>
+  </const>
+  <const name="ICE_GLOW" type="Integer" file="ElTmSchema.pas" line="77">
+    <value>
+      $1
+    </value>
+  </const>
+  <const name="ICE_SHADOW" type="Integer" file="ElTmSchema.pas" line="78">
+    <value>
+      $2
+    </value>
+  </const>
+  <const name="ICE_PULSE" type="Integer" file="ElTmSchema.pas" line="79">
+    <value>
+      $3
+    </value>
+  </const>
+  <const name="ICE_ALPHA" type="Integer" file="ElTmSchema.pas" line="80">
+    <value>
+      $4
+    </value>
+  </const>
+  <const name="TST_NONE" type="Integer" file="ElTmSchema.pas" line="82">
+    <value>
+      $0
+    </value>
+  </const>
+  <const name="TST_SINGLE" type="Integer" file="ElTmSchema.pas" line="83">
+    <value>
+      $1
+    </value>
+  </const>
+  <const name="TST_CONTINUOUS" type="Integer" file="ElTmSchema.pas" line="84">
+    <value>
+      $2
+    </value>
+  </const>
+  <const name="GT_NONE" type="Integer" file="ElTmSchema.pas" line="86">
+    <value>
+      $0
+    </value>
+  </const>
+  <const name="GT_IMAGEGLYPH" type="Integer" file="ElTmSchema.pas" line="87">
+    <value>
+      $1
+    </value>
+  </const>
+  <const name="GT_FONTGLYPH" type="Integer" file="ElTmSchema.pas" line="88">
+    <value>
+      $2
+    </value>
+  </const>
+  <const name="IST_NONE" type="Integer" file="ElTmSchema.pas" line="90">
+    <value>
+      $0
+    </value>
+  </const>
+  <const name="IST_SIZE" type="Integer" file="ElTmSchema.pas" line="91">
+    <value>
+      $1
+    </value>
+  </const>
+  <const name="IST_DPI" type="Integer" file="ElTmSchema.pas" line="92">
+    <value>
+      $2
+    </value>
+  </const>
+  <const name="TSST_NONE" type="Integer" file="ElTmSchema.pas" line="94">
+    <value>
+      $0
+    </value>
+  </const>
+  <const name="TSST_SIZE" type="Integer" file="ElTmSchema.pas" line="95">
+    <value>
+      $1
+    </value>
+  </const>
+  <const name="TSST_DPI" type="Integer" file="ElTmSchema.pas" line="96">
+    <value>
+      $2
+    </value>
+  </const>
+  <const name="GFST_NONE" type="Integer" file="ElTmSchema.pas" line="98">
+    <value>
+      $0
+    </value>
+  </const>
+  <const name="GFST_SIZE" type="Integer" file="ElTmSchema.pas" line="99">
+    <value>
+      $1
+    </value>
+  </const>
+  <const name="GFST_DPI" type="Integer" file="ElTmSchema.pas" line="100">
+    <value>
+      $2
+    </value>
+  </const>
+  <const name="TMT_BASE200" type="Integer" file="ElTmSchema.pas" line="102">
+    <value>
+      $C8
+    </value>
+  </const>
+  <const name="TMT_STRING" type="Integer" file="ElTmSchema.pas" line="103">
+    <value>
+      $C9
+    </value>
+  </const>
+  <const name="TMT_INT" type="Integer" file="ElTmSchema.pas" line="104">
+    <value>
+      $CA
+    </value>
+  </const>
+  <const name="TMT_BOOL" type="Integer" file="ElTmSchema.pas" line="105">
+    <value>
+      $CB
+    </value>
+  </const>
+  <const name="TMT_COLOR" type="Integer" file="ElTmSchema.pas" line="106">
+    <value>
+      $CC
+    </value>
+  </const>
+  <const name="TMT_MARGINS" type="Integer" file="ElTmSchema.pas" line="107">
+    <value>
+      $CD
+    </value>
+  </const>
+  <const name="TMT_FILENAME" type="Integer" file="ElTmSchema.pas" line="108">
+    <value>
+      $CE
+    </value>
+  </const>
+  <const name="TMT_SIZE" type="Integer" file="ElTmSchema.pas" line="109">
+    <value>
+      $CF
+    </value>
+  </const>
+  <const name="TMT_POSITION" type="Integer" file="ElTmSchema.pas" line="110">
+    <value>
+      $D0
+    </value>
+  </const>
+  <const name="TMT_RECT" type="Integer" file="ElTmSchema.pas" line="111">
+    <value>
+      $D1
+    </value>
+  </const>
+  <const name="TMT_FONT" type="Integer" file="ElTmSchema.pas" line="112">
+    <value>
+      $D2
+    </value>
+  </const>
+  <const name="TMT_INTLIST" type="Integer" file="ElTmSchema.pas" line="113">
+    <value>
+      $D3
+    </value>
+  </const>
+  <const name="TMT_BASE400" type="Integer" file="ElTmSchema.pas" line="115">
+    <value>
+      $190
+    </value>
+  </const>
+  <const name="TMT_COLORSCHEMES" type="Integer" file="ElTmSchema.pas" line="116">
+    <value>
+      $191
+    </value>
+  </const>
+  <const name="TMT_SIZES" type="Integer" file="ElTmSchema.pas" line="117">
+    <value>
+      $192
+    </value>
+  </const>
+  <const name="TMT_CHARSET" type="Integer" file="ElTmSchema.pas" line="118">
+    <value>
+      $193
+    </value>
+  </const>
+  <const name="TMT_BASE600" type="Integer" file="ElTmSchema.pas" line="120">
+    <value>
+      $258
+    </value>
+  </const>
+  <const name="TMT_DISPLAYNAME" type="Integer" file="ElTmSchema.pas" line="121">
+    <value>
+      $259
+    </value>
+  </const>
+  <const name="TMT_TOOLTIP" type="Integer" file="ElTmSchema.pas" line="122">
+    <value>
+      $25A
+    </value>
+  </const>
+  <const name="TMT_COMPANY" type="Integer" file="ElTmSchema.pas" line="123">
+    <value>
+      $25B
+    </value>
+  </const>
+  <const name="TMT_AUTHOR" type="Integer" file="ElTmSchema.pas" line="124">
+    <value>
+      $25C
+    </value>
+  </const>
+  <const name="TMT_COPYRIGHT" type="Integer" file="ElTmSchema.pas" line="125">
+    <value>
+      $25D
+    </value>
+  </const>
+  <const name="TMT_URL" type="Integer" file="ElTmSchema.pas" line="126">
+    <value>
+      $25E
+    </value>
+  </const>
+  <const name="TMT_VERSION" type="Integer" file="ElTmSchema.pas" line="127">
+    <value>
+      $25F
+    </value>
+  </const>
+  <const name="TMT_DESCRIPTION" type="Integer" file="ElTmSchema.pas" line="128">
+    <value>
+      $260
+    </value>
+  </const>
+  <const name="TMT_FIRST_RCSTRING_NAME" type="Integer" file="ElTmSchema.pas" line="130">
+    <value>
+      $259
+    </value>
+  </const>
+  <const name="TMT_LAST_RCSTRING_NAME" type="Integer" file="ElTmSchema.pas" line="131">
+    <value>
+      $260
+    </value>
+  </const>
+  <const name="TMT_BASE800" type="Integer" file="ElTmSchema.pas" line="133">
+    <value>
+      $320
+    </value>
+  </const>
+  <const name="TMT_CAPTIONFONT" type="Integer" file="ElTmSchema.pas" line="134">
+    <value>
+      $321
+    </value>
+  </const>
+  <const name="TMT_SMALLCAPTIONFONT" type="Integer" file="ElTmSchema.pas" line="135">
+    <value>
+      $322
+    </value>
+  </const>
+  <const name="TMT_MENUFONT" type="Integer" file="ElTmSchema.pas" line="136">
+    <value>
+      $323
+    </value>
+  </const>
+  <const name="TMT_STATUSFONT" type="Integer" file="ElTmSchema.pas" line="137">
+    <value>
+      $324
+    </value>
+  </const>
+  <const name="TMT_MSGBOXFONT" type="Integer" file="ElTmSchema.pas" line="138">
+    <value>
+      $325
+    </value>
+  </const>
+  <const name="TMT_ICONTITLEFONT" type="Integer" file="ElTmSchema.pas" line="139">
+    <value>
+      $326
+    </value>
+  </const>
+  <const name="TMT_FIRSTFONT" type="Integer" file="ElTmSchema.pas" line="141">
+    <value>
+      $321
+    </value>
+  </const>
+  <const name="TMT_LASTFONT" type="Integer" file="ElTmSchema.pas" line="142">
+    <value>
+      $326
+    </value>
+  </const>
+  <const name="TMT_BASE1000" type="Integer" file="ElTmSchema.pas" line="144">
+    <value>
+      $3E8
+    </value>
+  </const>
+  <const name="TMT_FLATMENUS" type="Integer" file="ElTmSchema.pas" line="145">
+    <value>
+      $3E9
+    </value>
+  </const>
+  <const name="TMT_SYSTEMSIZE" type="Integer" file="ElTmSchema.pas" line="146">
+    <value>
+      $3EA
+    </value>
+  </const>
+  <const name="TMT_SYSTEMPOS" type="Integer" file="ElTmSchema.pas" line="147">
+    <value>
+      $3EB
+    </value>
+  </const>
+  <const name="TMT_FIRSTBOOL" type="Integer" file="ElTmSchema.pas" line="149">
+    <value>
+      $3E9
+    </value>
+  </const>
+  <const name="TMT_LASTBOOL" type="Integer" file="ElTmSchema.pas" line="150">
+    <value>
+      $3E9
+    </value>
+  </const>
+  <const name="TMT_BASE1200" type="Integer" file="ElTmSchema.pas" line="152">
+    <value>
+      $4B0
+    </value>
+  </const>
+  <const name="TMT_BORDERWIDTH" type="Integer" file="ElTmSchema.pas" line="153">
+    <value>
+      $4B1
+    </value>
+  </const>
+  <const name="TMT_SCROLLBARWIDTH" type="Integer" file="ElTmSchema.pas" line="154">
+    <value>
+      $4B2
+    </value>
+  </const>
+  <const name="TMT_SCROLLBARHEIGHT" type="Integer" file="ElTmSchema.pas" line="155">
+    <value>
+      $4B3
+    </value>
+  </const>
+  <const name="TMT_CAPTIONBARWIDTH" type="Integer" file="ElTmSchema.pas" line="156">
+    <value>
+      $4B4
+    </value>
+  </const>
+  <const name="TMT_CAPTIONBARHEIGHT" type="Integer" file="ElTmSchema.pas" line="157">
+    <value>
+      $4B5
+    </value>
+  </const>
+  <const name="TMT_SMCAPTIONBARWIDTH" type="Integer" file="ElTmSchema.pas" line="158">
+    <value>
+      $4B6
+    </value>
+  </const>
+  <const name="TMT_SMCAPTIONBARHEIGHT" type="Integer" file="ElTmSchema.pas" line="159">
+    <value>
+      $4B7
+    </value>
+  </const>
+  <const name="TMT_MENUBARWIDTH" type="Integer" file="ElTmSchema.pas" line="160">
+    <value>
+      $4B8
+    </value>
+  </const>
+  <const name="TMT_MENUBARHEIGHT" type="Integer" file="ElTmSchema.pas" line="161">
+    <value>
+      $4B9
+    </value>
+  </const>
+  <const name="TMT_FIRSTSIZE" type="Integer" file="ElTmSchema.pas" line="163">
+    <value>
+      $4B1
+    </value>
+  </const>
+  <const name="TMT_LASTSIZE" type="Integer" file="ElTmSchema.pas" line="164">
+    <value>
+      $4B9
+    </value>
+  </const>
+  <const name="TMT_BASE1300" type="Integer" file="ElTmSchema.pas" line="166">
+    <value>
+      $514
+    </value>
+  </const>
+  <const name="TMT_DPIX" type="Integer" file="ElTmSchema.pas" line="167">
+    <value>
+      $515
+    </value>
+  </const>
+  <const name="TMT_DPIY" type="Integer" file="ElTmSchema.pas" line="168">
+    <value>
+      $516
+    </value>
+  </const>
+  <const name="TMT_MINCOLORDEPTH" type="Integer" file="ElTmSchema.pas" line="169">
+    <value>
+      $517
+    </value>
+  </const>
+  <const name="TMT_FIRSTINT" type="Integer" file="ElTmSchema.pas" line="171">
+    <value>
+      $515
+    </value>
+  </const>
+  <const name="TMT_LASTINT" type="Integer" file="ElTmSchema.pas" line="172">
+    <value>
+      $517
+    </value>
+  </const>
+  <const name="TMT_BASE1400" type="Integer" file="ElTmSchema.pas" line="174">
+    <value>
+      $578
+    </value>
+  </const>
+  <const name="TMT_CSSNAME" type="Integer" file="ElTmSchema.pas" line="175">
+    <value>
+      $579
+    </value>
+  </const>
+  <const name="TMT_XMLNAME" type="Integer" file="ElTmSchema.pas" line="176">
+    <value>
+      $57A
+    </value>
+  </const>
+  <const name="TMT_FIRSTSTRING" type="Integer" file="ElTmSchema.pas" line="178">
+    <value>
+      $579
+    </value>
+  </const>
+  <const name="TMT_LASTSTRING" type="Integer" file="ElTmSchema.pas" line="179">
+    <value>
+      $57A
+    </value>
+  </const>
+  <const name="TMT_BASE1600" type="Integer" file="ElTmSchema.pas" line="183">
+    <value>
+      $640
+    </value>
+  </const>
+  <const name="TMT_SCROLLBAR" type="Integer" file="ElTmSchema.pas" line="184">
+    <value>
+      $641
+    </value>
+  </const>
+  <const name="TMT_BACKGROUND" type="Integer" file="ElTmSchema.pas" line="185">
+    <value>
+      $642
+    </value>
+  </const>
+  <const name="TMT_ACTIVECAPTION" type="Integer" file="ElTmSchema.pas" line="186">
+    <value>
+      $643
+    </value>
+  </const>
+  <const name="TMT_INACTIVECAPTION" type="Integer" file="ElTmSchema.pas" line="187">
+    <value>
+      $644
+    </value>
+  </const>
+  <const name="TMT_MENU" type="Integer" file="ElTmSchema.pas" line="188">
+    <value>
+      $645
+    </value>
+  </const>
+  <const name="TMT_WINDOW" type="Integer" file="ElTmSchema.pas" line="189">
+    <value>
+      $646
+    </value>
+  </const>
+  <const name="TMT_WINDOWFRAME" type="Integer" file="ElTmSchema.pas" line="190">
+    <value>
+      $647
+    </value>
+  </const>
+  <const name="TMT_MENUTEXT" type="Integer" file="ElTmSchema.pas" line="191">
+    <value>
+      $648
+    </value>
+  </const>
+  <const name="TMT_WINDOWTEXT" type="Integer" file="ElTmSchema.pas" line="192">
+    <value>
+      $649
+    </value>
+  </const>
+  <const name="TMT_CAPTIONTEXT" type="Integer" file="ElTmSchema.pas" line="193">
+    <value>
+      $64A
+    </value>
+  </const>
+  <const name="TMT_ACTIVEBORDER" type="Integer" file="ElTmSchema.pas" line="194">
+    <value>
+      $64B
+    </value>
+  </const>
+  <const name="TMT_INACTIVEBORDER" type="Integer" file="ElTmSchema.pas" line="195">
+    <value>
+      $64C
+    </value>
+  </const>
+  <const name="TMT_APPWORKSPACE" type="Integer" file="ElTmSchema.pas" line="196">
+    <value>
+      $64D
+    </value>
+  </const>
+  <const name="TMT_HIGHLIGHT" type="Integer" file="ElTmSchema.pas" line="197">
+    <value>
+      $64E
+    </value>
+  </const>
+  <const name="TMT_HIGHLIGHTTEXT" type="Integer" file="ElTmSchema.pas" line="198">
+    <value>
+      $64F
+    </value>
+  </const>
+  <const name="TMT_BTNFACE" type="Integer" file="ElTmSchema.pas" line="199">
+    <value>
+      $650
+    </value>
+  </const>
+  <const name="TMT_BTNSHADOW" type="Integer" file="ElTmSchema.pas" line="200">
+    <value>
+      $651
+    </value>
+  </const>
+  <const name="TMT_GRAYTEXT" type="Integer" file="ElTmSchema.pas" line="201">
+    <value>
+      $652
+    </value>
+  </const>
+  <const name="TMT_BTNTEXT" type="Integer" file="ElTmSchema.pas" line="202">
+    <value>
+      $653
+    </value>
+  </const>
+  <const name="TMT_INACTIVECAPTIONTEXT" type="Integer" file="ElTmSchema.pas" line="203">
+    <value>
+      $654
+    </value>
+  </const>
+  <const name="TMT_BTNHIGHLIGHT" type="Integer" file="ElTmSchema.pas" line="204">
+    <value>
+      $655
+    </value>
+  </const>
+  <const name="TMT_DKSHADOW3D" type="Integer" file="ElTmSchema.pas" line="205">
+    <value>
+      $656
+    </value>
+  </const>
+  <const name="TMT_LIGHT3D" type="Integer" file="ElTmSchema.pas" line="206">
+    <value>
+      $657
+    </value>
+  </const>
+  <const name="TMT_INFOTEXT" type="Integer" file="ElTmSchema.pas" line="207">
+    <value>
+      $658
+    </value>
+  </const>
+  <const name="TMT_INFOBK" type="Integer" file="ElTmSchema.pas" line="208">
+    <value>
+      $659
+    </value>
+  </const>
+  <const name="TMT_BUTTONALTERNATEFACE" type="Integer" file="ElTmSchema.pas" line="209">
+    <value>
+      $65A
+    </value>
+  </const>
+  <const name="TMT_HOTTRACKING" type="Integer" file="ElTmSchema.pas" line="210">
+    <value>
+      $65B
+    </value>
+  </const>
+  <const name="TMT_GRADIENTACTIVECAPTION" type="Integer" file="ElTmSchema.pas" line="211">
+    <value>
+      $65C
+    </value>
+  </const>
+  <const name="TMT_GRADIENTINACTIVECAPTION" type="Integer" file="ElTmSchema.pas" line="212">
+    <value>
+      $65D
+    </value>
+  </const>
+  <const name="TMT_MENUHILIGHT" type="Integer" file="ElTmSchema.pas" line="213">
+    <value>
+      $65E
+    </value>
+  </const>
+  <const name="TMT_MENUBAR" type="Integer" file="ElTmSchema.pas" line="214">
+    <value>
+      $65F
+    </value>
+  </const>
+  <const name="TMT_FIRSTCOLOR" type="Integer" file="ElTmSchema.pas" line="216">
+    <value>
+      $641
+    </value>
+  </const>
+  <const name="TMT_LASTCOLOR" type="Integer" file="ElTmSchema.pas" line="217">
+    <value>
+      $65F
+    </value>
+  </const>
+  <const name="TMT_BASE1800" type="Integer" file="ElTmSchema.pas" line="221">
+    <value>
+      $708
+    </value>
+  </const>
+  <const name="TMT_FROMHUE1" type="Integer" file="ElTmSchema.pas" line="222">
+    <value>
+      $709
+    </value>
+  </const>
+  <const name="TMT_FROMHUE2" type="Integer" file="ElTmSchema.pas" line="223">
+    <value>
+      $70A
+    </value>
+  </const>
+  <const name="TMT_FROMHUE3" type="Integer" file="ElTmSchema.pas" line="224">
+    <value>
+      $70B
+    </value>
+  </const>
+  <const name="TMT_FROMHUE4" type="Integer" file="ElTmSchema.pas" line="225">
+    <value>
+      $70C
+    </value>
+  </const>
+  <const name="TMT_FROMHUE5" type="Integer" file="ElTmSchema.pas" line="226">
+    <value>
+      $70D
+    </value>
+  </const>
+  <const name="TMT_TOHUE1" type="Integer" file="ElTmSchema.pas" line="227">
+    <value>
+      $70E
+    </value>
+  </const>
+  <const name="TMT_TOHUE2" type="Integer" file="ElTmSchema.pas" line="228">
+    <value>
+      $70F
+    </value>
+  </const>
+  <const name="TMT_TOHUE3" type="Integer" file="ElTmSchema.pas" line="229">
+    <value>
+      $710
+    </value>
+  </const>
+  <const name="TMT_TOHUE4" type="Integer" file="ElTmSchema.pas" line="230">
+    <value>
+      $711
+    </value>
+  </const>
+  <const name="TMT_TOHUE5" type="Integer" file="ElTmSchema.pas" line="231">
+    <value>
+      $712
+    </value>
+  </const>
+  <const name="TMT_BASE2000" type="Integer" file="ElTmSchema.pas" line="235">
+    <value>
+      $7D0
+    </value>
+  </const>
+  <const name="TMT_FROMCOLOR1" type="Integer" file="ElTmSchema.pas" line="236">
+    <value>
+      $7D1
+    </value>
+  </const>
+  <const name="TMT_FROMCOLOR2" type="Integer" file="ElTmSchema.pas" line="237">
+    <value>
+      $7D2
+    </value>
+  </const>
+  <const name="TMT_FROMCOLOR3" type="Integer" file="ElTmSchema.pas" line="238">
+    <value>
+      $7D3
+    </value>
+  </const>
+  <const name="TMT_FROMCOLOR4" type="Integer" file="ElTmSchema.pas" line="239">
+    <value>
+      $7D4
+    </value>
+  </const>
+  <const name="TMT_FROMCOLOR5" type="Integer" file="ElTmSchema.pas" line="240">
+    <value>
+      $7D5
+    </value>
+  </const>
+  <const name="TMT_TOCOLOR1" type="Integer" file="ElTmSchema.pas" line="241">
+    <value>
+      $7D6
+    </value>
+  </const>
+  <const name="TMT_TOCOLOR2" type="Integer" file="ElTmSchema.pas" line="242">
+    <value>
+      $7D7
+    </value>
+  </const>
+  <const name="TMT_TOCOLOR3" type="Integer" file="ElTmSchema.pas" line="243">
+    <value>
+      $7D8
+    </value>
+  </const>
+  <const name="TMT_TOCOLOR4" type="Integer" file="ElTmSchema.pas" line="244">
+    <value>
+      $7D9
+    </value>
+  </const>
+  <const name="TMT_TOCOLOR5" type="Integer" file="ElTmSchema.pas" line="245">
+    <value>
+      $7DA
+    </value>
+  </const>
+  <const name="TMT_BASE2200" type="Integer" file="ElTmSchema.pas" line="249">
+    <value>
+      $898
+    </value>
+  </const>
+  <const name="TMT_TRANSPARENT" type="Integer" file="ElTmSchema.pas" line="250">
+    <value>
+      $899
+    </value>
+  </const>
+  <const name="TMT_AUTOSIZE" type="Integer" file="ElTmSchema.pas" line="251">
+    <value>
+      $89A
+    </value>
+  </const>
+  <const name="TMT_BORDERONLY" type="Integer" file="ElTmSchema.pas" line="252">
+    <value>
+      $89B
+    </value>
+  </const>
+  <const name="TMT_COMPOSITED" type="Integer" file="ElTmSchema.pas" line="253">
+    <value>
+      $89C
+    </value>
+  </const>
+  <const name="TMT_BGFILL" type="Integer" file="ElTmSchema.pas" line="254">
+    <value>
+      $89D
+    </value>
+  </const>
+  <const name="TMT_GLYPHTRANSPARENT" type="Integer" file="ElTmSchema.pas" line="255">
+    <value>
+      $89E
+    </value>
+  </const>
+  <const name="TMT_GLYPHONLY" type="Integer" file="ElTmSchema.pas" line="256">
+    <value>
+      $89F
+    </value>
+  </const>
+  <const name="TMT_ALWAYSSHOWSIZINGBAR" type="Integer" file="ElTmSchema.pas" line="257">
+    <value>
+      $8A0
+    </value>
+  </const>
+  <const name="TMT_MIRRORIMAGE" type="Integer" file="ElTmSchema.pas" line="258">
+    <value>
+      $8A1
+    </value>
+  </const>
+  <const name="TMT_UNIFORMSIZING" type="Integer" file="ElTmSchema.pas" line="260">
+    <value>
+      $8A2
+    </value>
+  </const>
+  <const name="TMT_INTEGRALSIZING" type="Integer" file="ElTmSchema.pas" line="261">
+    <value>
+      $8A3
+    </value>
+  </const>
+  <const name="TMT_SOURCEGROW" type="Integer" file="ElTmSchema.pas" line="262">
+    <value>
+      $8A4
+    </value>
+  </const>
+  <const name="TMT_SOURCESHRINK" type="Integer" file="ElTmSchema.pas" line="263">
+    <value>
+      $8A5
+    </value>
+  </const>
+  <const name="TMT_BASE2400" type="Integer" file="ElTmSchema.pas" line="277">
+    <value>
+      $960
+    </value>
+  </const>
+  <const name="TMT_IMAGECOUNT" type="Integer" file="ElTmSchema.pas" line="278">
+    <value>
+      $961
+    </value>
+  </const>
+  <const name="TMT_ALPHALEVEL" type="Integer" file="ElTmSchema.pas" line="279">
+    <value>
+      $962
+    </value>
+  </const>
+  <const name="TMT_BORDERSIZE" type="Integer" file="ElTmSchema.pas" line="280">
+    <value>
+      $963
+    </value>
+  </const>
+  <const name="TMT_ROUNDCORNERWIDTH" type="Integer" file="ElTmSchema.pas" line="281">
+    <value>
+      $964
+    </value>
+  </const>
+  <const name="TMT_ROUNDCORNERHEIGHT" type="Integer" file="ElTmSchema.pas" line="282">
+    <value>
+      $965
+    </value>
+  </const>
+  <const name="TMT_GRADIENTRATIO1" type="Integer" file="ElTmSchema.pas" line="283">
+    <value>
+      $966
+    </value>
+  </const>
+  <const name="TMT_GRADIENTRATIO2" type="Integer" file="ElTmSchema.pas" line="284">
+    <value>
+      $967
+    </value>
+  </const>
+  <const name="TMT_GRADIENTRATIO3" type="Integer" file="ElTmSchema.pas" line="285">
+    <value>
+      $968
+    </value>
+  </const>
+  <const name="TMT_GRADIENTRATIO4" type="Integer" file="ElTmSchema.pas" line="286">
+    <value>
+      $969
+    </value>
+  </const>
+  <const name="TMT_GRADIENTRATIO5" type="Integer" file="ElTmSchema.pas" line="287">
+    <value>
+      $96A
+    </value>
+  </const>
+  <const name="TMT_PROGRESSCHUNKSIZE" type="Integer" file="ElTmSchema.pas" line="288">
+    <value>
+      $96B
+    </value>
+  </const>
+  <const name="TMT_PROGRESSSPACESIZE" type="Integer" file="ElTmSchema.pas" line="289">
+    <value>
+      $96C
+    </value>
+  </const>
+  <const name="TMT_SATURATION" type="Integer" file="ElTmSchema.pas" line="290">
+    <value>
+      $96D
+    </value>
+  </const>
+  <const name="TMT_TEXTBORDERSIZE" type="Integer" file="ElTmSchema.pas" line="291">
+    <value>
+      $96E
+    </value>
+  </const>
+  <const name="TMT_ALPHATHRESHOLD" type="Integer" file="ElTmSchema.pas" line="292">
+    <value>
+      $96F
+    </value>
+  </const>
+  <const name="TMT_WIDTH" type="Integer" file="ElTmSchema.pas" line="293">
+    <value>
+      $970
+    </value>
+  </const>
+  <const name="TMT_HEIGHT" type="Integer" file="ElTmSchema.pas" line="294">
+    <value>
+      $971
+    </value>
+  </const>
+  <const name="TMT_NORMALINDEX" type="Integer" file="ElTmSchema.pas" line="295">
+    <value>
+      $972
+    </value>
+  </const>
+  <const name="TMT_GLYPHINDEX" type="Integer" file="ElTmSchema.pas" line="296">
+    <value>
+      $973
+    </value>
+  </const>
+  <const name="TMT_TRUESIZESTRETCHMARK" type="Integer" file="ElTmSchema.pas" line="298">
+    <value>
+      $973
+    </value>
+  </const>
+  <const name="TMT_MINDPI1" type="Integer" file="ElTmSchema.pas" line="299">
+    <value>
+      $974
+    </value>
+  </const>
+  <const name="TMT_MINDPI2" type="Integer" file="ElTmSchema.pas" line="300">
+    <value>
+      $975
+    </value>
+  </const>
+  <const name="TMT_MINDPI3" type="Integer" file="ElTmSchema.pas" line="301">
+    <value>
+      $976
+    </value>
+  </const>
+  <const name="TMT_MINDPI4" type="Integer" file="ElTmSchema.pas" line="302">
+    <value>
+      $977
+    </value>
+  </const>
+  <const name="TMT_MINDPI5" type="Integer" file="ElTmSchema.pas" line="303">
+    <value>
+      $978
+    </value>
+  </const>
+  <const name="TMT_BASE2600" type="Integer" file="ElTmSchema.pas" line="305">
+    <value>
+      $A28
+    </value>
+  </const>
+  <const name="TMT_GLYPHFONT" type="Integer" file="ElTmSchema.pas" line="306">
+    <value>
+      $A29
+    </value>
+  </const>
+  <const name="TMT_BASE2800" type="Integer" file="ElTmSchema.pas" line="308">
+    <value>
+      $AF0
+    </value>
+  </const>
+  <const name="TMT_FILESIZES" type="Integer" file="ElTmSchema.pas" line="309">
+    <value>
+      $AF1
+    </value>
+  </const>
+  <const name="TMT_BASE3000" type="Integer" file="ElTmSchema.pas" line="311">
+    <value>
+      $BB8
+    </value>
+  </const>
+  <const name="TMT_IMAGEFILE" type="Integer" file="ElTmSchema.pas" line="312">
+    <value>
+      $BB9
+    </value>
+  </const>
+  <const name="TMT_IMAGEFILE1" type="Integer" file="ElTmSchema.pas" line="313">
+    <value>
+      $BBA
+    </value>
+  </const>
+  <const name="TMT_IMAGEFILE2" type="Integer" file="ElTmSchema.pas" line="314">
+    <value>
+      $BBB
+    </value>
+  </const>
+  <const name="TMT_IMAGEFILE3" type="Integer" file="ElTmSchema.pas" line="315">
+    <value>
+      $BBC
+    </value>
+  </const>
+  <const name="TMT_IMAGEFILE4" type="Integer" file="ElTmSchema.pas" line="316">
+    <value>
+      $BBD
+    </value>
+  </const>
+  <const name="TMT_IMAGEFILE5" type="Integer" file="ElTmSchema.pas" line="317">
+    <value>
+      $BBE
+    </value>
+  </const>
+  <const name="TMT_STOCKIMAGEFILE" type="Integer" file="ElTmSchema.pas" line="318">
+    <value>
+      $BBF
+    </value>
+  </const>
+  <const name="TMT_GLYPHIMAGEFILE" type="Integer" file="ElTmSchema.pas" line="319">
+    <value>
+      $BC0
+    </value>
+  </const>
+  <const name="TMT_BASE3200" type="Integer" file="ElTmSchema.pas" line="321">
+    <value>
+      $C80
+    </value>
+  </const>
+  <const name="TMT_TEXT" type="Integer" file="ElTmSchema.pas" line="322">
+    <value>
+      $C81
+    </value>
+  </const>
+  <const name="TMT_BASE3400" type="Integer" file="ElTmSchema.pas" line="325">
+    <value>
+      $D48
+    </value>
+  </const>
+  <const name="TMT_OFFSET" type="Integer" file="ElTmSchema.pas" line="326">
+    <value>
+      $D49
+    </value>
+  </const>
+  <const name="TMT_TEXTSHADOWOFFSET" type="Integer" file="ElTmSchema.pas" line="327">
+    <value>
+      $D4A
+    </value>
+  </const>
+  <const name="TMT_MINSIZE" type="Integer" file="ElTmSchema.pas" line="328">
+    <value>
+      $D4B
+    </value>
+  </const>
+  <const name="TMT_MINSIZE1" type="Integer" file="ElTmSchema.pas" line="329">
+    <value>
+      $D4C
+    </value>
+  </const>
+  <const name="TMT_MINSIZE2" type="Integer" file="ElTmSchema.pas" line="330">
+    <value>
+      $D4D
+    </value>
+  </const>
+  <const name="TMT_MINSIZE3" type="Integer" file="ElTmSchema.pas" line="331">
+    <value>
+      $D4E
+    </value>
+  </const>
+  <const name="TMT_MINSIZE4" type="Integer" file="ElTmSchema.pas" line="332">
+    <value>
+      $D4F
+    </value>
+  </const>
+  <const name="TMT_MINSIZE5" type="Integer" file="ElTmSchema.pas" line="333">
+    <value>
+      $D50
+    </value>
+  </const>
+  <const name="TMT_NORMALSIZE" type="Integer" file="ElTmSchema.pas" line="334">
+    <value>
+      $D51
+    </value>
+  </const>
+  <const name="TMT_BASE36000" type="Integer" file="ElTmSchema.pas" line="338">
+    <value>
+      $E10
+    </value>
+  </const>
+  <const name="TMT_SIZINGMARGINS" type="Integer" file="ElTmSchema.pas" line="339">
+    <value>
+      $E11
+    </value>
+  </const>
+  <const name="TMT_CONTENTMARGINS" type="Integer" file="ElTmSchema.pas" line="340">
+    <value>
+      $E12
+    </value>
+  </const>
+  <const name="TMT_CAPTIONMARGINS" type="Integer" file="ElTmSchema.pas" line="341">
+    <value>
+      $E13
+    </value>
+  </const>
+  <const name="TMT_BASE3800" type="Integer" file="ElTmSchema.pas" line="345">
+    <value>
+      $ED8
+    </value>
+  </const>
+  <const name="TMT_BORDERCOLOR" type="Integer" file="ElTmSchema.pas" line="346">
+    <value>
+      $ED9
+    </value>
+  </const>
+  <const name="TMT_FILLCOLOR" type="Integer" file="ElTmSchema.pas" line="347">
+    <value>
+      $EDA
+    </value>
+  </const>
+  <const name="TMT_TEXTCOLOR" type="Integer" file="ElTmSchema.pas" line="348">
+    <value>
+      $EDB
+    </value>
+  </const>
+  <const name="TMT_EDGELIGHTCOLOR" type="Integer" file="ElTmSchema.pas" line="349">
+    <value>
+      $EDC
+    </value>
+  </const>
+  <const name="TMT_EDGEHIGHLIGHTCOLOR" type="Integer" file="ElTmSchema.pas" line="350">
+    <value>
+      $EDD
+    </value>
+  </const>
+  <const name="TMT_EDGESHADOWCOLOR" type="Integer" file="ElTmSchema.pas" line="351">
+    <value>
+      $EDE
+    </value>
+  </const>
+  <const name="TMT_EDGEDKSHADOWCOLOR" type="Integer" file="ElTmSchema.pas" line="352">
+    <value>
+      $EDF
+    </value>
+  </const>
+  <const name="TMT_EDGEFILLCOLOR" type="Integer" file="ElTmSchema.pas" line="353">
+    <value>
+      $EE0
+    </value>
+  </const>
+  <const name="TMT_TRANSPARENTCOLOR" type="Integer" file="ElTmSchema.pas" line="354">
+    <value>
+      $EE1
+    </value>
+  </const>
+  <const name="TMT_GRADIENTCOLOR1" type="Integer" file="ElTmSchema.pas" line="355">
+    <value>
+      $EE2
+    </value>
+  </const>
+  <const name="TMT_GRADIENTCOLOR2" type="Integer" file="ElTmSchema.pas" line="356">
+    <value>
+      $EE3
+    </value>
+  </const>
+  <const name="TMT_GRADIENTCOLOR3" type="Integer" file="ElTmSchema.pas" line="357">
+    <value>
+      $EE4
+    </value>
+  </const>
+  <const name="TMT_GRADIENTCOLOR4" type="Integer" file="ElTmSchema.pas" line="358">
+    <value>
+      $EE5
+    </value>
+  </const>
+  <const name="TMT_GRADIENTCOLOR5" type="Integer" file="ElTmSchema.pas" line="359">
+    <value>
+      $EE6
+    </value>
+  </const>
+  <const name="TMT_SHADOWCOLOR" type="Integer" file="ElTmSchema.pas" line="360">
+    <value>
+      $EE7
+    </value>
+  </const>
+  <const name="TMT_GLOWCOLOR" type="Integer" file="ElTmSchema.pas" line="361">
+    <value>
+      $EE8
+    </value>
+  </const>
+  <const name="TMT_TEXTBORDERCOLOR" type="Integer" file="ElTmSchema.pas" line="362">
+    <value>
+      $EE9
+    </value>
+  </const>
+  <const name="TMT_TEXTSHADOWCOLOR" type="Integer" file="ElTmSchema.pas" line="363">
+    <value>
+      $EEA
+    </value>
+  </const>
+  <const name="TMT_GLYPHTEXTCOLOR" type="Integer" file="ElTmSchema.pas" line="364">
+    <value>
+      $EEB
+    </value>
+  </const>
+  <const name="TMT_GLYPHTRANSPARENTCOLOR" type="Integer" file="ElTmSchema.pas" line="365">
+    <value>
+      $EEC
+    </value>
+  </const>
+  <const name="TMT_FILLCOLORHINT" type="Integer" file="ElTmSchema.pas" line="367">
+    <value>
+      $EED
+    </value>
+  </const>
+  <const name="TMT_BORDERCOLORHINT" type="Integer" file="ElTmSchema.pas" line="368">
+    <value>
+      $EEE
+    </value>
+  </const>
+  <const name="TMT_ACCENTCOLORHINT" type="Integer" file="ElTmSchema.pas" line="369">
+    <value>
+      $EEF
+    </value>
+  </const>
+  <const name="TMT_BASE4000" type="Integer" file="ElTmSchema.pas" line="373">
+    <value>
+      $FA0
+    </value>
+  </const>
+  <const name="TMT_BGTYPE" type="Integer" file="ElTmSchema.pas" line="374">
+    <value>
+      $FA1
+    </value>
+  </const>
+  <const name="TMT_BORDERTYPE" type="Integer" file="ElTmSchema.pas" line="375">
+    <value>
+      $FA2
+    </value>
+  </const>
+  <const name="TMT_FILLTYPE" type="Integer" file="ElTmSchema.pas" line="376">
+    <value>
+      $FA3
+    </value>
+  </const>
+  <const name="TMT_SIZINGTYPE" type="Integer" file="ElTmSchema.pas" line="377">
+    <value>
+      $FA4
+    </value>
+  </const>
+  <const name="TMT_HALIGN" type="Integer" file="ElTmSchema.pas" line="378">
+    <value>
+      $FA5
+    </value>
+  </const>
+  <const name="TMT_CONTENTALIGNMENT" type="Integer" file="ElTmSchema.pas" line="379">
+    <value>
+      $FA6
+    </value>
+  </const>
+  <const name="TMT_VALIGN" type="Integer" file="ElTmSchema.pas" line="380">
+    <value>
+      $FA7
+    </value>
+  </const>
+  <const name="TMT_OFFSETTYPE" type="Integer" file="ElTmSchema.pas" line="381">
+    <value>
+      $FA8
+    </value>
+  </const>
+  <const name="TMT_ICONEFFECT" type="Integer" file="ElTmSchema.pas" line="382">
+    <value>
+      $FA9
+    </value>
+  </const>
+  <const name="TMT_TEXTSHADOWTYPE" type="Integer" file="ElTmSchema.pas" line="383">
+    <value>
+      $FAA
+    </value>
+  </const>
+  <const name="TMT_IMAGELAYOUT" type="Integer" file="ElTmSchema.pas" line="384">
+    <value>
+      $FAB
+    </value>
+  </const>
+  <const name="TMT_GLYPHTYPE" type="Integer" file="ElTmSchema.pas" line="385">
+    <value>
+      $FAC
+    </value>
+  </const>
+  <const name="TMT_IMAGESELECTTYPE" type="Integer" file="ElTmSchema.pas" line="386">
+    <value>
+      $FAD
+    </value>
+  </const>
+  <const name="TMT_GLYPHFONTSIZINGTYPE" type="Integer" file="ElTmSchema.pas" line="387">
+    <value>
+      $FAE
+    </value>
+  </const>
+  <const name="TMT_TRUESIZESCALINGTYPE" type="Integer" file="ElTmSchema.pas" line="388">
+    <value>
+      $FAF
+    </value>
+  </const>
+  <const name="TMT_USERPICTURE" type="Integer" file="ElTmSchema.pas" line="390">
+    <value>
+      $1389
+    </value>
+  </const>
+  <const name="TMT_DEFAULTPANESIZE" type="Integer" file="ElTmSchema.pas" line="391">
+    <value>
+      $138A
+    </value>
+  </const>
+  <const name="TMT_BLENDCOLOR" type="Integer" file="ElTmSchema.pas" line="392">
+    <value>
+      $138B
+    </value>
+  </const>
+  <const name="GP_LINEVERT" type="Integer" file="ElTmSchema.pas" line="394">
+    <value>
+      $1E
+    </value>
+  </const>
+  <const name="GP_LINEHORZ" type="Integer" file="ElTmSchema.pas" line="395">
+    <value>
+      $1F
+    </value>
+  </const>
+  <const name="GP_BORDER" type="Integer" file="ElTmSchema.pas" line="396">
+    <value>
+      $20
+    </value>
+  </const>
+  <const name="LVS_FLAT" type="Integer" file="ElTmSchema.pas" line="398">
+    <value>
+      $1
+    </value>
+  </const>
+  <const name="LVS_RAISED" type="Integer" file="ElTmSchema.pas" line="399">
+    <value>
+      $2
+    </value>
+  </const>
+  <const name="LVS_SUNKEN" type="Integer" file="ElTmSchema.pas" line="400">
+    <value>
+      $3
+    </value>
+  </const>
+  <const name="LHS_FLAT" type="Integer" file="ElTmSchema.pas" line="402">
+    <value>
+      $1
+    </value>
+  </const>
+  <const name="LHS_RAISED" type="Integer" file="ElTmSchema.pas" line="403">
+    <value>
+      $2
+    </value>
+  </const>
+  <const name="LHS_SUNKEN" type="Integer" file="ElTmSchema.pas" line="404">
+    <value>
+      $3
+    </value>
+  </const>
+  <const name="BSS_FLAT" type="Integer" file="ElTmSchema.pas" line="406">
+    <value>
+      $1
+    </value>
+  </const>
+  <const name="BSS_RAISED" type="Integer" file="ElTmSchema.pas" line="407">
+    <value>
+      $2
+    </value>
+  </const>
+  <const name="BSS_SUNKEN" type="Integer" file="ElTmSchema.pas" line="408">
+    <value>
+      $3
+    </value>
+  </const>
+  <const name="WINDOWFiller0" type="Integer" file="ElTmSchema.pas" line="410">
+    <value>
+      $0
+    </value>
+  </const>
+  <const name="WP_FRAME" type="Integer" file="ElTmSchema.pas" line="411">
+    <value>
+      $1
+    </value>
+  </const>
+  <const name="WP_SMALLFRAME" type="Integer" file="ElTmSchema.pas" line="412">
+    <value>
+      $2
+    </value>
+  </const>
+  <const name="WP_CAPTION" type="Integer" file="ElTmSchema.pas" line="413">
+    <value>
+      $3
+    </value>
+  </const>
+  <const name="WP_SMALLCAPTION" type="Integer" file="ElTmSchema.pas" line="414">
+    <value>
+      $4
+    </value>
+  </const>
+  <const name="WP_MINCAPTION" type="Integer" file="ElTmSchema.pas" line="415">
+    <value>
+      $5
+    </value>
+  </const>
+  <const name="WP_SMALLMINCAPTION" type="Integer" file="ElTmSchema.pas" line="416">
+    <value>
+      $6
+    </value>
+  </const>
+  <const name="WP_MAXCAPTION" type="Integer" file="ElTmSchema.pas" line="417">
+    <value>
+      $7
+    </value>
+  </const>
+  <const name="WP_SMALLMAXCAPTION" type="Integer" file="ElTmSchema.pas" line="418">
+    <value>
+      $8
+    </value>
+  </const>
+  <const name="WP_SYSBUTTON" type="Integer" file="ElTmSchema.pas" line="419">
+    <value>
+      $9
+    </value>
+  </const>
+  <const name="WP_SMALLSYSBUTTON" type="Integer" file="ElTmSchema.pas" line="420">
+    <value>
+      $A
+    </value>
+  </const>
+  <const name="WP_MDISYSBUTTON" type="Integer" file="ElTmSchema.pas" line="421">
+    <value>
+      $B
+    </value>
+  </const>
+  <const name="WP_MINBUTTON" type="Integer" file="ElTmSchema.pas" line="422">
+    <value>
+      $C
+    </value>
+  </const>
+  <const name="WP_SMALLMINBUTTON" type="Integer" file="ElTmSchema.pas" line="423">
+    <value>
+      $D
+    </value>
+  </const>
+  <const name="WP_MDIMINBUTTON" type="Integer" file="ElTmSchema.pas" line="424">
+    <value>
+      $E
+    </value>
+  </const>
+  <const name="WP_MAXBUTTON" type="Integer" file="ElTmSchema.pas" line="425">
+    <value>
+      $F
+    </value>
+  </const>
+  <const name="WP_SMALLMAXBUTTON" type="Integer" file="ElTmSchema.pas" line="426">
+    <value>
+      $10
+    </value>
+  </const>
+  <const name="WP_CLOSEBUTTON" type="Integer" file="ElTmSchema.pas" line="427">
+    <value>
+      $11
+    </value>
+  </const>
+  <const name="WP_SMALLCLOSEBUTTON" type="Integer" file="ElTmSchema.pas" line="428">
+    <value>
+      $12
+    </value>
+  </const>
+  <const name="WP_MDICLOSEBUTTON" type="Integer" file="ElTmSchema.pas" line="429">
+    <value>
+      $13
+    </value>
+  </const>
+  <const name="WP_RESTOREBUTTON" type="Integer" file="ElTmSchema.pas" line="430">
+    <value>
+      $14
+    </value>
+  </const>
+  <const name="WP_SMALLRESTOREBUTTON" type="Integer" file="ElTmSchema.pas" line="431">
+    <value>
+      $15
+    </value>
+  </const>
+  <const name="WP_MDIRESTOREBUTTON" type="Integer" file="ElTmSchema.pas" line="432">
+    <value>
+      $16
+    </value>
+  </const>
+  <const name="WP_HELPBUTTON" type="Integer" file="ElTmSchema.pas" line="433">
+    <value>
+      $17
+    </value>
+  </const>
+  <const name="WP_SMALLHELPBUTTON" type="Integer" file="ElTmSchema.pas" line="434">
+    <value>
+      $18
+    </value>
+  </const>
+  <const name="WP_MDIHELPBUTTON" type="Integer" file="ElTmSchema.pas" line="435">
+    <value>
+      $19
+    </value>
+  </const>
+  <const name="WP_HORZSCROLL" type="Integer" file="ElTmSchema.pas" line="436">
+    <value>
+      $1A
+    </value>
+  </const>
+  <const name="WP_HORZTHUMB" type="Integer" file="ElTmSchema.pas" line="437">
+    <value>
+      $1B
+    </value>
+  </const>
+  <const name="WP_VERTSCROLL" type="Integer" file="ElTmSchema.pas" line="438">
+    <value>
+      $1C
+    </value>
+  </const>
+  <const name="WP_VERTTHUMB" type="Integer" file="ElTmSchema.pas" line="439">
+    <value>
+      $1D
+    </value>
+  </const>
+  <const name="WP_DIALOG" type="Integer" file="ElTmSchema.pas" line="440">
+    <value>
+      $1E
+    </value>
+  </const>
+  <const name="WP_CAPTIONSIZINGTEMPLATE" type="Integer" file="ElTmSchema.pas" line="441">
+    <value>
+      $1F
+    </value>
+  </const>
+  <const name="WP_SMALLCAPTIONSIZINGTEMPLATE" type="Integer" file="ElTmSchema.pas" line="442">
+    <value>
+      $20
+    </value>
+  </const>
+  <const name="WP_FRAMESIZINGTEMPLATE" type="Integer" file="ElTmSchema.pas" line="443">
+    <value>
+      $21
+    </value>
+  </const>
+  <const name="WP_SMALLFRAMESIZINGTEMPLATE" type="Integer" file="ElTmSchema.pas" line="444">
+    <value>
+      $22
+    </value>
+  </const>
+  <const name="FS_ACTIVE" type="Integer" file="ElTmSchema.pas" line="446">
+    <value>
+      $1
+    </value>
+  </const>
+  <const name="FS_INACTIVE" type="Integer" file="ElTmSchema.pas" line="447">
+    <value>
+      $2
+    </value>
+  </const>
+  <const name="FS_DISABLED" type="Integer" file="ElTmSchema.pas" line="448">
+    <value>
+      $3
+    </value>
+  </const>
+  <const name="CS_ACTIVE" type="Integer" file="ElTmSchema.pas" line="450">
+    <value>
+      $1
+    </value>
+  </const>
+  <const name="CS_INACTIVE" type="Integer" file="ElTmSchema.pas" line="451">
+    <value>
+      $2
+    </value>
+  </const>
+  <const name="CS_DISABLED" type="Integer" file="ElTmSchema.pas" line="452">
+    <value>
+      $3
+    </value>
+  </const>
+  <const name="MXCS_ACTIVE" type="Integer" file="ElTmSchema.pas" line="454">
+    <value>
+      $1
+    </value>
+  </const>
+  <const name="MXCS_INACTIVE" type="Integer" file="ElTmSchema.pas" line="455">
+    <value>
+      $2
+    </value>
+  </const>
+  <const name="MXCS_DISABLED" type="Integer" file="ElTmSchema.pas" line="456">
+    <value>
+      $3
+    </value>
+  </const>
+  <const name="MNCS_ACTIVE" type="Integer" file="ElTmSchema.pas" line="458">
+    <value>
+      $1
+    </value>
+  </const>
+  <const name="MNCS_INACTIVE" type="Integer" file="ElTmSchema.pas" line="459">
+    <value>
+      $2
+    </value>
+  </const>
+  <const name="MNCS_DISABLED" type="Integer" file="ElTmSchema.pas" line="460">
+    <value>
+      $3
+    </value>
+  </const>
+  <const name="HSS_NORMAL" type="Integer" file="ElTmSchema.pas" line="462">
+    <value>
+      $1
+    </value>
+  </const>
+  <const name="HSS_HOT" type="Integer" file="ElTmSchema.pas" line="463">
+    <value>
+      $2
+    </value>
+  </const>
+  <const name="HSS_PUSHED" type="Integer" file="ElTmSchema.pas" line="464">
+    <value>
+      $3
+    </value>
+  </const>
+  <const name="HSS_DISABLED" type="Integer" file="ElTmSchema.pas" line="465">
+    <value>
+      $4
+    </value>
+  </const>
+  <const name="HTS_NORMAL" type="Integer" file="ElTmSchema.pas" line="467">
+    <value>
+      $1
+    </value>
+  </const>
+  <const name="HTS_HOT" type="Integer" file="ElTmSchema.pas" line="468">
+    <value>
+      $2
+    </value>
+  </const>
+  <const name="HTS_PUSHED" type="Integer" file="ElTmSchema.pas" line="469">
+    <value>
+      $3
+    </value>
+  </const>
+  <const name="HTS_DISABLED" type="Integer" file="ElTmSchema.pas" line="470">
+    <value>
+      $4
+    </value>
+  </const>
+  <const name="VSS_NORMAL" type="Integer" file="ElTmSchema.pas" line="472">
+    <value>
+      $1
+    </value>
+  </const>
+  <const name="VSS_HOT" type="Integer" file="ElTmSchema.pas" line="473">
+    <value>
+      $2
+    </value>
+  </const>
+  <const name="VSS_PUSHED" type="Integer" file="ElTmSchema.pas" line="474">
+    <value>
+      $3
+    </value>
+  </const>
+  <const name="VSS_DISABLED" type="Integer" file="ElTmSchema.pas" line="475">
+    <value>
+      $4
+    </value>
+  </const>
+  <const name="VTS_NORMAL" type="Integer" file="ElTmSchema.pas" line="477">
+    <value>
+      $1
+    </value>
+  </const>
+  <const name="VTS_HOT" type="Integer" file="ElTmSchema.pas" line="478">
+    <value>
+      $2
+    </value>
+  </const>
+  <const name="VTS_PUSHED" type="Integer" file="ElTmSchema.pas" line="479">
+    <value>
+      $3
+    </value>
+  </const>
+  <const name="VTS_DISABLED" type="Integer" file="ElTmSchema.pas" line="480">
+    <value>
+      $4
+    </value>
+  </const>
+  <const name="SBS_NORMAL" type="Integer" file="ElTmSchema.pas" line="482">
+    <value>
+      $1
+    </value>
+  </const>
+  <const name="SBS_HOT" type="Integer" file="ElTmSchema.pas" line="483">
+    <value>
+      $2
+    </value>
+  </const>
+  <const name="SBS_PUSHED" type="Integer" file="ElTmSchema.pas" line="484">
+    <value>
+      $3
+    </value>
+  </const>
+  <const name="SBS_DISABLED" type="Integer" file="ElTmSchema.pas" line="485">
+    <value>
+      $4
+    </value>
+  </const>
+  <const name="MINBS_NORMAL" type="Integer" file="ElTmSchema.pas" line="487">
+    <value>
+      $1
+    </value>
+  </const>
+  <const name="MINBS_HOT" type="Integer" file="ElTmSchema.pas" line="488">
+    <value>
+      $2
+    </value>
+  </const>
+  <const name="MINBS_PUSHED" type="Integer" file="ElTmSchema.pas" line="489">
+    <value>
+      $3
+    </value>
+  </const>
+  <const name="MINBS_DISABLED" type="Integer" file="ElTmSchema.pas" line="490">
+    <value>
+      $4
+    </value>
+  </const>
+  <const name="MAXBS_NORMAL" type="Integer" file="ElTmSchema.pas" line="492">
+    <value>
+      $1
+    </value>
+  </const>
+  <const name="MAXBS_HOT" type="Integer" file="ElTmSchema.pas" line="493">
+    <value>
+      $2
+    </value>
+  </const>
+  <const name="MAXBS_PUSHED" type="Integer" file="ElTmSchema.pas" line="494">
+    <value>
+      $3
+    </value>
+  </const>
+  <const name="MAXBS_DISABLED" type="Integer" file="ElTmSchema.pas" line="495">
+    <value>
+      $4
+    </value>
+  </const>
+  <const name="RBS_NORMAL" type="Integer" file="ElTmSchema.pas" line="497">
+    <value>
+      $1
+    </value>
+  </const>
+  <const name="RBS_HOT" type="Integer" file="ElTmSchema.pas" line="498">
+    <value>
+      $2
+    </value>
+  </const>
+  <const name="RBS_PUSHED" type="Integer" file="ElTmSchema.pas" line="499">
+    <value>
+      $3
+    </value>
+  </const>
+  <const name="RBS_DISABLED" type="Integer" file="ElTmSchema.pas" line="500">
+    <value>
+      $4
+    </value>
+  </const>
+  <const name="HBS_NORMAL" type="Integer" file="ElTmSchema.pas" line="502">
+    <value>
+      $1
+    </value>
+  </const>
+  <const name="HBS_HOT" type="Integer" file="ElTmSchema.pas" line="503">
+    <value>
+      $2
+    </value>
+  </const>
+  <const name="HBS_PUSHED" type="Integer" file="ElTmSchema.pas" line="504">
+    <value>
+      $3
+    </value>
+  </const>
+  <const name="HBS_DISABLED" type="Integer" file="ElTmSchema.pas" line="505">
+    <value>
+      $4
+    </value>
+  </const>
+  <const name="CBS_NORMAL" type="Integer" file="ElTmSchema.pas" line="507">
+    <value>
+      $1
+    </value>
+  </const>
+  <const name="CBS_HOT" type="Integer" file="ElTmSchema.pas" line="508">
+    <value>
+      $2
+    </value>
+  </const>
+  <const name="CBS_PUSHED" type="Integer" file="ElTmSchema.pas" line="509">
+    <value>
+      $3
+    </value>
+  </const>
+  <const name="CBS_DISABLED" type="Integer" file="ElTmSchema.pas" line="510">
+    <value>
+      $4
+    </value>
+  </const>
+  <const name="GBS_NORMAL" type="Integer" file="ElTmSchema.pas" line="512">
+    <value>
+      $1
+    </value>
+  </const>
+  <const name="GBS_DISABLED" type="Integer" file="ElTmSchema.pas" line="513">
+    <value>
+      $2
+    </value>
+  </const>
+  <const name="BP_PUSHBUTTON" type="Integer" file="ElTmSchema.pas" line="515">
+    <value>
+      $1
+    </value>
+  </const>
+  <const name="BP_RADIOBUTTON" type="Integer" file="ElTmSchema.pas" line="516">
+    <value>
+      $2
+    </value>
+  </const>
+  <const name="BP_CHECKBOX" type="Integer" file="ElTmSchema.pas" line="517">
+    <value>
+      $3
+    </value>
+  </const>
+  <const name="BP_GROUPBOX" type="Integer" file="ElTmSchema.pas" line="518">
+    <value>
+      $4
+    </value>
+  </const>
+  <const name="BP_USERBUTTON" type="Integer" file="ElTmSchema.pas" line="519">
+    <value>
+      $5
+    </value>
+  </const>
+  <const name="PBS_NORMAL" type="Integer" file="ElTmSchema.pas" line="521">
+    <value>
+      $1
+    </value>
+  </const>
+  <const name="PBS_HOT" type="Integer" file="ElTmSchema.pas" line="522">
+    <value>
+      $2
+    </value>
+  </const>
+  <const name="PBS_PRESSED" type="Integer" file="ElTmSchema.pas" line="523">
+    <value>
+      $3
+    </value>
+  </const>
+  <const name="PBS_DISABLED" type="Integer" file="ElTmSchema.pas" line="524">
+    <value>
+      $4
+    </value>
+  </const>
+  <const name="PBS_DEFAULTED" type="Integer" file="ElTmSchema.pas" line="525">
+    <value>
+      $5
+    </value>
+  </const>
+  <const name="RBS_UNCHECKEDNORMAL" type="Integer" file="ElTmSchema.pas" line="527">
+    <value>
+      $1
+    </value>
+  </const>
+  <const name="RBS_UNCHECKEDHOT" type="Integer" file="ElTmSchema.pas" line="528">
+    <value>
+      $2
+    </value>
+  </const>
+  <const name="RBS_UNCHECKEDPRESSED" type="Integer" file="ElTmSchema.pas" line="529">
+    <value>
+      $3
+    </value>
+  </const>
+  <const name="RBS_UNCHECKEDDISABLED" type="Integer" file="ElTmSchema.pas" line="530">
+    <value>
+      $4
+    </value>
+  </const>
+  <const name="RBS_CHECKEDNORMAL" type="Integer" file="ElTmSchema.pas" line="531">
+    <value>
+      $5
+    </value>
+  </const>
+  <const name="RBS_CHECKEDHOT" type="Integer" file="ElTmSchema.pas" line="532">
+    <value>
+      $6
+    </value>
+  </const>
+  <const name="RBS_CHECKEDPRESSED" type="Integer" file="ElTmSchema.pas" line="533">
+    <value>
+      $7
+    </value>
+  </const>
+  <const name="RBS_CHECKEDDISABLED" type="Integer" file="ElTmSchema.pas" line="534">
+    <value>
+      $8
+    </value>
+  </const>
+  <const name="CBS_UNCHECKEDNORMAL" type="Integer" file="ElTmSchema.pas" line="536">
+    <value>
+      $1
+    </value>
+  </const>
+  <const name="CBS_UNCHECKEDHOT" type="Integer" file="ElTmSchema.pas" line="537">
+    <value>
+      $2
+    </value>
+  </const>
+  <const name="CBS_UNCHECKEDPRESSED" type="Integer" file="ElTmSchema.pas" line="538">
+    <value>
+      $3
+    </value>
+  </const>
+  <const name="CBS_UNCHECKEDDISABLED" type="Integer" file="ElTmSchema.pas" line="539">
+    <value>
+      $4
+    </value>
+  </const>
+  <const name="CBS_CHECKEDNORMAL" type="Integer" file="ElTmSchema.pas" line="540">
+    <value>
+      $5
+    </value>
+  </const>
+  <const name="CBS_CHECKEDHOT" type="Integer" file="ElTmSchema.pas" line="541">
+    <value>
+      $6
+    </value>
+  </const>
+  <const name="CBS_CHECKEDPRESSED" type="Integer" file="ElTmSchema.pas" line="542">
+    <value>
+      $7
+    </value>
+  </const>
+  <const name="CBS_CHECKEDDISABLED" type="Integer" file="ElTmSchema.pas" line="543">
+    <value>
+      $8
+    </value>
+  </const>
+  <const name="CBS_MIXEDNORMAL" type="Integer" file="ElTmSchema.pas" line="544">
+    <value>
+      $9
+    </value>
+  </const>
+  <const name="CBS_MIXEDHOT" type="Integer" file="ElTmSchema.pas" line="545">
+    <value>
+      $A
+    </value>
+  </const>
+  <const name="CBS_MIXEDPRESSED" type="Integer" file="ElTmSchema.pas" line="546">
+    <value>
+      $B
+    </value>
+  </const>
+  <const name="CBS_MIXEDDISABLED" type="Integer" file="ElTmSchema.pas" line="547">
+    <value>
+      $C
+    </value>
+  </const>
+  <const name="RP_GRIPPER" type="Integer" file="ElTmSchema.pas" line="549">
+    <value>
+      $1
+    </value>
+  </const>
+  <const name="RP_GRIPPERVERT" type="Integer" file="ElTmSchema.pas" line="550">
+    <value>
+      $2
+    </value>
+  </const>
+  <const name="RP_BAND" type="Integer" file="ElTmSchema.pas" line="551">
+    <value>
+      $3
+    </value>
+  </const>
+  <const name="RP_CHEVRON" type="Integer" file="ElTmSchema.pas" line="552">
+    <value>
+      $4
+    </value>
+  </const>
+  <const name="CHEVS_NORMAL" type="Integer" file="ElTmSchema.pas" line="554">
+    <value>
+      $1
+    </value>
+  </const>
+  <const name="CHEVS_HOT" type="Integer" file="ElTmSchema.pas" line="555">
+    <value>
+      $2
+    </value>
+  </const>
+  <const name="CHEVS_PRESSED" type="Integer" file="ElTmSchema.pas" line="556">
+    <value>
+      $3
+    </value>
+  </const>
+  <const name="TP_BUTTON" type="Integer" file="ElTmSchema.pas" line="558">
+    <value>
+      $1
+    </value>
+  </const>
+  <const name="TP_DROPDOWNBUTTON" type="Integer" file="ElTmSchema.pas" line="559">
+    <value>
+      $2
+    </value>
+  </const>
+  <const name="TP_SPLITBUTTON" type="Integer" file="ElTmSchema.pas" line="560">
+    <value>
+      $3
+    </value>
+  </const>
+  <const name="TP_SPLITBUTTONDROPDOWN" type="Integer" file="ElTmSchema.pas" line="561">
+    <value>
+      $4
+    </value>
+  </const>
+  <const name="TP_SEPARATOR" type="Integer" file="ElTmSchema.pas" line="562">
+    <value>
+      $5
+    </value>
+  </const>
+  <const name="TP_SEPARATORVERT" type="Integer" file="ElTmSchema.pas" line="563">
+    <value>
+      $6
+    </value>
+  </const>
+  <const name="TS_NORMAL" type="Integer" file="ElTmSchema.pas" line="565">
+    <value>
+      $1
+    </value>
+  </const>
+  <const name="TS_HOT" type="Integer" file="ElTmSchema.pas" line="566">
+    <value>
+      $2
+    </value>
+  </const>
+  <const name="TS_PRESSED" type="Integer" file="ElTmSchema.pas" line="567">
+    <value>
+      $3
+    </value>
+  </const>
+  <const name="TS_DISABLED" type="Integer" file="ElTmSchema.pas" line="568">
+    <value>
+      $4
+    </value>
+  </const>
+  <const name="TS_CHECKED" type="Integer" file="ElTmSchema.pas" line="569">
+    <value>
+      $5
+    </value>
+  </const>
+  <const name="TS_HOTCHECKED" type="Integer" file="ElTmSchema.pas" line="570">
+    <value>
+      $6
+    </value>
+  </const>
+  <const name="SP_PANE" type="Integer" file="ElTmSchema.pas" line="572">
+    <value>
+      $1
+    </value>
+  </const>
+  <const name="SP_GRIPPERPANE" type="Integer" file="ElTmSchema.pas" line="573">
+    <value>
+      $2
+    </value>
+  </const>
+  <const name="SP_GRIPPER" type="Integer" file="ElTmSchema.pas" line="574">
+    <value>
+      $3
+    </value>
+  </const>
+  <const name="MP_MENUITEM" type="Integer" file="ElTmSchema.pas" line="576">
+    <value>
+      $1
+    </value>
+  </const>
+  <const name="MP_MENUDROPDOWN" type="Integer" file="ElTmSchema.pas" line="577">
+    <value>
+      $2
+    </value>
+  </const>
+  <const name="MP_MENUBARITEM" type="Integer" file="ElTmSchema.pas" line="578">
+    <value>
+      $3
+    </value>
+  </const>
+  <const name="MP_MENUBARDROPDOWN" type="Integer" file="ElTmSchema.pas" line="579">
+    <value>
+      $4
+    </value>
+  </const>
+  <const name="MP_CHEVRON" type="Integer" file="ElTmSchema.pas" line="580">
+    <value>
+      $5
+    </value>
+  </const>
+  <const name="MP_SEPARATOR" type="Integer" file="ElTmSchema.pas" line="581">
+    <value>
+      $6
+    </value>
+  </const>
+  <const name="MS_NORMAL" type="Integer" file="ElTmSchema.pas" line="583">
+    <value>
+      $1
+    </value>
+  </const>
+  <const name="MS_SELECTED" type="Integer" file="ElTmSchema.pas" line="584">
+    <value>
+      $2
+    </value>
+  </const>
+  <const name="MS_DEMOTED" type="Integer" file="ElTmSchema.pas" line="585">
+    <value>
+      $3
+    </value>
+  </const>
+  <const name="LVP_LISTITEM" type="Integer" file="ElTmSchema.pas" line="587">
+    <value>
+      $1
+    </value>
+  </const>
+  <const name="LVP_LISTGROUP" type="Integer" file="ElTmSchema.pas" line="588">
+    <value>
+      $2
+    </value>
+  </const>
+  <const name="LVP_LISTDETAIL" type="Integer" file="ElTmSchema.pas" line="589">
+    <value>
+      $3
+    </value>
+  </const>
+  <const name="LVP_LISTSORTEDDETAIL" type="Integer" file="ElTmSchema.pas" line="590">
+    <value>
+      $4
+    </value>
+  </const>
+  <const name="LVP_EMPTYTEXT" type="Integer" file="ElTmSchema.pas" line="591">
+    <value>
+      $5
+    </value>
+  </const>
+  <const name="LIS_NORMAL" type="Integer" file="ElTmSchema.pas" line="593">
+    <value>
+      $1
+    </value>
+  </const>
+  <const name="LIS_HOT" type="Integer" file="ElTmSchema.pas" line="594">
+    <value>
+      $2
+    </value>
+  </const>
+  <const name="LIS_SELECTED" type="Integer" file="ElTmSchema.pas" line="595">
+    <value>
+      $3
+    </value>
+  </const>
+  <const name="LIS_DISABLED" type="Integer" file="ElTmSchema.pas" line="596">
+    <value>
+      $4
+    </value>
+  </const>
+  <const name="LIS_SELECTEDNOTFOCUS" type="Integer" file="ElTmSchema.pas" line="597">
+    <value>
+      $5
+    </value>
+  </const>
+  <const name="HP_HEADERITEM" type="Integer" file="ElTmSchema.pas" line="599">
+    <value>
+      $1
+    </value>
+  </const>
+  <const name="HP_HEADERITEMLEFT" type="Integer" file="ElTmSchema.pas" line="600">
+    <value>
+      $2
+    </value>
+  </const>
+  <const name="HP_HEADERITEMRIGHT" type="Integer" file="ElTmSchema.pas" line="601">
+    <value>
+      $3
+    </value>
+  </const>
+  <const name="HP_HEADERSORTARROW" type="Integer" file="ElTmSchema.pas" line="602">
+    <value>
+      $4
+    </value>
+  </const>
+  <const name="HIS_NORMAL" type="Integer" file="ElTmSchema.pas" line="604">
+    <value>
+      $1
+    </value>
+  </const>
+  <const name="HIS_HOT" type="Integer" file="ElTmSchema.pas" line="605">
+    <value>
+      $2
+    </value>
+  </const>
+  <const name="HIS_PRESSED" type="Integer" file="ElTmSchema.pas" line="606">
+    <value>
+      $3
+    </value>
+  </const>
+  <const name="HILS_NORMAL" type="Integer" file="ElTmSchema.pas" line="608">
+    <value>
+      $1
+    </value>
+  </const>
+  <const name="HILS_HOT" type="Integer" file="ElTmSchema.pas" line="609">
+    <value>
+      $2
+    </value>
+  </const>
+  <const name="HILS_PRESSED" type="Integer" file="ElTmSchema.pas" line="610">
+    <value>
+      $3
+    </value>
+  </const>
+  <const name="HIRS_NORMAL" type="Integer" file="ElTmSchema.pas" line="612">
+    <value>
+      $1
+    </value>
+  </const>
+  <const name="HIRS_HOT" type="Integer" file="ElTmSchema.pas" line="613">
+    <value>
+      $2
+    </value>
+  </const>
+  <const name="HIRS_PRESSED" type="Integer" file="ElTmSchema.pas" line="614">
+    <value>
+      $3
+    </value>
+  </const>
+  <const name="HSAS_SORTEDUP" type="Integer" file="ElTmSchema.pas" line="616">
+    <value>
+      $1
+    </value>
+  </const>
+  <const name="HSAS_SORTEDDOWN" type="Integer" file="ElTmSchema.pas" line="617">
+    <value>
+      $2
+    </value>
+  </const>
+  <const name="PP_BAR" type="Integer" file="ElTmSchema.pas" line="619">
+    <value>
+      $1
+    </value>
+  </const>
+  <const name="PP_BARVERT" type="Integer" file="ElTmSchema.pas" line="620">
+    <value>
+      $2
+    </value>
+  </const>
+  <const name="PP_CHUNK" type="Integer" file="ElTmSchema.pas" line="621">
+    <value>
+      $3
+    </value>
+  </const>
+  <const name="PP_CHUNKVERT" type="Integer" file="ElTmSchema.pas" line="622">
+    <value>
+      $4
+    </value>
+  </const>
+  <const name="TABP_TABITEM" type="Integer" file="ElTmSchema.pas" line="624">
+    <value>
+      $1
+    </value>
+  </const>
+  <const name="TABP_TABITEMLEFTEDGE" type="Integer" file="ElTmSchema.pas" line="625">
+    <value>
+      $2
+    </value>
+  </const>
+  <const name="TABP_TABITEMRIGHTEDGE" type="Integer" file="ElTmSchema.pas" line="626">
+    <value>
+      $3
+    </value>
+  </const>
+  <const name="TABP_TABITEMBOTHEDGE" type="Integer" file="ElTmSchema.pas" line="627">
+    <value>
+      $4
+    </value>
+  </const>
+  <const name="TABP_TOPTABITEM" type="Integer" file="ElTmSchema.pas" line="628">
+    <value>
+      $5
+    </value>
+  </const>
+  <const name="TABP_TOPTABITEMLEFTEDGE" type="Integer" file="ElTmSchema.pas" line="629">
+    <value>
+      $6
+    </value>
+  </const>
+  <const name="TABP_TOPTABITEMRIGHTEDGE" type="Integer" file="ElTmSchema.pas" line="630">
+    <value>
+      $7
+    </value>
+  </const>
+  <const name="TABP_TOPTABITEMBOTHEDGE" type="Integer" file="ElTmSchema.pas" line="631">
+    <value>
+      $8
+    </value>
+  </const>
+  <const name="TABP_PANE" type="Integer" file="ElTmSchema.pas" line="632">
+    <value>
+      $9
+    </value>
+  </const>
+  <const name="TABP_BODY" type="Integer" file="ElTmSchema.pas" line="633">
+    <value>
+      $A
+    </value>
+  </const>
+  <const name="TIS_NORMAL" type="Integer" file="ElTmSchema.pas" line="635">
+    <value>
+      $1
+    </value>
+  </const>
+  <const name="TIS_HOT" type="Integer" file="ElTmSchema.pas" line="636">
+    <value>
+      $2
+    </value>
+  </const>
+  <const name="TIS_SELECTED" type="Integer" file="ElTmSchema.pas" line="637">
+    <value>
+      $3
+    </value>
+  </const>
+  <const name="TIS_DISABLED" type="Integer" file="ElTmSchema.pas" line="638">
+    <value>
+      $4
+    </value>
+  </const>
+  <const name="TIS_FOCUSED" type="Integer" file="ElTmSchema.pas" line="639">
+    <value>
+      $5
+    </value>
+  </const>
+  <const name="TILES_NORMAL" type="Integer" file="ElTmSchema.pas" line="641">
+    <value>
+      $1
+    </value>
+  </const>
+  <const name="TILES_HOT" type="Integer" file="ElTmSchema.pas" line="642">
+    <value>
+      $2
+    </value>
+  </const>
+  <const name="TILES_SELECTED" type="Integer" file="ElTmSchema.pas" line="643">
+    <value>
+      $3
+    </value>
+  </const>
+  <const name="TILES_DISABLED" type="Integer" file="ElTmSchema.pas" line="644">
+    <value>
+      $4
+    </value>
+  </const>
+  <const name="TILES_FOCUSED" type="Integer" file="ElTmSchema.pas" line="645">
+    <value>
+      $5
+    </value>
+  </const>
+  <const name="TIRES_NORMAL" type="Integer" file="ElTmSchema.pas" line="647">
+    <value>
+      $1
+    </value>
+  </const>
+  <const name="TIRES_HOT" type="Integer" file="ElTmSchema.pas" line="648">
+    <value>
+      $2
+    </value>
+  </const>
+  <const name="TIRES_SELECTED" type="Integer" file="ElTmSchema.pas" line="649">
+    <value>
+      $3
+    </value>
+  </const>
+  <const name="TIRES_DISABLED" type="Integer" file="ElTmSchema.pas" line="650">
+    <value>
+      $4
+    </value>
+  </const>
+  <const name="TIRES_FOCUSED" type="Integer" file="ElTmSchema.pas" line="651">
+    <value>
+      $5
+    </value>
+  </const>
+  <const name="TIBES_NORMAL" type="Integer" file="ElTmSchema.pas" line="653">
+    <value>
+      $1
+    </value>
+  </const>
+  <const name="TIBES_HOT" type="Integer" file="ElTmSchema.pas" line="654">
+    <value>
+      $2
+    </value>
+  </const>
+  <const name="TIBES_SELECTED" type="Integer" file="ElTmSchema.pas" line="655">
+    <value>
+      $3
+    </value>
+  </const>
+  <const name="TIBES_DISABLED" type="Integer" file="ElTmSchema.pas" line="656">
+    <value>
+      $4
+    </value>
+  </const>
+  <const name="TIBES_FOCUSED" type="Integer" file="ElTmSchema.pas" line="657">
+    <value>
+      $5
+    </value>
+  </const>
+  <const name="TTIS_NORMAL" type="Integer" file="ElTmSchema.pas" line="659">
+    <value>
+      $1
+    </value>
+  </const>
+  <const name="TTIS_HOT" type="Integer" file="ElTmSchema.pas" line="660">
+    <value>
+      $2
+    </value>
+  </const>
+  <const name="TTIS_SELECTED" type="Integer" file="ElTmSchema.pas" line="661">
+    <value>
+      $3
+    </value>
+  </const>
+  <const name="TTIS_DISABLED" type="Integer" file="ElTmSchema.pas" line="662">
+    <value>
+      $4
+    </value>
+  </const>
+  <const name="TTIS_FOCUSED" type="Integer" file="ElTmSchema.pas" line="663">
+    <value>
+      $5
+    </value>
+  </const>
+  <const name="TTILES_NORMAL" type="Integer" file="ElTmSchema.pas" line="665">
+    <value>
+      $1
+    </value>
+  </const>
+  <const name="TTILES_HOT" type="Integer" file="ElTmSchema.pas" line="666">
+    <value>
+      $2
+    </value>
+  </const>
+  <const name="TTILES_SELECTED" type="Integer" file="ElTmSchema.pas" line="667">
+    <value>
+      $3
+    </value>
+  </const>
+  <const name="TTILES_DISABLED" type="Integer" file="ElTmSchema.pas" line="668">
+    <value>
+      $4
+    </value>
+  </const>
+  <const name="TTILES_FOCUSED" type="Integer" file="ElTmSchema.pas" line="669">
+    <value>
+      $5
+    </value>
+  </const>
+  <const name="TTIRES_NORMAL" type="Integer" file="ElTmSchema.pas" line="671">
+    <value>
+      $1
+    </value>
+  </const>
+  <const name="TTIRES_HOT" type="Integer" file="ElTmSchema.pas" line="672">
+    <value>
+      $2
+    </value>
+  </const>
+  <const name="TTIRES_SELECTED" type="Integer" file="ElTmSchema.pas" line="673">
+    <value>
+      $3
+    </value>
+  </const>
+  <const name="TTIRES_DISABLED" type="Integer" file="ElTmSchema.pas" line="674">
+    <value>
+      $4
+    </value>
+  </const>
+  <const name="TTIRES_FOCUSED" type="Integer" file="ElTmSchema.pas" line="675">
+    <value>
+      $5
+    </value>
+  </const>
+  <const name="TTIBES_NORMAL" type="Integer" file="ElTmSchema.pas" line="677">
+    <value>
+      $1
+    </value>
+  </const>
+  <const name="TTIBES_HOT" type="Integer" file="ElTmSchema.pas" line="678">
+    <value>
+      $2
+    </value>
+  </const>
+  <const name="TTIBES_SELECTED" type="Integer" file="ElTmSchema.pas" line="679">
+    <value>
+      $3
+    </value>
+  </const>
+  <const name="TTIBES_DISABLED" type="Integer" file="ElTmSchema.pas" line="680">
+    <value>
+      $4
+    </value>
+  </const>
+  <const name="TTIBES_FOCUSED" type="Integer" file="ElTmSchema.pas" line="681">
+    <value>
+      $5
+    </value>
+  </const>
+  <const name="TKP_TRACK" type="Integer" file="ElTmSchema.pas" line="683">
+    <value>
+      $1
+    </value>
+  </const>
+  <const name="TKP_TRACKVERT" type="Integer" file="ElTmSchema.pas" line="684">
+    <value>
+      $2
+    </value>
+  </const>
+  <const name="TKP_THUMB" type="Integer" file="ElTmSchema.pas" line="685">
+    <value>
+      $3
+    </value>
+  </const>
+  <const name="TKP_THUMBBOTTOM" type="Integer" file="ElTmSchema.pas" line="686">
+    <value>
+      $4
+    </value>
+  </const>
+  <const name="TKP_THUMBTOP" type="Integer" file="ElTmSchema.pas" line="687">
+    <value>
+      $5
+    </value>
+  </const>
+  <const name="TKP_THUMBVERT" type="Integer" file="ElTmSchema.pas" line="688">
+    <value>
+      $6
+    </value>
+  </const>
+  <const name="TKP_THUMBLEFT" type="Integer" file="ElTmSchema.pas" line="689">
+    <value>
+      $7
+    </value>
+  </const>
+  <const name="TKP_THUMBRIGHT" type="Integer" file="ElTmSchema.pas" line="690">
+    <value>
+      $8
+    </value>
+  </const>
+  <const name="TKP_TICS" type="Integer" file="ElTmSchema.pas" line="691">
+    <value>
+      $9
+    </value>
+  </const>
+  <const name="TKP_TICSVERT" type="Integer" file="ElTmSchema.pas" line="692">
+    <value>
+      $A
+    </value>
+  </const>
+  <const name="TKS_NORMAL" type="Integer" file="ElTmSchema.pas" line="694">
+    <value>
+      $1
+    </value>
+  </const>
+  <const name="TRS_NORMAL" type="Integer" file="ElTmSchema.pas" line="695">
+    <value>
+      $1
+    </value>
+  </const>
+  <const name="TRVS_NORMAL" type="Integer" file="ElTmSchema.pas" line="696">
+    <value>
+      $1
+    </value>
+  </const>
+  <const name="TUS_NORMAL" type="Integer" file="ElTmSchema.pas" line="698">
+    <value>
+      $1
+    </value>
+  </const>
+  <const name="TUS_HOT" type="Integer" file="ElTmSchema.pas" line="699">
+    <value>
+      $2
+    </value>
+  </const>
+  <const name="TUS_PRESSED" type="Integer" file="ElTmSchema.pas" line="700">
+    <value>
+      $3
+    </value>
+  </const>
+  <const name="TUS_FOCUSED" type="Integer" file="ElTmSchema.pas" line="701">
+    <value>
+      $4
+    </value>
+  </const>
+  <const name="TUS_DISABLED" type="Integer" file="ElTmSchema.pas" line="702">
+    <value>
+      $5
+    </value>
+  </const>
+  <const name="TUTS_NORMAL" type="Integer" file="ElTmSchema.pas" line="704">
+    <value>
+      $1
+    </value>
+  </const>
+  <const name="TUTS_HOT" type="Integer" file="ElTmSchema.pas" line="705">
+    <value>
+      $2
+    </value>
+  </const>
+  <const name="TUTS_PRESSED" type="Integer" file="ElTmSchema.pas" line="706">
+    <value>
+      $3
+    </value>
+  </const>
+  <const name="TUTS_FOCUSED" type="Integer" file="ElTmSchema.pas" line="707">
+    <value>
+      $4
+    </value>
+  </const>
+  <const name="TUTS_DISABLED" type="Integer" file="ElTmSchema.pas" line="708">
+    <value>
+      $5
+    </value>
+  </const>
+  <const name="TUBS_NORMAL" type="Integer" file="ElTmSchema.pas" line="710">
+    <value>
+      $1
+    </value>
+  </const>
+  <const name="TUBS_HOT" type="Integer" file="ElTmSchema.pas" line="711">
+    <value>
+      $2
+    </value>
+  </const>
+  <const name="TUBS_PRESSED" type="Integer" file="ElTmSchema.pas" line="712">
+    <value>
+      $3
+    </value>
+  </const>
+  <const name="TUBS_FOCUSED" type="Integer" file="ElTmSchema.pas" line="713">
+    <value>
+      $4
+    </value>
+  </const>
+  <const name="TUBS_DISABLED" type="Integer" file="ElTmSchema.pas" line="714">
+    <value>
+      $5
+    </value>
+  </const>
+  <const name="TUVS_NORMAL" type="Integer" file="ElTmSchema.pas" line="716">
+    <value>
+      $1
+    </value>
+  </const>
+  <const name="TUVS_HOT" type="Integer" file="ElTmSchema.pas" line="717">
+    <value>
+      $2
+    </value>
+  </const>
+  <const name="TUVS_PRESSED" type="Integer" file="ElTmSchema.pas" line="718">
+    <value>
+      $3
+    </value>
+  </const>
+  <const name="TUVS_FOCUSED" type="Integer" file="ElTmSchema.pas" line="719">
+    <value>
+      $4
+    </value>
+  </const>
+  <const name="TUVS_DISABLED" type="Integer" file="ElTmSchema.pas" line="720">
+    <value>
+      $5
+    </value>
+  </const>
+  <const name="TUVLS_NORMAL" type="Integer" file="ElTmSchema.pas" line="722">
+    <value>
+      $1
+    </value>
+  </const>
+  <const name="TUVLS_HOT" type="Integer" file="ElTmSchema.pas" line="723">
+    <value>
+      $2
+    </value>
+  </const>
+  <const name="TUVLS_PRESSED" type="Integer" file="ElTmSchema.pas" line="724">
+    <value>
+      $3
+    </value>
+  </const>
+  <const name="TUVLS_FOCUSED" type="Integer" file="ElTmSchema.pas" line="725">
+    <value>
+      $4
+    </value>
+  </const>
+  <const name="TUVLS_DISABLED" type="Integer" file="ElTmSchema.pas" line="726">
+    <value>
+      $5
+    </value>
+  </const>
+  <const name="TUVRS_NORMAL" type="Integer" file="ElTmSchema.pas" line="728">
+    <value>
+      $1
+    </value>
+  </const>
+  <const name="TUVRS_HOT" type="Integer" file="ElTmSchema.pas" line="729">
+    <value>
+      $2
+    </value>
+  </const>
+  <const name="TUVRS_PRESSED" type="Integer" file="ElTmSchema.pas" line="730">
+    <value>
+      $3
+    </value>
+  </const>
+  <const name="TUVRS_FOCUSED" type="Integer" file="ElTmSchema.pas" line="731">
+    <value>
+      $4
+    </value>
+  </const>
+  <const name="TUVRS_DISABLED" type="Integer" file="ElTmSchema.pas" line="732">
+    <value>
+      $5
+    </value>
+  </const>
+  <const name="TSS_NORMAL" type="Integer" file="ElTmSchema.pas" line="734">
+    <value>
+      $1
+    </value>
+  </const>
+  <const name="TSVS_NORMAL" type="Integer" file="ElTmSchema.pas" line="735">
+    <value>
+      $1
+    </value>
+  </const>
+  <const name="TTP_STANDARD" type="Integer" file="ElTmSchema.pas" line="737">
+    <value>
+      $1
+    </value>
+  </const>
+  <const name="TTP_STANDARDTITLE" type="Integer" file="ElTmSchema.pas" line="738">
+    <value>
+      $2
+    </value>
+  </const>
+  <const name="TTP_BALLOON" type="Integer" file="ElTmSchema.pas" line="739">
+    <value>
+      $3
+    </value>
+  </const>
+  <const name="TTP_BALLOONTITLE" type="Integer" file="ElTmSchema.pas" line="740">
+    <value>
+      $4
+    </value>
+  </const>
+  <const name="TTSS_NORMAL" type="Integer" file="ElTmSchema.pas" line="742">
+    <value>
+      $1
+    </value>
+  </const>
+  <const name="TTSS_LINK" type="Integer" file="ElTmSchema.pas" line="743">
+    <value>
+      $2
+    </value>
+  </const>
+  <const name="TTBS_NORMAL" type="Integer" file="ElTmSchema.pas" line="745">
+    <value>
+      $1
+    </value>
+  </const>
+  <const name="TTBS_LINK" type="Integer" file="ElTmSchema.pas" line="746">
+    <value>
+      $2
+    </value>
+  </const>
+  <const name="TVP_TREEITEM" type="Integer" file="ElTmSchema.pas" line="748">
+    <value>
+      $1
+    </value>
+  </const>
+  <const name="TVP_GLYPH" type="Integer" file="ElTmSchema.pas" line="749">
+    <value>
+      $2
+    </value>
+  </const>
+  <const name="TVP_BRANCH" type="Integer" file="ElTmSchema.pas" line="750">
+    <value>
+      $3
+    </value>
+  </const>
+  <const name="TREIS_NORMAL" type="Integer" file="ElTmSchema.pas" line="752">
+    <value>
+      $1
+    </value>
+  </const>
+  <const name="TREIS_HOT" type="Integer" file="ElTmSchema.pas" line="753">
+    <value>
+      $2
+    </value>
+  </const>
+  <const name="TREIS_SELECTED" type="Integer" file="ElTmSchema.pas" line="754">
+    <value>
+      $3
+    </value>
+  </const>
+  <const name="TREIS_DISABLED" type="Integer" file="ElTmSchema.pas" line="755">
+    <value>
+      $4
+    </value>
+  </const>
+  <const name="TREIS_SELECTEDNOTFOCUS" type="Integer" file="ElTmSchema.pas" line="756">
+    <value>
+      $5
+    </value>
+  </const>
+  <const name="GLPS_CLOSED" type="Integer" file="ElTmSchema.pas" line="758">
+    <value>
+      $1
+    </value>
+  </const>
+  <const name="GLPS_OPENED" type="Integer" file="ElTmSchema.pas" line="759">
+    <value>
+      $2
+    </value>
+  </const>
+  <const name="SPNP_UP" type="Integer" file="ElTmSchema.pas" line="761">
+    <value>
+      $1
+    </value>
+  </const>
+  <const name="SPNP_DOWN" type="Integer" file="ElTmSchema.pas" line="762">
+    <value>
+      $2
+    </value>
+  </const>
+  <const name="SPNP_UPHORZ" type="Integer" file="ElTmSchema.pas" line="763">
+    <value>
+      $3
+    </value>
+  </const>
+  <const name="SPNP_DOWNHORZ" type="Integer" file="ElTmSchema.pas" line="764">
+    <value>
+      $4
+    </value>
+  </const>
+  <const name="UPS_NORMAL" type="Integer" file="ElTmSchema.pas" line="766">
+    <value>
+      $1
+    </value>
+  </const>
+  <const name="UPS_HOT" type="Integer" file="ElTmSchema.pas" line="767">
+    <value>
+      $2
+    </value>
+  </const>
+  <const name="UPS_PRESSED" type="Integer" file="ElTmSchema.pas" line="768">
+    <value>
+      $3
+    </value>
+  </const>
+  <const name="UPS_DISABLED" type="Integer" file="ElTmSchema.pas" line="769">
+    <value>
+      $4
+    </value>
+  </const>
+  <const name="DNS_NORMAL" type="Integer" file="ElTmSchema.pas" line="771">
+    <value>
+      $1
+    </value>
+  </const>
+  <const name="DNS_HOT" type="Integer" file="ElTmSchema.pas" line="772">
+    <value>
+      $2
+    </value>
+  </const>
+  <const name="DNS_PRESSED" type="Integer" file="ElTmSchema.pas" line="773">
+    <value>
+      $3
+    </value>
+  </const>
+  <const name="DNS_DISABLED" type="Integer" file="ElTmSchema.pas" line="774">
+    <value>
+      $4
+    </value>
+  </const>
+  <const name="UPHZS_NORMAL" type="Integer" file="ElTmSchema.pas" line="776">
+    <value>
+      $1
+    </value>
+  </const>
+  <const name="UPHZS_HOT" type="Integer" file="ElTmSchema.pas" line="777">
+    <value>
+      $2
+    </value>
+  </const>
+  <const name="UPHZS_PRESSED" type="Integer" file="ElTmSchema.pas" line="778">
+    <value>
+      $3
+    </value>
+  </const>
+  <const name="UPHZS_DISABLED" type="Integer" file="ElTmSchema.pas" line="779">
+    <value>
+      $4
+    </value>
+  </const>
+  <const name="DNHZS_NORMAL" type="Integer" file="ElTmSchema.pas" line="781">
+    <value>
+      $1
+    </value>
+  </const>
+  <const name="DNHZS_HOT" type="Integer" file="ElTmSchema.pas" line="782">
+    <value>
+      $2
+    </value>
+  </const>
+  <const name="DNHZS_PRESSED" type="Integer" file="ElTmSchema.pas" line="783">
+    <value>
+      $3
+    </value>
+  </const>
+  <const name="DNHZS_DISABLED" type="Integer" file="ElTmSchema.pas" line="784">
+    <value>
+      $4
+    </value>
+  </const>
+  <const name="PGRP_UP" type="Integer" file="ElTmSchema.pas" line="786">
+    <value>
+      $1
+    </value>
+  </const>
+  <const name="PGRP_DOWN" type="Integer" file="ElTmSchema.pas" line="787">
+    <value>
+      $2
+    </value>
+  </const>
+  <const name="PGRP_UPHORZ" type="Integer" file="ElTmSchema.pas" line="788">
+    <value>
+      $3
+    </value>
+  </const>
+  <const name="PGRP_DOWNHORZ" type="Integer" file="ElTmSchema.pas" line="789">
+    <value>
+      $4
+    </value>
+  </const>
+  <const name="SBP_ARROWBTN" type="Integer" file="ElTmSchema.pas" line="791">
+    <value>
+      $1
+    </value>
+  </const>
+  <const name="SBP_THUMBBTNHORZ" type="Integer" file="ElTmSchema.pas" line="792">
+    <value>
+      $2
+    </value>
+  </const>
+  <const name="SBP_THUMBBTNVERT" type="Integer" file="ElTmSchema.pas" line="793">
+    <value>
+      $3
+    </value>
+  </const>
+  <const name="SBP_LOWERTRACKHORZ" type="Integer" file="ElTmSchema.pas" line="794">
+    <value>
+      $4
+    </value>
+  </const>
+  <const name="SBP_UPPERTRACKHORZ" type="Integer" file="ElTmSchema.pas" line="795">
+    <value>
+      $5
+    </value>
+  </const>
+  <const name="SBP_LOWERTRACKVERT" type="Integer" file="ElTmSchema.pas" line="796">
+    <value>
+      $6
+    </value>
+  </const>
+  <const name="SBP_UPPERTRACKVERT" type="Integer" file="ElTmSchema.pas" line="797">
+    <value>
+      $7
+    </value>
+  </const>
+  <const name="SBP_GRIPPERHORZ" type="Integer" file="ElTmSchema.pas" line="798">
+    <value>
+      $8
+    </value>
+  </const>
+  <const name="SBP_GRIPPERVERT" type="Integer" file="ElTmSchema.pas" line="799">
+    <value>
+      $9
+    </value>
+  </const>
+  <const name="SBP_SIZEBOX" type="Integer" file="ElTmSchema.pas" line="800">
+    <value>
+      $A
+    </value>
+  </const>
+  <const name="ABS_UPNORMAL" type="Integer" file="ElTmSchema.pas" line="802">
+    <value>
+      $1
+    </value>
+  </const>
+  <const name="ABS_UPHOT" type="Integer" file="ElTmSchema.pas" line="803">
+    <value>
+      $2
+    </value>
+  </const>
+  <const name="ABS_UPPRESSED" type="Integer" file="ElTmSchema.pas" line="804">
+    <value>
+      $3
+    </value>
+  </const>
+  <const name="ABS_UPDISABLED" type="Integer" file="ElTmSchema.pas" line="805">
+    <value>
+      $4
+    </value>
+  </const>
+  <const name="ABS_DOWNNORMAL" type="Integer" file="ElTmSchema.pas" line="806">
+    <value>
+      $5
+    </value>
+  </const>
+  <const name="ABS_DOWNHOT" type="Integer" file="ElTmSchema.pas" line="807">
+    <value>
+      $6
+    </value>
+  </const>
+  <const name="ABS_DOWNPRESSED" type="Integer" file="ElTmSchema.pas" line="808">
+    <value>
+      $7
+    </value>
+  </const>
+  <const name="ABS_DOWNDISABLED" type="Integer" file="ElTmSchema.pas" line="809">
+    <value>
+      $8
+    </value>
+  </const>
+  <const name="ABS_LEFTNORMAL" type="Integer" file="ElTmSchema.pas" line="810">
+    <value>
+      $9
+    </value>
+  </const>
+  <const name="ABS_LEFTHOT" type="Integer" file="ElTmSchema.pas" line="811">
+    <value>
+      $A
+    </value>
+  </const>
+  <const name="ABS_LEFTPRESSED" type="Integer" file="ElTmSchema.pas" line="812">
+    <value>
+      $B
+    </value>
+  </const>
+  <const name="ABS_LEFTDISABLED" type="Integer" file="ElTmSchema.pas" line="813">
+    <value>
+      $C
+    </value>
+  </const>
+  <const name="ABS_RIGHTNORMAL" type="Integer" file="ElTmSchema.pas" line="814">
+    <value>
+      $D
+    </value>
+  </const>
+  <const name="ABS_RIGHTHOT" type="Integer" file="ElTmSchema.pas" line="815">
+    <value>
+      $E
+    </value>
+  </const>
+  <const name="ABS_RIGHTPRESSED" type="Integer" file="ElTmSchema.pas" line="816">
+    <value>
+      $F
+    </value>
+  </const>
+  <const name="ABS_RIGHTDISABLED" type="Integer" file="ElTmSchema.pas" line="817">
+    <value>
+      $10
+    </value>
+  </const>
+  <const name="SCRBS_NORMAL" type="Integer" file="ElTmSchema.pas" line="819">
+    <value>
+      $1
+    </value>
+  </const>
+  <const name="SCRBS_HOT" type="Integer" file="ElTmSchema.pas" line="820">
+    <value>
+      $2
+    </value>
+  </const>
+  <const name="SCRBS_PRESSED" type="Integer" file="ElTmSchema.pas" line="821">
+    <value>
+      $3
+    </value>
+  </const>
+  <const name="SCRBS_DISABLED" type="Integer" file="ElTmSchema.pas" line="822">
+    <value>
+      $4
+    </value>
+  </const>
+  <const name="SZB_RIGHTALIGN" type="Integer" file="ElTmSchema.pas" line="824">
+    <value>
+      $1
+    </value>
+  </const>
+  <const name="SZB_LEFTALIGN" type="Integer" file="ElTmSchema.pas" line="825">
+    <value>
+      $2
+    </value>
+  </const>
+  <const name="EP_EDITTEXT" type="Integer" file="ElTmSchema.pas" line="827">
+    <value>
+      $1
+    </value>
+  </const>
+  <const name="EP_CARET" type="Integer" file="ElTmSchema.pas" line="828">
+    <value>
+      $2
+    </value>
+  </const>
+  <const name="ETS_NORMAL" type="Integer" file="ElTmSchema.pas" line="830">
+    <value>
+      $1
+    </value>
+  </const>
+  <const name="ETS_HOT" type="Integer" file="ElTmSchema.pas" line="831">
+    <value>
+      $2
+    </value>
+  </const>
+  <const name="ETS_SELECTED" type="Integer" file="ElTmSchema.pas" line="832">
+    <value>
+      $3
+    </value>
+  </const>
+  <const name="ETS_DISABLED" type="Integer" file="ElTmSchema.pas" line="833">
+    <value>
+      $4
+    </value>
+  </const>
+  <const name="ETS_FOCUSED" type="Integer" file="ElTmSchema.pas" line="834">
+    <value>
+      $5
+    </value>
+  </const>
+  <const name="ETS_READONLY" type="Integer" file="ElTmSchema.pas" line="835">
+    <value>
+      $6
+    </value>
+  </const>
+  <const name="ETS_ASSIST" type="Integer" file="ElTmSchema.pas" line="836">
+    <value>
+      $7
+    </value>
+  </const>
+  <const name="CP_DROPDOWNBUTTON" type="Integer" file="ElTmSchema.pas" line="838">
+    <value>
+      $1
+    </value>
+  </const>
+  <const name="CBXS_NORMAL" type="Integer" file="ElTmSchema.pas" line="840">
+    <value>
+      $1
+    </value>
+  </const>
+  <const name="CBXS_HOT" type="Integer" file="ElTmSchema.pas" line="841">
+    <value>
+      $2
+    </value>
+  </const>
+  <const name="CBXS_PRESSED" type="Integer" file="ElTmSchema.pas" line="842">
+    <value>
+      $3
+    </value>
+  </const>
+  <const name="CBXS_DISABLED" type="Integer" file="ElTmSchema.pas" line="843">
+    <value>
+      $4
+    </value>
+  </const>
+  <const name="CLP_TIME" type="Integer" file="ElTmSchema.pas" line="846">
+    <value>
+      $1
+    </value>
+  </const>
+  <const name="CLS_NORMAL" type="Integer" file="ElTmSchema.pas" line="847">
+    <value>
+      $1
+    </value>
+  </const>
+  <const name="TNP_BACKGROUND" type="Integer" file="ElTmSchema.pas" line="849">
+    <value>
+      $1
+    </value>
+  </const>
+  <const name="TNP_ANIMBACKGROUND" type="Integer" file="ElTmSchema.pas" line="850">
+    <value>
+      $2
+    </value>
+  </const>
+  <const name="TBP_BACKGROUNDBOTTOM" type="Integer" file="ElTmSchema.pas" line="852">
+    <value>
+      $1
+    </value>
+  </const>
+  <const name="TBP_BACKGROUNDRIGHT" type="Integer" file="ElTmSchema.pas" line="853">
+    <value>
+      $2
+    </value>
+  </const>
+  <const name="TBP_BACKGROUNDTOP" type="Integer" file="ElTmSchema.pas" line="854">
+    <value>
+      $3
+    </value>
+  </const>
+  <const name="TBP_BACKGROUNDLEFT" type="Integer" file="ElTmSchema.pas" line="855">
+    <value>
+      $4
+    </value>
+  </const>
+  <const name="TBP_SIZINGBARBOTTOM" type="Integer" file="ElTmSchema.pas" line="856">
+    <value>
+      $5
+    </value>
+  </const>
+  <const name="TBP_SIZINGBARRIGHT" type="Integer" file="ElTmSchema.pas" line="857">
+    <value>
+      $6
+    </value>
+  </const>
+  <const name="TBP_SIZINGBARTOP" type="Integer" file="ElTmSchema.pas" line="858">
+    <value>
+      $7
+    </value>
+  </const>
+  <const name="TBP_SIZINGBARLEFT" type="Integer" file="ElTmSchema.pas" line="859">
+    <value>
+      $8
+    </value>
+  </const>
+  <const name="TDP_GROUPCOUNT" type="Integer" file="ElTmSchema.pas" line="861">
+    <value>
+      $1
+    </value>
+  </const>
+  <const name="TDP_FLASHBUTTON" type="Integer" file="ElTmSchema.pas" line="862">
+    <value>
+      $2
+    </value>
+  </const>
+  <const name="TDP_FLASHBUTTONGROUPMENU" type="Integer" file="ElTmSchema.pas" line="863">
+    <value>
+      $3
+    </value>
+  </const>
+  <const name="SPP_USERPANE" type="Integer" file="ElTmSchema.pas" line="865">
+    <value>
+      $1
+    </value>
+  </const>
+  <const name="SPP_MOREPROGRAMS" type="Integer" file="ElTmSchema.pas" line="866">
+    <value>
+      $2
+    </value>
+  </const>
+  <const name="SPP_MOREPROGRAMSARROW" type="Integer" file="ElTmSchema.pas" line="867">
+    <value>
+      $3
+    </value>
+  </const>
+  <const name="SPP_PROGLIST" type="Integer" file="ElTmSchema.pas" line="868">
+    <value>
+      $4
+    </value>
+  </const>
+  <const name="SPP_PROGLISTSEPARATOR" type="Integer" file="ElTmSchema.pas" line="869">
+    <value>
+      $5
+    </value>
+  </const>
+  <const name="SPP_PLACESLIST" type="Integer" file="ElTmSchema.pas" line="870">
+    <value>
+      $6
+    </value>
+  </const>
+  <const name="SPP_PLACESLISTSEPARATOR" type="Integer" file="ElTmSchema.pas" line="871">
+    <value>
+      $7
+    </value>
+  </const>
+  <const name="SPP_LOGOFF" type="Integer" file="ElTmSchema.pas" line="872">
+    <value>
+      $8
+    </value>
+  </const>
+  <const name="SPP_LOGOFFBUTTONS" type="Integer" file="ElTmSchema.pas" line="873">
+    <value>
+      $9
+    </value>
+  </const>
+  <const name="SPP_USERPICTURE" type="Integer" file="ElTmSchema.pas" line="874">
+    <value>
+      $A
+    </value>
+  </const>
+  <const name="SPP_PREVIEW" type="Integer" file="ElTmSchema.pas" line="875">
+    <value>
+      $B
+    </value>
+  </const>
+  <const name="SPS_NORMAL" type="Integer" file="ElTmSchema.pas" line="877">
+    <value>
+      $1
+    </value>
+  </const>
+  <const name="SPS_HOT" type="Integer" file="ElTmSchema.pas" line="878">
+    <value>
+      $2
+    </value>
+  </const>
+  <const name="SPS_PRESSED" type="Integer" file="ElTmSchema.pas" line="879">
+    <value>
+      $3
+    </value>
+  </const>
+  <const name="SPLS_NORMAL" type="Integer" file="ElTmSchema.pas" line="881">
+    <value>
+      $1
+    </value>
+  </const>
+  <const name="SPLS_HOT" type="Integer" file="ElTmSchema.pas" line="882">
+    <value>
+      $2
+    </value>
+  </const>
+  <const name="SPLS_PRESSED" type="Integer" file="ElTmSchema.pas" line="883">
+    <value>
+      $3
+    </value>
+  </const>
+  <const name="EBP_HEADERBACKGROUND" type="Integer" file="ElTmSchema.pas" line="885">
+    <value>
+      $1
+    </value>
+  </const>
+  <const name="EBP_HEADERCLOSE" type="Integer" file="ElTmSchema.pas" line="886">
+    <value>
+      $2
+    </value>
+  </const>
+  <const name="EBP_HEADERPIN" type="Integer" file="ElTmSchema.pas" line="887">
+    <value>
+      $3
+    </value>
+  </const>
+  <const name="EBP_IEBARMENU" type="Integer" file="ElTmSchema.pas" line="888">
+    <value>
+      $4
+    </value>
+  </const>
+  <const name="EBP_NORMALGROUPBACKGROUND" type="Integer" file="ElTmSchema.pas" line="889">
+    <value>
+      $5
+    </value>
+  </const>
+  <const name="EBP_NORMALGROUPCOLLAPSE" type="Integer" file="ElTmSchema.pas" line="890">
+    <value>
+      $6
+    </value>
+  </const>
+  <const name="EBP_NORMALGROUPEXPAND" type="Integer" file="ElTmSchema.pas" line="891">
+    <value>
+      $7
+    </value>
+  </const>
+  <const name="EBP_NORMALGROUPHEAD" type="Integer" file="ElTmSchema.pas" line="892">
+    <value>
+      $8
+    </value>
+  </const>
+  <const name="EBP_SPECIALGROUPBACKGROUND" type="Integer" file="ElTmSchema.pas" line="893">
+    <value>
+      $9
+    </value>
+  </const>
+  <const name="EBP_SPECIALGROUPCOLLAPSE" type="Integer" file="ElTmSchema.pas" line="894">
+    <value>
+      $A
+    </value>
+  </const>
+  <const name="EBP_SPECIALGROUPEXPAND" type="Integer" file="ElTmSchema.pas" line="895">
+    <value>
+      $B
+    </value>
+  </const>
+  <const name="EBP_SPECIALGROUPHEAD" type="Integer" file="ElTmSchema.pas" line="896">
+    <value>
+      $C
+    </value>
+  </const>
+  <const name="EBHC_NORMAL" type="Integer" file="ElTmSchema.pas" line="898">
+    <value>
+      $1
+    </value>
+  </const>
+  <const name="EBHC_HOT" type="Integer" file="ElTmSchema.pas" line="899">
+    <value>
+      $2
+    </value>
+  </const>
+  <const name="EBHC_PRESSED" type="Integer" file="ElTmSchema.pas" line="900">
+    <value>
+      $3
+    </value>
+  </const>
+  <const name="EBHP_NORMAL" type="Integer" file="ElTmSchema.pas" line="902">
+    <value>
+      $1
+    </value>
+  </const>
+  <const name="EBHP_HOT" type="Integer" file="ElTmSchema.pas" line="903">
+    <value>
+      $2
+    </value>
+  </const>
+  <const name="EBHP_PRESSED" type="Integer" file="ElTmSchema.pas" line="904">
+    <value>
+      $3
+    </value>
+  </const>
+  <const name="EBHP_SELECTEDNORMAL" type="Integer" file="ElTmSchema.pas" line="905">
+    <value>
+      $4
+    </value>
+  </const>
+  <const name="EBHP_SELECTEDHOT" type="Integer" file="ElTmSchema.pas" line="906">
+    <value>
+      $5
+    </value>
+  </const>
+  <const name="EBHP_SELECTEDPRESSED" type="Integer" file="ElTmSchema.pas" line="907">
+    <value>
+      $6
+    </value>
+  </const>
+  <const name="EBM_NORMAL" type="Integer" file="ElTmSchema.pas" line="909">
+    <value>
+      $1
+    </value>
+  </const>
+  <const name="EBM_HOT" type="Integer" file="ElTmSchema.pas" line="910">
+    <value>
+      $2
+    </value>
+  </const>
+  <const name="EBM_PRESSED" type="Integer" file="ElTmSchema.pas" line="911">
+    <value>
+      $3
+    </value>
+  </const>
+  <const name="EBNGC_NORMAL" type="Integer" file="ElTmSchema.pas" line="913">
+    <value>
+      $1
+    </value>
+  </const>
+  <const name="EBNGC_HOT" type="Integer" file="ElTmSchema.pas" line="914">
+    <value>
+      $2
+    </value>
+  </const>
+  <const name="EBNGC_PRESSED" type="Integer" file="ElTmSchema.pas" line="915">
+    <value>
+      $3
+    </value>
+  </const>
+  <const name="EBNGE_NORMAL" type="Integer" file="ElTmSchema.pas" line="917">
+    <value>
+      $1
+    </value>
+  </const>
+  <const name="EBNGE_HOT" type="Integer" file="ElTmSchema.pas" line="918">
+    <value>
+      $2
+    </value>
+  </const>
+  <const name="EBNGE_PRESSED" type="Integer" file="ElTmSchema.pas" line="919">
+    <value>
+      $3
+    </value>
+  </const>
+  <const name="EBSGC_NORMAL" type="Integer" file="ElTmSchema.pas" line="921">
+    <value>
+      $1
+    </value>
+  </const>
+  <const name="EBSGC_HOT" type="Integer" file="ElTmSchema.pas" line="922">
+    <value>
+      $2
+    </value>
+  </const>
+  <const name="EBSGC_PRESSED" type="Integer" file="ElTmSchema.pas" line="923">
+    <value>
+      $3
+    </value>
+  </const>
+  <const name="MDP_NEWAPPBUTTON" type="Integer" file="ElTmSchema.pas" line="925">
+    <value>
+      $1
+    </value>
+  </const>
+  <const name="MDP_SEPERATOR" type="Integer" file="ElTmSchema.pas" line="926">
+    <value>
+      $2
+    </value>
+  </const>
+  <const name="MDS_NORMAL" type="Integer" file="ElTmSchema.pas" line="928">
+    <value>
+      $1
+    </value>
+  </const>
+  <const name="MDS_HOT" type="Integer" file="ElTmSchema.pas" line="929">
+    <value>
+      $2
+    </value>
+  </const>
+  <const name="MDS_PRESSED" type="Integer" file="ElTmSchema.pas" line="930">
+    <value>
+      $3
+    </value>
+  </const>
+  <const name="MDS_DISABLED" type="Integer" file="ElTmSchema.pas" line="931">
+    <value>
+      $4
+    </value>
+  </const>
+  <const name="MDS_CHECKED" type="Integer" file="ElTmSchema.pas" line="932">
+    <value>
+      $5
+    </value>
+  </const>
+  <const name="MDS_HOTCHECKED" type="Integer" file="ElTmSchema.pas" line="933">
+    <value>
+      $6
+    </value>
+  </const>
+</namespace>

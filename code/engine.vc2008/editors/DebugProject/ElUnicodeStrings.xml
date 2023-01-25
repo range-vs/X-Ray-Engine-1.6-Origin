@@ -1,0 +1,1617 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<namespace name="ElUnicodeStrings" platform="Win64">
+  <const name="U_LSB_FIRST" type="Char" file="ElUnicodeStrings.pas" line="63">
+    <value>
+      $FEFF
+    </value>
+  </const>
+  <const name="U_MSB_FIRST" type="Char" file="ElUnicodeStrings.pas" line="64">
+    <value>
+      $FFFE
+    </value>
+  </const>
+  <class name="TElFStrings" alias="ElUnicodeStrings.TElWideStrings" file="ElUnicodeStrings.pas" line="78">
+    <ancestor name="TPersistent" namespace="System.Classes">
+      <methodref name="AssignError" visibility="private">
+      </methodref>
+      <methodref name="AssignTo" visibility="protected" procflags="virtual">
+      </methodref>
+      <methodref name="DefineProperties" visibility="protected" procflags="virtual">
+      </methodref>
+      <methodref name="GetOwner" visibility="protected" procflags="dynamic">
+      </methodref>
+      <methodref name="Destroy" visibility="public" procflags="destructor override">
+      </methodref>
+      <methodref name="Assign" visibility="public" procflags="virtual">
+      </methodref>
+      <methodref name="GetNamePath" visibility="public" procflags="dynamic">
+      </methodref>
+      <ancestor name="TObject" namespace="System">
+        <methodref name="Create" visibility="public" procflags="constructor">
+        </methodref>
+        <methodref name="Free" visibility="public">
+        </methodref>
+        <methodref name="DisposeOf" visibility="public" procflags="inline">
+        </methodref>
+        <methodref name="InitInstance" visibility="public" procflags="class">
+        </methodref>
+        <methodref name="CleanupInstance" visibility="public">
+        </methodref>
+        <methodref name="ClassType" visibility="public" procflags="inline">
+        </methodref>
+        <methodref name="ClassName" visibility="public" procflags="class">
+        </methodref>
+        <methodref name="ClassNameIs" visibility="public" procflags="class">
+        </methodref>
+        <methodref name="ClassParent" visibility="public" procflags="class">
+        </methodref>
+        <methodref name="ClassInfo" visibility="public" procflags="class inline">
+        </methodref>
+        <methodref name="InstanceSize" visibility="public" procflags="class inline">
+        </methodref>
+        <methodref name="InheritsFrom" visibility="public" procflags="class">
+        </methodref>
+        <methodref name="MethodAddress" visibility="public" procflags="class overload">
+        </methodref>
+        <methodref name="MethodAddress" visibility="public" procflags="class overload">
+        </methodref>
+        <methodref name="MethodName" visibility="public" procflags="class">
+        </methodref>
+        <methodref name="QualifiedClassName" visibility="public" procflags="class">
+        </methodref>
+        <methodref name="FieldAddress" visibility="public" procflags="overload">
+        </methodref>
+        <methodref name="FieldAddress" visibility="public" procflags="overload">
+        </methodref>
+        <methodref name="GetInterface" visibility="public">
+        </methodref>
+        <methodref name="GetInterfaceEntry" visibility="public" procflags="class">
+        </methodref>
+        <methodref name="GetInterfaceTable" visibility="public" procflags="class inline">
+        </methodref>
+        <methodref name="UnitName" visibility="public" procflags="class">
+        </methodref>
+        <methodref name="UnitScope" visibility="public" procflags="class">
+        </methodref>
+        <methodref name="Equals" visibility="public" procflags="virtual">
+        </methodref>
+        <methodref name="GetHashCode" visibility="public" procflags="virtual">
+        </methodref>
+        <methodref name="ToString" visibility="public" procflags="virtual">
+        </methodref>
+        <methodref name="SafeCallException" visibility="public" procflags="virtual">
+        </methodref>
+        <methodref name="AfterConstruction" visibility="public" procflags="virtual">
+        </methodref>
+        <methodref name="BeforeDestruction" visibility="public" procflags="virtual">
+        </methodref>
+        <methodref name="Dispatch" visibility="public" procflags="virtual">
+        </methodref>
+        <methodref name="DefaultHandler" visibility="public" procflags="virtual">
+        </methodref>
+        <methodref name="NewInstance" visibility="public" procflags="class virtual">
+        </methodref>
+        <methodref name="FreeInstance" visibility="public" procflags="virtual">
+        </methodref>
+        <methodref name="Destroy" visibility="public" procflags="destructor virtual">
+        </methodref>
+        <methodref name="CPP_ABI_1" visibility="public" procflags="virtual">
+        </methodref>
+        <methodref name="CPP_ABI_2" visibility="public" procflags="virtual">
+        </methodref>
+        <methodref name="CPP_ABI_3" visibility="public" procflags="virtual">
+        </methodref>
+        <methodref name="GetDisposed" visibility="protected" procflags="inline">
+        </methodref>
+        <methodref name="CheckDisposed" visibility="protected" procflags="inline">
+        </methodref>
+        <propertyref name="Disposed" visibility="protected">
+        </propertyref>
+      </ancestor>
+    </ancestor>
+    <members>
+      <field name="FUpdateCount" type="Integer" visibility="private" size="4" offset="8" file="ElUnicodeStrings.pas" line="99" />
+      <field name="FSaveUnicode" type="Boolean" visibility="private" size="1" offset="12" file="ElUnicodeStrings.pas" line="100" />
+      <field name="FSaved" type="Boolean" visibility="private" size="1" offset="13" file="ElUnicodeStrings.pas" line="101" />
+      <function name="GetCommaText" visibility="private" file="ElUnicodeStrings.pas" line="103">
+        <parameters>
+          <retval type="WideString" />
+        </parameters>
+      </function>
+      <function name="GetName" visibility="private" file="ElUnicodeStrings.pas" line="104">
+        <parameters>
+          <parameter name="Index" type="Integer" />
+          <retval type="WideString" />
+        </parameters>
+      </function>
+      <function name="GetValue" visibility="private" file="ElUnicodeStrings.pas" line="105">
+        <parameters>
+          <parameter name="Name" type="WideString" paramflags="const" />
+          <retval type="WideString" />
+        </parameters>
+      </function>
+      <procedure name="ReadData" visibility="private" file="ElUnicodeStrings.pas" line="106">
+        <parameters>
+          <parameter name="Reader" type="TReader" />
+        </parameters>
+      </procedure>
+      <procedure name="SetCommaText" visibility="private" file="ElUnicodeStrings.pas" line="107">
+        <parameters>
+          <parameter name="Value" type="WideString" />
+        </parameters>
+      </procedure>
+      <procedure name="SetValue" visibility="private" file="ElUnicodeStrings.pas" line="108">
+        <parameters>
+          <parameter name="Name" type="WideString" paramflags="const" />
+          <parameter name="Value" type="WideString" paramflags="const" />
+        </parameters>
+      </procedure>
+      <procedure name="WriteData" visibility="private" file="ElUnicodeStrings.pas" line="109">
+        <parameters>
+          <parameter name="Writer" type="TWriter" />
+        </parameters>
+      </procedure>
+      <procedure name="StrSwapByteOrder" visibility="private" file="ElUnicodeStrings.pas" line="110">
+        <parameters>
+          <parameter name="Str" type="PWideChar" />
+        </parameters>
+      </procedure>
+      <procedure name="DefineProperties" visibility="protected" procflags="override" file="ElUnicodeStrings.pas" line="112">
+        <parameters>
+          <parameter name="Filer" type="TFiler" />
+        </parameters>
+      </procedure>
+      <procedure name="Error" visibility="protected" file="ElUnicodeStrings.pas" line="116">
+        <parameters>
+          <parameter name="Msg" type="string" paramflags="const" />
+          <parameter name="Data" type="Integer" />
+        </parameters>
+      </procedure>
+      <function name="Get" visibility="protected" procflags="abstract virtual" file="ElUnicodeStrings.pas" line="118">
+        <parameters>
+          <parameter name="Index" type="Integer" />
+          <retval type="WideString" />
+        </parameters>
+      </function>
+      <function name="GetCapacity" visibility="protected" procflags="virtual" file="ElUnicodeStrings.pas" line="119">
+        <parameters>
+          <retval type="Integer" />
+        </parameters>
+      </function>
+      <function name="GetCount" visibility="protected" procflags="abstract virtual" file="ElUnicodeStrings.pas" line="120">
+        <parameters>
+          <retval type="Integer" />
+        </parameters>
+      </function>
+      <function name="GetObject" visibility="protected" procflags="virtual" file="ElUnicodeStrings.pas" line="121">
+        <parameters>
+          <parameter name="Index" type="Integer" />
+          <retval type="TObject" />
+        </parameters>
+      </function>
+      <function name="GetTextStr" visibility="protected" procflags="virtual" file="ElUnicodeStrings.pas" line="122">
+        <parameters>
+          <retval type="WideString" />
+        </parameters>
+      </function>
+      <procedure name="Put" visibility="protected" procflags="virtual" file="ElUnicodeStrings.pas" line="123">
+        <parameters>
+          <parameter name="Index" type="Integer" />
+          <parameter name="S" type="WideString" paramflags="const" />
+        </parameters>
+      </procedure>
+      <procedure name="PutObject" visibility="protected" procflags="virtual" file="ElUnicodeStrings.pas" line="124">
+        <parameters>
+          <parameter name="Index" type="Integer" />
+          <parameter name="AObject" type="TObject" />
+        </parameters>
+      </procedure>
+      <procedure name="SetCapacity" visibility="protected" procflags="virtual" file="ElUnicodeStrings.pas" line="125">
+        <parameters>
+          <parameter name="NewCapacity" type="Integer" />
+        </parameters>
+      </procedure>
+      <procedure name="SetTextStr" visibility="protected" procflags="virtual" file="ElUnicodeStrings.pas" line="126">
+        <parameters>
+          <parameter name="Value" type="WideString" paramflags="const" />
+        </parameters>
+      </procedure>
+      <procedure name="SetUpdateState" visibility="protected" procflags="virtual" file="ElUnicodeStrings.pas" line="127">
+        <parameters>
+          <parameter name="Updating" type="Boolean" />
+        </parameters>
+      </procedure>
+      <destructor name="Destroy" visibility="public" file="ElUnicodeStrings.pas" line="129">
+        <parameters>
+        </parameters>
+      </destructor>
+      <function name="Add" visibility="public" procflags="virtual" file="ElUnicodeStrings.pas" line="130">
+        <parameters>
+          <parameter name="S" type="WideString" paramflags="const" />
+          <retval type="Integer" />
+        </parameters>
+      </function>
+      <function name="AddObject" visibility="public" procflags="virtual" file="ElUnicodeStrings.pas" line="131">
+        <parameters>
+          <parameter name="S" type="WideString" paramflags="const" />
+          <parameter name="AObject" type="TObject" />
+          <retval type="Integer" />
+        </parameters>
+      </function>
+      <procedure name="AddStrings" visibility="public" procflags="virtual" file="ElUnicodeStrings.pas" line="132">
+        <parameters>
+          <parameter name="Strings" type="TElWideStrings" />
+        </parameters>
+      </procedure>
+      <procedure name="Append" visibility="public" file="ElUnicodeStrings.pas" line="133">
+        <parameters>
+          <parameter name="S" type="WideString" paramflags="const" />
+        </parameters>
+      </procedure>
+      <procedure name="Assign" visibility="public" procflags="override" file="ElUnicodeStrings.pas" line="134">
+        <parameters>
+          <parameter name="Source" type="TPersistent" />
+        </parameters>
+      </procedure>
+      <procedure name="BeginUpdate" visibility="public" file="ElUnicodeStrings.pas" line="135">
+      </procedure>
+      <procedure name="Clear" visibility="public" procflags="abstract virtual" file="ElUnicodeStrings.pas" line="136">
+      </procedure>
+      <procedure name="Delete" visibility="public" procflags="abstract virtual" file="ElUnicodeStrings.pas" line="137">
+        <parameters>
+          <parameter name="Index" type="Integer" />
+        </parameters>
+      </procedure>
+      <procedure name="EndUpdate" visibility="public" file="ElUnicodeStrings.pas" line="138">
+      </procedure>
+      <function name="Equals" visibility="public" file="ElUnicodeStrings.pas" line="139">
+        <parameters>
+          <parameter name="Strings" type="TElWideStrings" />
+          <retval type="Boolean" />
+        </parameters>
+      </function>
+      <procedure name="Exchange" visibility="public" procflags="virtual" file="ElUnicodeStrings.pas" line="140">
+        <parameters>
+          <parameter name="Index1" type="Integer" />
+          <parameter name="Index2" type="Integer" />
+        </parameters>
+      </procedure>
+      <function name="GetText" visibility="public" procflags="virtual" file="ElUnicodeStrings.pas" line="141">
+        <parameters>
+          <retval type="PWideChar" />
+        </parameters>
+      </function>
+      <function name="IndexOf" visibility="public" procflags="virtual" file="ElUnicodeStrings.pas" line="142">
+        <parameters>
+          <parameter name="S" type="WideString" paramflags="const" />
+          <retval type="Integer" />
+        </parameters>
+      </function>
+      <function name="IndexOfName" visibility="public" file="ElUnicodeStrings.pas" line="143">
+        <parameters>
+          <parameter name="Name" type="WideString" paramflags="const" />
+          <retval type="Integer" />
+        </parameters>
+      </function>
+      <function name="IndexOfObject" visibility="public" file="ElUnicodeStrings.pas" line="144">
+        <parameters>
+          <parameter name="AObject" type="TObject" />
+          <retval type="Integer" />
+        </parameters>
+      </function>
+      <procedure name="Insert" visibility="public" procflags="abstract virtual" file="ElUnicodeStrings.pas" line="145">
+        <parameters>
+          <parameter name="Index" type="Integer" />
+          <parameter name="S" type="WideString" paramflags="const" />
+        </parameters>
+      </procedure>
+      <procedure name="InsertObject" visibility="public" file="ElUnicodeStrings.pas" line="146">
+        <parameters>
+          <parameter name="Index" type="Integer" />
+          <parameter name="S" type="WideString" paramflags="const" />
+          <parameter name="AObject" type="TObject" />
+        </parameters>
+      </procedure>
+      <procedure name="LoadFromFile" visibility="public" procflags="virtual" file="ElUnicodeStrings.pas" line="147">
+        <parameters>
+          <parameter name="FileName" type="string" paramflags="const" />
+        </parameters>
+      </procedure>
+      <procedure name="LoadFromStream" visibility="public" procflags="virtual" file="ElUnicodeStrings.pas" line="148">
+        <parameters>
+          <parameter name="Stream" type="TStream" />
+        </parameters>
+      </procedure>
+      <procedure name="Move" visibility="public" procflags="virtual" file="ElUnicodeStrings.pas" line="149">
+        <parameters>
+          <parameter name="CurIndex" type="Integer" />
+          <parameter name="NewIndex" type="Integer" />
+        </parameters>
+      </procedure>
+      <procedure name="SaveToFile" visibility="public" procflags="virtual" file="ElUnicodeStrings.pas" line="150">
+        <parameters>
+          <parameter name="FileName" type="string" paramflags="const" />
+        </parameters>
+      </procedure>
+      <procedure name="SaveToStream" visibility="public" procflags="virtual" file="ElUnicodeStrings.pas" line="151">
+        <parameters>
+          <parameter name="Stream" type="TStream" />
+        </parameters>
+      </procedure>
+      <procedure name="SetText" visibility="public" procflags="virtual" file="ElUnicodeStrings.pas" line="152">
+        <parameters>
+          <parameter name="Text" type="PWideChar" />
+        </parameters>
+      </procedure>
+      <procedure name="AssignTo" visibility="public" procflags="override" file="ElUnicodeStrings.pas" line="153">
+        <parameters>
+          <parameter name="Dest" type="TPersistent" />
+        </parameters>
+      </procedure>
+      <property name="Capacity" visibility="public" read="GetCapacity" write="SetCapacity" type="Integer" file="ElUnicodeStrings.pas" line="154" />
+      <property name="CommaText" visibility="public" read="GetCommaText" write="SetCommaText" type="WideString" default="0" file="ElUnicodeStrings.pas" line="155" />
+      <property name="Count" visibility="public" read="GetCount" type="Integer" file="ElUnicodeStrings.pas" line="156" />
+      <property name="Names[Index]" visibility="public" read="GetName" type="WideString" file="ElUnicodeStrings.pas" line="157" />
+      <property name="Objects[Index]" visibility="public" read="GetObject" write="PutObject" type="TObject" file="ElUnicodeStrings.pas" line="158" />
+      <property name="SaveUnicode" visibility="public" read="FSaveUnicode" write="FSaveUnicode" type="Boolean" file="ElUnicodeStrings.pas" line="159" />
+      <property name="Strings[Index]" visibility="public" read="Get" write="Put" type="WideString" file="ElUnicodeStrings.pas" line="160" />
+      <property name="Text" visibility="public" read="GetTextStr" write="SetTextStr" type="WideString" default="0" file="ElUnicodeStrings.pas" line="161" />
+      <property name="Values[const Name]" visibility="public" read="GetValue" write="SetValue" type="WideString" file="ElUnicodeStrings.pas" line="162" />
+    </members>
+  </class>
+  <class name="TElFStringList" alias="ElUnicodeStrings.TElWideStringList" file="ElUnicodeStrings.pas" line="79">
+    <ancestor name="TElWideStrings" namespace="ElUnicodeStrings">
+      <methodref name="GetCommaText" visibility="private" />
+      <methodref name="GetName" visibility="private" />
+      <methodref name="GetValue" visibility="private" />
+      <methodref name="ReadData" visibility="private" />
+      <methodref name="SetCommaText" visibility="private" />
+      <methodref name="SetValue" visibility="private" />
+      <methodref name="WriteData" visibility="private" />
+      <methodref name="StrSwapByteOrder" visibility="private" />
+      <methodref name="DefineProperties" visibility="protected" procflags="override" />
+      <methodref name="Error" visibility="protected" />
+      <methodref name="Get" visibility="protected" procflags="abstract virtual" />
+      <methodref name="GetCapacity" visibility="protected" procflags="virtual" />
+      <methodref name="GetCount" visibility="protected" procflags="abstract virtual" />
+      <methodref name="GetObject" visibility="protected" procflags="virtual" />
+      <methodref name="GetTextStr" visibility="protected" procflags="virtual" />
+      <methodref name="Put" visibility="protected" procflags="virtual" />
+      <methodref name="PutObject" visibility="protected" procflags="virtual" />
+      <methodref name="SetCapacity" visibility="protected" procflags="virtual" />
+      <methodref name="SetTextStr" visibility="protected" procflags="virtual" />
+      <methodref name="SetUpdateState" visibility="protected" procflags="virtual" />
+      <methodref name="Destroy" visibility="public" procflags="destructor override" />
+      <methodref name="Add" visibility="public" procflags="virtual" />
+      <methodref name="AddObject" visibility="public" procflags="virtual" />
+      <methodref name="AddStrings" visibility="public" procflags="virtual" />
+      <methodref name="Append" visibility="public" />
+      <methodref name="Assign" visibility="public" procflags="override" />
+      <methodref name="BeginUpdate" visibility="public" />
+      <methodref name="Clear" visibility="public" procflags="abstract virtual" />
+      <methodref name="Delete" visibility="public" procflags="abstract virtual" />
+      <methodref name="EndUpdate" visibility="public" />
+      <methodref name="Equals" visibility="public" />
+      <methodref name="Exchange" visibility="public" procflags="virtual" />
+      <methodref name="GetText" visibility="public" procflags="virtual" />
+      <methodref name="IndexOf" visibility="public" procflags="virtual" />
+      <methodref name="IndexOfName" visibility="public" />
+      <methodref name="IndexOfObject" visibility="public" />
+      <methodref name="Insert" visibility="public" procflags="abstract virtual" />
+      <methodref name="InsertObject" visibility="public" />
+      <methodref name="LoadFromFile" visibility="public" procflags="virtual" />
+      <methodref name="LoadFromStream" visibility="public" procflags="virtual" />
+      <methodref name="Move" visibility="public" procflags="virtual" />
+      <methodref name="SaveToFile" visibility="public" procflags="virtual" />
+      <methodref name="SaveToStream" visibility="public" procflags="virtual" />
+      <methodref name="SetText" visibility="public" procflags="virtual" />
+      <methodref name="AssignTo" visibility="public" procflags="override" />
+      <propertyref name="Capacity" visibility="public" />
+      <propertyref name="CommaText" visibility="public" />
+      <propertyref name="Count" visibility="public" />
+      <propertyref name="Names" visibility="public" />
+      <propertyref name="Objects" visibility="public" />
+      <propertyref name="SaveUnicode" visibility="public" />
+      <propertyref name="Strings" visibility="public" />
+      <propertyref name="Text" visibility="public" />
+      <propertyref name="Values" visibility="public" />
+      <ancestor name="TPersistent" namespace="System.Classes">
+        <methodref name="AssignError" visibility="private">
+        </methodref>
+        <methodref name="AssignTo" visibility="protected" procflags="virtual">
+        </methodref>
+        <methodref name="DefineProperties" visibility="protected" procflags="virtual">
+        </methodref>
+        <methodref name="GetOwner" visibility="protected" procflags="dynamic">
+        </methodref>
+        <methodref name="Destroy" visibility="public" procflags="destructor override">
+        </methodref>
+        <methodref name="Assign" visibility="public" procflags="virtual">
+        </methodref>
+        <methodref name="GetNamePath" visibility="public" procflags="dynamic">
+        </methodref>
+        <ancestor name="TObject" namespace="System">
+          <methodref name="Create" visibility="public" procflags="constructor">
+          </methodref>
+          <methodref name="Free" visibility="public">
+          </methodref>
+          <methodref name="DisposeOf" visibility="public" procflags="inline">
+          </methodref>
+          <methodref name="InitInstance" visibility="public" procflags="class">
+          </methodref>
+          <methodref name="CleanupInstance" visibility="public">
+          </methodref>
+          <methodref name="ClassType" visibility="public" procflags="inline">
+          </methodref>
+          <methodref name="ClassName" visibility="public" procflags="class">
+          </methodref>
+          <methodref name="ClassNameIs" visibility="public" procflags="class">
+          </methodref>
+          <methodref name="ClassParent" visibility="public" procflags="class">
+          </methodref>
+          <methodref name="ClassInfo" visibility="public" procflags="class inline">
+          </methodref>
+          <methodref name="InstanceSize" visibility="public" procflags="class inline">
+          </methodref>
+          <methodref name="InheritsFrom" visibility="public" procflags="class">
+          </methodref>
+          <methodref name="MethodAddress" visibility="public" procflags="class overload">
+          </methodref>
+          <methodref name="MethodAddress" visibility="public" procflags="class overload">
+          </methodref>
+          <methodref name="MethodName" visibility="public" procflags="class">
+          </methodref>
+          <methodref name="QualifiedClassName" visibility="public" procflags="class">
+          </methodref>
+          <methodref name="FieldAddress" visibility="public" procflags="overload">
+          </methodref>
+          <methodref name="FieldAddress" visibility="public" procflags="overload">
+          </methodref>
+          <methodref name="GetInterface" visibility="public">
+          </methodref>
+          <methodref name="GetInterfaceEntry" visibility="public" procflags="class">
+          </methodref>
+          <methodref name="GetInterfaceTable" visibility="public" procflags="class inline">
+          </methodref>
+          <methodref name="UnitName" visibility="public" procflags="class">
+          </methodref>
+          <methodref name="UnitScope" visibility="public" procflags="class">
+          </methodref>
+          <methodref name="Equals" visibility="public" procflags="virtual">
+          </methodref>
+          <methodref name="GetHashCode" visibility="public" procflags="virtual">
+          </methodref>
+          <methodref name="ToString" visibility="public" procflags="virtual">
+          </methodref>
+          <methodref name="SafeCallException" visibility="public" procflags="virtual">
+          </methodref>
+          <methodref name="AfterConstruction" visibility="public" procflags="virtual">
+          </methodref>
+          <methodref name="BeforeDestruction" visibility="public" procflags="virtual">
+          </methodref>
+          <methodref name="Dispatch" visibility="public" procflags="virtual">
+          </methodref>
+          <methodref name="DefaultHandler" visibility="public" procflags="virtual">
+          </methodref>
+          <methodref name="NewInstance" visibility="public" procflags="class virtual">
+          </methodref>
+          <methodref name="FreeInstance" visibility="public" procflags="virtual">
+          </methodref>
+          <methodref name="Destroy" visibility="public" procflags="destructor virtual">
+          </methodref>
+          <methodref name="CPP_ABI_1" visibility="public" procflags="virtual">
+          </methodref>
+          <methodref name="CPP_ABI_2" visibility="public" procflags="virtual">
+          </methodref>
+          <methodref name="CPP_ABI_3" visibility="public" procflags="virtual">
+          </methodref>
+          <methodref name="GetDisposed" visibility="protected" procflags="inline">
+          </methodref>
+          <methodref name="CheckDisposed" visibility="protected" procflags="inline">
+          </methodref>
+          <propertyref name="Disposed" visibility="protected">
+          </propertyref>
+        </ancestor>
+      </ancestor>
+    </ancestor>
+    <members>
+      <field name="FDuplicates" type="TDuplicates" visibility="private" size="1" offset="16" file="ElUnicodeStrings.pas" line="171" />
+      <field name="FOnChange" type="TNotifyEvent" visibility="private" size="16" offset="24" file="ElUnicodeStrings.pas" line="172" />
+      <field name="FOnChanging" type="TNotifyEvent" visibility="private" size="16" offset="40" file="ElUnicodeStrings.pas" line="173" />
+      <field name="FSorted" type="Boolean" visibility="private" size="1" offset="56" file="ElUnicodeStrings.pas" line="174" />
+      <field name="FCapacity" type="Integer" visibility="private" size="4" offset="60" file="ElUnicodeStrings.pas" line="175" />
+      <field name="FCount" type="Integer" visibility="private" size="4" offset="64" file="ElUnicodeStrings.pas" line="176" />
+      <field name="FList" type="PWideStringItemList" visibility="private" size="8" offset="72" file="ElUnicodeStrings.pas" line="177" />
+      <procedure name="ExchangeItems" visibility="private" file="ElUnicodeStrings.pas" line="178">
+        <parameters>
+          <parameter name="Index1" type="Integer" />
+          <parameter name="Index2" type="Integer" />
+        </parameters>
+      </procedure>
+      <procedure name="Grow" visibility="private" file="ElUnicodeStrings.pas" line="179">
+      </procedure>
+      <procedure name="InsertItem" visibility="private" file="ElUnicodeStrings.pas" line="180">
+        <parameters>
+          <parameter name="Index" type="Integer" />
+          <parameter name="S" type="WideString" paramflags="const" />
+        </parameters>
+      </procedure>
+      <procedure name="QuickSort" visibility="private" file="ElUnicodeStrings.pas" line="181">
+        <parameters>
+          <parameter name="L" type="Integer" />
+          <parameter name="R" type="Integer" />
+          <parameter name="SCompare" type="TElWideStringListSortCompare" />
+        </parameters>
+      </procedure>
+      <procedure name="SetSorted" visibility="private" file="ElUnicodeStrings.pas" line="182">
+        <parameters>
+          <parameter name="Value" type="Boolean" />
+        </parameters>
+      </procedure>
+      <procedure name="Changed" visibility="protected" procflags="virtual" file="ElUnicodeStrings.pas" line="184">
+      </procedure>
+      <procedure name="Changing" visibility="protected" procflags="virtual" file="ElUnicodeStrings.pas" line="185">
+      </procedure>
+      <function name="Get" visibility="protected" procflags="override" file="ElUnicodeStrings.pas" line="186">
+        <parameters>
+          <parameter name="Index" type="Integer" />
+          <retval type="WideString" />
+        </parameters>
+      </function>
+      <function name="GetCapacity" visibility="protected" procflags="override" file="ElUnicodeStrings.pas" line="187">
+        <parameters>
+          <retval type="Integer" />
+        </parameters>
+      </function>
+      <function name="GetCount" visibility="protected" procflags="override" file="ElUnicodeStrings.pas" line="188">
+        <parameters>
+          <retval type="Integer" />
+        </parameters>
+      </function>
+      <function name="GetObject" visibility="protected" procflags="override" file="ElUnicodeStrings.pas" line="189">
+        <parameters>
+          <parameter name="Index" type="Integer" />
+          <retval type="TObject" />
+        </parameters>
+      </function>
+      <procedure name="Put" visibility="protected" procflags="override" file="ElUnicodeStrings.pas" line="190">
+        <parameters>
+          <parameter name="Index" type="Integer" />
+          <parameter name="S" type="WideString" paramflags="const" />
+        </parameters>
+      </procedure>
+      <procedure name="PutObject" visibility="protected" procflags="override" file="ElUnicodeStrings.pas" line="191">
+        <parameters>
+          <parameter name="Index" type="Integer" />
+          <parameter name="AObject" type="TObject" />
+        </parameters>
+      </procedure>
+      <procedure name="SetCapacity" visibility="protected" procflags="override" file="ElUnicodeStrings.pas" line="192">
+        <parameters>
+          <parameter name="NewCapacity" type="Integer" />
+        </parameters>
+      </procedure>
+      <procedure name="SetUpdateState" visibility="protected" procflags="override" file="ElUnicodeStrings.pas" line="193">
+        <parameters>
+          <parameter name="Updating" type="Boolean" />
+        </parameters>
+      </procedure>
+      <destructor name="Destroy" visibility="public" file="ElUnicodeStrings.pas" line="195">
+        <parameters>
+        </parameters>
+      </destructor>
+      <function name="Add" visibility="public" procflags="override" file="ElUnicodeStrings.pas" line="196">
+        <parameters>
+          <parameter name="S" type="WideString" paramflags="const" />
+          <retval type="Integer" />
+        </parameters>
+      </function>
+      <procedure name="Clear" visibility="public" procflags="override" file="ElUnicodeStrings.pas" line="197">
+      </procedure>
+      <procedure name="CustomSort" visibility="public" procflags="virtual" file="ElUnicodeStrings.pas" line="198">
+        <parameters>
+          <parameter name="Compare" type="TElWideStringListSortCompare" />
+        </parameters>
+      </procedure>
+      <procedure name="Delete" visibility="public" procflags="override" file="ElUnicodeStrings.pas" line="199">
+        <parameters>
+          <parameter name="Index" type="Integer" />
+        </parameters>
+      </procedure>
+      <procedure name="Exchange" visibility="public" procflags="override" file="ElUnicodeStrings.pas" line="200">
+        <parameters>
+          <parameter name="Index1" type="Integer" />
+          <parameter name="Index2" type="Integer" />
+        </parameters>
+      </procedure>
+      <function name="Find" visibility="public" procflags="virtual" file="ElUnicodeStrings.pas" line="201">
+        <parameters>
+          <parameter name="S" type="WideString" paramflags="const" />
+          <parameter name="Index" type="Integer" paramflags="var" />
+          <retval type="Boolean" />
+        </parameters>
+      </function>
+      <function name="IndexOf" visibility="public" procflags="override" file="ElUnicodeStrings.pas" line="202">
+        <parameters>
+          <parameter name="S" type="WideString" paramflags="const" />
+          <retval type="Integer" />
+        </parameters>
+      </function>
+      <procedure name="Insert" visibility="public" procflags="override" file="ElUnicodeStrings.pas" line="203">
+        <parameters>
+          <parameter name="Index" type="Integer" />
+          <parameter name="S" type="WideString" paramflags="const" />
+        </parameters>
+      </procedure>
+      <procedure name="Sort" visibility="public" procflags="virtual" file="ElUnicodeStrings.pas" line="204">
+      </procedure>
+      <property name="Duplicates" visibility="public" read="FDuplicates" write="FDuplicates" type="TDuplicates" file="ElUnicodeStrings.pas" line="205" />
+      <event name="OnChange" visibility="public" read="FOnChange" write="FOnChange" type="TNotifyEvent" file="ElUnicodeStrings.pas" line="206" />
+      <event name="OnChanging" visibility="public" read="FOnChanging" write="FOnChanging" type="TNotifyEvent" file="ElUnicodeStrings.pas" line="207" />
+      <property name="Sorted" visibility="public" read="FSorted" write="SetSorted" type="Boolean" file="ElUnicodeStrings.pas" line="208" />
+    </members>
+  </class>
+  <pointer name="PWideStringItem" type="TWideStringItem" indircnt="1" file="ElUnicodeStrings.pas" line="88" />
+  <struct name="TWideStringItem" size="16" file="ElUnicodeStrings.pas" line="89">
+    <field name="FString" type="WideString" visibility="public" size="8" offset="0" file="ElUnicodeStrings.pas" line="90" />
+    <field name="FObject" type="TObject" visibility="public" size="8" offset="8" file="ElUnicodeStrings.pas" line="91" />
+  </struct>
+  <pointer name="PWideStringItemList" type="TWideStringItemList" indircnt="1" file="ElUnicodeStrings.pas" line="94" />
+  <array name="TWideStringItemList" low="0" high="16777215">
+    <element type="TWideStringItem" />
+  </array>
+  <class name="TElWideStrings" file="ElUnicodeStrings.pas" line="97">
+    <ancestor name="TPersistent" namespace="System.Classes">
+      <methodref name="AssignError" visibility="private">
+      </methodref>
+      <methodref name="AssignTo" visibility="protected" procflags="virtual">
+      </methodref>
+      <methodref name="DefineProperties" visibility="protected" procflags="virtual">
+      </methodref>
+      <methodref name="GetOwner" visibility="protected" procflags="dynamic">
+      </methodref>
+      <methodref name="Destroy" visibility="public" procflags="destructor override">
+      </methodref>
+      <methodref name="Assign" visibility="public" procflags="virtual">
+      </methodref>
+      <methodref name="GetNamePath" visibility="public" procflags="dynamic">
+      </methodref>
+      <ancestor name="TObject" namespace="System">
+        <methodref name="Create" visibility="public" procflags="constructor">
+        </methodref>
+        <methodref name="Free" visibility="public">
+        </methodref>
+        <methodref name="DisposeOf" visibility="public" procflags="inline">
+        </methodref>
+        <methodref name="InitInstance" visibility="public" procflags="class">
+        </methodref>
+        <methodref name="CleanupInstance" visibility="public">
+        </methodref>
+        <methodref name="ClassType" visibility="public" procflags="inline">
+        </methodref>
+        <methodref name="ClassName" visibility="public" procflags="class">
+        </methodref>
+        <methodref name="ClassNameIs" visibility="public" procflags="class">
+        </methodref>
+        <methodref name="ClassParent" visibility="public" procflags="class">
+        </methodref>
+        <methodref name="ClassInfo" visibility="public" procflags="class inline">
+        </methodref>
+        <methodref name="InstanceSize" visibility="public" procflags="class inline">
+        </methodref>
+        <methodref name="InheritsFrom" visibility="public" procflags="class">
+        </methodref>
+        <methodref name="MethodAddress" visibility="public" procflags="class overload">
+        </methodref>
+        <methodref name="MethodAddress" visibility="public" procflags="class overload">
+        </methodref>
+        <methodref name="MethodName" visibility="public" procflags="class">
+        </methodref>
+        <methodref name="QualifiedClassName" visibility="public" procflags="class">
+        </methodref>
+        <methodref name="FieldAddress" visibility="public" procflags="overload">
+        </methodref>
+        <methodref name="FieldAddress" visibility="public" procflags="overload">
+        </methodref>
+        <methodref name="GetInterface" visibility="public">
+        </methodref>
+        <methodref name="GetInterfaceEntry" visibility="public" procflags="class">
+        </methodref>
+        <methodref name="GetInterfaceTable" visibility="public" procflags="class inline">
+        </methodref>
+        <methodref name="UnitName" visibility="public" procflags="class">
+        </methodref>
+        <methodref name="UnitScope" visibility="public" procflags="class">
+        </methodref>
+        <methodref name="Equals" visibility="public" procflags="virtual">
+        </methodref>
+        <methodref name="GetHashCode" visibility="public" procflags="virtual">
+        </methodref>
+        <methodref name="ToString" visibility="public" procflags="virtual">
+        </methodref>
+        <methodref name="SafeCallException" visibility="public" procflags="virtual">
+        </methodref>
+        <methodref name="AfterConstruction" visibility="public" procflags="virtual">
+        </methodref>
+        <methodref name="BeforeDestruction" visibility="public" procflags="virtual">
+        </methodref>
+        <methodref name="Dispatch" visibility="public" procflags="virtual">
+        </methodref>
+        <methodref name="DefaultHandler" visibility="public" procflags="virtual">
+        </methodref>
+        <methodref name="NewInstance" visibility="public" procflags="class virtual">
+        </methodref>
+        <methodref name="FreeInstance" visibility="public" procflags="virtual">
+        </methodref>
+        <methodref name="Destroy" visibility="public" procflags="destructor virtual">
+        </methodref>
+        <methodref name="CPP_ABI_1" visibility="public" procflags="virtual">
+        </methodref>
+        <methodref name="CPP_ABI_2" visibility="public" procflags="virtual">
+        </methodref>
+        <methodref name="CPP_ABI_3" visibility="public" procflags="virtual">
+        </methodref>
+        <methodref name="GetDisposed" visibility="protected" procflags="inline">
+        </methodref>
+        <methodref name="CheckDisposed" visibility="protected" procflags="inline">
+        </methodref>
+        <propertyref name="Disposed" visibility="protected">
+        </propertyref>
+      </ancestor>
+    </ancestor>
+    <members>
+      <field name="FUpdateCount" type="Integer" visibility="private" size="4" offset="8" file="ElUnicodeStrings.pas" line="99" />
+      <field name="FSaveUnicode" type="Boolean" visibility="private" size="1" offset="12" file="ElUnicodeStrings.pas" line="100" />
+      <field name="FSaved" type="Boolean" visibility="private" size="1" offset="13" file="ElUnicodeStrings.pas" line="101" />
+      <function name="GetCommaText" visibility="private" file="ElUnicodeStrings.pas" line="103">
+        <parameters>
+          <retval type="WideString" />
+        </parameters>
+      </function>
+      <function name="GetName" visibility="private" file="ElUnicodeStrings.pas" line="104">
+        <parameters>
+          <parameter name="Index" type="Integer" />
+          <retval type="WideString" />
+        </parameters>
+      </function>
+      <function name="GetValue" visibility="private" file="ElUnicodeStrings.pas" line="105">
+        <parameters>
+          <parameter name="Name" type="WideString" paramflags="const" />
+          <retval type="WideString" />
+        </parameters>
+      </function>
+      <procedure name="ReadData" visibility="private" file="ElUnicodeStrings.pas" line="106">
+        <parameters>
+          <parameter name="Reader" type="TReader" />
+        </parameters>
+      </procedure>
+      <procedure name="SetCommaText" visibility="private" file="ElUnicodeStrings.pas" line="107">
+        <parameters>
+          <parameter name="Value" type="WideString" />
+        </parameters>
+      </procedure>
+      <procedure name="SetValue" visibility="private" file="ElUnicodeStrings.pas" line="108">
+        <parameters>
+          <parameter name="Name" type="WideString" paramflags="const" />
+          <parameter name="Value" type="WideString" paramflags="const" />
+        </parameters>
+      </procedure>
+      <procedure name="WriteData" visibility="private" file="ElUnicodeStrings.pas" line="109">
+        <parameters>
+          <parameter name="Writer" type="TWriter" />
+        </parameters>
+      </procedure>
+      <procedure name="StrSwapByteOrder" visibility="private" file="ElUnicodeStrings.pas" line="110">
+        <parameters>
+          <parameter name="Str" type="PWideChar" />
+        </parameters>
+      </procedure>
+      <procedure name="DefineProperties" visibility="protected" procflags="override" file="ElUnicodeStrings.pas" line="112">
+        <parameters>
+          <parameter name="Filer" type="TFiler" />
+        </parameters>
+      </procedure>
+      <procedure name="Error" visibility="protected" file="ElUnicodeStrings.pas" line="116">
+        <parameters>
+          <parameter name="Msg" type="string" paramflags="const" />
+          <parameter name="Data" type="Integer" />
+        </parameters>
+      </procedure>
+      <function name="Get" visibility="protected" procflags="abstract virtual" file="ElUnicodeStrings.pas" line="118">
+        <parameters>
+          <parameter name="Index" type="Integer" />
+          <retval type="WideString" />
+        </parameters>
+      </function>
+      <function name="GetCapacity" visibility="protected" procflags="virtual" file="ElUnicodeStrings.pas" line="119">
+        <parameters>
+          <retval type="Integer" />
+        </parameters>
+      </function>
+      <function name="GetCount" visibility="protected" procflags="abstract virtual" file="ElUnicodeStrings.pas" line="120">
+        <parameters>
+          <retval type="Integer" />
+        </parameters>
+      </function>
+      <function name="GetObject" visibility="protected" procflags="virtual" file="ElUnicodeStrings.pas" line="121">
+        <parameters>
+          <parameter name="Index" type="Integer" />
+          <retval type="TObject" />
+        </parameters>
+      </function>
+      <function name="GetTextStr" visibility="protected" procflags="virtual" file="ElUnicodeStrings.pas" line="122">
+        <parameters>
+          <retval type="WideString" />
+        </parameters>
+      </function>
+      <procedure name="Put" visibility="protected" procflags="virtual" file="ElUnicodeStrings.pas" line="123">
+        <parameters>
+          <parameter name="Index" type="Integer" />
+          <parameter name="S" type="WideString" paramflags="const" />
+        </parameters>
+      </procedure>
+      <procedure name="PutObject" visibility="protected" procflags="virtual" file="ElUnicodeStrings.pas" line="124">
+        <parameters>
+          <parameter name="Index" type="Integer" />
+          <parameter name="AObject" type="TObject" />
+        </parameters>
+      </procedure>
+      <procedure name="SetCapacity" visibility="protected" procflags="virtual" file="ElUnicodeStrings.pas" line="125">
+        <parameters>
+          <parameter name="NewCapacity" type="Integer" />
+        </parameters>
+      </procedure>
+      <procedure name="SetTextStr" visibility="protected" procflags="virtual" file="ElUnicodeStrings.pas" line="126">
+        <parameters>
+          <parameter name="Value" type="WideString" paramflags="const" />
+        </parameters>
+      </procedure>
+      <procedure name="SetUpdateState" visibility="protected" procflags="virtual" file="ElUnicodeStrings.pas" line="127">
+        <parameters>
+          <parameter name="Updating" type="Boolean" />
+        </parameters>
+      </procedure>
+      <destructor name="Destroy" visibility="public" file="ElUnicodeStrings.pas" line="129">
+        <parameters>
+        </parameters>
+      </destructor>
+      <function name="Add" visibility="public" procflags="virtual" file="ElUnicodeStrings.pas" line="130">
+        <parameters>
+          <parameter name="S" type="WideString" paramflags="const" />
+          <retval type="Integer" />
+        </parameters>
+      </function>
+      <function name="AddObject" visibility="public" procflags="virtual" file="ElUnicodeStrings.pas" line="131">
+        <parameters>
+          <parameter name="S" type="WideString" paramflags="const" />
+          <parameter name="AObject" type="TObject" />
+          <retval type="Integer" />
+        </parameters>
+      </function>
+      <procedure name="AddStrings" visibility="public" procflags="virtual" file="ElUnicodeStrings.pas" line="132">
+        <parameters>
+          <parameter name="Strings" type="TElWideStrings" />
+        </parameters>
+      </procedure>
+      <procedure name="Append" visibility="public" file="ElUnicodeStrings.pas" line="133">
+        <parameters>
+          <parameter name="S" type="WideString" paramflags="const" />
+        </parameters>
+      </procedure>
+      <procedure name="Assign" visibility="public" procflags="override" file="ElUnicodeStrings.pas" line="134">
+        <parameters>
+          <parameter name="Source" type="TPersistent" />
+        </parameters>
+      </procedure>
+      <procedure name="BeginUpdate" visibility="public" file="ElUnicodeStrings.pas" line="135">
+      </procedure>
+      <procedure name="Clear" visibility="public" procflags="abstract virtual" file="ElUnicodeStrings.pas" line="136">
+      </procedure>
+      <procedure name="Delete" visibility="public" procflags="abstract virtual" file="ElUnicodeStrings.pas" line="137">
+        <parameters>
+          <parameter name="Index" type="Integer" />
+        </parameters>
+      </procedure>
+      <procedure name="EndUpdate" visibility="public" file="ElUnicodeStrings.pas" line="138">
+      </procedure>
+      <function name="Equals" visibility="public" file="ElUnicodeStrings.pas" line="139">
+        <parameters>
+          <parameter name="Strings" type="TElWideStrings" />
+          <retval type="Boolean" />
+        </parameters>
+      </function>
+      <procedure name="Exchange" visibility="public" procflags="virtual" file="ElUnicodeStrings.pas" line="140">
+        <parameters>
+          <parameter name="Index1" type="Integer" />
+          <parameter name="Index2" type="Integer" />
+        </parameters>
+      </procedure>
+      <function name="GetText" visibility="public" procflags="virtual" file="ElUnicodeStrings.pas" line="141">
+        <parameters>
+          <retval type="PWideChar" />
+        </parameters>
+      </function>
+      <function name="IndexOf" visibility="public" procflags="virtual" file="ElUnicodeStrings.pas" line="142">
+        <parameters>
+          <parameter name="S" type="WideString" paramflags="const" />
+          <retval type="Integer" />
+        </parameters>
+      </function>
+      <function name="IndexOfName" visibility="public" file="ElUnicodeStrings.pas" line="143">
+        <parameters>
+          <parameter name="Name" type="WideString" paramflags="const" />
+          <retval type="Integer" />
+        </parameters>
+      </function>
+      <function name="IndexOfObject" visibility="public" file="ElUnicodeStrings.pas" line="144">
+        <parameters>
+          <parameter name="AObject" type="TObject" />
+          <retval type="Integer" />
+        </parameters>
+      </function>
+      <procedure name="Insert" visibility="public" procflags="abstract virtual" file="ElUnicodeStrings.pas" line="145">
+        <parameters>
+          <parameter name="Index" type="Integer" />
+          <parameter name="S" type="WideString" paramflags="const" />
+        </parameters>
+      </procedure>
+      <procedure name="InsertObject" visibility="public" file="ElUnicodeStrings.pas" line="146">
+        <parameters>
+          <parameter name="Index" type="Integer" />
+          <parameter name="S" type="WideString" paramflags="const" />
+          <parameter name="AObject" type="TObject" />
+        </parameters>
+      </procedure>
+      <procedure name="LoadFromFile" visibility="public" procflags="virtual" file="ElUnicodeStrings.pas" line="147">
+        <parameters>
+          <parameter name="FileName" type="string" paramflags="const" />
+        </parameters>
+      </procedure>
+      <procedure name="LoadFromStream" visibility="public" procflags="virtual" file="ElUnicodeStrings.pas" line="148">
+        <parameters>
+          <parameter name="Stream" type="TStream" />
+        </parameters>
+      </procedure>
+      <procedure name="Move" visibility="public" procflags="virtual" file="ElUnicodeStrings.pas" line="149">
+        <parameters>
+          <parameter name="CurIndex" type="Integer" />
+          <parameter name="NewIndex" type="Integer" />
+        </parameters>
+      </procedure>
+      <procedure name="SaveToFile" visibility="public" procflags="virtual" file="ElUnicodeStrings.pas" line="150">
+        <parameters>
+          <parameter name="FileName" type="string" paramflags="const" />
+        </parameters>
+      </procedure>
+      <procedure name="SaveToStream" visibility="public" procflags="virtual" file="ElUnicodeStrings.pas" line="151">
+        <parameters>
+          <parameter name="Stream" type="TStream" />
+        </parameters>
+      </procedure>
+      <procedure name="SetText" visibility="public" procflags="virtual" file="ElUnicodeStrings.pas" line="152">
+        <parameters>
+          <parameter name="Text" type="PWideChar" />
+        </parameters>
+      </procedure>
+      <procedure name="AssignTo" visibility="public" procflags="override" file="ElUnicodeStrings.pas" line="153">
+        <parameters>
+          <parameter name="Dest" type="TPersistent" />
+        </parameters>
+      </procedure>
+      <property name="Capacity" visibility="public" read="GetCapacity" write="SetCapacity" type="Integer" file="ElUnicodeStrings.pas" line="154" />
+      <property name="CommaText" visibility="public" read="GetCommaText" write="SetCommaText" type="WideString" default="0" file="ElUnicodeStrings.pas" line="155" />
+      <property name="Count" visibility="public" read="GetCount" type="Integer" file="ElUnicodeStrings.pas" line="156" />
+      <property name="Names[Index]" visibility="public" read="GetName" type="WideString" file="ElUnicodeStrings.pas" line="157" />
+      <property name="Objects[Index]" visibility="public" read="GetObject" write="PutObject" type="TObject" file="ElUnicodeStrings.pas" line="158" />
+      <property name="SaveUnicode" visibility="public" read="FSaveUnicode" write="FSaveUnicode" type="Boolean" file="ElUnicodeStrings.pas" line="159" />
+      <property name="Strings[Index]" visibility="public" read="Get" write="Put" type="WideString" file="ElUnicodeStrings.pas" line="160" />
+      <property name="Text" visibility="public" read="GetTextStr" write="SetTextStr" type="WideString" default="0" file="ElUnicodeStrings.pas" line="161" />
+      <property name="Values[const Name]" visibility="public" read="GetValue" write="SetValue" type="WideString" file="ElUnicodeStrings.pas" line="162" />
+    </members>
+  </class>
+  <class name="TElWideStringList" file="ElUnicodeStrings.pas" line="169">
+    <ancestor name="TElWideStrings" namespace="ElUnicodeStrings">
+      <methodref name="GetCommaText" visibility="private" />
+      <methodref name="GetName" visibility="private" />
+      <methodref name="GetValue" visibility="private" />
+      <methodref name="ReadData" visibility="private" />
+      <methodref name="SetCommaText" visibility="private" />
+      <methodref name="SetValue" visibility="private" />
+      <methodref name="WriteData" visibility="private" />
+      <methodref name="StrSwapByteOrder" visibility="private" />
+      <methodref name="DefineProperties" visibility="protected" procflags="override" />
+      <methodref name="Error" visibility="protected" />
+      <methodref name="Get" visibility="protected" procflags="abstract virtual" />
+      <methodref name="GetCapacity" visibility="protected" procflags="virtual" />
+      <methodref name="GetCount" visibility="protected" procflags="abstract virtual" />
+      <methodref name="GetObject" visibility="protected" procflags="virtual" />
+      <methodref name="GetTextStr" visibility="protected" procflags="virtual" />
+      <methodref name="Put" visibility="protected" procflags="virtual" />
+      <methodref name="PutObject" visibility="protected" procflags="virtual" />
+      <methodref name="SetCapacity" visibility="protected" procflags="virtual" />
+      <methodref name="SetTextStr" visibility="protected" procflags="virtual" />
+      <methodref name="SetUpdateState" visibility="protected" procflags="virtual" />
+      <methodref name="Destroy" visibility="public" procflags="destructor override" />
+      <methodref name="Add" visibility="public" procflags="virtual" />
+      <methodref name="AddObject" visibility="public" procflags="virtual" />
+      <methodref name="AddStrings" visibility="public" procflags="virtual" />
+      <methodref name="Append" visibility="public" />
+      <methodref name="Assign" visibility="public" procflags="override" />
+      <methodref name="BeginUpdate" visibility="public" />
+      <methodref name="Clear" visibility="public" procflags="abstract virtual" />
+      <methodref name="Delete" visibility="public" procflags="abstract virtual" />
+      <methodref name="EndUpdate" visibility="public" />
+      <methodref name="Equals" visibility="public" />
+      <methodref name="Exchange" visibility="public" procflags="virtual" />
+      <methodref name="GetText" visibility="public" procflags="virtual" />
+      <methodref name="IndexOf" visibility="public" procflags="virtual" />
+      <methodref name="IndexOfName" visibility="public" />
+      <methodref name="IndexOfObject" visibility="public" />
+      <methodref name="Insert" visibility="public" procflags="abstract virtual" />
+      <methodref name="InsertObject" visibility="public" />
+      <methodref name="LoadFromFile" visibility="public" procflags="virtual" />
+      <methodref name="LoadFromStream" visibility="public" procflags="virtual" />
+      <methodref name="Move" visibility="public" procflags="virtual" />
+      <methodref name="SaveToFile" visibility="public" procflags="virtual" />
+      <methodref name="SaveToStream" visibility="public" procflags="virtual" />
+      <methodref name="SetText" visibility="public" procflags="virtual" />
+      <methodref name="AssignTo" visibility="public" procflags="override" />
+      <propertyref name="Capacity" visibility="public" />
+      <propertyref name="CommaText" visibility="public" />
+      <propertyref name="Count" visibility="public" />
+      <propertyref name="Names" visibility="public" />
+      <propertyref name="Objects" visibility="public" />
+      <propertyref name="SaveUnicode" visibility="public" />
+      <propertyref name="Strings" visibility="public" />
+      <propertyref name="Text" visibility="public" />
+      <propertyref name="Values" visibility="public" />
+      <ancestor name="TPersistent" namespace="System.Classes">
+        <methodref name="AssignError" visibility="private">
+        </methodref>
+        <methodref name="AssignTo" visibility="protected" procflags="virtual">
+        </methodref>
+        <methodref name="DefineProperties" visibility="protected" procflags="virtual">
+        </methodref>
+        <methodref name="GetOwner" visibility="protected" procflags="dynamic">
+        </methodref>
+        <methodref name="Destroy" visibility="public" procflags="destructor override">
+        </methodref>
+        <methodref name="Assign" visibility="public" procflags="virtual">
+        </methodref>
+        <methodref name="GetNamePath" visibility="public" procflags="dynamic">
+        </methodref>
+        <ancestor name="TObject" namespace="System">
+          <methodref name="Create" visibility="public" procflags="constructor">
+          </methodref>
+          <methodref name="Free" visibility="public">
+          </methodref>
+          <methodref name="DisposeOf" visibility="public" procflags="inline">
+          </methodref>
+          <methodref name="InitInstance" visibility="public" procflags="class">
+          </methodref>
+          <methodref name="CleanupInstance" visibility="public">
+          </methodref>
+          <methodref name="ClassType" visibility="public" procflags="inline">
+          </methodref>
+          <methodref name="ClassName" visibility="public" procflags="class">
+          </methodref>
+          <methodref name="ClassNameIs" visibility="public" procflags="class">
+          </methodref>
+          <methodref name="ClassParent" visibility="public" procflags="class">
+          </methodref>
+          <methodref name="ClassInfo" visibility="public" procflags="class inline">
+          </methodref>
+          <methodref name="InstanceSize" visibility="public" procflags="class inline">
+          </methodref>
+          <methodref name="InheritsFrom" visibility="public" procflags="class">
+          </methodref>
+          <methodref name="MethodAddress" visibility="public" procflags="class overload">
+          </methodref>
+          <methodref name="MethodAddress" visibility="public" procflags="class overload">
+          </methodref>
+          <methodref name="MethodName" visibility="public" procflags="class">
+          </methodref>
+          <methodref name="QualifiedClassName" visibility="public" procflags="class">
+          </methodref>
+          <methodref name="FieldAddress" visibility="public" procflags="overload">
+          </methodref>
+          <methodref name="FieldAddress" visibility="public" procflags="overload">
+          </methodref>
+          <methodref name="GetInterface" visibility="public">
+          </methodref>
+          <methodref name="GetInterfaceEntry" visibility="public" procflags="class">
+          </methodref>
+          <methodref name="GetInterfaceTable" visibility="public" procflags="class inline">
+          </methodref>
+          <methodref name="UnitName" visibility="public" procflags="class">
+          </methodref>
+          <methodref name="UnitScope" visibility="public" procflags="class">
+          </methodref>
+          <methodref name="Equals" visibility="public" procflags="virtual">
+          </methodref>
+          <methodref name="GetHashCode" visibility="public" procflags="virtual">
+          </methodref>
+          <methodref name="ToString" visibility="public" procflags="virtual">
+          </methodref>
+          <methodref name="SafeCallException" visibility="public" procflags="virtual">
+          </methodref>
+          <methodref name="AfterConstruction" visibility="public" procflags="virtual">
+          </methodref>
+          <methodref name="BeforeDestruction" visibility="public" procflags="virtual">
+          </methodref>
+          <methodref name="Dispatch" visibility="public" procflags="virtual">
+          </methodref>
+          <methodref name="DefaultHandler" visibility="public" procflags="virtual">
+          </methodref>
+          <methodref name="NewInstance" visibility="public" procflags="class virtual">
+          </methodref>
+          <methodref name="FreeInstance" visibility="public" procflags="virtual">
+          </methodref>
+          <methodref name="Destroy" visibility="public" procflags="destructor virtual">
+          </methodref>
+          <methodref name="CPP_ABI_1" visibility="public" procflags="virtual">
+          </methodref>
+          <methodref name="CPP_ABI_2" visibility="public" procflags="virtual">
+          </methodref>
+          <methodref name="CPP_ABI_3" visibility="public" procflags="virtual">
+          </methodref>
+          <methodref name="GetDisposed" visibility="protected" procflags="inline">
+          </methodref>
+          <methodref name="CheckDisposed" visibility="protected" procflags="inline">
+          </methodref>
+          <propertyref name="Disposed" visibility="protected">
+          </propertyref>
+        </ancestor>
+      </ancestor>
+    </ancestor>
+    <members>
+      <field name="FDuplicates" type="TDuplicates" visibility="private" size="1" offset="16" file="ElUnicodeStrings.pas" line="171" />
+      <field name="FOnChange" type="TNotifyEvent" visibility="private" size="16" offset="24" file="ElUnicodeStrings.pas" line="172" />
+      <field name="FOnChanging" type="TNotifyEvent" visibility="private" size="16" offset="40" file="ElUnicodeStrings.pas" line="173" />
+      <field name="FSorted" type="Boolean" visibility="private" size="1" offset="56" file="ElUnicodeStrings.pas" line="174" />
+      <field name="FCapacity" type="Integer" visibility="private" size="4" offset="60" file="ElUnicodeStrings.pas" line="175" />
+      <field name="FCount" type="Integer" visibility="private" size="4" offset="64" file="ElUnicodeStrings.pas" line="176" />
+      <field name="FList" type="PWideStringItemList" visibility="private" size="8" offset="72" file="ElUnicodeStrings.pas" line="177" />
+      <procedure name="ExchangeItems" visibility="private" file="ElUnicodeStrings.pas" line="178">
+        <parameters>
+          <parameter name="Index1" type="Integer" />
+          <parameter name="Index2" type="Integer" />
+        </parameters>
+      </procedure>
+      <procedure name="Grow" visibility="private" file="ElUnicodeStrings.pas" line="179">
+      </procedure>
+      <procedure name="InsertItem" visibility="private" file="ElUnicodeStrings.pas" line="180">
+        <parameters>
+          <parameter name="Index" type="Integer" />
+          <parameter name="S" type="WideString" paramflags="const" />
+        </parameters>
+      </procedure>
+      <procedure name="QuickSort" visibility="private" file="ElUnicodeStrings.pas" line="181">
+        <parameters>
+          <parameter name="L" type="Integer" />
+          <parameter name="R" type="Integer" />
+          <parameter name="SCompare" type="TElWideStringListSortCompare" />
+        </parameters>
+      </procedure>
+      <procedure name="SetSorted" visibility="private" file="ElUnicodeStrings.pas" line="182">
+        <parameters>
+          <parameter name="Value" type="Boolean" />
+        </parameters>
+      </procedure>
+      <procedure name="Changed" visibility="protected" procflags="virtual" file="ElUnicodeStrings.pas" line="184">
+      </procedure>
+      <procedure name="Changing" visibility="protected" procflags="virtual" file="ElUnicodeStrings.pas" line="185">
+      </procedure>
+      <function name="Get" visibility="protected" procflags="override" file="ElUnicodeStrings.pas" line="186">
+        <parameters>
+          <parameter name="Index" type="Integer" />
+          <retval type="WideString" />
+        </parameters>
+      </function>
+      <function name="GetCapacity" visibility="protected" procflags="override" file="ElUnicodeStrings.pas" line="187">
+        <parameters>
+          <retval type="Integer" />
+        </parameters>
+      </function>
+      <function name="GetCount" visibility="protected" procflags="override" file="ElUnicodeStrings.pas" line="188">
+        <parameters>
+          <retval type="Integer" />
+        </parameters>
+      </function>
+      <function name="GetObject" visibility="protected" procflags="override" file="ElUnicodeStrings.pas" line="189">
+        <parameters>
+          <parameter name="Index" type="Integer" />
+          <retval type="TObject" />
+        </parameters>
+      </function>
+      <procedure name="Put" visibility="protected" procflags="override" file="ElUnicodeStrings.pas" line="190">
+        <parameters>
+          <parameter name="Index" type="Integer" />
+          <parameter name="S" type="WideString" paramflags="const" />
+        </parameters>
+      </procedure>
+      <procedure name="PutObject" visibility="protected" procflags="override" file="ElUnicodeStrings.pas" line="191">
+        <parameters>
+          <parameter name="Index" type="Integer" />
+          <parameter name="AObject" type="TObject" />
+        </parameters>
+      </procedure>
+      <procedure name="SetCapacity" visibility="protected" procflags="override" file="ElUnicodeStrings.pas" line="192">
+        <parameters>
+          <parameter name="NewCapacity" type="Integer" />
+        </parameters>
+      </procedure>
+      <procedure name="SetUpdateState" visibility="protected" procflags="override" file="ElUnicodeStrings.pas" line="193">
+        <parameters>
+          <parameter name="Updating" type="Boolean" />
+        </parameters>
+      </procedure>
+      <destructor name="Destroy" visibility="public" file="ElUnicodeStrings.pas" line="195">
+        <parameters>
+        </parameters>
+      </destructor>
+      <function name="Add" visibility="public" procflags="override" file="ElUnicodeStrings.pas" line="196">
+        <parameters>
+          <parameter name="S" type="WideString" paramflags="const" />
+          <retval type="Integer" />
+        </parameters>
+      </function>
+      <procedure name="Clear" visibility="public" procflags="override" file="ElUnicodeStrings.pas" line="197">
+      </procedure>
+      <procedure name="CustomSort" visibility="public" procflags="virtual" file="ElUnicodeStrings.pas" line="198">
+        <parameters>
+          <parameter name="Compare" type="TElWideStringListSortCompare" />
+        </parameters>
+      </procedure>
+      <procedure name="Delete" visibility="public" procflags="override" file="ElUnicodeStrings.pas" line="199">
+        <parameters>
+          <parameter name="Index" type="Integer" />
+        </parameters>
+      </procedure>
+      <procedure name="Exchange" visibility="public" procflags="override" file="ElUnicodeStrings.pas" line="200">
+        <parameters>
+          <parameter name="Index1" type="Integer" />
+          <parameter name="Index2" type="Integer" />
+        </parameters>
+      </procedure>
+      <function name="Find" visibility="public" procflags="virtual" file="ElUnicodeStrings.pas" line="201">
+        <parameters>
+          <parameter name="S" type="WideString" paramflags="const" />
+          <parameter name="Index" type="Integer" paramflags="var" />
+          <retval type="Boolean" />
+        </parameters>
+      </function>
+      <function name="IndexOf" visibility="public" procflags="override" file="ElUnicodeStrings.pas" line="202">
+        <parameters>
+          <parameter name="S" type="WideString" paramflags="const" />
+          <retval type="Integer" />
+        </parameters>
+      </function>
+      <procedure name="Insert" visibility="public" procflags="override" file="ElUnicodeStrings.pas" line="203">
+        <parameters>
+          <parameter name="Index" type="Integer" />
+          <parameter name="S" type="WideString" paramflags="const" />
+        </parameters>
+      </procedure>
+      <procedure name="Sort" visibility="public" procflags="virtual" file="ElUnicodeStrings.pas" line="204">
+      </procedure>
+      <property name="Duplicates" visibility="public" read="FDuplicates" write="FDuplicates" type="TDuplicates" file="ElUnicodeStrings.pas" line="205" />
+      <event name="OnChange" visibility="public" read="FOnChange" write="FOnChange" type="TNotifyEvent" file="ElUnicodeStrings.pas" line="206" />
+      <event name="OnChanging" visibility="public" read="FOnChanging" write="FOnChanging" type="TNotifyEvent" file="ElUnicodeStrings.pas" line="207" />
+      <property name="Sorted" visibility="public" read="FSorted" write="SetSorted" type="Boolean" file="ElUnicodeStrings.pas" line="208" />
+    </members>
+  </class>
+  <class name="TElWideStringArray" file="ElUnicodeStrings.pas" line="211">
+    <ancestor name="TElWideStrings" namespace="ElUnicodeStrings">
+      <methodref name="GetCommaText" visibility="private" />
+      <methodref name="GetName" visibility="private" />
+      <methodref name="GetValue" visibility="private" />
+      <methodref name="ReadData" visibility="private" />
+      <methodref name="SetCommaText" visibility="private" />
+      <methodref name="SetValue" visibility="private" />
+      <methodref name="WriteData" visibility="private" />
+      <methodref name="StrSwapByteOrder" visibility="private" />
+      <methodref name="DefineProperties" visibility="protected" procflags="override" />
+      <methodref name="Error" visibility="protected" />
+      <methodref name="Get" visibility="protected" procflags="abstract virtual" />
+      <methodref name="GetCapacity" visibility="protected" procflags="virtual" />
+      <methodref name="GetCount" visibility="protected" procflags="abstract virtual" />
+      <methodref name="GetObject" visibility="protected" procflags="virtual" />
+      <methodref name="GetTextStr" visibility="protected" procflags="virtual" />
+      <methodref name="Put" visibility="protected" procflags="virtual" />
+      <methodref name="PutObject" visibility="protected" procflags="virtual" />
+      <methodref name="SetCapacity" visibility="protected" procflags="virtual" />
+      <methodref name="SetTextStr" visibility="protected" procflags="virtual" />
+      <methodref name="SetUpdateState" visibility="protected" procflags="virtual" />
+      <methodref name="Destroy" visibility="public" procflags="destructor override" />
+      <methodref name="Add" visibility="public" procflags="virtual" />
+      <methodref name="AddObject" visibility="public" procflags="virtual" />
+      <methodref name="AddStrings" visibility="public" procflags="virtual" />
+      <methodref name="Append" visibility="public" />
+      <methodref name="Assign" visibility="public" procflags="override" />
+      <methodref name="BeginUpdate" visibility="public" />
+      <methodref name="Clear" visibility="public" procflags="abstract virtual" />
+      <methodref name="Delete" visibility="public" procflags="abstract virtual" />
+      <methodref name="EndUpdate" visibility="public" />
+      <methodref name="Equals" visibility="public" />
+      <methodref name="Exchange" visibility="public" procflags="virtual" />
+      <methodref name="GetText" visibility="public" procflags="virtual" />
+      <methodref name="IndexOf" visibility="public" procflags="virtual" />
+      <methodref name="IndexOfName" visibility="public" />
+      <methodref name="IndexOfObject" visibility="public" />
+      <methodref name="Insert" visibility="public" procflags="abstract virtual" />
+      <methodref name="InsertObject" visibility="public" />
+      <methodref name="LoadFromFile" visibility="public" procflags="virtual" />
+      <methodref name="LoadFromStream" visibility="public" procflags="virtual" />
+      <methodref name="Move" visibility="public" procflags="virtual" />
+      <methodref name="SaveToFile" visibility="public" procflags="virtual" />
+      <methodref name="SaveToStream" visibility="public" procflags="virtual" />
+      <methodref name="SetText" visibility="public" procflags="virtual" />
+      <methodref name="AssignTo" visibility="public" procflags="override" />
+      <propertyref name="Capacity" visibility="public" />
+      <propertyref name="CommaText" visibility="public" />
+      <propertyref name="Count" visibility="public" />
+      <propertyref name="Names" visibility="public" />
+      <propertyref name="Objects" visibility="public" />
+      <propertyref name="SaveUnicode" visibility="public" />
+      <propertyref name="Strings" visibility="public" />
+      <propertyref name="Text" visibility="public" />
+      <propertyref name="Values" visibility="public" />
+      <ancestor name="TPersistent" namespace="System.Classes">
+        <methodref name="AssignError" visibility="private">
+        </methodref>
+        <methodref name="AssignTo" visibility="protected" procflags="virtual">
+        </methodref>
+        <methodref name="DefineProperties" visibility="protected" procflags="virtual">
+        </methodref>
+        <methodref name="GetOwner" visibility="protected" procflags="dynamic">
+        </methodref>
+        <methodref name="Destroy" visibility="public" procflags="destructor override">
+        </methodref>
+        <methodref name="Assign" visibility="public" procflags="virtual">
+        </methodref>
+        <methodref name="GetNamePath" visibility="public" procflags="dynamic">
+        </methodref>
+        <ancestor name="TObject" namespace="System">
+          <methodref name="Create" visibility="public" procflags="constructor">
+          </methodref>
+          <methodref name="Free" visibility="public">
+          </methodref>
+          <methodref name="DisposeOf" visibility="public" procflags="inline">
+          </methodref>
+          <methodref name="InitInstance" visibility="public" procflags="class">
+          </methodref>
+          <methodref name="CleanupInstance" visibility="public">
+          </methodref>
+          <methodref name="ClassType" visibility="public" procflags="inline">
+          </methodref>
+          <methodref name="ClassName" visibility="public" procflags="class">
+          </methodref>
+          <methodref name="ClassNameIs" visibility="public" procflags="class">
+          </methodref>
+          <methodref name="ClassParent" visibility="public" procflags="class">
+          </methodref>
+          <methodref name="ClassInfo" visibility="public" procflags="class inline">
+          </methodref>
+          <methodref name="InstanceSize" visibility="public" procflags="class inline">
+          </methodref>
+          <methodref name="InheritsFrom" visibility="public" procflags="class">
+          </methodref>
+          <methodref name="MethodAddress" visibility="public" procflags="class overload">
+          </methodref>
+          <methodref name="MethodAddress" visibility="public" procflags="class overload">
+          </methodref>
+          <methodref name="MethodName" visibility="public" procflags="class">
+          </methodref>
+          <methodref name="QualifiedClassName" visibility="public" procflags="class">
+          </methodref>
+          <methodref name="FieldAddress" visibility="public" procflags="overload">
+          </methodref>
+          <methodref name="FieldAddress" visibility="public" procflags="overload">
+          </methodref>
+          <methodref name="GetInterface" visibility="public">
+          </methodref>
+          <methodref name="GetInterfaceEntry" visibility="public" procflags="class">
+          </methodref>
+          <methodref name="GetInterfaceTable" visibility="public" procflags="class inline">
+          </methodref>
+          <methodref name="UnitName" visibility="public" procflags="class">
+          </methodref>
+          <methodref name="UnitScope" visibility="public" procflags="class">
+          </methodref>
+          <methodref name="Equals" visibility="public" procflags="virtual">
+          </methodref>
+          <methodref name="GetHashCode" visibility="public" procflags="virtual">
+          </methodref>
+          <methodref name="ToString" visibility="public" procflags="virtual">
+          </methodref>
+          <methodref name="SafeCallException" visibility="public" procflags="virtual">
+          </methodref>
+          <methodref name="AfterConstruction" visibility="public" procflags="virtual">
+          </methodref>
+          <methodref name="BeforeDestruction" visibility="public" procflags="virtual">
+          </methodref>
+          <methodref name="Dispatch" visibility="public" procflags="virtual">
+          </methodref>
+          <methodref name="DefaultHandler" visibility="public" procflags="virtual">
+          </methodref>
+          <methodref name="NewInstance" visibility="public" procflags="class virtual">
+          </methodref>
+          <methodref name="FreeInstance" visibility="public" procflags="virtual">
+          </methodref>
+          <methodref name="Destroy" visibility="public" procflags="destructor virtual">
+          </methodref>
+          <methodref name="CPP_ABI_1" visibility="public" procflags="virtual">
+          </methodref>
+          <methodref name="CPP_ABI_2" visibility="public" procflags="virtual">
+          </methodref>
+          <methodref name="CPP_ABI_3" visibility="public" procflags="virtual">
+          </methodref>
+          <methodref name="GetDisposed" visibility="protected" procflags="inline">
+          </methodref>
+          <methodref name="CheckDisposed" visibility="protected" procflags="inline">
+          </methodref>
+          <propertyref name="Disposed" visibility="protected">
+          </propertyref>
+        </ancestor>
+      </ancestor>
+    </ancestor>
+    <members>
+      <field name="FStoreAssociatedData" type="Boolean" visibility="private" size="1" offset="16" file="ElUnicodeStrings.pas" line="213" />
+      <field name="FDuplicates" type="TDuplicates" visibility="private" size="1" offset="17" file="ElUnicodeStrings.pas" line="214" />
+      <field name="FSorted" type="Boolean" visibility="private" size="1" offset="18" file="ElUnicodeStrings.pas" line="215" />
+      <field name="FOnChanging" type="TNotifyEvent" visibility="private" size="16" offset="24" file="ElUnicodeStrings.pas" line="216" />
+      <field name="FOnChange" type="TNotifyEvent" visibility="private" size="16" offset="40" file="ElUnicodeStrings.pas" line="217" />
+      <field name="FArray" type="TElArray" visibility="private" size="8" offset="56" file="ElUnicodeStrings.pas" line="218" />
+      <field name="FUpdateCount" type="Integer" visibility="private" size="4" offset="64" file="ElUnicodeStrings.pas" line="219" />
+      <procedure name="OnItemDelete" visibility="private" file="ElUnicodeStrings.pas" line="220">
+        <parameters>
+          <parameter name="Sender" type="TObject" />
+          <parameter name="Item" type="Pointer" />
+        </parameters>
+      </procedure>
+      <procedure name="SetSorted" visibility="private" file="ElUnicodeStrings.pas" line="221">
+        <parameters>
+          <parameter name="newValue" type="Boolean" />
+        </parameters>
+      </procedure>
+      <procedure name="ExchangeItems" visibility="private" file="ElUnicodeStrings.pas" line="222">
+        <parameters>
+          <parameter name="Index1" type="Integer" />
+          <parameter name="Index2" type="Integer" />
+        </parameters>
+      </procedure>
+      <procedure name="QuickSort" visibility="protected" procflags="virtual" file="ElUnicodeStrings.pas" line="224">
+        <parameters>
+          <parameter name="L" type="Integer" />
+          <parameter name="R" type="Integer" />
+        </parameters>
+      </procedure>
+      <procedure name="Changed" visibility="protected" procflags="virtual" file="ElUnicodeStrings.pas" line="225">
+      </procedure>
+      <procedure name="Changing" visibility="protected" procflags="virtual" file="ElUnicodeStrings.pas" line="226">
+      </procedure>
+      <procedure name="TriggerChangingEvent" visibility="protected" procflags="virtual" file="ElUnicodeStrings.pas" line="227">
+      </procedure>
+      <procedure name="TriggerChangeEvent" visibility="protected" procflags="virtual" file="ElUnicodeStrings.pas" line="228">
+      </procedure>
+      <procedure name="InsertItem" visibility="protected" procflags="virtual" file="ElUnicodeStrings.pas" line="229">
+        <parameters>
+          <parameter name="Index" type="Integer" />
+          <parameter name="S" type="WideString" paramflags="const" />
+        </parameters>
+      </procedure>
+      <function name="Get" visibility="protected" procflags="override" file="ElUnicodeStrings.pas" line="230">
+        <parameters>
+          <parameter name="Index" type="Integer" />
+          <retval type="WideString" />
+        </parameters>
+      </function>
+      <function name="GetCount" visibility="protected" procflags="override" file="ElUnicodeStrings.pas" line="231">
+        <parameters>
+          <retval type="Integer" />
+        </parameters>
+      </function>
+      <function name="GetObject" visibility="protected" procflags="override" file="ElUnicodeStrings.pas" line="232">
+        <parameters>
+          <parameter name="Index" type="Integer" />
+          <retval type="TObject" />
+        </parameters>
+      </function>
+      <procedure name="Put" visibility="protected" procflags="override" file="ElUnicodeStrings.pas" line="233">
+        <parameters>
+          <parameter name="Index" type="Integer" />
+          <parameter name="S" type="WideString" paramflags="const" />
+        </parameters>
+      </procedure>
+      <procedure name="PutObject" visibility="protected" procflags="override" file="ElUnicodeStrings.pas" line="234">
+        <parameters>
+          <parameter name="Index" type="Integer" />
+          <parameter name="AObject" type="TObject" />
+        </parameters>
+      </procedure>
+      <procedure name="PutStringEntry" visibility="protected" procflags="virtual" file="ElUnicodeStrings.pas" line="235">
+        <parameters>
+          <parameter name="Index" type="Integer" />
+          <parameter name="S" type="WideString" paramflags="const" />
+          <parameter name="AObject" type="TObject" />
+        </parameters>
+      </procedure>
+      <procedure name="SetUpdateState" visibility="protected" procflags="override" file="ElUnicodeStrings.pas" line="237">
+        <parameters>
+          <parameter name="Updating" type="Boolean" />
+        </parameters>
+      </procedure>
+      <procedure name="Clear" visibility="public" procflags="override" file="ElUnicodeStrings.pas" line="239">
+      </procedure>
+      <function name="Add" visibility="public" procflags="override" file="ElUnicodeStrings.pas" line="241">
+        <parameters>
+          <parameter name="S" type="WideString" paramflags="const" />
+          <retval type="Integer" />
+        </parameters>
+      </function>
+      <function name="AddStringEntry" visibility="public" procflags="virtual" file="ElUnicodeStrings.pas" line="242">
+        <parameters>
+          <parameter name="S" type="WideString" paramflags="const" />
+          <parameter name="AObject" type="TObject" />
+          <retval type="Integer" />
+        </parameters>
+      </function>
+      <procedure name="Delete" visibility="public" procflags="override" file="ElUnicodeStrings.pas" line="245">
+        <parameters>
+          <parameter name="Index" type="Integer" />
+        </parameters>
+      </procedure>
+      <procedure name="Insert" visibility="public" procflags="override" file="ElUnicodeStrings.pas" line="246">
+        <parameters>
+          <parameter name="Index" type="Integer" />
+          <parameter name="S" type="WideString" paramflags="const" />
+        </parameters>
+      </procedure>
+      <function name="IndexOf" visibility="public" procflags="override" file="ElUnicodeStrings.pas" line="247">
+        <parameters>
+          <parameter name="S" type="WideString" paramflags="const" />
+          <retval type="Integer" />
+        </parameters>
+      </function>
+      <function name="Find" visibility="public" procflags="virtual" file="ElUnicodeStrings.pas" line="248">
+        <parameters>
+          <parameter name="S" type="WideString" paramflags="const" />
+          <parameter name="Index" type="Integer" paramflags="var" />
+          <retval type="Boolean" />
+        </parameters>
+      </function>
+      <procedure name="Sort" visibility="public" procflags="virtual" file="ElUnicodeStrings.pas" line="249">
+      </procedure>
+      <procedure name="Exchange" visibility="public" procflags="override" file="ElUnicodeStrings.pas" line="250">
+        <parameters>
+          <parameter name="Index1" type="Integer" />
+          <parameter name="Index2" type="Integer" />
+        </parameters>
+      </procedure>
+      <procedure name="SaveToBinaryStream" visibility="public" procflags="virtual" file="ElUnicodeStrings.pas" line="251">
+        <parameters>
+          <parameter name="Stream" type="TStream" />
+        </parameters>
+      </procedure>
+      <procedure name="LoadFromBinaryStream" visibility="public" procflags="virtual" file="ElUnicodeStrings.pas" line="252">
+        <parameters>
+          <parameter name="Stream" type="TStream" />
+        </parameters>
+      </procedure>
+      <constructor name="Create" visibility="public" file="ElUnicodeStrings.pas" line="256">
+        <parameters>
+        </parameters>
+      </constructor>
+      <destructor name="Destroy" visibility="public" file="ElUnicodeStrings.pas" line="257">
+        <parameters>
+        </parameters>
+      </destructor>
+      <property name="Duplicates" visibility="public" read="FDuplicates" write="FDuplicates" type="TDuplicates" file="ElUnicodeStrings.pas" line="259" />
+      <property name="Sorted" visibility="public" read="FSorted" write="SetSorted" type="Boolean" file="ElUnicodeStrings.pas" line="260" />
+      <event name="OnChanging" visibility="published" read="FOnChanging" write="FOnChanging" type="TNotifyEvent" file="ElUnicodeStrings.pas" line="262" />
+      <event name="OnChange" visibility="published" read="FOnChange" write="FOnChange" type="TNotifyEvent" file="ElUnicodeStrings.pas" line="263" />
+      <property name="StoreAssociatedData" visibility="published" read="FStoreAssociatedData" write="FStoreAssociatedData" type="Boolean" file="ElUnicodeStrings.pas" line="264" />
+    </members>
+  </class>
+</namespace>

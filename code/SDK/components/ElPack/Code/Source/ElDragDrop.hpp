@@ -1,8 +1,8 @@
 ﻿// CodeGear C++Builder
-// Copyright (c) 1995, 2022 by Embarcadero Technologies, Inc.
+// Copyright (c) 1995, 2020 by Embarcadero Technologies, Inc.
 // All rights reserved
 
-// (DO NOT EDIT: machine generated header) 'ElDragDrop.pas' rev: 35.00 (Windows)
+// (DO NOT EDIT: machine generated header) 'ElDragDrop.pas' rev: 34.00 (Windows)
 
 #ifndef EldragdropHPP
 #define EldragdropHPP
@@ -71,6 +71,7 @@ typedef System::StaticArray<tagFORMATETC, 256> TFormatList;
 
 typedef TFormatList *pFormatList;
 
+#pragma pack(push,4)
 class PASCALIMPLEMENTATION TEnumFormatEtc : public System::TInterfacedObject
 {
 	typedef System::TInterfacedObject inherited;
@@ -105,6 +106,7 @@ public:
 	
 };
 
+#pragma pack(pop)
 
 class PASCALIMPLEMENTATION TOleDragObject : public Vcl::Controls::TDragObject
 {
@@ -137,6 +139,7 @@ public:
 };
 
 
+#pragma pack(push,4)
 class PASCALIMPLEMENTATION IElDropSource : public System::TInterfacedObject
 {
 	typedef System::TInterfacedObject inherited;
@@ -190,7 +193,9 @@ public:
 	
 };
 
+#pragma pack(pop)
 
+#pragma pack(push,4)
 class PASCALIMPLEMENTATION IElDropTarget : public System::TInterfacedObject
 {
 	typedef System::TInterfacedObject inherited;
@@ -224,6 +229,7 @@ public:
 	
 };
 
+#pragma pack(pop)
 
 class PASCALIMPLEMENTATION TElDropTarget : public System::Classes::TComponent
 {

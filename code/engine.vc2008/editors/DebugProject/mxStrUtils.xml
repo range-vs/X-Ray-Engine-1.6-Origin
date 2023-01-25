@@ -1,0 +1,381 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<namespace name="mxStrUtils" platform="Win64">
+  <set name="TCharSet" alias="System.SysUtils.TSysCharSet" type="AnsiChar" />
+  <const name="CRLF" type="string" file="MxStrUtils.pas" line="209">
+    <value>
+      &#13;&#10;
+    </value>
+  </const>
+  <const name="DigitChars" type="Set" file="MxStrUtils.pas" line="210">
+    <value>
+      [&apos;0&apos;..&apos;9&apos;]
+    </value>
+  </const>
+  <const name="Brackets" type="Set" file="MxStrUtils.pas" line="212">
+    <value>
+      [&apos;(&apos;..&apos;)&apos;,&apos;[&apos;,&apos;]&apos;,&apos;{&apos;,&apos;}&apos;]
+    </value>
+  </const>
+  <const name="StdWordDelims" type="Set" file="MxStrUtils.pas" line="213">
+    <value>
+      [#0..&apos; &apos;,&apos;&quot;&apos;,&apos;&apos;&apos;..&apos;)&apos;,&apos;,&apos;,&apos;.&apos;..&apos;/&apos;,&apos;:&apos;..&apos;;&apos;,&apos;[&apos;..&apos;]&apos;,&apos;`&apos;,&apos;{&apos;,&apos;}&apos;]
+    </value>
+  </const>
+  <function name="StrToOem" visibility="public" file="MxStrUtils.pas" line="220">
+    <parameters>
+      <parameter name="AnsiStr" type="string" paramflags="const" />
+      <retval type="string" />
+    </parameters>
+  </function>
+  <function name="OemToAnsiStr" visibility="public" file="MxStrUtils.pas" line="227">
+    <parameters>
+      <parameter name="OemStr" type="string" paramflags="const" />
+      <retval type="string" />
+    </parameters>
+  </function>
+  <function name="IsEmptyStr" visibility="public" file="MxStrUtils.pas" line="234">
+    <parameters>
+      <parameter name="S" type="string" paramflags="const" />
+      <parameter name="EmptyChars" type="TSysCharSet" paramflags="const" />
+      <retval type="Boolean" />
+    </parameters>
+  </function>
+  <function name="ReplaceStr" visibility="public" file="MxStrUtils.pas" line="250">
+    <parameters>
+      <parameter name="S" type="string" paramflags="const" />
+      <parameter name="Srch" type="string" paramflags="const" />
+      <parameter name="Replace" type="string" paramflags="const" />
+      <retval type="string" />
+    </parameters>
+  </function>
+  <function name="DelSpace" visibility="public" file="MxStrUtils.pas" line="267">
+    <parameters>
+      <parameter name="S" type="string" paramflags="const" />
+      <retval type="string" />
+    </parameters>
+  </function>
+  <function name="DelChars" visibility="public" file="MxStrUtils.pas" line="272">
+    <parameters>
+      <parameter name="S" type="string" paramflags="const" />
+      <parameter name="Chr" type="Char" />
+      <retval type="string" />
+    </parameters>
+  </function>
+  <function name="DelBSpace" visibility="public" file="MxStrUtils.pas" line="282">
+    <parameters>
+      <parameter name="S" type="string" paramflags="const" />
+      <retval type="string" />
+    </parameters>
+  </function>
+  <function name="DelESpace" visibility="public" file="MxStrUtils.pas" line="292">
+    <parameters>
+      <parameter name="S" type="string" paramflags="const" />
+      <retval type="string" />
+    </parameters>
+  </function>
+  <function name="DelRSpace" visibility="public" file="MxStrUtils.pas" line="301">
+    <parameters>
+      <parameter name="S" type="string" paramflags="const" />
+      <retval type="string" />
+    </parameters>
+  </function>
+  <function name="DelSpace1" visibility="public" file="MxStrUtils.pas" line="306">
+    <parameters>
+      <parameter name="S" type="string" paramflags="const" />
+      <retval type="string" />
+    </parameters>
+  </function>
+  <function name="Tab2Space" visibility="public" file="MxStrUtils.pas" line="317">
+    <parameters>
+      <parameter name="S" type="string" paramflags="const" />
+      <parameter name="Numb" type="Byte" />
+      <retval type="string" />
+    </parameters>
+  </function>
+  <function name="MakeStr" visibility="public" file="MxStrUtils.pas" line="333">
+    <parameters>
+      <parameter name="C" type="Char" />
+      <parameter name="N" type="Integer" />
+      <retval type="string" />
+    </parameters>
+  </function>
+  <function name="MS" visibility="public" file="MxStrUtils.pas" line="342">
+    <parameters>
+      <parameter name="C" type="Char" />
+      <parameter name="N" type="Integer" />
+      <retval type="string" />
+    </parameters>
+  </function>
+  <function name="NPos" visibility="public" file="MxStrUtils.pas" line="347">
+    <parameters>
+      <parameter name="C" type="string" paramflags="const" />
+      <parameter name="S" type="string" />
+      <parameter name="N" type="Integer" />
+      <retval type="Integer" />
+    </parameters>
+  </function>
+  <function name="AddChar" visibility="public" file="MxStrUtils.pas" line="365">
+    <parameters>
+      <parameter name="C" type="Char" />
+      <parameter name="S" type="string" paramflags="const" />
+      <parameter name="N" type="Integer" />
+      <retval type="string" />
+    </parameters>
+  </function>
+  <function name="AddCharR" visibility="public" file="MxStrUtils.pas" line="372">
+    <parameters>
+      <parameter name="C" type="Char" />
+      <parameter name="S" type="string" paramflags="const" />
+      <parameter name="N" type="Integer" />
+      <retval type="string" />
+    </parameters>
+  </function>
+  <function name="LeftStr" visibility="public" file="MxStrUtils.pas" line="379">
+    <parameters>
+      <parameter name="S" type="string" paramflags="const" />
+      <parameter name="N" type="Integer" />
+      <retval type="string" />
+    </parameters>
+  </function>
+  <function name="RightStr" visibility="public" file="MxStrUtils.pas" line="384">
+    <parameters>
+      <parameter name="S" type="string" paramflags="const" />
+      <parameter name="N" type="Integer" />
+      <retval type="string" />
+    </parameters>
+  </function>
+  <function name="CompStr" visibility="public" file="MxStrUtils.pas" line="389">
+    <parameters>
+      <parameter name="S1" type="string" paramflags="const" />
+      <parameter name="S2" type="string" paramflags="const" />
+      <retval type="Integer" />
+    </parameters>
+  </function>
+  <function name="CompText" visibility="public" file="MxStrUtils.pas" line="395">
+    <parameters>
+      <parameter name="S1" type="string" paramflags="const" />
+      <parameter name="S2" type="string" paramflags="const" />
+      <retval type="Integer" />
+    </parameters>
+  </function>
+  <function name="Copy2Symb" visibility="public" file="MxStrUtils.pas" line="401">
+    <parameters>
+      <parameter name="S" type="string" paramflags="const" />
+      <parameter name="Symb" type="Char" />
+      <retval type="string" />
+    </parameters>
+  </function>
+  <function name="Copy2SymbDel" visibility="public" file="MxStrUtils.pas" line="410">
+    <parameters>
+      <parameter name="S" type="string" paramflags="var" />
+      <parameter name="Symb" type="Char" />
+      <retval type="string" />
+    </parameters>
+  </function>
+  <function name="Copy2Space" visibility="public" file="MxStrUtils.pas" line="416">
+    <parameters>
+      <parameter name="S" type="string" paramflags="const" />
+      <retval type="string" />
+    </parameters>
+  </function>
+  <function name="Copy2SpaceDel" visibility="public" file="MxStrUtils.pas" line="421">
+    <parameters>
+      <parameter name="S" type="string" paramflags="var" />
+      <retval type="string" />
+    </parameters>
+  </function>
+  <function name="AnsiProperCase" visibility="public" file="MxStrUtils.pas" line="426">
+    <parameters>
+      <parameter name="S" type="string" paramflags="const" />
+      <parameter name="WordDelims" type="TSysCharSet" paramflags="const" />
+      <retval type="string" />
+    </parameters>
+  </function>
+  <function name="WordCount" visibility="public" file="MxStrUtils.pas" line="440">
+    <parameters>
+      <parameter name="S" type="string" paramflags="const" />
+      <parameter name="WordDelims" type="TSysCharSet" paramflags="const" />
+      <retval type="Integer" />
+    </parameters>
+  </function>
+  <function name="WordPosition" visibility="public" file="MxStrUtils.pas" line="455">
+    <parameters>
+      <parameter name="N" type="Integer" paramflags="const" />
+      <parameter name="S" type="string" paramflags="const" />
+      <parameter name="WordDelims" type="TSysCharSet" paramflags="const" />
+      <retval type="Integer" />
+    </parameters>
+  </function>
+  <function name="ExtractWord" visibility="public" file="MxStrUtils.pas" line="475">
+    <parameters>
+      <parameter name="N" type="Integer" />
+      <parameter name="S" type="string" paramflags="const" />
+      <parameter name="WordDelims" type="TSysCharSet" paramflags="const" />
+      <retval type="string" />
+    </parameters>
+  </function>
+  <function name="ExtractWordPos" visibility="public" file="MxStrUtils.pas" line="495">
+    <parameters>
+      <parameter name="N" type="Integer" />
+      <parameter name="S" type="string" paramflags="const" />
+      <parameter name="WordDelims" type="TSysCharSet" paramflags="const" />
+      <parameter name="Pos" type="Integer" paramflags="var" />
+      <retval type="string" />
+    </parameters>
+  </function>
+  <function name="ExtractDelimited" visibility="public" file="MxStrUtils.pas" line="515">
+    <parameters>
+      <parameter name="N" type="Integer" />
+      <parameter name="S" type="string" paramflags="const" />
+      <parameter name="Delims" type="TSysCharSet" paramflags="const" />
+      <retval type="string" />
+    </parameters>
+  </function>
+  <function name="ExtractSubstr" visibility="public" file="MxStrUtils.pas" line="539">
+    <parameters>
+      <parameter name="S" type="string" paramflags="const" />
+      <parameter name="Pos" type="Integer" paramflags="var" />
+      <parameter name="Delims" type="TSysCharSet" paramflags="const" />
+      <retval type="string" />
+    </parameters>
+  </function>
+  <function name="IsWordPresent" visibility="public" file="MxStrUtils.pas" line="550">
+    <parameters>
+      <parameter name="W" type="string" paramflags="const" />
+      <parameter name="S" type="string" paramflags="const" />
+      <parameter name="WordDelims" type="TSysCharSet" paramflags="const" />
+      <retval type="Boolean" />
+    </parameters>
+  </function>
+  <function name="QuotedString" visibility="public" file="MxStrUtils.pas" line="568">
+    <parameters>
+      <parameter name="S" type="string" paramflags="const" />
+      <parameter name="Quote" type="Char" />
+      <retval type="string" />
+    </parameters>
+  </function>
+  <function name="ExtractQuotedString" visibility="public" file="MxStrUtils.pas" line="583">
+    <parameters>
+      <parameter name="S" type="string" paramflags="const" />
+      <parameter name="Quote" type="Char" />
+      <retval type="string" />
+    </parameters>
+  </function>
+  <function name="Numb2USA" visibility="public" file="MxStrUtils.pas" line="609">
+    <parameters>
+      <parameter name="S" type="string" paramflags="const" />
+      <retval type="string" />
+    </parameters>
+  </function>
+  <function name="CenterStr" visibility="public" file="MxStrUtils.pas" line="626">
+    <parameters>
+      <parameter name="S" type="string" paramflags="const" />
+      <parameter name="Len" type="Integer" />
+      <retval type="string" />
+    </parameters>
+  </function>
+  <function name="Dec2Hex" visibility="public" file="MxStrUtils.pas" line="635">
+    <parameters>
+      <parameter name="N" type="Integer" />
+      <parameter name="A" type="Byte" />
+      <retval type="string" />
+    </parameters>
+  </function>
+  <function name="D2H" visibility="public" file="MxStrUtils.pas" line="640">
+    <parameters>
+      <parameter name="N" type="Integer" />
+      <parameter name="A" type="Byte" />
+      <retval type="string" />
+    </parameters>
+  </function>
+  <function name="Hex2Dec" visibility="public" file="MxStrUtils.pas" line="645">
+    <parameters>
+      <parameter name="S" type="string" paramflags="const" />
+      <retval type="Integer" />
+    </parameters>
+  </function>
+  <function name="H2D" visibility="public" file="MxStrUtils.pas" line="654">
+    <parameters>
+      <parameter name="S" type="string" paramflags="const" />
+      <retval type="Integer" />
+    </parameters>
+  </function>
+  <function name="Dec2Numb" visibility="public" file="MxStrUtils.pas" line="659">
+    <parameters>
+      <parameter name="N" type="Integer" />
+      <parameter name="A" type="Byte" />
+      <parameter name="B" type="Byte" />
+      <retval type="string" />
+    </parameters>
+  </function>
+  <function name="Numb2Dec" visibility="public" file="MxStrUtils.pas" line="687">
+    <parameters>
+      <parameter name="S" type="string" />
+      <parameter name="B" type="Byte" />
+      <retval type="Integer" />
+    </parameters>
+  </function>
+  <function name="RomanToInt" visibility="public" file="MxStrUtils.pas" line="703">
+    <parameters>
+      <parameter name="S" type="string" paramflags="const" />
+      <retval type="Integer" />
+    </parameters>
+  </function>
+  <function name="IntToRoman" visibility="public" file="MxStrUtils.pas" line="739">
+    <parameters>
+      <parameter name="Value" type="Integer" />
+      <retval type="string" />
+    </parameters>
+  </function>
+  <function name="IntToBin" visibility="public" file="MxStrUtils.pas" line="815">
+    <parameters>
+      <parameter name="Value" type="Integer" />
+      <parameter name="Digits" type="Integer" />
+      <parameter name="Spaces" type="Integer" />
+      <retval type="string" />
+    </parameters>
+  </function>
+  <function name="FindPart" visibility="public" file="MxStrUtils.pas" line="826">
+    <parameters>
+      <parameter name="HelpWilds" type="string" paramflags="const" />
+      <parameter name="InputStr" type="string" paramflags="const" />
+      <retval type="Integer" />
+    </parameters>
+  </function>
+  <function name="IsWild" visibility="public" file="MxStrUtils.pas" line="860">
+    <parameters>
+      <parameter name="InputStr" type="string" />
+      <parameter name="Wilds" type="string" />
+      <parameter name="IgnoreCase" type="Boolean" />
+      <retval type="Boolean" />
+    </parameters>
+  </function>
+  <function name="XorString" visibility="public" file="MxStrUtils.pas" line="950">
+    <parameters>
+      <parameter name="Key" type="ShortString" paramflags="const" />
+      <parameter name="Src" type="ShortString" paramflags="const" />
+      <retval type="ShortString" />
+    </parameters>
+  </function>
+  <function name="XorEncode" visibility="public" file="MxStrUtils.pas" line="960">
+    <parameters>
+      <parameter name="Key" type="string" paramflags="const" />
+      <parameter name="Source" type="string" paramflags="const" />
+      <retval type="string" />
+    </parameters>
+  </function>
+  <function name="XorDecode" visibility="public" file="MxStrUtils.pas" line="975">
+    <parameters>
+      <parameter name="Key" type="string" paramflags="const" />
+      <parameter name="Source" type="string" paramflags="const" />
+      <retval type="string" />
+    </parameters>
+  </function>
+  <function name="GetCmdLineArg" visibility="public" file="MxStrUtils.pas" line="1019">
+    <parameters>
+      <parameter name="Switch" type="string" paramflags="const" />
+      <parameter name="SwitchChars" type="TSysCharSet" />
+      <retval type="string" />
+    </parameters>
+  </function>
+</namespace>

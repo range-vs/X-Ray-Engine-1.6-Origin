@@ -1,0 +1,1033 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<namespace name="mxVCLUtils" platform="Win64">
+  <const name="fdTopToBottom" type="TFillDirection" file="MxVCLUtils.pas" line="92">
+    <value>
+      fdTopToBottom
+    </value>
+  </const>
+  <const name="fdBottomToTop" type="TFillDirection" file="MxVCLUtils.pas" line="92">
+    <value>
+      fdBottomToTop
+    </value>
+  </const>
+  <const name="fdLeftToRight" type="TFillDirection" file="MxVCLUtils.pas" line="92">
+    <value>
+      fdLeftToRight
+    </value>
+  </const>
+  <const name="fdRightToLeft" type="TFillDirection" file="MxVCLUtils.pas" line="92">
+    <value>
+      fdRightToLeft
+    </value>
+  </const>
+  <enum name="TFillDirection" file="MxVCLUtils.pas" line="92">
+    <element value="0" name="fdTopToBottom" file="MxVCLUtils.pas" line="92" />
+    <element value="1" name="fdBottomToTop" file="MxVCLUtils.pas" line="92" />
+    <element value="2" name="fdLeftToRight" file="MxVCLUtils.pas" line="92" />
+    <element value="3" name="fdRightToLeft" file="MxVCLUtils.pas" line="92" />
+  </enum>
+  <const name="clCream" type="TColor" file="MxVCLUtils.pas" line="134">
+    <value>
+      $A6CAF0
+    </value>
+  </const>
+  <const name="clMoneyGreen" type="TColor" file="MxVCLUtils.pas" line="135">
+    <value>
+      $C0DCC0
+    </value>
+  </const>
+  <const name="clSkyBlue" type="TColor" file="MxVCLUtils.pas" line="136">
+    <value>
+      $FFFBF0
+    </value>
+  </const>
+  <const name="WaitCursor" type="TCursor" visibility="public" file="MxVCLUtils.pas" line="180" />
+  <const name="vaTopJustify" type="TVertAlignment" file="MxVCLUtils.pas" line="214">
+    <value>
+      vaTopJustify
+    </value>
+  </const>
+  <const name="vaCenter" type="TVertAlignment" file="MxVCLUtils.pas" line="214">
+    <value>
+      vaCenter
+    </value>
+  </const>
+  <const name="vaBottomJustify" type="TVertAlignment" file="MxVCLUtils.pas" line="214">
+    <value>
+      vaBottomJustify
+    </value>
+  </const>
+  <enum name="TVertAlignment" file="MxVCLUtils.pas" line="214">
+    <element value="0" name="vaTopJustify" file="MxVCLUtils.pas" line="214" />
+    <element value="1" name="vaCenter" file="MxVCLUtils.pas" line="214" />
+    <element value="2" name="vaBottomJustify" file="MxVCLUtils.pas" line="214" />
+  </enum>
+  <class name="TScreenCanvas" file="MxVCLUtils.pas" line="239">
+    <ancestor name="TCanvas" namespace="Vcl.Graphics">
+      <methodref name="CreateBrush" visibility="private">
+      </methodref>
+      <methodref name="CreateFont" visibility="private">
+      </methodref>
+      <methodref name="CreatePen" visibility="private">
+      </methodref>
+      <methodref name="BrushChanged" visibility="private">
+      </methodref>
+      <methodref name="DeselectHandles" visibility="private">
+      </methodref>
+      <methodref name="FontChanged" visibility="private">
+      </methodref>
+      <methodref name="PenChanged" visibility="private">
+      </methodref>
+      <methodref name="GetCanvasOrientation" visibility="protected" procflags="override">
+      </methodref>
+      <methodref name="GetClipRect" visibility="protected" procflags="override">
+      </methodref>
+      <methodref name="GetPenPos" visibility="protected" procflags="override">
+      </methodref>
+      <methodref name="GetPixel" visibility="protected" procflags="override">
+      </methodref>
+      <methodref name="GetHandle" visibility="protected">
+      </methodref>
+      <methodref name="SetBrush" visibility="protected">
+      </methodref>
+      <methodref name="SetFont" visibility="protected">
+      </methodref>
+      <methodref name="SetHandle" visibility="protected">
+      </methodref>
+      <methodref name="SetPen" visibility="protected">
+      </methodref>
+      <methodref name="SetPenPos" visibility="protected" procflags="override">
+      </methodref>
+      <methodref name="SetPixel" visibility="protected" procflags="override">
+      </methodref>
+      <methodref name="CreateHandle" visibility="protected" procflags="virtual">
+      </methodref>
+      <methodref name="RequiredState" visibility="protected" procflags="override">
+      </methodref>
+      <methodref name="Create" visibility="public" procflags="constructor">
+      </methodref>
+      <methodref name="Destroy" visibility="public" procflags="destructor override">
+      </methodref>
+      <methodref name="Arc" visibility="public" procflags="override">
+      </methodref>
+      <methodref name="ArcTo" visibility="public" procflags="override">
+      </methodref>
+      <methodref name="AngleArc" visibility="public" procflags="override">
+      </methodref>
+      <methodref name="BrushCopy" visibility="public" procflags="override">
+      </methodref>
+      <methodref name="Chord" visibility="public" procflags="override">
+      </methodref>
+      <methodref name="CopyRect" visibility="public">
+      </methodref>
+      <methodref name="Draw" visibility="public" procflags="overload override">
+      </methodref>
+      <methodref name="Draw" visibility="public" procflags="overload override">
+      </methodref>
+      <methodref name="DrawFocusRect" visibility="public" procflags="override">
+      </methodref>
+      <methodref name="Ellipse" visibility="public" procflags="overload override">
+      </methodref>
+      <methodref name="FillRect" visibility="public" procflags="override">
+      </methodref>
+      <methodref name="FloodFill" visibility="public" procflags="override">
+      </methodref>
+      <methodref name="FrameRect" visibility="public" procflags="override">
+      </methodref>
+      <methodref name="HandleAllocated" visibility="public">
+      </methodref>
+      <methodref name="LineTo" visibility="public" procflags="override">
+      </methodref>
+      <methodref name="MoveTo" visibility="public" procflags="override">
+      </methodref>
+      <methodref name="Pie" visibility="public" procflags="override">
+      </methodref>
+      <methodref name="Polygon" visibility="public" procflags="override">
+      </methodref>
+      <methodref name="Polyline" visibility="public" procflags="override">
+      </methodref>
+      <methodref name="PolyBezier" visibility="public" procflags="override">
+      </methodref>
+      <methodref name="PolyBezierTo" visibility="public" procflags="override">
+      </methodref>
+      <methodref name="Rectangle" visibility="public" procflags="overload override">
+      </methodref>
+      <methodref name="Refresh" visibility="public" procflags="override">
+      </methodref>
+      <methodref name="RoundRect" visibility="public" procflags="overload override">
+      </methodref>
+      <methodref name="StretchDraw" visibility="public" procflags="override">
+      </methodref>
+      <methodref name="TextExtent" visibility="public" procflags="override">
+      </methodref>
+      <methodref name="TextOut" visibility="public" procflags="override">
+      </methodref>
+      <methodref name="TextRect" visibility="public" procflags="overload override">
+      </methodref>
+      <methodref name="TextRect" visibility="public" procflags="overload override">
+      </methodref>
+      <propertyref name="Handle" visibility="public">
+      </propertyref>
+      <propertyref name="Brush" visibility="published">
+      </propertyref>
+      <propertyref name="CopyMode" visibility="published">
+      </propertyref>
+      <propertyref name="Font" visibility="published">
+      </propertyref>
+      <propertyref name="Pen" visibility="published">
+      </propertyref>
+      <ancestor name="TCustomCanvas" namespace="Vcl.Graphics">
+        <methodref name="GetCanvasOrientation" visibility="protected" procflags="abstract virtual">
+        </methodref>
+        <methodref name="GetClipRect" visibility="protected" procflags="abstract virtual">
+        </methodref>
+        <methodref name="GetPenPos" visibility="protected" procflags="abstract virtual">
+        </methodref>
+        <methodref name="GetPixel" visibility="protected" procflags="abstract virtual">
+        </methodref>
+        <methodref name="SetPenPos" visibility="protected" procflags="abstract virtual">
+        </methodref>
+        <methodref name="SetPixel" visibility="protected" procflags="abstract virtual">
+        </methodref>
+        <methodref name="Changed" visibility="protected" procflags="virtual">
+        </methodref>
+        <methodref name="Changing" visibility="protected" procflags="virtual">
+        </methodref>
+        <methodref name="RequiredState" visibility="protected" procflags="abstract virtual">
+        </methodref>
+        <methodref name="Arc" visibility="public" procflags="abstract virtual">
+        </methodref>
+        <methodref name="ArcTo" visibility="public" procflags="abstract virtual">
+        </methodref>
+        <methodref name="AngleArc" visibility="public" procflags="abstract virtual">
+        </methodref>
+        <methodref name="BrushCopy" visibility="public" procflags="abstract virtual">
+        </methodref>
+        <methodref name="Chord" visibility="public" procflags="abstract virtual">
+        </methodref>
+        <methodref name="Draw" visibility="public" procflags="abstract overload virtual">
+        </methodref>
+        <methodref name="Draw" visibility="public" procflags="abstract overload virtual">
+        </methodref>
+        <methodref name="DrawFocusRect" visibility="public" procflags="abstract virtual">
+        </methodref>
+        <methodref name="Ellipse" visibility="public" procflags="abstract overload virtual">
+        </methodref>
+        <methodref name="Ellipse" visibility="public" procflags="overload">
+        </methodref>
+        <methodref name="FillRect" visibility="public" procflags="abstract virtual">
+        </methodref>
+        <methodref name="FloodFill" visibility="public" procflags="abstract virtual">
+        </methodref>
+        <methodref name="FrameRect" visibility="public" procflags="abstract virtual">
+        </methodref>
+        <methodref name="LineTo" visibility="public" procflags="abstract virtual">
+        </methodref>
+        <methodref name="Lock" visibility="public">
+        </methodref>
+        <methodref name="MoveTo" visibility="public" procflags="abstract virtual">
+        </methodref>
+        <methodref name="Pie" visibility="public" procflags="abstract virtual">
+        </methodref>
+        <methodref name="Polygon" visibility="public" procflags="abstract virtual">
+        </methodref>
+        <methodref name="Polyline" visibility="public" procflags="abstract virtual">
+        </methodref>
+        <methodref name="PolyBezier" visibility="public" procflags="abstract virtual">
+        </methodref>
+        <methodref name="PolyBezierTo" visibility="public" procflags="abstract virtual">
+        </methodref>
+        <methodref name="Rectangle" visibility="public" procflags="abstract overload virtual">
+        </methodref>
+        <methodref name="Rectangle" visibility="public" procflags="overload">
+        </methodref>
+        <methodref name="Refresh" visibility="public" procflags="abstract virtual">
+        </methodref>
+        <methodref name="RoundRect" visibility="public" procflags="abstract overload virtual">
+        </methodref>
+        <methodref name="RoundRect" visibility="public" procflags="overload">
+        </methodref>
+        <methodref name="StretchDraw" visibility="public" procflags="abstract virtual">
+        </methodref>
+        <methodref name="TextExtent" visibility="public" procflags="abstract virtual">
+        </methodref>
+        <methodref name="TextHeight" visibility="public">
+        </methodref>
+        <methodref name="TextOut" visibility="public" procflags="abstract virtual">
+        </methodref>
+        <methodref name="TextRect" visibility="public" procflags="abstract overload virtual">
+        </methodref>
+        <methodref name="TextRect" visibility="public" procflags="abstract overload virtual">
+        </methodref>
+        <methodref name="TextWidth" visibility="public">
+        </methodref>
+        <methodref name="TryLock" visibility="public">
+        </methodref>
+        <methodref name="Unlock" visibility="public">
+        </methodref>
+        <propertyref name="ClipRect" visibility="public">
+        </propertyref>
+        <propertyref name="LockCount" visibility="public">
+        </propertyref>
+        <propertyref name="CanvasOrientation" visibility="public">
+        </propertyref>
+        <propertyref name="PenPos" visibility="public">
+        </propertyref>
+        <propertyref name="Pixels" visibility="public">
+        </propertyref>
+        <propertyref name="TextFlags" visibility="public">
+        </propertyref>
+        <eventref name="OnChange" visibility="public">
+        </eventref>
+        <eventref name="OnChanging" visibility="public">
+        </eventref>
+        <ancestor name="TPersistent" namespace="System.Classes">
+          <methodref name="AssignError" visibility="private">
+          </methodref>
+          <methodref name="AssignTo" visibility="protected" procflags="virtual">
+          </methodref>
+          <methodref name="DefineProperties" visibility="protected" procflags="virtual">
+          </methodref>
+          <methodref name="GetOwner" visibility="protected" procflags="dynamic">
+          </methodref>
+          <methodref name="Destroy" visibility="public" procflags="destructor override">
+          </methodref>
+          <methodref name="Assign" visibility="public" procflags="virtual">
+          </methodref>
+          <methodref name="GetNamePath" visibility="public" procflags="dynamic">
+          </methodref>
+          <ancestor name="TObject" namespace="System">
+            <methodref name="Create" visibility="public" procflags="constructor">
+            </methodref>
+            <methodref name="Free" visibility="public">
+            </methodref>
+            <methodref name="DisposeOf" visibility="public" procflags="inline">
+            </methodref>
+            <methodref name="InitInstance" visibility="public" procflags="class">
+            </methodref>
+            <methodref name="CleanupInstance" visibility="public">
+            </methodref>
+            <methodref name="ClassType" visibility="public" procflags="inline">
+            </methodref>
+            <methodref name="ClassName" visibility="public" procflags="class">
+            </methodref>
+            <methodref name="ClassNameIs" visibility="public" procflags="class">
+            </methodref>
+            <methodref name="ClassParent" visibility="public" procflags="class">
+            </methodref>
+            <methodref name="ClassInfo" visibility="public" procflags="class inline">
+            </methodref>
+            <methodref name="InstanceSize" visibility="public" procflags="class inline">
+            </methodref>
+            <methodref name="InheritsFrom" visibility="public" procflags="class">
+            </methodref>
+            <methodref name="MethodAddress" visibility="public" procflags="class overload">
+            </methodref>
+            <methodref name="MethodAddress" visibility="public" procflags="class overload">
+            </methodref>
+            <methodref name="MethodName" visibility="public" procflags="class">
+            </methodref>
+            <methodref name="QualifiedClassName" visibility="public" procflags="class">
+            </methodref>
+            <methodref name="FieldAddress" visibility="public" procflags="overload">
+            </methodref>
+            <methodref name="FieldAddress" visibility="public" procflags="overload">
+            </methodref>
+            <methodref name="GetInterface" visibility="public">
+            </methodref>
+            <methodref name="GetInterfaceEntry" visibility="public" procflags="class">
+            </methodref>
+            <methodref name="GetInterfaceTable" visibility="public" procflags="class inline">
+            </methodref>
+            <methodref name="UnitName" visibility="public" procflags="class">
+            </methodref>
+            <methodref name="UnitScope" visibility="public" procflags="class">
+            </methodref>
+            <methodref name="Equals" visibility="public" procflags="virtual">
+            </methodref>
+            <methodref name="GetHashCode" visibility="public" procflags="virtual">
+            </methodref>
+            <methodref name="ToString" visibility="public" procflags="virtual">
+            </methodref>
+            <methodref name="SafeCallException" visibility="public" procflags="virtual">
+            </methodref>
+            <methodref name="AfterConstruction" visibility="public" procflags="virtual">
+            </methodref>
+            <methodref name="BeforeDestruction" visibility="public" procflags="virtual">
+            </methodref>
+            <methodref name="Dispatch" visibility="public" procflags="virtual">
+            </methodref>
+            <methodref name="DefaultHandler" visibility="public" procflags="virtual">
+            </methodref>
+            <methodref name="NewInstance" visibility="public" procflags="class virtual">
+            </methodref>
+            <methodref name="FreeInstance" visibility="public" procflags="virtual">
+            </methodref>
+            <methodref name="Destroy" visibility="public" procflags="destructor virtual">
+            </methodref>
+            <methodref name="CPP_ABI_1" visibility="public" procflags="virtual">
+            </methodref>
+            <methodref name="CPP_ABI_2" visibility="public" procflags="virtual">
+            </methodref>
+            <methodref name="CPP_ABI_3" visibility="public" procflags="virtual">
+            </methodref>
+            <methodref name="GetDisposed" visibility="protected" procflags="inline">
+            </methodref>
+            <methodref name="CheckDisposed" visibility="protected" procflags="inline">
+            </methodref>
+            <propertyref name="Disposed" visibility="protected">
+            </propertyref>
+          </ancestor>
+        </ancestor>
+      </ancestor>
+    </ancestor>
+    <members>
+      <field name="FDeviceContext" type="HDC" visibility="private" size="8" offset="152" file="MxVCLUtils.pas" line="241" />
+      <procedure name="CreateHandle" visibility="protected" procflags="override" file="MxVCLUtils.pas" line="243">
+      </procedure>
+      <destructor name="Destroy" visibility="public" file="MxVCLUtils.pas" line="245">
+        <parameters>
+        </parameters>
+      </destructor>
+      <procedure name="SetOrigin" visibility="public" file="MxVCLUtils.pas" line="246">
+        <parameters>
+          <parameter name="X" type="Integer" />
+          <parameter name="Y" type="Integer" />
+        </parameters>
+      </procedure>
+      <procedure name="FreeHandle" visibility="public" file="MxVCLUtils.pas" line="247">
+      </procedure>
+    </members>
+  </class>
+  <procedure name="ResourceNotFound" visibility="public" file="MxVCLUtils.pas" line="330">
+    <parameters>
+      <parameter name="ResID" type="PWideChar" />
+    </parameters>
+  </procedure>
+  <function name="MakeModuleBitmap" visibility="public" file="MxVCLUtils.pas" line="346">
+    <parameters>
+      <parameter name="Module" type="NativeUInt" />
+      <parameter name="ResID" type="PWideChar" />
+      <retval type="TBitmap" />
+    </parameters>
+  </function>
+  <function name="MakeBitmap" visibility="public" file="MxVCLUtils.pas" line="371">
+    <parameters>
+      <parameter name="ResID" type="PWideChar" />
+      <retval type="TBitmap" />
+    </parameters>
+  </function>
+  <function name="MakeBitmapID" visibility="public" file="MxVCLUtils.pas" line="376">
+    <parameters>
+      <parameter name="ResID" type="Word" />
+      <retval type="TBitmap" />
+    </parameters>
+  </function>
+  <procedure name="AssignBitmapCell" visibility="public" file="MxVCLUtils.pas" line="382">
+    <parameters>
+      <parameter name="Source" type="TGraphic" />
+      <parameter name="Dest" type="TBitmap" />
+      <parameter name="Cols" type="Integer" />
+      <parameter name="Rows" type="Integer" />
+      <parameter name="Index" type="Integer" />
+    </parameters>
+  </procedure>
+  <procedure name="CopyParentImage" visibility="public" file="MxVCLUtils.pas" line="418">
+    <parameters>
+      <parameter name="Control" type="TControl" />
+      <parameter name="Dest" type="TCanvas" />
+    </parameters>
+  </procedure>
+  <procedure name="StretchBltTransparent" visibility="public" file="MxVCLUtils.pas" line="479">
+    <parameters>
+      <parameter name="DstDC" type="HDC" />
+      <parameter name="DstX" type="Integer" />
+      <parameter name="DstY" type="Integer" />
+      <parameter name="DstW" type="Integer" />
+      <parameter name="DstH" type="Integer" />
+      <parameter name="SrcDC" type="HDC" />
+      <parameter name="SrcX" type="Integer" />
+      <parameter name="SrcY" type="Integer" />
+      <parameter name="SrcW" type="Integer" />
+      <parameter name="SrcH" type="Integer" />
+      <parameter name="Palette" type="HPALETTE" />
+      <parameter name="TransparentColor" type="Cardinal" />
+    </parameters>
+  </procedure>
+  <procedure name="DrawTransparentBitmap" visibility="public" file="MxVCLUtils.pas" line="576">
+    <parameters>
+      <parameter name="DC" type="HDC" />
+      <parameter name="Bitmap" type="HBITMAP" />
+      <parameter name="DstX" type="Integer" />
+      <parameter name="DstY" type="Integer" />
+      <parameter name="TransparentColor" type="Cardinal" />
+    </parameters>
+  </procedure>
+  <procedure name="StretchBitmapRectTransparent" visibility="public" file="MxVCLUtils.pas" line="631">
+    <parameters>
+      <parameter name="Dest" type="TCanvas" />
+      <parameter name="DstX" type="Integer" />
+      <parameter name="DstY" type="Integer" />
+      <parameter name="DstW" type="Integer" />
+      <parameter name="DstH" type="Integer" />
+      <parameter name="SrcRect" type="TRect" />
+      <parameter name="Bitmap" type="TBitmap" />
+      <parameter name="TransparentColor" type="TColor" />
+    </parameters>
+  </procedure>
+  <procedure name="DrawBitmapRectTransparent" visibility="public" file="MxVCLUtils.pas" line="639">
+    <parameters>
+      <parameter name="Dest" type="TCanvas" />
+      <parameter name="DstX" type="Integer" />
+      <parameter name="DstY" type="Integer" />
+      <parameter name="SrcRect" type="TRect" />
+      <parameter name="Bitmap" type="TBitmap" />
+      <parameter name="TransparentColor" type="TColor" />
+    </parameters>
+  </procedure>
+  <procedure name="DrawBitmapTransparent" visibility="public" file="MxVCLUtils.pas" line="648">
+    <parameters>
+      <parameter name="Dest" type="TCanvas" />
+      <parameter name="DstX" type="Integer" />
+      <parameter name="DstY" type="Integer" />
+      <parameter name="Bitmap" type="TBitmap" />
+      <parameter name="TransparentColor" type="TColor" />
+    </parameters>
+  </procedure>
+  <function name="ChangeBitmapColor" visibility="public" file="MxVCLUtils.pas" line="657">
+    <parameters>
+      <parameter name="Bitmap" type="TBitmap" />
+      <parameter name="Color" type="TColor" />
+      <parameter name="NewColor" type="TColor" />
+      <retval type="TBitmap" />
+    </parameters>
+  </function>
+  <function name="CreateDisabledBitmapEx" visibility="public" file="MxVCLUtils.pas" line="684">
+    <parameters>
+      <parameter name="FOriginal" type="TBitmap" />
+      <parameter name="OutlineColor" type="TColor" />
+      <parameter name="BackColor" type="TColor" />
+      <parameter name="HighlightColor" type="TColor" />
+      <parameter name="ShadowColor" type="TColor" />
+      <parameter name="DrawHighlight" type="Boolean" />
+      <retval type="TBitmap" />
+    </parameters>
+  </function>
+  <function name="CreateDisabledBitmap" visibility="public" file="MxVCLUtils.pas" line="736">
+    <parameters>
+      <parameter name="FOriginal" type="TBitmap" />
+      <parameter name="OutlineColor" type="TColor" />
+      <retval type="TBitmap" />
+    </parameters>
+  </function>
+  <procedure name="ImageListDrawDisabled" visibility="public" file="MxVCLUtils.pas" line="744">
+    <parameters>
+      <parameter name="Images" type="TImageList" />
+      <parameter name="Canvas" type="TCanvas" />
+      <parameter name="X" type="Integer" />
+      <parameter name="Y" type="Integer" />
+      <parameter name="Index" type="Integer" />
+      <parameter name="HighlightColor" type="TColor" />
+      <parameter name="GrayColor" type="TColor" />
+      <parameter name="DrawHighlight" type="Boolean" />
+    </parameters>
+  </procedure>
+  <function name="CreateTwoColorsBrushPattern" visibility="public" file="MxVCLUtils.pas" line="781">
+    <parameters>
+      <parameter name="Color1" type="TColor" />
+      <parameter name="Color2" type="TColor" />
+      <retval type="TBitmap" />
+    </parameters>
+  </function>
+  <function name="MakeIcon" visibility="public" file="MxVCLUtils.pas" line="802">
+    <parameters>
+      <parameter name="ResID" type="PWideChar" />
+      <retval type="TIcon" />
+    </parameters>
+  </function>
+  <function name="MakeIconID" visibility="public" file="MxVCLUtils.pas" line="807">
+    <parameters>
+      <parameter name="ResID" type="Word" />
+      <retval type="TIcon" />
+    </parameters>
+  </function>
+  <function name="MakeModuleIcon" visibility="public" file="MxVCLUtils.pas" line="812">
+    <parameters>
+      <parameter name="Module" type="NativeUInt" />
+      <parameter name="ResID" type="PWideChar" />
+      <retval type="TIcon" />
+    </parameters>
+  </function>
+  <function name="CreateBitmapFromIcon" visibility="public" file="MxVCLUtils.pas" line="824">
+    <parameters>
+      <parameter name="Icon" type="TIcon" />
+      <parameter name="BackColor" type="TColor" />
+      <retval type="TBitmap" />
+    </parameters>
+  </function>
+  <function name="CreateIconFromBitmap" visibility="public" file="MxVCLUtils.pas" line="849">
+    <parameters>
+      <parameter name="Bitmap" type="TBitmap" />
+      <parameter name="TransparentColor" type="TColor" />
+      <retval type="TIcon" />
+    </parameters>
+  </function>
+  <function name="DialogUnitsToPixelsX" visibility="public" file="MxVCLUtils.pas" line="873">
+    <parameters>
+      <parameter name="DlgUnits" type="Word" />
+      <retval type="Word" />
+    </parameters>
+  </function>
+  <function name="DialogUnitsToPixelsY" visibility="public" file="MxVCLUtils.pas" line="878">
+    <parameters>
+      <parameter name="DlgUnits" type="Word" />
+      <retval type="Word" />
+    </parameters>
+  </function>
+  <function name="PixelsToDialogUnitsX" visibility="public" file="MxVCLUtils.pas" line="883">
+    <parameters>
+      <parameter name="PixUnits" type="Word" />
+      <retval type="Word" />
+    </parameters>
+  </function>
+  <function name="PixelsToDialogUnitsY" visibility="public" file="MxVCLUtils.pas" line="888">
+    <parameters>
+      <parameter name="PixUnits" type="Word" />
+      <retval type="Word" />
+    </parameters>
+  </function>
+  <function name="LoadDLL" visibility="public" file="MxVCLUtils.pas" line="898">
+    <parameters>
+      <parameter name="LibName" type="string" paramflags="const" />
+      <retval type="NativeUInt" />
+    </parameters>
+  </function>
+  <function name="RegisterServer" visibility="public" file="MxVCLUtils.pas" line="909">
+    <parameters>
+      <parameter name="ModuleName" type="string" paramflags="const" />
+      <retval type="Boolean" />
+    </parameters>
+  </function>
+  <procedure name="Beep" visibility="public" file="MxVCLUtils.pas" line="930">
+  </procedure>
+  <procedure name="FreeUnusedOle" visibility="public" file="MxVCLUtils.pas" line="935">
+  </procedure>
+  <procedure name="NotImplemented" visibility="public" file="MxVCLUtils.pas" line="940">
+  </procedure>
+  <procedure name="PaintInverseRect" visibility="public" file="MxVCLUtils.pas" line="947">
+    <parameters>
+      <parameter name="RectOrg" type="TPoint" paramflags="const" />
+      <parameter name="RectEnd" type="TPoint" paramflags="const" />
+    </parameters>
+  </procedure>
+  <procedure name="DrawInvertFrame" visibility="public" file="MxVCLUtils.pas" line="961">
+    <parameters>
+      <parameter name="ScreenRect" type="TRect" />
+      <parameter name="Width" type="Integer" />
+    </parameters>
+  </procedure>
+  <function name="WidthOf" visibility="public" file="MxVCLUtils.pas" line="977">
+    <parameters>
+      <parameter name="R" type="TRect" />
+      <retval type="Integer" />
+    </parameters>
+  </function>
+  <function name="HeightOf" visibility="public" file="MxVCLUtils.pas" line="982">
+    <parameters>
+      <parameter name="R" type="TRect" />
+      <retval type="Integer" />
+    </parameters>
+  </function>
+  <function name="PointInRect" visibility="public" file="MxVCLUtils.pas" line="987">
+    <parameters>
+      <parameter name="P" type="TPoint" paramflags="const" />
+      <parameter name="R" type="TRect" paramflags="const" />
+      <retval type="Boolean" />
+    </parameters>
+  </function>
+  <function name="PointInPolyRgn" visibility="public" file="MxVCLUtils.pas" line="994">
+    <parameters>
+      <parameter name="P" type="TPoint" paramflags="const" />
+      <parameter name="Points" paramflags="const">
+        <array name="Points">
+          <element type="TPoint" />
+        </array>
+      </parameter>
+      <retval type="Boolean" />
+    </parameters>
+  </function>
+  <function name="PaletteColor" visibility="public" file="MxVCLUtils.pas" line="1009">
+    <parameters>
+      <parameter name="Color" type="TColor" />
+      <retval type="Integer" />
+    </parameters>
+  </function>
+  <procedure name="KillMessage" visibility="public" file="MxVCLUtils.pas" line="1014">
+    <parameters>
+      <parameter name="Wnd" type="HWND" />
+      <parameter name="Msg" type="Cardinal" />
+    </parameters>
+  </procedure>
+  <function name="CreateRotatedFont" visibility="public" file="MxVCLUtils.pas" line="1026">
+    <parameters>
+      <parameter name="Font" type="TFont" />
+      <parameter name="Angle" type="Integer" />
+      <retval type="HFONT" />
+    </parameters>
+  </function>
+  <procedure name="Delay" visibility="public" file="MxVCLUtils.pas" line="1067">
+    <parameters>
+      <parameter name="MSecs" type="Integer" />
+    </parameters>
+  </procedure>
+  <function name="PaletteEntries" visibility="public" file="MxVCLUtils.pas" line="1079">
+    <parameters>
+      <parameter name="Palette" type="HPALETTE" />
+      <retval type="Integer" />
+    </parameters>
+  </function>
+  <procedure name="CenterControl" visibility="public" file="MxVCLUtils.pas" line="1084">
+    <parameters>
+      <parameter name="Control" type="TControl" />
+    </parameters>
+  </procedure>
+  <procedure name="CenterWindow" visibility="public" file="MxVCLUtils.pas" line="1146">
+    <parameters>
+      <parameter name="Wnd" type="HWND" />
+    </parameters>
+  </procedure>
+  <procedure name="MergeForm" visibility="public" file="MxVCLUtils.pas" line="1160">
+    <parameters>
+      <parameter name="AControl" type="TWinControl" />
+      <parameter name="AForm" type="TForm" />
+      <parameter name="Align" type="TAlign" />
+      <parameter name="Show" type="Boolean" />
+    </parameters>
+  </procedure>
+  <procedure name="ShowMDIClientEdge" visibility="public" file="MxVCLUtils.pas" line="1190">
+    <parameters>
+      <parameter name="ClientHandle" type="NativeUInt" />
+      <parameter name="ShowEdge" type="Boolean" />
+    </parameters>
+  </procedure>
+  <function name="MakeVariant" visibility="public" file="MxVCLUtils.pas" line="1212">
+    <parameters>
+      <parameter name="Values" paramflags="const">
+        <array name="Values">
+          <element type="Variant" />
+        </array>
+      </parameter>
+      <retval type="Variant" />
+    </parameters>
+  </function>
+  <procedure name="ShadeRect" visibility="public" file="MxVCLUtils.pas" line="1223">
+    <parameters>
+      <parameter name="DC" type="HDC" />
+      <parameter name="Rect" type="TRect" paramflags="const" />
+    </parameters>
+  </procedure>
+  <function name="ScreenWorkArea" visibility="public" file="MxVCLUtils.pas" line="1245">
+    <parameters>
+      <retval type="TRect" />
+    </parameters>
+  </function>
+  <function name="WindowClassName" visibility="public" file="MxVCLUtils.pas" line="1251">
+    <parameters>
+      <parameter name="Wnd" type="HWND" />
+      <retval type="string" />
+    </parameters>
+  </function>
+  <procedure name="ShowWinNoAnimate" visibility="public" file="MxVCLUtils.pas" line="1281">
+    <parameters>
+      <parameter name="Handle" type="HWND" />
+      <parameter name="CmdShow" type="Integer" />
+    </parameters>
+  </procedure>
+  <procedure name="SwitchToWindow" visibility="public" file="MxVCLUtils.pas" line="1292">
+    <parameters>
+      <parameter name="Wnd" type="HWND" />
+      <parameter name="Restore" type="Boolean" />
+    </parameters>
+  </procedure>
+  <procedure name="ActivateWindow" visibility="public" file="MxVCLUtils.pas" line="1309">
+    <parameters>
+      <parameter name="Wnd" type="HWND" />
+    </parameters>
+  </procedure>
+  <function name="FindPrevInstance" visibility="public" file="MxVCLUtils.pas" line="1321">
+    <parameters>
+      <parameter name="MainFormClass" type="string" paramflags="const" />
+      <parameter name="ATitle" type="string" paramflags="const" />
+      <retval type="HWND" />
+    </parameters>
+  </function>
+  <function name="ActivatePrevInstance" visibility="public" file="MxVCLUtils.pas" line="1352">
+    <parameters>
+      <parameter name="MainFormClass" type="string" paramflags="const" />
+      <parameter name="ATitle" type="string" paramflags="const" />
+      <retval type="Boolean" />
+    </parameters>
+  </function>
+  <function name="MsgBox" visibility="public" file="MxVCLUtils.pas" line="1392">
+    <parameters>
+      <parameter name="Caption" type="string" paramflags="const" />
+      <parameter name="Text" type="string" paramflags="const" />
+      <parameter name="Flags" type="Integer" />
+      <retval type="Integer" />
+    </parameters>
+  </function>
+  <function name="MsgDlg" visibility="public" file="MxVCLUtils.pas" line="1403">
+    <parameters>
+      <parameter name="Msg" type="string" paramflags="const" />
+      <parameter name="AType" type="TMsgDlgType" />
+      <parameter name="AButtons" type="TMsgDlgButtons" />
+      <parameter name="HelpCtx" type="Integer" />
+      <retval type="Word" />
+    </parameters>
+  </function>
+  <procedure name="GradientFillRect" visibility="public" file="MxVCLUtils.pas" line="1412">
+    <parameters>
+      <parameter name="Canvas" type="TCanvas" />
+      <parameter name="ARect" type="TRect" />
+      <parameter name="StartColor" type="TColor" />
+      <parameter name="EndColor" type="TColor" />
+      <parameter name="Direction" type="TFillDirection" />
+      <parameter name="Colors" type="Byte" />
+    </parameters>
+  </procedure>
+  <function name="MinimizeText" visibility="public" file="MxVCLUtils.pas" line="1519">
+    <parameters>
+      <parameter name="Text" type="string" paramflags="const" />
+      <parameter name="Canvas" type="TCanvas" />
+      <parameter name="MaxWidth" type="Integer" />
+      <retval type="string" />
+    </parameters>
+  </function>
+  <function name="GetAveCharSize" visibility="public" file="MxVCLUtils.pas" line="1531">
+    <parameters>
+      <parameter name="Canvas" type="TCanvas" />
+      <retval type="TPoint" />
+    </parameters>
+  </function>
+  <function name="AllocMemo" visibility="public" file="MxVCLUtils.pas" line="1544">
+    <parameters>
+      <parameter name="Size" type="Integer" />
+      <retval type="Pointer" />
+    </parameters>
+  </function>
+  <function name="ReallocMemo" visibility="public" file="MxVCLUtils.pas" line="1551">
+    <parameters>
+      <parameter name="fpBlock" type="Pointer" />
+      <parameter name="Size" type="Integer" />
+      <retval type="Pointer" />
+    </parameters>
+  </function>
+  <procedure name="FreeMemo" visibility="public" file="MxVCLUtils.pas" line="1557">
+    <parameters>
+      <parameter name="fpBlock" type="Pointer" paramflags="var" />
+    </parameters>
+  </procedure>
+  <function name="GetMemoSize" visibility="public" file="MxVCLUtils.pas" line="1565">
+    <parameters>
+      <parameter name="fpBlock" type="Pointer" />
+      <retval type="Integer" />
+    </parameters>
+  </function>
+  <function name="CompareMem" visibility="public" file="MxVCLUtils.pas" line="1577">
+    <parameters>
+      <parameter name="fpBlock1" type="Pointer" />
+      <parameter name="fpBlock2" type="Pointer" />
+      <parameter name="Size" type="Cardinal" />
+      <retval type="Boolean" />
+    </parameters>
+  </function>
+  <procedure name="HugeInc" visibility="public" file="MxVCLUtils.pas" line="1632">
+    <parameters>
+      <parameter name="HugePtr" type="Pointer" paramflags="var" />
+      <parameter name="Amount" type="Integer" />
+    </parameters>
+  </procedure>
+  <procedure name="HugeDec" visibility="public" file="MxVCLUtils.pas" line="1637">
+    <parameters>
+      <parameter name="HugePtr" type="Pointer" paramflags="var" />
+      <parameter name="Amount" type="Integer" />
+    </parameters>
+  </procedure>
+  <function name="HugeOffset" visibility="public" file="MxVCLUtils.pas" line="1642">
+    <parameters>
+      <parameter name="HugePtr" type="Pointer" />
+      <parameter name="Amount" type="Integer" />
+      <retval type="Pointer" />
+    </parameters>
+  </function>
+  <procedure name="HMemCpy" visibility="public" file="MxVCLUtils.pas" line="1647">
+    <parameters>
+      <parameter name="DstPtr" type="Pointer" />
+      <parameter name="SrcPtr" type="Pointer" />
+      <parameter name="Amount" type="Integer" />
+    </parameters>
+  </procedure>
+  <procedure name="HugeMove" visibility="public" file="MxVCLUtils.pas" line="1652">
+    <parameters>
+      <parameter name="Base" type="Pointer" />
+      <parameter name="Dst" type="Integer" />
+      <parameter name="Src" type="Integer" />
+      <parameter name="Size" type="Integer" />
+    </parameters>
+  </procedure>
+  <function name="GetEnvVar" visibility="public" file="MxVCLUtils.pas" line="1835">
+    <parameters>
+      <parameter name="VarName" type="string" paramflags="const" />
+      <retval type="string" />
+    </parameters>
+  </function>
+  <procedure name="SplitCommandLine" visibility="public" file="MxVCLUtils.pas" line="1929">
+    <parameters>
+      <parameter name="CmdLine" type="string" paramflags="const" />
+      <parameter name="ExeName" type="string" paramflags="var" />
+      <parameter name="Params" type="string" paramflags="var" />
+    </parameters>
+  </procedure>
+  <function name="AnsiUpperFirstChar" visibility="public" file="MxVCLUtils.pas" line="1954">
+    <parameters>
+      <parameter name="S" type="string" paramflags="const" />
+      <retval type="string" />
+    </parameters>
+  </function>
+  <function name="StrPAlloc" visibility="public" file="MxVCLUtils.pas" line="1966">
+    <parameters>
+      <parameter name="S" type="string" paramflags="const" />
+      <retval type="PWideChar" />
+    </parameters>
+  </function>
+  <function name="StringToPChar" visibility="public" file="MxVCLUtils.pas" line="1971">
+    <parameters>
+      <parameter name="S" type="string" paramflags="var" />
+      <retval type="PWideChar" />
+    </parameters>
+  </function>
+  <function name="DropT" visibility="public" file="MxVCLUtils.pas" line="1982">
+    <parameters>
+      <parameter name="S" type="string" paramflags="const" />
+      <retval type="string" />
+    </parameters>
+  </function>
+  <function name="LoadAniCursor" visibility="public" file="MxVCLUtils.pas" line="1995">
+    <parameters>
+      <parameter name="Instance" type="NativeUInt" />
+      <parameter name="ResID" type="PWideChar" />
+      <retval type="HICON" />
+    </parameters>
+  </function>
+  <function name="DefineCursor" visibility="public" file="MxVCLUtils.pas" line="2036">
+    <parameters>
+      <parameter name="Instance" type="NativeUInt" />
+      <parameter name="ResID" type="PWideChar" />
+      <retval type="TCursor" />
+    </parameters>
+  </function>
+  <procedure name="StartWait" visibility="public" file="MxVCLUtils.pas" line="2057">
+  </procedure>
+  <procedure name="StopWait" visibility="public" file="MxVCLUtils.pas" line="2066">
+  </procedure>
+  <procedure name="WriteText" visibility="public" file="MxVCLUtils.pas" line="2092">
+    <parameters>
+      <parameter name="ACanvas" type="TCanvas" />
+      <parameter name="ARect" type="TRect" />
+      <parameter name="DX" type="Integer" />
+      <parameter name="DY" type="Integer" />
+      <parameter name="Text" type="string" paramflags="const" />
+      <parameter name="Alignment" type="TAlignment" />
+      <parameter name="WordWrap" type="Boolean" />
+      <parameter name="ARightToLeft" type="Boolean">
+        <value>
+          False
+        </value>
+      </parameter>
+    </parameters>
+  </procedure>
+  <procedure name="DrawCellTextEx" visibility="public" procflags="overload" file="MxVCLUtils.pas" line="2174">
+    <parameters>
+      <parameter name="Control" type="TCustomControl" />
+      <parameter name="ACol" type="Integer" />
+      <parameter name="ARow" type="Integer" />
+      <parameter name="S" type="string" paramflags="const" />
+      <parameter name="ARect" type="TRect" paramflags="const" />
+      <parameter name="Align" type="TAlignment" />
+      <parameter name="VertAlign" type="TVertAlignment" />
+      <parameter name="WordWrap" type="Boolean" />
+      <parameter name="ARightToLeft" type="Boolean" />
+    </parameters>
+  </procedure>
+  <procedure name="DrawCellText" visibility="public" procflags="overload" file="MxVCLUtils.pas" line="2198">
+    <parameters>
+      <parameter name="Control" type="TCustomControl" />
+      <parameter name="ACol" type="Integer" />
+      <parameter name="ARow" type="Integer" />
+      <parameter name="S" type="string" paramflags="const" />
+      <parameter name="ARect" type="TRect" paramflags="const" />
+      <parameter name="Align" type="TAlignment" />
+      <parameter name="VertAlign" type="TVertAlignment" />
+      <parameter name="ARightToLeft" type="Boolean" />
+    </parameters>
+  </procedure>
+  <procedure name="DrawCellTextEx" visibility="public" procflags="overload" file="MxVCLUtils.pas" line="2208">
+    <parameters>
+      <parameter name="Control" type="TCustomControl" />
+      <parameter name="ACol" type="Integer" />
+      <parameter name="ARow" type="Integer" />
+      <parameter name="S" type="string" paramflags="const" />
+      <parameter name="ARect" type="TRect" paramflags="const" />
+      <parameter name="Align" type="TAlignment" />
+      <parameter name="VertAlign" type="TVertAlignment" />
+      <parameter name="WordWrap" type="Boolean" />
+    </parameters>
+  </procedure>
+  <procedure name="DrawCellText" visibility="public" procflags="overload" file="MxVCLUtils.pas" line="2231">
+    <parameters>
+      <parameter name="Control" type="TCustomControl" />
+      <parameter name="ACol" type="Integer" />
+      <parameter name="ARow" type="Integer" />
+      <parameter name="S" type="string" paramflags="const" />
+      <parameter name="ARect" type="TRect" paramflags="const" />
+      <parameter name="Align" type="TAlignment" />
+      <parameter name="VertAlign" type="TVertAlignment" />
+    </parameters>
+  </procedure>
+  <procedure name="DrawCellBitmap" visibility="public" file="MxVCLUtils.pas" line="2238">
+    <parameters>
+      <parameter name="Control" type="TCustomControl" />
+      <parameter name="ACol" type="Integer" />
+      <parameter name="ARow" type="Integer" />
+      <parameter name="Bmp" type="TGraphic" />
+      <parameter name="Rect" type="TRect" />
+    </parameters>
+  </procedure>
+  <procedure name="RaiseWin32Error" visibility="public" file="MxVCLUtils.pas" line="2491">
+    <parameters>
+      <parameter name="ErrorCode" type="Cardinal" />
+    </parameters>
+  </procedure>
+  <function name="CheckWin32" visibility="public" file="MxVCLUtils.pas" line="2527">
+    <parameters>
+      <parameter name="OK" type="Boolean" />
+      <retval type="Boolean" />
+    </parameters>
+  </function>
+  <function name="ResStr" visibility="public" file="MxVCLUtils.pas" line="2539">
+    <parameters>
+      <parameter name="Ident" type="string" paramflags="const" />
+      <retval type="string" />
+    </parameters>
+  </function>
+  <function name="IsForegroundTask" visibility="public" file="MxVCLUtils.pas" line="2565">
+    <parameters>
+      <retval type="Boolean" />
+    </parameters>
+  </function>
+  <function name="GetWindowsVersion" visibility="public" file="MxVCLUtils.pas" line="2587">
+    <parameters>
+      <retval type="string" />
+    </parameters>
+  </function>
+</namespace>

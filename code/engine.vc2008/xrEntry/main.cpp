@@ -9,7 +9,7 @@ constexpr const char* xrEngineHandleDLLFuncName = "WinMainGlobal";
 using WinMainGlobalPointer = int (*)(HINSTANCE, HINSTANCE, char*, int, HWND);
 
 HWND initLogo();
-BOOL CALLBACK logDlgProc(HWND hw, UINT msg, WPARAM wp, LPARAM lp);
+BOOL CALLBACK logDlgProc(HWND hw, UINT msg, WPARAM wp, LPARAM lp); 
 
 int APIENTRY WinMain(HINSTANCE hInstance,
 	HINSTANCE hPrevInstance,

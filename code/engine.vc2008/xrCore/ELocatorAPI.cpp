@@ -113,13 +113,13 @@ void CLocatorAPI::_destroy		()
 
 BOOL CLocatorAPI::file_find(LPCSTR full_name, FS_File& f)
 {
-	intptr_t		hFile;
-	_FINDDATA_T		sFile;
+	HANDLE		hFile;
+	WIN32_FIND_DATA  	sFile;
 	// find all files
-	if (-1!=(hFile=_findfirst((LPSTR)full_name, &sFile)))
+	if (INVALID_HANDLE_VALUE != (hFile=FindFirstFile(full_name, &sFile)))
 	{
 		f			= FS_File(sFile);
-		_findclose	(hFile);
+		FindClose	(hFile);
 		return		TRUE;
 	}
 	else
@@ -160,29 +160,29 @@ bool ignore_name(const char* _name)
 	return ( _name[0]=='.' && _name[1]=='s' && _name[2]=='v' && _name[3]=='n' && _name[4]==0) ;
 }
 
-typedef void	(__stdcall * TOnFind)	(_finddata_t&, void*);
+typedef void	(__stdcall * TOnFind)	(WIN32_FIND_DATA&, void*);
 void Recurse	(LPCSTR, bool, TOnFind, void*);
-void ProcessOne	(LPCSTR path, _finddata_t& F, bool root_only, TOnFind on_find_cb, void* data)
+void ProcessOne	(LPCSTR path, WIN32_FIND_DATA& F, bool root_only, TOnFind on_find_cb, void* data)
 {
 	string_path	N;
 	strcpy		(N,path);
-	strcat		(N,F.name);
+	strcat		(N,F.cFileName);
 	xr_strlwr	(N);
 
 	if (ignore_name(N))					return;
-    
-	if (F.attrib&_A_HIDDEN)				return;
 
-	if (F.attrib&_A_SUBDIR) {
+	if (F.dwFileAttributes & FILE_ATTRIBUTE_HIDDEN)				return;
+
+	if (F.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) {
     	if (root_only)					return;
-		if (0==xr_strcmp(F.name,"."))	return;
-		if (0==xr_strcmp(F.name,"..")) 	return;
+		if (0==xr_strcmp(F.cFileName,"."))	return;
+		if (0==xr_strcmp(F.cFileName,"..")) 	return;
 		strcat		(N,"\\");
-	    strcpy		(F.name,N);
+		strcpy		(F.cFileName,N);
         on_find_cb	(F,data);
-		Recurse		(F.name,root_only,on_find_cb,data);
+		Recurse		(F.cFileName,root_only,on_find_cb,data);
 	} else {
-	    strcpy		(F.name,N);
+		strcpy		(F.cFileName,N);
         on_find_cb	(F,data);
 	}
 }
@@ -193,16 +193,16 @@ void Recurse(LPCSTR path, bool root_only, TOnFind on_find_cb, void* data)
 	fpath			+= "*.*";
 
     // begin search
-    _finddata_t		sFile;
-    intptr_t		hFile;
+	WIN32_FIND_DATA		sFile;
+	HANDLE		hFile;
 
 	// find all files    
-	if (-1==(hFile=_findfirst((LPSTR)fpath.c_str(), &sFile)))
+	if (INVALID_HANDLE_VALUE == (hFile=FindFirstFile(fpath.c_str(), &sFile)))
     	return;
     do{
     	ProcessOne	(path,sFile, root_only, on_find_cb, data);
-    }while(_findnext(hFile,&sFile)==0);
-	_findclose		( hFile );
+	}while(FindNextFile(hFile,&sFile));
+	FindClose		( hFile );
 }
 
 struct file_list_cb_data
@@ -213,15 +213,15 @@ struct file_list_cb_data
     FS_FileSet* dest;
 };
 
-void __stdcall file_list_cb(_finddata_t& entry, void* data)
+void __stdcall file_list_cb(WIN32_FIND_DATA& entry, void* data)
 {
 	file_list_cb_data*	D		= (file_list_cb_data*)data;
 
-    LPCSTR end_symbol 			= entry.name+xr_strlen(entry.name)-1;
+    LPCSTR end_symbol 			= entry.cFileName+xr_strlen(entry.cFileName)-1;
     if ((*end_symbol)!='\\'){
         // file
         if ((D->flags&FS_ListFiles) == 0)	return;
-        LPCSTR entry_begin 		= entry.name+D->base_len;
+        LPCSTR entry_begin 		= entry.cFileName+D->base_len;
         if ((D->flags&FS_RootOnly)&&strstr(entry_begin,"\\"))	return;	// folder in folder
         // check extension
         if (D->masks){
@@ -237,7 +237,7 @@ void __stdcall file_list_cb(_finddata_t& entry, void* data)
     } else {
         // folder
         if ((D->flags&FS_ListFolders) == 0)	return;
-        LPCSTR entry_begin 		= entry.name+D->base_len;
+        LPCSTR entry_begin 		= entry.cFileName+D->base_len;
         D->dest->insert			(FS_File(entry_begin,entry));
     }
 }
@@ -390,12 +390,12 @@ struct dir_delete_cb_data
     BOOL			remove_files;
 };
 
-void __stdcall dir_delete_cb(_finddata_t& entry, void* data)
+void __stdcall dir_delete_cb(WIN32_FIND_DATA& entry, void* data)
 {
 	dir_delete_cb_data*	D		= (dir_delete_cb_data*)data;
 
-    if (entry.attrib&_A_SUBDIR)	D->folders->insert	(FS_File(entry));
-    else if (D->remove_files)	FS.file_delete		(entry.name);
+    if (entry.dwFileAttributes&FILE_ATTRIBUTE_DIRECTORY)	D->folders->insert	(FS_File(entry));
+    else if (D->remove_files)	FS.file_delete		(entry.cFileName);
 }
 
 BOOL CLocatorAPI::dir_delete(LPCSTR initial, LPCSTR nm, BOOL remove_files)
@@ -502,7 +502,7 @@ time_t CLocatorAPI::get_file_age(LPCSTR nm)
 void CLocatorAPI::set_file_age(LPCSTR nm, time_t age)
 {
 	// set file
-	_utimbuf	tm;
+	utimbuf	tm;
     tm.actime	= age;
 	tm.modtime	= age;
 	int res = _utime(nm, &tm);

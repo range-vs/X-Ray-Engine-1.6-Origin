@@ -12,11 +12,32 @@
 //////////////////////////////////////////////////////////////////////
 // FS_File
 //////////////////////////////////////////////////////////////////////
+
+time_t filetime_to_timet(const FILETIME& ft){ // TODO test
+	ULARGE_INTEGER ull;
+	ull.LowPart = ft.dwLowDateTime;
+	ull.HighPart = ft.dwHighDateTime;
+	return ull.QuadPart / 10000000ULL - 11644473600ULL;
+}
+
+
 FS_File::FS_File(xr_string nm, long sz, time_t modif,unsigned attr)	{set(nm,sz,modif,attr);}
 FS_File::FS_File(xr_string nm)										{set(nm,0,0,0);}
-FS_File::FS_File(const _FINDDATA_T& f)								{set(f.name,f.size,f.time_write,(f.attrib&_A_SUBDIR)?flSubDir:0);}
+FS_File::FS_File(const WIN32_FIND_DATA& f)
+{
+	long fileSize = f.nFileSizeHigh;
+	fileSize <<= sizeof( f.nFileSizeHigh ) * 8;
+	fileSize |= f.nFileSizeLow;
+	set(f.cFileName,fileSize,filetime_to_timet(f.ftLastWriteTime),(f.dwFileAttributes&FILE_ATTRIBUTE_DIRECTORY)?flSubDir:0); // _A_SUBDIR
+}
 
-FS_File::FS_File(xr_string nm, const _FINDDATA_T& f)				{set(nm,f.size,f.time_write,(f.attrib&_A_SUBDIR)?flSubDir:0);}
+FS_File::FS_File(xr_string nm, const WIN32_FIND_DATA& f)
+{
+	long fileSize = f.nFileSizeHigh;
+	fileSize <<= sizeof( f.nFileSizeHigh ) * 8;
+	fileSize |= f.nFileSizeLow;
+	set(nm,fileSize,filetime_to_timet(f.ftLastWriteTime),(f.dwFileAttributes&FILE_ATTRIBUTE_DIRECTORY)?flSubDir:0);
+}
 
 void FS_File::set(xr_string nm, long sz, time_t modif,unsigned attr)
 {

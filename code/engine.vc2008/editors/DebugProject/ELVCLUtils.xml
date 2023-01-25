@@ -1,0 +1,824 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<namespace name="ElVCLUtils" platform="Win64">
+  <const name="MOUSE_WHEEL_DELTA" type="Integer" file="ElVCLUtils.pas" line="91">
+    <value>
+      $78
+    </value>
+  </const>
+  <const name="DT_HIDEPREFIX" type="Integer" file="ElVCLUtils.pas" line="93">
+    <value>
+      $100000
+    </value>
+  </const>
+  <const name="WM_CHANGEUISTATE" type="Integer" file="ElVCLUtils.pas" line="94">
+    <value>
+      $127
+    </value>
+  </const>
+  <const name="WM_UPDATEUISTATE" type="Integer" file="ElVCLUtils.pas" line="95">
+    <value>
+      $128
+    </value>
+  </const>
+  <const name="WM_QUERYUISTATE" type="Integer" file="ElVCLUtils.pas" line="96">
+    <value>
+      $129
+    </value>
+  </const>
+  <const name="SPI_GETKEYBOARDCUES" type="Integer" file="ElVCLUtils.pas" line="102">
+    <value>
+      $100A
+    </value>
+  </const>
+  <const name="SC_DRAGMOVE" type="Integer" file="ElVCLUtils.pas" line="105">
+    <value>
+      $F012
+    </value>
+  </const>
+  <variable name="ParentControlRepaintedMessage" type="Cardinal" file="ElVCLUtils.pas" line="107" />
+  <type name="TImageIndex" type="integer" loBound="-2147483648" hiBound="2147483647" file="ElVCLUtils.pas" line="128" />
+  <struct name="TBlendFunction" size="4" file="ElVCLUtils.pas" line="137">
+    <field name="BlendOp" type="Byte" visibility="public" size="1" offset="0" file="ElVCLUtils.pas" line="138" />
+    <field name="BlendFlags" type="Byte" visibility="public" size="1" offset="1" file="ElVCLUtils.pas" line="139" />
+    <field name="SourceConstantAlpha" type="Byte" visibility="public" size="1" offset="2" file="ElVCLUtils.pas" line="140" />
+    <field name="AlphaFormat" type="Byte" visibility="public" size="1" offset="3" file="ElVCLUtils.pas" line="141" />
+  </struct>
+  <const name="bgtTileBitmap" type="TElBkGndType" file="ElVCLUtils.pas" line="163">
+    <value>
+      bgtTileBitmap
+    </value>
+  </const>
+  <const name="bgtStretchBitmap" type="TElBkGndType" file="ElVCLUtils.pas" line="163">
+    <value>
+      bgtStretchBitmap
+    </value>
+  </const>
+  <const name="bgtColorFill" type="TElBkGndType" file="ElVCLUtils.pas" line="163">
+    <value>
+      bgtColorFill
+    </value>
+  </const>
+  <const name="bgtCenterBitmap" type="TElBkGndType" file="ElVCLUtils.pas" line="163">
+    <value>
+      bgtCenterBitmap
+    </value>
+  </const>
+  <const name="bgtHorzGradient" type="TElBkGndType" file="ElVCLUtils.pas" line="163">
+    <value>
+      bgtHorzGradient
+    </value>
+  </const>
+  <const name="bgtVertGradient" type="TElBkGndType" file="ElVCLUtils.pas" line="163">
+    <value>
+      bgtVertGradient
+    </value>
+  </const>
+  <const name="bgtTopLeftBitmap" type="TElBkGndType" file="ElVCLUtils.pas" line="163">
+    <value>
+      bgtTopLeftBitmap
+    </value>
+  </const>
+  <const name="ebsLeft" type="TElBorderSide" file="ElVCLUtils.pas" line="164">
+    <value>
+      ebsLeft
+    </value>
+  </const>
+  <const name="ebsRight" type="TElBorderSide" file="ElVCLUtils.pas" line="164">
+    <value>
+      ebsRight
+    </value>
+  </const>
+  <const name="ebsTop" type="TElBorderSide" file="ElVCLUtils.pas" line="164">
+    <value>
+      ebsTop
+    </value>
+  </const>
+  <const name="ebsBottom" type="TElBorderSide" file="ElVCLUtils.pas" line="164">
+    <value>
+      ebsBottom
+    </value>
+  </const>
+  <const name="fbtFlat" type="TElFlatBorderType" file="ElVCLUtils.pas" line="166">
+    <value>
+      fbtFlat
+    </value>
+  </const>
+  <const name="fbtSunken" type="TElFlatBorderType" file="ElVCLUtils.pas" line="166">
+    <value>
+      fbtSunken
+    </value>
+  </const>
+  <const name="fbtSunkenInner" type="TElFlatBorderType" file="ElVCLUtils.pas" line="166">
+    <value>
+      fbtSunkenInner
+    </value>
+  </const>
+  <const name="fbtSunkenOuter" type="TElFlatBorderType" file="ElVCLUtils.pas" line="167">
+    <value>
+      fbtSunkenOuter
+    </value>
+  </const>
+  <const name="fbtRaised" type="TElFlatBorderType" file="ElVCLUtils.pas" line="167">
+    <value>
+      fbtRaised
+    </value>
+  </const>
+  <const name="fbtRaisedInner" type="TElFlatBorderType" file="ElVCLUtils.pas" line="167">
+    <value>
+      fbtRaisedInner
+    </value>
+  </const>
+  <const name="fbtRaisedOuter" type="TElFlatBorderType" file="ElVCLUtils.pas" line="167">
+    <value>
+      fbtRaisedOuter
+    </value>
+  </const>
+  <const name="fbtBump" type="TElFlatBorderType" file="ElVCLUtils.pas" line="168">
+    <value>
+      fbtBump
+    </value>
+  </const>
+  <const name="fbtBigBump" type="TElFlatBorderType" file="ElVCLUtils.pas" line="168">
+    <value>
+      fbtBigBump
+    </value>
+  </const>
+  <const name="fbtEtched" type="TElFlatBorderType" file="ElVCLUtils.pas" line="168">
+    <value>
+      fbtEtched
+    </value>
+  </const>
+  <const name="fbtFramed" type="TElFlatBorderType" file="ElVCLUtils.pas" line="168">
+    <value>
+      fbtFramed
+    </value>
+  </const>
+  <const name="fbtLine" type="TElFlatBorderType" file="ElVCLUtils.pas" line="169">
+    <value>
+      fbtLine
+    </value>
+  </const>
+  <const name="fbtLineBorder" type="TElFlatBorderType" file="ElVCLUtils.pas" line="169">
+    <value>
+      fbtLineBorder
+    </value>
+  </const>
+  <const name="fbtNone" type="TElFlatBorderType" file="ElVCLUtils.pas" line="169">
+    <value>
+      fbtNone
+    </value>
+  </const>
+  <const name="fbtColorLineBorder" type="TElFlatBorderType" file="ElVCLUtils.pas" line="169">
+    <value>
+      fbtColorLineBorder
+    </value>
+  </const>
+  <const name="tdtNormal" type="TElTextDrawType" file="ElVCLUtils.pas" line="171">
+    <value>
+      tdtNormal
+    </value>
+  </const>
+  <const name="tdtShadowed" type="TElTextDrawType" file="ElVCLUtils.pas" line="171">
+    <value>
+      tdtShadowed
+    </value>
+  </const>
+  <const name="tdtRaised" type="TElTextDrawType" file="ElVCLUtils.pas" line="171">
+    <value>
+      tdtRaised
+    </value>
+  </const>
+  <const name="eadLeft" type="TElArrowDir" file="ElVCLUtils.pas" line="172">
+    <value>
+      eadLeft
+    </value>
+  </const>
+  <const name="eadUp" type="TElArrowDir" file="ElVCLUtils.pas" line="172">
+    <value>
+      eadUp
+    </value>
+  </const>
+  <const name="eadRight" type="TElArrowDir" file="ElVCLUtils.pas" line="172">
+    <value>
+      eadRight
+    </value>
+  </const>
+  <const name="eadDown" type="TElArrowDir" file="ElVCLUtils.pas" line="172">
+    <value>
+      eadDown
+    </value>
+  </const>
+  <const name="tbeBottom" type="TTaskbarEdge" file="ElVCLUtils.pas" line="174">
+    <value>
+      tbeBottom
+    </value>
+  </const>
+  <const name="tbeLeft" type="TTaskbarEdge" file="ElVCLUtils.pas" line="174">
+    <value>
+      tbeLeft
+    </value>
+  </const>
+  <const name="tbeTop" type="TTaskbarEdge" file="ElVCLUtils.pas" line="174">
+    <value>
+      tbeTop
+    </value>
+  </const>
+  <const name="tbeRight" type="TTaskbarEdge" file="ElVCLUtils.pas" line="174">
+    <value>
+      tbeRight
+    </value>
+  </const>
+  <const name="etcNoChange" type="TElTextCase" file="ElVCLUtils.pas" line="176">
+    <value>
+      etcNoChange
+    </value>
+  </const>
+  <const name="etcUppercase" type="TElTextCase" file="ElVCLUtils.pas" line="176">
+    <value>
+      etcUppercase
+    </value>
+  </const>
+  <const name="etcLowercase" type="TElTextCase" file="ElVCLUtils.pas" line="176">
+    <value>
+      etcLowercase
+    </value>
+  </const>
+  <enum name="TElBkGndType" file="ElVCLUtils.pas" line="163">
+    <element value="0" name="bgtTileBitmap" file="ElVCLUtils.pas" line="163" />
+    <element value="1" name="bgtStretchBitmap" file="ElVCLUtils.pas" line="163" />
+    <element value="2" name="bgtColorFill" file="ElVCLUtils.pas" line="163" />
+    <element value="3" name="bgtCenterBitmap" file="ElVCLUtils.pas" line="163" />
+    <element value="4" name="bgtHorzGradient" file="ElVCLUtils.pas" line="163" />
+    <element value="5" name="bgtVertGradient" file="ElVCLUtils.pas" line="163" />
+    <element value="6" name="bgtTopLeftBitmap" file="ElVCLUtils.pas" line="163" />
+  </enum>
+  <enum name="TElBorderSide" file="ElVCLUtils.pas" line="164">
+    <element value="0" name="ebsLeft" file="ElVCLUtils.pas" line="164" />
+    <element value="1" name="ebsRight" file="ElVCLUtils.pas" line="164" />
+    <element value="2" name="ebsTop" file="ElVCLUtils.pas" line="164" />
+    <element value="3" name="ebsBottom" file="ElVCLUtils.pas" line="164" />
+  </enum>
+  <set name="TElBorderSides" type="TElBorderSide">
+    <element name="ebsLeft" />
+    <element name="ebsRight" />
+    <element name="ebsTop" />
+    <element name="ebsBottom" />
+  </set>
+  <enum name="TElFlatBorderType" file="ElVCLUtils.pas" line="166">
+    <element value="0" name="fbtFlat" file="ElVCLUtils.pas" line="166" />
+    <element value="1" name="fbtSunken" file="ElVCLUtils.pas" line="166" />
+    <element value="2" name="fbtSunkenInner" file="ElVCLUtils.pas" line="166" />
+    <element value="3" name="fbtSunkenOuter" file="ElVCLUtils.pas" line="167" />
+    <element value="4" name="fbtRaised" file="ElVCLUtils.pas" line="167" />
+    <element value="5" name="fbtRaisedInner" file="ElVCLUtils.pas" line="167" />
+    <element value="6" name="fbtRaisedOuter" file="ElVCLUtils.pas" line="167" />
+    <element value="7" name="fbtBump" file="ElVCLUtils.pas" line="168" />
+    <element value="8" name="fbtBigBump" file="ElVCLUtils.pas" line="168" />
+    <element value="9" name="fbtEtched" file="ElVCLUtils.pas" line="168" />
+    <element value="10" name="fbtFramed" file="ElVCLUtils.pas" line="168" />
+    <element value="11" name="fbtLine" file="ElVCLUtils.pas" line="169" />
+    <element value="12" name="fbtLineBorder" file="ElVCLUtils.pas" line="169" />
+    <element value="13" name="fbtNone" file="ElVCLUtils.pas" line="169" />
+    <element value="14" name="fbtColorLineBorder" file="ElVCLUtils.pas" line="169" />
+  </enum>
+  <enum name="TElTextDrawType" file="ElVCLUtils.pas" line="171">
+    <element value="0" name="tdtNormal" file="ElVCLUtils.pas" line="171" />
+    <element value="1" name="tdtShadowed" file="ElVCLUtils.pas" line="171" />
+    <element value="2" name="tdtRaised" file="ElVCLUtils.pas" line="171" />
+  </enum>
+  <enum name="TElArrowDir" file="ElVCLUtils.pas" line="172">
+    <element value="0" name="eadLeft" file="ElVCLUtils.pas" line="172" />
+    <element value="1" name="eadUp" file="ElVCLUtils.pas" line="172" />
+    <element value="2" name="eadRight" file="ElVCLUtils.pas" line="172" />
+    <element value="3" name="eadDown" file="ElVCLUtils.pas" line="172" />
+  </enum>
+  <enum name="TTaskbarEdge" file="ElVCLUtils.pas" line="174">
+    <element value="0" name="tbeBottom" file="ElVCLUtils.pas" line="174" />
+    <element value="1" name="tbeLeft" file="ElVCLUtils.pas" line="174" />
+    <element value="2" name="tbeTop" file="ElVCLUtils.pas" line="174" />
+    <element value="3" name="tbeRight" file="ElVCLUtils.pas" line="174" />
+  </enum>
+  <enum name="TElTextCase" file="ElVCLUtils.pas" line="176">
+    <element value="0" name="etcNoChange" file="ElVCLUtils.pas" line="176" />
+    <element value="1" name="etcUppercase" file="ElVCLUtils.pas" line="176" />
+    <element value="2" name="etcLowercase" file="ElVCLUtils.pas" line="176" />
+  </enum>
+  <variable name="AllBorderSides" type="TElBorderSides" visibility="public" file="ElVCLUtils.pas" line="181" />
+  <variable name="smXEdge" visibility="public" file="ElVCLUtils.pas" line="186" />
+  <variable name="smYEdge" visibility="public" file="ElVCLUtils.pas" line="187" />
+  <variable name="WaitCursor" type="TCursor" visibility="public" file="ElVCLUtils.pas" line="300" />
+  <function name="GetTimeAMChar" visibility="public" file="ElVCLUtils.pas" line="394">
+    <parameters>
+      <retval type="Char" />
+    </parameters>
+  </function>
+  <function name="GetTimePMChar" visibility="public" file="ElVCLUtils.pas" line="402">
+    <parameters>
+      <retval type="Char" />
+    </parameters>
+  </function>
+  <function name="IncColor" visibility="public" file="ElVCLUtils.pas" line="410">
+    <parameters>
+      <parameter name="Color" type="TColor" paramflags="const" />
+      <parameter name="RInc" type="Integer" />
+      <parameter name="GInc" type="Integer" />
+      <parameter name="BInc" type="Integer" />
+      <retval type="Integer" />
+    </parameters>
+  </function>
+  <function name="GetBValue" visibility="public" file="ElVCLUtils.pas" line="423">
+    <parameters>
+      <parameter name="aColor" type="TColor" />
+      <retval type="Byte" />
+    </parameters>
+  </function>
+  <function name="GetGValue" visibility="public" file="ElVCLUtils.pas" line="428">
+    <parameters>
+      <parameter name="aColor" type="TColor" />
+      <retval type="Byte" />
+    </parameters>
+  </function>
+  <function name="GetRValue" visibility="public" file="ElVCLUtils.pas" line="433">
+    <parameters>
+      <parameter name="aColor" type="TColor" />
+      <retval type="Byte" />
+    </parameters>
+  </function>
+  <function name="RGB" visibility="public" file="ElVCLUtils.pas" line="438">
+    <parameters>
+      <parameter name="R" type="Byte" />
+      <parameter name="G" type="Byte" />
+      <parameter name="B" type="Byte" />
+      <retval type="TColor" />
+    </parameters>
+  </function>
+  <function name="InvertColor" visibility="public" file="ElVCLUtils.pas" line="443">
+    <parameters>
+      <parameter name="aColor" type="TColor" />
+      <retval type="TColor" />
+    </parameters>
+  </function>
+  <function name="GetWorkSpaceRect" visibility="public" file="ElVCLUtils.pas" line="459">
+    <parameters>
+      <retval type="TRect" />
+    </parameters>
+  </function>
+  <function name="GetWorkSpaceTop" visibility="public" file="ElVCLUtils.pas" line="485">
+    <parameters>
+      <retval type="Integer" />
+    </parameters>
+  </function>
+  <function name="GetWorkSpaceLeft" visibility="public" file="ElVCLUtils.pas" line="490">
+    <parameters>
+      <retval type="Integer" />
+    </parameters>
+  </function>
+  <function name="GetWorkSpaceBottom" visibility="public" file="ElVCLUtils.pas" line="495">
+    <parameters>
+      <retval type="Integer" />
+    </parameters>
+  </function>
+  <function name="GetWorkSpaceRight" visibility="public" file="ElVCLUtils.pas" line="500">
+    <parameters>
+      <retval type="Integer" />
+    </parameters>
+  </function>
+  <function name="GetDesktopRect" visibility="public" file="ElVCLUtils.pas" line="505">
+    <parameters>
+      <retval type="TRect" />
+    </parameters>
+  </function>
+  <function name="GetDesktopTop" visibility="public" file="ElVCLUtils.pas" line="510">
+    <parameters>
+      <retval type="Integer" />
+    </parameters>
+  </function>
+  <function name="GetDesktopLeft" visibility="public" file="ElVCLUtils.pas" line="515">
+    <parameters>
+      <retval type="Integer" />
+    </parameters>
+  </function>
+  <function name="GetDesktopBottom" visibility="public" file="ElVCLUtils.pas" line="520">
+    <parameters>
+      <retval type="Integer" />
+    </parameters>
+  </function>
+  <function name="GetDesktopRight" visibility="public" file="ElVCLUtils.pas" line="525">
+    <parameters>
+      <retval type="Integer" />
+    </parameters>
+  </function>
+  <procedure name="MinimizeToTray" visibility="public" file="ElVCLUtils.pas" line="530">
+    <parameters>
+      <parameter name="Wnd" type="HWND" />
+    </parameters>
+  </procedure>
+  <function name="GetSysTrayRect" visibility="public" file="ElVCLUtils.pas" line="545">
+    <parameters>
+      <retval type="TRect" />
+    </parameters>
+  </function>
+  <function name="GetTaskbarRect" visibility="public" file="ElVCLUtils.pas" line="559">
+    <parameters>
+      <retval type="TRect" />
+    </parameters>
+  </function>
+  <function name="GetTaskbarEdge" visibility="public" file="ElVCLUtils.pas" line="569">
+    <parameters>
+      <retval type="TTaskbarEdge" />
+    </parameters>
+  </function>
+  <function name="GetKeybTimes" visibility="public" file="ElVCLUtils.pas" line="593">
+    <parameters>
+      <parameter name="TimeKind" type="Integer" />
+      <retval type="Integer" />
+    </parameters>
+  </function>
+  <procedure name="GradientFillEx" visibility="public" file="ElVCLUtils.pas" line="609">
+    <parameters>
+      <parameter name="DC" type="HDC" />
+      <parameter name="DCRect" type="TRect" />
+      <parameter name="R" type="TRect" />
+      <parameter name="Origin" type="TPoint" />
+      <parameter name="StartColor" type="TColor" />
+      <parameter name="EndColor" type="TColor" />
+      <parameter name="Steps" type="Integer" />
+      <parameter name="Vertical" type="Boolean" />
+    </parameters>
+  </procedure>
+  <procedure name="GradientFill" visibility="public" file="ElVCLUtils.pas" line="672">
+    <parameters>
+      <parameter name="DC" type="HDC" />
+      <parameter name="R" type="TRect" />
+      <parameter name="StartColor" type="TColor" />
+      <parameter name="EndColor" type="TColor" />
+      <parameter name="Steps" type="Integer" />
+      <parameter name="Vertical" type="Boolean" />
+    </parameters>
+  </procedure>
+  <procedure name="DrawArrow" visibility="public" file="ElVCLUtils.pas" line="730">
+    <parameters>
+      <parameter name="Canvas" type="TCanvas" />
+      <parameter name="Dir" type="TElArrowDir" />
+      <parameter name="R" type="TRect" />
+      <parameter name="Color" type="TColor" />
+      <parameter name="Enabled" type="Boolean" />
+    </parameters>
+  </procedure>
+  <function name="RectsIntersect" visibility="public" file="ElVCLUtils.pas" line="956">
+    <parameters>
+      <parameter name="R1" type="TRect" />
+      <parameter name="R2" type="TRect" />
+      <retval type="Boolean" />
+    </parameters>
+  </function>
+  <function name="FindVCLChild" visibility="public" file="ElVCLUtils.pas" line="965">
+    <parameters>
+      <parameter name="Control" type="TWinControl" />
+      <parameter name="ChildHandle" type="HWND" />
+      <retval type="TWinControl" />
+    </parameters>
+  </function>
+  <procedure name="DrawTransparentBitmapEx" visibility="public" file="ElVCLUtils.pas" line="987">
+    <parameters>
+      <parameter name="DC" type="HDC" />
+      <parameter name="Bitmap" type="TBitmap" />
+      <parameter name="X" type="Integer" />
+      <parameter name="Y" type="Integer" />
+      <parameter name="Src" type="TRect" />
+      <parameter name="Transparent" type="TColor" />
+    </parameters>
+  </procedure>
+  <procedure name="DrawTypedTextW" visibility="public" file="ElVCLUtils.pas" line="1092">
+    <parameters>
+      <parameter name="Canvas" type="TCanvas" />
+      <parameter name="Bounds" type="TRect" />
+      <parameter name="Text" type="WideString" />
+      <parameter name="Flags" type="Integer" />
+      <parameter name="DrawType" type="TElTextDrawType" />
+    </parameters>
+  </procedure>
+  <procedure name="DrawTypedText" visibility="public" file="ElVCLUtils.pas" line="1132">
+    <parameters>
+      <parameter name="Canvas" type="TCanvas" />
+      <parameter name="Bounds" type="TRect" />
+      <parameter name="Text" type="string" />
+      <parameter name="Flags" type="Integer" />
+      <parameter name="DrawType" type="TElTextDrawType" />
+    </parameters>
+  </procedure>
+  <procedure name="FillSolidRect2" visibility="public" file="ElVCLUtils.pas" line="1172">
+    <parameters>
+      <parameter name="DC" type="HDC" />
+      <parameter name="Rect" type="TRect" />
+      <parameter name="Color" type="TColor" />
+    </parameters>
+  </procedure>
+  <procedure name="FillSolidRect" visibility="public" file="ElVCLUtils.pas" line="1184">
+    <parameters>
+      <parameter name="DC" type="HDC" />
+      <parameter name="x" type="Integer" />
+      <parameter name="y" type="Integer" />
+      <parameter name="cx" type="Integer" />
+      <parameter name="cy" type="Integer" />
+      <parameter name="Color" type="TColor" />
+    </parameters>
+  </procedure>
+  <procedure name="Draw3dRectEx" visibility="public" file="ElVCLUtils.pas" line="1215">
+    <parameters>
+      <parameter name="DC" type="HDC" />
+      <parameter name="x" type="Integer" />
+      <parameter name="y" type="Integer" />
+      <parameter name="cx" type="Integer" />
+      <parameter name="cy" type="Integer" />
+      <parameter name="clrTopLeft" type="Cardinal" />
+      <parameter name="clrBottomRight" type="Cardinal" />
+      <parameter name="BorderSides" type="TElBorderSides" />
+    </parameters>
+  </procedure>
+  <procedure name="Draw3dBorder" visibility="public" file="ElVCLUtils.pas" line="1230">
+    <parameters>
+      <parameter name="DC" type="HDC" />
+      <parameter name="rc" type="TRect" />
+      <parameter name="nColor1" type="TColor" />
+      <parameter name="nColor2" type="TColor" />
+      <parameter name="nColor3" type="TColor" />
+      <parameter name="nColor4" type="TColor" />
+    </parameters>
+  </procedure>
+  <function name="RGBtoHLS" visibility="public" file="ElVCLUtils.pas" line="1260">
+    <parameters>
+      <parameter name="rgbc" type="Integer" />
+      <retval type="Integer" />
+    </parameters>
+  </function>
+  <function name="HLStoRGB" visibility="public" file="ElVCLUtils.pas" line="1305">
+    <parameters>
+      <parameter name="hlsc" type="Integer" />
+      <retval type="Integer" />
+    </parameters>
+  </function>
+  <procedure name="DrawButtonFrameEx3" visibility="public" file="ElVCLUtils.pas" line="1342">
+    <parameters>
+      <parameter name="DC" type="HDC" />
+      <parameter name="rc" type="TRect" />
+      <parameter name="Focused" type="Boolean" />
+      <parameter name="Pushed" type="Boolean" />
+      <parameter name="ButtonColor" type="TColor" />
+      <parameter name="Thin" type="Boolean" />
+      <parameter name="BorderSides" type="TElBorderSides" />
+    </parameters>
+  </procedure>
+  <procedure name="DrawButtonFrameEx" visibility="public" file="ElVCLUtils.pas" line="1415">
+    <parameters>
+      <parameter name="DC" type="HDC" />
+      <parameter name="rc" type="TRect" />
+      <parameter name="Focused" type="Boolean" />
+      <parameter name="Pushed" type="Boolean" />
+      <parameter name="ButtonColor" type="TColor" />
+      <parameter name="Thin" type="Boolean" />
+    </parameters>
+  </procedure>
+  <procedure name="DrawButtonFrame" visibility="public" file="ElVCLUtils.pas" line="1488">
+    <parameters>
+      <parameter name="DC" type="HDC" />
+      <parameter name="rc" type="TRect" />
+      <parameter name="Focused" type="Boolean" />
+      <parameter name="Pushed" type="Boolean" />
+    </parameters>
+  </procedure>
+  <procedure name="DrawButtonFrameEx2" visibility="public" file="ElVCLUtils.pas" line="1503">
+    <parameters>
+      <parameter name="DC" type="HDC" />
+      <parameter name="rc" type="TRect" />
+      <parameter name="Focused" type="Boolean" />
+      <parameter name="Pushed" type="Boolean" />
+      <parameter name="ButtonColor" type="TColor" />
+      <parameter name="Thin" type="Boolean" />
+      <parameter name="clrHighlight" type="TColor" />
+      <parameter name="clrDkShadow" type="TColor" />
+      <parameter name="clrFace" type="TColor" />
+      <parameter name="clrShadow" type="TColor" />
+    </parameters>
+  </procedure>
+  <procedure name="DrawFlatFrameEx2" visibility="public" file="ElVCLUtils.pas" line="1558">
+    <parameters>
+      <parameter name="DC" type="HDC" />
+      <parameter name="R" type="TRect" />
+      <parameter name="Color" type="TColor" />
+      <parameter name="BkColor" type="TColor" />
+      <parameter name="Focused" type="Boolean" />
+      <parameter name="Enabled" type="Boolean" />
+      <parameter name="BorderSides" type="TElBorderSides" />
+      <parameter name="BorderType" type="TElFlatBorderType" />
+    </parameters>
+  </procedure>
+  <procedure name="DrawFlatFrameEx" visibility="public" file="ElVCLUtils.pas" line="1778">
+    <parameters>
+      <parameter name="DC" type="HDC" />
+      <parameter name="R" type="TRect" />
+      <parameter name="BkColor" type="TColor" />
+      <parameter name="Focused" type="Boolean" />
+      <parameter name="Enabled" type="Boolean" />
+    </parameters>
+  </procedure>
+  <function name="DrawFlatFrame" visibility="public" file="ElVCLUtils.pas" line="1793">
+    <parameters>
+      <parameter name="DC" type="HDC" />
+      <parameter name="R" type="TRect" />
+      <parameter name="BkColor" type="TColor" />
+      <parameter name="Focused" type="Boolean" />
+      <retval type="TRect" />
+    </parameters>
+  </function>
+  <function name="DrawFlatFrame2" visibility="public" file="ElVCLUtils.pas" line="1812">
+    <parameters>
+      <parameter name="DC" type="HDC" />
+      <parameter name="R" type="TRect" />
+      <parameter name="BkColor" type="TColor" />
+      <parameter name="Focused" type="Boolean" />
+      <parameter name="BorderSides" type="TElBorderSides" />
+      <retval type="TRect" />
+    </parameters>
+  </function>
+  <procedure name="TiledPaint" visibility="public" file="ElVCLUtils.pas" line="1833">
+    <parameters>
+      <parameter name="Canvas" type="TCanvas" />
+      <parameter name="Bitmap" type="TBitmap" />
+      <parameter name="Rect" type="TRect" />
+    </parameters>
+  </procedure>
+  <function name="HitTest" visibility="public" file="ElVCLUtils.pas" line="1867">
+    <parameters>
+      <parameter name="R" type="TRect" />
+      <parameter name="Pt" type="TPoint" />
+      <parameter name="CornerSize" type="Integer" />
+      <parameter name="BorderSize" type="Integer" />
+      <retval type="Integer" />
+    </parameters>
+  </function>
+  <function name="GetTopOwnerControl" visibility="public" file="ElVCLUtils.pas" line="1938">
+    <parameters>
+      <parameter name="Component" type="TComponent" />
+      <retval type="TControl" />
+    </parameters>
+  </function>
+  <function name="GetOwnerForm" visibility="public" file="ElVCLUtils.pas" line="1945">
+    <parameters>
+      <parameter name="Component" type="TComponent" />
+      <retval type="TForm" />
+    </parameters>
+  </function>
+  <procedure name="StartWait" visibility="public" file="ElVCLUtils.pas" line="1961">
+  </procedure>
+  <procedure name="StopWait" visibility="public" file="ElVCLUtils.pas" line="1971">
+  </procedure>
+  <procedure name="DrawFlatScrollbarThumb" visibility="public" file="ElVCLUtils.pas" line="1981">
+    <parameters>
+      <parameter name="DC" type="HDC" />
+      <parameter name="rc" type="TRect" />
+      <parameter name="Focused" type="Boolean" />
+    </parameters>
+  </procedure>
+  <function name="AlphaBlend" visibility="public" file="ElVCLUtils.pas" line="2005">
+    <parameters>
+      <parameter name="hdcDest" type="HDC" />
+      <parameter name="nXOriginDest" type="Integer" />
+      <parameter name="nYOriginDest" type="Integer" />
+      <parameter name="nWidthDest" type="Integer" />
+      <parameter name="nHeightDest" type="Integer" />
+      <parameter name="hdcSrc" type="HDC" />
+      <parameter name="nXOriginSrc" type="Integer" />
+      <parameter name="nYOriginSrc" type="Integer" />
+      <parameter name="nWidthSrc" type="Integer" />
+      <parameter name="nHeightSrc" type="Integer" />
+      <parameter name="SourceConstantAlpha" type="Byte" />
+      <parameter name="srcAlpha" type="Byte" />
+      <retval type="Boolean" />
+    </parameters>
+  </function>
+  <function name="DrawFlatScrollbars" visibility="public" file="ElVCLUtils.pas" line="2149">
+    <parameters>
+      <parameter name="Wnd" type="HWND" />
+      <parameter name="DC" type="HDC" />
+      <parameter name="Rect" type="TRect" />
+      <parameter name="Focused" type="Boolean" />
+      <parameter name="ScrollBars" type="TScrollStyle" />
+      <parameter name="DragHorz" type="Boolean" />
+      <parameter name="DragVert" type="Boolean" />
+      <parameter name="IsControl" type="Boolean" />
+      <parameter name="Style" type="Integer" />
+      <parameter name="ExStyle" type="Integer" />
+      <retval type="TRect" />
+    </parameters>
+  </function>
+  <procedure name="DrawFlatScrollBarEx" visibility="public" file="ElVCLUtils.pas" line="2232">
+    <parameters>
+      <parameter name="Wnd" type="HWND" />
+      <parameter name="DC" type="HDC" />
+      <parameter name="Rect" type="TRect" />
+      <parameter name="nType" type="Integer" />
+      <parameter name="bScrollbarCtrl" type="Boolean" />
+      <parameter name="Dragging" type="Boolean" />
+      <parameter name="Focused" type="Boolean" />
+      <parameter name="BkColor" type="TColor" />
+      <parameter name="DitherColor" type="TColor" />
+      <parameter name="ButtonColor" type="TColor" />
+      <parameter name="ArrowColor" type="TColor" />
+      <parameter name="HotButtonColor" type="TColor" />
+      <parameter name="DrawFrames" type="Boolean" />
+      <parameter name="DitherBack" type="Boolean" />
+    </parameters>
+  </procedure>
+  <procedure name="DrawFlatScrollBarsEx" visibility="public" file="ElVCLUtils.pas" line="2344">
+    <parameters>
+      <parameter name="Wnd" type="HWND" />
+      <parameter name="DC" type="HDC" />
+      <parameter name="Rect" type="TRect" />
+      <parameter name="Focused" type="Boolean" />
+      <parameter name="ScrollBars" type="TScrollStyle" />
+      <parameter name="DragHorz" type="Boolean" />
+      <parameter name="DragVert" type="Boolean" />
+      <parameter name="IsControl" type="Boolean" />
+      <parameter name="BkColor" type="TColor" />
+      <parameter name="DitherColor" type="TColor" />
+      <parameter name="ButtonColor" type="TColor" />
+      <parameter name="ArrowColor" type="TColor" />
+      <parameter name="HotButtonColor" type="TColor" />
+      <parameter name="DrawFrames" type="Boolean" />
+      <parameter name="DitherBack" type="Boolean" />
+    </parameters>
+  </procedure>
+  <function name="DrawBevel" visibility="public" file="ElVCLUtils.pas" line="2430">
+    <parameters>
+      <parameter name="DC" type="HDC" />
+      <parameter name="R" type="TRect" />
+      <parameter name="Color1" type="TColor" />
+      <parameter name="Color2" type="TColor" />
+      <parameter name="Sides" type="TElBorderSides" />
+      <retval type="TRect" />
+    </parameters>
+  </function>
+  <procedure name="AlphaCopyRect" visibility="public" file="ElVCLUtils.pas" line="2475">
+    <parameters>
+      <parameter name="DestCanvas" type="TCanvas" />
+      <parameter name="Dest" type="TRect" />
+      <parameter name="SourceCanvas" type="TCanvas" />
+      <parameter name="Source" type="TRect" />
+      <parameter name="AlphaLevel" type="Byte" />
+      <parameter name="UseAlphaLevel" type="Boolean" />
+    </parameters>
+  </procedure>
+  <procedure name="AlphaFillRect" visibility="public" file="ElVCLUtils.pas" line="2554">
+    <parameters>
+      <parameter name="Canvas" type="TCanvas" />
+      <parameter name="Rect" type="TRect" />
+      <parameter name="Color" type="TColor" />
+      <parameter name="AlphaLevel" type="Byte" />
+    </parameters>
+  </procedure>
+  <function name="DrawTextW" visibility="public" file="ElVCLUtils.pas" line="3282">
+    <parameters>
+      <parameter name="hDC" type="HDC" />
+      <parameter name="lpString" type="PWideChar" />
+      <parameter name="nCount" type="Integer" />
+      <parameter name="lpRect" type="TRect" paramflags="var" />
+      <parameter name="uFormat" type="Cardinal" />
+      <retval type="Integer" />
+    </parameters>
+  </function>
+  <function name="GetSysColorPen" visibility="public" file="ElVCLUtils.pas" line="3292">
+    <parameters>
+      <parameter name="Color" type="Cardinal" />
+      <retval type="HPEN" />
+    </parameters>
+  </function>
+  <procedure name="DrawFocus" visibility="public" file="ElVCLUtils.pas" line="3299">
+    <parameters>
+      <parameter name="Canvas" type="TCanvas" />
+      <parameter name="R" type="TRect" />
+    </parameters>
+  </procedure>
+  <function name="Win2KHideUIState" visibility="public" file="ElVCLUtils.pas" line="3346">
+    <parameters>
+      <retval type="Boolean" />
+    </parameters>
+  </function>
+  <function name="ModalFormVisible" visibility="public" file="ElVCLUtils.pas" line="3356">
+    <parameters>
+      <retval type="Boolean" />
+    </parameters>
+  </function>
+  <function name="ShiftStateToKeyData" visibility="public" file="ElVCLUtils.pas" line="3380">
+    <parameters>
+      <parameter name="Shift" type="TShiftState" />
+      <retval type="Integer" />
+    </parameters>
+  </function>
+  <function name="GetShortHintW" visibility="public" file="ElVCLUtils.pas" line="3390">
+    <parameters>
+      <parameter name="Hint" type="WideString" />
+      <retval type="WideString" />
+    </parameters>
+  </function>
+</namespace>

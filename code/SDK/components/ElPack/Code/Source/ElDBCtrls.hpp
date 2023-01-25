@@ -1,8 +1,8 @@
 ﻿// CodeGear C++Builder
-// Copyright (c) 1995, 2022 by Embarcadero Technologies, Inc.
+// Copyright (c) 1995, 2020 by Embarcadero Technologies, Inc.
 // All rights reserved
 
-// (DO NOT EDIT: machine generated header) 'ElDBCtrls.pas' rev: 35.00 (Windows)
+// (DO NOT EDIT: machine generated header) 'ElDBCtrls.pas' rev: 34.00 (Windows)
 
 #ifndef EldbctrlsHPP
 #define EldbctrlsHPP
@@ -38,14 +38,14 @@
 #include <System.Classes.hpp>
 #include <System.SysUtils.hpp>
 #include <Vcl.Mask.hpp>
+#include <ElGroupBox.hpp>
+#include <Vcl.ExtCtrls.hpp>
 #include <ElVCLUtils.hpp>
 #include <ElImgFrm.hpp>
 #include <System.UITypes.hpp>
 #include <Vcl.Menus.hpp>
 #include <ElBtnCtl.hpp>
 #include <ElXPThemedControl.hpp>
-#include <ElGroupBox.hpp>
-#include <Vcl.ExtCtrls.hpp>
 #include <ElSndMap.hpp>
 #include <Vcl.Buttons.hpp>
 #include <ElScrollBar.hpp>
@@ -506,6 +506,7 @@ public:
 };
 
 
+#pragma pack(push,4)
 class PASCALIMPLEMENTATION TElNavDataLink : public Data::Db::TDataLink
 {
 	typedef Data::Db::TDataLink inherited;
@@ -523,6 +524,7 @@ public:
 	__fastcall virtual ~TElNavDataLink();
 };
 
+#pragma pack(pop)
 
 class PASCALIMPLEMENTATION TElWideDBEdit : public Eledits::TCustomElEdit
 {

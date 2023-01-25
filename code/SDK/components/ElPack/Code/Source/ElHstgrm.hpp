@@ -1,8 +1,8 @@
 ﻿// CodeGear C++Builder
-// Copyright (c) 1995, 2022 by Embarcadero Technologies, Inc.
+// Copyright (c) 1995, 2020 by Embarcadero Technologies, Inc.
 // All rights reserved
 
-// (DO NOT EDIT: machine generated header) 'ElHstgrm.pas' rev: 35.00 (Windows)
+// (DO NOT EDIT: machine generated header) 'ElHstgrm.pas' rev: 34.00 (Windows)
 
 #ifndef ElhstgrmHPP
 #define ElhstgrmHPP
@@ -41,6 +41,7 @@ typedef THistoBuf *PHistoBuf;
 
 enum DECLSPEC_DENUM THistoDoubleMode : unsigned char { hdmCumulative, hdmHSplitOppositeIn, hdmHSplitOppositeOut, hdmHSplitSingle, hdmVSplitOpposite, hdmVSplitSingle };
 
+#pragma pack(push,4)
 class PASCALIMPLEMENTATION THistoBuffer : public System::TObject
 {
 	typedef System::TObject inherited;
@@ -62,6 +63,7 @@ public:
 	__property int BufSize = {read=FBufSize, write=SetBufSize, nodefault};
 };
 
+#pragma pack(pop)
 
 class PASCALIMPLEMENTATION TElHistogram : public Vcl::Controls::TGraphicControl
 {

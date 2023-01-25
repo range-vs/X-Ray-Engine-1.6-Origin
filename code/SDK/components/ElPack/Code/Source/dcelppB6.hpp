@@ -1,8 +1,8 @@
 ﻿// CodeGear C++Builder
-// Copyright (c) 1995, 2022 by Embarcadero Technologies, Inc.
+// Copyright (c) 1995, 2020 by Embarcadero Technologies, Inc.
 // All rights reserved
 
-// (DO NOT EDIT: machine generated header) 'dcelppB6.dpk' rev: 35.00 (Windows)
+// (DO NOT EDIT: machine generated header) 'dcelppB6.dpk' rev: 34.00 (Windows)
 
 #ifndef Dcelppb6HPP
 #define Dcelppb6HPP
@@ -23,13 +23,12 @@
 #include <System.SysUtils.hpp>	// (rtl)
 #include <System.VarUtils.hpp>	// (rtl)
 #include <System.Variants.hpp>	// (rtl)
-#include <System.TypInfo.hpp>	// (rtl)
 #include <System.Math.hpp>	// (rtl)
-#include <System.Generics.Defaults.hpp>	// (rtl)
-#include <System.Rtti.hpp>	// (rtl)
 #include <System.TimeSpan.hpp>	// (rtl)
 #include <System.Classes.hpp>	// (rtl)
-#include <Winapi.ShellAPI.hpp>	// (rtl)
+#include <System.Generics.Defaults.hpp>	// (rtl)
+#include <System.Rtti.hpp>	// (rtl)
+#include <System.TypInfo.hpp>	// (rtl)
 #include <System.DateUtils.hpp>	// (rtl)
 #include <System.IOUtils.hpp>	// (rtl)
 #include <System.IniFiles.hpp>	// (rtl)
@@ -44,8 +43,9 @@
 #include <Winapi.UxTheme.hpp>	// (rtl)
 #include <Vcl.GraphUtil.hpp>	// (vcl)
 #include <Vcl.StdCtrls.hpp>	// (vcl)
-#include <Vcl.Clipbrd.hpp>	// (vcl)
+#include <Winapi.ShellAPI.hpp>	// (rtl)
 #include <Vcl.Printers.hpp>	// (vcl)
+#include <Vcl.Clipbrd.hpp>	// (vcl)
 #include <Vcl.ComCtrls.hpp>	// (vcl)
 #include <Vcl.Dialogs.hpp>	// (vcl)
 #include <Vcl.ExtCtrls.hpp>	// (vcl)
@@ -67,23 +67,10 @@
 #include <Winapi.D2D1.hpp>	// (rtl)
 #include <Vcl.Direct2D.hpp>	// (vcl)
 #include <Vcl.Styles.hpp>	// (vcl)
-#include <Vcl.ImageCollection.hpp>	// (vclwinx)
 #include <BrandingAPI.hpp>	// (designide)
 #include <Winapi.GDIPOBJ.hpp>	// (rtl)
-#include <Vcl.Buttons.hpp>	// (vcl)
-#include <Vcl.Imaging.pngimage.hpp>	// (vclimg)
-#include <System.Devices.hpp>	// (rtl)
-#include <Proxies.hpp>	// (designide)
-#include <Vcl.AxCtrls.hpp>	// (vcl)
-#include <Vcl.AppEvnts.hpp>	// (vcl)
-#include <TreeIntf.hpp>	// (designide)
-#include <TopLevels.hpp>	// (designide)
-#include <StFilSys.hpp>	// (designide)
-#include <IDEHelp.hpp>	// (designide)
-#include <ComponentDesigner.hpp>	// (designide)
 #include <PercentageDockTree.hpp>	// (designide)
-#include <Vcl.WinXCtrls.hpp>	// (vclwinx)
-#include <WaitDialog.hpp>	// (designide)
+#include <Vcl.Buttons.hpp>	// (vcl)
 #include <Vcl.ExtDlgs.hpp>	// (vcl)
 #include <Winapi.Mapi.hpp>	// (rtl)
 #include <Vcl.ExtActns.hpp>	// (vcl)
@@ -97,15 +84,26 @@
 #include <Xml.Win.msxmldom.hpp>	// (xmlrtl)
 #include <Xml.xmldom.hpp>	// (xmlrtl)
 #include <ToolsAPI.hpp>	// (designide)
+#include <Proxies.hpp>	// (designide)
 #include <DesignEditors.hpp>	// (designide)
+#include <System.Devices.hpp>	// (rtl)
+#include <Vcl.AxCtrls.hpp>	// (vcl)
+#include <Vcl.AppEvnts.hpp>	// (vcl)
+#include <TreeIntf.hpp>	// (designide)
+#include <TopLevels.hpp>	// (designide)
+#include <StFilSys.hpp>	// (designide)
+#include <IDEHelp.hpp>	// (designide)
+#include <ComponentDesigner.hpp>	// (designide)
 #include <VCLEditors.hpp>	// (designide)
 #include <ElTools.hpp>	// (elpackB6)
 #include <ElHook.hpp>	// (elpackB6)
+#include <ElVCLUtils.hpp>	// (elpackB6)
 #include <ElUxTheme.hpp>	// (elpackB6)
 #include <ElExtBkgnd.hpp>	// (elpackB6)
 #include <HTMLRender.hpp>	// (elpackB6)
 #include <ElScrollBar.hpp>	// (elpackB6)
 #include <ElRegUtils.hpp>	// (elpackB6)
+#include <ElObjList.hpp>	// (elpackB6)
 #include <ElIni.hpp>	// (elpackB6)
 #include <ElHandPt.hpp>	// (elpackB6)
 #include <ElMenus.hpp>	// (elpackB6)
@@ -118,8 +116,8 @@
 #include <ElFrmPers.hpp>	// (elpackB6)
 #include <ElToolbar.hpp>	// (elpackB6)
 // PRG_EXT: .bpl
-// BPI_DIR: ..\..\..\..\..\bins\Win32\Release
-// OBJ_DIR: ..\..\..\..\..\libraries\Win32\Release
+// BPI_DIR: ..\..\..\..\..\bins\Win32\Debug
+// OBJ_DIR: ..\..\..\..\..\libraries\Win32\Debug
 // OBJ_EXT: .obj
 
 //-- user supplied -----------------------------------------------------------

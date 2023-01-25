@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<namespace name="mxCConst" platform="Win64">
+  <const name="MaxExtStrID" type="Integer" file="mxCConst.pas" line="23">
+    <value>
+      $EF74
+    </value>
+  </const>
+  <const name="SBrowse" type="Integer" file="mxCConst.pas" line="29">
+    <value>
+      $EF50
+    </value>
+  </const>
+  <const name="SDefaultFilter" type="Integer" file="mxCConst.pas" line="30">
+    <value>
+      $EF4F
+    </value>
+  </const>
+  <const name="SDateDlgTitle" type="Integer" file="mxCConst.pas" line="34">
+    <value>
+      $EF4E
+    </value>
+  </const>
+  <const name="SNextYear" type="Integer" file="mxCConst.pas" line="35">
+    <value>
+      $EF4D
+    </value>
+  </const>
+  <const name="SNextMonth" type="Integer" file="mxCConst.pas" line="36">
+    <value>
+      $EF4C
+    </value>
+  </const>
+  <const name="SPrevYear" type="Integer" file="mxCConst.pas" line="37">
+    <value>
+      $EF4B
+    </value>
+  </const>
+  <const name="SPrevMonth" type="Integer" file="mxCConst.pas" line="38">
+    <value>
+      $EF4A
+    </value>
+  </const>
+  <const name="SNotImplemented" type="Integer" file="mxCConst.pas" line="42">
+    <value>
+      $EF49
+    </value>
+  </const>
+  <const name="SFileNotExec" type="Integer" file="mxCConst.pas" line="43">
+    <value>
+      $EF48
+    </value>
+  </const>
+  <const name="SLoadLibError" type="Integer" file="mxCConst.pas" line="44">
+    <value>
+      $EF47
+    </value>
+  </const>
+  <const name="SDetails" type="Integer" file="mxCConst.pas" line="45">
+    <value>
+      $EF46
+    </value>
+  </const>
+</namespace>

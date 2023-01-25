@@ -1,8 +1,8 @@
 ﻿// CodeGear C++Builder
-// Copyright (c) 1995, 2022 by Embarcadero Technologies, Inc.
+// Copyright (c) 1995, 2020 by Embarcadero Technologies, Inc.
 // All rights reserved
 
-// (DO NOT EDIT: machine generated header) 'ElNameEdits.pas' rev: 35.00 (Windows)
+// (DO NOT EDIT: machine generated header) 'ElNameEdits.pas' rev: 34.00 (Windows)
 
 #ifndef ElnameeditsHPP
 #define ElnameeditsHPP
@@ -24,10 +24,10 @@
 #include <Vcl.Forms.hpp>
 #include <Winapi.CommDlg.hpp>
 #include <Vcl.Dialogs.hpp>
-#include <System.UITypes.hpp>
 #include <ElEdits.hpp>
-#include <ElXPThemedControl.hpp>
 #include <Vcl.Controls.hpp>
+#include <System.UITypes.hpp>
+#include <ElXPThemedControl.hpp>
 #include <ElVCLUtils.hpp>
 #include <ElImgFrm.hpp>
 #include <ElStrUtils.hpp>

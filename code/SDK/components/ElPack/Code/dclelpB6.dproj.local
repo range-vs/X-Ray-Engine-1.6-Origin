@@ -1,9 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <BorlandProject>
 	<ProjectSortOrder AutoSort="0" SortType="0">
-    <File Path="dclstd.dcp"/>
-    <File Path="elpackB6.dcp"/>
-    <File Path="vcl.dcp"/>
     <File Path="Design"/>
     <File Path="Design\ColnProp.pas"/>
     <File Path="Design\ColorMapProp.pas"/>
@@ -30,5 +27,8 @@
     <File Path="Design\TreeDsgn.pas"/>
     <File Path="dclelpB6.cpp"/>
     <File Path="ElReg.pas"/>
+    <File Path="dclstd.dcp"/>
+    <File Path="elpackB6.dcp"/>
+    <File Path="vcl.dcp"/>
   </ProjectSortOrder>
 </BorlandProject>

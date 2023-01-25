@@ -1,8 +1,8 @@
 ﻿// CodeGear C++Builder
-// Copyright (c) 1995, 2022 by Embarcadero Technologies, Inc.
+// Copyright (c) 1995, 2020 by Embarcadero Technologies, Inc.
 // All rights reserved
 
-// (DO NOT EDIT: machine generated header) 'ElACtrls.pas' rev: 35.00 (Windows)
+// (DO NOT EDIT: machine generated header) 'ElACtrls.pas' rev: 34.00 (Windows)
 
 #ifndef ElactrlsHPP
 #define ElactrlsHPP
@@ -123,7 +123,7 @@ protected:
 public:
 	__fastcall virtual TElAdvancedMemo(System::Classes::TComponent* AOwner);
 	__fastcall virtual ~TElAdvancedMemo();
-	__property NativeUInt Theme = {read=FTheme};
+	__property NativeUInt Theme = {read=FTheme, nodefault};
 	
 __published:
 	__property Elvclutils::TElFlatBorderType ActiveBorderType = {read=FActiveBorderType, write=SetActiveBorderType, default=1};
@@ -248,7 +248,7 @@ public:
 	__fastcall virtual TCustomElAdvancedEdit(System::Classes::TComponent* AOwner);
 	__fastcall virtual ~TCustomElAdvancedEdit();
 	__property bool MouseOver = {read=FMouseOver, nodefault};
-	__property NativeUInt Theme = {read=FTheme};
+	__property NativeUInt Theme = {read=FTheme, nodefault};
 	
 __published:
 	__property Elimgfrm::TElImageForm* ImageForm = {read=FImgForm, write=SetImageForm};
@@ -442,7 +442,7 @@ protected:
 public:
 	__fastcall virtual TElAdvancedListBox(System::Classes::TComponent* AOwner);
 	__fastcall virtual ~TElAdvancedListBox();
-	__property NativeUInt Theme = {read=FTheme};
+	__property NativeUInt Theme = {read=FTheme, nodefault};
 	
 __published:
 	__property Elvclutils::TElFlatBorderType ActiveBorderType = {read=FActiveBorderType, write=SetActiveBorderType, default=1};
@@ -561,11 +561,11 @@ protected:
 public:
 	__fastcall virtual TElAdvancedComboBox(System::Classes::TComponent* AOwner);
 	__fastcall virtual ~TElAdvancedComboBox();
-	__property HWND ListHandle = {read=FListHandle};
-	__property HWND EditHandle = {read=FEditHandle};
+	__property HWND ListHandle = {read=FListHandle, nodefault};
+	__property HWND EditHandle = {read=FEditHandle, nodefault};
 	__property System::Classes::TWndMethod ListWindowProc = {read=FListWindowProc, write=FListWindowProc};
 	__property System::Classes::TWndMethod EditWindowProc = {read=FEditWindowProc, write=FEditWindowProc};
-	__property NativeUInt Theme = {read=FTheme};
+	__property NativeUInt Theme = {read=FTheme, nodefault};
 	
 __published:
 	__property Align = {default=0};

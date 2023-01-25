@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<namespace name="mxConst" platform="Win64">
+  <const name="RX_VERSION" type="Integer" file="mxConst.pas" line="19">
+    <value>
+      $2004B
+    </value>
+  </const>
+  <const name="CM_SPEEDBARCHANGED" type="Integer" file="mxConst.pas" line="23">
+    <value>
+      $B050
+    </value>
+  </const>
+  <const name="CM_RXBUTTONPRESSED" type="Integer" file="mxConst.pas" line="25">
+    <value>
+      $B051
+    </value>
+  </const>
+  <const name="CM_RECREATEWINDOW" type="Integer" file="mxConst.pas" line="27">
+    <value>
+      $B052
+    </value>
+  </const>
+  <const name="CM_DESTROYHOOK" type="Integer" file="mxConst.pas" line="28">
+    <value>
+      $B053
+    </value>
+  </const>
+  <const name="CM_TRAYICON" type="Integer" file="mxConst.pas" line="30">
+    <value>
+      $B054
+    </value>
+  </const>
+  <const name="crHand" type="TCursor" file="mxConst.pas" line="33">
+    <value>
+      $36B0
+    </value>
+  </const>
+  <const name="crDragHand" type="TCursor" file="mxConst.pas" line="34">
+    <value>
+      $36B1
+    </value>
+  </const>
+  <const name="PaletteMask" type="Integer" file="mxConst.pas" line="38">
+    <value>
+      $2000000
+    </value>
+  </const>
+</namespace>

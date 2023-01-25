@@ -156,6 +156,33 @@
       <DataExecutionPrevention />
       <ImportLibrary>..\..\..\libraries\$(PlatformXray)\$(Configuration)\$(ProjectName).lib</ImportLibrary>
     </Link>
+    <PostBuildEvent>
+      <Command>SET pathToCoff2Omf="C:\Program Files (x86)\Embarcadero\Studio\21.0\bin\coff2omf.exe"
+SET pathToLibs=$(SolutionDir)../../libraries\Win32\Debug\
+SET pathToAddLibs=$(SolutionDir)../../code\SDK\libraries\Win32\
+SET pathToDlls=$(SolutionDir)../../bins\Win32\Debug\
+
+%25pathToCoff2Omf%25 %25pathToLibs%25etools.lib %25pathToLibs%25etoolsb.lib
+%25pathToCoff2Omf%25 %25pathToAddLibs%25dsound.lib %25pathToLibs%25dsoundb.lib
+%25pathToCoff2Omf%25 %25pathToLibs%25openal.lib %25pathToLibs%25openalb.lib
+%25pathToCoff2Omf%25 %25pathToLibs%25xrphysics.lib %25pathToLibs%25xrphysicsb.lib
+%25pathToCoff2Omf%25 %25pathToLibs%25lwo.lib %25pathToLibs%25lwob.lib
+%25pathToCoff2Omf%25 %25pathToLibs%25dxt.lib %25pathToLibs%25dxtb.lib
+%25pathToCoff2Omf%25 %25pathToAddLibs%25freeimage.lib %25pathToLibs%25freeimageb.lib
+%25pathToCoff2Omf%25 %25pathToAddLibs%25dinput8.lib %25pathToLibs%25dinput8b.lib
+%25pathToCoff2Omf%25 %25pathToLibs%25magicfm.lib %25pathToLibs%25magicfmb.lib
+%25pathToCoff2Omf%25 %25pathToAddLibs%25d3dx9.lib %25pathToLibs%25d3dx9.lib
+%25pathToCoff2Omf%25 %25pathToAddLibs%25dxerr.lib %25pathToLibs%25dxerr.lib
+
+copy /Y "$(SolutionDir)../../code\SDK\binaries\Win32\FreeImage.dll" "%25pathToDlls%25FreeImage.dll" /y
+copy /Y "$(SolutionDir)../../code\SDK\binaries\Win32\amd_ags_x86.dll" "%25pathToDlls%25amd_ags_x86.dll" /y
+copy /Y "$(SolutionDir)../../code\SDK\binaries\Win32\D3DX11_41.dll" "%25pathToDlls%25D3DX11_41.dll" /y
+copy /Y "$(SolutionDir)../../code\SDK\binaries\Win32\borlndmm.dll" "%25pathToDlls%25borlndmm.dll" /y
+copy /Y "$(SolutionDir)../../code\SDK\binaries\Win32\cc32c270.dll" "%25pathToDlls%25cc32c270.dll" /y
+copy /Y "$(SolutionDir)../../code\SDK\binaries\Win32\cc32c270mt.dll" "%25pathToDlls%25cc32c270mt.dll" /y
+copy /Y "$(SolutionDir)../../code\SDK\binaries\Win32\msvcp140d.dll" "%25pathToDlls%25msvcp140d.dll" /y
+copy /Y "$(SolutionDir)../../code\SDK\binaries\Win32\vcruntime140d.dll" "%25pathToDlls%25vcruntime140d.dll" /y</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -212,6 +239,39 @@
       </DataExecutionPrevention>
       <ImportLibrary>..\..\..\libraries\$(PlatformXray)\$(Configuration)\$(ProjectName).lib</ImportLibrary>
     </Link>
+    <PostBuildEvent>
+      <Command>set pathToMkexp="C:\Program Files (x86)\Embarcadero\Studio\21.0\bin\mkexp.exe"
+set pathToDlls=$(SolutionDir)../../bins\Win64\Debug\
+set pathToAddDlls=$(SolutionDir)../../code\SDK\binaries\Win64\
+set pathOutLibs=$(SolutionDir)../../libraries\Win64\Debug\
+
+%25pathToMkexp%25 %25pathOutLibs%25etoolsb.a %25pathToDlls%25etools.dll
+%25pathToMkexp%25 %25pathOutLibs%25openalb.a %25pathToDlls%25openal.dll
+%25pathToMkexp%25 %25pathOutLibs%25dsoundb.a %25pathToAddDlls%25dsound.dll"
+%25pathToMkexp%25 %25pathOutLibs%25xrParticlesB.a %25pathToDlls%25xrParticles.dll
+%25pathToMkexp%25 %25pathOutLibs%25xrPhysicsB.a %25pathToDlls%25xrPhysics.dll
+%25pathToMkexp%25 %25pathOutLibs%25dinput8B.a %25pathToAddDlls%25dinput8.dll
+%25pathToMkexp%25 %25pathOutLibs%25FreeImageB.a %25pathToAddDlls%25FreeImage.dll
+%25pathToMkexp%25 %25pathOutLibs%25DXTB.a %25pathToDlls%25DXT.dll
+%25pathToMkexp%25 %25pathOutLibs%25MagicFMB.a %25pathToDlls%25MagicFM.dll
+%25pathToMkexp%25 %25pathOutLibs%25d3dx9d_41.a %25pathToAddDlls%25d3dx9d_41.dll"
+%25pathToMkexp%25 %25pathOutLibs%25LWOB.a %25pathToDlls%25LWO.dll"
+
+copy /Y "$(SolutionDir)../../code\SDK\binaries\Win64\FreeImage.dll" "%25pathToDlls%25FreeImage.dll"
+copy /Y "$(SolutionDir)../../code\SDK\binaries\Win64\amd_ags_x64.dll" "%25pathToDlls%25amd_ags_x64.dll"
+copy /Y "$(SolutionDir)../../code\SDK\binaries\Win64\D3DX9d_41.dll" "%25pathToDlls%25D3DX9d_41.dll"
+copy /Y "$(SolutionDir)../../code\SDK\binaries\Win64\bcbsmp270.bpl" "%25pathToDlls%25bcbsmp270.bpl"
+copy /Y "$(SolutionDir)../../code\SDK\binaries\Win64\borlndmm.dll" "%25pathToDlls%25borlndmm.dll"
+copy /Y "$(SolutionDir)../../code\SDK\binaries\Win64\cc64270.dll" "%25pathToDlls%25cc64270.dll"
+copy /Y "$(SolutionDir)../../code\SDK\binaries\Win64\cc64270mt.dll" "%25pathToDlls%25cc64270mt.dll"
+copy /Y "$(SolutionDir)../../code\SDK\binaries\Win64\rtl270.bpl" "%25pathToDlls%25rtl270.bpl"
+copy /Y "$(SolutionDir)../../code\SDK\binaries\Win64\vcl270.bpl" "%25pathToDlls%25vcl270.bpl"
+copy /Y "$(SolutionDir)../../code\SDK\binaries\Win64\vclimg270.bpl" "%25pathToDlls%25vclimg270.bpl"
+copy /Y "$(SolutionDir)../../code\SDK\binaries\Win64\vclx270.bpl" "%25pathToDlls%25vclx270.bpl"
+copy /Y "$(SolutionDir)../../code\SDK\binaries\Win64\msvcp140d.dll" "%25pathToDlls%25msvcp140d.dll"
+copy /Y "$(SolutionDir)../../code\SDK\binaries\Win64\vcruntime140d.dll" "%25pathToDlls%25vcruntime140d.dll"
+copy /Y "$(SolutionDir)../../code\SDK\binaries\Win64\vcruntime140_1d.dll" "%25pathToDlls%25vcruntime140_1d.dll"</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -270,6 +330,29 @@
       <DataExecutionPrevention />
       <ImportLibrary>..\..\..\libraries\$(PlatformXray)\$(Configuration)\$(ProjectName).lib</ImportLibrary>
     </Link>
+    <PostBuildEvent>
+      <Command>set pathToCoff2Omf="C:\Program Files (x86)\Embarcadero\Studio\21.0\bin\coff2omf.exe"
+set pathToLibs=$(SolutionDir)../../libraries\Win32\Release\
+set pathToAddLibs=$(SolutionDir)../../code\SDK\libraries\Win32\
+set pathToDlls=$(SolutionDir)../../bins\Win32\Release\
+
+%25pathToCoff2Omf%25 %25pathToLibs%25etools.lib %25pathToLibs%25etoolsb.lib
+%25pathToCoff2Omf%25 %25pathToAddLibs%25dsound.lib %25pathToLibs%25dsoundb.lib
+%25pathToCoff2Omf%25 %25pathToLibs%25openal.lib %25pathToLibs%25openalb.lib
+%25pathToCoff2Omf%25 %25pathToLibs%25xrphysics.lib %25pathToLibs%25xrphysicsb.lib
+%25pathToCoff2Omf%25 %25pathToLibs%25lwo.lib %25pathToLibs%25lwob.lib
+%25pathToCoff2Omf%25 %25pathToLibs%25dxt.lib %25pathToLibs%25dxtb.lib
+%25pathToCoff2Omf%25 %25pathToAddLibs%25freeimage.lib %25pathToLibs%25freeimageb.lib
+%25pathToCoff2Omf%25 %25pathToAddLibs%25dinput8.lib %25pathToLibs%25dinput8b.lib
+%25pathToCoff2Omf%25 %25pathToLibs%25magicfm.lib %25pathToLibs%25magicfmb.lib
+
+copy /Y "$(SolutionDir)../../code\SDK\binaries\Win32\FreeImage.dll" "%25pathToDlls%25FreeImage.dll"
+copy /Y "$(SolutionDir)../../code\SDK\binaries\Win32\amd_ags_x86.dll" "%25pathToDlls%25amd_ags_x86.dll"
+copy /Y "$(SolutionDir)../../code\SDK\binaries\Win32\D3DX11_41.dll" "%25pathToDlls%25D3DX11_41.dll"
+copy /Y "$(SolutionDir)../../code\SDK\binaries\Win32\borlndmm.dll" "%25pathToDlls%25borlndmm.dll"
+copy /Y "$(SolutionDir)../../code\SDK\binaries\Win32\cc32c270.dll" "%25pathToDlls%25cc32c270.dll"
+copy /Y "$(SolutionDir)../../code\SDK\binaries\Win32\cc32c270mt.dll" "%25pathToDlls%25cc32c270mt.dll"</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -333,6 +416,35 @@
       </DataExecutionPrevention>
       <ImportLibrary>..\..\..\libraries\$(PlatformXray)\$(Configuration)\$(ProjectName).lib</ImportLibrary>
     </Link>
+    <PostBuildEvent>
+      <Command>set pathToMkexp="C:\Program Files (x86)\Embarcadero\Studio\21.0\bin\mkexp.exe"
+set pathToDlls=$(SolutionDir)../../bins\Win64\Release\
+set pathToAddDlls=$(SolutionDir)../../code\SDK\binaries\Win64\
+set pathOutLibs=$(SolutionDir)../../libraries\Win64\Release\
+
+%25pathToMkexp%25 %25pathOutLibs%25etoolsb.a %25pathToDlls%25etools.dll
+%25pathToMkexp%25 %25pathOutLibs%25openalb.a %25pathToDlls%25openal.dll
+%25pathToMkexp%25 %25pathOutLibs%25dsoundb.a %25pathToAddDlls%25dsound.dll"
+%25pathToMkexp%25 %25pathOutLibs%25xrParticlesB.a %25pathToDlls%25xrParticles.dll
+%25pathToMkexp%25 %25pathOutLibs%25xrPhysicsB.a %25pathToDlls%25xrPhysics.dll
+%25pathToMkexp%25 %25pathOutLibs%25dinput8B.a %25pathToAddDlls%25dinput8.dll
+%25pathToMkexp%25 %25pathOutLibs%25FreeImageB.a %25pathToAddDlls%25FreeImage.dll
+%25pathToMkexp%25 %25pathOutLibs%25DXTB.a %25pathToDlls%25DXT.dll
+%25pathToMkexp%25 %25pathOutLibs%25MagicFMB.a %25pathToDlls%25MagicFM.dll
+%25pathToMkexp%25 %25pathOutLibs%25d3dx9_41.a %25pathToAddDlls%25d3dx9_41.dll"
+%25pathToMkexp%25 %25pathOutLibs%25LWOB.a %25pathToDlls%25LWO.dll
+
+copy /Y "$(SolutionDir)../../code\SDK\binaries\Win64\FreeImage.dll" "%25pathToDlls%25FreeImage.dll"
+copy /Y "$(SolutionDir)../../code\SDK\binaries\Win64\amd_ags_x64.dll" "%25pathToDlls%25amd_ags_x64.dll"
+copy /Y "$(SolutionDir)../../code\SDK\binaries\Win64\bcbsmp270.bpl" "%25pathToDlls%25bcbsmp270.bpl"
+copy /Y "$(SolutionDir)../../code\SDK\binaries\Win64\borlndmm.dll" "%25pathToDlls%25borlndmm.dll"
+copy /Y "$(SolutionDir)../../code\SDK\binaries\Win64\cc64270.dll" "%25pathToDlls%25cc64270.dll"
+copy /Y "$(SolutionDir)../../code\SDK\binaries\Win64\cc64270mt.dll" "%25pathToDlls%25cc64270mt.dll"
+copy /Y "$(SolutionDir)../../code\SDK\binaries\Win64\rtl270.bpl" "%25pathToDlls%25rtl270.bpl"
+copy /Y "$(SolutionDir)../../code\SDK\binaries\Win64\vcl270.bpl" "%25pathToDlls%25vcl270.bpl"
+copy /Y "$(SolutionDir)../../code\SDK\binaries\Win64\vclimg270.bpl" "%25pathToDlls%25vclimg270.bpl"
+copy /Y "$(SolutionDir)../../code\SDK\binaries\Win64\vclx270.bpl" "%25pathToDlls%25vclx270.bpl"</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ProjectReference Include="..\3rd party\openal\OpenAL-Windows\Router\Router.vcxproj">

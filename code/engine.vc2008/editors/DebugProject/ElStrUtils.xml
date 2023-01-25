@@ -1,0 +1,811 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<namespace name="ElStrUtils" platform="Win64">
+  <type name="TElFString" type="WideString" file="ElStrUtils.pas" line="77" />
+  <type name="TElFChar" type="WideChar" file="ElStrUtils.pas" line="78" />
+  <pointer name="PElFChar" type="Char" indircnt="1" file="ElStrUtils.pas" line="79" />
+  <const name="oleaut" type="string" file="ElStrUtils.pas" line="119">
+    <value>
+      oleaut32.dll
+    </value>
+  </const>
+  <function name="SysAllocStringLen" visibility="external public" callconv="stdcall" file="ElStrUtils.pas" line="121">
+    <parameters>
+      <parameter name="P" type="PWideChar" />
+      <parameter name="Len" type="Integer" />
+      <retval type="PWideChar" />
+    </parameters>
+  </function>
+  <procedure name="SysFreeString" visibility="external public" callconv="stdcall" file="ElStrUtils.pas" line="124">
+    <parameters>
+      <parameter name="S" type="PWideChar" />
+    </parameters>
+  </procedure>
+  <function name="SysStringLen" visibility="external public" callconv="stdcall" file="ElStrUtils.pas" line="127">
+    <parameters>
+      <parameter name="S" type="PWideChar" />
+      <retval type="Integer" />
+    </parameters>
+  </function>
+  <variable name="doti" type="Boolean" visibility="public" file="ElStrUtils.pas" line="211" />
+  <const name="SPathDelimiters" type="string" file="ElStrUtils.pas" line="275">
+    <value>
+      /\
+    </value>
+  </const>
+  <const name="SWidePathDelimiters" type="WideString" file="ElStrUtils.pas" line="276">
+    <value>
+      /\
+    </value>
+  </const>
+  <const name="wrfReplaceAll" type=":1" file="ElStrUtils.pas" line="287">
+    <value>
+      wrfReplaceAll
+    </value>
+  </const>
+  <const name="wrfIgnoreCase" type=":1" file="ElStrUtils.pas" line="287">
+    <value>
+      wrfIgnoreCase
+    </value>
+  </const>
+  <set name="TWideReplaceFlags">
+    <element name="wrfReplaceAll" />
+    <element name="wrfIgnoreCase" />
+  </set>
+  <const name="conversionOK" type="ConversionResult" file="ElStrUtils.pas" line="314">
+    <value>
+      conversionOK
+    </value>
+  </const>
+  <const name="sourceExhausted" type="ConversionResult" file="ElStrUtils.pas" line="315">
+    <value>
+      sourceExhausted
+    </value>
+  </const>
+  <const name="targetExhausted" type="ConversionResult" file="ElStrUtils.pas" line="316">
+    <value>
+      targetExhausted
+    </value>
+  </const>
+  <const name="sourceIllegal" type="ConversionResult" file="ElStrUtils.pas" line="317">
+    <value>
+      sourceIllegal
+    </value>
+  </const>
+  <const name="strictConversion" type="ConversionFlags" file="ElStrUtils.pas" line="320">
+    <value>
+      strictConversion
+    </value>
+  </const>
+  <const name="lenientConversion" type="ConversionFlags" file="ElStrUtils.pas" line="320">
+    <value>
+      lenientConversion
+    </value>
+  </const>
+  <type name="UTF32" type="cardinal" loBound="0" hiBound="-1" file="System.pas" line="12" />
+  <type name="UTF16" type="word" loBound="0" hiBound="65535" file="System.pas" line="12" />
+  <type name="UTF8" type="byte" loBound="0" hiBound="255" file="System.pas" line="12" />
+  <pointer name="pUTF32" type="Cardinal" indircnt="1" file="ElStrUtils.pas" line="309" />
+  <pointer name="pUTF16" type="Word" indircnt="1" file="ElStrUtils.pas" line="310" />
+  <pointer name="pUTF8" type="Byte" indircnt="1" file="ElStrUtils.pas" line="311" />
+  <enum name="ConversionResult" file="ElStrUtils.pas" line="313">
+    <element value="0" name="conversionOK" file="ElStrUtils.pas" line="314" />
+    <element value="1" name="sourceExhausted" file="ElStrUtils.pas" line="315" />
+    <element value="2" name="targetExhausted" file="ElStrUtils.pas" line="316" />
+    <element value="3" name="sourceIllegal" file="ElStrUtils.pas" line="317" />
+  </enum>
+  <enum name="ConversionFlags" file="ElStrUtils.pas" line="320">
+    <element value="0" name="strictConversion" file="ElStrUtils.pas" line="320" />
+    <element value="1" name="lenientConversion" file="ElStrUtils.pas" line="320" />
+  </enum>
+  <variable name="UNI_REPLACEMENT_CHAR" type="Cardinal" visibility="public" file="ElStrUtils.pas" line="323" />
+  <variable name="UNI_MAX_BMP" type="Cardinal" visibility="public" file="ElStrUtils.pas" line="324" />
+  <variable name="UNI_MAX_UTF16" type="Cardinal" visibility="public" file="ElStrUtils.pas" line="325" />
+  <variable name="UNI_MAX_UTF32" type="Cardinal" visibility="public" file="ElStrUtils.pas" line="326" />
+  <variable name="halfShift" type="Integer" visibility="public" file="ElStrUtils.pas" line="327" />
+  <variable name="halfBase" type="Cardinal" visibility="public" file="ElStrUtils.pas" line="328" />
+  <variable name="halfMask" type="Cardinal" visibility="public" file="ElStrUtils.pas" line="329" />
+  <variable name="UNI_SUR_HIGH_START" type="Cardinal" visibility="public" file="ElStrUtils.pas" line="330" />
+  <variable name="UNI_SUR_HIGH_END" type="Cardinal" visibility="public" file="ElStrUtils.pas" line="331" />
+  <variable name="UNI_SUR_LOW_START" type="Cardinal" visibility="public" file="ElStrUtils.pas" line="332" />
+  <variable name="UNI_SUR_LOW_END" type="Cardinal" visibility="public" file="ElStrUtils.pas" line="333" />
+  <variable name="trailingBytesForUTF8" visibility="public" file="ElStrUtils.pas" line="339" />
+  <variable name="offsetsFromUTF8" visibility="public" file="ElStrUtils.pas" line="355" />
+  <variable name="firstByteMark" visibility="public" file="ElStrUtils.pas" line="363" />
+  <function name="IntToStrFmt" visibility="public" file="ElStrUtils.pas" line="413">
+    <parameters>
+      <parameter name="value" type="Integer" />
+      <retval type="string" />
+    </parameters>
+  </function>
+  <function name="FloatToStrFmt" visibility="public" file="ElStrUtils.pas" line="469">
+    <parameters>
+      <parameter name="value" type="Extended" />
+      <parameter name="decims" type="Integer" />
+      <retval type="string" />
+    </parameters>
+  </function>
+  <function name="IntToStrPad" visibility="public" file="ElStrUtils.pas" line="474">
+    <parameters>
+      <parameter name="value" type="Integer" />
+      <parameter name="MinSize" type="Integer" />
+      <retval type="string" />
+    </parameters>
+  </function>
+  <function name="CenterStr" visibility="public" file="ElStrUtils.pas" line="481">
+    <parameters>
+      <parameter name="Str" type="string" />
+      <parameter name="len" type="Integer" />
+      <retval type="string" />
+    </parameters>
+  </function>
+  <function name="OEMToStr" visibility="public" file="ElStrUtils.pas" line="503">
+    <parameters>
+      <parameter name="S" type="string" />
+      <retval type="string" />
+    </parameters>
+  </function>
+  <function name="StrToOEM" visibility="public" file="ElStrUtils.pas" line="509">
+    <parameters>
+      <parameter name="S" type="string" />
+      <retval type="string" />
+    </parameters>
+  </function>
+  <function name="MessageRes" visibility="public" file="ElStrUtils.pas" line="517">
+    <parameters>
+      <parameter name="Txt" type="Integer" />
+      <parameter name="Title" type="PWideChar" />
+      <parameter name="TextType" type="Word" />
+      <parameter name="Sounds" type="Boolean" />
+      <retval type="Integer" />
+    </parameters>
+  </function>
+  <function name="replace" visibility="public" file="ElStrUtils.pas" line="526">
+    <parameters>
+      <parameter name="Str" type="string" paramflags="var" />
+      <parameter name="SourceString" type="string" />
+      <parameter name="DestString" type="string" />
+      <retval type="Boolean" />
+    </parameters>
+  </function>
+  <function name="ExtractWord" visibility="public" file="ElStrUtils.pas" line="541">
+    <parameters>
+      <parameter name="str" type="string" />
+      <parameter name="n" type="Integer" />
+      <retval type="string" />
+    </parameters>
+  </function>
+  <function name="FstNonSpace" visibility="public" file="ElStrUtils.pas" line="582">
+    <parameters>
+      <parameter name="str" type="string" />
+      <retval type="Integer" />
+    </parameters>
+  </function>
+  <function name="NextWordBegin" visibility="public" file="ElStrUtils.pas" line="596">
+    <parameters>
+      <parameter name="str" type="string" />
+      <parameter name="CurrentPos" type="Integer" />
+      <retval type="Integer" />
+    </parameters>
+  </function>
+  <function name="LastPos" visibility="public" file="ElStrUtils.pas" line="609">
+    <parameters>
+      <parameter name="SubStr" type="string" />
+      <parameter name="Strn" type="string" />
+      <retval type="Integer" />
+    </parameters>
+  </function>
+  <function name="LineIsEmpty" visibility="public" file="ElStrUtils.pas" line="638">
+    <parameters>
+      <parameter name="str" type="string" />
+      <retval type="Boolean" />
+    </parameters>
+  </function>
+  <function name="CompleteLine" visibility="public" file="ElStrUtils.pas" line="643">
+    <parameters>
+      <parameter name="Str" type="string" />
+      <parameter name="FLen" type="Integer" />
+      <parameter name="symb" type="Char" />
+      <retval type="string" />
+    </parameters>
+  </function>
+  <function name="PrefixLine" visibility="public" file="ElStrUtils.pas" line="663">
+    <parameters>
+      <parameter name="Str" type="string" />
+      <parameter name="FLen" type="Integer" />
+      <parameter name="symb" type="Char" />
+      <retval type="string" />
+    </parameters>
+  </function>
+  <function name="MakeString" visibility="public" file="ElStrUtils.pas" line="679">
+    <parameters>
+      <parameter name="FLen" type="Integer" />
+      <parameter name="Seq" type="string" />
+      <retval type="string" />
+    </parameters>
+  </function>
+  <function name="H2D" visibility="public" file="ElStrUtils.pas" line="692">
+    <parameters>
+      <parameter name="S" type="string" />
+      <retval type="Integer" />
+    </parameters>
+  </function>
+  <function name="H2DDef" visibility="public" file="ElStrUtils.pas" line="740">
+    <parameters>
+      <parameter name="S" type="string" paramflags="const" />
+      <parameter name="Def" type="Integer" />
+      <retval type="Integer" />
+    </parameters>
+  </function>
+  <function name="Bin2Int" visibility="public" file="ElStrUtils.pas" line="749">
+    <parameters>
+      <parameter name="S" type="string" />
+      <retval type="Integer" />
+    </parameters>
+  </function>
+  <function name="Bin2IntDef" visibility="public" file="ElStrUtils.pas" line="771">
+    <parameters>
+      <parameter name="S" type="string" />
+      <parameter name="Default" type="Integer" />
+      <retval type="Integer" />
+    </parameters>
+  </function>
+  <function name="Data2Str" visibility="public" file="ElStrUtils.pas" line="780">
+    <parameters>
+      <parameter name="Buffer" type="Pointer" />
+      <parameter name="BufLen" type="Integer" />
+      <retval type="string" />
+    </parameters>
+  </function>
+  <function name="Str2Data" visibility="public" file="ElStrUtils.pas" line="791">
+    <parameters>
+      <parameter name="S" type="string" />
+      <parameter name="Buffer" type="Pointer" paramflags="var" />
+      <parameter name="BufLen" type="Integer" paramflags="var" />
+      <retval type="Boolean" />
+    </parameters>
+  </function>
+  <function name="IsDigit" visibility="public" file="ElStrUtils.pas" line="840">
+    <parameters>
+      <parameter name="ch" type="Char" />
+      <retval type="Boolean" />
+    </parameters>
+  </function>
+  <function name="IsDigitStr" visibility="public" file="ElStrUtils.pas" line="845">
+    <parameters>
+      <parameter name="S" type="string" paramflags="const" />
+      <retval type="Boolean" />
+    </parameters>
+  </function>
+  <function name="IsAlpha" visibility="public" file="ElStrUtils.pas" line="858">
+    <parameters>
+      <parameter name="ch" type="Char" />
+      <retval type="Boolean" />
+    </parameters>
+  </function>
+  <function name="IsAlphaOrDigit" visibility="public" file="ElStrUtils.pas" line="863">
+    <parameters>
+      <parameter name="ch" type="Char" />
+      <retval type="Boolean" />
+    </parameters>
+  </function>
+  <function name="IsAlphaStr" visibility="public" file="ElStrUtils.pas" line="868">
+    <parameters>
+      <parameter name="S" type="string" paramflags="const" />
+      <retval type="Boolean" />
+    </parameters>
+  </function>
+  <function name="IsIdentStr" visibility="public" file="ElStrUtils.pas" line="879">
+    <parameters>
+      <parameter name="S" type="string" paramflags="const" />
+      <retval type="Boolean" />
+    </parameters>
+  </function>
+  <function name="ExtractStr" visibility="public" file="ElStrUtils.pas" line="892">
+    <parameters>
+      <parameter name="S" type="string" paramflags="var" />
+      <parameter name="SPos" type="Integer" />
+      <parameter name="SLen" type="Integer" />
+      <retval type="string" />
+    </parameters>
+  </function>
+  <function name="LeftBreak" visibility="public" file="ElStrUtils.pas" line="898">
+    <parameters>
+      <parameter name="S" type="string" />
+      <parameter name="Pos" type="Integer" />
+      <retval type="Integer" />
+    </parameters>
+  </function>
+  <function name="EscapeURLString" visibility="public" file="ElStrUtils.pas" line="918">
+    <parameters>
+      <parameter name="aString" type="string" />
+      <parameter name="EscapeChar" type="Char" />
+      <retval type="string" />
+    </parameters>
+  </function>
+  <function name="EscapeString" visibility="public" file="ElStrUtils.pas" line="935">
+    <parameters>
+      <parameter name="aString" type="string" />
+      <parameter name="UnsafeChars" type="string" />
+      <parameter name="EscapeChar" type="Char" />
+      <retval type="string" />
+    </parameters>
+  </function>
+  <function name="UnEscapeString" visibility="public" file="ElStrUtils.pas" line="964">
+    <parameters>
+      <parameter name="aString" type="string" />
+      <parameter name="EscapeChar" type="Char" />
+      <retval type="string" />
+    </parameters>
+  </function>
+  <function name="StrStartsWith" visibility="public" file="ElStrUtils.pas" line="991">
+    <parameters>
+      <parameter name="Source" type="PWideChar" />
+      <parameter name="Seq" type="PWideChar" />
+      <retval type="Boolean" />
+    </parameters>
+  </function>
+  <function name="ContainsAt" visibility="public" file="ElStrUtils.pas" line="1007">
+    <parameters>
+      <parameter name="Source" type="string" />
+      <parameter name="Index" type="Integer" />
+      <parameter name="Seq" type="string" />
+      <retval type="Boolean" />
+    </parameters>
+  </function>
+  <function name="FileNameLike" visibility="public" file="ElStrUtils.pas" line="1013">
+    <parameters>
+      <parameter name="FileName" type="string" />
+      <parameter name="Mask" type="string" />
+      <retval type="Boolean" />
+    </parameters>
+  </function>
+  <function name="AnsiSameText" visibility="public" file="ElStrUtils.pas" line="1114">
+    <parameters>
+      <parameter name="S1" type="string" paramflags="const" />
+      <parameter name="S2" type="string" paramflags="const" />
+      <retval type="Boolean" />
+    </parameters>
+  </function>
+  <function name="CurrToPrettyStr" visibility="public" file="ElStrUtils.pas" line="1124">
+    <parameters>
+      <parameter name="Value" type="Currency" paramflags="const" />
+      <retval type="string" />
+    </parameters>
+  </function>
+  <function name="PrettyStrToCurr" visibility="public" file="ElStrUtils.pas" line="1129">
+    <parameters>
+      <parameter name="Value" type="string" paramflags="const" />
+      <retval type="Currency" />
+    </parameters>
+  </function>
+  <function name="CurrSign" visibility="public" file="ElStrUtils.pas" line="1232">
+    <parameters>
+      <parameter name="Value" type="Currency" paramflags="const" />
+      <retval type="Integer" />
+    </parameters>
+  </function>
+  <function name="StringDup" visibility="public" file="ElStrUtils.pas" line="1251">
+    <parameters>
+      <parameter name="S" type="string" />
+      <retval type="PWideChar" />
+    </parameters>
+  </function>
+  <function name="uni2uppers" visibility="public" file="ElStrUtils.pas" line="2846">
+    <parameters>
+      <parameter name="s" type="WideString" />
+      <retval type="WideString" />
+    </parameters>
+  </function>
+  <function name="uni2lowers" visibility="public" file="ElStrUtils.pas" line="2856">
+    <parameters>
+      <parameter name="s" type="WideString" />
+      <retval type="WideString" />
+    </parameters>
+  </function>
+  <function name="uni2upperf" visibility="public" file="ElStrUtils.pas" line="2865">
+    <parameters>
+      <parameter name="s" type="WideString" />
+      <retval type="WideString" />
+    </parameters>
+  </function>
+  <function name="uni2lowerf" visibility="public" file="ElStrUtils.pas" line="2874">
+    <parameters>
+      <parameter name="s" type="WideString" />
+      <retval type="WideString" />
+    </parameters>
+  </function>
+  <function name="CreateUnicodeHintString" visibility="public" file="ElStrUtils.pas" line="2883">
+    <parameters>
+      <parameter name="Value" type="WideString" />
+      <retval type="string" />
+    </parameters>
+  </function>
+  <function name="WideStringDup" visibility="public" file="ElStrUtils.pas" line="2904">
+    <parameters>
+      <parameter name="S" type="WideString" />
+      <retval type="PWideChar" />
+    </parameters>
+  </function>
+  <function name="WidePos" visibility="public" file="ElStrUtils.pas" line="2912">
+    <parameters>
+      <parameter name="Substr" type="WideString" paramflags="const" />
+      <parameter name="S" type="WideString" paramflags="const" />
+      <retval type="Integer" />
+    </parameters>
+  </function>
+  <function name="WideStrScan" visibility="public" file="ElStrUtils.pas" line="2994">
+    <parameters>
+      <parameter name="Str" type="PWideChar" paramflags="const" />
+      <parameter name="Chr" type="Char" />
+      <retval type="PWideChar" />
+    </parameters>
+  </function>
+  <function name="WideStrRScan" visibility="public" file="ElStrUtils.pas" line="2999">
+    <parameters>
+      <parameter name="Str" type="PWideChar" paramflags="const" />
+      <parameter name="Chr" type="Char" />
+      <retval type="PWideChar" />
+    </parameters>
+  </function>
+  <function name="WideQuotedStr" visibility="public" file="ElStrUtils.pas" line="3005">
+    <parameters>
+      <parameter name="S" type="WideString" paramflags="const" />
+      <parameter name="Quote" type="Char" />
+      <retval type="WideString" />
+    </parameters>
+  </function>
+  <function name="WideExtractQuotedStr" visibility="public" file="ElStrUtils.pas" line="3045">
+    <parameters>
+      <parameter name="Src" type="PWideChar" paramflags="var" />
+      <parameter name="Quote" type="Char" />
+      <retval type="WideString" />
+    </parameters>
+  </function>
+  <function name="WideStrEnd" visibility="public" file="ElStrUtils.pas" line="3096">
+    <parameters>
+      <parameter name="Str" type="PWideChar" paramflags="const" />
+      <retval type="PWideChar" />
+    </parameters>
+  </function>
+  <function name="WideSameText" visibility="public" file="ElStrUtils.pas" line="3107">
+    <parameters>
+      <parameter name="S1" type="WideString" paramflags="const" />
+      <parameter name="S2" type="WideString" paramflags="const" />
+      <retval type="Boolean" />
+    </parameters>
+  </function>
+  <function name="WideCompareText" visibility="public" file="ElStrUtils.pas" line="3112">
+    <parameters>
+      <parameter name="S1" type="WideString" paramflags="const" />
+      <parameter name="S2" type="WideString" paramflags="const" />
+      <retval type="Integer" />
+    </parameters>
+  </function>
+  <function name="WideExtractStr" visibility="public" file="ElStrUtils.pas" line="3183">
+    <parameters>
+      <parameter name="S" type="WideString" paramflags="var" />
+      <parameter name="SPos" type="Integer" />
+      <parameter name="SLen" type="Integer" />
+      <retval type="WideString" />
+    </parameters>
+  </function>
+  <function name="WideStrCopy" visibility="public" file="ElStrUtils.pas" line="3189">
+    <parameters>
+      <parameter name="Target" type="PWideChar" />
+      <parameter name="Source" type="PWideChar" />
+      <retval type="PWideChar" />
+    </parameters>
+  </function>
+  <function name="WideStrPCopy" visibility="public" file="ElStrUtils.pas" line="3216">
+    <parameters>
+      <parameter name="Target" type="PWideChar" />
+      <parameter name="Source" type="WideString" paramflags="const" />
+      <retval type="PWideChar" />
+    </parameters>
+  </function>
+  <function name="WideStrComp" visibility="public" file="ElStrUtils.pas" line="3221">
+    <parameters>
+      <parameter name="S1" type="PWideChar" paramflags="const" />
+      <parameter name="S2" type="PWideChar" paramflags="const" />
+      <retval type="Integer" />
+    </parameters>
+  </function>
+  <function name="WideStrLComp" visibility="public" file="ElStrUtils.pas" line="3245">
+    <parameters>
+      <parameter name="Str1" type="PWideChar" paramflags="const" />
+      <parameter name="Str2" type="PWideChar" paramflags="const" />
+      <parameter name="MaxLen" type="Cardinal" />
+      <retval type="Integer" />
+    </parameters>
+  </function>
+  <function name="WideStrLen" visibility="public" file="ElStrUtils.pas" line="3274">
+    <parameters>
+      <parameter name="Str" type="PWideChar" paramflags="const" />
+      <retval type="Cardinal" />
+    </parameters>
+  </function>
+  <function name="WideStrPas" visibility="public" file="ElStrUtils.pas" line="3290">
+    <parameters>
+      <parameter name="Source" type="PWideChar" paramflags="const" />
+      <retval type="WideString" />
+    </parameters>
+  </function>
+  <procedure name="WideMove" visibility="public" file="ElStrUtils.pas" line="3303">
+    <parameters>
+      <parameter name="Source" paramflags="const" />
+      <parameter name="Dest" paramflags="var" />
+      <parameter name="Count" type="Integer" />
+    </parameters>
+  </procedure>
+  <procedure name="FillWord" visibility="public" file="ElStrUtils.pas" line="3344">
+    <parameters>
+      <parameter name="X" paramflags="var" />
+      <parameter name="Count" type="Integer" />
+      <parameter name="Value" type="Word" />
+    </parameters>
+  </procedure>
+  <procedure name="FillWideChar" visibility="public" file="ElStrUtils.pas" line="3376">
+    <parameters>
+      <parameter name="X" paramflags="var" />
+      <parameter name="Count" type="Integer" />
+      <parameter name="Value" type="Char" />
+    </parameters>
+  </procedure>
+  <function name="WideStrMove" visibility="public" file="ElStrUtils.pas" line="3409">
+    <parameters>
+      <parameter name="Dest" type="PWideChar" />
+      <parameter name="Source" type="PWideChar" paramflags="const" />
+      <parameter name="Count" type="Cardinal" />
+      <retval type="PWideChar" />
+    </parameters>
+  </function>
+  <function name="WideStrECopy" visibility="public" file="ElStrUtils.pas" line="3446">
+    <parameters>
+      <parameter name="Dest" type="PWideChar" />
+      <parameter name="Source" type="PWideChar" paramflags="const" />
+      <retval type="PWideChar" />
+    </parameters>
+  </function>
+  <function name="WideStrLCopy" visibility="public" file="ElStrUtils.pas" line="3473">
+    <parameters>
+      <parameter name="Dest" type="PWideChar" />
+      <parameter name="Source" type="PWideChar" paramflags="const" />
+      <parameter name="MaxLen" type="Cardinal" />
+      <retval type="PWideChar" />
+    </parameters>
+  </function>
+  <function name="WideStrLCat" visibility="public" file="ElStrUtils.pas" line="3508">
+    <parameters>
+      <parameter name="Dest" type="PWideChar" />
+      <parameter name="Source" type="PWideChar" paramflags="const" />
+      <parameter name="MaxLen" type="Cardinal" />
+      <retval type="PWideChar" />
+    </parameters>
+  </function>
+  <function name="WideStrCat" visibility="public" file="ElStrUtils.pas" line="3535">
+    <parameters>
+      <parameter name="Dest" type="PWideChar" />
+      <parameter name="Source" type="PWideChar" paramflags="const" />
+      <retval type="PWideChar" />
+    </parameters>
+  </function>
+  <procedure name="SetWideString" visibility="public" file="ElStrUtils.pas" line="3541">
+    <parameters>
+      <parameter name="S" type="WideString" paramflags="var" />
+      <parameter name="Buffer" type="PWideChar" />
+      <parameter name="Len" type="Integer" />
+    </parameters>
+  </procedure>
+  <function name="CompareWideStr" visibility="public" file="ElStrUtils.pas" line="3553">
+    <parameters>
+      <parameter name="S1" type="WideString" paramflags="const" />
+      <parameter name="S2" type="WideString" paramflags="const" />
+      <retval type="Integer" />
+    </parameters>
+  </function>
+  <function name="SameWideStr" visibility="public" file="ElStrUtils.pas" line="3568">
+    <parameters>
+      <parameter name="S1" type="WideString" paramflags="const" />
+      <parameter name="S2" type="WideString" paramflags="const" />
+      <retval type="Boolean" />
+    </parameters>
+  </function>
+  <function name="WideLastChar" visibility="public" file="ElStrUtils.pas" line="3573">
+    <parameters>
+      <parameter name="S" type="WideString" paramflags="const" />
+      <retval type="PWideChar" />
+    </parameters>
+  </function>
+  <function name="WideStrAlloc" visibility="public" file="ElStrUtils.pas" line="3587">
+    <parameters>
+      <parameter name="Size" type="Cardinal" />
+      <retval type="PWideChar" />
+    </parameters>
+  </function>
+  <function name="WideStrBufSize" visibility="public" file="ElStrUtils.pas" line="3602">
+    <parameters>
+      <parameter name="Str" type="PWideChar" paramflags="const" />
+      <retval type="Cardinal" />
+    </parameters>
+  </function>
+  <function name="WideStrNew" visibility="public" file="ElStrUtils.pas" line="3607">
+    <parameters>
+      <parameter name="Str" type="PWideChar" paramflags="const" />
+      <retval type="PWideChar" />
+    </parameters>
+  </function>
+  <procedure name="WideStrDispose" visibility="public" file="ElStrUtils.pas" line="3618">
+    <parameters>
+      <parameter name="Str" type="PWideChar" />
+    </parameters>
+  </procedure>
+  <function name="WideUpperCase" visibility="public" file="ElStrUtils.pas" line="3627">
+    <parameters>
+      <parameter name="S" type="WideString" paramflags="const" />
+      <retval type="WideString" />
+    </parameters>
+  </function>
+  <function name="WideLowerCase" visibility="public" file="ElStrUtils.pas" line="3634">
+    <parameters>
+      <parameter name="S" type="WideString" paramflags="const" />
+      <retval type="WideString" />
+    </parameters>
+  </function>
+  <function name="IsWideDelimiter" visibility="public" file="ElStrUtils.pas" line="3641">
+    <parameters>
+      <parameter name="Delimiters" type="WideString" paramflags="const" />
+      <parameter name="S" type="WideString" paramflags="const" />
+      <parameter name="Index" type="Integer" />
+      <retval type="Boolean" />
+    </parameters>
+  </function>
+  <function name="IsWidePathDelimiter" visibility="public" file="ElStrUtils.pas" line="3648">
+    <parameters>
+      <parameter name="S" type="WideString" paramflags="const" />
+      <parameter name="Index" type="Integer" />
+      <retval type="Boolean" />
+    </parameters>
+  </function>
+  <function name="IncludeWideTrailingDelimiter" visibility="public" file="ElStrUtils.pas" line="3653">
+    <parameters>
+      <parameter name="S" type="WideString" paramflags="const" />
+      <retval type="WideString" />
+    </parameters>
+  </function>
+  <function name="ExcludeWideTrailingDelimiter" visibility="public" file="ElStrUtils.pas" line="3672">
+    <parameters>
+      <parameter name="S" type="WideString" paramflags="const" />
+      <retval type="WideString" />
+    </parameters>
+  </function>
+  <function name="GetWideCharRangeString" visibility="public" file="ElStrUtils.pas" line="3679">
+    <parameters>
+      <parameter name="FirstChar" type="Char" />
+      <parameter name="LastChar" type="Char" />
+      <retval type="WideString" />
+    </parameters>
+  </function>
+  <function name="GetWideStringOf" visibility="public" file="ElStrUtils.pas" line="3699">
+    <parameters>
+      <parameter name="Char" type="Char" />
+      <parameter name="Len" type="Cardinal" />
+      <retval type="WideString" />
+    </parameters>
+  </function>
+  <function name="WideStringReplace" visibility="public" file="ElStrUtils.pas" line="3709">
+    <parameters>
+      <parameter name="S" type="WideString" paramflags="const" />
+      <parameter name="OldPattern" type="WideString" paramflags="const" />
+      <parameter name="NewPattern" type="WideString" paramflags="const" />
+      <parameter name="Flags" type="TWideReplaceFlags" />
+      <retval type="WideString" />
+    </parameters>
+  </function>
+  <function name="WideReplace" visibility="public" file="ElStrUtils.pas" line="3770">
+    <parameters>
+      <parameter name="Str" type="WideString" paramflags="var" />
+      <parameter name="SourceString" type="WideString" />
+      <parameter name="DestString" type="WideString" />
+      <retval type="Boolean" />
+    </parameters>
+  </function>
+  <function name="WideStrPos" visibility="public" file="ElStrUtils.pas" line="3785">
+    <parameters>
+      <parameter name="Str1" type="PWideChar" paramflags="const" />
+      <parameter name="Str2" type="PWideChar" paramflags="const" />
+      <retval type="PWideChar" />
+    </parameters>
+  </function>
+  <function name="WideCopy" visibility="public" file="ElStrUtils.pas" line="3835">
+    <parameters>
+      <parameter name="S" type="WideString" />
+      <parameter name="SPos" type="Integer" />
+      <parameter name="SLen" type="Integer" />
+      <retval type="WideString" />
+    </parameters>
+  </function>
+  <procedure name="WideInsert" visibility="public" file="ElStrUtils.pas" line="3840">
+    <parameters>
+      <parameter name="Text" type="WideString" />
+      <parameter name="S" type="WideString" paramflags="var" />
+      <parameter name="SPos" type="Integer" />
+    </parameters>
+  </procedure>
+  <procedure name="WideDelete" visibility="public" file="ElStrUtils.pas" line="3845">
+    <parameters>
+      <parameter name="S" type="WideString" paramflags="var" />
+      <parameter name="SPos" type="Integer" />
+      <parameter name="SLen" type="Integer" />
+    </parameters>
+  </procedure>
+  <function name="WideMakeString" visibility="public" file="ElStrUtils.pas" line="3850">
+    <parameters>
+      <parameter name="FLen" type="Integer" />
+      <parameter name="Seq" type="WideString" />
+      <retval type="WideString" />
+    </parameters>
+  </function>
+  <function name="WideLastPos" visibility="public" file="ElStrUtils.pas" line="3858">
+    <parameters>
+      <parameter name="SubStr" type="WideString" />
+      <parameter name="Strn" type="WideString" />
+      <retval type="Integer" />
+    </parameters>
+  </function>
+  <procedure name="TStrDelete" visibility="public" file="ElStrUtils.pas" line="3889">
+    <parameters>
+      <parameter name="S" type="TElFString" paramflags="var" />
+      <parameter name="SPos" type="Integer" />
+      <parameter name="SLen" type="Integer" />
+    </parameters>
+  </procedure>
+  <function name="TStrExtractStr" visibility="public" file="ElStrUtils.pas" line="3907">
+    <parameters>
+      <parameter name="S" type="TElFString" paramflags="var" />
+      <parameter name="SPos" type="Integer" />
+      <parameter name="SLen" type="Integer" />
+      <retval type="TElFString" />
+    </parameters>
+  </function>
+  <procedure name="SetTStr" visibility="public" file="ElStrUtils.pas" line="3925">
+    <parameters>
+      <parameter name="S" type="TElFString" paramflags="var" />
+      <parameter name="Buffer" type="PElFChar" />
+      <parameter name="Len" type="Integer" />
+    </parameters>
+  </procedure>
+  <function name="GetCharRangeString" visibility="public" file="ElStrUtils.pas" line="3943">
+    <parameters>
+      <parameter name="FirstChar" type="Char" />
+      <parameter name="LastChar" type="Char" />
+      <retval type="string" />
+    </parameters>
+  </function>
+  <function name="ConvertUTF16toUTF8" visibility="public" file="ElStrUtils.pas" line="3966">
+    <parameters>
+      <parameter name="source" type="WideString" paramflags="var" />
+      <parameter name="sourcelen" type="Cardinal" />
+      <parameter name="target" type="string" paramflags="var" />
+      <parameter name="targetlen" type="Cardinal" />
+      <parameter name="flags" type="ConversionFlags" />
+      <retval type="ConversionResult" />
+    </parameters>
+  </function>
+  <function name="ConvertUTF8toUTF16" visibility="public" file="ElStrUtils.pas" line="4107">
+    <parameters>
+      <parameter name="source" type="string" paramflags="var" />
+      <parameter name="sourcelen" type="Cardinal" />
+      <parameter name="target" type="WideString" paramflags="var" />
+      <parameter name="targetlen" type="Cardinal" />
+      <parameter name="flags" type="ConversionFlags" />
+      <retval type="ConversionResult" />
+    </parameters>
+  </function>
+  <function name="isLegalUTF8Sequence" visibility="public" file="ElStrUtils.pas" line="4203">
+    <parameters>
+      <parameter name="source" type="string" />
+      <parameter name="sourcelen" type="Cardinal" />
+      <retval type="Boolean" />
+    </parameters>
+  </function>
+</namespace>

@@ -1,2 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<BorlandProject/>
+<BorlandProject>
+	<ProjectSortOrder AutoSort="0" SortType="0">
+    <File Path="debug_project.cpp"/>
+    <File Path="stdafx.cpp"/>
+    <File Path="stdafx.cpp"/>
+    <File Path="stdafx.h"/>
+  </ProjectSortOrder>
+	<Transactions>
+    <Transaction>1899.12.30 00:00:00.000.269,D:\SVN\src\X-Ray-Engine-1.6-Origin\code\engine.vc2008\editors\DebugProject\Profiling\AQtimeModule1.aqt=</Transaction>
+  </Transactions>
+</BorlandProject>

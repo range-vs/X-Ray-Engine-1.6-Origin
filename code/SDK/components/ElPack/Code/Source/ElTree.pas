@@ -1373,7 +1373,7 @@ type
     FHTMLData      : TElHTMLData;
     FHTMLDataArray : TElArray;
 {$ENDIF}
-    FTag           : Longint;
+    FTag           : {$IFDEF WIN64}Int64{$ELSE}Int32{$ENDIF};
     FObject        : TObject;
     FDataInterface : IUnknown;
 {$IFDEF USE_VARIANT}
@@ -1683,7 +1683,7 @@ type
        // Tells, on which level the item is
        // Root items have Level 0 (zero)
 
-    property Tag : Longint read FTag write FTag;
+    property Tag : {$IFDEF WIN64}Int64{$ELSE}Int32{$ENDIF} read FTag write FTag;
 
 {$ifdef ELTREE_USE_STYLES}
     property Styles[index: integer]: TElCellStyle read GetStyles write SetStyles;
@@ -22350,7 +22350,10 @@ end; { DoItemFocused }
 
 procedure TCustomElTree.DoItemDraw(Item: TElTreeItem; Surface: TCanvas; R: TRect; SectionIndex: integer); { protected }
 begin
-  if Assigned(FOnItemDraw) then FOnItemDraw(Self, Item, Surface, R, SectionIndex);
+  if Assigned(FOnItemDraw) then
+  begin
+    FOnItemDraw(Self, Item, Surface, R, SectionIndex);
+  end;
 end; { DoItemDraw }
 
 {$ifndef VER3_EDITORS}

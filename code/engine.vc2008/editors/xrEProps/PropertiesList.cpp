@@ -6,6 +6,8 @@
 #include <ElVCLUtils.hpp>
 #include <ElTools.hpp>
 
+#include <cstdint>
+
 #include "ShaderFunction.h"
 #include "ColorPicker.h"
 #include "ChoseForm.h"
@@ -14,6 +16,7 @@
 #include "TextForm.h"
 #include "GameTypeForm.h"
 #include "ItemList.h"
+
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma link "multi_edit"
@@ -38,6 +41,12 @@
 #pragma link "MxShortcut"
 #pragma link "ExtBtn"
 #pragma resource "*.dfm"
+
+#ifdef _WIN64
+	using ElTreeTagType = std::int64_t;
+#else
+	using ElTreeTagType = std::int32_t;
+#endif
 
 #define TSTRING_COUNT 	4
 const LPSTR TEXTUREString[TSTRING_COUNT]={"Custom...","-","$null","$base0"};
@@ -265,10 +274,10 @@ void TProperties::FillElItems(PropItemVec& items, LPCSTR startup_pref)
         }
         m_ViewItems.push_back	(prop);
         prop->m_Owner 		= this; 
-        prop->item			= FHelper.AppendObject(tvProperties,key,false,false); 
+		prop->item			= FHelper.AppendObject(tvProperties,key,false,false);
         R_ASSERT3			(prop->item,"Duplicate properties key found:",key.c_str());
-        prop->Item()->Hint	= ".";
-        prop->Item()->Tag 	= (int)prop;
+		prop->Item()->Hint	= ".";
+		prop->Item()->Tag 	= (ElTreeTagType)prop;
         prop->Item()->UseStyles=true;
         prop->Item()->CheckBoxEnabled = prop->m_Flags.is(PropItem::flShowCB);
         prop->Item()->ShowCheckBox 	= prop->m_Flags.is(PropItem::flShowCB);
@@ -658,11 +667,11 @@ void __fastcall TProperties::tvPropertiesItemDraw(TObject *Sender,
             case PROP_CTEXT:
             case PROP_RTEXT:
             case PROP_STEXT:
-                if (edText->Tag!=(int)Item)
+				if (edText->Tag!=(ElTreeTagType)Item)
                     OutText(prop->GetDrawText().c_str(),Surface,R,prop->Enabled(),m_BMEllipsis);
             break;
             case PROP_SHORTCUT:
-                if (hkShortcut->Tag!=(int)Item)
+                if (hkShortcut->Tag!=(ElTreeTagType)Item)
                     OutText(prop->GetDrawText().c_str(),Surface,R,prop->Enabled());
             break;
             case PROP_VECTOR:
@@ -670,7 +679,7 @@ void __fastcall TProperties::tvPropertiesItemDraw(TObject *Sender,
                 OutText(prop->GetDrawText().c_str(),Surface,R,prop->Enabled());
             break;
             case PROP_NUMERIC:
-                if (seNumber->Tag!=(int)Item)
+				if (seNumber->Tag!=(ElTreeTagType)Item)
                     OutText(prop->GetDrawText().c_str(),Surface,R,prop->Enabled());
             break;
             default:
@@ -681,16 +690,16 @@ void __fastcall TProperties::tvPropertiesItemDraw(TObject *Sender,
         if (!prop->m_Flags.is(PropItem::flDisabled)){
             switch(type){
             case PROP_SHORTCUT:
-                if (hkShortcut->Tag==(int)Item) if (!hkShortcut->Visible) ShowSCText(R);
+				if (hkShortcut->Tag==(ElTreeTagType)Item) if (!hkShortcut->Visible) ShowSCText(R);
             break;
             case PROP_TIME:
             case PROP_CTEXT:
             case PROP_STEXT:
             case PROP_RTEXT:
-                if (edText->Tag==(int)Item) if (!edText->Visible) ShowLWText(R);
+				if (edText->Tag==(ElTreeTagType)Item) if (!edText->Visible) ShowLWText(R);
             break;
             case PROP_NUMERIC:
-                if (seNumber->Tag==(int)Item) if (!seNumber->Visible) ShowLWNumber(R);
+                if (seNumber->Tag==(ElTreeTagType)Item) if (!seNumber->Visible) ShowLWNumber(R);
             break;
             };
         }
@@ -725,12 +734,12 @@ void __fastcall TProperties::tvPropertiesMouseDown(TObject *Sender,
   	if (item){
     	if ((HC==1)&&(Button==mbLeft)){
 //        	Log("Shift",(int)Shift.Contains(ssDouble));
-            PropItem* prop = (PropItem*)item->Tag;
+			PropItem* prop = (PropItem*)item->Tag;
             // ѕроверить чтобы не нажимать 2 раза дл€ кнопок
             if (prop&&(PROP_BUTTON==prop->type)) m_FirstClickItem=item;
             if (m_FirstClickItem==item){
 				if (!prop||(prop&&!prop->Enabled())) return;
-                pmEnum->Tag = (int)item;
+                pmEnum->Tag = (ElTreeTagType)item;
                 switch(prop->type){
                 case PROP_CAPTION: break;
                 case PROP_CANVAS: break;
@@ -1744,7 +1753,7 @@ void __fastcall TProperties::tvPropertiesShowLineHint(TObject *Sender,
       TElTreeItem *Item, TElHeaderSection *Section, TElFString &Text,
       THintWindow *HintWindow, TPoint &MousePos, bool &DoShowHint)
 {
-    PropItem* prop 				= (PropItem*)Item->Tag;
+	PropItem* prop 				= (PropItem*)Item->Tag;
     if (prop){
 //    	HintWindow->Brush->Color= clGray;
 		Text					= prop->GetDrawText().c_str();

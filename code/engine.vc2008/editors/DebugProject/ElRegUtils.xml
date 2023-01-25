@@ -1,0 +1,239 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<namespace name="ElRegUtils" platform="Win64">
+  <const name="rrtUnknown" type="TRegRootType" file="ElRegUtils.pas" line="27">
+    <value>
+      rrtUnknown
+    </value>
+  </const>
+  <const name="rrtHKEY_CLASSES_ROOT" type="TRegRootType" file="ElRegUtils.pas" line="27">
+    <value>
+      rrtHKEY_CLASSES_ROOT
+    </value>
+  </const>
+  <const name="rrtHKEY_CURRENT_USER" type="TRegRootType" file="ElRegUtils.pas" line="27">
+    <value>
+      rrtHKEY_CURRENT_USER
+    </value>
+  </const>
+  <const name="rrtHKEY_LOCAL_MACHINE" type="TRegRootType" file="ElRegUtils.pas" line="28">
+    <value>
+      rrtHKEY_LOCAL_MACHINE
+    </value>
+  </const>
+  <const name="rrtHKEY_USERS" type="TRegRootType" file="ElRegUtils.pas" line="28">
+    <value>
+      rrtHKEY_USERS
+    </value>
+  </const>
+  <const name="rrtHKEY_CURRENT_CONFIG" type="TRegRootType" file="ElRegUtils.pas" line="28">
+    <value>
+      rrtHKEY_CURRENT_CONFIG
+    </value>
+  </const>
+  <enum name="TRegRootType" file="ElRegUtils.pas" line="27">
+    <element value="0" name="rrtUnknown" file="ElRegUtils.pas" line="27" />
+    <element value="1" name="rrtHKEY_CLASSES_ROOT" file="ElRegUtils.pas" line="27" />
+    <element value="2" name="rrtHKEY_CURRENT_USER" file="ElRegUtils.pas" line="27" />
+    <element value="3" name="rrtHKEY_LOCAL_MACHINE" file="ElRegUtils.pas" line="28" />
+    <element value="4" name="rrtHKEY_USERS" file="ElRegUtils.pas" line="28" />
+    <element value="5" name="rrtHKEY_CURRENT_CONFIG" file="ElRegUtils.pas" line="28" />
+  </enum>
+  <set name="TRegRoots" type="TRegRootType">
+    <element name="rrtUnknown" />
+    <element name="rrtHKEY_CLASSES_ROOT" />
+    <element name="rrtHKEY_CURRENT_USER" />
+    <element name="rrtHKEY_LOCAL_MACHINE" />
+    <element name="rrtHKEY_USERS" />
+    <element name="rrtHKEY_CURRENT_CONFIG" />
+  </set>
+  <function name="GetLastRegError" visibility="public" file="ElRegUtils.pas" line="92">
+    <parameters>
+      <retval type="string" />
+    </parameters>
+  </function>
+  <function name="IsValidKeyName" visibility="public" file="ElRegUtils.pas" line="131">
+    <parameters>
+      <parameter name="Name" type="string" />
+      <retval type="Boolean" />
+    </parameters>
+  </function>
+  <function name="KeyClear" visibility="public" file="ElRegUtils.pas" line="167">
+    <parameters>
+      <parameter name="ComputerName" type="string" paramflags="const" />
+      <parameter name="RT" type="TRegRootType" />
+      <parameter name="KeyName" type="string" paramflags="const" />
+      <retval type="Boolean" />
+    </parameters>
+  </function>
+  <function name="KeyHasValue" visibility="public" file="ElRegUtils.pas" line="191">
+    <parameters>
+      <parameter name="ComputerName" type="string" paramflags="const" />
+      <parameter name="RT" type="TRegRootType" />
+      <parameter name="KeyName" type="string" paramflags="const" />
+      <parameter name="ValueName" type="string" paramflags="const" />
+      <parameter name="Exists" type="Boolean" paramflags="var" />
+      <retval type="Boolean" />
+    </parameters>
+  </function>
+  <function name="KeyRenameValue" visibility="public" file="ElRegUtils.pas" line="224">
+    <parameters>
+      <parameter name="ComputerName" type="string" paramflags="const" />
+      <parameter name="RT" type="TRegRootType" />
+      <parameter name="KeyName" type="string" paramflags="const" />
+      <parameter name="ValueName" type="string" paramflags="const" />
+      <parameter name="NewName" type="string" paramflags="const" />
+      <retval type="Boolean" />
+    </parameters>
+  </function>
+  <function name="KeyDeleteValue" visibility="public" file="ElRegUtils.pas" line="302">
+    <parameters>
+      <parameter name="ComputerName" type="string" paramflags="const" />
+      <parameter name="RT" type="TRegRootType" />
+      <parameter name="KeyName" type="string" paramflags="const" />
+      <parameter name="ValueName" type="string" paramflags="const" />
+      <retval type="Boolean" />
+    </parameters>
+  </function>
+  <function name="KeySetValue" visibility="public" file="ElRegUtils.pas" line="341">
+    <parameters>
+      <parameter name="ComputerName" type="string" paramflags="const" />
+      <parameter name="RT" type="TRegRootType" />
+      <parameter name="KeyName" type="string" paramflags="const" />
+      <parameter name="ValueName" type="string" paramflags="const" />
+      <parameter name="ValueType" type="Integer" />
+      <parameter name="Value" type="Pointer" />
+      <parameter name="ValueSize" type="Integer" />
+      <retval type="Boolean" />
+    </parameters>
+  </function>
+  <function name="KeyCreateSubKey" visibility="public" file="ElRegUtils.pas" line="378">
+    <parameters>
+      <parameter name="ComputerName" type="string" paramflags="const" />
+      <parameter name="RT" type="TRegRootType" />
+      <parameter name="KeyName" type="string" paramflags="const" />
+      <parameter name="SubKeyName" type="string" paramflags="const" />
+      <parameter name="NewClassName" type="string" paramflags="const" />
+      <retval type="Boolean" />
+    </parameters>
+  </function>
+  <function name="KeyDelete" visibility="public" file="ElRegUtils.pas" line="420">
+    <parameters>
+      <parameter name="ComputerName" type="string" paramflags="const" />
+      <parameter name="RT" type="TRegRootType" />
+      <parameter name="KeyName" type="string" paramflags="const" />
+      <retval type="Boolean" />
+    </parameters>
+  </function>
+  <function name="CopyKey" visibility="public" file="ElRegUtils.pas" line="470">
+    <parameters>
+      <parameter name="OldComputerName" type="string" paramflags="const" />
+      <parameter name="NewComputerName" type="string" paramflags="const" />
+      <parameter name="OldRT" type="TRegRootType" />
+      <parameter name="NewRT" type="TRegRootType" />
+      <parameter name="OldKeyName" type="string" paramflags="const" />
+      <parameter name="NewKeyName" type="string" paramflags="const" />
+      <retval type="Boolean" />
+    </parameters>
+  </function>
+  <function name="KeyGetClassName" visibility="public" file="ElRegUtils.pas" line="599">
+    <parameters>
+      <parameter name="ComputerName" type="string" paramflags="const" />
+      <parameter name="RT" type="TRegRootType" />
+      <parameter name="KeyName" type="string" paramflags="const" />
+      <parameter name="ClassName" type="string" paramflags="var" />
+      <retval type="Boolean" />
+    </parameters>
+  </function>
+  <function name="KeyEnumValues" visibility="public" file="ElRegUtils.pas" line="644">
+    <parameters>
+      <parameter name="ComputerName" type="string" paramflags="const" />
+      <parameter name="RT" type="TRegRootType" />
+      <parameter name="KeyName" type="string" paramflags="const" />
+      <parameter name="SL" type="TStringList" />
+      <retval type="Boolean" />
+    </parameters>
+  </function>
+  <function name="KeyGetValueInfo" visibility="public" file="ElRegUtils.pas" line="695">
+    <parameters>
+      <parameter name="ComputerName" type="string" paramflags="const" />
+      <parameter name="RT" type="TRegRootType" />
+      <parameter name="KeyName" type="string" paramflags="const" />
+      <parameter name="ValueName" type="string" paramflags="const" />
+      <parameter name="ValueType" type="Integer" paramflags="var" />
+      <parameter name="ValueString" type="string" paramflags="var" />
+      <parameter name="ValueSize" type="Integer" paramflags="var" />
+      <retval type="Boolean" />
+    </parameters>
+  </function>
+  <function name="KeyEnumSubKeys" visibility="public" file="ElRegUtils.pas" line="760">
+    <parameters>
+      <parameter name="ComputerName" type="string" paramflags="const" />
+      <parameter name="RT" type="TRegRootType" />
+      <parameter name="KeyName" type="string" paramflags="const" />
+      <parameter name="SL" type="TStringList" />
+      <retval type="Boolean" />
+    </parameters>
+  </function>
+  <function name="KeyHasSubKeys" visibility="public" file="ElRegUtils.pas" line="817">
+    <parameters>
+      <parameter name="ComputerName" type="string" paramflags="const" />
+      <parameter name="RT" type="TRegRootType" />
+      <parameter name="KeyName" type="string" paramflags="const" />
+      <retval type="Boolean" />
+    </parameters>
+  </function>
+  <function name="NameToRootType" visibility="public" file="ElRegUtils.pas" line="848">
+    <parameters>
+      <parameter name="Name" type="string" paramflags="const" />
+      <retval type="TRegRootType" />
+    </parameters>
+  </function>
+  <function name="RootTypeName" visibility="public" file="ElRegUtils.pas" line="864">
+    <parameters>
+      <parameter name="RT" type="TRegRootType" />
+      <retval type="string" />
+    </parameters>
+  </function>
+  <function name="RootTypeShortName" visibility="public" file="ElRegUtils.pas" line="877">
+    <parameters>
+      <parameter name="RT" type="TRegRootType" />
+      <retval type="string" />
+    </parameters>
+  </function>
+  <function name="ValueTypeToString" visibility="public" file="ElRegUtils.pas" line="892">
+    <parameters>
+      <parameter name="VT" type="Integer" />
+      <retval type="string" />
+    </parameters>
+  </function>
+  <function name="RootTypeToHandle" visibility="public" file="ElRegUtils.pas" line="909">
+    <parameters>
+      <parameter name="RT" type="TRegRootType" />
+      <retval type="HKEY" />
+    </parameters>
+  </function>
+  <function name="KeyHasSubKeys0" visibility="public" file="ElRegUtils.pas" line="922">
+    <parameters>
+      <parameter name="Key" type="HKEY" />
+      <parameter name="KeyName" type="string" paramflags="const" />
+      <retval type="Boolean" />
+    </parameters>
+  </function>
+  <function name="KeyEnumSubKeys0" visibility="public" file="ElRegUtils.pas" line="945">
+    <parameters>
+      <parameter name="Key" type="HKEY" />
+      <parameter name="KeyName" type="string" paramflags="const" />
+      <parameter name="SL" type="TStringList" />
+      <retval type="Boolean" />
+    </parameters>
+  </function>
+  <function name="OpenRegKey" visibility="public" file="ElRegUtils.pas" line="997">
+    <parameters>
+      <parameter name="ComputerName" type="string" paramflags="const" />
+      <parameter name="RT" type="TRegRootType" />
+      <parameter name="KeyName" type="string" paramflags="const" />
+      <parameter name="KeyRes" type="HKEY" paramflags="var" />
+      <retval type="Boolean" />
+    </parameters>
+  </function>
+</namespace>

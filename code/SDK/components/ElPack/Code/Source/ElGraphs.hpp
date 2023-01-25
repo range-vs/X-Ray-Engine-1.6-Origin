@@ -1,8 +1,8 @@
 ﻿// CodeGear C++Builder
-// Copyright (c) 1995, 2022 by Embarcadero Technologies, Inc.
+// Copyright (c) 1995, 2020 by Embarcadero Technologies, Inc.
 // All rights reserved
 
-// (DO NOT EDIT: machine generated header) 'ElGraphs.pas' rev: 35.00 (Windows)
+// (DO NOT EDIT: machine generated header) 'ElGraphs.pas' rev: 34.00 (Windows)
 
 #ifndef ElgraphsHPP
 #define ElgraphsHPP
@@ -39,6 +39,7 @@ namespace Elgraphs
 class DELPHICLASS TDataEntry;
 class DELPHICLASS TElGraph;
 //-- type declarations -------------------------------------------------------
+#pragma pack(push,4)
 class PASCALIMPLEMENTATION TDataEntry : public System::TObject
 {
 	typedef System::TObject inherited;
@@ -86,6 +87,7 @@ public:
 	__property int Faults = {read=FFaults, nodefault};
 };
 
+#pragma pack(pop)
 
 class PASCALIMPLEMENTATION TElGraph : public Elcgcontrol::TElCustomGraphicControl
 {

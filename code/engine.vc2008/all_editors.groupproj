@@ -30,9 +30,6 @@
         <Projects Include="editors\ShaderEditor\ShaderEditor.cbproj">
             <Dependencies/>
         </Projects>
-        <Projects Include="editors\DebugProject\debug_project.cbproj">
-            <Dependencies/>
-        </Projects>
         <Projects Include="editors\libvorbis\libogg_static_b.cbproj">
             <Dependencies/>
         </Projects>
@@ -49,6 +46,15 @@
             <Dependencies/>
         </Projects>
         <Projects Include="editors\dxerr\dxerr_b.cbproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="editors\DebugProject\debug_project.cbproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="editors\DebugProject\debug_project_delphi.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="editors\DebugProject\debug_project_dll.cbproj">
             <Dependencies/>
         </Projects>
     </ItemGroup>
@@ -140,15 +146,6 @@
     <Target Name="ShaderEditor:Make">
         <MSBuild Projects="editors\ShaderEditor\ShaderEditor.cbproj" Targets="Make"/>
     </Target>
-    <Target Name="debug_project">
-        <MSBuild Projects="editors\DebugProject\debug_project.cbproj"/>
-    </Target>
-    <Target Name="debug_project:Clean">
-        <MSBuild Projects="editors\DebugProject\debug_project.cbproj" Targets="Clean"/>
-    </Target>
-    <Target Name="debug_project:Make">
-        <MSBuild Projects="editors\DebugProject\debug_project.cbproj" Targets="Make"/>
-    </Target>
     <Target Name="libogg_static_b">
         <MSBuild Projects="editors\libvorbis\libogg_static_b.cbproj"/>
     </Target>
@@ -203,14 +200,41 @@
     <Target Name="dxerr_b:Make">
         <MSBuild Projects="editors\dxerr\dxerr_b.cbproj" Targets="Make"/>
     </Target>
+    <Target Name="debug_project">
+        <MSBuild Projects="editors\DebugProject\debug_project.cbproj"/>
+    </Target>
+    <Target Name="debug_project:Clean">
+        <MSBuild Projects="editors\DebugProject\debug_project.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="debug_project:Make">
+        <MSBuild Projects="editors\DebugProject\debug_project.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="debug_project_delphi">
+        <MSBuild Projects="editors\DebugProject\debug_project_delphi.dproj"/>
+    </Target>
+    <Target Name="debug_project_delphi:Clean">
+        <MSBuild Projects="editors\DebugProject\debug_project_delphi.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="debug_project_delphi:Make">
+        <MSBuild Projects="editors\DebugProject\debug_project_delphi.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="debug_project_dll">
+        <MSBuild Projects="editors\DebugProject\debug_project_dll.cbproj"/>
+    </Target>
+    <Target Name="debug_project_dll:Clean">
+        <MSBuild Projects="editors\DebugProject\debug_project_dll.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="debug_project_dll:Make">
+        <MSBuild Projects="editors\DebugProject\debug_project_dll.cbproj" Targets="Make"/>
+    </Target>
     <Target Name="Build">
-        <CallTarget Targets="xrCoreB;xrSoundB;xrParticlesB;xrEPropsB;xrECoreB;ActorEditor;LevelEditor;ParticleEditor;ShaderEditor;debug_project;libogg_static_b;libtheora_static_b;libvorbis_static_b;libvorbisfile_static_b;lzo_b;dxerr_b"/>
+        <CallTarget Targets="xrCoreB;xrSoundB;xrParticlesB;xrEPropsB;xrECoreB;ActorEditor;LevelEditor;ParticleEditor;ShaderEditor;libogg_static_b;libtheora_static_b;libvorbis_static_b;libvorbisfile_static_b;lzo_b;dxerr_b;debug_project;debug_project_delphi;debug_project_dll"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="xrCoreB:Clean;xrSoundB:Clean;xrParticlesB:Clean;xrEPropsB:Clean;xrECoreB:Clean;ActorEditor:Clean;LevelEditor:Clean;ParticleEditor:Clean;ShaderEditor:Clean;debug_project:Clean;libogg_static_b:Clean;libtheora_static_b:Clean;libvorbis_static_b:Clean;libvorbisfile_static_b:Clean;lzo_b:Clean;dxerr_b:Clean"/>
+        <CallTarget Targets="xrCoreB:Clean;xrSoundB:Clean;xrParticlesB:Clean;xrEPropsB:Clean;xrECoreB:Clean;ActorEditor:Clean;LevelEditor:Clean;ParticleEditor:Clean;ShaderEditor:Clean;libogg_static_b:Clean;libtheora_static_b:Clean;libvorbis_static_b:Clean;libvorbisfile_static_b:Clean;lzo_b:Clean;dxerr_b:Clean;debug_project:Clean;debug_project_delphi:Clean;debug_project_dll:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="xrCoreB:Make;xrSoundB:Make;xrParticlesB:Make;xrEPropsB:Make;xrECoreB:Make;ActorEditor:Make;LevelEditor:Make;ParticleEditor:Make;ShaderEditor:Make;debug_project:Make;libogg_static_b:Make;libtheora_static_b:Make;libvorbis_static_b:Make;libvorbisfile_static_b:Make;lzo_b:Make;dxerr_b:Make"/>
+        <CallTarget Targets="xrCoreB:Make;xrSoundB:Make;xrParticlesB:Make;xrEPropsB:Make;xrECoreB:Make;ActorEditor:Make;LevelEditor:Make;ParticleEditor:Make;ShaderEditor:Make;libogg_static_b:Make;libtheora_static_b:Make;libvorbis_static_b:Make;libvorbisfile_static_b:Make;lzo_b:Make;dxerr_b:Make;debug_project:Make;debug_project_delphi:Make;debug_project_dll:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>

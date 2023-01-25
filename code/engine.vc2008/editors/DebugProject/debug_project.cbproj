@@ -7,9 +7,8 @@
         <MainSource>debug_project.cpp</MainSource>
         <Base>True</Base>
         <Config Condition="'$(Config)'==''">Debug</Config>
-        <Platform Condition="'$(Platform)'==''">Win32</Platform>
-        <TargetedPlatforms>3</TargetedPlatforms>
-        <CC_Suffix Condition="'$(CC_Suffix)'==''">c</CC_Suffix>
+        <Platform Condition="'$(Platform)'==''">Win64</Platform>
+        <TargetedPlatforms>2</TargetedPlatforms>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Config)'=='Base' or '$(Base)'!=''">
         <Base>true</Base>
@@ -59,14 +58,10 @@
         <Base>true</Base>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base)'!=''">
-        <BCC_DataAlignment>DWord</BCC_DataAlignment>
         <BCC_CallingConvention>stdcall</BCC_CallingConvention>
         <Manifest_File>$(BDS)\bin\default_app.manifest</Manifest_File>
         <DCC_Namespace>System;Xml;Data;Datasnap;Web;Soap;Vcl;Vcl.Imaging;Vcl.Touch;Vcl.Samples;Vcl.Shell;$(DCC_Namespace)</DCC_Namespace>
         <SanitizedProjectName>debug_project</SanitizedProjectName>
-        <AllPackageLibs>rtl.lib;vcl.lib;editorB.lib;xmlrtl.lib;vclactnband.lib;vclx.lib;vclimg.lib</AllPackageLibs>
-        <ILINK_LibraryPath>..\..\..\SDK\sources\stackwalker\;..\Include\;..\ActorEditor\;..\Ecore\editor\;..\..\xrEngine\;..\..\xrCDB\;..\..\Layers\xrRender\;..\..\..\SDK\sources\libogg-1.1.4\src;..\..\..\sdk\components\ElPack\Code;..\..;..\..\Layers\xrRender;$(BDS)\lib;..\..\..\SDK\components\AlexMX;..\..\..\SDK\components\libraries\$(Platform)\$(Config);..\..\..\..\libraries\$(Platform)\$(Config);..\..\..\SDK\components\bins\$(Platform)\$(Config);$(ILINK_LibraryPath)</ILINK_LibraryPath>
-        <IncludePath>..\..\..\SDK\sources\stackwalker\;..\Include\;..\ActorEditor\;..\Ecore\editor\;..\..\xrEngine\;..\..\xrCDB\;..\..\Layers\xrRender\;..\xrEProps\;$(IncludePath)</IncludePath>
         <VerInfo_Locale>1049</VerInfo_Locale>
         <Multithreaded>true</Multithreaded>
         <_TCHARMapping>char</_TCHARMapping>
@@ -74,17 +69,19 @@
         <ProjectType>CppVCLApplication</ProjectType>
         <DCC_CBuilderOutput>JPHNE</DCC_CBuilderOutput>
         <DynamicRTL>true</DynamicRTL>
-        <UsePackages>true</UsePackages>
-        <IntermediateOutputDir>.\$(Platform)\$(Config)</IntermediateOutputDir>
+        <IntermediateOutputDir>..\..\..\..\intermedia\debug_project\$(Platform)\$(Config)</IntermediateOutputDir>
         <FinalOutputDir>..\..\..\..\bins\$(Platform)\$(Config)</FinalOutputDir>
         <BCC_wpar>false</BCC_wpar>
         <BCC_OptimizeForSpeed>true</BCC_OptimizeForSpeed>
         <BCC_ExtendedErrorInfo>true</BCC_ExtendedErrorInfo>
         <ILINK_TranslatedLibraryPath>$(BDSLIB)\$(PLATFORM)\release\$(LANGDIR);$(ILINK_TranslatedLibraryPath)</ILINK_TranslatedLibraryPath>
         <BCC_IncludePath>.\;..\..\..\SDK\sources\libogg-1.1.4\src;..\..;..\..\Layers\xrRender;$(BDS)\include;..\..\xrEngine;..\..\xrCPU_Pipe;..\..\xrCore;..\..\..\SDK\components\ElPack\Code\Source;..\..\..\SDK\components\AlexMX;..\..\xrServerEntities;..\ActorEditor\;$(BCC_IncludePath)</BCC_IncludePath>
+        <UsePackages>true</UsePackages>
         <BCC_Defines>_EDITOR;_ACTOR_EDITOR;$(BCC_Defines)</BCC_Defines>
+        <AllPackageLibs>vcl.lib;rtl.lib</AllPackageLibs>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win32)'!=''">
+        <BCC_DataAlignment>DWord</BCC_DataAlignment>
         <DCC_Namespace>Winapi;System.Win;Data.Win;Datasnap.Win;Web.Win;Soap.Win;Xml.Win;Bde;$(DCC_Namespace)</DCC_Namespace>
         <VerInfo_Locale>1033</VerInfo_Locale>
         <IncludePath>$(BDSINCLUDE)\windows\vcl;$(IncludePath)</IncludePath>
@@ -133,19 +130,16 @@
         <VerInfo_Locale>1033</VerInfo_Locale>
         <ILINK_LibraryPath>..\..\..\SDK\components\bins\Win32\Debug\;$(BDSLIB)\$(PLATFORM)$(CC_SUFFIX)\debug;$(ILINK_LibraryPath)</ILINK_LibraryPath>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
-        <LinkPackageImports>rtl.bpi;vcl.bpi;editorB.bpi;xmlrtl.bpi;vclactnband.bpi;vclx.bpi;vclimg.bpi</LinkPackageImports>
         <BT_BuildType>Debug</BT_BuildType>
         <VerInfo_Keys>CompanyName=;FileVersion=1.0.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductVersion=1.0.0.0;Comments=;ProgramID=com.embarcadero.$(MSBuildProjectName);FileDescription=$(MSBuildProjectName);ProductName=$(MSBuildProjectName)</VerInfo_Keys>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1_Win64)'!=''">
-        <ILINK_LibraryPath>$(BDS)\lib\win64\release\;$(ILINK_LibraryPath)</ILINK_LibraryPath>
-        <AppEnableRuntimeThemes>true</AppEnableRuntimeThemes>
         <AppDPIAwarenessMode>PerMonitorV2</AppDPIAwarenessMode>
-        <LinkPackageImports>rtl.bpi;vcl.bpi;xmlrtl.bpi;vclactnband.bpi;vclx.bpi;vclimg.bpi</LinkPackageImports>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
         <VerInfo_Locale>1033</VerInfo_Locale>
+        <UsePackages>true</UsePackages>
         <VerInfo_Keys>CompanyName=;FileDescription=$(MSBuildProjectName);FileVersion=1.0.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProgramID=com.embarcadero.$(MSBuildProjectName);ProductName=$(MSBuildProjectName);ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
-        <LinkPackageStatics>editorB.lib</LinkPackageStatics>
+        <LinkPackageImports>vcl.bpi;rtl.bpi</LinkPackageImports>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2)'!=''">
         <Defines>NDEBUG;$(Defines)</Defines>
@@ -153,12 +147,10 @@
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2_Win32)'!=''">
         <BT_BuildType>Debug</BT_BuildType>
-        <LinkPackageImports>rtl.bpi;vcl.bpi;editorB.bpi;xmlrtl.bpi;vclactnband.bpi;vclx.bpi;vclimg.bpi</LinkPackageImports>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2_Win64)'!=''">
         <AppEnableRuntimeThemes>true</AppEnableRuntimeThemes>
         <AppDPIAwarenessMode>PerMonitorV2</AppDPIAwarenessMode>
-        <LinkPackageImports>rtl.bpi;vcl.bpi;editorB.bpi;xmlrtl.bpi;vclactnband.bpi;vclx.bpi;vclimg.bpi</LinkPackageImports>
         <BCC_SourceDebuggingOn>true</BCC_SourceDebuggingOn>
         <ILINK_FullDebugInfo>true</ILINK_FullDebugInfo>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
@@ -169,16 +161,8 @@
         <CppCompile Include="debug_project.cpp">
             <BuildOrder>0</BuildOrder>
         </CppCompile>
-        <None Include="Profiling\AQtimeModule1.aqt"/>
         <CppCompile Include="stdafx.cpp">
             <DependentOn>stdafx.h</DependentOn>
-            <BuildOrder>4</BuildOrder>
-        </CppCompile>
-        <None Include="..\Include\stack_trace.cpp">
-            <Exclude>True</Exclude>
-            <BuildOrder>2</BuildOrder>
-        </None>
-        <CppCompile Include="..\..\..\SDK\sources\stackwalker\StackWalker.cpp">
             <BuildOrder>4</BuildOrder>
         </CppCompile>
         <BuildConfiguration Include="Base">
@@ -205,11 +189,10 @@
                     <ProjectProperties Name="IndexFiles">False</ProjectProperties>
                 </ProjectProperties>
                 <Excluded_Packages>
-                    <Excluded_Packages Name="$(BDSBIN)\dclDataSnapNativeServer270.bpl">Embarcadero DBExpress DataSnap Native Server Components</Excluded_Packages>
-                    <Excluded_Packages Name="$(BDSBIN)\bcboffice2k270.bpl">Embarcadero C++Builder Office 2000 Servers Package</Excluded_Packages>
-                    <Excluded_Packages Name="$(BDSBIN)\bcbofficexp270.bpl">Embarcadero C++Builder Office XP Servers Package</Excluded_Packages>
-                    <Excluded_Packages Name="$(BDSBIN)\dcloffice2k270.bpl">Microsoft Office 2000 Sample Automation Server Wrapper Components</Excluded_Packages>
-                    <Excluded_Packages Name="$(BDSBIN)\dclofficexp270.bpl">Microsoft Office XP Sample Automation Server Wrapper Components</Excluded_Packages>
+                    <Excluded_Packages Name="$(BDSBIN)\bcboffice2k280.bpl">Embarcadero C++Builder Office 2000 Servers Package</Excluded_Packages>
+                    <Excluded_Packages Name="$(BDSBIN)\bcbofficexp280.bpl">Embarcadero C++Builder Office XP Servers Package</Excluded_Packages>
+                    <Excluded_Packages Name="$(BDSBIN)\dcloffice2k280.bpl">Microsoft Office 2000 Sample Automation Server Wrapper Components</Excluded_Packages>
+                    <Excluded_Packages Name="$(BDSBIN)\dclofficexp280.bpl">Microsoft Office XP Sample Automation Server Wrapper Components</Excluded_Packages>
                 </Excluded_Packages>
                 <Source>
                     <Source Name="MainSource">debug_project.cpp</Source>
@@ -285,9 +268,27 @@
                 <DeployFile Condition="'$(DynamicRTL)'=='true'" LocalName="$(BDS)\Redist\osx64\libcgcrtl.dylib" Class="DependencyModule"/>
                 <DeployFile Condition="'$(DynamicRTL)'=='true'" LocalName="$(BDS)\Redist\osx64\libcgstl.dylib" Class="DependencyModule"/>
                 <DeployFile LocalName="..\..\..\..\bins\Win32\Debug\debug_project.exe" Configuration="Debug" Class="ProjectOutput"/>
+                <DeployFile LocalName="..\..\..\..\bins\Win32\Debug\debug_project.exe" Configuration="Debug" Class="ProjectOutput">
+                    <Platform Name="Win32">
+                        <RemoteName>debug_project.exe</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
                 <DeployFile LocalName="..\..\..\..\bins\Win64\Debug\debug_project.exe" Configuration="Debug" Class="ProjectOutput"/>
+                <DeployFile LocalName="..\..\..\..\bins\Win64\Debug\debug_project.exe" Configuration="Debug" Class="ProjectOutput">
+                    <Platform Name="Win64">
+                        <RemoteName>debug_project.exe</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
                 <DeployFile LocalName="..\..\..\..\bins\Win64\Release\debug_project.exe" Configuration="Release" Class="ProjectOutput"/>
                 <DeployFile LocalName="Profiling\AQtimeModule1.aqt" Configuration="Debug" Class="ProjectFile"/>
+                <DeployFile LocalName="Profiling\AQtimeModule1.aqt" Configuration="Debug" Class="ProjectFile">
+                    <Platform Name="Win32">
+                        <RemoteDir>.\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
                 <DeployClass Name="AdditionalDebugSymbols">
                     <Platform Name="iOSSimulator">
                         <Operation>1</Operation>
@@ -1114,7 +1115,7 @@
                 <ProjectRoot Platform="Win64" Name="$(PROJECTNAME)"/>
             </Deployment>
             <Platforms>
-                <Platform value="Win32">True</Platform>
+                <Platform value="Win32">False</Platform>
                 <Platform value="Win64">True</Platform>
             </Platforms>
         </BorlandProject>

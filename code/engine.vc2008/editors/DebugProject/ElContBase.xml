@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<namespace name="ElContBase" platform="Win64">
+  <const name="MaxListSize" type="Integer" file="ElContBase.pas" line="26">
+    <value>
+      $7FFFFFF
+    </value>
+  </const>
+  <pointer name="PPointerList" type="TPointerList" indircnt="1" file="ElContBase.pas" line="28" />
+  <array name="TPointerList" low="0" high="134217726">
+    <element type="Pointer" />
+  </array>
+</namespace>

@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<namespace name="ElCBFmts" platform="Win64">
+  <function name="HasFormat" visibility="public" file="ElCBFmts.pas" line="42">
+    <parameters>
+      <parameter name="Handle" type="NativeUInt" />
+      <parameter name="Index" type="Integer" />
+      <retval type="Boolean" />
+    </parameters>
+  </function>
+  <function name="GetFormatName" visibility="public" file="ElCBFmts.pas" line="64">
+    <parameters>
+      <parameter name="AFormat" type="Integer" />
+      <retval type="string" />
+    </parameters>
+  </function>
+  <function name="GetFormatIndex" visibility="public" file="ElCBFmts.pas" line="80">
+    <parameters>
+      <parameter name="FormatName" type="string" />
+      <retval type="Integer" />
+    </parameters>
+  </function>
+</namespace>

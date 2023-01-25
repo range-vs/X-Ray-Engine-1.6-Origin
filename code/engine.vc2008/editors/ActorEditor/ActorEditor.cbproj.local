@@ -1,12 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <BorlandProject>
 	<ProjectSortOrder AutoSort="0" SortType="0">
-    <File Path="..\..\editors"/>
-    <File Path="..\Ecore"/>
-    <File Path="..\Ecore\editor"/>
-    <File Path="..\Ecore\editor\PhysicsShellHolderEditorBase.cpp"/>
-    <File Path="..\Include"/>
-    <File Path="..\Include\stack_trace.cpp"/>
     <File Path="..\..\..\engine.vc2008"/>
     <File Path="..\..\Layers"/>
     <File Path="..\..\Layers\xrRender"/>
@@ -33,15 +27,12 @@
     <File Path="..\..\xrEngine\SkeletonMotions.cpp"/>
     <File Path="..\..\xrEngine\SkeletonMotions.cpp"/>
     <File Path="..\..\xrEngine\SkeletonMotions.h"/>
-    <File Path="ActorEditor.cpp"/>
-    <File Path="BonePart.cpp"/>
-    <File Path="BonePart.cpp"/>
-    <File Path="BonePart.dfm"/>
-    <File Path="BonePart.h"/>
-    <File Path="BottomBar.cpp"/>
-    <File Path="BottomBar.cpp"/>
-    <File Path="BottomBar.dfm"/>
-    <File Path="BottomBar.h"/>
+    <File Path="..\..\editors"/>
+    <File Path="..\Ecore"/>
+    <File Path="..\Ecore\editor"/>
+    <File Path="..\Ecore\editor\PhysicsShellHolderEditorBase.cpp"/>
+    <File Path="..\Include"/>
+    <File Path="..\Include\stack_trace.cpp"/>
     <File Path="KeyBar.cpp"/>
     <File Path="KeyBar.cpp"/>
     <File Path="KeyBar.dfm"/>
@@ -58,6 +49,19 @@
     <File Path="Splash.cpp"/>
     <File Path="Splash.dfm"/>
     <File Path="Splash.h"/>
+    <File Path="ActorEditor.cpp"/>
+    <File Path="BonePart.cpp"/>
+    <File Path="BonePart.cpp"/>
+    <File Path="BonePart.dfm"/>
+    <File Path="BonePart.h"/>
+    <File Path="BottomBar.cpp"/>
+    <File Path="BottomBar.cpp"/>
+    <File Path="BottomBar.dfm"/>
+    <File Path="BottomBar.h"/>
+    <File Path="UI_ActorTools.cpp"/>
+    <File Path="UI_ActorToolsMotions.cpp"/>
+    <File Path="UI_ActorToolsProps.cpp"/>
+    <File Path="UI_ActorToolsUndo.cpp"/>
     <File Path="stdafx.cpp"/>
     <File Path="stdafx.h"/>
     <File Path="TopBar.cpp"/>
@@ -65,9 +69,5 @@
     <File Path="TopBar.dfm"/>
     <File Path="TopBar.h"/>
     <File Path="UI_ActorMain.cpp"/>
-    <File Path="UI_ActorTools.cpp"/>
-    <File Path="UI_ActorToolsMotions.cpp"/>
-    <File Path="UI_ActorToolsProps.cpp"/>
-    <File Path="UI_ActorToolsUndo.cpp"/>
   </ProjectSortOrder>
 </BorlandProject>

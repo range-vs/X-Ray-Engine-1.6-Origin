@@ -394,7 +394,7 @@ const
 begin
   Result := ReplaceStr(FloatToStrF(GetFloatProp(FObject, PropInfo), ffGeneral,
     Precisions[GetTypeData(GetPropType(PropInfo))^.FloatType], 0),
-    {$IFDEF RX_D15}FormatSettings.{$ENDIF}FormatSettings.DecimalSeparator, '.');
+    FormatSettings.DecimalSeparator, '.');
 end;
 
 function TPropsStorage.StoreStringProperty(PropInfo: PPropInfo): string;

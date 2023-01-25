@@ -1,8 +1,8 @@
 ﻿// CodeGear C++Builder
-// Copyright (c) 1995, 2022 by Embarcadero Technologies, Inc.
+// Copyright (c) 1995, 2020 by Embarcadero Technologies, Inc.
 // All rights reserved
 
-// (DO NOT EDIT: machine generated header) 'ElCheckItemGrp.pas' rev: 35.00 (Windows)
+// (DO NOT EDIT: machine generated header) 'ElCheckItemGrp.pas' rev: 34.00 (Windows)
 
 #ifndef ElcheckitemgrpHPP
 #define ElcheckitemgrpHPP
@@ -50,7 +50,7 @@ class DELPHICLASS TElRadioGroup;
 class DELPHICLASS TCustomElCheckGroup;
 class DELPHICLASS TElCheckGroup;
 //-- type declarations -------------------------------------------------------
-_DECLARE_METACLASS(System::TMetaClass, TElCheckItemClass);
+typedef System::TMetaClass* TElCheckItemClass;
 
 class PASCALIMPLEMENTATION TElCheckItemGroup : public Elgroupbox::TCustomElGroupBox
 {

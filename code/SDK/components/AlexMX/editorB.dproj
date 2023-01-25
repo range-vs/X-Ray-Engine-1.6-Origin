@@ -5,8 +5,8 @@
         <ProjectVersion>19.5</ProjectVersion>
         <FrameworkType>VCL</FrameworkType>
         <Base>True</Base>
-        <Config Condition="'$(Config)'==''">Release</Config>
-        <Platform Condition="'$(Platform)'==''">Win64</Platform>
+        <Config Condition="'$(Config)'==''">Debug</Config>
+        <Platform Condition="'$(Platform)'==''">Win32</Platform>
         <TargetedPlatforms>3</TargetedPlatforms>
         <AppType>Package</AppType>
     </PropertyGroup>
@@ -58,7 +58,7 @@
         <Base>true</Base>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base)'!=''">
-        <DCC_DcuOutput>..\..\..\..\libraries\$(Platform)\$(Config)</DCC_DcuOutput>
+        <DCC_DcuOutput>..\..\..\..\..\intermedia\editorB\$(Platform)\$(Config)\</DCC_DcuOutput>
         <DCC_ExeOutput>.\$(Platform)\$(Config)</DCC_ExeOutput>
         <DCC_E>false</DCC_E>
         <DCC_N>false</DCC_N>
@@ -90,6 +90,7 @@
 copy /Y ..\..\..\..\bins\$(Platform)\$(Config)\elpkdbB6.bpl "$(BDS)\bin\elpkdbB6.bpl"
 copy /Y ..\..\..\..\bins\$(Platform)\$(Config)\elpproB6.bpl "$(BDS)\bin\elpproB6.bpl"
 copy /Y ..\..\..\..\bins\$(Platform)\$(Config)\editorB.bpl "$(BDS)\bin\editorB.bpl"
+for /R "..\..\..\..\code\SDK\components\ElPack\Code\Source\fix_headers" %%f in (*.hpp) do copy %%f "..\..\..\..\code\SDK\components\ElPack\Code\Source\"
 $(PostBuildEvent)]]></PostBuildEvent>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win64)'!=''">
@@ -104,6 +105,7 @@ $(PostBuildEvent)]]></PostBuildEvent>
 copy /Y ..\..\..\..\bins\$(Platform)\$(Config)\elpkdbB6.bpl "$(BDS)\bin64\elpkdbB6.bpl"
 copy /Y ..\..\..\..\bins\$(Platform)\$(Config)\elpproB6.bpl "$(BDS)\bin64\elpproB6.bpl"
 copy /Y ..\..\..\..\bins\$(Platform)\$(Config)\editorB.bpl "$(BDS)\bin64\editorB.bpl"
+for /R "..\..\..\..\code\SDK\components\ElPack\Code\Source\fix_headers" %%f in (*.hpp) do copy %%f "..\..\..\..\code\SDK\components\ElPack\Code\Source\"
 $(PostBuildEvent)]]></PostBuildEvent>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1)'!=''">
@@ -175,15 +177,15 @@ $(PostBuildEvent)]]></PostBuildEvent>
         <DCCReference Include="mxStrUtils.pas"/>
         <DCCReference Include="mxVclutils.pas"/>
         <DCCReference Include="RenderWindow.pas"/>
+        <BuildConfiguration Include="Release">
+            <Key>Cfg_2</Key>
+            <CfgParent>Base</CfgParent>
+        </BuildConfiguration>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>
         <BuildConfiguration Include="Debug">
             <Key>Cfg_1</Key>
-            <CfgParent>Base</CfgParent>
-        </BuildConfiguration>
-        <BuildConfiguration Include="Release">
-            <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>
         </BuildConfiguration>
     </ItemGroup>
@@ -196,10 +198,6 @@ $(PostBuildEvent)]]></PostBuildEvent>
                     <Source Name="MainSource">editorB.dpk</Source>
                 </Source>
                 <Excluded_Packages>
-                    <Excluded_Packages Name="C:\X-Ray-Engine-1.6-Origin\bins\Win32\Debug\editor.bpl">File C:\X-Ray-Engine-1.6-Origin\bins\Win32\Debug\editor.bpl not found</Excluded_Packages>
-                    <Excluded_Packages Name="C:\X-Ray-Engine-1.6-Origin\bins\Win32\Debug\dclelpB6.bpl">File C:\X-Ray-Engine-1.6-Origin\bins\Win32\Debug\dclelpB6.bpl not found</Excluded_Packages>
-                    <Excluded_Packages Name="C:\X-Ray-Engine-1.6-Origin\bins\Win32\Debug\dcelppB6.bpl">File C:\X-Ray-Engine-1.6-Origin\bins\Win32\Debug\dcelppB6.bpl not found</Excluded_Packages>
-                    <Excluded_Packages Name="$(BDSBIN)\dclDataSnapNativeServer270.bpl">Embarcadero DBExpress DataSnap Native Server Components</Excluded_Packages>
                     <Excluded_Packages Name="$(BDSBIN)\bcboffice2k270.bpl">Embarcadero C++Builder Office 2000 Servers Package</Excluded_Packages>
                     <Excluded_Packages Name="$(BDSBIN)\bcbofficexp270.bpl">Embarcadero C++Builder Office XP Servers Package</Excluded_Packages>
                     <Excluded_Packages Name="$(BDSBIN)\dcloffice2k270.bpl">Microsoft Office 2000 Sample Automation Server Wrapper Components</Excluded_Packages>
@@ -210,10 +208,10 @@ $(PostBuildEvent)]]></PostBuildEvent>
                 <Platform value="Win32">True</Platform>
                 <Platform value="Win64">True</Platform>
             </Platforms>
-            <Deployment Version="4">
+            <Deployment Version="3">
                 <DeployFile LocalName="$(BDS)\Redist\iossimulator\libcgunwind.1.0.dylib" Class="DependencyModule"/>
-                <DeployFile LocalName="$(BDS)\Redist\iossimulator\libpcre.dylib" Class="DependencyModule"/>
                 <DeployFile LocalName="$(BDS)\Redist\osx32\libcgunwind.1.0.dylib" Class="DependencyModule"/>
+                <DeployFile LocalName="$(BDS)\Redist\iossimulator\libpcre.dylib" Class="DependencyModule"/>
                 <DeployFile LocalName="..\bins\Win32\Debug\editorB.bpl" Configuration="Debug" Class="ProjectOutput"/>
                 <DeployFile LocalName="..\bins\Win64\Release\editorB.bpl" Configuration="Release" Class="ProjectOutput"/>
                 <DeployClass Name="AdditionalDebugSymbols">
@@ -232,6 +230,16 @@ $(PostBuildEvent)]]></PostBuildEvent>
                     <Platform Name="Android64">
                         <RemoteDir>classes</RemoteDir>
                         <Operation>64</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="AndroidClassesDexFile">
+                    <Platform Name="Android">
+                        <RemoteDir>classes</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="Android64">
+                        <RemoteDir>classes</RemoteDir>
+                        <Operation>1</Operation>
                     </Platform>
                 </DeployClass>
                 <DeployClass Name="AndroidFileProvider">
@@ -522,10 +530,6 @@ $(PostBuildEvent)]]></PostBuildEvent>
                         <Operation>1</Operation>
                         <Extensions>.framework</Extensions>
                     </Platform>
-                    <Platform Name="OSXARM64">
-                        <Operation>1</Operation>
-                        <Extensions>.framework</Extensions>
-                    </Platform>
                     <Platform Name="Win32">
                         <Operation>0</Operation>
                     </Platform>
@@ -536,10 +540,6 @@ $(PostBuildEvent)]]></PostBuildEvent>
                         <Extensions>.dylib</Extensions>
                     </Platform>
                     <Platform Name="OSX64">
-                        <Operation>1</Operation>
-                        <Extensions>.dylib</Extensions>
-                    </Platform>
-                    <Platform Name="OSXARM64">
                         <Operation>1</Operation>
                         <Extensions>.dylib</Extensions>
                     </Platform>
@@ -557,7 +557,7 @@ $(PostBuildEvent)]]></PostBuildEvent>
                         <Operation>1</Operation>
                         <Extensions>.dylib</Extensions>
                     </Platform>
-                    <Platform Name="iOSSimARM64">
+                    <Platform Name="iOSSimulator">
                         <Operation>1</Operation>
                         <Extensions>.dylib</Extensions>
                     </Platform>
@@ -566,10 +566,6 @@ $(PostBuildEvent)]]></PostBuildEvent>
                         <Extensions>.dylib</Extensions>
                     </Platform>
                     <Platform Name="OSX64">
-                        <Operation>1</Operation>
-                        <Extensions>.dylib</Extensions>
-                    </Platform>
-                    <Platform Name="OSXARM64">
                         <Operation>1</Operation>
                         <Extensions>.dylib</Extensions>
                     </Platform>
@@ -591,16 +587,13 @@ $(PostBuildEvent)]]></PostBuildEvent>
                     <Platform Name="iOSDevice64">
                         <Operation>0</Operation>
                     </Platform>
-                    <Platform Name="iOSSimARM64">
+                    <Platform Name="iOSSimulator">
                         <Operation>0</Operation>
                     </Platform>
                     <Platform Name="OSX32">
                         <Operation>0</Operation>
                     </Platform>
                     <Platform Name="OSX64">
-                        <Operation>0</Operation>
-                    </Platform>
-                    <Platform Name="OSXARM64">
                         <Operation>0</Operation>
                     </Platform>
                     <Platform Name="Win32">
@@ -612,17 +605,13 @@ $(PostBuildEvent)]]></PostBuildEvent>
                         <RemoteDir>..\$(PROJECTNAME).launchscreen\Assets\AppIcon.appiconset</RemoteDir>
                         <Operation>1</Operation>
                     </Platform>
-                    <Platform Name="iOSSimARM64">
-                        <RemoteDir>..\$(PROJECTNAME).launchscreen\Assets\AppIcon.appiconset</RemoteDir>
-                        <Operation>1</Operation>
-                    </Platform>
                 </DeployClass>
                 <DeployClass Name="iPad_AppIcon152">
                     <Platform Name="iOSDevice64">
                         <RemoteDir>..\$(PROJECTNAME).launchscreen\Assets\AppIcon.appiconset</RemoteDir>
                         <Operation>1</Operation>
                     </Platform>
-                    <Platform Name="iOSSimARM64">
+                    <Platform Name="iOSSimulator">
                         <RemoteDir>..\$(PROJECTNAME).launchscreen\Assets\AppIcon.appiconset</RemoteDir>
                         <Operation>1</Operation>
                     </Platform>
@@ -632,7 +621,7 @@ $(PostBuildEvent)]]></PostBuildEvent>
                         <RemoteDir>..\$(PROJECTNAME).launchscreen\Assets\AppIcon.appiconset</RemoteDir>
                         <Operation>1</Operation>
                     </Platform>
-                    <Platform Name="iOSSimARM64">
+                    <Platform Name="iOSSimulator">
                         <RemoteDir>..\$(PROJECTNAME).launchscreen\Assets\AppIcon.appiconset</RemoteDir>
                         <Operation>1</Operation>
                     </Platform>
@@ -642,7 +631,7 @@ $(PostBuildEvent)]]></PostBuildEvent>
                         <RemoteDir>..\$(PROJECTNAME).launchscreen\Assets\LaunchScreenImage.imageset</RemoteDir>
                         <Operation>1</Operation>
                     </Platform>
-                    <Platform Name="iOSSimARM64">
+                    <Platform Name="iOSSimulator">
                         <RemoteDir>..\$(PROJECTNAME).launchscreen\Assets\LaunchScreenImage.imageset</RemoteDir>
                         <Operation>1</Operation>
                     </Platform>
@@ -652,7 +641,7 @@ $(PostBuildEvent)]]></PostBuildEvent>
                         <RemoteDir>..\$(PROJECTNAME).launchscreen\Assets\LaunchScreenImage.imageset</RemoteDir>
                         <Operation>1</Operation>
                     </Platform>
-                    <Platform Name="iOSSimARM64">
+                    <Platform Name="iOSSimulator">
                         <RemoteDir>..\$(PROJECTNAME).launchscreen\Assets\LaunchScreenImage.imageset</RemoteDir>
                         <Operation>1</Operation>
                     </Platform>
@@ -662,7 +651,7 @@ $(PostBuildEvent)]]></PostBuildEvent>
                         <RemoteDir>..\$(PROJECTNAME).launchscreen\Assets\AppIcon.appiconset</RemoteDir>
                         <Operation>1</Operation>
                     </Platform>
-                    <Platform Name="iOSSimARM64">
+                    <Platform Name="iOSSimulator">
                         <RemoteDir>..\$(PROJECTNAME).launchscreen\Assets\AppIcon.appiconset</RemoteDir>
                         <Operation>1</Operation>
                     </Platform>
@@ -672,7 +661,7 @@ $(PostBuildEvent)]]></PostBuildEvent>
                         <RemoteDir>..\$(PROJECTNAME).launchscreen\Assets\AppIcon.appiconset</RemoteDir>
                         <Operation>1</Operation>
                     </Platform>
-                    <Platform Name="iOSSimARM64">
+                    <Platform Name="iOSSimulator">
                         <RemoteDir>..\$(PROJECTNAME).launchscreen\Assets\AppIcon.appiconset</RemoteDir>
                         <Operation>1</Operation>
                     </Platform>
@@ -682,7 +671,7 @@ $(PostBuildEvent)]]></PostBuildEvent>
                         <RemoteDir>..\$(PROJECTNAME).launchscreen\Assets\AppIcon.appiconset</RemoteDir>
                         <Operation>1</Operation>
                     </Platform>
-                    <Platform Name="iOSSimARM64">
+                    <Platform Name="iOSSimulator">
                         <RemoteDir>..\$(PROJECTNAME).launchscreen\Assets\AppIcon.appiconset</RemoteDir>
                         <Operation>1</Operation>
                     </Platform>
@@ -692,7 +681,7 @@ $(PostBuildEvent)]]></PostBuildEvent>
                         <RemoteDir>..\$(PROJECTNAME).launchscreen\Assets\AppIcon.appiconset</RemoteDir>
                         <Operation>1</Operation>
                     </Platform>
-                    <Platform Name="iOSSimARM64">
+                    <Platform Name="iOSSimulator">
                         <RemoteDir>..\$(PROJECTNAME).launchscreen\Assets\AppIcon.appiconset</RemoteDir>
                         <Operation>1</Operation>
                     </Platform>
@@ -702,7 +691,7 @@ $(PostBuildEvent)]]></PostBuildEvent>
                         <RemoteDir>..\$(PROJECTNAME).launchscreen\Assets\AppIcon.appiconset</RemoteDir>
                         <Operation>1</Operation>
                     </Platform>
-                    <Platform Name="iOSSimARM64">
+                    <Platform Name="iOSSimulator">
                         <RemoteDir>..\$(PROJECTNAME).launchscreen\Assets\AppIcon.appiconset</RemoteDir>
                         <Operation>1</Operation>
                     </Platform>
@@ -712,7 +701,7 @@ $(PostBuildEvent)]]></PostBuildEvent>
                         <RemoteDir>..\$(PROJECTNAME).launchscreen\Assets\LaunchScreenImage.imageset</RemoteDir>
                         <Operation>1</Operation>
                     </Platform>
-                    <Platform Name="iOSSimARM64">
+                    <Platform Name="iOSSimulator">
                         <RemoteDir>..\$(PROJECTNAME).launchscreen\Assets\LaunchScreenImage.imageset</RemoteDir>
                         <Operation>1</Operation>
                     </Platform>
@@ -722,7 +711,7 @@ $(PostBuildEvent)]]></PostBuildEvent>
                         <RemoteDir>..\$(PROJECTNAME).launchscreen\Assets\LaunchScreenImage.imageset</RemoteDir>
                         <Operation>1</Operation>
                     </Platform>
-                    <Platform Name="iOSSimARM64">
+                    <Platform Name="iOSSimulator">
                         <RemoteDir>..\$(PROJECTNAME).launchscreen\Assets\LaunchScreenImage.imageset</RemoteDir>
                         <Operation>1</Operation>
                     </Platform>
@@ -732,7 +721,7 @@ $(PostBuildEvent)]]></PostBuildEvent>
                         <RemoteDir>..\$(PROJECTNAME).launchscreen\Assets\LaunchScreenImage.imageset</RemoteDir>
                         <Operation>1</Operation>
                     </Platform>
-                    <Platform Name="iOSSimARM64">
+                    <Platform Name="iOSSimulator">
                         <RemoteDir>..\$(PROJECTNAME).launchscreen\Assets\LaunchScreenImage.imageset</RemoteDir>
                         <Operation>1</Operation>
                     </Platform>
@@ -742,7 +731,7 @@ $(PostBuildEvent)]]></PostBuildEvent>
                         <RemoteDir>..\$(PROJECTNAME).launchscreen\Assets\LaunchScreenImage.imageset</RemoteDir>
                         <Operation>1</Operation>
                     </Platform>
-                    <Platform Name="iOSSimARM64">
+                    <Platform Name="iOSSimulator">
                         <RemoteDir>..\$(PROJECTNAME).launchscreen\Assets\LaunchScreenImage.imageset</RemoteDir>
                         <Operation>1</Operation>
                     </Platform>
@@ -752,7 +741,7 @@ $(PostBuildEvent)]]></PostBuildEvent>
                         <RemoteDir>..\$(PROJECTNAME).launchscreen\Assets\AppIcon.appiconset</RemoteDir>
                         <Operation>1</Operation>
                     </Platform>
-                    <Platform Name="iOSSimARM64">
+                    <Platform Name="iOSSimulator">
                         <RemoteDir>..\$(PROJECTNAME).launchscreen\Assets\AppIcon.appiconset</RemoteDir>
                         <Operation>1</Operation>
                     </Platform>
@@ -762,7 +751,7 @@ $(PostBuildEvent)]]></PostBuildEvent>
                         <RemoteDir>..\$(PROJECTNAME).launchscreen\Assets\AppIcon.appiconset</RemoteDir>
                         <Operation>1</Operation>
                     </Platform>
-                    <Platform Name="iOSSimARM64">
+                    <Platform Name="iOSSimulator">
                         <RemoteDir>..\$(PROJECTNAME).launchscreen\Assets\AppIcon.appiconset</RemoteDir>
                         <Operation>1</Operation>
                     </Platform>
@@ -772,7 +761,7 @@ $(PostBuildEvent)]]></PostBuildEvent>
                         <RemoteDir>..\$(PROJECTNAME).launchscreen\Assets\AppIcon.appiconset</RemoteDir>
                         <Operation>1</Operation>
                     </Platform>
-                    <Platform Name="iOSSimARM64">
+                    <Platform Name="iOSSimulator">
                         <RemoteDir>..\$(PROJECTNAME).launchscreen\Assets\AppIcon.appiconset</RemoteDir>
                         <Operation>1</Operation>
                     </Platform>
@@ -782,7 +771,7 @@ $(PostBuildEvent)]]></PostBuildEvent>
                         <RemoteDir>..\$(PROJECTNAME).launchscreen\Assets\AppIcon.appiconset</RemoteDir>
                         <Operation>1</Operation>
                     </Platform>
-                    <Platform Name="iOSSimARM64">
+                    <Platform Name="iOSSimulator">
                         <RemoteDir>..\$(PROJECTNAME).launchscreen\Assets\AppIcon.appiconset</RemoteDir>
                         <Operation>1</Operation>
                     </Platform>
@@ -792,7 +781,7 @@ $(PostBuildEvent)]]></PostBuildEvent>
                         <RemoteDir>..\$(PROJECTNAME).launchscreen\Assets\AppIcon.appiconset</RemoteDir>
                         <Operation>1</Operation>
                     </Platform>
-                    <Platform Name="iOSSimARM64">
+                    <Platform Name="iOSSimulator">
                         <RemoteDir>..\$(PROJECTNAME).launchscreen\Assets\AppIcon.appiconset</RemoteDir>
                         <Operation>1</Operation>
                     </Platform>
@@ -802,7 +791,7 @@ $(PostBuildEvent)]]></PostBuildEvent>
                         <RemoteDir>..\$(PROJECTNAME).launchscreen\Assets\AppIcon.appiconset</RemoteDir>
                         <Operation>1</Operation>
                     </Platform>
-                    <Platform Name="iOSSimARM64">
+                    <Platform Name="iOSSimulator">
                         <RemoteDir>..\$(PROJECTNAME).launchscreen\Assets\AppIcon.appiconset</RemoteDir>
                         <Operation>1</Operation>
                     </Platform>
@@ -824,10 +813,6 @@ $(PostBuildEvent)]]></PostBuildEvent>
                         <RemoteDir>..\$(PROJECTNAME).app.dSYM\Contents\Resources\DWARF</RemoteDir>
                         <Operation>1</Operation>
                     </Platform>
-                    <Platform Name="iOSSimARM64">
-                        <RemoteDir>..\$(PROJECTNAME).app.dSYM\Contents\Resources\DWARF</RemoteDir>
-                        <Operation>1</Operation>
-                    </Platform>
                 </DeployClass>
                 <DeployClass Name="ProjectiOSEntitlements"/>
                 <DeployClass Name="ProjectiOSInfoPList"/>
@@ -839,7 +824,7 @@ $(PostBuildEvent)]]></PostBuildEvent>
                     <Platform Name="iOSDevice64">
                         <Operation>1</Operation>
                     </Platform>
-                    <Platform Name="iOSSimARM64">
+                    <Platform Name="iOSSimulator">
                         <Operation>1</Operation>
                     </Platform>
                 </DeployClass>
@@ -852,10 +837,6 @@ $(PostBuildEvent)]]></PostBuildEvent>
                         <Operation>1</Operation>
                     </Platform>
                     <Platform Name="OSX64">
-                        <RemoteDir>Contents\Resources</RemoteDir>
-                        <Operation>1</Operation>
-                    </Platform>
-                    <Platform Name="OSXARM64">
                         <RemoteDir>Contents\Resources</RemoteDir>
                         <Operation>1</Operation>
                     </Platform>
@@ -875,7 +856,7 @@ $(PostBuildEvent)]]></PostBuildEvent>
                     <Platform Name="iOSDevice64">
                         <Operation>1</Operation>
                     </Platform>
-                    <Platform Name="iOSSimARM64">
+                    <Platform Name="iOSSimulator">
                         <Operation>1</Operation>
                     </Platform>
                     <Platform Name="Linux64">
@@ -885,9 +866,6 @@ $(PostBuildEvent)]]></PostBuildEvent>
                         <Operation>1</Operation>
                     </Platform>
                     <Platform Name="OSX64">
-                        <Operation>1</Operation>
-                    </Platform>
-                    <Platform Name="OSXARM64">
                         <Operation>1</Operation>
                     </Platform>
                     <Platform Name="Win32">
@@ -928,18 +906,18 @@ $(PostBuildEvent)]]></PostBuildEvent>
                         <Operation>1</Operation>
                     </Platform>
                 </DeployClass>
-                <ProjectRoot Platform="Android" Name="$(PROJECTNAME)"/>
-                <ProjectRoot Platform="Android64" Name="$(PROJECTNAME)"/>
-                <ProjectRoot Platform="iOSDevice32" Name="$(PROJECTNAME).app"/>
                 <ProjectRoot Platform="iOSDevice64" Name="$(PROJECTNAME).app"/>
                 <ProjectRoot Platform="iOSSimARM64" Name="$(PROJECTNAME).app"/>
-                <ProjectRoot Platform="iOSSimulator" Name="$(PROJECTNAME).app"/>
-                <ProjectRoot Platform="Linux64" Name="$(PROJECTNAME)"/>
-                <ProjectRoot Platform="OSX32" Name="$(PROJECTNAME)"/>
-                <ProjectRoot Platform="OSX64" Name="$(PROJECTNAME)"/>
-                <ProjectRoot Platform="OSXARM64" Name="$(PROJECTNAME)"/>
-                <ProjectRoot Platform="Win32" Name="$(PROJECTNAME)"/>
+                <ProjectRoot Platform="iOSDevice32" Name="$(PROJECTNAME).app"/>
                 <ProjectRoot Platform="Win64" Name="$(PROJECTNAME)"/>
+                <ProjectRoot Platform="OSXARM64" Name="$(PROJECTNAME)"/>
+                <ProjectRoot Platform="Linux64" Name="$(PROJECTNAME)"/>
+                <ProjectRoot Platform="Win32" Name="$(PROJECTNAME)"/>
+                <ProjectRoot Platform="OSX32" Name="$(PROJECTNAME)"/>
+                <ProjectRoot Platform="Android" Name="$(PROJECTNAME)"/>
+                <ProjectRoot Platform="OSX64" Name="$(PROJECTNAME)"/>
+                <ProjectRoot Platform="iOSSimulator" Name="$(PROJECTNAME).app"/>
+                <ProjectRoot Platform="Android64" Name="$(PROJECTNAME)"/>
             </Deployment>
         </BorlandProject>
         <ProjectFileVersion>12</ProjectFileVersion>
@@ -952,7 +930,7 @@ $(PostBuildEvent)]]></PostBuildEvent>
         <PreBuildEventIgnoreExitCode>False</PreBuildEventIgnoreExitCode>
         <PreLinkEvent/>
         <PreLinkEventIgnoreExitCode>False</PreLinkEventIgnoreExitCode>
-        <PostBuildEvent>copy /Y ..\..\..\..\bins\$(Platform)\$(Config)\elpackB6.bpl &quot;$(BDS)\bin\elpackB6.bpl&quot;&amp;&amp;copy /Y ..\..\..\..\bins\$(Platform)\$(Config)\elpkdbB6.bpl &quot;$(BDS)\bin\elpkdbB6.bpl&quot;&amp;&amp;copy /Y ..\..\..\..\bins\$(Platform)\$(Config)\elpproB6.bpl &quot;$(BDS)\bin\elpproB6.bpl&quot;&amp;&amp;copy /Y ..\..\..\..\bins\$(Platform)\$(Config)\editorB.bpl &quot;$(BDS)\bin\editorB.bpl&quot;</PostBuildEvent>
+        <PostBuildEvent>copy /Y ..\..\..\..\bins\$(Platform)\$(Config)\elpackB6.bpl &quot;$(BDS)\bin\elpackB6.bpl&quot;&amp;&amp;copy /Y ..\..\..\..\bins\$(Platform)\$(Config)\elpkdbB6.bpl &quot;$(BDS)\bin\elpkdbB6.bpl&quot;&amp;&amp;copy /Y ..\..\..\..\bins\$(Platform)\$(Config)\elpproB6.bpl &quot;$(BDS)\bin\elpproB6.bpl&quot;&amp;&amp;copy /Y ..\..\..\..\bins\$(Platform)\$(Config)\editorB.bpl &quot;$(BDS)\bin\editorB.bpl&quot;&amp;&amp;for /R &quot;..\..\..\..\code\SDK\components\ElPack\Code\Source\fix_headers&quot; %%f in (*.hpp) do copy %%f &quot;..\..\..\..\code\SDK\components\ElPack\Code\Source\&quot;</PostBuildEvent>
         <PostBuildEventIgnoreExitCode>False</PostBuildEventIgnoreExitCode>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Config)'=='Debug' And '$(Platform)'=='Win64'">
@@ -960,7 +938,7 @@ $(PostBuildEvent)]]></PostBuildEvent>
         <PreBuildEventIgnoreExitCode>False</PreBuildEventIgnoreExitCode>
         <PreLinkEvent/>
         <PreLinkEventIgnoreExitCode>False</PreLinkEventIgnoreExitCode>
-        <PostBuildEvent>copy /Y ..\..\..\..\bins\$(Platform)\$(Config)\elpackB6.bpl &quot;$(BDS)\bin64\elpackB6.bpl&quot;&amp;&amp;copy /Y ..\..\..\..\bins\$(Platform)\$(Config)\elpkdbB6.bpl &quot;$(BDS)\bin64\elpkdbB6.bpl&quot;&amp;&amp;copy /Y ..\..\..\..\bins\$(Platform)\$(Config)\elpproB6.bpl &quot;$(BDS)\bin64\elpproB6.bpl&quot;&amp;&amp;copy /Y ..\..\..\..\bins\$(Platform)\$(Config)\editorB.bpl &quot;$(BDS)\bin64\editorB.bpl&quot;</PostBuildEvent>
+        <PostBuildEvent>copy /Y ..\..\..\..\bins\$(Platform)\$(Config)\elpackB6.bpl &quot;$(BDS)\bin64\elpackB6.bpl&quot;&amp;&amp;copy /Y ..\..\..\..\bins\$(Platform)\$(Config)\elpkdbB6.bpl &quot;$(BDS)\bin64\elpkdbB6.bpl&quot;&amp;&amp;copy /Y ..\..\..\..\bins\$(Platform)\$(Config)\elpproB6.bpl &quot;$(BDS)\bin64\elpproB6.bpl&quot;&amp;&amp;copy /Y ..\..\..\..\bins\$(Platform)\$(Config)\editorB.bpl &quot;$(BDS)\bin64\editorB.bpl&quot;&amp;&amp;for /R &quot;..\..\..\..\code\SDK\components\ElPack\Code\Source\fix_headers&quot; %%f in (*.hpp) do copy %%f &quot;..\..\..\..\code\SDK\components\ElPack\Code\Source\&quot;</PostBuildEvent>
         <PostBuildEventIgnoreExitCode>False</PostBuildEventIgnoreExitCode>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Config)'=='Release' And '$(Platform)'=='Win32'">
@@ -968,7 +946,7 @@ $(PostBuildEvent)]]></PostBuildEvent>
         <PreBuildEventIgnoreExitCode>False</PreBuildEventIgnoreExitCode>
         <PreLinkEvent/>
         <PreLinkEventIgnoreExitCode>False</PreLinkEventIgnoreExitCode>
-        <PostBuildEvent>copy /Y ..\..\..\..\bins\$(Platform)\$(Config)\elpackB6.bpl &quot;$(BDS)\bin\elpackB6.bpl&quot;&amp;&amp;copy /Y ..\..\..\..\bins\$(Platform)\$(Config)\elpkdbB6.bpl &quot;$(BDS)\bin\elpkdbB6.bpl&quot;&amp;&amp;copy /Y ..\..\..\..\bins\$(Platform)\$(Config)\elpproB6.bpl &quot;$(BDS)\bin\elpproB6.bpl&quot;&amp;&amp;copy /Y ..\..\..\..\bins\$(Platform)\$(Config)\editorB.bpl &quot;$(BDS)\bin\editorB.bpl&quot;</PostBuildEvent>
+        <PostBuildEvent>copy /Y ..\..\..\..\bins\$(Platform)\$(Config)\elpackB6.bpl &quot;$(BDS)\bin\elpackB6.bpl&quot;&amp;&amp;copy /Y ..\..\..\..\bins\$(Platform)\$(Config)\elpkdbB6.bpl &quot;$(BDS)\bin\elpkdbB6.bpl&quot;&amp;&amp;copy /Y ..\..\..\..\bins\$(Platform)\$(Config)\elpproB6.bpl &quot;$(BDS)\bin\elpproB6.bpl&quot;&amp;&amp;copy /Y ..\..\..\..\bins\$(Platform)\$(Config)\editorB.bpl &quot;$(BDS)\bin\editorB.bpl&quot;&amp;&amp;for /R &quot;..\..\..\..\code\SDK\components\ElPack\Code\Source\fix_headers&quot; %%f in (*.hpp) do copy %%f &quot;..\..\..\..\code\SDK\components\ElPack\Code\Source\&quot;</PostBuildEvent>
         <PostBuildEventIgnoreExitCode>False</PostBuildEventIgnoreExitCode>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Config)'=='Release' And '$(Platform)'=='Win64'">
@@ -976,7 +954,7 @@ $(PostBuildEvent)]]></PostBuildEvent>
         <PreBuildEventIgnoreExitCode>False</PreBuildEventIgnoreExitCode>
         <PreLinkEvent/>
         <PreLinkEventIgnoreExitCode>False</PreLinkEventIgnoreExitCode>
-        <PostBuildEvent>copy /Y ..\..\..\..\bins\$(Platform)\$(Config)\elpackB6.bpl &quot;$(BDS)\bin64\elpackB6.bpl&quot;&amp;&amp;copy /Y ..\..\..\..\bins\$(Platform)\$(Config)\elpkdbB6.bpl &quot;$(BDS)\bin64\elpkdbB6.bpl&quot;&amp;&amp;copy /Y ..\..\..\..\bins\$(Platform)\$(Config)\elpproB6.bpl &quot;$(BDS)\bin64\elpproB6.bpl&quot;&amp;&amp;copy /Y ..\..\..\..\bins\$(Platform)\$(Config)\editorB.bpl &quot;$(BDS)\bin64\editorB.bpl&quot;</PostBuildEvent>
+        <PostBuildEvent>copy /Y ..\..\..\..\bins\$(Platform)\$(Config)\elpackB6.bpl &quot;$(BDS)\bin64\elpackB6.bpl&quot;&amp;&amp;copy /Y ..\..\..\..\bins\$(Platform)\$(Config)\elpkdbB6.bpl &quot;$(BDS)\bin64\elpkdbB6.bpl&quot;&amp;&amp;copy /Y ..\..\..\..\bins\$(Platform)\$(Config)\elpproB6.bpl &quot;$(BDS)\bin64\elpproB6.bpl&quot;&amp;&amp;copy /Y ..\..\..\..\bins\$(Platform)\$(Config)\editorB.bpl &quot;$(BDS)\bin64\editorB.bpl&quot;&amp;&amp;for /R &quot;..\..\..\..\code\SDK\components\ElPack\Code\Source\fix_headers&quot; %%f in (*.hpp) do copy %%f &quot;..\..\..\..\code\SDK\components\ElPack\Code\Source\&quot;</PostBuildEvent>
         <PostBuildEventIgnoreExitCode>False</PostBuildEventIgnoreExitCode>
     </PropertyGroup>
 </Project>

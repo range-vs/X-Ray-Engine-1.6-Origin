@@ -1,0 +1,1072 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<namespace name="ElIni" platform="Win64">
+  <const name="evtUnknown" type="TElValueType" file="ElIni.pas" line="99">
+    <value>
+      evtUnknown
+    </value>
+  </const>
+  <const name="evtBoolean" type="TElValueType" file="ElIni.pas" line="99">
+    <value>
+      evtBoolean
+    </value>
+  </const>
+  <const name="evtInt" type="TElValueType" file="ElIni.pas" line="99">
+    <value>
+      evtInt
+    </value>
+  </const>
+  <const name="evtString" type="TElValueType" file="ElIni.pas" line="99">
+    <value>
+      evtString
+    </value>
+  </const>
+  <const name="evtMultiString" type="TElValueType" file="ElIni.pas" line="99">
+    <value>
+      evtMultiString
+    </value>
+  </const>
+  <const name="evtBinary" type="TElValueType" file="ElIni.pas" line="100">
+    <value>
+      evtBinary
+    </value>
+  </const>
+  <const name="evtDouble" type="TElValueType" file="ElIni.pas" line="100">
+    <value>
+      evtDouble
+    </value>
+  </const>
+  <enum name="TElValueType" file="ElIni.pas" line="99">
+    <element value="0" name="evtUnknown" file="ElIni.pas" line="99" />
+    <element value="1" name="evtBoolean" file="ElIni.pas" line="99" />
+    <element value="2" name="evtInt" file="ElIni.pas" line="99" />
+    <element value="3" name="evtString" file="ElIni.pas" line="99" />
+    <element value="4" name="evtMultiString" file="ElIni.pas" line="99" />
+    <element value="5" name="evtBinary" file="ElIni.pas" line="100" />
+    <element value="6" name="evtDouble" file="ElIni.pas" line="100" />
+  </enum>
+  <struct name="TElValueData" size="24" file="ElIni.pas" line="102">
+    <field name="ValueType" type="TElValueType" visibility="public" variant="true" size="1" offset="0" file="ElIni.pas" line="103" />
+    <field name="BoolValue" type="Boolean" visibility="public" variant="true" size="1" offset="8" file="ElIni.pas" line="105" />
+    <field name="IntValue" type="Integer" visibility="public" variant="true" size="4" offset="8" file="ElIni.pas" line="106" />
+    <field name="StrValue" type="PWideChar" visibility="public" variant="true" size="8" offset="8" file="ElIni.pas" line="107" />
+    <field name="MStrValue" type="TStringList" visibility="public" variant="true" size="8" offset="8" file="ElIni.pas" line="108" />
+    <field name="DataValue" type="Pointer" visibility="public" variant="true" size="8" offset="8" file="ElIni.pas" line="109" />
+    <field name="DataLength" type="Integer" visibility="public" variant="true" size="4" offset="16" file="ElIni.pas" line="109" />
+    <field name="DoubleValue" type="Double" visibility="public" variant="true" size="8" offset="8" file="ElIni.pas" line="110" />
+  </struct>
+  <pointer name="PELValueData" type="TElValueData" indircnt="1" file="ElIni.pas" line="113" />
+  <class name="EElIniError" file="ElIni.pas" line="117">
+    <ancestor name="Exception" namespace="System.SysUtils">
+      <methodref name="Create@" visibility="class private" procflags="class constructor noself">
+      </methodref>
+      <methodref name="Destroy@" visibility="class private" procflags="class destructor noself">
+      </methodref>
+      <methodref name="SetInnerException" visibility="protected">
+      </methodref>
+      <methodref name="SetStackInfo" visibility="protected">
+      </methodref>
+      <methodref name="GetStackTrace" visibility="protected">
+      </methodref>
+      <methodref name="RaisingException" visibility="protected" procflags="virtual">
+      </methodref>
+      <methodref name="Create" visibility="public" procflags="constructor">
+      </methodref>
+      <methodref name="CreateFmt" visibility="public" procflags="constructor">
+      </methodref>
+      <methodref name="CreateRes" visibility="public" procflags="constructor overload">
+      </methodref>
+      <methodref name="CreateRes" visibility="public" procflags="constructor overload">
+      </methodref>
+      <methodref name="CreateResFmt" visibility="public" procflags="constructor overload">
+      </methodref>
+      <methodref name="CreateResFmt" visibility="public" procflags="constructor overload">
+      </methodref>
+      <methodref name="CreateHelp" visibility="public" procflags="constructor">
+      </methodref>
+      <methodref name="CreateFmtHelp" visibility="public" procflags="constructor">
+      </methodref>
+      <methodref name="CreateResHelp" visibility="public" procflags="constructor overload">
+      </methodref>
+      <methodref name="CreateResHelp" visibility="public" procflags="constructor overload">
+      </methodref>
+      <methodref name="CreateResFmtHelp" visibility="public" procflags="constructor overload">
+      </methodref>
+      <methodref name="CreateResFmtHelp" visibility="public" procflags="constructor overload">
+      </methodref>
+      <methodref name="Destroy" visibility="public" procflags="destructor override">
+      </methodref>
+      <methodref name="GetBaseException" visibility="public" procflags="virtual">
+      </methodref>
+      <methodref name="ToString" visibility="public" procflags="override">
+      </methodref>
+      <propertyref name="BaseException" visibility="public">
+      </propertyref>
+      <propertyref name="HelpContext" visibility="public">
+      </propertyref>
+      <propertyref name="InnerException" visibility="public">
+      </propertyref>
+      <propertyref name="Message" visibility="public">
+      </propertyref>
+      <propertyref name="StackTrace" visibility="public">
+      </propertyref>
+      <propertyref name="StackInfo" visibility="public">
+      </propertyref>
+      <methodref name="RaiseOuterException" visibility="public" procflags="static">
+      </methodref>
+      <methodref name="ThrowOuterException" visibility="public" procflags="static">
+      </methodref>
+      <ancestor name="TObject" namespace="System">
+        <methodref name="Create" visibility="public" procflags="constructor">
+        </methodref>
+        <methodref name="Free" visibility="public">
+        </methodref>
+        <methodref name="DisposeOf" visibility="public" procflags="inline">
+        </methodref>
+        <methodref name="InitInstance" visibility="public" procflags="class">
+        </methodref>
+        <methodref name="CleanupInstance" visibility="public">
+        </methodref>
+        <methodref name="ClassType" visibility="public" procflags="inline">
+        </methodref>
+        <methodref name="ClassName" visibility="public" procflags="class">
+        </methodref>
+        <methodref name="ClassNameIs" visibility="public" procflags="class">
+        </methodref>
+        <methodref name="ClassParent" visibility="public" procflags="class">
+        </methodref>
+        <methodref name="ClassInfo" visibility="public" procflags="class inline">
+        </methodref>
+        <methodref name="InstanceSize" visibility="public" procflags="class inline">
+        </methodref>
+        <methodref name="InheritsFrom" visibility="public" procflags="class">
+        </methodref>
+        <methodref name="MethodAddress" visibility="public" procflags="class overload">
+        </methodref>
+        <methodref name="MethodAddress" visibility="public" procflags="class overload">
+        </methodref>
+        <methodref name="MethodName" visibility="public" procflags="class">
+        </methodref>
+        <methodref name="QualifiedClassName" visibility="public" procflags="class">
+        </methodref>
+        <methodref name="FieldAddress" visibility="public" procflags="overload">
+        </methodref>
+        <methodref name="FieldAddress" visibility="public" procflags="overload">
+        </methodref>
+        <methodref name="GetInterface" visibility="public">
+        </methodref>
+        <methodref name="GetInterfaceEntry" visibility="public" procflags="class">
+        </methodref>
+        <methodref name="GetInterfaceTable" visibility="public" procflags="class inline">
+        </methodref>
+        <methodref name="UnitName" visibility="public" procflags="class">
+        </methodref>
+        <methodref name="UnitScope" visibility="public" procflags="class">
+        </methodref>
+        <methodref name="Equals" visibility="public" procflags="virtual">
+        </methodref>
+        <methodref name="GetHashCode" visibility="public" procflags="virtual">
+        </methodref>
+        <methodref name="ToString" visibility="public" procflags="virtual">
+        </methodref>
+        <methodref name="SafeCallException" visibility="public" procflags="virtual">
+        </methodref>
+        <methodref name="AfterConstruction" visibility="public" procflags="virtual">
+        </methodref>
+        <methodref name="BeforeDestruction" visibility="public" procflags="virtual">
+        </methodref>
+        <methodref name="Dispatch" visibility="public" procflags="virtual">
+        </methodref>
+        <methodref name="DefaultHandler" visibility="public" procflags="virtual">
+        </methodref>
+        <methodref name="NewInstance" visibility="public" procflags="class virtual">
+        </methodref>
+        <methodref name="FreeInstance" visibility="public" procflags="virtual">
+        </methodref>
+        <methodref name="Destroy" visibility="public" procflags="destructor virtual">
+        </methodref>
+        <methodref name="CPP_ABI_1" visibility="public" procflags="virtual">
+        </methodref>
+        <methodref name="CPP_ABI_2" visibility="public" procflags="virtual">
+        </methodref>
+        <methodref name="CPP_ABI_3" visibility="public" procflags="virtual">
+        </methodref>
+        <methodref name="GetDisposed" visibility="protected" procflags="inline">
+        </methodref>
+        <methodref name="CheckDisposed" visibility="protected" procflags="inline">
+        </methodref>
+        <propertyref name="Disposed" visibility="protected">
+        </propertyref>
+      </ancestor>
+    </ancestor>
+  </class>
+  <class name="TElIniEntry" file="ElIni.pas" line="122">
+    <ancestor name="TObject" namespace="System">
+      <methodref name="Create" visibility="public" procflags="constructor">
+      </methodref>
+      <methodref name="Free" visibility="public">
+      </methodref>
+      <methodref name="DisposeOf" visibility="public" procflags="inline">
+      </methodref>
+      <methodref name="InitInstance" visibility="public" procflags="class">
+      </methodref>
+      <methodref name="CleanupInstance" visibility="public">
+      </methodref>
+      <methodref name="ClassType" visibility="public" procflags="inline">
+      </methodref>
+      <methodref name="ClassName" visibility="public" procflags="class">
+      </methodref>
+      <methodref name="ClassNameIs" visibility="public" procflags="class">
+      </methodref>
+      <methodref name="ClassParent" visibility="public" procflags="class">
+      </methodref>
+      <methodref name="ClassInfo" visibility="public" procflags="class inline">
+      </methodref>
+      <methodref name="InstanceSize" visibility="public" procflags="class inline">
+      </methodref>
+      <methodref name="InheritsFrom" visibility="public" procflags="class">
+      </methodref>
+      <methodref name="MethodAddress" visibility="public" procflags="class overload">
+      </methodref>
+      <methodref name="MethodAddress" visibility="public" procflags="class overload">
+      </methodref>
+      <methodref name="MethodName" visibility="public" procflags="class">
+      </methodref>
+      <methodref name="QualifiedClassName" visibility="public" procflags="class">
+      </methodref>
+      <methodref name="FieldAddress" visibility="public" procflags="overload">
+      </methodref>
+      <methodref name="FieldAddress" visibility="public" procflags="overload">
+      </methodref>
+      <methodref name="GetInterface" visibility="public">
+      </methodref>
+      <methodref name="GetInterfaceEntry" visibility="public" procflags="class">
+      </methodref>
+      <methodref name="GetInterfaceTable" visibility="public" procflags="class inline">
+      </methodref>
+      <methodref name="UnitName" visibility="public" procflags="class">
+      </methodref>
+      <methodref name="UnitScope" visibility="public" procflags="class">
+      </methodref>
+      <methodref name="Equals" visibility="public" procflags="virtual">
+      </methodref>
+      <methodref name="GetHashCode" visibility="public" procflags="virtual">
+      </methodref>
+      <methodref name="ToString" visibility="public" procflags="virtual">
+      </methodref>
+      <methodref name="SafeCallException" visibility="public" procflags="virtual">
+      </methodref>
+      <methodref name="AfterConstruction" visibility="public" procflags="virtual">
+      </methodref>
+      <methodref name="BeforeDestruction" visibility="public" procflags="virtual">
+      </methodref>
+      <methodref name="Dispatch" visibility="public" procflags="virtual">
+      </methodref>
+      <methodref name="DefaultHandler" visibility="public" procflags="virtual">
+      </methodref>
+      <methodref name="NewInstance" visibility="public" procflags="class virtual">
+      </methodref>
+      <methodref name="FreeInstance" visibility="public" procflags="virtual">
+      </methodref>
+      <methodref name="Destroy" visibility="public" procflags="destructor virtual">
+      </methodref>
+      <methodref name="CPP_ABI_1" visibility="public" procflags="virtual">
+      </methodref>
+      <methodref name="CPP_ABI_2" visibility="public" procflags="virtual">
+      </methodref>
+      <methodref name="CPP_ABI_3" visibility="public" procflags="virtual">
+      </methodref>
+      <methodref name="GetDisposed" visibility="protected" procflags="inline">
+      </methodref>
+      <methodref name="CheckDisposed" visibility="protected" procflags="inline">
+      </methodref>
+      <propertyref name="Disposed" visibility="protected">
+      </propertyref>
+    </ancestor>
+    <members>
+      <field name="FChildren" type="TElList" visibility="private" size="8" offset="8" file="ElIni.pas" line="124" />
+      <field name="FIsKey" type="Boolean" visibility="private" size="1" offset="16" file="ElIni.pas" line="125" />
+      <field name="FParent" type="TElIniEntry" visibility="private" size="8" offset="24" file="ElIni.pas" line="126" />
+      <field name="FValueData" type="TElValueData" visibility="private" size="24" offset="32" file="ElIni.pas" line="127" />
+      <field name="FValueName" type="string" visibility="private" size="8" offset="56" file="ElIni.pas" line="128" />
+      <function name="GetSubCount" visibility="private" file="ElIni.pas" line="129">
+        <parameters>
+          <retval type="Integer" />
+        </parameters>
+      </function>
+      <procedure name="OnValueDelete" visibility="private" file="ElIni.pas" line="130">
+        <parameters>
+          <parameter name="Sender" type="TObject" />
+          <parameter name="Data" type="Pointer" />
+        </parameters>
+      </procedure>
+      <procedure name="SetParent" visibility="private" file="ElIni.pas" line="131">
+        <parameters>
+          <parameter name="Value" type="TElIniEntry" />
+        </parameters>
+      </procedure>
+      <constructor name="Create" visibility="protected" file="ElIni.pas" line="133">
+        <parameters>
+        </parameters>
+      </constructor>
+      <function name="GetValue" visibility="protected" file="ElIni.pas" line="134">
+        <parameters>
+          <parameter name="Name" type="string" />
+          <retval type="TElIniEntry" />
+        </parameters>
+      </function>
+      <property name="Parent" visibility="protected" read="FParent" write="SetParent" type="TElIniEntry" file="ElIni.pas" line="135" />
+      <destructor name="Destroy" visibility="public" file="ElIni.pas" line="137">
+        <parameters>
+        </parameters>
+      </destructor>
+      <procedure name="Invalidate" visibility="public" file="ElIni.pas" line="138">
+      </procedure>
+      <property name="IsKey" visibility="public" read="FIsKey" type="Boolean" file="ElIni.pas" line="139" />
+      <property name="SubCount" visibility="public" read="GetSubCount" type="Integer" file="ElIni.pas" line="140" />
+    </members>
+  </class>
+  <class name="TElIniFile" file="ElIni.pas" line="148">
+    <ancestor name="TComponent" namespace="System.Classes">
+      <interfaces>
+        <implements name="IInterfaceComponentReference" />
+        <implements name="IInterface" />
+      </interfaces>
+      <methodref name="GetComObject" visibility="private">
+      </methodref>
+      <methodref name="GetComponent" visibility="private">
+      </methodref>
+      <methodref name="GetComponentCount" visibility="private">
+      </methodref>
+      <methodref name="GetComponentIndex" visibility="private">
+      </methodref>
+      <methodref name="Insert" visibility="private">
+      </methodref>
+      <methodref name="ReadLeft" visibility="private">
+      </methodref>
+      <methodref name="ReadTop" visibility="private">
+      </methodref>
+      <methodref name="Remove" visibility="private">
+      </methodref>
+      <methodref name="RemoveNotification" visibility="private">
+      </methodref>
+      <methodref name="SetComponentIndex" visibility="private">
+      </methodref>
+      <methodref name="SetReference" visibility="private">
+      </methodref>
+      <methodref name="WriteLeft" visibility="private">
+      </methodref>
+      <methodref name="WriteTop" visibility="private">
+      </methodref>
+      <methodref name="IntfGetComponent" visibility="private">
+      </methodref>
+      <methodref name="DoGetDeltaStreams" visibility="private">
+      </methodref>
+      <methodref name="ReadDeltaStream" visibility="private">
+      </methodref>
+      <methodref name="ReadDeltaState" visibility="private">
+      </methodref>
+      <methodref name="FindSortedComponent" visibility="private">
+      </methodref>
+      <methodref name="AddSortedComponent" visibility="private">
+      </methodref>
+      <methodref name="RemoveSortedComponent" visibility="private" procflags="inline">
+      </methodref>
+      <methodref name="Create@" visibility="class private" procflags="class constructor noself">
+      </methodref>
+      <methodref name="AsyncSchedule" visibility="protected" procflags="virtual">
+      </methodref>
+      <methodref name="ChangeName" visibility="protected">
+      </methodref>
+      <methodref name="DefineProperties" visibility="protected" procflags="override">
+      </methodref>
+      <methodref name="GetChildren" visibility="protected" procflags="dynamic">
+      </methodref>
+      <methodref name="GetChildOwner" visibility="protected" procflags="dynamic">
+      </methodref>
+      <methodref name="GetChildParent" visibility="protected" procflags="dynamic">
+      </methodref>
+      <methodref name="GetOwner" visibility="protected" procflags="override">
+      </methodref>
+      <methodref name="Loaded" visibility="protected" procflags="virtual">
+      </methodref>
+      <methodref name="Notification" visibility="protected" procflags="virtual">
+      </methodref>
+      <methodref name="GetDeltaStreams" visibility="protected" procflags="dynamic">
+      </methodref>
+      <methodref name="PaletteCreated" visibility="protected" procflags="dynamic">
+      </methodref>
+      <methodref name="ReadState" visibility="protected" procflags="virtual">
+      </methodref>
+      <methodref name="CanObserve" visibility="protected" procflags="virtual">
+      </methodref>
+      <methodref name="ObserverAdded" visibility="protected" procflags="virtual">
+      </methodref>
+      <methodref name="GetObservers" visibility="protected" procflags="virtual">
+      </methodref>
+      <methodref name="SetAncestor" visibility="protected">
+      </methodref>
+      <methodref name="SetDesigning" visibility="protected">
+      </methodref>
+      <methodref name="SetInline" visibility="protected">
+      </methodref>
+      <methodref name="SetDesignInstance" visibility="protected">
+      </methodref>
+      <methodref name="SetName" visibility="protected" procflags="virtual">
+      </methodref>
+      <methodref name="SetChildOrder" visibility="protected" procflags="dynamic">
+      </methodref>
+      <methodref name="SetParentComponent" visibility="protected" procflags="dynamic">
+      </methodref>
+      <methodref name="Updating" visibility="protected" procflags="dynamic">
+      </methodref>
+      <methodref name="Updated" visibility="protected" procflags="dynamic">
+      </methodref>
+      <methodref name="UpdateRegistry" visibility="protected" procflags="class virtual">
+      </methodref>
+      <methodref name="ValidateRename" visibility="protected" procflags="virtual">
+      </methodref>
+      <methodref name="ValidateContainer" visibility="protected" procflags="dynamic">
+      </methodref>
+      <methodref name="ValidateInsert" visibility="protected" procflags="dynamic">
+      </methodref>
+      <methodref name="WriteState" visibility="protected" procflags="virtual">
+      </methodref>
+      <methodref name="RemoveFreeNotifications" visibility="protected">
+      </methodref>
+      <methodref name="QueryInterface" visibility="protected" procflags="virtual">
+      </methodref>
+      <methodref name="_AddRef" visibility="protected">
+      </methodref>
+      <methodref name="_Release" visibility="protected">
+      </methodref>
+      <methodref name="GetTypeInfoCount" visibility="protected">
+      </methodref>
+      <methodref name="GetTypeInfo" visibility="protected">
+      </methodref>
+      <methodref name="GetIDsOfNames" visibility="protected">
+      </methodref>
+      <methodref name="Invoke" visibility="protected">
+      </methodref>
+      <eventref name="OnGetDeltaStreams" visibility="protected">
+      </eventref>
+      <methodref name="Create" visibility="public" procflags="constructor virtual">
+      </methodref>
+      <methodref name="Destroy" visibility="public" procflags="destructor override">
+      </methodref>
+      <methodref name="BeforeDestruction" visibility="public" procflags="override">
+      </methodref>
+      <methodref name="BeginInvoke" visibility="public" procflags="overload">
+      </methodref>
+      <methodref name="BeginInvoke" visibility="public" procflags="overload">
+      </methodref>
+      <methodref name="BeginInvoke" visibility="public" procflags="overload">
+      </methodref>
+      <methodref name="BeginInvoke" visibility="public" procflags="overload">
+      </methodref>
+      <methodref name="BeginInvoke" visibility="public" procflags="overload">
+      </methodref>
+      <methodref name="BeginInvoke" visibility="public" procflags="overload">
+      </methodref>
+      <methodref name="BeginInvoke" visibility="public" procflags="overload">
+      </methodref>
+      <methodref name="BeginInvoke" visibility="public" procflags="overload">
+      </methodref>
+      <methodref name="EndInvoke" visibility="public" procflags="overload">
+      </methodref>
+      <methodref name="EndInvoke" visibility="public" procflags="overload">
+      </methodref>
+      <methodref name="EndFunctionInvoke" visibility="public">
+      </methodref>
+      <methodref name="DestroyComponents" visibility="public">
+      </methodref>
+      <methodref name="Destroying" visibility="public">
+      </methodref>
+      <methodref name="ExecuteAction" visibility="public" procflags="dynamic">
+      </methodref>
+      <methodref name="FindComponent" visibility="public">
+      </methodref>
+      <methodref name="FreeNotification" visibility="public">
+      </methodref>
+      <methodref name="RemoveFreeNotification" visibility="public">
+      </methodref>
+      <methodref name="FreeOnRelease" visibility="public">
+      </methodref>
+      <methodref name="GetEnumerator" visibility="public" procflags="inline">
+      </methodref>
+      <methodref name="GetParentComponent" visibility="public" procflags="dynamic">
+      </methodref>
+      <methodref name="GetNamePath" visibility="public" procflags="override">
+      </methodref>
+      <methodref name="HasParent" visibility="public" procflags="dynamic">
+      </methodref>
+      <methodref name="InsertComponent" visibility="public">
+      </methodref>
+      <methodref name="RemoveComponent" visibility="public">
+      </methodref>
+      <methodref name="SetSubComponent" visibility="public">
+      </methodref>
+      <methodref name="SafeCallException" visibility="public" procflags="override">
+      </methodref>
+      <methodref name="UpdateAction" visibility="public" procflags="virtual">
+      </methodref>
+      <methodref name="IsImplementorOf" visibility="public">
+      </methodref>
+      <methodref name="ReferenceInterface" visibility="public">
+      </methodref>
+      <propertyref name="ComObject" visibility="public">
+      </propertyref>
+      <propertyref name="Components" visibility="public">
+      </propertyref>
+      <propertyref name="ComponentCount" visibility="public">
+      </propertyref>
+      <propertyref name="ComponentIndex" visibility="public">
+      </propertyref>
+      <propertyref name="ComponentState" visibility="public">
+      </propertyref>
+      <propertyref name="ComponentStyle" visibility="public">
+      </propertyref>
+      <propertyref name="DesignInfo" visibility="public">
+      </propertyref>
+      <propertyref name="Owner" visibility="public">
+      </propertyref>
+      <propertyref name="VCLComObject" visibility="public">
+      </propertyref>
+      <propertyref name="Observers" visibility="public">
+      </propertyref>
+      <propertyref name="Name" visibility="published">
+      </propertyref>
+      <propertyref name="Tag" visibility="published">
+      </propertyref>
+      <ancestor name="TPersistent" namespace="System.Classes">
+        <methodref name="AssignError" visibility="private">
+        </methodref>
+        <methodref name="AssignTo" visibility="protected" procflags="virtual">
+        </methodref>
+        <methodref name="DefineProperties" visibility="protected" procflags="virtual">
+        </methodref>
+        <methodref name="GetOwner" visibility="protected" procflags="dynamic">
+        </methodref>
+        <methodref name="Destroy" visibility="public" procflags="destructor override">
+        </methodref>
+        <methodref name="Assign" visibility="public" procflags="virtual">
+        </methodref>
+        <methodref name="GetNamePath" visibility="public" procflags="dynamic">
+        </methodref>
+        <ancestor name="TObject" namespace="System">
+          <methodref name="Create" visibility="public" procflags="constructor">
+          </methodref>
+          <methodref name="Free" visibility="public">
+          </methodref>
+          <methodref name="DisposeOf" visibility="public" procflags="inline">
+          </methodref>
+          <methodref name="InitInstance" visibility="public" procflags="class">
+          </methodref>
+          <methodref name="CleanupInstance" visibility="public">
+          </methodref>
+          <methodref name="ClassType" visibility="public" procflags="inline">
+          </methodref>
+          <methodref name="ClassName" visibility="public" procflags="class">
+          </methodref>
+          <methodref name="ClassNameIs" visibility="public" procflags="class">
+          </methodref>
+          <methodref name="ClassParent" visibility="public" procflags="class">
+          </methodref>
+          <methodref name="ClassInfo" visibility="public" procflags="class inline">
+          </methodref>
+          <methodref name="InstanceSize" visibility="public" procflags="class inline">
+          </methodref>
+          <methodref name="InheritsFrom" visibility="public" procflags="class">
+          </methodref>
+          <methodref name="MethodAddress" visibility="public" procflags="class overload">
+          </methodref>
+          <methodref name="MethodAddress" visibility="public" procflags="class overload">
+          </methodref>
+          <methodref name="MethodName" visibility="public" procflags="class">
+          </methodref>
+          <methodref name="QualifiedClassName" visibility="public" procflags="class">
+          </methodref>
+          <methodref name="FieldAddress" visibility="public" procflags="overload">
+          </methodref>
+          <methodref name="FieldAddress" visibility="public" procflags="overload">
+          </methodref>
+          <methodref name="GetInterface" visibility="public">
+          </methodref>
+          <methodref name="GetInterfaceEntry" visibility="public" procflags="class">
+          </methodref>
+          <methodref name="GetInterfaceTable" visibility="public" procflags="class inline">
+          </methodref>
+          <methodref name="UnitName" visibility="public" procflags="class">
+          </methodref>
+          <methodref name="UnitScope" visibility="public" procflags="class">
+          </methodref>
+          <methodref name="Equals" visibility="public" procflags="virtual">
+          </methodref>
+          <methodref name="GetHashCode" visibility="public" procflags="virtual">
+          </methodref>
+          <methodref name="ToString" visibility="public" procflags="virtual">
+          </methodref>
+          <methodref name="SafeCallException" visibility="public" procflags="virtual">
+          </methodref>
+          <methodref name="AfterConstruction" visibility="public" procflags="virtual">
+          </methodref>
+          <methodref name="BeforeDestruction" visibility="public" procflags="virtual">
+          </methodref>
+          <methodref name="Dispatch" visibility="public" procflags="virtual">
+          </methodref>
+          <methodref name="DefaultHandler" visibility="public" procflags="virtual">
+          </methodref>
+          <methodref name="NewInstance" visibility="public" procflags="class virtual">
+          </methodref>
+          <methodref name="FreeInstance" visibility="public" procflags="virtual">
+          </methodref>
+          <methodref name="Destroy" visibility="public" procflags="destructor virtual">
+          </methodref>
+          <methodref name="CPP_ABI_1" visibility="public" procflags="virtual">
+          </methodref>
+          <methodref name="CPP_ABI_2" visibility="public" procflags="virtual">
+          </methodref>
+          <methodref name="CPP_ABI_3" visibility="public" procflags="virtual">
+          </methodref>
+          <methodref name="GetDisposed" visibility="protected" procflags="inline">
+          </methodref>
+          <methodref name="CheckDisposed" visibility="protected" procflags="inline">
+          </methodref>
+          <propertyref name="Disposed" visibility="protected">
+          </propertyref>
+        </ancestor>
+      </ancestor>
+    </ancestor>
+    <members>
+      <field name="FOnBeforeLoad" type="TNotifyEvent" visibility="private" size="16" offset="120" file="ElIni.pas" line="150" />
+      <field name="FOnAfterSave" type="TNotifyEvent" visibility="private" size="16" offset="136" file="ElIni.pas" line="151" />
+      <field name="FOnBeforeSave" type="TNotifyEvent" visibility="private" size="16" offset="152" file="ElIni.pas" line="152" />
+      <field name="FOnAfterLoad" type="TNotifyEvent" visibility="private" size="16" offset="168" file="ElIni.pas" line="153" />
+      <field name="FBinaryMode" type="Boolean" visibility="private" size="1" offset="184" file="ElIni.pas" line="154" />
+      <field name="FComment" type="string" visibility="private" size="8" offset="192" file="ElIni.pas" line="155" />
+      <field name="FCurEntry" type="TElIniEntry" visibility="private" size="8" offset="200" file="ElIni.pas" line="156" />
+      <field name="FCurrentKey" type="string" visibility="private" size="8" offset="208" file="ElIni.pas" line="157" />
+      <field name="FDelimiter" type="Char" visibility="private" size="2" offset="216" file="ElIni.pas" line="158" />
+      <field name="FDivChar" type="Char" visibility="private" size="2" offset="218" file="ElIni.pas" line="159" />
+      <field name="FLazyWrite" type="Boolean" visibility="private" size="1" offset="220" file="ElIni.pas" line="160" />
+      <field name="FModified" type="Boolean" visibility="private" size="1" offset="221" file="ElIni.pas" line="161" />
+      <field name="FPath" type="string" visibility="private" size="8" offset="224" file="ElIni.pas" line="162" />
+      <field name="FRegistry" type="TRegistry" visibility="private" size="8" offset="232" file="ElIni.pas" line="164" />
+      <field name="FRegRoot" type="Cardinal" visibility="private" size="4" offset="240" file="ElIni.pas" line="165" />
+      <field name="FUseRegistry" type="Boolean" visibility="private" size="1" offset="244" file="ElIni.pas" line="169" />
+      <field name="FRoot" type="TElIniEntry" visibility="private" size="8" offset="248" file="ElIni.pas" line="170" />
+      <field name="FSimple" type="Boolean" visibility="private" size="1" offset="256" file="ElIni.pas" line="172" />
+      <field name="FWarningMessage" type="string" visibility="private" size="8" offset="264" file="ElIni.pas" line="174" />
+      <function name="GetRegRoot" visibility="private" file="ElIni.pas" line="176">
+        <parameters>
+          <retval type="TRegRootType" />
+        </parameters>
+      </function>
+      <procedure name="SetCurrentKey" visibility="private" file="ElIni.pas" line="178">
+        <parameters>
+          <parameter name="newValue" type="string" paramflags="const" />
+        </parameters>
+      </procedure>
+      <procedure name="SetDelimiter" visibility="private" file="ElIni.pas" line="179">
+        <parameters>
+          <parameter name="newValue" type="Char" />
+        </parameters>
+      </procedure>
+      <procedure name="SetLazyWrite" visibility="private" file="ElIni.pas" line="180">
+        <parameters>
+          <parameter name="newValue" type="Boolean" />
+        </parameters>
+      </procedure>
+      <procedure name="SetPath" visibility="private" file="ElIni.pas" line="181">
+        <parameters>
+          <parameter name="newValue" type="string" />
+        </parameters>
+      </procedure>
+      <procedure name="SetSimple" visibility="private" file="ElIni.pas" line="183">
+        <parameters>
+          <parameter name="newValue" type="Boolean" />
+        </parameters>
+      </procedure>
+      <procedure name="SetRegRoot" visibility="private" file="ElIni.pas" line="186">
+        <parameters>
+          <parameter name="newValue" type="TRegRootType" />
+        </parameters>
+      </procedure>
+      <procedure name="SetUseRegistry" visibility="private" file="ElIni.pas" line="187">
+        <parameters>
+          <parameter name="newValue" type="Boolean" />
+        </parameters>
+      </procedure>
+      <procedure name="IntLoadKey" visibility="private" file="ElIni.pas" line="189">
+        <parameters>
+          <parameter name="SL" type="TStringList" />
+          <parameter name="CurLine" type="Integer" />
+        </parameters>
+      </procedure>
+      <procedure name="IntLoadBinKey" visibility="private" file="ElIni.pas" line="190">
+        <parameters>
+          <parameter name="F" type="TStream" />
+        </parameters>
+      </procedure>
+      <procedure name="IntSaveKey" visibility="private" file="ElIni.pas" line="191">
+        <parameters>
+          <parameter name="F" type="TStream" />
+          <parameter name="KeyName" type="string" />
+          <parameter name="KeyEntry" type="TElIniEntry" />
+        </parameters>
+      </procedure>
+      <procedure name="IntSaveBinKey" visibility="private" file="ElIni.pas" line="192">
+        <parameters>
+          <parameter name="F" type="TStream" />
+          <parameter name="KeyName" type="string" />
+          <parameter name="KeyEntry" type="TElIniEntry" />
+        </parameters>
+      </procedure>
+      <function name="GetValueEntry" visibility="protected" procflags="virtual" file="ElIni.pas" line="194">
+        <parameters>
+          <parameter name="Key" type="string" />
+          <parameter name="ValueName" type="string" />
+          <retval type="TElIniEntry" />
+        </parameters>
+      </function>
+      <procedure name="ParseLine" visibility="protected" procflags="virtual" file="ElIni.pas" line="196">
+        <parameters>
+          <parameter name="S" type="string" />
+          <parameter name="Name" type="string" paramflags="var" />
+          <parameter name="Value" type="string" paramflags="var" />
+          <parameter name="HasName" type="Boolean" paramflags="var" />
+        </parameters>
+      </procedure>
+      <procedure name="TriggerBeforeSaveEvent" visibility="protected" procflags="virtual" file="ElIni.pas" line="198">
+      </procedure>
+      <procedure name="TriggerAfterLoadEvent" visibility="protected" procflags="virtual" file="ElIni.pas" line="199">
+      </procedure>
+      <procedure name="TriggerBeforeLoadEvent" visibility="protected" procflags="virtual" file="ElIni.pas" line="200">
+      </procedure>
+      <procedure name="TriggerAfterSaveEvent" visibility="protected" procflags="virtual" file="ElIni.pas" line="201">
+      </procedure>
+      <constructor name="Create" visibility="public" file="ElIni.pas" line="203">
+        <parameters>
+          <parameter name="AOwner" type="TComponent" />
+        </parameters>
+      </constructor>
+      <destructor name="Destroy" visibility="public" file="ElIni.pas" line="204">
+        <parameters>
+        </parameters>
+      </destructor>
+      <function name="Clear" visibility="public" file="ElIni.pas" line="205">
+        <parameters>
+          <retval type="Boolean" />
+        </parameters>
+      </function>
+      <function name="ClearKey" visibility="public" procflags="virtual" file="ElIni.pas" line="206">
+        <parameters>
+          <parameter name="Key" type="string" />
+          <retval type="Boolean" />
+        </parameters>
+      </function>
+      <function name="CreateValue" visibility="public" file="ElIni.pas" line="207">
+        <parameters>
+          <parameter name="Key" type="string" />
+          <parameter name="ValueName" type="string" />
+          <retval type="TElIniEntry" />
+        </parameters>
+      </function>
+      <function name="Delete" visibility="public" file="ElIni.pas" line="208">
+        <parameters>
+          <parameter name="Key" type="string" />
+          <parameter name="ValueName" type="string" />
+          <retval type="Boolean" />
+        </parameters>
+      </function>
+      <function name="EnumSubKeys" visibility="public" file="ElIni.pas" line="209">
+        <parameters>
+          <parameter name="Key" type="string" />
+          <parameter name="Strings" type="TStrings" />
+          <retval type="Boolean" />
+        </parameters>
+      </function>
+      <function name="EnumValues" visibility="public" file="ElIni.pas" line="210">
+        <parameters>
+          <parameter name="Key" type="string" />
+          <parameter name="Strings" type="TStrings" />
+          <retval type="Boolean" />
+        </parameters>
+      </function>
+      <function name="FullKey" visibility="public" file="ElIni.pas" line="211">
+        <parameters>
+          <parameter name="Key" type="string" />
+          <retval type="string" />
+        </parameters>
+      </function>
+      <function name="GetValueType" visibility="public" file="ElIni.pas" line="212">
+        <parameters>
+          <parameter name="Key" type="string" />
+          <parameter name="ValueName" type="string" />
+          <retval type="TElValueType" />
+        </parameters>
+      </function>
+      <function name="KeyExists" visibility="public" file="ElIni.pas" line="213">
+        <parameters>
+          <parameter name="Key" type="string" />
+          <retval type="Boolean" />
+        </parameters>
+      </function>
+      <procedure name="LoadFromStream" visibility="public" file="ElIni.pas" line="214">
+        <parameters>
+          <parameter name="Stream" type="TStream" />
+        </parameters>
+      </procedure>
+      <procedure name="SaveToStream" visibility="public" file="ElIni.pas" line="215">
+        <parameters>
+          <parameter name="Stream" type="TStream" />
+        </parameters>
+      </procedure>
+      <function name="Load" visibility="public" file="ElIni.pas" line="216">
+        <parameters>
+          <retval type="Boolean" />
+        </parameters>
+      </function>
+      <procedure name="Loaded" visibility="public" procflags="override" file="ElIni.pas" line="217">
+      </procedure>
+      <function name="MoveEntry" visibility="public" file="ElIni.pas" line="218">
+        <parameters>
+          <parameter name="Key" type="string" />
+          <parameter name="ValueName" type="string" />
+          <parameter name="NewKey" type="string" />
+          <retval type="Boolean" />
+        </parameters>
+      </function>
+      <function name="OpenKey" visibility="public" file="ElIni.pas" line="219">
+        <parameters>
+          <parameter name="Key" type="string" />
+          <parameter name="CanCreate" type="Boolean" />
+          <retval type="Boolean" />
+        </parameters>
+      </function>
+      <function name="OwnKey" visibility="public" file="ElIni.pas" line="220">
+        <parameters>
+          <parameter name="Key" type="string" />
+          <retval type="string" />
+        </parameters>
+      </function>
+      <function name="ParentKey" visibility="public" file="ElIni.pas" line="221">
+        <parameters>
+          <parameter name="Key" type="string" />
+          <retval type="string" />
+        </parameters>
+      </function>
+      <function name="ReadBinary" visibility="public" file="ElIni.pas" line="222">
+        <parameters>
+          <parameter name="Key" type="string" />
+          <parameter name="ValueName" type="string" />
+          <parameter name="Buffer" paramflags="var" />
+          <parameter name="BufferLen" type="Integer" paramflags="var" />
+          <retval type="Boolean" />
+        </parameters>
+      </function>
+      <function name="ReadBool" visibility="public" file="ElIni.pas" line="224">
+        <parameters>
+          <parameter name="Key" type="string" />
+          <parameter name="ValueName" type="string" />
+          <parameter name="DefValue" type="Boolean" />
+          <parameter name="Value" type="Boolean" paramflags="var" />
+          <retval type="Boolean" />
+        </parameters>
+      </function>
+      <function name="ReadDouble" visibility="public" file="ElIni.pas" line="226">
+        <parameters>
+          <parameter name="Key" type="string" />
+          <parameter name="ValueName" type="string" />
+          <parameter name="DefValue" type="Double" />
+          <parameter name="Value" type="Double" paramflags="var" />
+          <retval type="Boolean" />
+        </parameters>
+      </function>
+      <function name="ReadInteger" visibility="public" file="ElIni.pas" line="228">
+        <parameters>
+          <parameter name="Key" type="string" />
+          <parameter name="ValueName" type="string" />
+          <parameter name="DefValue" type="Integer" />
+          <parameter name="Value" type="Integer" paramflags="var" />
+          <retval type="Boolean" />
+        </parameters>
+      </function>
+      <function name="ReadMultiString" visibility="public" file="ElIni.pas" line="230">
+        <parameters>
+          <parameter name="Key" type="string" />
+          <parameter name="ValueName" type="string" />
+          <parameter name="Strings" type="TStrings" />
+          <retval type="Boolean" />
+        </parameters>
+      </function>
+      <function name="ReadObject" visibility="public" file="ElIni.pas" line="232">
+        <parameters>
+          <parameter name="Key" type="string" />
+          <parameter name="AnObject" type="TPersistent" />
+          <retval type="Boolean" />
+        </parameters>
+      </function>
+      <function name="ReadString" visibility="public" file="ElIni.pas" line="233">
+        <parameters>
+          <parameter name="Key" type="string" />
+          <parameter name="ValueName" type="string" />
+          <parameter name="DefValue" type="string" />
+          <parameter name="Value" type="string" paramflags="var" />
+          <retval type="Boolean" />
+        </parameters>
+      </function>
+      <function name="ReadColor" visibility="public" file="ElIni.pas" line="236">
+        <parameters>
+          <parameter name="Key" type="string" />
+          <parameter name="ValueName" type="string" />
+          <parameter name="DefValue" type="TColor" />
+          <parameter name="Value" type="TColor" paramflags="var" />
+          <retval type="Boolean" />
+        </parameters>
+      </function>
+      <function name="ReadRect" visibility="public" file="ElIni.pas" line="238">
+        <parameters>
+          <parameter name="Key" type="string" />
+          <parameter name="ValueName" type="string" />
+          <parameter name="DefValue" type="TRect" />
+          <parameter name="Value" type="TRect" paramflags="var" />
+          <retval type="Boolean" />
+        </parameters>
+      </function>
+      <function name="RenameKey" visibility="public" procflags="virtual" file="ElIni.pas" line="241">
+        <parameters>
+          <parameter name="Key" type="string" />
+          <parameter name="NewName" type="string" />
+          <retval type="Boolean" />
+        </parameters>
+      </function>
+      <function name="RenameValue" visibility="public" procflags="virtual" file="ElIni.pas" line="242">
+        <parameters>
+          <parameter name="Key" type="string" />
+          <parameter name="ValueName" type="string" />
+          <parameter name="NewName" type="string" />
+          <retval type="Boolean" />
+        </parameters>
+      </function>
+      <function name="Save" visibility="public" file="ElIni.pas" line="243">
+        <parameters>
+          <retval type="Boolean" />
+        </parameters>
+      </function>
+      <procedure name="SetValueType" visibility="public" procflags="virtual" file="ElIni.pas" line="244">
+        <parameters>
+          <parameter name="Key" type="string" />
+          <parameter name="ValueName" type="string" />
+          <parameter name="NewType" type="TElValueType" />
+        </parameters>
+      </procedure>
+      <function name="SubKeysCount" visibility="public" file="ElIni.pas" line="246">
+        <parameters>
+          <parameter name="Key" type="string" />
+          <retval type="Integer" />
+        </parameters>
+      </function>
+      <function name="ValueExists" visibility="public" file="ElIni.pas" line="247">
+        <parameters>
+          <parameter name="Key" type="string" />
+          <parameter name="ValueName" type="string" />
+          <retval type="Boolean" />
+        </parameters>
+      </function>
+      <function name="ValuesCount" visibility="public" file="ElIni.pas" line="248">
+        <parameters>
+          <parameter name="Key" type="string" />
+          <retval type="Integer" />
+        </parameters>
+      </function>
+      <function name="WriteBinary" visibility="public" file="ElIni.pas" line="249">
+        <parameters>
+          <parameter name="Key" type="string" />
+          <parameter name="ValueName" type="string" />
+          <parameter name="Buffer" paramflags="var" />
+          <parameter name="BufferLen" type="Integer" />
+          <retval type="Boolean" />
+        </parameters>
+      </function>
+      <function name="WriteBool" visibility="public" file="ElIni.pas" line="251">
+        <parameters>
+          <parameter name="Key" type="string" />
+          <parameter name="ValueName" type="string" />
+          <parameter name="Value" type="Boolean" />
+          <retval type="Boolean" />
+        </parameters>
+      </function>
+      <function name="WriteDouble" visibility="public" file="ElIni.pas" line="253">
+        <parameters>
+          <parameter name="Key" type="string" />
+          <parameter name="ValueName" type="string" />
+          <parameter name="Value" type="Double" />
+          <retval type="Boolean" />
+        </parameters>
+      </function>
+      <function name="WriteInteger" visibility="public" file="ElIni.pas" line="255">
+        <parameters>
+          <parameter name="Key" type="string" />
+          <parameter name="ValueName" type="string" />
+          <parameter name="Value" type="Integer" />
+          <retval type="Boolean" />
+        </parameters>
+      </function>
+      <function name="WriteMultiString" visibility="public" file="ElIni.pas" line="257">
+        <parameters>
+          <parameter name="Key" type="string" />
+          <parameter name="ValueName" type="string" />
+          <parameter name="Strings" type="TStrings" />
+          <retval type="Boolean" />
+        </parameters>
+      </function>
+      <function name="WriteObject" visibility="public" file="ElIni.pas" line="259">
+        <parameters>
+          <parameter name="Key" type="string" />
+          <parameter name="AnObject" type="TPersistent" />
+          <retval type="Boolean" />
+        </parameters>
+      </function>
+      <function name="WriteString" visibility="public" file="ElIni.pas" line="260">
+        <parameters>
+          <parameter name="Key" type="string" />
+          <parameter name="ValueName" type="string" />
+          <parameter name="Value" type="string" />
+          <retval type="Boolean" />
+        </parameters>
+      </function>
+      <function name="WriteColor" visibility="public" file="ElIni.pas" line="263">
+        <parameters>
+          <parameter name="Key" type="string" />
+          <parameter name="ValueName" type="string" />
+          <parameter name="Value" type="TColor" />
+          <retval type="Boolean" />
+        </parameters>
+      </function>
+      <function name="WriteRect" visibility="public" file="ElIni.pas" line="265">
+        <parameters>
+          <parameter name="Key" type="string" />
+          <parameter name="ValueName" type="string" />
+          <parameter name="Value" type="TRect" />
+          <retval type="Boolean" />
+        </parameters>
+      </function>
+      <property name="CurrentKey" visibility="public" read="FCurrentKey" write="SetCurrentKey" type="string" default="0" file="ElIni.pas" line="268" />
+      <property name="Modified" visibility="public" read="FModified" type="Boolean" file="ElIni.pas" line="269" />
+      <property name="BinaryMode" visibility="published" read="FBinaryMode" write="FBinaryMode" type="Boolean" file="ElIni.pas" line="271" />
+      <property name="Comment" visibility="published" read="FComment" write="FComment" type="string" default="0" file="ElIni.pas" line="272" />
+      <property name="Delimiter" visibility="published" read="FDelimiter" write="SetDelimiter" type="Char" file="ElIni.pas" line="273" />
+      <property name="DivChar" visibility="published" read="FDivChar" write="FDivChar" type="Char" default="61" file="ElIni.pas" line="274" />
+      <property name="LazyWrite" visibility="published" read="FLazyWrite" write="SetLazyWrite" type="Boolean" default="1" file="ElIni.pas" line="275" />
+      <property name="Path" visibility="published" read="FPath" write="SetPath" type="string" default="0" file="ElIni.pas" line="276" />
+      <property name="Simple" visibility="published" read="FSimple" write="SetSimple" type="Boolean" default="0" file="ElIni.pas" line="278" />
+      <property name="RegRoot" visibility="published" read="GetRegRoot" write="SetRegRoot" type="TRegRootType" file="ElIni.pas" line="280" />
+      <property name="UseRegistry" visibility="published" read="FUseRegistry" write="SetUseRegistry" type="Boolean" default="0" file="ElIni.pas" line="286" />
+      <property name="WarningMessage" visibility="published" read="FWarningMessage" write="FWarningMessage" type="string" default="0" file="ElIni.pas" line="293" />
+      <event name="OnBeforeSave" visibility="published" read="FOnBeforeSave" write="FOnBeforeSave" type="TNotifyEvent" file="ElIni.pas" line="294" />
+      <event name="OnAfterLoad" visibility="published" read="FOnAfterLoad" write="FOnAfterLoad" type="TNotifyEvent" file="ElIni.pas" line="295" />
+      <event name="OnBeforeLoad" visibility="published" read="FOnBeforeLoad" write="FOnBeforeLoad" type="TNotifyEvent" file="ElIni.pas" line="296" />
+      <event name="OnAfterSave" visibility="published" read="FOnAfterSave" write="FOnAfterSave" type="TNotifyEvent" file="ElIni.pas" line="297" />
+    </members>
+  </class>
+</namespace>

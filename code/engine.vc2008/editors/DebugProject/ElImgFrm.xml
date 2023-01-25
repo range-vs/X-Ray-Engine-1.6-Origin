@@ -1,0 +1,962 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<namespace name="ElImgFrm" platform="Win64">
+  <class name="TImgFormChangeLink" file="ElImgFrm.pas" line="103">
+    <ancestor name="TObject" namespace="System">
+      <methodref name="Create" visibility="public" procflags="constructor">
+      </methodref>
+      <methodref name="Free" visibility="public">
+      </methodref>
+      <methodref name="DisposeOf" visibility="public" procflags="inline">
+      </methodref>
+      <methodref name="InitInstance" visibility="public" procflags="class">
+      </methodref>
+      <methodref name="CleanupInstance" visibility="public">
+      </methodref>
+      <methodref name="ClassType" visibility="public" procflags="inline">
+      </methodref>
+      <methodref name="ClassName" visibility="public" procflags="class">
+      </methodref>
+      <methodref name="ClassNameIs" visibility="public" procflags="class">
+      </methodref>
+      <methodref name="ClassParent" visibility="public" procflags="class">
+      </methodref>
+      <methodref name="ClassInfo" visibility="public" procflags="class inline">
+      </methodref>
+      <methodref name="InstanceSize" visibility="public" procflags="class inline">
+      </methodref>
+      <methodref name="InheritsFrom" visibility="public" procflags="class">
+      </methodref>
+      <methodref name="MethodAddress" visibility="public" procflags="class overload">
+      </methodref>
+      <methodref name="MethodAddress" visibility="public" procflags="class overload">
+      </methodref>
+      <methodref name="MethodName" visibility="public" procflags="class">
+      </methodref>
+      <methodref name="QualifiedClassName" visibility="public" procflags="class">
+      </methodref>
+      <methodref name="FieldAddress" visibility="public" procflags="overload">
+      </methodref>
+      <methodref name="FieldAddress" visibility="public" procflags="overload">
+      </methodref>
+      <methodref name="GetInterface" visibility="public">
+      </methodref>
+      <methodref name="GetInterfaceEntry" visibility="public" procflags="class">
+      </methodref>
+      <methodref name="GetInterfaceTable" visibility="public" procflags="class inline">
+      </methodref>
+      <methodref name="UnitName" visibility="public" procflags="class">
+      </methodref>
+      <methodref name="UnitScope" visibility="public" procflags="class">
+      </methodref>
+      <methodref name="Equals" visibility="public" procflags="virtual">
+      </methodref>
+      <methodref name="GetHashCode" visibility="public" procflags="virtual">
+      </methodref>
+      <methodref name="ToString" visibility="public" procflags="virtual">
+      </methodref>
+      <methodref name="SafeCallException" visibility="public" procflags="virtual">
+      </methodref>
+      <methodref name="AfterConstruction" visibility="public" procflags="virtual">
+      </methodref>
+      <methodref name="BeforeDestruction" visibility="public" procflags="virtual">
+      </methodref>
+      <methodref name="Dispatch" visibility="public" procflags="virtual">
+      </methodref>
+      <methodref name="DefaultHandler" visibility="public" procflags="virtual">
+      </methodref>
+      <methodref name="NewInstance" visibility="public" procflags="class virtual">
+      </methodref>
+      <methodref name="FreeInstance" visibility="public" procflags="virtual">
+      </methodref>
+      <methodref name="Destroy" visibility="public" procflags="destructor virtual">
+      </methodref>
+      <methodref name="CPP_ABI_1" visibility="public" procflags="virtual">
+      </methodref>
+      <methodref name="CPP_ABI_2" visibility="public" procflags="virtual">
+      </methodref>
+      <methodref name="CPP_ABI_3" visibility="public" procflags="virtual">
+      </methodref>
+      <methodref name="GetDisposed" visibility="protected" procflags="inline">
+      </methodref>
+      <methodref name="CheckDisposed" visibility="protected" procflags="inline">
+      </methodref>
+      <propertyref name="Disposed" visibility="protected">
+      </propertyref>
+    </ancestor>
+    <members>
+      <field name="FSender" type="TCustomElImageForm" visibility="private" size="8" offset="8" file="ElImgFrm.pas" line="105" />
+      <field name="FOnChange" type="TNotifyEvent" visibility="private" size="16" offset="16" file="ElImgFrm.pas" line="106" />
+      <destructor name="Destroy" visibility="public" file="ElImgFrm.pas" line="108">
+        <parameters>
+        </parameters>
+      </destructor>
+      <procedure name="Change" visibility="public" procflags="dynamic" file="ElImgFrm.pas" line="109">
+      </procedure>
+      <event name="OnChange" visibility="public" read="FOnChange" write="FOnChange" type="TNotifyEvent" file="ElImgFrm.pas" line="110" />
+      <property name="Sender" visibility="public" read="FSender" write="FSender" type="TCustomElImageForm" file="ElImgFrm.pas" line="111" />
+    </members>
+  </class>
+  <class name="TCustomElImageForm" file="ElImgFrm.pas" line="114">
+    <ancestor name="TComponent" namespace="System.Classes">
+      <interfaces>
+        <implements name="IInterfaceComponentReference" />
+        <implements name="IInterface" />
+      </interfaces>
+      <methodref name="GetComObject" visibility="private">
+      </methodref>
+      <methodref name="GetComponent" visibility="private">
+      </methodref>
+      <methodref name="GetComponentCount" visibility="private">
+      </methodref>
+      <methodref name="GetComponentIndex" visibility="private">
+      </methodref>
+      <methodref name="Insert" visibility="private">
+      </methodref>
+      <methodref name="ReadLeft" visibility="private">
+      </methodref>
+      <methodref name="ReadTop" visibility="private">
+      </methodref>
+      <methodref name="Remove" visibility="private">
+      </methodref>
+      <methodref name="RemoveNotification" visibility="private">
+      </methodref>
+      <methodref name="SetComponentIndex" visibility="private">
+      </methodref>
+      <methodref name="SetReference" visibility="private">
+      </methodref>
+      <methodref name="WriteLeft" visibility="private">
+      </methodref>
+      <methodref name="WriteTop" visibility="private">
+      </methodref>
+      <methodref name="IntfGetComponent" visibility="private">
+      </methodref>
+      <methodref name="DoGetDeltaStreams" visibility="private">
+      </methodref>
+      <methodref name="ReadDeltaStream" visibility="private">
+      </methodref>
+      <methodref name="ReadDeltaState" visibility="private">
+      </methodref>
+      <methodref name="FindSortedComponent" visibility="private">
+      </methodref>
+      <methodref name="AddSortedComponent" visibility="private">
+      </methodref>
+      <methodref name="RemoveSortedComponent" visibility="private" procflags="inline">
+      </methodref>
+      <methodref name="Create@" visibility="class private" procflags="class constructor noself">
+      </methodref>
+      <methodref name="AsyncSchedule" visibility="protected" procflags="virtual">
+      </methodref>
+      <methodref name="ChangeName" visibility="protected">
+      </methodref>
+      <methodref name="DefineProperties" visibility="protected" procflags="override">
+      </methodref>
+      <methodref name="GetChildren" visibility="protected" procflags="dynamic">
+      </methodref>
+      <methodref name="GetChildOwner" visibility="protected" procflags="dynamic">
+      </methodref>
+      <methodref name="GetChildParent" visibility="protected" procflags="dynamic">
+      </methodref>
+      <methodref name="GetOwner" visibility="protected" procflags="override">
+      </methodref>
+      <methodref name="Loaded" visibility="protected" procflags="virtual">
+      </methodref>
+      <methodref name="Notification" visibility="protected" procflags="virtual">
+      </methodref>
+      <methodref name="GetDeltaStreams" visibility="protected" procflags="dynamic">
+      </methodref>
+      <methodref name="PaletteCreated" visibility="protected" procflags="dynamic">
+      </methodref>
+      <methodref name="ReadState" visibility="protected" procflags="virtual">
+      </methodref>
+      <methodref name="CanObserve" visibility="protected" procflags="virtual">
+      </methodref>
+      <methodref name="ObserverAdded" visibility="protected" procflags="virtual">
+      </methodref>
+      <methodref name="GetObservers" visibility="protected" procflags="virtual">
+      </methodref>
+      <methodref name="SetAncestor" visibility="protected">
+      </methodref>
+      <methodref name="SetDesigning" visibility="protected">
+      </methodref>
+      <methodref name="SetInline" visibility="protected">
+      </methodref>
+      <methodref name="SetDesignInstance" visibility="protected">
+      </methodref>
+      <methodref name="SetName" visibility="protected" procflags="virtual">
+      </methodref>
+      <methodref name="SetChildOrder" visibility="protected" procflags="dynamic">
+      </methodref>
+      <methodref name="SetParentComponent" visibility="protected" procflags="dynamic">
+      </methodref>
+      <methodref name="Updating" visibility="protected" procflags="dynamic">
+      </methodref>
+      <methodref name="Updated" visibility="protected" procflags="dynamic">
+      </methodref>
+      <methodref name="UpdateRegistry" visibility="protected" procflags="class virtual">
+      </methodref>
+      <methodref name="ValidateRename" visibility="protected" procflags="virtual">
+      </methodref>
+      <methodref name="ValidateContainer" visibility="protected" procflags="dynamic">
+      </methodref>
+      <methodref name="ValidateInsert" visibility="protected" procflags="dynamic">
+      </methodref>
+      <methodref name="WriteState" visibility="protected" procflags="virtual">
+      </methodref>
+      <methodref name="RemoveFreeNotifications" visibility="protected">
+      </methodref>
+      <methodref name="QueryInterface" visibility="protected" procflags="virtual">
+      </methodref>
+      <methodref name="_AddRef" visibility="protected">
+      </methodref>
+      <methodref name="_Release" visibility="protected">
+      </methodref>
+      <methodref name="GetTypeInfoCount" visibility="protected">
+      </methodref>
+      <methodref name="GetTypeInfo" visibility="protected">
+      </methodref>
+      <methodref name="GetIDsOfNames" visibility="protected">
+      </methodref>
+      <methodref name="Invoke" visibility="protected">
+      </methodref>
+      <eventref name="OnGetDeltaStreams" visibility="protected">
+      </eventref>
+      <methodref name="Create" visibility="public" procflags="constructor virtual">
+      </methodref>
+      <methodref name="Destroy" visibility="public" procflags="destructor override">
+      </methodref>
+      <methodref name="BeforeDestruction" visibility="public" procflags="override">
+      </methodref>
+      <methodref name="BeginInvoke" visibility="public" procflags="overload">
+      </methodref>
+      <methodref name="BeginInvoke" visibility="public" procflags="overload">
+      </methodref>
+      <methodref name="BeginInvoke" visibility="public" procflags="overload">
+      </methodref>
+      <methodref name="BeginInvoke" visibility="public" procflags="overload">
+      </methodref>
+      <methodref name="BeginInvoke" visibility="public" procflags="overload">
+      </methodref>
+      <methodref name="BeginInvoke" visibility="public" procflags="overload">
+      </methodref>
+      <methodref name="BeginInvoke" visibility="public" procflags="overload">
+      </methodref>
+      <methodref name="BeginInvoke" visibility="public" procflags="overload">
+      </methodref>
+      <methodref name="EndInvoke" visibility="public" procflags="overload">
+      </methodref>
+      <methodref name="EndInvoke" visibility="public" procflags="overload">
+      </methodref>
+      <methodref name="EndFunctionInvoke" visibility="public">
+      </methodref>
+      <methodref name="DestroyComponents" visibility="public">
+      </methodref>
+      <methodref name="Destroying" visibility="public">
+      </methodref>
+      <methodref name="ExecuteAction" visibility="public" procflags="dynamic">
+      </methodref>
+      <methodref name="FindComponent" visibility="public">
+      </methodref>
+      <methodref name="FreeNotification" visibility="public">
+      </methodref>
+      <methodref name="RemoveFreeNotification" visibility="public">
+      </methodref>
+      <methodref name="FreeOnRelease" visibility="public">
+      </methodref>
+      <methodref name="GetEnumerator" visibility="public" procflags="inline">
+      </methodref>
+      <methodref name="GetParentComponent" visibility="public" procflags="dynamic">
+      </methodref>
+      <methodref name="GetNamePath" visibility="public" procflags="override">
+      </methodref>
+      <methodref name="HasParent" visibility="public" procflags="dynamic">
+      </methodref>
+      <methodref name="InsertComponent" visibility="public">
+      </methodref>
+      <methodref name="RemoveComponent" visibility="public">
+      </methodref>
+      <methodref name="SetSubComponent" visibility="public">
+      </methodref>
+      <methodref name="SafeCallException" visibility="public" procflags="override">
+      </methodref>
+      <methodref name="UpdateAction" visibility="public" procflags="virtual">
+      </methodref>
+      <methodref name="IsImplementorOf" visibility="public">
+      </methodref>
+      <methodref name="ReferenceInterface" visibility="public">
+      </methodref>
+      <propertyref name="ComObject" visibility="public">
+      </propertyref>
+      <propertyref name="Components" visibility="public">
+      </propertyref>
+      <propertyref name="ComponentCount" visibility="public">
+      </propertyref>
+      <propertyref name="ComponentIndex" visibility="public">
+      </propertyref>
+      <propertyref name="ComponentState" visibility="public">
+      </propertyref>
+      <propertyref name="ComponentStyle" visibility="public">
+      </propertyref>
+      <propertyref name="DesignInfo" visibility="public">
+      </propertyref>
+      <propertyref name="Owner" visibility="public">
+      </propertyref>
+      <propertyref name="VCLComObject" visibility="public">
+      </propertyref>
+      <propertyref name="Observers" visibility="public">
+      </propertyref>
+      <propertyref name="Name" visibility="published">
+      </propertyref>
+      <propertyref name="Tag" visibility="published">
+      </propertyref>
+      <ancestor name="TPersistent" namespace="System.Classes">
+        <methodref name="AssignError" visibility="private">
+        </methodref>
+        <methodref name="AssignTo" visibility="protected" procflags="virtual">
+        </methodref>
+        <methodref name="DefineProperties" visibility="protected" procflags="virtual">
+        </methodref>
+        <methodref name="GetOwner" visibility="protected" procflags="dynamic">
+        </methodref>
+        <methodref name="Destroy" visibility="public" procflags="destructor override">
+        </methodref>
+        <methodref name="Assign" visibility="public" procflags="virtual">
+        </methodref>
+        <methodref name="GetNamePath" visibility="public" procflags="dynamic">
+        </methodref>
+        <ancestor name="TObject" namespace="System">
+          <methodref name="Create" visibility="public" procflags="constructor">
+          </methodref>
+          <methodref name="Free" visibility="public">
+          </methodref>
+          <methodref name="DisposeOf" visibility="public" procflags="inline">
+          </methodref>
+          <methodref name="InitInstance" visibility="public" procflags="class">
+          </methodref>
+          <methodref name="CleanupInstance" visibility="public">
+          </methodref>
+          <methodref name="ClassType" visibility="public" procflags="inline">
+          </methodref>
+          <methodref name="ClassName" visibility="public" procflags="class">
+          </methodref>
+          <methodref name="ClassNameIs" visibility="public" procflags="class">
+          </methodref>
+          <methodref name="ClassParent" visibility="public" procflags="class">
+          </methodref>
+          <methodref name="ClassInfo" visibility="public" procflags="class inline">
+          </methodref>
+          <methodref name="InstanceSize" visibility="public" procflags="class inline">
+          </methodref>
+          <methodref name="InheritsFrom" visibility="public" procflags="class">
+          </methodref>
+          <methodref name="MethodAddress" visibility="public" procflags="class overload">
+          </methodref>
+          <methodref name="MethodAddress" visibility="public" procflags="class overload">
+          </methodref>
+          <methodref name="MethodName" visibility="public" procflags="class">
+          </methodref>
+          <methodref name="QualifiedClassName" visibility="public" procflags="class">
+          </methodref>
+          <methodref name="FieldAddress" visibility="public" procflags="overload">
+          </methodref>
+          <methodref name="FieldAddress" visibility="public" procflags="overload">
+          </methodref>
+          <methodref name="GetInterface" visibility="public">
+          </methodref>
+          <methodref name="GetInterfaceEntry" visibility="public" procflags="class">
+          </methodref>
+          <methodref name="GetInterfaceTable" visibility="public" procflags="class inline">
+          </methodref>
+          <methodref name="UnitName" visibility="public" procflags="class">
+          </methodref>
+          <methodref name="UnitScope" visibility="public" procflags="class">
+          </methodref>
+          <methodref name="Equals" visibility="public" procflags="virtual">
+          </methodref>
+          <methodref name="GetHashCode" visibility="public" procflags="virtual">
+          </methodref>
+          <methodref name="ToString" visibility="public" procflags="virtual">
+          </methodref>
+          <methodref name="SafeCallException" visibility="public" procflags="virtual">
+          </methodref>
+          <methodref name="AfterConstruction" visibility="public" procflags="virtual">
+          </methodref>
+          <methodref name="BeforeDestruction" visibility="public" procflags="virtual">
+          </methodref>
+          <methodref name="Dispatch" visibility="public" procflags="virtual">
+          </methodref>
+          <methodref name="DefaultHandler" visibility="public" procflags="virtual">
+          </methodref>
+          <methodref name="NewInstance" visibility="public" procflags="class virtual">
+          </methodref>
+          <methodref name="FreeInstance" visibility="public" procflags="virtual">
+          </methodref>
+          <methodref name="Destroy" visibility="public" procflags="destructor virtual">
+          </methodref>
+          <methodref name="CPP_ABI_1" visibility="public" procflags="virtual">
+          </methodref>
+          <methodref name="CPP_ABI_2" visibility="public" procflags="virtual">
+          </methodref>
+          <methodref name="CPP_ABI_3" visibility="public" procflags="virtual">
+          </methodref>
+          <methodref name="GetDisposed" visibility="protected" procflags="inline">
+          </methodref>
+          <methodref name="CheckDisposed" visibility="protected" procflags="inline">
+          </methodref>
+          <propertyref name="Disposed" visibility="protected">
+          </propertyref>
+        </ancestor>
+      </ancestor>
+    </ancestor>
+    <members>
+      <field name="FCaptionControl" type="TGraphicControl" visibility="private" size="8" offset="120" file="ElImgFrm.pas" line="116" />
+      <field name="FChangeRegion" type="Boolean" visibility="private" size="1" offset="128" file="ElImgFrm.pas" line="117" />
+      <field name="FBkImage" type="TBitmap" visibility="private" size="8" offset="136" file="ElImgFrm.pas" line="118" />
+      <field name="FImage" type="TImage" visibility="private" size="8" offset="144" file="ElImgFrm.pas" line="119" />
+      <field name="FBmp" type="TBitmap" visibility="private" size="8" offset="152" file="ElImgFrm.pas" line="120" />
+      <field name="FMoveForm" type="Boolean" visibility="private" size="1" offset="160" file="ElImgFrm.pas" line="121" />
+      <field name="FMoveHook" type="TElHook" visibility="private" size="8" offset="168" file="ElImgFrm.pas" line="122" />
+      <field name="FOldImageEvent" type="TNotifyEvent" visibility="private" size="16" offset="176" file="ElImgFrm.pas" line="123" />
+      <field name="FRegion" type="HRGN" visibility="private" size="8" offset="192" file="ElImgFrm.pas" line="124" />
+      <field name="FBackgroundType" type="TElBkGndType" visibility="private" size="1" offset="200" file="ElImgFrm.pas" line="125" />
+      <field name="FGradientSteps" type="Integer" visibility="private" size="4" offset="204" file="ElImgFrm.pas" line="126" />
+      <field name="FGradientStartColor" type="TColor" visibility="private" size="4" offset="208" file="ElImgFrm.pas" line="127" />
+      <field name="FGradientEndColor" type="TColor" visibility="private" size="4" offset="212" file="ElImgFrm.pas" line="128" />
+      <field name="FNoBk" type="Boolean" visibility="private" size="1" offset="216" file="ElImgFrm.pas" line="130" />
+      <field name="FCLients" type="TElList" visibility="private" size="8" offset="224" file="ElImgFrm.pas" line="132" />
+      <field name="CacheBackground" type="TBitmap" visibility="private" size="8" offset="232" file="ElImgFrm.pas" line="133" />
+      <procedure name="AfterMessage" visibility="private" file="ElImgFrm.pas" line="136">
+        <parameters>
+          <parameter name="Sender" type="TObject" />
+          <parameter name="Msg" type="TMessage" paramflags="var" />
+          <parameter name="Handled" type="Boolean" paramflags="var" />
+        </parameters>
+      </procedure>
+      <procedure name="BeforeMessage" visibility="private" file="ElImgFrm.pas" line="137">
+        <parameters>
+          <parameter name="Sender" type="TObject" />
+          <parameter name="Msg" type="TMessage" paramflags="var" />
+          <parameter name="Handled" type="Boolean" paramflags="var" />
+        </parameters>
+      </procedure>
+      <procedure name="PictureChanged" visibility="private" file="ElImgFrm.pas" line="139">
+        <parameters>
+          <parameter name="Sender" type="TObject" />
+        </parameters>
+      </procedure>
+      <procedure name="BkImageChange" visibility="private" file="ElImgFrm.pas" line="140">
+        <parameters>
+          <parameter name="Sender" type="TObject" />
+        </parameters>
+      </procedure>
+      <procedure name="SetCaptionControl" visibility="private" file="ElImgFrm.pas" line="141">
+        <parameters>
+          <parameter name="Value" type="TGraphicControl" paramflags="const" />
+        </parameters>
+      </procedure>
+      <procedure name="SetChangeRegion" visibility="private" file="ElImgFrm.pas" line="142">
+        <parameters>
+          <parameter name="Value" type="Boolean" paramflags="const" />
+        </parameters>
+      </procedure>
+      <procedure name="SetImage" visibility="private" file="ElImgFrm.pas" line="143">
+        <parameters>
+          <parameter name="Value" type="TImage" paramflags="const" />
+        </parameters>
+      </procedure>
+      <procedure name="SetBkImage" visibility="private" file="ElImgFrm.pas" line="144">
+        <parameters>
+          <parameter name="Value" type="TBitmap" paramflags="const" />
+        </parameters>
+      </procedure>
+      <procedure name="SetMoveForm" visibility="private" file="ElImgFrm.pas" line="145">
+        <parameters>
+          <parameter name="Value" type="Boolean" paramflags="const" />
+        </parameters>
+      </procedure>
+      <procedure name="SetGradientStartColor" visibility="private" file="ElImgFrm.pas" line="146">
+        <parameters>
+          <parameter name="newValue" type="TColor" />
+        </parameters>
+      </procedure>
+      <procedure name="SetGradientEndColor" visibility="private" file="ElImgFrm.pas" line="147">
+        <parameters>
+          <parameter name="newValue" type="TColor" />
+        </parameters>
+      </procedure>
+      <procedure name="SetGradientSteps" visibility="private" file="ElImgFrm.pas" line="148">
+        <parameters>
+          <parameter name="newValue" type="Integer" />
+        </parameters>
+      </procedure>
+      <procedure name="SetBackgroundType" visibility="private" file="ElImgFrm.pas" line="149">
+        <parameters>
+          <parameter name="newValue" type="TElBkGndType" />
+        </parameters>
+      </procedure>
+      <procedure name="Change" visibility="private" file="ElImgFrm.pas" line="150">
+      </procedure>
+      <field name="FControl" type="TWinControl" visibility="protected" size="8" offset="240" file="ElImgFrm.pas" line="153" />
+      <field name="FTransparentColor" type="TColor" visibility="protected" size="4" offset="248" file="ElImgFrm.pas" line="154" />
+      <procedure name="CreateHook" visibility="protected" file="ElImgFrm.pas" line="155">
+      </procedure>
+      <procedure name="CreateRegion" visibility="protected" file="ElImgFrm.pas" line="156">
+      </procedure>
+      <procedure name="DestroyHook" visibility="protected" file="ElImgFrm.pas" line="157">
+      </procedure>
+      <procedure name="DestroyRegion" visibility="protected" file="ElImgFrm.pas" line="158">
+      </procedure>
+      <function name="GetTransparentColor" visibility="protected" file="ElImgFrm.pas" line="159">
+        <parameters>
+          <retval type="TColor" />
+        </parameters>
+      </function>
+      <procedure name="Loaded" visibility="protected" procflags="override" file="ElImgFrm.pas" line="160">
+      </procedure>
+      <procedure name="Notification" visibility="protected" procflags="override" file="ElImgFrm.pas" line="161">
+        <parameters>
+          <parameter name="AComponent" type="TComponent" />
+          <parameter name="Operation" type="TOperation" />
+        </parameters>
+      </procedure>
+      <procedure name="SetControl" visibility="protected" file="ElImgFrm.pas" line="162">
+        <parameters>
+          <parameter name="Value" type="TWinControl" />
+        </parameters>
+      </procedure>
+      <procedure name="SetTransparentColor" visibility="protected" file="ElImgFrm.pas" line="163">
+        <parameters>
+          <parameter name="Value" type="TColor" />
+        </parameters>
+      </procedure>
+      <procedure name="CreateCacheBackground" visibility="protected" file="ElImgFrm.pas" line="164">
+      </procedure>
+      <procedure name="DisposeCacheBackground" visibility="protected" file="ElImgFrm.pas" line="165">
+      </procedure>
+      <property name="CaptionControl" visibility="protected" read="FCaptionControl" write="SetCaptionControl" type="TGraphicControl" file="ElImgFrm.pas" line="166" />
+      <property name="ChangeFormRegion" visibility="protected" read="FChangeRegion" write="SetChangeRegion" type="Boolean" file="ElImgFrm.pas" line="167" />
+      <property name="MoveForm" visibility="protected" read="FMoveForm" write="SetMoveForm" type="Boolean" default="0" file="ElImgFrm.pas" line="168" />
+      <property name="FormImage" visibility="protected" read="FImage" write="SetImage" type="TImage" file="ElImgFrm.pas" line="169" />
+      <property name="Background" visibility="protected" read="FBkImage" write="SetBkImage" type="TBitmap" file="ElImgFrm.pas" line="170" />
+      <property name="BackgroundType" visibility="protected" read="FBackgroundType" write="SetBackgroundType" type="TElBkGndType" default="2" file="ElImgFrm.pas" line="171" />
+      <property name="GradientStartColor" visibility="protected" read="FGradientStartColor" write="SetGradientStartColor" type="TColor" file="ElImgFrm.pas" line="172" />
+      <property name="GradientEndColor" visibility="protected" read="FGradientEndColor" write="SetGradientEndColor" type="TColor" file="ElImgFrm.pas" line="173" />
+      <property name="GradientSteps" visibility="protected" read="FGradientSteps" write="SetGradientSteps" type="Integer" default="16" file="ElImgFrm.pas" line="174" />
+      <constructor name="Create" visibility="public" file="ElImgFrm.pas" line="176">
+        <parameters>
+          <parameter name="AOwner" type="TComponent" />
+        </parameters>
+      </constructor>
+      <destructor name="Destroy" visibility="public" file="ElImgFrm.pas" line="177">
+        <parameters>
+        </parameters>
+      </destructor>
+      <procedure name="RegisterChanges" visibility="public" file="ElImgFrm.pas" line="178">
+        <parameters>
+          <parameter name="Value" type="TImgFormChangeLink" />
+        </parameters>
+      </procedure>
+      <procedure name="UnregisterChanges" visibility="public" file="ElImgFrm.pas" line="179">
+        <parameters>
+          <parameter name="Value" type="TImgFormChangeLink" />
+        </parameters>
+      </procedure>
+      <procedure name="PaintBkgnd" visibility="public" file="ElImgFrm.pas" line="181">
+        <parameters>
+          <parameter name="DC" type="HDC" />
+          <parameter name="R" type="TRect" />
+          <parameter name="Origin" type="TPoint" />
+          <parameter name="Direct" type="Boolean" />
+        </parameters>
+      </procedure>
+      <function name="GetRealControl" visibility="public" file="ElImgFrm.pas" line="182">
+        <parameters>
+          <retval type="TWinControl" />
+        </parameters>
+      </function>
+      <property name="Control" visibility="published" read="FControl" write="SetControl" type="TWinControl" file="ElImgFrm.pas" line="184" />
+      <property name="TransparentColor" visibility="published" read="FTransparentColor" write="SetTransparentColor" type="TColor" file="ElImgFrm.pas" line="185" />
+    </members>
+  </class>
+  <class name="TElImageForm" file="ElImgFrm.pas" line="189">
+    <ancestor name="TCustomElImageForm" namespace="ElImgFrm">
+      <methodref name="AfterMessage" visibility="private" />
+      <methodref name="BeforeMessage" visibility="private" />
+      <methodref name="PictureChanged" visibility="private" />
+      <methodref name="BkImageChange" visibility="private" />
+      <methodref name="SetCaptionControl" visibility="private" />
+      <methodref name="SetChangeRegion" visibility="private" />
+      <methodref name="SetImage" visibility="private" />
+      <methodref name="SetBkImage" visibility="private" />
+      <methodref name="SetMoveForm" visibility="private" />
+      <methodref name="SetGradientStartColor" visibility="private" />
+      <methodref name="SetGradientEndColor" visibility="private" />
+      <methodref name="SetGradientSteps" visibility="private" />
+      <methodref name="SetBackgroundType" visibility="private" />
+      <methodref name="Change" visibility="private" />
+      <methodref name="CreateHook" visibility="protected" />
+      <methodref name="CreateRegion" visibility="protected" />
+      <methodref name="DestroyHook" visibility="protected" />
+      <methodref name="DestroyRegion" visibility="protected" />
+      <methodref name="GetTransparentColor" visibility="protected" />
+      <methodref name="Loaded" visibility="protected" procflags="override" />
+      <methodref name="Notification" visibility="protected" procflags="override" />
+      <methodref name="SetControl" visibility="protected" />
+      <methodref name="SetTransparentColor" visibility="protected" />
+      <methodref name="CreateCacheBackground" visibility="protected" />
+      <methodref name="DisposeCacheBackground" visibility="protected" />
+      <propertyref name="CaptionControl" visibility="protected" />
+      <propertyref name="ChangeFormRegion" visibility="protected" />
+      <propertyref name="MoveForm" visibility="protected" />
+      <propertyref name="FormImage" visibility="protected" />
+      <propertyref name="Background" visibility="protected" />
+      <propertyref name="BackgroundType" visibility="protected" />
+      <propertyref name="GradientStartColor" visibility="protected" />
+      <propertyref name="GradientEndColor" visibility="protected" />
+      <propertyref name="GradientSteps" visibility="protected" />
+      <methodref name="Create" visibility="public" procflags="constructor override" />
+      <methodref name="Destroy" visibility="public" procflags="destructor override" />
+      <methodref name="RegisterChanges" visibility="public" />
+      <methodref name="UnregisterChanges" visibility="public" />
+      <methodref name="PaintBkgnd" visibility="public" />
+      <methodref name="GetRealControl" visibility="public" />
+      <propertyref name="Control" visibility="published" />
+      <propertyref name="TransparentColor" visibility="published" />
+      <ancestor name="TComponent" namespace="System.Classes">
+        <interfaces>
+          <implements name="IInterfaceComponentReference" />
+          <implements name="IInterface" />
+        </interfaces>
+        <methodref name="GetComObject" visibility="private">
+        </methodref>
+        <methodref name="GetComponent" visibility="private">
+        </methodref>
+        <methodref name="GetComponentCount" visibility="private">
+        </methodref>
+        <methodref name="GetComponentIndex" visibility="private">
+        </methodref>
+        <methodref name="Insert" visibility="private">
+        </methodref>
+        <methodref name="ReadLeft" visibility="private">
+        </methodref>
+        <methodref name="ReadTop" visibility="private">
+        </methodref>
+        <methodref name="Remove" visibility="private">
+        </methodref>
+        <methodref name="RemoveNotification" visibility="private">
+        </methodref>
+        <methodref name="SetComponentIndex" visibility="private">
+        </methodref>
+        <methodref name="SetReference" visibility="private">
+        </methodref>
+        <methodref name="WriteLeft" visibility="private">
+        </methodref>
+        <methodref name="WriteTop" visibility="private">
+        </methodref>
+        <methodref name="IntfGetComponent" visibility="private">
+        </methodref>
+        <methodref name="DoGetDeltaStreams" visibility="private">
+        </methodref>
+        <methodref name="ReadDeltaStream" visibility="private">
+        </methodref>
+        <methodref name="ReadDeltaState" visibility="private">
+        </methodref>
+        <methodref name="FindSortedComponent" visibility="private">
+        </methodref>
+        <methodref name="AddSortedComponent" visibility="private">
+        </methodref>
+        <methodref name="RemoveSortedComponent" visibility="private" procflags="inline">
+        </methodref>
+        <methodref name="Create@" visibility="class private" procflags="class constructor noself">
+        </methodref>
+        <methodref name="AsyncSchedule" visibility="protected" procflags="virtual">
+        </methodref>
+        <methodref name="ChangeName" visibility="protected">
+        </methodref>
+        <methodref name="DefineProperties" visibility="protected" procflags="override">
+        </methodref>
+        <methodref name="GetChildren" visibility="protected" procflags="dynamic">
+        </methodref>
+        <methodref name="GetChildOwner" visibility="protected" procflags="dynamic">
+        </methodref>
+        <methodref name="GetChildParent" visibility="protected" procflags="dynamic">
+        </methodref>
+        <methodref name="GetOwner" visibility="protected" procflags="override">
+        </methodref>
+        <methodref name="Loaded" visibility="protected" procflags="virtual">
+        </methodref>
+        <methodref name="Notification" visibility="protected" procflags="virtual">
+        </methodref>
+        <methodref name="GetDeltaStreams" visibility="protected" procflags="dynamic">
+        </methodref>
+        <methodref name="PaletteCreated" visibility="protected" procflags="dynamic">
+        </methodref>
+        <methodref name="ReadState" visibility="protected" procflags="virtual">
+        </methodref>
+        <methodref name="CanObserve" visibility="protected" procflags="virtual">
+        </methodref>
+        <methodref name="ObserverAdded" visibility="protected" procflags="virtual">
+        </methodref>
+        <methodref name="GetObservers" visibility="protected" procflags="virtual">
+        </methodref>
+        <methodref name="SetAncestor" visibility="protected">
+        </methodref>
+        <methodref name="SetDesigning" visibility="protected">
+        </methodref>
+        <methodref name="SetInline" visibility="protected">
+        </methodref>
+        <methodref name="SetDesignInstance" visibility="protected">
+        </methodref>
+        <methodref name="SetName" visibility="protected" procflags="virtual">
+        </methodref>
+        <methodref name="SetChildOrder" visibility="protected" procflags="dynamic">
+        </methodref>
+        <methodref name="SetParentComponent" visibility="protected" procflags="dynamic">
+        </methodref>
+        <methodref name="Updating" visibility="protected" procflags="dynamic">
+        </methodref>
+        <methodref name="Updated" visibility="protected" procflags="dynamic">
+        </methodref>
+        <methodref name="UpdateRegistry" visibility="protected" procflags="class virtual">
+        </methodref>
+        <methodref name="ValidateRename" visibility="protected" procflags="virtual">
+        </methodref>
+        <methodref name="ValidateContainer" visibility="protected" procflags="dynamic">
+        </methodref>
+        <methodref name="ValidateInsert" visibility="protected" procflags="dynamic">
+        </methodref>
+        <methodref name="WriteState" visibility="protected" procflags="virtual">
+        </methodref>
+        <methodref name="RemoveFreeNotifications" visibility="protected">
+        </methodref>
+        <methodref name="QueryInterface" visibility="protected" procflags="virtual">
+        </methodref>
+        <methodref name="_AddRef" visibility="protected">
+        </methodref>
+        <methodref name="_Release" visibility="protected">
+        </methodref>
+        <methodref name="GetTypeInfoCount" visibility="protected">
+        </methodref>
+        <methodref name="GetTypeInfo" visibility="protected">
+        </methodref>
+        <methodref name="GetIDsOfNames" visibility="protected">
+        </methodref>
+        <methodref name="Invoke" visibility="protected">
+        </methodref>
+        <eventref name="OnGetDeltaStreams" visibility="protected">
+        </eventref>
+        <methodref name="Create" visibility="public" procflags="constructor virtual">
+        </methodref>
+        <methodref name="Destroy" visibility="public" procflags="destructor override">
+        </methodref>
+        <methodref name="BeforeDestruction" visibility="public" procflags="override">
+        </methodref>
+        <methodref name="BeginInvoke" visibility="public" procflags="overload">
+        </methodref>
+        <methodref name="BeginInvoke" visibility="public" procflags="overload">
+        </methodref>
+        <methodref name="BeginInvoke" visibility="public" procflags="overload">
+        </methodref>
+        <methodref name="BeginInvoke" visibility="public" procflags="overload">
+        </methodref>
+        <methodref name="BeginInvoke" visibility="public" procflags="overload">
+        </methodref>
+        <methodref name="BeginInvoke" visibility="public" procflags="overload">
+        </methodref>
+        <methodref name="BeginInvoke" visibility="public" procflags="overload">
+        </methodref>
+        <methodref name="BeginInvoke" visibility="public" procflags="overload">
+        </methodref>
+        <methodref name="EndInvoke" visibility="public" procflags="overload">
+        </methodref>
+        <methodref name="EndInvoke" visibility="public" procflags="overload">
+        </methodref>
+        <methodref name="EndFunctionInvoke" visibility="public">
+        </methodref>
+        <methodref name="DestroyComponents" visibility="public">
+        </methodref>
+        <methodref name="Destroying" visibility="public">
+        </methodref>
+        <methodref name="ExecuteAction" visibility="public" procflags="dynamic">
+        </methodref>
+        <methodref name="FindComponent" visibility="public">
+        </methodref>
+        <methodref name="FreeNotification" visibility="public">
+        </methodref>
+        <methodref name="RemoveFreeNotification" visibility="public">
+        </methodref>
+        <methodref name="FreeOnRelease" visibility="public">
+        </methodref>
+        <methodref name="GetEnumerator" visibility="public" procflags="inline">
+        </methodref>
+        <methodref name="GetParentComponent" visibility="public" procflags="dynamic">
+        </methodref>
+        <methodref name="GetNamePath" visibility="public" procflags="override">
+        </methodref>
+        <methodref name="HasParent" visibility="public" procflags="dynamic">
+        </methodref>
+        <methodref name="InsertComponent" visibility="public">
+        </methodref>
+        <methodref name="RemoveComponent" visibility="public">
+        </methodref>
+        <methodref name="SetSubComponent" visibility="public">
+        </methodref>
+        <methodref name="SafeCallException" visibility="public" procflags="override">
+        </methodref>
+        <methodref name="UpdateAction" visibility="public" procflags="virtual">
+        </methodref>
+        <methodref name="IsImplementorOf" visibility="public">
+        </methodref>
+        <methodref name="ReferenceInterface" visibility="public">
+        </methodref>
+        <propertyref name="ComObject" visibility="public">
+        </propertyref>
+        <propertyref name="Components" visibility="public">
+        </propertyref>
+        <propertyref name="ComponentCount" visibility="public">
+        </propertyref>
+        <propertyref name="ComponentIndex" visibility="public">
+        </propertyref>
+        <propertyref name="ComponentState" visibility="public">
+        </propertyref>
+        <propertyref name="ComponentStyle" visibility="public">
+        </propertyref>
+        <propertyref name="DesignInfo" visibility="public">
+        </propertyref>
+        <propertyref name="Owner" visibility="public">
+        </propertyref>
+        <propertyref name="VCLComObject" visibility="public">
+        </propertyref>
+        <propertyref name="Observers" visibility="public">
+        </propertyref>
+        <propertyref name="Name" visibility="published">
+        </propertyref>
+        <propertyref name="Tag" visibility="published">
+        </propertyref>
+        <ancestor name="TPersistent" namespace="System.Classes">
+          <methodref name="AssignError" visibility="private">
+          </methodref>
+          <methodref name="AssignTo" visibility="protected" procflags="virtual">
+          </methodref>
+          <methodref name="DefineProperties" visibility="protected" procflags="virtual">
+          </methodref>
+          <methodref name="GetOwner" visibility="protected" procflags="dynamic">
+          </methodref>
+          <methodref name="Destroy" visibility="public" procflags="destructor override">
+          </methodref>
+          <methodref name="Assign" visibility="public" procflags="virtual">
+          </methodref>
+          <methodref name="GetNamePath" visibility="public" procflags="dynamic">
+          </methodref>
+          <ancestor name="TObject" namespace="System">
+            <methodref name="Create" visibility="public" procflags="constructor">
+            </methodref>
+            <methodref name="Free" visibility="public">
+            </methodref>
+            <methodref name="DisposeOf" visibility="public" procflags="inline">
+            </methodref>
+            <methodref name="InitInstance" visibility="public" procflags="class">
+            </methodref>
+            <methodref name="CleanupInstance" visibility="public">
+            </methodref>
+            <methodref name="ClassType" visibility="public" procflags="inline">
+            </methodref>
+            <methodref name="ClassName" visibility="public" procflags="class">
+            </methodref>
+            <methodref name="ClassNameIs" visibility="public" procflags="class">
+            </methodref>
+            <methodref name="ClassParent" visibility="public" procflags="class">
+            </methodref>
+            <methodref name="ClassInfo" visibility="public" procflags="class inline">
+            </methodref>
+            <methodref name="InstanceSize" visibility="public" procflags="class inline">
+            </methodref>
+            <methodref name="InheritsFrom" visibility="public" procflags="class">
+            </methodref>
+            <methodref name="MethodAddress" visibility="public" procflags="class overload">
+            </methodref>
+            <methodref name="MethodAddress" visibility="public" procflags="class overload">
+            </methodref>
+            <methodref name="MethodName" visibility="public" procflags="class">
+            </methodref>
+            <methodref name="QualifiedClassName" visibility="public" procflags="class">
+            </methodref>
+            <methodref name="FieldAddress" visibility="public" procflags="overload">
+            </methodref>
+            <methodref name="FieldAddress" visibility="public" procflags="overload">
+            </methodref>
+            <methodref name="GetInterface" visibility="public">
+            </methodref>
+            <methodref name="GetInterfaceEntry" visibility="public" procflags="class">
+            </methodref>
+            <methodref name="GetInterfaceTable" visibility="public" procflags="class inline">
+            </methodref>
+            <methodref name="UnitName" visibility="public" procflags="class">
+            </methodref>
+            <methodref name="UnitScope" visibility="public" procflags="class">
+            </methodref>
+            <methodref name="Equals" visibility="public" procflags="virtual">
+            </methodref>
+            <methodref name="GetHashCode" visibility="public" procflags="virtual">
+            </methodref>
+            <methodref name="ToString" visibility="public" procflags="virtual">
+            </methodref>
+            <methodref name="SafeCallException" visibility="public" procflags="virtual">
+            </methodref>
+            <methodref name="AfterConstruction" visibility="public" procflags="virtual">
+            </methodref>
+            <methodref name="BeforeDestruction" visibility="public" procflags="virtual">
+            </methodref>
+            <methodref name="Dispatch" visibility="public" procflags="virtual">
+            </methodref>
+            <methodref name="DefaultHandler" visibility="public" procflags="virtual">
+            </methodref>
+            <methodref name="NewInstance" visibility="public" procflags="class virtual">
+            </methodref>
+            <methodref name="FreeInstance" visibility="public" procflags="virtual">
+            </methodref>
+            <methodref name="Destroy" visibility="public" procflags="destructor virtual">
+            </methodref>
+            <methodref name="CPP_ABI_1" visibility="public" procflags="virtual">
+            </methodref>
+            <methodref name="CPP_ABI_2" visibility="public" procflags="virtual">
+            </methodref>
+            <methodref name="CPP_ABI_3" visibility="public" procflags="virtual">
+            </methodref>
+            <methodref name="GetDisposed" visibility="protected" procflags="inline">
+            </methodref>
+            <methodref name="CheckDisposed" visibility="protected" procflags="inline">
+            </methodref>
+            <propertyref name="Disposed" visibility="protected">
+            </propertyref>
+          </ancestor>
+        </ancestor>
+      </ancestor>
+    </ancestor>
+    <members>
+      <property name="CaptionControl" visibility="published" read="FCaptionControl" write="SetCaptionControl" type="TGraphicControl" hoisted="true" file="ElImgFrm.pas" line="191" />
+      <property name="ChangeFormRegion" visibility="published" read="FChangeRegion" write="SetChangeRegion" type="Boolean" hoisted="true" file="ElImgFrm.pas" line="192" />
+      <property name="FormImage" visibility="published" read="FImage" write="SetImage" type="TImage" hoisted="true" file="ElImgFrm.pas" line="193" />
+      <property name="MoveForm" visibility="published" read="FMoveForm" write="SetMoveForm" type="Boolean" default="0" hoisted="true" file="ElImgFrm.pas" line="194" />
+      <property name="Background" visibility="published" read="FBkImage" write="SetBkImage" type="TBitmap" hoisted="true" file="ElImgFrm.pas" line="195" />
+      <property name="BackgroundType" visibility="published" read="FBackgroundType" write="SetBackgroundType" type="TElBkGndType" default="2" hoisted="true" file="ElImgFrm.pas" line="196" />
+      <property name="GradientStartColor" visibility="published" read="FGradientStartColor" write="SetGradientStartColor" type="TColor" hoisted="true" file="ElImgFrm.pas" line="197" />
+      <property name="GradientEndColor" visibility="published" read="FGradientEndColor" write="SetGradientEndColor" type="TColor" hoisted="true" file="ElImgFrm.pas" line="198" />
+      <property name="GradientSteps" visibility="published" read="FGradientSteps" write="SetGradientSteps" type="Integer" default="16" hoisted="true" file="ElImgFrm.pas" line="199" />
+    </members>
+  </class>
+  <const name="IFM_EFFECTIVESIZE" type="Integer" file="ElImgFrm.pas" line="203">
+    <value>
+      $92E
+    </value>
+  </const>
+  <const name="IFM_REPAINTCHILDREN" type="Integer" file="ElImgFrm.pas" line="204">
+    <value>
+      $1CF5
+    </value>
+  </const>
+  <const name="IFM_CANPAINTBKGND" type="Integer" file="ElImgFrm.pas" line="205">
+    <value>
+      $1CF7
+    </value>
+  </const>
+</namespace>

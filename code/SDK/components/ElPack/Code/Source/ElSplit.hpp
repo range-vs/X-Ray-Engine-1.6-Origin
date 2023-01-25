@@ -1,8 +1,8 @@
 ﻿// CodeGear C++Builder
-// Copyright (c) 1995, 2022 by Embarcadero Technologies, Inc.
+// Copyright (c) 1995, 2020 by Embarcadero Technologies, Inc.
 // All rights reserved
 
-// (DO NOT EDIT: machine generated header) 'ElSplit.pas' rev: 35.00 (Windows)
+// (DO NOT EDIT: machine generated header) 'ElSplit.pas' rev: 34.00 (Windows)
 
 #ifndef ElsplitHPP
 #define ElsplitHPP
@@ -118,7 +118,7 @@ public:
 	__fastcall virtual ~TElSplitter();
 	virtual void __fastcall Paint();
 	void __fastcall Snap(bool SnapLeft);
-	__property NativeUInt ArrowTheme = {read=FArrowTheme};
+	__property NativeUInt ArrowTheme = {read=FArrowTheme, nodefault};
 	__property bool SnappedLeft = {read=FSnappedLeft, nodefault};
 	__property bool SnappedRight = {read=FSnappedRight, nodefault};
 	

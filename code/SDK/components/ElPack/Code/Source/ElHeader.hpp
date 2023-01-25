@@ -1,8 +1,8 @@
 ﻿// CodeGear C++Builder
-// Copyright (c) 1995, 2022 by Embarcadero Technologies, Inc.
+// Copyright (c) 1995, 2020 by Embarcadero Technologies, Inc.
 // All rights reserved
 
-// (DO NOT EDIT: machine generated header) 'ElHeader.pas' rev: 35.00 (Windows)
+// (DO NOT EDIT: machine generated header) 'ElHeader.pas' rev: 34.00 (Windows)
 
 #ifndef ElheaderHPP
 #define ElheaderHPP
@@ -69,6 +69,7 @@ enum DECLSPEC_DENUM TElFieldType : unsigned char { sftCustom, sftText, sftNumber
 
 typedef System::Set<TElFieldType, TElFieldType::sftCustom, TElFieldType::sftMemo> TElFieldTypes;
 
+#pragma pack(push,4)
 class PASCALIMPLEMENTATION EElHeaderError : public System::Sysutils::Exception
 {
 	typedef System::Sysutils::Exception inherited;
@@ -90,6 +91,7 @@ public:
 	
 };
 
+#pragma pack(pop)
 
 typedef void __fastcall (__closure *TElHeaderSectionEvent)(TCustomElHeader* Sender, TElHeaderSection* Section);
 
@@ -237,6 +239,7 @@ __published:
 };
 
 
+#pragma pack(push,4)
 class PASCALIMPLEMENTATION TElHeaderSections : public System::Classes::TPersistent
 {
 	typedef System::Classes::TPersistent inherited;
@@ -290,6 +293,7 @@ __published:
 	__property System::UnicodeString SectionsOrder = {read=GetSectionsOrder, write=SetSectionsOrder, stored=false};
 };
 
+#pragma pack(pop)
 
 typedef void __fastcall (__closure *TMeasureSectionEvent)(System::TObject* Sender, TElHeaderSection* Section, System::Types::TPoint &Size);
 

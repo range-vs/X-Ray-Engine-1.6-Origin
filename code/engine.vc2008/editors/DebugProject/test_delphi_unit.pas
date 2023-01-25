@@ -5,21 +5,23 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, ShellApi,
-  ElXPThemedControl, ElTree, MxMenus, Vcl.Menus ;
+  ElXPThemedControl, ElTree, MxMenus, Vcl.Menus, ExtBtn, Vcl.ExtCtrls, multi_edit,
+  ElScrollBar, ElTreeStdEditors;
 
 type
 TTestProc = reference to procedure(btn: TButton; i: Integer);
 
   TForm3 = class(TForm)
+    Panel1: TPanel;
+    ExtBtn1: TExtBtn;
+    ExtBtn2: TExtBtn;
+    MultiObjSpinEdit1: TMultiObjSpinEdit;
     ElTree1: TElTree;
-    Button1: TButton;
-    Button2: TButton;
-    procedure Button1Click(Sender: TObject);
-
-    procedure KeyDownTest();
-    function FindNewFocused(): boolean;
-    procedure Iterate(IterateProc: TTestProc);
-    procedure Button2Click(Sender: TObject);
+    tvProperties: TElTree;
+    procedure FormCreate(Sender: TObject);
+    procedure tvPropertiesItemDraw(Sender: TObject; Item: TElTreeItem;
+      Surface: TCanvas; R: TRect; SectionIndex: Integer);
+    
 
   end;
 
@@ -31,79 +33,25 @@ implementation
 {$R *.dfm}
 
 
-procedure TForm3.Button1Click(Sender: TObject);
-begin
-  KeyDownTest();    // -->  KeyDownTest
-end;
-
-procedure TForm3.KeyDownTest();
-begin
-  FindNewFocused();  // -->  FindNewFocused
-end;
-
-procedure TForm3.Button2Click(Sender: TObject);
+procedure TForm3.FormCreate(Sender: TObject);
 var
-  Menu: TPopupMenu;
-  MenuMx: TMxPopupMenu;
-  MenuItem: TMenuItem;
-  i: Integer;
+  btn: TExtBtn;
+  Loc: TRect;
+
 begin
-//   Menu := TPopupMenu.Create(nil);
-//   Menu.Alignment := TPopupAlignment.paLeft;
-//   for i := 1 to 10 do
-//   begin
-//     MenuItem := TMenuItem.Create(nil);
-//     MenuItem.Caption := 'Teeeeeeeeeeest...';
-//     Menu.Items.Add(MenuItem);
-//   end;
-//   Menu.Popup(100, 100);
-   MenuMx := TMxPopupMenu.Create(nil);
-   MenuMx.Style := TMxMenuStyle.msOwnerDraw;
-   //MenuMx.Alignment := TPopupAlignment.paRight;
-   for i := 1 to 3 do
-   begin
-     MenuItem := TMenuItem.Create(nil);
-     MenuItem.Caption := 'Teeeeeeeeeeest...';
-     MenuMx.Items.Add(MenuItem);
-   end;
-   MenuMx.Popup(400, 100);
+  btn := TExtBtn.Create(nil);
+  SetRect(Loc, 0, 0, ClientWidth - 15 - 2, ClientHeight + 1);
+  SendMessage(Handle, EM_SETRECTNP, 0, LPARAM(@Loc));  // Longint
+  tvProperties.Refresh;
+ 
 end;
 
-function TForm3.FindNewFocused(): boolean;
-
+procedure TForm3.tvPropertiesItemDraw(Sender: TObject; Item: TElTreeItem;
+  Surface: TCanvas; R: TRect; SectionIndex: Integer);
 var
-  IntNextVis: TTestProc;
-
+   l: Int64;
 begin
-  IntNextVis := procedure(btn: TButton; i: Integer)
-    begin
-      ShowMessage(btn.Caption);  // ----> ERROR: ACCESS VOILATION!
-    end;
-  Iterate(IntNextVis); // -->  Iterate
-  Result := True;
+   l := Item.Tag;
 end;
 
-procedure TForm3.Iterate(IterateProc: TTestProc);
-
-  procedure IntIterate(btn: TButton; i: Integer);
-  begin
-      if(i > 2) then
-        Exit;       // --> break reqursive
-      if(i = 2) then
-        IterateProc(btn, i) // -->  FindNewFocused.IntNextVis
-      else
-        IntIterate(btn, i + 1); // -->  Iterate.IntIterate
-  end;
-
-var
-  i: Integer;
-begin
-    i := 0;
-    //ShowMessage(Button1.Caption); // ----> WORKING!
-    IntIterate(Button1, i);  // -->  Iterate.IntIterate
-end;
 end.
-
-
-// написать на стек с просьбой об испарвлени БЕЗ ВЫНЕСЕНИЯ ПРОЦЕДУРЫ В ГЛОБАЛЬНУЮ ОБЛАСТЬ ВИДИМОСТИ
-

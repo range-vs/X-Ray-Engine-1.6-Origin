@@ -1,8 +1,8 @@
 ﻿// CodeGear C++Builder
-// Copyright (c) 1995, 2022 by Embarcadero Technologies, Inc.
+// Copyright (c) 1995, 2020 by Embarcadero Technologies, Inc.
 // All rights reserved
 
-// (DO NOT EDIT: machine generated header) 'ElTools.pas' rev: 35.00 (Windows)
+// (DO NOT EDIT: machine generated header) 'ElTools.pas' rev: 34.00 (Windows)
 
 #ifndef EltoolsHPP
 #define EltoolsHPP
@@ -33,6 +33,7 @@ class DELPHICLASS TDirectMemoryStream;
 class DELPHICLASS TNamedFileStream;
 struct TReducedDateTime;
 //-- type declarations -------------------------------------------------------
+#pragma pack(push,4)
 class PASCALIMPLEMENTATION TDirectMemoryStream : public System::Classes::TMemoryStream
 {
 	typedef System::Classes::TMemoryStream inherited;
@@ -47,9 +48,11 @@ public:
 	
 };
 
+#pragma pack(pop)
 
 typedef TDirectMemoryStream TElMemoryStream;
 
+#pragma pack(push,4)
 class PASCALIMPLEMENTATION TNamedFileStream : public System::Classes::TFileStream
 {
 	typedef System::Classes::TFileStream inherited;
@@ -65,6 +68,7 @@ public:
 	
 };
 
+#pragma pack(pop)
 
 struct DECLSPEC_DRECORD TReducedDateTime
 {

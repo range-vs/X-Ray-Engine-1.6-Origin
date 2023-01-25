@@ -1,0 +1,573 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<namespace name="ElObjList" platform="Win64">
+  <classref name="TElObjectListItemClass" ref="TElObjectListItem" file="ElObjList.pas" line="30" />
+  <class name="TElObjectList" file="ElObjList.pas" line="38">
+    <ancestor name="TElList" namespace="ElList">
+      <methodref name="Error" visibility="protected" procflags="class" />
+      <methodref name="Get" visibility="protected" procflags="virtual" />
+      <methodref name="Put" visibility="protected" procflags="virtual" />
+      <methodref name="SetCapacity" visibility="protected" />
+      <methodref name="SetCount" visibility="protected" />
+      <methodref name="GetCapacity" visibility="protected" />
+      <methodref name="GetCount" visibility="protected" />
+      <methodref name="TriggerDeleteEvent" visibility="protected" procflags="virtual" />
+      <methodref name="Create" visibility="public" procflags="constructor" />
+      <methodref name="Destroy" visibility="public" procflags="destructor override" />
+      <methodref name="FastGet" visibility="public" />
+      <methodref name="Add" visibility="public" />
+      <methodref name="Assign" visibility="public" procflags="override" />
+      <methodref name="Clear" visibility="public" procflags="virtual" />
+      <methodref name="Delete" visibility="public" procflags="virtual" />
+      <methodref name="DeleteRange" visibility="public" procflags="virtual" />
+      <methodref name="Exchange" visibility="public" />
+      <methodref name="First" visibility="public" />
+      <methodref name="IndexOf" visibility="public" />
+      <methodref name="IndexOfBack" visibility="public" />
+      <methodref name="IndexOfFrom" visibility="public" />
+      <methodref name="Insert" visibility="public" />
+      <methodref name="Last" visibility="public" />
+      <methodref name="Move" visibility="public" />
+      <methodref name="MoveRange" visibility="public" />
+      <methodref name="Pack" visibility="public" />
+      <methodref name="Remove" visibility="public" />
+      <methodref name="Sort" visibility="public" />
+      <methodref name="SortC" visibility="public" />
+      <propertyref name="AutoClearObjects" visibility="public" />
+      <propertyref name="Capacity" visibility="public" />
+      <propertyref name="Count" visibility="public" />
+      <propertyref name="Items" visibility="public" />
+      <propertyref name="List" visibility="public" />
+      <eventref name="OnDelete" visibility="public" />
+      <ancestor name="TPersistent" namespace="System.Classes">
+        <methodref name="AssignError" visibility="private">
+        </methodref>
+        <methodref name="AssignTo" visibility="protected" procflags="virtual">
+        </methodref>
+        <methodref name="DefineProperties" visibility="protected" procflags="virtual">
+        </methodref>
+        <methodref name="GetOwner" visibility="protected" procflags="dynamic">
+        </methodref>
+        <methodref name="Destroy" visibility="public" procflags="destructor override">
+        </methodref>
+        <methodref name="Assign" visibility="public" procflags="virtual">
+        </methodref>
+        <methodref name="GetNamePath" visibility="public" procflags="dynamic">
+        </methodref>
+        <ancestor name="TObject" namespace="System">
+          <methodref name="Create" visibility="public" procflags="constructor">
+          </methodref>
+          <methodref name="Free" visibility="public">
+          </methodref>
+          <methodref name="DisposeOf" visibility="public" procflags="inline">
+          </methodref>
+          <methodref name="InitInstance" visibility="public" procflags="class">
+          </methodref>
+          <methodref name="CleanupInstance" visibility="public">
+          </methodref>
+          <methodref name="ClassType" visibility="public" procflags="inline">
+          </methodref>
+          <methodref name="ClassName" visibility="public" procflags="class">
+          </methodref>
+          <methodref name="ClassNameIs" visibility="public" procflags="class">
+          </methodref>
+          <methodref name="ClassParent" visibility="public" procflags="class">
+          </methodref>
+          <methodref name="ClassInfo" visibility="public" procflags="class inline">
+          </methodref>
+          <methodref name="InstanceSize" visibility="public" procflags="class inline">
+          </methodref>
+          <methodref name="InheritsFrom" visibility="public" procflags="class">
+          </methodref>
+          <methodref name="MethodAddress" visibility="public" procflags="class overload">
+          </methodref>
+          <methodref name="MethodAddress" visibility="public" procflags="class overload">
+          </methodref>
+          <methodref name="MethodName" visibility="public" procflags="class">
+          </methodref>
+          <methodref name="QualifiedClassName" visibility="public" procflags="class">
+          </methodref>
+          <methodref name="FieldAddress" visibility="public" procflags="overload">
+          </methodref>
+          <methodref name="FieldAddress" visibility="public" procflags="overload">
+          </methodref>
+          <methodref name="GetInterface" visibility="public">
+          </methodref>
+          <methodref name="GetInterfaceEntry" visibility="public" procflags="class">
+          </methodref>
+          <methodref name="GetInterfaceTable" visibility="public" procflags="class inline">
+          </methodref>
+          <methodref name="UnitName" visibility="public" procflags="class">
+          </methodref>
+          <methodref name="UnitScope" visibility="public" procflags="class">
+          </methodref>
+          <methodref name="Equals" visibility="public" procflags="virtual">
+          </methodref>
+          <methodref name="GetHashCode" visibility="public" procflags="virtual">
+          </methodref>
+          <methodref name="ToString" visibility="public" procflags="virtual">
+          </methodref>
+          <methodref name="SafeCallException" visibility="public" procflags="virtual">
+          </methodref>
+          <methodref name="AfterConstruction" visibility="public" procflags="virtual">
+          </methodref>
+          <methodref name="BeforeDestruction" visibility="public" procflags="virtual">
+          </methodref>
+          <methodref name="Dispatch" visibility="public" procflags="virtual">
+          </methodref>
+          <methodref name="DefaultHandler" visibility="public" procflags="virtual">
+          </methodref>
+          <methodref name="NewInstance" visibility="public" procflags="class virtual">
+          </methodref>
+          <methodref name="FreeInstance" visibility="public" procflags="virtual">
+          </methodref>
+          <methodref name="Destroy" visibility="public" procflags="destructor virtual">
+          </methodref>
+          <methodref name="CPP_ABI_1" visibility="public" procflags="virtual">
+          </methodref>
+          <methodref name="CPP_ABI_2" visibility="public" procflags="virtual">
+          </methodref>
+          <methodref name="CPP_ABI_3" visibility="public" procflags="virtual">
+          </methodref>
+          <methodref name="GetDisposed" visibility="protected" procflags="inline">
+          </methodref>
+          <methodref name="CheckDisposed" visibility="protected" procflags="inline">
+          </methodref>
+          <propertyref name="Disposed" visibility="protected">
+          </propertyref>
+        </ancestor>
+      </ancestor>
+    </ancestor>
+    <members>
+      <field name="FLastID" type="Cardinal" visibility="private" size="4" offset="40" file="ElObjList.pas" line="40" />
+      <field name="FListItemClass" type="TElObjectListItemClass" visibility="private" size="8" offset="48" file="ElObjList.pas" line="41" />
+      <field name="FOwner" type="TPersistent" visibility="private" size="8" offset="56" file="ElObjList.pas" line="42" />
+      <function name="GetItems" visibility="private" file="ElObjList.pas" line="43">
+        <parameters>
+          <parameter name="Index" type="Integer" />
+          <retval type="TElObjectListItem" />
+        </parameters>
+      </function>
+      <procedure name="SetItems" visibility="private" file="ElObjList.pas" line="44">
+        <parameters>
+          <parameter name="Index" type="Integer" />
+          <parameter name="Value" type="TElObjectListItem" />
+        </parameters>
+      </procedure>
+      <function name="GetOwner" visibility="protected" procflags="override" file="ElObjList.pas" line="47">
+        <parameters>
+          <retval type="TPersistent" />
+        </parameters>
+      </function>
+      <constructor name="Create" visibility="public" file="ElObjList.pas" line="50">
+        <parameters>
+          <parameter name="Owner" type="TPersistent" />
+          <parameter name="ListItemClass" type="TElObjectListItemClass" />
+        </parameters>
+      </constructor>
+      <function name="Add" visibility="public" file="ElObjList.pas" line="52">
+        <parameters>
+          <retval type="TElObjectListItem" />
+        </parameters>
+      </function>
+      <procedure name="AddItem" visibility="public" file="ElObjList.pas" line="53">
+        <parameters>
+          <parameter name="Item" type="TElObjectListItem" />
+        </parameters>
+      </procedure>
+      <procedure name="AfterLoad" visibility="public" procflags="virtual" file="ElObjList.pas" line="54">
+        <parameters>
+          <parameter name="IniFile" type="TElIniFile" />
+          <parameter name="KeyName" type="string" />
+        </parameters>
+      </procedure>
+      <procedure name="AfterSave" visibility="public" procflags="virtual" file="ElObjList.pas" line="55">
+        <parameters>
+          <parameter name="IniFile" type="TElIniFile" />
+          <parameter name="KeyName" type="string" />
+        </parameters>
+      </procedure>
+      <procedure name="Assign" visibility="public" procflags="override" file="ElObjList.pas" line="56">
+        <parameters>
+          <parameter name="Source" type="TPersistent" />
+        </parameters>
+      </procedure>
+      <procedure name="BeforeLoad" visibility="public" procflags="virtual" file="ElObjList.pas" line="57">
+        <parameters>
+          <parameter name="IniFile" type="TElIniFile" />
+          <parameter name="KeyName" type="string" />
+        </parameters>
+      </procedure>
+      <procedure name="BeforeSave" visibility="public" procflags="virtual" file="ElObjList.pas" line="58">
+        <parameters>
+          <parameter name="IniFile" type="TElIniFile" />
+          <parameter name="KeyName" type="string" />
+        </parameters>
+      </procedure>
+      <function name="First" visibility="public" file="ElObjList.pas" line="59">
+        <parameters>
+          <retval type="TElObjectListItem" />
+        </parameters>
+      </function>
+      <function name="IndexOf" visibility="public" file="ElObjList.pas" line="60">
+        <parameters>
+          <parameter name="Item" type="TElObjectListItem" />
+          <retval type="Integer" />
+        </parameters>
+      </function>
+      <function name="IndexOfBack" visibility="public" file="ElObjList.pas" line="61">
+        <parameters>
+          <parameter name="StartIndex" type="Integer" />
+          <parameter name="Item" type="TElObjectListItem" />
+          <retval type="Integer" />
+        </parameters>
+      </function>
+      <function name="IndexOfFrom" visibility="public" file="ElObjList.pas" line="62">
+        <parameters>
+          <parameter name="StartIndex" type="Integer" />
+          <parameter name="Item" type="TElObjectListItem" />
+          <retval type="Integer" />
+        </parameters>
+      </function>
+      <procedure name="Insert" visibility="public" file="ElObjList.pas" line="63">
+        <parameters>
+          <parameter name="Index" type="Integer" />
+          <parameter name="Item" type="TElObjectListItem" />
+        </parameters>
+      </procedure>
+      <function name="Last" visibility="public" file="ElObjList.pas" line="64">
+        <parameters>
+          <retval type="TElObjectListItem" />
+        </parameters>
+      </function>
+      <procedure name="Sort" visibility="public" file="ElObjList.pas" line="65">
+        <parameters>
+          <parameter name="Compare" type="TElObjListSortCompare" />
+          <parameter name="Cargo" type="Pointer" />
+        </parameters>
+      </procedure>
+      <property name="Items[Index]" visibility="public" read="GetItems" write="SetItems" type="TElObjectListItem" file="ElObjList.pas" line="66" />
+      <property name="ListItemClass" visibility="public" read="FListItemClass" write="FListItemClass" type="TElObjectListItemClass" file="ElObjList.pas" line="68" />
+      <property name="LastID" visibility="published" read="FLastID" type="Cardinal" file="ElObjList.pas" line="71" />
+    </members>
+  </class>
+  <class name="TElObjectListItem" file="ElObjList.pas" line="76">
+    <ancestor name="TPersistent" namespace="System.Classes">
+      <methodref name="AssignError" visibility="private">
+      </methodref>
+      <methodref name="AssignTo" visibility="protected" procflags="virtual">
+      </methodref>
+      <methodref name="DefineProperties" visibility="protected" procflags="virtual">
+      </methodref>
+      <methodref name="GetOwner" visibility="protected" procflags="dynamic">
+      </methodref>
+      <methodref name="Destroy" visibility="public" procflags="destructor override">
+      </methodref>
+      <methodref name="Assign" visibility="public" procflags="virtual">
+      </methodref>
+      <methodref name="GetNamePath" visibility="public" procflags="dynamic">
+      </methodref>
+      <ancestor name="TObject" namespace="System">
+        <methodref name="Create" visibility="public" procflags="constructor">
+        </methodref>
+        <methodref name="Free" visibility="public">
+        </methodref>
+        <methodref name="DisposeOf" visibility="public" procflags="inline">
+        </methodref>
+        <methodref name="InitInstance" visibility="public" procflags="class">
+        </methodref>
+        <methodref name="CleanupInstance" visibility="public">
+        </methodref>
+        <methodref name="ClassType" visibility="public" procflags="inline">
+        </methodref>
+        <methodref name="ClassName" visibility="public" procflags="class">
+        </methodref>
+        <methodref name="ClassNameIs" visibility="public" procflags="class">
+        </methodref>
+        <methodref name="ClassParent" visibility="public" procflags="class">
+        </methodref>
+        <methodref name="ClassInfo" visibility="public" procflags="class inline">
+        </methodref>
+        <methodref name="InstanceSize" visibility="public" procflags="class inline">
+        </methodref>
+        <methodref name="InheritsFrom" visibility="public" procflags="class">
+        </methodref>
+        <methodref name="MethodAddress" visibility="public" procflags="class overload">
+        </methodref>
+        <methodref name="MethodAddress" visibility="public" procflags="class overload">
+        </methodref>
+        <methodref name="MethodName" visibility="public" procflags="class">
+        </methodref>
+        <methodref name="QualifiedClassName" visibility="public" procflags="class">
+        </methodref>
+        <methodref name="FieldAddress" visibility="public" procflags="overload">
+        </methodref>
+        <methodref name="FieldAddress" visibility="public" procflags="overload">
+        </methodref>
+        <methodref name="GetInterface" visibility="public">
+        </methodref>
+        <methodref name="GetInterfaceEntry" visibility="public" procflags="class">
+        </methodref>
+        <methodref name="GetInterfaceTable" visibility="public" procflags="class inline">
+        </methodref>
+        <methodref name="UnitName" visibility="public" procflags="class">
+        </methodref>
+        <methodref name="UnitScope" visibility="public" procflags="class">
+        </methodref>
+        <methodref name="Equals" visibility="public" procflags="virtual">
+        </methodref>
+        <methodref name="GetHashCode" visibility="public" procflags="virtual">
+        </methodref>
+        <methodref name="ToString" visibility="public" procflags="virtual">
+        </methodref>
+        <methodref name="SafeCallException" visibility="public" procflags="virtual">
+        </methodref>
+        <methodref name="AfterConstruction" visibility="public" procflags="virtual">
+        </methodref>
+        <methodref name="BeforeDestruction" visibility="public" procflags="virtual">
+        </methodref>
+        <methodref name="Dispatch" visibility="public" procflags="virtual">
+        </methodref>
+        <methodref name="DefaultHandler" visibility="public" procflags="virtual">
+        </methodref>
+        <methodref name="NewInstance" visibility="public" procflags="class virtual">
+        </methodref>
+        <methodref name="FreeInstance" visibility="public" procflags="virtual">
+        </methodref>
+        <methodref name="Destroy" visibility="public" procflags="destructor virtual">
+        </methodref>
+        <methodref name="CPP_ABI_1" visibility="public" procflags="virtual">
+        </methodref>
+        <methodref name="CPP_ABI_2" visibility="public" procflags="virtual">
+        </methodref>
+        <methodref name="CPP_ABI_3" visibility="public" procflags="virtual">
+        </methodref>
+        <methodref name="GetDisposed" visibility="protected" procflags="inline">
+        </methodref>
+        <methodref name="CheckDisposed" visibility="protected" procflags="inline">
+        </methodref>
+        <propertyref name="Disposed" visibility="protected">
+        </propertyref>
+      </ancestor>
+    </ancestor>
+    <members>
+      <field name="FID" type="Cardinal" visibility="private" size="4" offset="8" file="ElObjList.pas" line="78" />
+      <field name="FList" type="TElObjectList" visibility="private" size="8" offset="16" file="ElObjList.pas" line="79" />
+      <field name="FLoading" type="Boolean" visibility="private" size="1" offset="24" file="ElObjList.pas" line="80" />
+      <function name="GetOwner" visibility="protected" procflags="override" file="ElObjList.pas" line="83">
+        <parameters>
+          <retval type="TPersistent" />
+        </parameters>
+      </function>
+      <constructor name="Create" visibility="public" file="ElObjList.pas" line="86">
+        <parameters>
+          <parameter name="List" type="TElObjectList" />
+        </parameters>
+      </constructor>
+      <destructor name="Destroy" visibility="public" file="ElObjList.pas" line="87">
+        <parameters>
+        </parameters>
+      </destructor>
+      <procedure name="AfterLoad" visibility="public" procflags="virtual" file="ElObjList.pas" line="88">
+        <parameters>
+          <parameter name="IniFile" type="TElIniFile" />
+          <parameter name="KeyName" type="string" />
+        </parameters>
+      </procedure>
+      <procedure name="AfterSave" visibility="public" procflags="virtual" file="ElObjList.pas" line="89">
+        <parameters>
+          <parameter name="IniFile" type="TElIniFile" />
+          <parameter name="KeyName" type="string" />
+        </parameters>
+      </procedure>
+      <procedure name="BeforeLoad" visibility="public" procflags="virtual" file="ElObjList.pas" line="90">
+        <parameters>
+          <parameter name="IniFile" type="TElIniFile" />
+          <parameter name="KeyName" type="string" />
+        </parameters>
+      </procedure>
+      <procedure name="BeforeSave" visibility="public" procflags="virtual" file="ElObjList.pas" line="91">
+        <parameters>
+          <parameter name="IniFile" type="TElIniFile" />
+          <parameter name="KeyName" type="string" />
+        </parameters>
+      </procedure>
+      <property name="ID" visibility="public" read="FID" type="Cardinal" file="ElObjList.pas" line="92" />
+      <property name="List" visibility="public" read="FList" type="TElObjectList" file="ElObjList.pas" line="93" />
+      <property name="Loading" visibility="public" read="FLoading" write="FLoading" type="Boolean" file="ElObjList.pas" line="94" />
+    </members>
+  </class>
+  <class name="TElHeteroObjectList" file="ElObjList.pas" line="99">
+    <ancestor name="TElObjectList" namespace="ElObjList">
+      <methodref name="GetItems" visibility="private" />
+      <methodref name="SetItems" visibility="private" />
+      <methodref name="GetOwner" visibility="protected" procflags="override" />
+      <methodref name="Create" visibility="public" procflags="constructor" />
+      <methodref name="Add" visibility="public" />
+      <methodref name="AddItem" visibility="public" />
+      <methodref name="AfterLoad" visibility="public" procflags="virtual" />
+      <methodref name="AfterSave" visibility="public" procflags="virtual" />
+      <methodref name="Assign" visibility="public" procflags="override" />
+      <methodref name="BeforeLoad" visibility="public" procflags="virtual" />
+      <methodref name="BeforeSave" visibility="public" procflags="virtual" />
+      <methodref name="First" visibility="public" />
+      <methodref name="IndexOf" visibility="public" />
+      <methodref name="IndexOfBack" visibility="public" />
+      <methodref name="IndexOfFrom" visibility="public" />
+      <methodref name="Insert" visibility="public" />
+      <methodref name="Last" visibility="public" />
+      <methodref name="Sort" visibility="public" />
+      <propertyref name="Items" visibility="public" />
+      <propertyref name="ListItemClass" visibility="public" />
+      <propertyref name="LastID" visibility="published" />
+      <ancestor name="TElList" namespace="ElList">
+        <methodref name="Error" visibility="protected" procflags="class" />
+        <methodref name="Get" visibility="protected" procflags="virtual" />
+        <methodref name="Put" visibility="protected" procflags="virtual" />
+        <methodref name="SetCapacity" visibility="protected" />
+        <methodref name="SetCount" visibility="protected" />
+        <methodref name="GetCapacity" visibility="protected" />
+        <methodref name="GetCount" visibility="protected" />
+        <methodref name="TriggerDeleteEvent" visibility="protected" procflags="virtual" />
+        <methodref name="Create" visibility="public" procflags="constructor" />
+        <methodref name="Destroy" visibility="public" procflags="destructor override" />
+        <methodref name="FastGet" visibility="public" />
+        <methodref name="Add" visibility="public" />
+        <methodref name="Assign" visibility="public" procflags="override" />
+        <methodref name="Clear" visibility="public" procflags="virtual" />
+        <methodref name="Delete" visibility="public" procflags="virtual" />
+        <methodref name="DeleteRange" visibility="public" procflags="virtual" />
+        <methodref name="Exchange" visibility="public" />
+        <methodref name="First" visibility="public" />
+        <methodref name="IndexOf" visibility="public" />
+        <methodref name="IndexOfBack" visibility="public" />
+        <methodref name="IndexOfFrom" visibility="public" />
+        <methodref name="Insert" visibility="public" />
+        <methodref name="Last" visibility="public" />
+        <methodref name="Move" visibility="public" />
+        <methodref name="MoveRange" visibility="public" />
+        <methodref name="Pack" visibility="public" />
+        <methodref name="Remove" visibility="public" />
+        <methodref name="Sort" visibility="public" />
+        <methodref name="SortC" visibility="public" />
+        <propertyref name="AutoClearObjects" visibility="public" />
+        <propertyref name="Capacity" visibility="public" />
+        <propertyref name="Count" visibility="public" />
+        <propertyref name="Items" visibility="public" />
+        <propertyref name="List" visibility="public" />
+        <eventref name="OnDelete" visibility="public" />
+        <ancestor name="TPersistent" namespace="System.Classes">
+          <methodref name="AssignError" visibility="private">
+          </methodref>
+          <methodref name="AssignTo" visibility="protected" procflags="virtual">
+          </methodref>
+          <methodref name="DefineProperties" visibility="protected" procflags="virtual">
+          </methodref>
+          <methodref name="GetOwner" visibility="protected" procflags="dynamic">
+          </methodref>
+          <methodref name="Destroy" visibility="public" procflags="destructor override">
+          </methodref>
+          <methodref name="Assign" visibility="public" procflags="virtual">
+          </methodref>
+          <methodref name="GetNamePath" visibility="public" procflags="dynamic">
+          </methodref>
+          <ancestor name="TObject" namespace="System">
+            <methodref name="Create" visibility="public" procflags="constructor">
+            </methodref>
+            <methodref name="Free" visibility="public">
+            </methodref>
+            <methodref name="DisposeOf" visibility="public" procflags="inline">
+            </methodref>
+            <methodref name="InitInstance" visibility="public" procflags="class">
+            </methodref>
+            <methodref name="CleanupInstance" visibility="public">
+            </methodref>
+            <methodref name="ClassType" visibility="public" procflags="inline">
+            </methodref>
+            <methodref name="ClassName" visibility="public" procflags="class">
+            </methodref>
+            <methodref name="ClassNameIs" visibility="public" procflags="class">
+            </methodref>
+            <methodref name="ClassParent" visibility="public" procflags="class">
+            </methodref>
+            <methodref name="ClassInfo" visibility="public" procflags="class inline">
+            </methodref>
+            <methodref name="InstanceSize" visibility="public" procflags="class inline">
+            </methodref>
+            <methodref name="InheritsFrom" visibility="public" procflags="class">
+            </methodref>
+            <methodref name="MethodAddress" visibility="public" procflags="class overload">
+            </methodref>
+            <methodref name="MethodAddress" visibility="public" procflags="class overload">
+            </methodref>
+            <methodref name="MethodName" visibility="public" procflags="class">
+            </methodref>
+            <methodref name="QualifiedClassName" visibility="public" procflags="class">
+            </methodref>
+            <methodref name="FieldAddress" visibility="public" procflags="overload">
+            </methodref>
+            <methodref name="FieldAddress" visibility="public" procflags="overload">
+            </methodref>
+            <methodref name="GetInterface" visibility="public">
+            </methodref>
+            <methodref name="GetInterfaceEntry" visibility="public" procflags="class">
+            </methodref>
+            <methodref name="GetInterfaceTable" visibility="public" procflags="class inline">
+            </methodref>
+            <methodref name="UnitName" visibility="public" procflags="class">
+            </methodref>
+            <methodref name="UnitScope" visibility="public" procflags="class">
+            </methodref>
+            <methodref name="Equals" visibility="public" procflags="virtual">
+            </methodref>
+            <methodref name="GetHashCode" visibility="public" procflags="virtual">
+            </methodref>
+            <methodref name="ToString" visibility="public" procflags="virtual">
+            </methodref>
+            <methodref name="SafeCallException" visibility="public" procflags="virtual">
+            </methodref>
+            <methodref name="AfterConstruction" visibility="public" procflags="virtual">
+            </methodref>
+            <methodref name="BeforeDestruction" visibility="public" procflags="virtual">
+            </methodref>
+            <methodref name="Dispatch" visibility="public" procflags="virtual">
+            </methodref>
+            <methodref name="DefaultHandler" visibility="public" procflags="virtual">
+            </methodref>
+            <methodref name="NewInstance" visibility="public" procflags="class virtual">
+            </methodref>
+            <methodref name="FreeInstance" visibility="public" procflags="virtual">
+            </methodref>
+            <methodref name="Destroy" visibility="public" procflags="destructor virtual">
+            </methodref>
+            <methodref name="CPP_ABI_1" visibility="public" procflags="virtual">
+            </methodref>
+            <methodref name="CPP_ABI_2" visibility="public" procflags="virtual">
+            </methodref>
+            <methodref name="CPP_ABI_3" visibility="public" procflags="virtual">
+            </methodref>
+            <methodref name="GetDisposed" visibility="protected" procflags="inline">
+            </methodref>
+            <methodref name="CheckDisposed" visibility="protected" procflags="inline">
+            </methodref>
+            <propertyref name="Disposed" visibility="protected">
+            </propertyref>
+          </ancestor>
+        </ancestor>
+      </ancestor>
+    </ancestor>
+    <members>
+      <procedure name="BeforeLoad" visibility="public" procflags="override" file="ElObjList.pas" line="101">
+        <parameters>
+          <parameter name="IniFile" type="TElIniFile" />
+          <parameter name="KeyName" type="string" />
+        </parameters>
+      </procedure>
+      <procedure name="BeforeSave" visibility="public" procflags="override" file="ElObjList.pas" line="102">
+        <parameters>
+          <parameter name="IniFile" type="TElIniFile" />
+          <parameter name="KeyName" type="string" />
+        </parameters>
+      </procedure>
+    </members>
+  </class>
+</namespace>
