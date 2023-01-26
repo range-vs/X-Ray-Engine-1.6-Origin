@@ -1,8 +1,8 @@
 ﻿// CodeGear C++Builder
-// Copyright (c) 1995, 2020 by Embarcadero Technologies, Inc.
+// Copyright (c) 1995, 2022 by Embarcadero Technologies, Inc.
 // All rights reserved
 
-// (DO NOT EDIT: machine generated header) 'ElStrToken.pas' rev: 34.00 (Windows)
+// (DO NOT EDIT: machine generated header) 'ElStrToken.pas' rev: 35.00 (Windows)
 
 #ifndef ElstrtokenHPP
 #define ElstrtokenHPP
@@ -25,7 +25,6 @@ namespace Elstrtoken
 class DELPHICLASS EElStrTokenizerError;
 class DELPHICLASS TElStringTokenizer;
 //-- type declarations -------------------------------------------------------
-#pragma pack(push,4)
 class PASCALIMPLEMENTATION EElStrTokenizerError : public System::Sysutils::Exception
 {
 	typedef System::Sysutils::Exception inherited;
@@ -47,9 +46,7 @@ public:
 	
 };
 
-#pragma pack(pop)
 
-#pragma pack(push,4)
 class PASCALIMPLEMENTATION TElStringTokenizer : public System::TObject
 {
 	typedef System::TObject inherited;
@@ -86,7 +83,6 @@ public:
 	
 };
 
-#pragma pack(pop)
 
 //-- var, const, procedure ---------------------------------------------------
 }	/* namespace Elstrtoken */

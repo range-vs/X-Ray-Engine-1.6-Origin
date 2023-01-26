@@ -1,8 +1,8 @@
 ﻿// CodeGear C++Builder
-// Copyright (c) 1995, 2020 by Embarcadero Technologies, Inc.
+// Copyright (c) 1995, 2022 by Embarcadero Technologies, Inc.
 // All rights reserved
 
-// (DO NOT EDIT: machine generated header) 'ElMaskEdit.pas' rev: 34.00 (Windows)
+// (DO NOT EDIT: machine generated header) 'ElMaskEdit.pas' rev: 35.00 (Windows)
 
 #ifndef ElmaskeditHPP
 #define ElmaskeditHPP
@@ -141,7 +141,7 @@ public:
 	__fastcall virtual TCustomElMaskEdit(System::Classes::TComponent* AOwner);
 	__fastcall virtual ~TCustomElMaskEdit();
 	__property bool MouseOver = {read=FMouseOver, default=0};
-	__property NativeUInt Theme = {read=FTheme, nodefault};
+	__property NativeUInt Theme = {read=FTheme};
 	
 __published:
 	__property System::WideString Hint = {read=FHint, write=SetHint};

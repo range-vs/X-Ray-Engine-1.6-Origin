@@ -1,8 +1,8 @@
 ﻿// CodeGear C++Builder
-// Copyright (c) 1995, 2020 by Embarcadero Technologies, Inc.
+// Copyright (c) 1995, 2022 by Embarcadero Technologies, Inc.
 // All rights reserved
 
-// (DO NOT EDIT: machine generated header) 'ElCalendarDefs.pas' rev: 34.00 (Windows)
+// (DO NOT EDIT: machine generated header) 'ElCalendarDefs.pas' rev: 35.00 (Windows)
 
 #ifndef ElcalendardefsHPP
 #define ElcalendardefsHPP
@@ -33,7 +33,6 @@ enum DECLSPEC_DENUM TElWeekEndDay : unsigned char { Sun, Mon, Tue, Wed, Thu, Fri
 
 typedef System::Set<TElWeekEndDay, TElWeekEndDay::Sun, TElWeekEndDay::Sat> TElWeekEndDays;
 
-#pragma pack(push,4)
 class PASCALIMPLEMENTATION TElHoliday : public System::Classes::TCollectionItem
 {
 	typedef System::Classes::TCollectionItem inherited;
@@ -67,9 +66,7 @@ __published:
 	__property System::UnicodeString Description = {read=FDescription, write=FDescription};
 };
 
-#pragma pack(pop)
 
-#pragma pack(push,4)
 class PASCALIMPLEMENTATION TElHolidays : public System::Classes::TCollection
 {
 	typedef System::Classes::TCollection inherited;
@@ -97,7 +94,6 @@ public:
 	
 };
 
-#pragma pack(pop)
 
 //-- var, const, procedure ---------------------------------------------------
 }	/* namespace Elcalendardefs */

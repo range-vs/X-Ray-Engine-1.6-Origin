@@ -1,8 +1,8 @@
 ﻿// CodeGear C++Builder
-// Copyright (c) 1995, 2020 by Embarcadero Technologies, Inc.
+// Copyright (c) 1995, 2022 by Embarcadero Technologies, Inc.
 // All rights reserved
 
-// (DO NOT EDIT: machine generated header) 'mxPlacemnt.pas' rev: 34.00 (Windows)
+// (DO NOT EDIT: machine generated header) 'mxPlacemnt.pas' rev: 35.00 (Windows)
 
 #ifndef MxplacemntHPP
 #define MxplacemntHPP
@@ -45,7 +45,6 @@ enum DECLSPEC_DENUM TPlacementOperation : unsigned char { poSave, poRestore };
 
 enum DECLSPEC_DENUM TPlacementRegRoot : unsigned char { prCurrentUser, prLocalMachine, prCurrentConfig, prClassesRoot, prUsers, prDynData };
 
-#pragma pack(push,4)
 class PASCALIMPLEMENTATION TWinMinMaxInfo : public System::Classes::TPersistent
 {
 	typedef System::Classes::TPersistent inherited;
@@ -77,7 +76,6 @@ public:
 	
 };
 
-#pragma pack(pop)
 
 class PASCALIMPLEMENTATION TFormPlacement : public System::Classes::TComponent
 {
@@ -273,7 +271,6 @@ public:
 };
 
 
-#pragma pack(push,4)
 class PASCALIMPLEMENTATION TStoredValues : public System::Classes::TOwnedCollection
 {
 	typedef System::Classes::TOwnedCollection inherited;
@@ -304,7 +301,6 @@ public:
 	
 };
 
-#pragma pack(pop)
 
 //-- var, const, procedure ---------------------------------------------------
 }	/* namespace Mxplacemnt */

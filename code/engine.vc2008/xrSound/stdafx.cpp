@@ -14,7 +14,7 @@
 #pragma comment(lib,	"xrCoreB"		)
 #	pragma comment(lib,	"EToolsB"		)
 #	pragma comment(lib,	"OpenALB"		)
-#	pragma comment(lib,	"dsoundb" 		)
+#	pragma comment(lib,	"dsound" 		)
 #else
 //#	pragma comment(lib,	"eax.lib"			)
 #	pragma comment(lib,	"xrCore.lib"		)

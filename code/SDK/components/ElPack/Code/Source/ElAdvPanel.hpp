@@ -1,8 +1,8 @@
 ﻿// CodeGear C++Builder
-// Copyright (c) 1995, 2020 by Embarcadero Technologies, Inc.
+// Copyright (c) 1995, 2022 by Embarcadero Technologies, Inc.
 // All rights reserved
 
-// (DO NOT EDIT: machine generated header) 'ElAdvPanel.pas' rev: 34.00 (Windows)
+// (DO NOT EDIT: machine generated header) 'ElAdvPanel.pas' rev: 35.00 (Windows)
 
 #ifndef EladvpanelHPP
 #define EladvpanelHPP
@@ -47,7 +47,6 @@ class DELPHICLASS TElAdvancedPanel;
 class DELPHICLASS TElAdvCaptionPanel;
 class DELPHICLASS TElAdvCaptionButton;
 //-- type declarations -------------------------------------------------------
-#pragma pack(push,4)
 class PASCALIMPLEMENTATION TElPanelCaptionSettings : public System::Classes::TPersistent
 {
 	typedef System::Classes::TPersistent inherited;
@@ -122,7 +121,6 @@ public:
 	
 };
 
-#pragma pack(pop)
 
 class PASCALIMPLEMENTATION TCustomElAdvancedPanel : public Elhtmlpanel::TCustomElHTMLPanel
 {

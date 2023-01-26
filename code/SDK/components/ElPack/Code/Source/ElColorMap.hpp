@@ -1,8 +1,8 @@
 ﻿// CodeGear C++Builder
-// Copyright (c) 1995, 2020 by Embarcadero Technologies, Inc.
+// Copyright (c) 1995, 2022 by Embarcadero Technologies, Inc.
 // All rights reserved
 
-// (DO NOT EDIT: machine generated header) 'ElColorMap.pas' rev: 34.00 (Windows)
+// (DO NOT EDIT: machine generated header) 'ElColorMap.pas' rev: 35.00 (Windows)
 
 #ifndef ElcolormapHPP
 #define ElcolormapHPP
@@ -75,7 +75,6 @@ public:
 
 typedef System::StaticArray<int, 16> TCustomColArray;
 
-#pragma pack(push,4)
 class PASCALIMPLEMENTATION TElColorEntries : public System::TObject
 {
 	typedef System::TObject inherited;
@@ -86,7 +85,6 @@ public:
 	
 };
 
-#pragma pack(pop)
 
 class PASCALIMPLEMENTATION TElColorMap : public System::Classes::TComponent
 {

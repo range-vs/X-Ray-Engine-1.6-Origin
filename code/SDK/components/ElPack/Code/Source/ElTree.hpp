@@ -1,8 +1,8 @@
 ﻿// CodeGear C++Builder
-// Copyright (c) 1995, 2020 by Embarcadero Technologies, Inc.
+// Copyright (c) 1995, 2022 by Embarcadero Technologies, Inc.
 // All rights reserved
 
-// (DO NOT EDIT: machine generated header) 'ElTree.pas' rev: 34.00 (Windows)
+// (DO NOT EDIT: machine generated header) 'ElTree.pas' rev: 35.00 (Windows)
 
 #ifndef EltreeHPP
 #define EltreeHPP
@@ -76,7 +76,6 @@ class DELPHICLASS TElTreeDragObject;
 //-- type declarations -------------------------------------------------------
 typedef System::Set<System::Int8, 1, 8> TSTIStates;
 
-#pragma pack(push,4)
 class PASCALIMPLEMENTATION EElTreeError : public System::Sysutils::Exception
 {
 	typedef System::Sysutils::Exception inherited;
@@ -98,7 +97,6 @@ public:
 	
 };
 
-#pragma pack(pop)
 
 enum DECLSPEC_DENUM TItemChangeMode : unsigned char { icmText, icmState, icmCheckState, icmColumnText };
 
@@ -395,7 +393,6 @@ public:
 };
 
 
-#pragma pack(push,4)
 class PASCALIMPLEMENTATION TElCellStyle : public System::TObject
 {
 	typedef System::TObject inherited;
@@ -452,7 +449,6 @@ public:
 	__property bool UseBkColor = {read=FUseBkColor, write=SetUseBkColor, nodefault};
 };
 
-#pragma pack(pop)
 
 struct DECLSPEC_DRECORD TElTreeItemStaticData
 {
@@ -474,7 +470,7 @@ class PASCALIMPLEMENTATION TElTreeItem : public System::Classes::TPersistent
 protected:
 	Htmlrender::TElHTMLData* FHTMLData;
 	Elarray::TElArray* FHTMLDataArray;
-	int FTag;
+	__int64 FTag;
 	System::TObject* FObject;
 	System::_di_IInterface FDataInterface;
 	System::Variant FSortData;
@@ -680,7 +676,7 @@ public:
 	__property TElTreeItem* Children[int Index] = {read=GetItems};
 	__property TElTreeItem* Item[int Index] = {read=GetItems};
 	__property int Level = {read=GetLevel, nodefault};
-	__property int Tag = {read=FTag, write=FTag, nodefault};
+	__property __int64 Tag = {read=FTag, write=FTag};
 	__property TElCellStyle* Styles[int index] = {read=GetStyles, write=SetStyles};
 	__property TElTreeItem* Ancestor = {read=GetAncestor};
 	__property bool StrikedOutLine = {read=GetStrikedOutLine, write=SetStrikedOutLine, nodefault};
@@ -738,7 +734,7 @@ public:
 };
 
 
-typedef System::TMetaClass* TElTreeItemClass;
+_DECLARE_METACLASS(System::TMetaClass, TElTreeItemClass);
 
 typedef bool __fastcall (*TElLookupCompareProc)(TElTreeItem* Item, void * SearchDetails);
 
@@ -749,7 +745,6 @@ __interface TIterateProcAnonymusMethod  : public System::IInterface
 	virtual void __fastcall Invoke(TElTreeItem* Item, int Index, bool &ContinueIterate, void * IterateData, TCustomElTree* Tree) = 0 ;
 };
 
-#pragma pack(push,4)
 class PASCALIMPLEMENTATION TElTreeItems : public System::Classes::TPersistent
 {
 	typedef System::Classes::TPersistent inherited;
@@ -834,7 +829,6 @@ public:
 	__property TElTreeItem* RootItem[int Index] = {read=GetRootItem};
 };
 
-#pragma pack(pop)
 
 typedef void __fastcall (__closure *TOleDragStartEvent)(System::TObject* Sender, _di_IDataObject &dataObj, _di_IDropSource &dropSource, Eldragdrop::TDragTypes &dwOKEffects);
 

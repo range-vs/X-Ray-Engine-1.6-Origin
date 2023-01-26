@@ -1,8 +1,8 @@
 ﻿// CodeGear C++Builder
-// Copyright (c) 1995, 2020 by Embarcadero Technologies, Inc.
+// Copyright (c) 1995, 2022 by Embarcadero Technologies, Inc.
 // All rights reserved
 
-// (DO NOT EDIT: machine generated header) 'ElTreeGrids.pas' rev: 34.00 (Windows)
+// (DO NOT EDIT: machine generated header) 'ElTreeGrids.pas' rev: 35.00 (Windows)
 
 #ifndef EltreegridsHPP
 #define EltreegridsHPP
@@ -406,7 +406,6 @@ public:
 };
 
 
-#pragma pack(push,4)
 class PASCALIMPLEMENTATION EElTreeGridError : public Eltree::EElTreeError
 {
 	typedef Eltree::EElTreeError inherited;
@@ -428,7 +427,6 @@ public:
 	
 };
 
-#pragma pack(pop)
 
 //-- var, const, procedure ---------------------------------------------------
 }	/* namespace Eltreegrids */

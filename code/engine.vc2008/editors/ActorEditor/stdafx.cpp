@@ -17,11 +17,3 @@
 #pragma comment(lib, "libogg_static_b")
 #pragma comment(lib,"libtheora_static_b")
 
-#ifdef _WIN64
-#ifdef __DEBUG
-#pragma comment(lib, "d3dx9d_41")
-#else
-#pragma comment(lib, "d3dx9_41")
-#endif
-#endif
-

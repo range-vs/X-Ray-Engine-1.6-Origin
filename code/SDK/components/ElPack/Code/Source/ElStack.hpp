@@ -1,8 +1,8 @@
 ﻿// CodeGear C++Builder
-// Copyright (c) 1995, 2020 by Embarcadero Technologies, Inc.
+// Copyright (c) 1995, 2022 by Embarcadero Technologies, Inc.
 // All rights reserved
 
-// (DO NOT EDIT: machine generated header) 'ElStack.pas' rev: 34.00 (Windows)
+// (DO NOT EDIT: machine generated header) 'ElStack.pas' rev: 35.00 (Windows)
 
 #ifndef ElstackHPP
 #define ElstackHPP
@@ -26,7 +26,6 @@ namespace Elstack
 class DELPHICLASS EElStackError;
 class DELPHICLASS TElStack;
 //-- type declarations -------------------------------------------------------
-#pragma pack(push,4)
 class PASCALIMPLEMENTATION EElStackError : public System::Sysutils::Exception
 {
 	typedef System::Sysutils::Exception inherited;
@@ -48,9 +47,7 @@ public:
 	
 };
 
-#pragma pack(pop)
 
-#pragma pack(push,4)
 class PASCALIMPLEMENTATION TElStack : public System::TObject
 {
 	typedef System::TObject inherited;
@@ -80,7 +77,6 @@ public:
 	__property void * Last = {read=GetLast};
 };
 
-#pragma pack(pop)
 
 //-- var, const, procedure ---------------------------------------------------
 }	/* namespace Elstack */

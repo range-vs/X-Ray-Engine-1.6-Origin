@@ -1,8 +1,8 @@
 ﻿// CodeGear C++Builder
-// Copyright (c) 1995, 2020 by Embarcadero Technologies, Inc.
+// Copyright (c) 1995, 2022 by Embarcadero Technologies, Inc.
 // All rights reserved
 
-// (DO NOT EDIT: machine generated header) 'ElMRU.pas' rev: 34.00 (Windows)
+// (DO NOT EDIT: machine generated header) 'ElMRU.pas' rev: 35.00 (Windows)
 
 #ifndef ElmruHPP
 #define ElmruHPP
@@ -43,7 +43,6 @@ typedef void __fastcall (__closure *TMRUStreamEvent)(System::TObject* Sender, Sy
 
 enum DECLSPEC_DENUM TMRUAddMode : unsigned char { mamAdd, mamInsert };
 
-#pragma pack(push,4)
 class PASCALIMPLEMENTATION TElMRUEntry : public System::TObject
 {
 	typedef System::TObject inherited;
@@ -73,9 +72,7 @@ public:
 	
 };
 
-#pragma pack(pop)
 
-#pragma pack(push,4)
 class PASCALIMPLEMENTATION TElMRUSection : public System::Classes::TCollectionItem
 {
 	typedef System::Classes::TCollectionItem inherited;
@@ -121,9 +118,7 @@ __published:
 	__property int Tag = {read=FTag, write=FTag, nodefault};
 };
 
-#pragma pack(pop)
 
-#pragma pack(push,4)
 class PASCALIMPLEMENTATION TElMRUSections : public System::Classes::TCollection
 {
 	typedef System::Classes::TCollection inherited;
@@ -149,7 +144,6 @@ public:
 	
 };
 
-#pragma pack(pop)
 
 class PASCALIMPLEMENTATION TElMRU : public System::Classes::TComponent
 {

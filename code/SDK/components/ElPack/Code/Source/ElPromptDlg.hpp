@@ -1,8 +1,8 @@
 ﻿// CodeGear C++Builder
-// Copyright (c) 1995, 2020 by Embarcadero Technologies, Inc.
+// Copyright (c) 1995, 2022 by Embarcadero Technologies, Inc.
 // All rights reserved
 
-// (DO NOT EDIT: machine generated header) 'ElPromptDlg.pas' rev: 34.00 (Windows)
+// (DO NOT EDIT: machine generated header) 'ElPromptDlg.pas' rev: 35.00 (Windows)
 
 #ifndef ElpromptdlgHPP
 #define ElpromptdlgHPP
@@ -50,7 +50,7 @@ namespace Elpromptdlg
 class DELPHICLASS TElPromptForm;
 class DELPHICLASS TElPromptDialog;
 //-- type declarations -------------------------------------------------------
-typedef System::TMetaClass* TElPromptFormClass;
+_DECLARE_METACLASS(System::TMetaClass, TElPromptFormClass);
 
 typedef void __fastcall (__closure *TPromptCloseEvent)(System::TObject* Sender, int Result);
 

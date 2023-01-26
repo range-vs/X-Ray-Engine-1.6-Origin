@@ -1,8 +1,8 @@
 ﻿// CodeGear C++Builder
-// Copyright (c) 1995, 2020 by Embarcadero Technologies, Inc.
+// Copyright (c) 1995, 2022 by Embarcadero Technologies, Inc.
 // All rights reserved
 
-// (DO NOT EDIT: machine generated header) 'HTMLRender.pas' rev: 34.00 (Windows)
+// (DO NOT EDIT: machine generated header) 'HTMLRender.pas' rev: 35.00 (Windows)
 
 #ifndef HtmlrenderHPP
 #define HtmlrenderHPP
@@ -48,7 +48,6 @@ enum DECLSPEC_DENUM THTMLItemType : unsigned char { hitChar, hitSoftBreak, hitBr
 
 typedef System::Set<THTMLItemType, THTMLItemType::hitChar, THTMLItemType::hitUL> THTMLItemTypes;
 
-#pragma pack(push,4)
 class PASCALIMPLEMENTATION TElHTMLItem : public System::TObject
 {
 	typedef System::TObject inherited;
@@ -89,9 +88,7 @@ public:
 	__property bool IsSuper = {read=GetIsSuper, write=SetIsSuper, nodefault};
 };
 
-#pragma pack(pop)
 
-#pragma pack(push,4)
 class PASCALIMPLEMENTATION TElHTMLBreakItem : public TElHTMLItem
 {
 	typedef TElHTMLItem inherited;
@@ -112,9 +109,7 @@ public:
 	
 };
 
-#pragma pack(pop)
 
-#pragma pack(push,4)
 class PASCALIMPLEMENTATION TElHTMLData : public System::TObject
 {
 	typedef System::TObject inherited;
@@ -156,7 +151,6 @@ public:
 	__property System::Types::TRect Rect = {read=FRect, write=FRect};
 };
 
-#pragma pack(pop)
 
 class PASCALIMPLEMENTATION TElHTMLRender : public System::TObject
 {

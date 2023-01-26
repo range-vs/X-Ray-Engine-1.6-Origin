@@ -1,8 +1,8 @@
 ﻿// CodeGear C++Builder
-// Copyright (c) 1995, 2020 by Embarcadero Technologies, Inc.
+// Copyright (c) 1995, 2022 by Embarcadero Technologies, Inc.
 // All rights reserved
 
-// (DO NOT EDIT: machine generated header) 'ElUnicodeStrings.pas' rev: 34.00 (Windows)
+// (DO NOT EDIT: machine generated header) 'ElUnicodeStrings.pas' rev: 35.00 (Windows)
 
 #ifndef ElunicodestringsHPP
 #define ElunicodestringsHPP
@@ -51,7 +51,6 @@ typedef System::StaticArray<TWideStringItem, 16777216> TWideStringItemList;
 
 typedef TWideStringItemList *PWideStringItemList;
 
-#pragma pack(push,4)
 class PASCALIMPLEMENTATION TElWideStrings : public System::Classes::TPersistent
 {
 	typedef System::Classes::TPersistent inherited;
@@ -126,7 +125,6 @@ public:
 	
 };
 
-#pragma pack(pop)
 
 typedef int __fastcall (*TElWideStringListSortCompare)(TElWideStringList* List, int Index1, int Index2);
 

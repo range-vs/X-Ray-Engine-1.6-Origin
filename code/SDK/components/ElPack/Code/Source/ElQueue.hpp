@@ -1,8 +1,8 @@
 ﻿// CodeGear C++Builder
-// Copyright (c) 1995, 2020 by Embarcadero Technologies, Inc.
+// Copyright (c) 1995, 2022 by Embarcadero Technologies, Inc.
 // All rights reserved
 
-// (DO NOT EDIT: machine generated header) 'ElQueue.pas' rev: 34.00 (Windows)
+// (DO NOT EDIT: machine generated header) 'ElQueue.pas' rev: 35.00 (Windows)
 
 #ifndef ElqueueHPP
 #define ElqueueHPP
@@ -26,7 +26,6 @@ namespace Elqueue
 class DELPHICLASS EElQueueError;
 class DELPHICLASS TElQueue;
 //-- type declarations -------------------------------------------------------
-#pragma pack(push,4)
 class PASCALIMPLEMENTATION EElQueueError : public System::Sysutils::Exception
 {
 	typedef System::Sysutils::Exception inherited;
@@ -48,7 +47,6 @@ public:
 	
 };
 
-#pragma pack(pop)
 
 typedef void __fastcall (__closure *OnDiscardEvent)(System::TObject* Sender, void * Item);
 

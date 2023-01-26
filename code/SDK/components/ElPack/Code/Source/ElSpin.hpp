@@ -1,8 +1,8 @@
 ﻿// CodeGear C++Builder
-// Copyright (c) 1995, 2020 by Embarcadero Technologies, Inc.
+// Copyright (c) 1995, 2022 by Embarcadero Technologies, Inc.
 // All rights reserved
 
-// (DO NOT EDIT: machine generated header) 'ElSpin.pas' rev: 34.00 (Windows)
+// (DO NOT EDIT: machine generated header) 'ElSpin.pas' rev: 35.00 (Windows)
 
 #ifndef ElspinHPP
 #define ElspinHPP
@@ -41,7 +41,6 @@ class DELPHICLASS TElSpinEditError;
 class DELPHICLASS TElSpinEdit;
 class DELPHICLASS TElFloatSpinEdit;
 //-- type declarations -------------------------------------------------------
-#pragma pack(push,4)
 class PASCALIMPLEMENTATION TElSpinEditError : public System::Sysutils::Exception
 {
 	typedef System::Sysutils::Exception inherited;
@@ -63,7 +62,6 @@ public:
 	
 };
 
-#pragma pack(pop)
 
 class PASCALIMPLEMENTATION TElSpinEdit : public Eledits::TCustomElEdit
 {

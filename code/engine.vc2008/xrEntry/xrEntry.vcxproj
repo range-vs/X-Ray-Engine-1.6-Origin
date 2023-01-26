@@ -240,7 +240,7 @@ copy /Y "$(SolutionDir)../../code\SDK\binaries\Win32\vcruntime140d.dll" "%25path
       <ImportLibrary>..\..\..\libraries\$(PlatformXray)\$(Configuration)\$(ProjectName).lib</ImportLibrary>
     </Link>
     <PostBuildEvent>
-      <Command>set pathToMkexp="C:\Program Files (x86)\Embarcadero\Studio\21.0\bin\mkexp.exe"
+      <Command>set pathToMkexp="C:\Program Files (x86)\Embarcadero\Studio\22.0\bin\mkexp.exe"
 set pathToDlls=$(SolutionDir)../../bins\Win64\Debug\
 set pathToAddDlls=$(SolutionDir)../../code\SDK\binaries\Win64\
 set pathOutLibs=$(SolutionDir)../../libraries\Win64\Debug\

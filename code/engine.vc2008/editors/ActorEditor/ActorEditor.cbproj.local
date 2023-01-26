@@ -1,6 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <BorlandProject>
 	<ProjectSortOrder AutoSort="0" SortType="0">
+    <File Path="..\..\editors"/>
+    <File Path="..\Ecore"/>
+    <File Path="..\Ecore\editor"/>
+    <File Path="..\Ecore\editor\PhysicsShellHolderEditorBase.cpp"/>
+    <File Path="..\Include"/>
+    <File Path="..\Include\stack_trace.cpp"/>
     <File Path="..\..\..\engine.vc2008"/>
     <File Path="..\..\Layers"/>
     <File Path="..\..\Layers\xrRender"/>
@@ -27,12 +33,6 @@
     <File Path="..\..\xrEngine\SkeletonMotions.cpp"/>
     <File Path="..\..\xrEngine\SkeletonMotions.cpp"/>
     <File Path="..\..\xrEngine\SkeletonMotions.h"/>
-    <File Path="..\..\editors"/>
-    <File Path="..\Ecore"/>
-    <File Path="..\Ecore\editor"/>
-    <File Path="..\Ecore\editor\PhysicsShellHolderEditorBase.cpp"/>
-    <File Path="..\Include"/>
-    <File Path="..\Include\stack_trace.cpp"/>
     <File Path="KeyBar.cpp"/>
     <File Path="KeyBar.cpp"/>
     <File Path="KeyBar.dfm"/>

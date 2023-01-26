@@ -1,8 +1,8 @@
 ﻿// CodeGear C++Builder
-// Copyright (c) 1995, 2020 by Embarcadero Technologies, Inc.
+// Copyright (c) 1995, 2022 by Embarcadero Technologies, Inc.
 // All rights reserved
 
-// (DO NOT EDIT: machine generated header) 'ElBaseComp.pas' rev: 34.00 (Windows)
+// (DO NOT EDIT: machine generated header) 'ElBaseComp.pas' rev: 35.00 (Windows)
 
 #ifndef ElbasecompHPP
 #define ElbasecompHPP
@@ -30,7 +30,6 @@ namespace Elbasecomp
 class DELPHICLASS EBaseEnabledFailed;
 class DELPHICLASS TElBaseComponent;
 //-- type declarations -------------------------------------------------------
-#pragma pack(push,4)
 class PASCALIMPLEMENTATION EBaseEnabledFailed : public System::Sysutils::Exception
 {
 	typedef System::Sysutils::Exception inherited;
@@ -52,7 +51,6 @@ public:
 	
 };
 
-#pragma pack(pop)
 
 class PASCALIMPLEMENTATION TElBaseComponent : public System::Classes::TComponent
 {
@@ -67,7 +65,7 @@ protected:
 	virtual void __fastcall SetEnabled(bool AEnabled);
 	virtual void __fastcall DoSetEnabled(bool AEnabled);
 	virtual void __fastcall Loaded();
-	__property NativeUInt Handle = {read=FHandle, nodefault};
+	__property NativeUInt Handle = {read=FHandle};
 	
 public:
 	__property bool Enabled = {read=FEnabled, write=SetEnabled, default=0};

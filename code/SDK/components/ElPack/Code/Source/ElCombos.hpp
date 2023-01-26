@@ -1,8 +1,8 @@
 ﻿// CodeGear C++Builder
-// Copyright (c) 1995, 2020 by Embarcadero Technologies, Inc.
+// Copyright (c) 1995, 2022 by Embarcadero Technologies, Inc.
 // All rights reserved
 
-// (DO NOT EDIT: machine generated header) 'ElCombos.pas' rev: 34.00 (Windows)
+// (DO NOT EDIT: machine generated header) 'ElCombos.pas' rev: 35.00 (Windows)
 
 #ifndef ElcombosHPP
 #define ElcombosHPP
@@ -250,7 +250,7 @@ protected:
 	virtual void __fastcall SetStyle(Vcl::Stdctrls::TComboBoxStyle Value);
 	HWND __fastcall GetEditHandle();
 	void __fastcall SetDropDownAlignment(System::Classes::TAlignment Value);
-	__property HWND EditHandle = {read=GetEditHandle, nodefault};
+	__property HWND EditHandle = {read=GetEditHandle};
 	
 public:
 	__fastcall virtual TElComboBox(System::Classes::TComponent* AOwner);

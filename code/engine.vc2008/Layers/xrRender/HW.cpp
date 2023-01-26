@@ -383,6 +383,27 @@ void		CHW::CreateDevice		(HWND m_hWnd, bool move_window)
 		MessageBox			(NULL,"Failed to initialize graphics hardware.\nPlease try to restart the game.","Error!",MB_OK|MB_ICONERROR);
 		TerminateProcess	(GetCurrentProcess(),0);
 	};
+
+    switch(R){
+		case D3D_OK:
+			break;
+
+		case D3DERR_DEVICELOST:
+			break;
+
+		case D3DERR_INVALIDCALL:
+			break;
+
+		case D3DERR_NOTAVAILABLE:
+			break;
+
+		case D3DERR_OUTOFVIDEOMEMORY:
+			break;
+
+		default:
+			break;
+	}
+
 	R_CHK		(R);
 
 	_SHOW_REF	("* CREATE: DeviceREF:",HW.pDevice);

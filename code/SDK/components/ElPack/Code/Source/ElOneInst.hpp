@@ -1,8 +1,8 @@
 ﻿// CodeGear C++Builder
-// Copyright (c) 1995, 2020 by Embarcadero Technologies, Inc.
+// Copyright (c) 1995, 2022 by Embarcadero Technologies, Inc.
 // All rights reserved
 
-// (DO NOT EDIT: machine generated header) 'ElOneInst.pas' rev: 34.00 (Windows)
+// (DO NOT EDIT: machine generated header) 'ElOneInst.pas' rev: 35.00 (Windows)
 
 #ifndef EloneinstHPP
 #define EloneinstHPP
@@ -71,9 +71,9 @@ protected:
 	
 public:
 	__fastcall virtual ~TElOneInstance();
-	__property NativeUInt PrevInstance = {read=FPrevInst, nodefault};
-	__property NativeUInt FPrevMainWindow = {read=FPrevMainWin, nodefault};
-	__property NativeUInt FPrevAppWindow = {read=FPrevAppWin, nodefault};
+	__property NativeUInt PrevInstance = {read=FPrevInst};
+	__property NativeUInt FPrevMainWindow = {read=FPrevMainWin};
+	__property NativeUInt FPrevAppWindow = {read=FPrevAppWin};
 	
 __published:
 	__property System::UnicodeString MapName = {read=FMapName, write=FMapName};

@@ -1,8 +1,8 @@
 ﻿// CodeGear C++Builder
-// Copyright (c) 1995, 2020 by Embarcadero Technologies, Inc.
+// Copyright (c) 1995, 2022 by Embarcadero Technologies, Inc.
 // All rights reserved
 
-// (DO NOT EDIT: machine generated header) 'ElEdits.pas' rev: 34.00 (Windows)
+// (DO NOT EDIT: machine generated header) 'ElEdits.pas' rev: 35.00 (Windows)
 
 #ifndef EleditsHPP
 #define EleditsHPP
@@ -54,7 +54,6 @@ class DELPHICLASS TElEditStrings;
 class DELPHICLASS TCustomElEdit;
 class DELPHICLASS TElEdit;
 //-- type declarations -------------------------------------------------------
-#pragma pack(push,4)
 class PASCALIMPLEMENTATION EElEditorError : public System::Sysutils::Exception
 {
 	typedef System::Sysutils::Exception inherited;
@@ -76,7 +75,6 @@ public:
 	
 };
 
-#pragma pack(pop)
 
 typedef Elunicodestrings::TElWideStrings TElFStrings;
 
@@ -84,7 +82,6 @@ typedef Elunicodestrings::TElWideStringList TElFStringList;
 
 enum DECLSPEC_DENUM TElActionType : unsigned char { atInsert, atDelete, atLineBreak, atGroupBreak, atPaste, atBackSpace, atDeleteSel, atInsertSel };
 
-#pragma pack(push,4)
 class PASCALIMPLEMENTATION TElAction : public System::Classes::TPersistent
 {
 	typedef System::Classes::TPersistent inherited;
@@ -109,9 +106,7 @@ public:
 	
 };
 
-#pragma pack(pop)
 
-#pragma pack(push,4)
 class PASCALIMPLEMENTATION TElActionList : public System::Classes::TPersistent
 {
 	typedef System::Classes::TPersistent inherited;
@@ -136,7 +131,6 @@ public:
 	__property int MaxUndo = {read=FMaxUndo, write=SetMaxUndo, default=10};
 };
 
-#pragma pack(pop)
 
 class PASCALIMPLEMENTATION TElParagraph : public Elunicodestrings::TElWideStringList
 {

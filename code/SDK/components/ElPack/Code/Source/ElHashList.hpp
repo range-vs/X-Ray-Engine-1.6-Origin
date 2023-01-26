@@ -1,8 +1,8 @@
 ﻿// CodeGear C++Builder
-// Copyright (c) 1995, 2020 by Embarcadero Technologies, Inc.
+// Copyright (c) 1995, 2022 by Embarcadero Technologies, Inc.
 // All rights reserved
 
-// (DO NOT EDIT: machine generated header) 'ElHashList.pas' rev: 34.00 (Windows)
+// (DO NOT EDIT: machine generated header) 'ElHashList.pas' rev: 35.00 (Windows)
 
 #ifndef ElhashlistHPP
 #define ElhashlistHPP
@@ -26,7 +26,6 @@ class DELPHICLASS EElHashListError;
 struct THashRecord;
 class DELPHICLASS TElHashList;
 //-- type declarations -------------------------------------------------------
-#pragma pack(push,4)
 class PASCALIMPLEMENTATION EElHashListError : public System::Sysutils::Exception
 {
 	typedef System::Sysutils::Exception inherited;
@@ -48,7 +47,6 @@ public:
 	
 };
 
-#pragma pack(pop)
 
 typedef System::StaticArray<int, 4> THash;
 

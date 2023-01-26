@@ -3,7 +3,7 @@
 
 // external dependencies
 
-#pragma comment(lib,"dinput8B")
+#pragma comment(lib,"dinput8")
 #pragma comment(lib,"freeimageB")
 #pragma comment(lib,"dxtB")
 #pragma comment(lib,"EToolsB")

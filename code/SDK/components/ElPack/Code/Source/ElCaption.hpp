@@ -1,8 +1,8 @@
 ﻿// CodeGear C++Builder
-// Copyright (c) 1995, 2020 by Embarcadero Technologies, Inc.
+// Copyright (c) 1995, 2022 by Embarcadero Technologies, Inc.
 // All rights reserved
 
-// (DO NOT EDIT: machine generated header) 'ElCaption.pas' rev: 34.00 (Windows)
+// (DO NOT EDIT: machine generated header) 'ElCaption.pas' rev: 35.00 (Windows)
 
 #ifndef ElcaptionHPP
 #define ElcaptionHPP
@@ -44,7 +44,6 @@ class DELPHICLASS TElCaptionButton;
 class DELPHICLASS TElCaptionButtons;
 class DELPHICLASS TElFormCaption;
 //-- type declarations -------------------------------------------------------
-#pragma pack(push,4)
 class PASCALIMPLEMENTATION TElCaptionText : public System::Classes::TCollectionItem
 {
 	typedef System::Classes::TCollectionItem inherited;
@@ -93,9 +92,7 @@ __published:
 	__property System::Classes::TAlignment Align = {read=FAlign, write=SetAlign, nodefault};
 };
 
-#pragma pack(pop)
 
-#pragma pack(push,4)
 class PASCALIMPLEMENTATION TElCaptionTexts : public System::Classes::TCollection
 {
 	typedef System::Classes::TCollection inherited;
@@ -121,7 +118,6 @@ public:
 	
 };
 
-#pragma pack(pop)
 
 enum DECLSPEC_DENUM TElPaintBkgndType : unsigned char { pbtActive, pbtInactive, pbtAlways };
 
@@ -188,7 +184,6 @@ __published:
 };
 
 
-#pragma pack(push,4)
 class PASCALIMPLEMENTATION TElCaptionButtons : public System::Classes::TCollection
 {
 	typedef System::Classes::TCollection inherited;
@@ -214,7 +209,6 @@ public:
 	
 };
 
-#pragma pack(pop)
 
 typedef void __fastcall (__closure *TElCaptionDrawEvent)(System::TObject* Sender, Vcl::Graphics::TCanvas* Canvas, System::Types::TRect &Rect);
 

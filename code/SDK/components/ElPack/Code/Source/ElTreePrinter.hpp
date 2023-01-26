@@ -1,8 +1,8 @@
 ﻿// CodeGear C++Builder
-// Copyright (c) 1995, 2020 by Embarcadero Technologies, Inc.
+// Copyright (c) 1995, 2022 by Embarcadero Technologies, Inc.
 // All rights reserved
 
-// (DO NOT EDIT: machine generated header) 'ElTreePrinter.pas' rev: 34.00 (Windows)
+// (DO NOT EDIT: machine generated header) 'ElTreePrinter.pas' rev: 35.00 (Windows)
 
 #ifndef EltreeprinterHPP
 #define EltreeprinterHPP
@@ -44,7 +44,6 @@ typedef void __fastcall (__closure *TPrintTreeItemEvent)(System::TObject* Sender
 
 typedef void __fastcall (__closure *TPrintHeaderSectionEvent)(System::TObject* Sender, Elheader::TElHeaderSection* Section, bool &Print);
 
-#pragma pack(push,4)
 class PASCALIMPLEMENTATION EElTreePrinterError : public System::Sysutils::Exception
 {
 	typedef System::Sysutils::Exception inherited;
@@ -66,7 +65,6 @@ public:
 	
 };
 
-#pragma pack(pop)
 
 typedef void __fastcall (__closure *TDrawPageNumberEvent)(System::TObject* Sender, Elstrutils::TElFString &Text, int PageNumber);
 

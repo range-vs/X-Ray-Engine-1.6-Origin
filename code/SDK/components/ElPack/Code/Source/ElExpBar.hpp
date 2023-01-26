@@ -1,8 +1,8 @@
 ﻿// CodeGear C++Builder
-// Copyright (c) 1995, 2020 by Embarcadero Technologies, Inc.
+// Copyright (c) 1995, 2022 by Embarcadero Technologies, Inc.
 // All rights reserved
 
-// (DO NOT EDIT: machine generated header) 'ElExpBar.pas' rev: 34.00 (Windows)
+// (DO NOT EDIT: machine generated header) 'ElExpBar.pas' rev: 35.00 (Windows)
 
 #ifndef ElexpbarHPP
 #define ElexpbarHPP
@@ -52,7 +52,6 @@ class DELPHICLASS TElExplorerBarGroup;
 class DELPHICLASS TElExplorerBar;
 class DELPHICLASS TElExplorerBarGroupCaption;
 //-- type declarations -------------------------------------------------------
-#pragma pack(push,4)
 class PASCALIMPLEMENTATION EExplorerBarError : public System::Sysutils::Exception
 {
 	typedef System::Sysutils::Exception inherited;
@@ -74,7 +73,6 @@ public:
 	
 };
 
-#pragma pack(pop)
 
 class PASCALIMPLEMENTATION TElExplorerBarGroupButton : public Eladvpanel::TElAdvCaptionButton
 {

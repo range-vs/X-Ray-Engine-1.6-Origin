@@ -1,8 +1,8 @@
 ﻿// CodeGear C++Builder
-// Copyright (c) 1995, 2020 by Embarcadero Technologies, Inc.
+// Copyright (c) 1995, 2022 by Embarcadero Technologies, Inc.
 // All rights reserved
 
-// (DO NOT EDIT: machine generated header) 'ElMenus.pas' rev: 34.00 (Windows)
+// (DO NOT EDIT: machine generated header) 'ElMenus.pas' rev: 35.00 (Windows)
 
 #ifndef ElmenusHPP
 #define ElmenusHPP
@@ -55,7 +55,6 @@ class DELPHICLASS TElMenuItem;
 class DELPHICLASS TElMainMenu;
 class DELPHICLASS TElPopupMenu;
 //-- type declarations -------------------------------------------------------
-#pragma pack(push,4)
 class PASCALIMPLEMENTATION EMenuError : public System::Sysutils::Exception
 {
 	typedef System::Sysutils::Exception inherited;
@@ -77,7 +76,6 @@ public:
 	
 };
 
-#pragma pack(pop)
 
 enum DECLSPEC_DENUM TMenuBreak : unsigned char { mbNone, mbBreak, mbBarBreak };
 
@@ -220,7 +218,7 @@ public:
 	HIDESBASE void __fastcall Add(TElMenuItem* Item);
 	HIDESBASE void __fastcall Remove(TElMenuItem* Item);
 	HIDESBASE void __fastcall Clear();
-	__property HMENU Handle = {read=GetHandle, nodefault};
+	__property HMENU Handle = {read=GetHandle};
 	__property int Count = {read=GetCount, nodefault};
 	__property TElMenuItem* Items[int Index] = {read=GetItem/*, default*/};
 	__property int MenuIndex = {read=GetMenuIndex, write=SetMenuIndex, nodefault};

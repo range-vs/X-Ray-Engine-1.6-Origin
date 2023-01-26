@@ -1,8 +1,8 @@
 ﻿// CodeGear C++Builder
-// Copyright (c) 1995, 2020 by Embarcadero Technologies, Inc.
+// Copyright (c) 1995, 2022 by Embarcadero Technologies, Inc.
 // All rights reserved
 
-// (DO NOT EDIT: machine generated header) 'ElSideBar.pas' rev: 34.00 (Windows)
+// (DO NOT EDIT: machine generated header) 'ElSideBar.pas' rev: 35.00 (Windows)
 
 #ifndef ElsidebarHPP
 #define ElsidebarHPP
@@ -73,7 +73,6 @@ public:
 };
 
 
-#pragma pack(push,4)
 class PASCALIMPLEMENTATION TElSideBarCItem : public System::Classes::TCollectionItem
 {
 	typedef System::Classes::TCollectionItem inherited;
@@ -120,9 +119,7 @@ public:
 	
 };
 
-#pragma pack(pop)
 
-#pragma pack(push,4)
 class PASCALIMPLEMENTATION TElSideBarItem : public TElSideBarCItem
 {
 	typedef TElSideBarCItem inherited;
@@ -132,9 +129,7 @@ public:
 	__fastcall virtual ~TElSideBarItem();
 };
 
-#pragma pack(pop)
 
-#pragma pack(push,4)
 class PASCALIMPLEMENTATION TElSideBarItems : public System::Classes::TCollection
 {
 	typedef System::Classes::TCollection inherited;
@@ -160,9 +155,7 @@ public:
 	
 };
 
-#pragma pack(pop)
 
-#pragma pack(push,4)
 class PASCALIMPLEMENTATION TElSideBarSection : public TElSideBarCItem
 {
 	typedef TElSideBarCItem inherited;
@@ -189,9 +182,7 @@ __published:
 	__property bool ContainsControls = {read=FContainsControls, write=SetContainsControls, nodefault};
 };
 
-#pragma pack(pop)
 
-#pragma pack(push,4)
 class PASCALIMPLEMENTATION TElSideBarSections : public System::Classes::TCollection
 {
 	typedef System::Classes::TCollection inherited;
@@ -217,7 +208,6 @@ public:
 	
 };
 
-#pragma pack(pop)
 
 class PASCALIMPLEMENTATION TElSideBar : public Elpanel::TCustomElPanel
 {

@@ -1,8 +1,8 @@
 ﻿// CodeGear C++Builder
-// Copyright (c) 1995, 2020 by Embarcadero Technologies, Inc.
+// Copyright (c) 1995, 2022 by Embarcadero Technologies, Inc.
 // All rights reserved
 
-// (DO NOT EDIT: machine generated header) 'ElToolbar.pas' rev: 34.00 (Windows)
+// (DO NOT EDIT: machine generated header) 'ElToolbar.pas' rev: 35.00 (Windows)
 
 #ifndef EltoolbarHPP
 #define EltoolbarHPP
@@ -209,7 +209,7 @@ public:
 };
 
 
-typedef System::TMetaClass* TElToolButtonClass;
+_DECLARE_METACLASS(System::TMetaClass, TElToolButtonClass);
 
 class PASCALIMPLEMENTATION TElToolBar : public Elpanel::TElPanel
 {

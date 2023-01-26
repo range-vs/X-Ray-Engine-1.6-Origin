@@ -1,8 +1,8 @@
 ﻿// CodeGear C++Builder
-// Copyright (c) 1995, 2020 by Embarcadero Technologies, Inc.
+// Copyright (c) 1995, 2022 by Embarcadero Technologies, Inc.
 // All rights reserved
 
-// (DO NOT EDIT: machine generated header) 'ElObjList.pas' rev: 34.00 (Windows)
+// (DO NOT EDIT: machine generated header) 'ElObjList.pas' rev: 35.00 (Windows)
 
 #ifndef ElobjlistHPP
 #define ElobjlistHPP
@@ -28,7 +28,7 @@ class DELPHICLASS TElObjectList;
 class DELPHICLASS TElObjectListItem;
 class DELPHICLASS TElHeteroObjectList;
 //-- type declarations -------------------------------------------------------
-typedef System::TMetaClass* TElObjectListItemClass;
+_DECLARE_METACLASS(System::TMetaClass, TElObjectListItemClass);
 
 typedef int __fastcall (*TElObjListSortCompare)(TElObjectListItem* Item1, TElObjectListItem* Item2, void * Cargo);
 
@@ -76,7 +76,6 @@ public:
 };
 
 
-#pragma pack(push,4)
 class PASCALIMPLEMENTATION TElObjectListItem : public System::Classes::TPersistent
 {
 	typedef System::Classes::TPersistent inherited;
@@ -101,7 +100,6 @@ public:
 	__property bool Loading = {read=FLoading, write=FLoading, nodefault};
 };
 
-#pragma pack(pop)
 
 class PASCALIMPLEMENTATION TElHeteroObjectList : public TElObjectList
 {
