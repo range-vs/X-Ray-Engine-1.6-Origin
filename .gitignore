@@ -344,3 +344,7 @@ __astcache
 __history
 __recovery
 .vscode
+
+code/SDK/components/ElPack/Code/Source/*.hpp
+code/SDK/components/ElPack/Code/Source/*.dcu
+code/SDK/components/AlexMX/*.hpp
