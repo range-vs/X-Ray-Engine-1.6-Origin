@@ -1129,7 +1129,7 @@ var
   Loc: TRect;
 begin
   SetRect(Loc, 0, 0, ClientWidth - GetButtonWidth - 2, ClientHeight + 1);
-  SendMessage(Handle, EM_SETRECTNP, 0, Longint(@Loc));
+  SendMessage(Handle, EM_SETRECTNP, 0, LPARAM(@Loc));
 end;
 
 procedure TMultiObjSpinEdit.SetAlignment(Value: TAlignment);

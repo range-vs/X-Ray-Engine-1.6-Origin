@@ -139,8 +139,12 @@ void EDetailManager::OnRender(int priority, bool strictB2F)
                 }
             }else{
 				RCache.set_xform_world				(Fidentity);
-                if (m_Flags.is(flBaseTextureDraw))	m_Base.Render			(m_Flags.is(flBaseTextureBlended));
-				if (m_Flags.is(flObjectsDraw))		CDetailManager::Render	();
+				if (m_Flags.is(flBaseTextureDraw)){
+					m_Base.Render			(m_Flags.is(flBaseTextureBlended));
+                }
+				if (m_Flags.is(flObjectsDraw)){
+						CDetailManager::Render	();
+                }
             }
         }
     }
@@ -514,8 +518,8 @@ bool EDetailManager::Export(LPCSTR path)
 			*remap_object_it	= (u8)new_idx++;
 
 // ---------------------------------------------------------------------------- //
-// НЕ ЗАБЫТЬ ОТКЛЮЧИТЬ ОПЕР ГЛ
-	// вар 1
+// пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ
+	// пїЅпїЅпїЅ 1
 //    int width, height;
 //	int ch = 0;
 //	unsigned char* image = SOIL_load_image("e:\\Program Files\\X-Ray CoP SDK\\editors\\gamedata\\textures\\det\\\det_kustsux1_black.dds",
@@ -537,13 +541,13 @@ bool EDetailManager::Export(LPCSTR path)
 //	ImageLib.dXTCompress(_fn.c_str(),raw_data, 0, img.w,img.h, img.w*4, &fmt, 4);
 //    ImageLib.MakeGameTexture		(_fn.c_str(),raw_data,fmt);
 
-	// вар 2
+	// пїЅпїЅпїЅ 2
 //	SSimpleImage img;
 //	img.layers.resize(1);
 //	string_path		t_name;
-//	//FS.update_path	(t_name,_game_textures_,textures[0].c_str());  // TODO указать полный путь к текстуре
+//	//FS.update_path	(t_name,_game_textures_,textures[0].c_str());  // TODO пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 //	ImageLib.LoadTextureData		(textures[0].c_str(),img.layers.back(),img.w,img.h);
-//	// сохраняем эту текстуру
+//	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 //	/*std::vector<BYTE> raw_data;
 //	for(auto&& e: img.layers.back())
 //	   _intToBytes(raw_data, 1);   */
@@ -556,7 +560,7 @@ bool EDetailManager::Export(LPCSTR path)
 // ----------------------------------------------------------------------- //
 
 	AnsiString 			do_tex_name = ChangeFileExt(fn,"_details");
-	int res				= ImageLib.CreateMergedTexture(textures,do_tex_name.c_str(),STextureParams::tfADXT1,256,1024,256,1024,offsets,scales,rotated,remap);
+	int res				= ImageLib.CreateMergedTexture(textures,do_tex_name.c_str(),STextureParams::tfADXT1,256,4096,256,4096,offsets,scales,rotated,remap);
     if (1!=res)			bRes=FALSE;
 
     pb->Inc				("export geometry");

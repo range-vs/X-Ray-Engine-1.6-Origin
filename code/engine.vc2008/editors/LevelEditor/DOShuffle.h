@@ -48,6 +48,7 @@ __published:	// IDE-managed Components
 	TPanel *paObjectProps;
 	TSplitter *Splitter1;
 	TMxPanel *paImage;
+	TLabel *lblMaxCI;
     void __fastcall FormKeyDown(TObject *Sender, WORD &Key,
           TShiftState Shift);
     void __fastcall FormClose(TObject *Sender, TCloseAction &Action);

@@ -4,11 +4,14 @@
 #include "ESceneAIMapTools_Export.h"
 #include "ESceneAIMapTools.h"
 
+constexpr static s32 constPackUnpackPos = 65535;
+constexpr static s32 constPackUnpackPos_2 = constPackUnpackPos / 2;
+
 void ESceneAIMapTool::UnpackPosition(Fvector& Pdest, const NodePosition& Psrc, Fbox& bb, SAIParams& params)
 {
-    Pdest.x = float(Psrc.x)*params.fPatchSize;
-    Pdest.y = (float(Psrc.y)/65535)*(bb.max.y-bb.min.y) + bb.min.y;
-    Pdest.z = float(Psrc.z)*params.fPatchSize;
+	Pdest.x = float(Psrc.x)*params.fPatchSize;
+	Pdest.y = (float(Psrc.y)/constPackUnpackPos)*(bb.max.y-bb.min.y) + bb.min.y;
+	Pdest.z = float(Psrc.z)*params.fPatchSize;
 }
 
 u32 ESceneAIMapTool::UnpackLink(u32& L)
@@ -21,12 +24,12 @@ void ESceneAIMapTool::PackPosition(NodePosition& Dest, Fvector& Src, Fbox& bb, S
 	float sp = 1/params.fPatchSize;
 	int px,py,pz;
 	px = iFloor(Src.x*sp+EPS_L);
-	py = iFloor(65535.f*(Src.y-bb.min.y)/(bb.max.y-bb.min.y)+EPS_L);
+	py = iFloor((float)constPackUnpackPos*(Src.y-bb.min.y)/(bb.max.y-bb.min.y)+EPS_L);
 	pz = iFloor(Src.z*sp+EPS_L);
 
-	clamp	(px,-32767,32767);	Dest.x = s16	(px);
-	clamp	(py,0,     65535);	Dest.y = u16	(py);
-	clamp	(pz,-32767,32767);	Dest.z = s16	(pz);
+	clamp	(px,-constPackUnpackPos_2,constPackUnpackPos_2);	Dest.x = s16	(px);
+	clamp	(py,0,     constPackUnpackPos);	Dest.y = u16	(py);
+	clamp	(pz,-constPackUnpackPos_2,constPackUnpackPos_2);	Dest.z = s16	(pz);
 }
 
 bool ESceneAIMapTool::Export(LPCSTR path)

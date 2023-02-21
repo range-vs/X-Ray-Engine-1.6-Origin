@@ -125,8 +125,8 @@ $(PostBuildEvent)]]></PostBuildEvent>
     <PropertyGroup Condition="'$(Cfg_1_Win64)'!=''">
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
         <VerInfo_Locale>1033</VerInfo_Locale>
-        <Debugger_HostApplication>E:\Program Files\X-Ray CoP SDK\editors\bin\designer_2020\LevelEditor.exe</Debugger_HostApplication>
-        <Debugger_CWD>E:\Program Files\X-Ray CoP SDK\editors</Debugger_CWD>
+        <Debugger_HostApplication>D:\SVN\src\xray\X-Ray-Engine-1.6-Origin\bins\Win64\Debug\LevelEditor.exe</Debugger_HostApplication>
+        <Debugger_CWD>D:\SVN\resources\X-Ray CoP SDK\editors</Debugger_CWD>
         <DCC_ObjOutput>..\..\..\..\libraries\$(Platform)\$(Config)</DCC_ObjOutput>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2)'!=''">
@@ -930,7 +930,7 @@ $(PostBuildEvent)]]></PostBuildEvent>
         <PreBuildEventIgnoreExitCode>False</PreBuildEventIgnoreExitCode>
         <PreLinkEvent/>
         <PreLinkEventIgnoreExitCode>False</PreLinkEventIgnoreExitCode>
-        <PostBuildEvent>copy /Y ..\..\..\..\bins\$(Platform)\$(Config)\elpackB6.bpl &quot;$(BDS)\bin\elpackB6.bpl&quot;&amp;&amp;copy /Y ..\..\..\..\bins\$(Platform)\$(Config)\elpkdbB6.bpl &quot;$(BDS)\bin\elpkdbB6.bpl&quot;&amp;&amp;copy /Y ..\..\..\..\bins\$(Platform)\$(Config)\elpproB6.bpl &quot;$(BDS)\bin\elpproB6.bpl&quot;&amp;&amp;copy /Y ..\..\..\..\bins\$(Platform)\$(Config)\editorB.bpl &quot;$(BDS)\bin\editorB.bpl&quot;&amp;&amp;for /R &quot;..\..\..\..\code\SDK\components\ElPack\Code\Source\fix_headers&quot; %%f in (*.hpp) do copy %%f &quot;..\..\..\..\code\SDK\components\ElPack\Code\Source\&quot;</PostBuildEvent>
+        <PostBuildEvent>copy /Y ..\..\..\..\bins\$(Platform)\$(Config)\elpackB6.bpl &quot;$(BDS)\bin\elpackB6.bpl&quot;&amp;&amp;copy /Y ..\..\..\..\bins\$(Platform)\$(Config)\elpkdbB6.bpl &quot;$(BDS)\bin\elpkdbB6.bpl&quot;&amp;&amp;copy /Y ..\..\..\..\bins\$(Platform)\$(Config)\elpproB6.bpl &quot;$(BDS)\bin\elpproB6.bpl&quot;&amp;&amp;copy /Y ..\..\..\..\bins\$(Platform)\$(Config)\editorB.bpl &quot;$(BDS)\bin\editorB.bpl&quot;&amp;&amp;for /R &quot;..\..\..\..\code\SDK\components\ElPack\Code\Source\fix_headers&quot; %%f in (*.hpp) do copy %%f &quot;..\..\..\..\code\SDK\components\ElPack\Code\Source\&quot;</PostBuildEvent>
         <PostBuildEventIgnoreExitCode>False</PostBuildEventIgnoreExitCode>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Config)'=='Debug' And '$(Platform)'=='Win64'">
@@ -938,7 +938,7 @@ $(PostBuildEvent)]]></PostBuildEvent>
         <PreBuildEventIgnoreExitCode>False</PreBuildEventIgnoreExitCode>
         <PreLinkEvent/>
         <PreLinkEventIgnoreExitCode>False</PreLinkEventIgnoreExitCode>
-        <PostBuildEvent>copy /Y ..\..\..\..\bins\$(Platform)\$(Config)\elpackB6.bpl &quot;$(BDS)\bin64\elpackB6.bpl&quot;&amp;&amp;copy /Y ..\..\..\..\bins\$(Platform)\$(Config)\elpkdbB6.bpl &quot;$(BDS)\bin64\elpkdbB6.bpl&quot;&amp;&amp;copy /Y ..\..\..\..\bins\$(Platform)\$(Config)\elpproB6.bpl &quot;$(BDS)\bin64\elpproB6.bpl&quot;&amp;&amp;copy /Y ..\..\..\..\bins\$(Platform)\$(Config)\editorB.bpl &quot;$(BDS)\bin64\editorB.bpl&quot;&amp;&amp;for /R &quot;..\..\..\..\code\SDK\components\ElPack\Code\Source\fix_headers&quot; %%f in (*.hpp) do copy %%f &quot;..\..\..\..\code\SDK\components\ElPack\Code\Source\&quot;</PostBuildEvent>
+        <PostBuildEvent>copy /Y ..\..\..\..\bins\$(Platform)\$(Config)\elpackB6.bpl &quot;$(BDS)\bin64\elpackB6.bpl&quot;&amp;&amp;copy /Y ..\..\..\..\bins\$(Platform)\$(Config)\elpkdbB6.bpl &quot;$(BDS)\bin64\elpkdbB6.bpl&quot;&amp;&amp;copy /Y ..\..\..\..\bins\$(Platform)\$(Config)\elpproB6.bpl &quot;$(BDS)\bin64\elpproB6.bpl&quot;&amp;&amp;copy /Y ..\..\..\..\bins\$(Platform)\$(Config)\editorB.bpl &quot;$(BDS)\bin64\editorB.bpl&quot;&amp;&amp;for /R &quot;..\..\..\..\code\SDK\components\ElPack\Code\Source\fix_headers&quot; %%f in (*.hpp) do copy %%f &quot;..\..\..\..\code\SDK\components\ElPack\Code\Source\&quot;</PostBuildEvent>
         <PostBuildEventIgnoreExitCode>False</PostBuildEventIgnoreExitCode>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Config)'=='Release' And '$(Platform)'=='Win32'">
@@ -946,7 +946,7 @@ $(PostBuildEvent)]]></PostBuildEvent>
         <PreBuildEventIgnoreExitCode>False</PreBuildEventIgnoreExitCode>
         <PreLinkEvent/>
         <PreLinkEventIgnoreExitCode>False</PreLinkEventIgnoreExitCode>
-        <PostBuildEvent>copy /Y ..\..\..\..\bins\$(Platform)\$(Config)\elpackB6.bpl &quot;$(BDS)\bin\elpackB6.bpl&quot;&amp;&amp;copy /Y ..\..\..\..\bins\$(Platform)\$(Config)\elpkdbB6.bpl &quot;$(BDS)\bin\elpkdbB6.bpl&quot;&amp;&amp;copy /Y ..\..\..\..\bins\$(Platform)\$(Config)\elpproB6.bpl &quot;$(BDS)\bin\elpproB6.bpl&quot;&amp;&amp;copy /Y ..\..\..\..\bins\$(Platform)\$(Config)\editorB.bpl &quot;$(BDS)\bin\editorB.bpl&quot;&amp;&amp;for /R &quot;..\..\..\..\code\SDK\components\ElPack\Code\Source\fix_headers&quot; %%f in (*.hpp) do copy %%f &quot;..\..\..\..\code\SDK\components\ElPack\Code\Source\&quot;</PostBuildEvent>
+        <PostBuildEvent>copy /Y ..\..\..\..\bins\$(Platform)\$(Config)\elpackB6.bpl &quot;$(BDS)\bin\elpackB6.bpl&quot;&amp;&amp;copy /Y ..\..\..\..\bins\$(Platform)\$(Config)\elpkdbB6.bpl &quot;$(BDS)\bin\elpkdbB6.bpl&quot;&amp;&amp;copy /Y ..\..\..\..\bins\$(Platform)\$(Config)\elpproB6.bpl &quot;$(BDS)\bin\elpproB6.bpl&quot;&amp;&amp;copy /Y ..\..\..\..\bins\$(Platform)\$(Config)\editorB.bpl &quot;$(BDS)\bin\editorB.bpl&quot;&amp;&amp;for /R &quot;..\..\..\..\code\SDK\components\ElPack\Code\Source\fix_headers&quot; %%f in (*.hpp) do copy %%f &quot;..\..\..\..\code\SDK\components\ElPack\Code\Source\&quot;</PostBuildEvent>
         <PostBuildEventIgnoreExitCode>False</PostBuildEventIgnoreExitCode>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Config)'=='Release' And '$(Platform)'=='Win64'">
@@ -954,7 +954,7 @@ $(PostBuildEvent)]]></PostBuildEvent>
         <PreBuildEventIgnoreExitCode>False</PreBuildEventIgnoreExitCode>
         <PreLinkEvent/>
         <PreLinkEventIgnoreExitCode>False</PreLinkEventIgnoreExitCode>
-        <PostBuildEvent>copy /Y ..\..\..\..\bins\$(Platform)\$(Config)\elpackB6.bpl &quot;$(BDS)\bin64\elpackB6.bpl&quot;&amp;&amp;copy /Y ..\..\..\..\bins\$(Platform)\$(Config)\elpkdbB6.bpl &quot;$(BDS)\bin64\elpkdbB6.bpl&quot;&amp;&amp;copy /Y ..\..\..\..\bins\$(Platform)\$(Config)\elpproB6.bpl &quot;$(BDS)\bin64\elpproB6.bpl&quot;&amp;&amp;copy /Y ..\..\..\..\bins\$(Platform)\$(Config)\editorB.bpl &quot;$(BDS)\bin64\editorB.bpl&quot;&amp;&amp;for /R &quot;..\..\..\..\code\SDK\components\ElPack\Code\Source\fix_headers&quot; %%f in (*.hpp) do copy %%f &quot;..\..\..\..\code\SDK\components\ElPack\Code\Source\&quot;</PostBuildEvent>
+        <PostBuildEvent>copy /Y ..\..\..\..\bins\$(Platform)\$(Config)\elpackB6.bpl &quot;$(BDS)\bin64\elpackB6.bpl&quot;&amp;&amp;copy /Y ..\..\..\..\bins\$(Platform)\$(Config)\elpkdbB6.bpl &quot;$(BDS)\bin64\elpkdbB6.bpl&quot;&amp;&amp;copy /Y ..\..\..\..\bins\$(Platform)\$(Config)\elpproB6.bpl &quot;$(BDS)\bin64\elpproB6.bpl&quot;&amp;&amp;copy /Y ..\..\..\..\bins\$(Platform)\$(Config)\editorB.bpl &quot;$(BDS)\bin64\editorB.bpl&quot;&amp;&amp;for /R &quot;..\..\..\..\code\SDK\components\ElPack\Code\Source\fix_headers&quot; %%f in (*.hpp) do copy %%f &quot;..\..\..\..\code\SDK\components\ElPack\Code\Source\&quot;</PostBuildEvent>
         <PostBuildEventIgnoreExitCode>False</PostBuildEventIgnoreExitCode>
     </PropertyGroup>
 </Project>

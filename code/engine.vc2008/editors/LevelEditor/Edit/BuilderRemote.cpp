@@ -25,7 +25,7 @@
 
 #include "../../include/stack_trace.h"
 //------------------------------------------------------------------------------
-// !!! использовать prefix если нужно имя !!! (Связано с группами)
+// !!! пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ prefix пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ !!! (пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ)
 //------------------------------------------------------------------------------
 
 #define LEVEL_LODS_TEX_NAME "level_lods"
@@ -693,7 +693,7 @@ int SceneBuilder::CalculateSector(const Fvector& P, float R)
         	if (_S->m_sector_num!=m_iDefaultSectorNum) 
             	return _S->m_sector_num;
 	}
-    return m_iDefaultSectorNum; // по умолчанию
+    return m_iDefaultSectorNum; // пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 }
 
 void SceneBuilder::Clear ()
@@ -1731,7 +1731,7 @@ BOOL SceneBuilder::CompileStatic(bool b_selected_only)
 		        pb->Inc();
 			}
         }else{
-            ELog.DlgMsg		(mtError,"Failed to build merged LOD texture. Merged texture more than [2048x2048].");
+            ELog.DlgMsg		(mtError,"Failed to build merged LOD texture. Merged texture more than [8192x8192].");
         	bResult			= FALSE;
         }
         UI->ProgressEnd(pb);

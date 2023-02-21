@@ -142,6 +142,8 @@
         <ILINK_LibraryPath>$(BDS)\lib\win64\release\;..\..\..\..\libraries\Win64\Debug;$(ILINK_LibraryPath)</ILINK_LibraryPath>
         <BCC_Defines>_DEBUG;$(BCC_Defines);$(BCC_Defines)</BCC_Defines>
         <LinkPackageImports>rtl.bpi;vcl.bpi;editorB.bpi;bcbsmp.bpi;vclx.bpi;elpackB6.bpi;xmlrtl.bpi;vclactnband.bpi;vclimg.bpi</LinkPackageImports>
+        <Debugger_HostApplication>D:\SVN\src\xray\X-Ray-Engine-1.6-Origin\bins\Win64\Debug\LevelEditor.exe</Debugger_HostApplication>
+        <Debugger_CWD>D:\SVN\resources\X-Ray CoP SDK\editors</Debugger_CWD>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2)'!=''">
         <DCC_AdditionalSwitches> -M -$O+</DCC_AdditionalSwitches>

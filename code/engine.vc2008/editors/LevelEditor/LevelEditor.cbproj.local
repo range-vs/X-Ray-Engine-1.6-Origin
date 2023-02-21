@@ -43,14 +43,9 @@
     <File Path="..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source\Core2D\MgcVector2.cpp"/>
     <File Path="..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source\Core3D"/>
     <File Path="..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source\Core3D\MgcVector3.cpp"/>
-    <File Path="..\..\..\SDK\sources\MagicSoftware\FreeMagic\Source\Numerics"/>
+    <File Path="..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source\Numerics"/>
     <File Path="..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source\Numerics\MgcEigen.cpp"/>
     <File Path="..\..\..\SDK\sources\MagicSoftware\FreeMagic\Source\Numerics\MgcLinearSystem.cpp"/>
-    <File Path="..\..\..\SDK\sources\SOIL"/>
-    <File Path="..\..\..\SDK\sources\SOIL\image_DXT.c"/>
-    <File Path="..\..\..\SDK\sources\SOIL\image_helper.c"/>
-    <File Path="..\..\..\SDK\sources\SOIL\SOIL.c"/>
-    <File Path="..\..\..\SDK\sources\SOIL\stb_image_aug.c"/>
     <File Path="Edit"/>
     <File Path="Edit\AppendObjectInfoForm.cpp"/>
     <File Path="Edit\AppendObjectInfoForm.cpp"/>
@@ -284,4 +279,10 @@
     <File Path="TopBar.dfm"/>
     <File Path="TopBar.h"/>
   </ProjectSortOrder>
+	<Transactions>
+    <Transaction>1899.12.30 00:00:00.000.141,D:\SVN\src\xray\X-Ray-Engine-1.6-Origin\code\SDK\sources\SOIL\image_helper.c=</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.118,D:\SVN\src\xray\X-Ray-Engine-1.6-Origin\code\SDK\sources\SOIL\image_DXT.c=</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.156,D:\SVN\src\xray\X-Ray-Engine-1.6-Origin\code\SDK\sources\SOIL\SOIL.c=</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.170,D:\SVN\src\xray\X-Ray-Engine-1.6-Origin\code\SDK\sources\SOIL\stb_image_aug.c=</Transaction>
+  </Transactions>
 </BorlandProject>

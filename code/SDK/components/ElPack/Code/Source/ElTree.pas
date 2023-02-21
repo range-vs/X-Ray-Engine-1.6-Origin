@@ -920,6 +920,7 @@ Types,
   , ActiveX
 {$ENDIF}
 {$endif}
+,Dialogs
   ;
 
 {$R ElTree.res}
@@ -21324,7 +21325,9 @@ procedure TCustomElTree.SetUpdating;
 var
   i: integer;
 begin
+  //ShowMessage('0');
   if FProcUpdate then exit;
+  //ShowMessage('1');
 
   if value = true then
   begin
@@ -21336,14 +21339,18 @@ begin
     dec(FUpdateCount);
     FHeader.EndUpdate;
   end;
+  //ShowMessage('2');
   
   if FUpdateCount > 0 then
     exit;
+  //ShowMessage('3');
   if (csDestroying in ComponentState) or (csLoading in ComponentState) then
     exit;
+  //ShowMessage('4');
   FProcUpdate := true;
   if FilteredVisibility then
     UpdateDiffItems;
+  //ShowMessage('5');
   with FView do
   begin
     if FAutoLineHeight then
@@ -21355,6 +21362,7 @@ begin
         FLineHeight := i;
       end;
     end;
+    //ShowMessage('6');
     if (FHRange = -1) and (not FShowHeader) then FView.DefineHRange;
     if FSortRequired then
     begin
@@ -21363,6 +21371,7 @@ begin
       TriggerSortEnd;
       FSortRequired := false;
     end;
+    //ShowMessage('7');
     if FUpdated then
     begin
       if FVisUpdated then // recount visibles
@@ -21375,6 +21384,7 @@ begin
       begin
         UpdateScrollBars;
       end;
+      //ShowMessage('8');
       IgnoreResize := false;
       if FClearVis and HandleAllocated then // refresh FVisible
       begin
@@ -21387,6 +21397,7 @@ begin
         FColSizeUpdate := false;
         AutoSizeAllColumns;
       end;
+      //ShowMessage('9');
       if (not (csLoading in ComponentState)) and (HandleAllocated) then
         UpdateScrollBars;
       IgnoreResize := false;

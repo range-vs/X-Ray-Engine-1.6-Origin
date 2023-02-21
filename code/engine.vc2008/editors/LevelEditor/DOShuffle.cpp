@@ -62,6 +62,7 @@ void __fastcall TfrmDOShuffle::FormDestroy(TObject *Sender)
 
 void __fastcall TfrmDOShuffle::FormShow(TObject *Sender)
 {
+    lblMaxCI->Caption  = ("Max count items: " + std::to_string(dm_max_objects)).c_str();
 	bColorIndModif 		= false;
     bObjectModif		= false;
     FillData			();
@@ -275,7 +276,7 @@ void __fastcall TfrmDOShuffle::tvMultiStartDrag(TObject *Sender,
 void __fastcall TfrmDOShuffle::ebAddObjectClick(TObject *Sender)
 {
 	LPCSTR S;
-    if (TfrmChoseItem::SelectItem(smObject,S,8)){
+    if (TfrmChoseItem::SelectItem(smObject,S,dm_max_objects)){
 	    AStringVec lst;
 		_SequenceToList(lst, S);
         for (AStringIt s_it=lst.begin(); s_it!=lst.end(); s_it++)

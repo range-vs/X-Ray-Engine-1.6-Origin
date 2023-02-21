@@ -9,6 +9,9 @@
 #include "ESceneAIMapControls.h"
 #include "xrPool.h"
 
+#include <iomanip>
+#include <fstream>
+
 // chunks
 #define AIMAP_VERSION  				0x0002
 //----------------------------------------------------
@@ -129,8 +132,14 @@ void SAINode::LoadStream(IReader& F, ESceneAIMapTool* tools)
     F.r				(&id,3); 			n2 = (SAINode*)tools->UnpackLink(id);
     F.r				(&id,3); 			n3 = (SAINode*)tools->UnpackLink(id);
     F.r				(&id,3); 			n4 = (SAINode*)tools->UnpackLink(id);
-	pl				= F.r_u16(); 		pvDecompress(Plane.n,pl);
-    F.r				(&np,sizeof(np)); 	tools->UnpackPosition(Pos,np,tools->m_AIBBox,tools->m_Params);
+
+	pl				= F.r_u16();
+	pvDecompress(Plane.n,pl);
+
+	//F.r_fvector3(Plane.n);
+
+	F.r				(&np,sizeof(np));
+	tools->UnpackPosition(Pos,np,tools->m_AIBBox,tools->m_Params);
 	Plane.build		(Pos,Plane.n);
     flags.assign	(F.r_u8());
 }
@@ -144,10 +153,16 @@ void SAINode::SaveStream(IWriter& F, ESceneAIMapTool* tools)
     id = n1?(u32)n1->idx:InvalidNode; F.w(&id,3);
     id = n2?(u32)n2->idx:InvalidNode; F.w(&id,3);
     id = n3?(u32)n3->idx:InvalidNode; F.w(&id,3);
-    id = n4?(u32)n4->idx:InvalidNode; F.w(&id,3);
-    pl = pvCompress (Plane.n);	 F.w_u16(pl);
-	tools->PackPosition(np,Pos,tools->m_AIBBox,tools->m_Params); F.w(&np,sizeof(np));
-    F.w_u8			(flags.get());
+	id = n4?(u32)n4->idx:InvalidNode; F.w(&id,3);
+
+	pl = pvCompress (Plane.n);
+	F.w_u16(pl);
+
+	//F.w_fvector3(Plane.n);
+
+	tools->PackPosition(np,Pos,tools->m_AIBBox,tools->m_Params);
+	F.w(&np,sizeof(np));
+	F.w_u8(flags.get());
 }
 
 
@@ -326,14 +341,15 @@ bool ESceneAIMapTool::LoadStream(IReader& F)
     F.r				(&m_AIBBox,sizeof(m_AIBBox));
 
     R_ASSERT(F.find_chunk(AIMAP_CHUNK_PARAMS));
-    F.r				(&m_Params,sizeof(m_Params));
+	F.r				(&m_Params,sizeof(m_Params));
+
 
     R_ASSERT(F.find_chunk(AIMAP_CHUNK_NODES));
     m_Nodes.resize	(F.r_u32());
 	for (AINodeIt it=m_Nodes.begin(); it!=m_Nodes.end(); it++){
     	*it			= xr_new<SAINode>();
-    	(*it)->LoadStream	(F,this);
-    }
+		(*it)->LoadStream	(F,this);
+	}
 	DenumerateNodes	();
 
     if (F.find_chunk(AIMAP_CHUNK_INTERNAL_DATA)){
@@ -399,8 +415,9 @@ void ESceneAIMapTool::SaveStream(IWriter& F)
     EnumerateNodes	();
 	F.open_chunk	(AIMAP_CHUNK_NODES);
     F.w_u32			(m_Nodes.size());
-	for (AINodeIt it=m_Nodes.begin(); it!=m_Nodes.end(); it++)
-    	(*it)->SaveStream	(F,this);
+	for (AINodeIt it=m_Nodes.begin(); it!=m_Nodes.end(); it++) {
+		(*it)->SaveStream	(F,this);
+	}
 	F.close_chunk	();
 
 	F.open_chunk	(AIMAP_CHUNK_INTERNAL_DATA);

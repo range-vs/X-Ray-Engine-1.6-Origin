@@ -1,6 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <BorlandProject>
 	<ProjectSortOrder AutoSort="0" SortType="0">
+    <File Path="..\..\editors"/>
+    <File Path="..\Include"/>
+    <File Path="..\Include\stack_trace.cpp"/>
     <File Path="..\..\..\engine.vc2008"/>
     <File Path="..\..\common"/>
     <File Path="..\..\common\NvMender2003"/>
@@ -212,6 +215,19 @@
     <File Path="Editor\UI_MainMail.cpp"/>
     <File Path="Editor\UI_ToolsCustom.cpp"/>
     <File Path="Editor\xrLoadSurface.cpp"/>
+    <File Path="Engine"/>
+    <File Path="Engine\blenders"/>
+    <File Path="Engine\blenders\blender_b.cpp"/>
+    <File Path="Engine\blenders\blender_light.cpp"/>
+    <File Path="Engine\ai_sounds.cpp"/>
+    <File Path="Engine\bone.cpp"/>
+    <File Path="Engine\cl_collector.cpp"/>
+    <File Path="Engine\cl_intersect.h"/>
+    <File Path="Engine\guid_generator.cpp"/>
+    <File Path="Engine\Image.cpp"/>
+    <File Path="Engine\nv_algebra.cpp"/>
+    <File Path="Engine\nv_math.h"/>
+    <File Path="Engine\nv_mathdecl.h"/>
     <File Path="WildMagic"/>
     <File Path="WildMagic\RAPIDMinBox.cpp"/>
     <File Path="WildMagic\WmlApprGaussPointsFit3.cpp"/>
@@ -230,23 +246,7 @@
     <File Path="WildMagic\WmlWinSystem.cpp"/>
     <File Path="WildMagic\WmlWinSystem.h"/>
     <File Path="guid.cpp"/>
-    <File Path="Engine"/>
-    <File Path="Engine\blenders"/>
-    <File Path="Engine\blenders\blender_b.cpp"/>
-    <File Path="Engine\blenders\blender_light.cpp"/>
-    <File Path="Engine\ai_sounds.cpp"/>
-    <File Path="Engine\bone.cpp"/>
-    <File Path="Engine\cl_collector.cpp"/>
-    <File Path="Engine\cl_intersect.h"/>
-    <File Path="Engine\guid_generator.cpp"/>
-    <File Path="Engine\Image.cpp"/>
-    <File Path="Engine\nv_algebra.cpp"/>
-    <File Path="Engine\nv_math.h"/>
-    <File Path="Engine\nv_mathdecl.h"/>
     <File Path="stdafx.h"/>
     <File Path="stdafx.cpp"/>
-    <File Path="..\..\editors"/>
-    <File Path="..\Include"/>
-    <File Path="..\Include\stack_trace.cpp"/>
   </ProjectSortOrder>
 </BorlandProject>

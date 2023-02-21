@@ -348,3 +348,6 @@ __recovery
 code/SDK/components/ElPack/Code/Source/*.hpp
 code/SDK/components/ElPack/Code/Source/*.dcu
 code/SDK/components/AlexMX/*.hpp
+code/SDK/components/ElPack/Code/*.dcu
+code/SDK/components/ElPack/Code/Design/*.dcu
+

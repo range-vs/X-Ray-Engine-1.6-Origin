@@ -241,7 +241,10 @@ void __fastcall TProperties::FormClose(TObject *Sender,
       TCloseAction &Action)
 {
 	ApplyEditControl	();
-    if (Visible&&!OnCloseEvent.empty()) 	OnCloseEvent();
+	if (Visible&&!OnCloseEvent.empty())
+	{
+		OnCloseEvent();
+	}
 }
 //---------------------------------------------------------------------------
 
@@ -346,7 +349,7 @@ void __fastcall TProperties::AssignItems(PropItemVec& items)
                 if (0==LHelper().FindItem(folder_items,folder.c_str())){
                 	PropItem* P		= PHelper().FindItem(m_Items,prop->key.c_str());
                     ListItem* I		= LHelper().CreateItem(folder_items,folder.c_str(),0);
-                    if (P) I->prop_color = P->prop_color;
+					if (P) I->prop_color = P->prop_color;
                 }
             }
         }
@@ -356,18 +359,30 @@ void __fastcall TProperties::AssignItems(PropItemVec& items)
 	if (m_Flags.is(plItemFolders))	m_Folders->AssignItems	(folder_items,m_Flags.is(plFullExpand),m_Flags.is(plFullSort));
 	// fill 
 	AnsiString full_sel_item;
-    if (m_Flags.is(plItemFolders)&&m_Folders->GetSelected())
+	if (m_Flags.is(plItemFolders)&&m_Folders->GetSelected())
     	FHelper.MakeFullName(m_Folders->GetSelected(),0,full_sel_item);
     FillElItems			(m_Items, full_sel_item.c_str());
 
     // end fill mode
     bModified			= false;
 
+
 	UnlockUpdating		();
 
-    FolderRestore		();
+	FolderRestore		();
     SelectItem			(last_selected_item);
 }
+
+void 				TProperties::LockUpdating			()
+{
+	tvProperties->IsUpdating = true;
+}
+
+void 				TProperties::UnlockUpdating			()
+{
+	tvProperties->IsUpdating = false;
+}
+
 //---------------------------------------------------------------------------
 
 void TProperties::FolderStore()
@@ -888,12 +903,17 @@ void __fastcall TProperties::tvPropertiesMouseDown(TObject *Sender,
                 case PROP_SH_TOKEN:
                 case PROP_CLIST:
                 case PROP_RLIST:
-                case PROP_TEXTURE2:
-                    TPoint P; P.x = X; P.y = Y;
-                    P=tvProperties->ClientToScreen(P);
-                    pmEnum->Popup(P.x,P.y-10);
-                    break;
-                };
+				case PROP_TEXTURE2:   {
+					try{
+						TPoint P; P.x = X; P.y = Y;
+						P=tvProperties->ClientToScreen(P);
+						pmEnum->Popup(0,0);
+					}catch(Exception& e){
+						int a = 45;
+					}
+					break;
+					}
+				};
             }
 	        if (prop&&!prop->OnClickEvent.empty()) prop->OnClickEvent(prop);
         }else if (Button==mbRight){
@@ -1253,7 +1273,7 @@ void TProperties::PrepareLWNumber(TElTreeItem* item)
                         if (!NumericBeforeEdit<s32>(prop,seNumber))
                             if (!NumericBeforeEdit<float>(prop,seNumber))
                                 FATAL("Unknown numeric type");
-    seNumber->Tag 	= (int)item;
+    seNumber->Tag 	= (ElTreeTagType)item;
     tvProperties->Refresh();
 }
 void TProperties::ShowLWNumber(TRect& R)
@@ -1374,7 +1394,7 @@ void TProperties::PrepareLWText(TElTreeItem* item)
 		edText->MaxLength	= 0;
     }break;
     }
-    edText->Tag 	= (int)item;
+    edText->Tag 	= (ElTreeTagType)item;
     tvProperties->Refresh();
 }
 void TProperties::ShowLWText(TRect& R)
@@ -1548,8 +1568,8 @@ void TProperties::PrepareSCText(TElTreeItem* item)
 	    prop->BeforeEdit<ShortcutValue,xr_shortcut>(edit_val);
         hkShortcut->HotKey		= edit_val.hotkey;
     }break;
-    }
-    hkShortcut->Tag 	= (int)item;
+	}
+	hkShortcut->Tag 	= (ElTreeTagType)item;
     tvProperties->Refresh();
 }
 void TProperties::ShowSCText(TRect& R)
@@ -1780,4 +1800,5 @@ PropItem* TProperties::FindItem(const shared_str& name)
 	return PHelper().FindItem(m_Items,name,PROP_UNDEF);
 }
 //---------------------------------------------------------------------------
+
 

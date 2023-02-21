@@ -294,9 +294,12 @@ void CDetailManager::UpdateVisibleM()
 						}
 					}
 				}
-				for (int sp_id=0; sp_id<dm_obj_in_slot; sp_id++){
+				for (int sp_id=0; sp_id<dm_obj_in_slot; sp_id++)
+				{
 					SlotPart&			sp	= S.G		[sp_id];
-					if (sp.id==DetailSlot::ID_Empty)	continue;
+					if (sp.id==DetailSlot::ID_Empty){
+						continue;
+					}
 					if (!sp.r_items[0].empty())
 					{
 						m_visibles[0][sp.id].push_back(&sp.r_items[0]);
@@ -354,9 +357,10 @@ void __stdcall	CDetailManager::MT_CALC		()
 #endif    
 
 	MT.Enter					();
-	if (m_frame_calc!=RDEVICE.dwFrame)	
-		if ((m_frame_rendered+1)==RDEVICE.dwFrame) //already rendered
-		{
+	if (m_frame_calc!=RDEVICE.dwFrame)
+	{
+		//if ((m_frame_rendered+1)==RDEVICE.dwFrame) //already rendered
+		//{
 #ifdef _EDITOR
 			Fvector		EYE = RDEVICE.m_Camera.GetPosition(); //RDEVICE.vCameraPosition_saved; // всегда 0!!! -> in editor
 #else
@@ -392,6 +396,7 @@ void __stdcall	CDetailManager::MT_CALC		()
 
 			UpdateVisibleM				();
 			m_frame_calc				= RDEVICE.dwFrame;
-		}
+		//}
+	}
 	MT.Leave					        ();
 }

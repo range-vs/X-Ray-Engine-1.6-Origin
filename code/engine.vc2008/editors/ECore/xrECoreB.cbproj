@@ -6,7 +6,7 @@
         <Config Condition="'$(Config)'==''">Debug</Config>
         <FrameworkType>Vcl</FrameworkType>
         <ProjectVersion>19.5</ProjectVersion>
-        <Platform Condition="'$(Platform)'==''">Win32</Platform>
+        <Platform Condition="'$(Platform)'==''">Win64</Platform>
         <TargetedPlatforms>3</TargetedPlatforms>
         <AppType>Library</AppType>
         <CC_Suffix Condition="'$(CC_Suffix)'==''">c</CC_Suffix>
@@ -87,7 +87,7 @@
         <ILINK_AppType>Windows</ILINK_AppType>
         <DCC_IncludePath>.\;$(BDS)\lib;$(BDS)\lib\obj;$(DCC_IncludePath)</DCC_IncludePath>
         <FinalOutputDir>..\..\..\..\bins\$(Platform)\$(Config)</FinalOutputDir>
-        <ILINK_LibraryPath>..\..\Include\xrRender\;..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source\Core\;..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source\Core2D\;..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source\Core3D\;..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source\Containment3D\;..\..\xrCore\;..\..\xrCPU_Pipe\;Engine\blenders\;..\..\xrEngine\;..\..\xrCDB\;..\..\Layers\xrRender\blenders\;WildMagic\;..\..\common\NvMender2003\;Engine\;..\..\Layers\xrRenderDX9\;..\..\Layers\xrRenderPC_R1\;..\..\Layers\xrRender\;Editor\;..\..\..\sdk\components\ElPack\Code;..\..;..\..\..\..\libraries\$(Platform)\$(Config);..\..\..\SDK\components\bins\$(Platform)\$(Config);..\..\..\SDK\components\libraries\$(Platform)\$(Config);..\..\..\SDK\components\ElPack\Code\Source;..\..\..\SDK\components\AlexMX;..\..\..\..\bins\$(Platform)\$(Config);$(ILINK_LibraryPath)</ILINK_LibraryPath>
+        <ILINK_LibraryPath>..\..\Include\xrRender\;..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source\Core\;..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source\Core2D\;..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source\Core3D\;..\..\..\sdk\sources\MagicSoftware\FreeMagic\Source\Containment3D\;..\..\xrCore\;..\..\xrCPU_Pipe\;Engine\blenders\;..\..\xrEngine\;..\..\xrCDB\;..\..\Layers\xrRender\blenders\;WildMagic\;..\..\common\NvMender2003\;Engine\;..\..\Layers\xrRenderDX9\;..\..\Layers\xrRenderPC_R1\;..\..\Layers\xrRender\;Editor\;..\..\..\sdk\components\ElPack\Code;..\..;..\..\..\..\libraries\$(Platform)\$(Config);..\..\..\SDK\components\libraries\$(Platform)\$(Config);..\..\..\SDK\components\ElPack\Code\Source;..\..\..\SDK\components\AlexMX;$(ILINK_LibraryPath)</ILINK_LibraryPath>
         <DCC_CBuilderOutput>JPHNE</DCC_CBuilderOutput>
         <BRCC_OutputDir>..\..\..\..\intermedia\xrECoreB\$(Platform)\$(Config)</BRCC_OutputDir>
         <BCC_OptimizationLevel>Level2</BCC_OptimizationLevel>
@@ -1108,11 +1108,7 @@
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile Condition="'$(DynamicRTL)'=='true' And '$(Multithreaded)'=='true'" LocalName="$(BDS)\bin\cc32c270mt.dll" Class="DependencyModule">
-                    <Platform Name="Win32">
-                        <Overwrite>true</Overwrite>
-                    </Platform>
-                </DeployFile>
+                <DeployFile LocalName="..\..\..\..\bins\Win64\Release\xrECoreB.dll" Configuration="Release" Class="ProjectOutput"/>
                 <DeployFile Condition="'$(DynamicRTL)'=='true' And '$(Multithreaded)'=='true'" LocalName="$(BDS)\bin\cc32260mt.dll" Class="DependencyModule"/>
                 <DeployFile Condition="'$(DynamicRTL)'=='true' And '$(Multithreaded)'!='true'" LocalName="$(BDS)\bin64\cc64280.dll" Class="DependencyModule">
                     <Platform Name="Win64">
@@ -1204,9 +1200,13 @@
                 <DeployFile Condition="'$(DynamicRTL)'=='true' And '$(Multithreaded)'!='true'" LocalName="$(BDS)\bin\cc32270.dll" Class="DependencyModule"/>
                 <DeployFile Condition="'$(DynamicRTL)'=='true' And '$(Multithreaded)'!='true'" LocalName="$(BDS)\bin64\cc64270.dll" Class="DependencyModule"/>
                 <DeployFile Condition="'$(DynamicRTL)'=='true'" LocalName="$(BDS)\Redist\osx64\libcgcrtl.dylib" Class="DependencyModule"/>
-                <DeployFile LocalName="..\..\..\..\bins\Win64\Release\xrECoreB.dll" Configuration="Release" Class="ProjectOutput"/>
                 <DeployFile Condition="'$(DynamicRTL)'=='true'" LocalName="$(BDS)\Redist\osx64\libcgcrtl.dylib" Class="DependencyModule">
                     <Platform Name="OSX64">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile Condition="'$(DynamicRTL)'=='true' And '$(Multithreaded)'=='true'" LocalName="$(BDS)\bin\cc32c270mt.dll" Class="DependencyModule">
+                    <Platform Name="Win32">
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>

@@ -182,8 +182,8 @@ public:		// User declarations
 
     void __fastcall		SelectFolder			(const AnsiString& folder_name);
     void __fastcall		SelectItem				(const AnsiString& full_name);
-    void __fastcall 	AssignItems				(PropItemVec& values);
-    void __fastcall 	ResetItems				();
+	void __fastcall 	AssignItems				(PropItemVec& values);
+	void __fastcall 	ResetItems				();
     bool __fastcall 	IsFocused				(){return tvProperties->Focused()||seNumber->Focused()||edText->Focused();}
     void __fastcall 	SetModifiedEvent		(TOnModifiedEvent modif=0){OnModifiedEvent=modif;}
     void __fastcall 	GetColumnWidth			(int& c0, int& c1)
@@ -193,7 +193,7 @@ public:		// User declarations
 	}
     void __fastcall 	SetColumnWidth			(int c0, int c1)
     {
-    	tvProperties->HeaderSections->Item[0]->Width=c0;
+		tvProperties->HeaderSections->Item[0]->Width=c0;
 	    tvProperties->HeaderSections->Item[1]->Width=c1;
 	}
     void __fastcall 	SaveParams				(TFormStorage* fs)
@@ -214,10 +214,10 @@ public:		// User declarations
 		paFolders->Width								= fs->ReadInteger(AnsiString().sprintf("%s_fp_width",Caption.c_str()),paFolders->Width);
 		paFolders->Height								= fs->ReadInteger(AnsiString().sprintf("%s_fp_height",Caption.c_str()),paFolders->Height);
         RefreshForm			();
-    }
+	}
 
-    void 				LockUpdating			(){ tvProperties->IsUpdating = true; }
-    void 				UnlockUpdating			(){ tvProperties->IsUpdating = false; }
+	void 				LockUpdating			();
+	void 				UnlockUpdating			();
 
     // auxiliary routines
 	static IC LPVOID	GetItemData				(TElTreeItem* item){return (void*)item->Tag;}
