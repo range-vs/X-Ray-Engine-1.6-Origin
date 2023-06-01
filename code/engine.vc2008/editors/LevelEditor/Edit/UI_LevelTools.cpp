@@ -18,8 +18,35 @@
 
 #include "../../Include/stack_trace.h"
 
-#define DETACH_FRAME(a) 	if (a){ (a)->Hide(); 	(a)->Parent = NULL; }
-#define ATTACH_FRAME(a,b)	if (a){ (a)->Parent=(b);(a)->Show(); 		}
+//#define DETACH_FRAME(a) 	if (a){ (a)->Hide(); 	(a)->Parent = NULL; }
+//#define ATTACH_FRAME(a,b)	if (a){ (a)->Parent=(b);(a)->Show(); 		}
+
+void DETACH_FRAME(TForm* a)
+{
+	  if (a)
+	  {
+		a->Hide();
+		a->Parent=NULL;
+      }
+}
+
+void ATTACH_FRAME(TForm* a, TPanel* b)
+{
+	try
+	{
+	  if (a)
+	  {
+		a->Parent=b;
+		a->Show();
+        int a = 48;
+	  }
+    }
+	catch (Exception &exception)
+    {
+	   System::UnicodeString ex = exception.StackTrace;
+       int a = 46;
+	}
+}
 
 CLevelTool*&	LTools=(CLevelTool*&)Tools;
 
@@ -194,18 +221,18 @@ void __fastcall CLevelTool::RealSetTarget   (ObjClassID tgt,int sub_tgt,bool bFo
         sub_target 				= sub_tgt;
         if (pCurTool){
             DETACH_FRAME(pCurTool->pFrame);
-            pCurTool->OnDeactivate();
+			pCurTool->OnDeactivate();
         }
         pCurTool				= Scene->GetTool(tgt);
         VERIFY					(pCurTool);
         pCurTool->SetSubTarget	(sub_target);
 
-        pCurTool->OnActivate	();
+		pCurTool->OnActivate	();
 
         pCurTool->SetAction		(GetAction());
 
-        if (pCurTool->IsEditable())
-        	ATTACH_FRAME(pCurTool->pFrame, paParent);
+		if (pCurTool->IsEditable())
+			ATTACH_FRAME(pCurTool->pFrame, paParent);
     }
     UI->RedrawScene();
     fraLeftBar->ChangeTarget(tgt);

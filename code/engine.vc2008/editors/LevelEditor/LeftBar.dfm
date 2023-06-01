@@ -890,7 +890,7 @@ object fraLeftBar: TfraLeftBar
       end
       object ebTargetWay: TExtBtn
         Left = 17
-        Top = 122
+        Top = 123
         Width = 95
         Height = 15
         Align = alNone

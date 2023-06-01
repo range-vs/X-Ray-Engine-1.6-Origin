@@ -107,7 +107,7 @@ CCommandVar 	ExecCommand	(u32 cmd, CCommandVar p1, CCommandVar p2)
 	if (!bAllowReceiveCommand)	return 0;
 
 	VERIFY				(cmd<ECommands.size());
-    CCommandVar	res;
+	CCommandVar	res;
 	SECommand*	CMD 	= ECommands[cmd];
     VERIFY				(CMD&&!CMD->command.empty());
     static int exec_level= 0;
@@ -123,8 +123,8 @@ CCommandVar 	ExecCommand	(u32 cmd, CCommandVar p1, CCommandVar p2)
         else if (p1.IsInteger()&&p2.IsString()) Msg("%s%s (%d,\"%s\")",		level,CMD->Name(),u32(p1),sp2.c_str());
         else if (p1.IsString()&&p2.IsInteger()) Msg("%s%s (\"%s\",%d)",		level,CMD->Name(),sp1.c_str(),u32(p2));
     }
-    exec_level++;
-    res 	 			= CMD->command(p1,p2);
+	exec_level++;
+	res 	 			= CMD->command(p1,p2);
     exec_level--; 		VERIFY(exec_level>=0);
     return res;
 }
