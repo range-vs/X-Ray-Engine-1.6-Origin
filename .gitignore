@@ -350,6 +350,3 @@ code/SDK/components/ElPack/Code/Source/*.dcu
 code/SDK/components/AlexMX/*.hpp
 code/SDK/components/ElPack/Code/*.dcu
 code/SDK/components/ElPack/Code/Design/*.dcu
-
-!code/engine.vc2008/Layers/xrRender/Debug/dxPixEventWrapper.cpp
-!code/engine.vc2008/Layers/xrRender/Debug/dxPixEventWrapper.h

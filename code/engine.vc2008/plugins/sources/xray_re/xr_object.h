@@ -6,14 +6,15 @@
 
 #include <string>
 #include <vector>
-#ifdef _MSC_VER
-#if _MSC_VER >= 1900
-#define _SILENCE_STDEXT_HASH_DEPRECATION_WARNINGS
-#endif
-#include <hash_map>
-#else
+//#ifdef _MSC_VER
+//#if _MSC_VER >= 1900
+//#define _SILENCE_STDEXT_HASH_DEPRECATION_WARNINGS
+//#endif
+//#include <hash_map>
+//#else
+//#include <map>
+//#endif
 #include <map>
-#endif
 #include "xr_bone.h"
 #include "xr_skl_motion.h"
 #include "xr_surface.h"
@@ -131,12 +132,12 @@ protected:
 
 	const xr_surface_factory*
 				m_surface_factory;
-#ifdef _MSC_VER
+/*#ifdef _MSC_VER
 	stdext::hash_map<xr_raw_surface, xr_surface*>
 #else
 	std::map<xr_raw_surface, xr_surface*>
-#endif
-				m_raw_surfaces;
+#endif*/
+	std::map<xr_raw_surface, xr_surface*> m_raw_surfaces;
 };
 
 typedef std::vector< xr_object* > xr_object_vec; typedef std::vector< xr_object* >::iterator xr_object_vec_it; typedef std::vector< xr_object* >::const_iterator xr_object_vec_cit;
