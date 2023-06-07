@@ -26,6 +26,12 @@
 #pragma link "ElPopBtn"
 #pragma resource "*.dfm"
 
+#ifdef _WIN64
+	using ElTreeTagType = std::int64_t;
+#else
+	using ElTreeTagType = std::int32_t;
+#endif
+
 //---------------------------------------------------------------------------
 // IItemList vector
 //---------------------------------------------------------------------------
@@ -223,7 +229,7 @@ void __fastcall TItemList::AssignItems(ListItemsVec& items, bool full_expand, bo
             }
             TElTreeItem* prop_item	= (TElTreeItem*)prop->item;
             prop_item->ImageIndex	= prop->icon_index;
-            prop_item->Tag	    	= (int)prop;
+            prop_item->Tag	    	= (ElTreeTagType)prop;
             prop_item->UseStyles	= true;
             prop_item->CheckBoxEnabled = prop->m_Flags.is(ListItem::flShowCB);
             prop_item->ShowCheckBox 	= prop->m_Flags.is(ListItem::flShowCB);
@@ -374,10 +380,8 @@ int __fastcall TItemList::GetSelected(LPCSTR pref, ListItemsVec& items, bool bOn
 void __fastcall TItemList::tvItemsAfterSelectionChange(TObject *Sender)
 {
 	if (IsLocked()) return;
-    // hack, нода не должна была быть выделенной
     for (TElTreeItem* item = tvItems->GetNextSelected(0); item; item = tvItems->GetNextSelected(item))
         if (item->Hidden)	item->Selected	= false;
-    // получаем выделение и обрабатываем ивенты
     ListItemsVec sel_items;
     GetSelected	(0,sel_items,false);
     if (!OnItemFocusedEvent.empty())	OnItemFocusedEvent(GetSelected());
@@ -494,7 +498,7 @@ void __fastcall TItemList::InplaceEditValidateResult(
 		FHelper.MakeName			(IE->Item,0,old_name,false);
 	    _ReplaceItem				(old_name.c_str(),IE->Item->Level,new_text.c_str(),new_name,'\\');
 	    TElTreeItem* find_item		= FHelper.FindItem(tvItems,new_name);
-    	InputValid 					= (find_item==IE->Item)||(!find_item);//.(!find_item); нужно для того чтобы принимало 
+    	InputValid 					= (find_item==IE->Item)||(!find_item);//.(!find_item);
     }
 }
 //---------------------------------------------------------------------------
@@ -620,7 +624,7 @@ void TItemList::RemoveSelItems(TOnItemRemove on_remove)
         VERIFY		(!on_remove.empty());
         RStringVec sel_items;
         if (GetSelected(sel_items)){
-            tvItems->IsUpdating = true; // LockUpdating нельзя
+            tvItems->IsUpdating = true; // LockUpdating
             DeselectAll					();
             tvItemsAfterSelectionChange	(0);
             bool bSelChanged=false;
