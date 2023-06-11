@@ -55,7 +55,6 @@ void TProperties::ClearParams(TElTreeItem* node)
 {
 	if (node){
     	FATAL("ClearParams - node");
-    	//S когда будут все итемы удалить у каждого
 /*
 //s
     	for (TElTreeItem* item=node; item; item=item->GetNext()){
@@ -750,7 +749,6 @@ void __fastcall TProperties::tvPropertiesMouseDown(TObject *Sender,
     	if ((HC==1)&&(Button==mbLeft)){
 //        	Log("Shift",(int)Shift.Contains(ssDouble));
 			PropItem* prop = (PropItem*)item->Tag;
-            // Проверить чтобы не нажимать 2 раза для кнопок
             if (prop&&(PROP_BUTTON==prop->type)) m_FirstClickItem=item;
             if (m_FirstClickItem==item){
 				if (!prop||(prop&&!prop->Enabled())) return;
@@ -796,7 +794,7 @@ void __fastcall TProperties::tvPropertiesMouseDown(TObject *Sender,
                     TMenuItem* mi 				= xr_new<TMenuItem>((TComponent*)0);
                     mi->Caption 				= "-";
                     pmEnum->Items->Add			(mi);
-                    for(int i=0; token_list[i].name; i++){
+                    for(ElTreeTagType i=0; token_list[i].name; i++){
                         mi 			= xr_new<TMenuItem>((TComponent*)0);
                         mi->Tag		= i;
                         mi->Caption = token_list[i].name;
@@ -810,7 +808,7 @@ void __fastcall TProperties::tvPropertiesMouseDown(TObject *Sender,
                     TMenuItem* mi 				= xr_new<TMenuItem>((TComponent*)0);
                     mi->Caption 				= "-";
                     pmEnum->Items->Add			(mi);
-                    for(u32 k=0; k<T->token_count; k++){
+                    for(ElTreeTagType k=0; k<T->token_count; k++){
                     	xr_rtoken& t= T->token[k];
                         mi 			= xr_new<TMenuItem>((TComponent*)0);
                         mi->Tag		= k;
@@ -825,7 +823,7 @@ void __fastcall TProperties::tvPropertiesMouseDown(TObject *Sender,
                     TMenuItem* mi 	= xr_new<TMenuItem>((TComponent*)0);
                     mi->Caption 	= "-";
                     pmEnum->Items->Add(mi);
-                    for (u32 i=0; i<T->cnt; i++){
+                    for (ElTreeTagType i=0; i<T->cnt; i++){
                         mi 			= xr_new<TMenuItem>((TComponent*)0);
                         mi->Tag		= i;
                         mi->Caption = T->items[i].str;
@@ -853,7 +851,7 @@ void __fastcall TProperties::tvPropertiesMouseDown(TObject *Sender,
                     TMenuItem* mi	= xr_new<TMenuItem>((TComponent*)0);
                     mi->Caption 	= "-";
                     pmEnum->Items->Add(mi);
-                    for(u32 k=0; k<T->item_count; k++){
+                    for(ElTreeTagType k=0; k<T->item_count; k++){
                         mi 			= xr_new<TMenuItem>((TComponent*)0);
                         mi->Tag		= k;
                         mi->Caption = T->items[k].c_str();
@@ -886,7 +884,7 @@ void __fastcall TProperties::tvPropertiesMouseDown(TObject *Sender,
                     TMenuItem* mi	= xr_new<TMenuItem>((TComponent*)0);
                     mi->Caption 	= "-";
                     pmEnum->Items->Add(mi);
-                    for (u32 i=0; i<TSTRING_COUNT; i++){
+                    for (ElTreeTagType i=0; i<TSTRING_COUNT; i++){
                         mi = xr_new<TMenuItem>((TComponent*)0);
                         mi->Tag		= i;
                         mi->Caption = TEXTUREString[i];
@@ -907,7 +905,7 @@ void __fastcall TProperties::tvPropertiesMouseDown(TObject *Sender,
 					try{
 						TPoint P; P.x = X; P.y = Y;
 						P=tvProperties->ClientToScreen(P);
-						pmEnum->Popup(0,0);
+						pmEnum->Popup(P.x,P.y-10);
 					}catch(Exception& e){
 						int a = 45;
 					}
@@ -1240,7 +1238,6 @@ void TProperties::CancelLWNumber()
 
 void TProperties::HideLWNumber()
 {
-	// последовательность важна (может быть 2 Apply)
     seNumber->Tag	= 0;
     if (seNumber->Visible&&Visible) 	tvProperties->SetFocus();
     seNumber->Hide	();
@@ -1292,8 +1289,6 @@ BOOL NumericOnEdit	   		(PropItem* prop, T new_val, BOOL& bRes)
 {                                                     
     NumericValue<T>* V		= dynamic_cast<NumericValue<T>*>(prop->GetFrontValue());
 	if (!V)					return FALSE;
-	// range fix
-	// if (prop->AfterEdit<NumericValue<T>,T>	(T(new_val)))
 	if (prop->AfterEdit<NumericValue<T>,T>	(new_val))
 	    bRes 				= prop->ApplyValue<NumericValue<T>,T>	(T(new_val));
 	return TRUE;
@@ -1351,7 +1346,6 @@ void TProperties::CancelLWText()
 
 void TProperties::HideLWText()
 {
-	// последовательность важна (может быть 2 Apply)
     edText->Tag		= 0;
     if (edText->Visible&&Visible) 	tvProperties->SetFocus();
     edText->Hide	();
@@ -1553,7 +1547,6 @@ void TProperties::CancelSCText()
 
 void TProperties::HideSCText()
 {
-	// последовательность важна (может быть 2 Apply)
     hkShortcut->Tag		= 0;
     if (hkShortcut->Visible&&Visible) 	tvProperties->SetFocus();
     hkShortcut->Hide	();

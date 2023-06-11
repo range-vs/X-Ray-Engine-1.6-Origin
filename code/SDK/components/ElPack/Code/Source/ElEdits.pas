@@ -3777,9 +3777,9 @@ begin
     if HandleAllocated then
       SendMessage(Handle, WM_SETTEXT,
       {$ifdef ELPACK_UNICODE}
-      1, Integer(PWideChar(newValue)))
+      1, LParam(PWideChar(newValue)))
       {$else}
-      0, Integer(PChar(newValue)))
+      0, LParam(PChar(newValue)))
       {$endif}
     else
     begin

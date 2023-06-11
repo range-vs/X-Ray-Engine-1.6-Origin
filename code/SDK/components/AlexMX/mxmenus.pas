@@ -1138,7 +1138,6 @@ const
   Buttons: array[TTrackButton] of Word = (TPM_RIGHTBUTTON, TPM_LEFTBUTTON);
 var
   FOnPopup: TNotifyEvent;
-  n: Integer;
 begin
 //  Inherited Popup(X, Y);
   FPopupPoint := Point(X, Y);
@@ -1149,9 +1148,8 @@ begin
 //    if Assigned(FOnPopup) then FOnPopup(Self);
 //    if IsOwnerDrawMenu then RefreshMenu(True);
 //    AdjustBiDiBehavior;
-    n:= Integer(TrackPopupMenu(Items.Handle, Flags[UseRightToLeftAlignment, Alignment] or Buttons[TrackButton],
-                    X, Y, 0, PopupList.Window, nil));
-    //SendMessage(PopupList.Window, WM_NULL, 0, 0);
+    TrackPopupMenu(Items.Handle, Flags[UseRightToLeftAlignment, Alignment] or Buttons[TrackButton],
+                    X, Y, 0, PopupList.Window, nil);
   finally
     ParentBiDiMode := FParentBiDiMode;
   end;
