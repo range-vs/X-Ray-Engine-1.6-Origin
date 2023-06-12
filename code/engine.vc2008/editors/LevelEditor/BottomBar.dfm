@@ -283,8 +283,8 @@ object fraBottomBar: TfraBottomBar
       'miRenderShadeGouraud.Checked'
       'miRenderWithTextures.Checked')
     StoredValues = <>
-    Left = 41
-    Top = 25
+    Left = 89
+    Top = 81
   end
   object pmOptions: TMxPopupMenu
     Alignment = paCenter
@@ -296,7 +296,7 @@ object fraBottomBar: TfraBottomBar
     MarginEndColor = 2763306
     BKColor = 10528425
     SelColor = clBlack
-    SelFontColor = 10526880
+    SelFontColor = 15790320
     SepHColor = 1644825
     SepLColor = 13158600
     LeftMargin = 10
@@ -545,12 +545,12 @@ object fraBottomBar: TfraBottomBar
     MarginEndColor = 2763306
     BKColor = 10528425
     SelColor = clBlack
-    SelFontColor = 10526880
+    SelFontColor = 15790320
     SepHColor = 1644825
     SepLColor = 13158600
     LeftMargin = 10
     Style = msOwnerDraw
-    Left = 69
-    Top = 24
+    Left = 165
+    Top = 56
   end
 end

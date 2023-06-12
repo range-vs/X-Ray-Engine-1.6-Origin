@@ -280,9 +280,13 @@
     <File Path="TopBar.h"/>
   </ProjectSortOrder>
 	<Transactions>
-    <Transaction>1899.12.30 00:00:00.000.141,D:\SVN\src\xray\X-Ray-Engine-1.6-Origin\code\SDK\sources\SOIL\image_helper.c=</Transaction>
     <Transaction>1899.12.30 00:00:00.000.118,D:\SVN\src\xray\X-Ray-Engine-1.6-Origin\code\SDK\sources\SOIL\image_DXT.c=</Transaction>
     <Transaction>1899.12.30 00:00:00.000.156,D:\SVN\src\xray\X-Ray-Engine-1.6-Origin\code\SDK\sources\SOIL\SOIL.c=</Transaction>
     <Transaction>1899.12.30 00:00:00.000.170,D:\SVN\src\xray\X-Ray-Engine-1.6-Origin\code\SDK\sources\SOIL\stb_image_aug.c=</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.141,D:\SVN\src\xray\X-Ray-Engine-1.6-Origin\code\SDK\sources\SOIL\image_helper.c=</Transaction>
+    <Transaction>2023.06.12 14:37:59.300,=D:\src\X-Ray-Engine-1.6-Origin\code\engine.vc2008\editors\LevelEditor\Unit1.cpp</Transaction>
+    <Transaction>2023.06.12 14:38:20.752,D:\src\X-Ray-Engine-1.6-Origin\code\engine.vc2008\editors\LevelEditor\TopBarV2.cpp=D:\src\X-Ray-Engine-1.6-Origin\code\engine.vc2008\editors\LevelEditor\Unit1.cpp</Transaction>
+    <Transaction>2023.06.12 14:38:20.752,D:\src\X-Ray-Engine-1.6-Origin\code\engine.vc2008\editors\LevelEditor\TopBarV2.dfm=D:\src\X-Ray-Engine-1.6-Origin\code\engine.vc2008\editors\LevelEditor\Unit1.dfm</Transaction>
+    <Transaction>2023.06.12 14:38:20.752,D:\src\X-Ray-Engine-1.6-Origin\code\engine.vc2008\editors\LevelEditor\TopBarV2.h=D:\src\X-Ray-Engine-1.6-Origin\code\engine.vc2008\editors\LevelEditor\Unit1.h</Transaction>
   </Transactions>
 </BorlandProject>

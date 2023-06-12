@@ -12,6 +12,8 @@
 #include "../../../Layers/xrRender/shader.h"
 #include "../../../Layers/xrRender/R_Backend.h"
 
+constexpr const int FULLHD_WIDTH = 1920;
+constexpr const int FULLHD_HEIGHT = 1080;
 
 //---------------------------------------------------------------------------
 // refs
@@ -91,6 +93,7 @@ public:
 	CEStats*				Statistic;
 
 	CGameFont* 				pSystemFont;
+    std::string currentFontName;
 
 	// registrators
 //	CRegistrator <pureDeviceDestroy>	seqDevDestroy;
@@ -165,7 +168,11 @@ public:
 	IC u32	 				TimerAsync		(void)
     { return TimerGlobal.GetElapsed_ms();}
 	IC u32	 				TimerAsync_MMT	(void)
-    { return TimerAsync()+Timer_MM_Delta; }
+	{ return TimerAsync()+Timer_MM_Delta; }
+
+    void changeFontFromResolutionScreen();
+	std::pair<int, int> GetCurrentScreenMaxResolution();
+
 public:
     Shader_xrLC_LIB			ShaderXRLC;
 private:

@@ -228,8 +228,10 @@ void CEditorRenderDevice::_Create(IReader* F)
     UI->OnDeviceCreate			();           
 //.	seqDevCreate.Process		(rp_DeviceCreate);
 
-	pSystemFont					= xr_new<CGameFont>("hud_font_small");
+
+//	pSystemFont					= xr_new<CGameFont>("hud_font_small");
 //	pSystemFont					= xr_new<CGameFont>("hud_font_medium");
+	changeFontFromResolutionScreen();
 }
 
 void CEditorRenderDevice::_Destroy(BOOL	bKeepTextures)
@@ -258,8 +260,10 @@ void CEditorRenderDevice::_Destroy(BOOL	bKeepTextures)
 void CEditorRenderDevice::Resize(int w, int h)
 {
     m_RealWidth 	= w;
-    m_RealHeight 	= h;
-    m_RenderArea	= w*h;
+	m_RealHeight 	= h;
+	m_RenderArea	= w*h;
+
+    changeFontFromResolutionScreen();
 
     dwWidth  		= m_RealWidth * m_ScreenQuality;
     dwHeight 		= m_RealHeight * m_ScreenQuality;
@@ -438,3 +442,31 @@ void CEditorRenderDevice::time_factor(float v)
 	 TimerGlobal.time_factor(v);
 }
 
+
+std::pair<int, int> CEditorRenderDevice::GetCurrentScreenMaxResolution()
+{
+    HMONITOR monitor = MonitorFromWindow(m_hRenderWnd, MONITOR_DEFAULTTONEAREST);
+	MONITORINFO info;
+	info.cbSize = sizeof(MONITORINFO);
+	GetMonitorInfo(monitor, &info);
+	int monitor_width = info.rcMonitor.right - info.rcMonitor.left;
+	int monitor_height = info.rcMonitor.bottom - info.rcMonitor.top;
+	return {monitor_width, monitor_height};
+}
+
+void CEditorRenderDevice::changeFontFromResolutionScreen()
+{
+	auto current_monitor_resolution {GetCurrentScreenMaxResolution()};
+    std::string newFont{};
+	if(current_monitor_resolution.first > FULLHD_WIDTH && current_monitor_resolution.second > FULLHD_HEIGHT)
+		newFont = "hud_font_medium";
+	else
+		newFont = "hud_font_small";
+	if(newFont != currentFontName)
+	{
+		currentFontName = newFont;
+		if(pSystemFont)
+		  xr_delete(pSystemFont);
+		pSystemFont	= xr_new<CGameFont>(currentFontName.c_str());
+	}
+}

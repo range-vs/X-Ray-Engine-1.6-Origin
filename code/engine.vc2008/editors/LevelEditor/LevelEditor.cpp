@@ -13,26 +13,26 @@
 //---------------------------------------------------------------------------
 USEFORM("FrameAIMap.cpp", fraAIMap);
 USEFORM("FrameDetObj.cpp", fraDetailObject);
-USEFORM("FrameFogVol.cpp", fraFogVol);
-USEFORM("FrameGroup.cpp", fraGroup);
-USEFORM("FrameLight.cpp", fraLight);
-USEFORM("FrameSpawn.cpp", fraSpawn);
-USEFORM("FrameWayPoint.cpp", fraWayPoint);
-USEFORM("FrmDBXpacker.cpp", DB_packer);
-USEFORM("LEClipEditor.cpp", ClipMaker);
-USEFORM("FrameObject.cpp", fraObject);
-USEFORM("FramePortal.cpp", fraPortal);
 USEFORM("FramePS.cpp", fraPS);
 USEFORM("FrameSector.cpp", fraSector);
 USEFORM("FrameShape.cpp", fraShape);
-USEFORM("main.cpp", frmMain);
-USEFORM("ObjectList.cpp", frmObjectList);
-USEFORM("LeftBar.cpp", fraLeftBar); /* TFrame: File Type */
-USEFORM("previewimage.cpp", frmPreviewImage);
+USEFORM("FrameSpawn.cpp", fraSpawn);
+USEFORM("FrameWayPoint.cpp", fraWayPoint);
+USEFORM("FrameFogVol.cpp", fraFogVol);
+USEFORM("FrameGroup.cpp", fraGroup);
+USEFORM("FrameLight.cpp", fraLight);
+USEFORM("FrameObject.cpp", fraObject);
+USEFORM("FramePortal.cpp", fraPortal);
 USEFORM("TopBar.cpp", fraTopBar); /* TFrame: File Type */
+USEFORM("LeftBar.cpp", fraLeftBar); /* TFrame: File Type */
+USEFORM("FrmDBXpacker.cpp", DB_packer);
+USEFORM("LEClipEditor.cpp", ClipMaker);
 USEFORM("PropertiesEObject.cpp", frmPropertiesEObject);
 USEFORM("RightForm.cpp", frmRight);
 USEFORM("Splash.cpp", frmSplash);
+USEFORM("main.cpp", frmMain);
+USEFORM("ObjectList.cpp", frmObjectList);
+USEFORM("previewimage.cpp", frmPreviewImage);
 USEFORM("EditLightAnim.cpp", frmEditLightAnim);
 USEFORM("Edit\AppendObjectInfoForm.cpp", frmAppendObjectInfo);
 USEFORM("BottomBar.cpp", fraBottomBar); /* TFrame: File Type */

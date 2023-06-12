@@ -14,7 +14,6 @@ object frmMain: TfrmMain
   KeyPreview = True
   OldCreateOrder = False
   Position = poDefault
-  Scaled = False
   OnClose = FormClose
   OnCloseQuery = FormCloseQuery
   OnCreate = FormCreate

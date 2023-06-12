@@ -1,9 +1,9 @@
 object frmText: TfrmText
   Left = 397
   Top = 371
-  Width = 512
-  Height = 304
   Caption = 'Text'
+  ClientHeight = 265
+  ClientWidth = 496
   Color = 10528425
   Constraints.MinHeight = 205
   Constraints.MinWidth = 302
@@ -16,7 +16,6 @@ object frmText: TfrmText
   KeyPreview = True
   OldCreateOrder = False
   Position = poScreenCenter
-  Scaled = False
   OnActivate = FormActivate
   OnClose = FormClose
   OnCloseQuery = FormCloseQuery
@@ -28,7 +27,7 @@ object frmText: TfrmText
   object paBottomBar: TPanel
     Left = 0
     Top = 0
-    Width = 504
+    Width = 496
     Height = 20
     Align = alTop
     BevelOuter = bvNone
@@ -139,17 +138,16 @@ object frmText: TfrmText
   end
   object sbStatusPanel: TElStatusBar
     Left = 0
-    Top = 251
-    Width = 504
+    Top = 246
+    Width = 496
     Height = 19
+    Hint = ''
     Panels = <
       item
-        Alignment = taLeftJustify
         Width = 55
         IsHTML = False
       end
       item
-        Alignment = taLeftJustify
         IsHTML = False
       end>
     SimplePanel = False
@@ -164,13 +162,12 @@ object frmText: TfrmText
     ParentShowHint = False
     ShowHint = True
     DockOrientation = doNoOrient
-    DoubleBuffered = False
   end
   object mmText: TMemo
     Left = 0
     Top = 20
-    Width = 504
-    Height = 231
+    Width = 496
+    Height = 226
     Align = alClient
     Color = 10526880
     Font.Charset = RUSSIAN_CHARSET

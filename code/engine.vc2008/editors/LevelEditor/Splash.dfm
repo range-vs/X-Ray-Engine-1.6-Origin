@@ -108,7 +108,6 @@ object frmSplash: TfrmSplash
     000000000000000000000000000000000000C0000003}
   OldCreateOrder = False
   Position = poScreenCenter
-  Scaled = False
   PixelsPerInch = 96
   TextHeight = 13
   object Image1: TImage
@@ -2941,6 +2940,9 @@ object frmSplash: TfrmSplash
       ABB15762AEC55D8ABB15762AEC55D8ABB15762AEC55D8ABB15762AEC55D8ABB1
       5762AEC55D8ABB15762AEC55D8ABB15762AEC55D8ABB15762AEC55D8ABB15762
       AEC55D8ABB15762AEC55D8ABFFD9}
+    Stretch = True
+    ExplicitWidth = 500
+    ExplicitHeight = 285
   end
   object lbStatus: TLabel
     Left = 0

@@ -16,7 +16,6 @@ object frmLog: TfrmLog
   FormStyle = fsStayOnTop
   KeyPreview = True
   OldCreateOrder = False
-  Scaled = False
   OnKeyDown = FormKeyDown
   OnShow = FormShow
   PixelsPerInch = 106
