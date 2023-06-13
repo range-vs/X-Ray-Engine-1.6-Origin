@@ -17,7 +17,6 @@ object frmNumericVector: TfrmNumericVector
   KeyPreview = True
   OldCreateOrder = False
   Position = poDefault
-  Scaled = False
   OnKeyDown = FormKeyDown
   OnShow = FormShow
   PixelsPerInch = 96
@@ -133,10 +132,10 @@ object frmNumericVector: TfrmNumericVector
     Top = 4
     Width = 98
     Height = 13
-    LWSensitivity = 0.1
+    LWSensitivity = 0.100000000000000000
     ButtonKind = bkLightWave
     Decimal = 3
-    Increment = 0.001
+    Increment = 0.001000000000000000
     ValueType = vtFloat
     AutoSize = False
     BorderStyle = bsNone
@@ -149,10 +148,10 @@ object frmNumericVector: TfrmNumericVector
     Top = 22
     Width = 98
     Height = 13
-    LWSensitivity = 0.1
+    LWSensitivity = 0.100000000000000000
     ButtonKind = bkLightWave
     Decimal = 3
-    Increment = 0.001
+    Increment = 0.001000000000000000
     ValueType = vtFloat
     AutoSize = False
     BorderStyle = bsNone
@@ -165,10 +164,10 @@ object frmNumericVector: TfrmNumericVector
     Top = 40
     Width = 98
     Height = 13
-    LWSensitivity = 0.1
+    LWSensitivity = 0.100000000000000000
     ButtonKind = bkLightWave
     Decimal = 3
-    Increment = 0.001
+    Increment = 0.001000000000000000
     ValueType = vtFloat
     AutoSize = False
     BorderStyle = bsNone

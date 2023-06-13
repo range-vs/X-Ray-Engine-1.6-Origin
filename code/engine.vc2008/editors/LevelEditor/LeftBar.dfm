@@ -36,10 +36,11 @@ object fraLeftBar: TfraLeftBar
       Left = 1
       Top = 1
       Width = 218
-      Height = 154
+      Height = 152
       Hint = 'Scene commands'
       Align = alTop
       Alignment = taLeftJustify
+      AutoSize = True
       Color = 10528425
       ParentShowHint = False
       ShowHint = True
@@ -321,10 +322,11 @@ object fraLeftBar: TfraLeftBar
     end
     object paEdit: TPanel
       Left = 1
-      Top = 155
+      Top = 153
       Width = 218
-      Height = 65
+      Height = 63
       Align = alTop
+      AutoSize = True
       Color = 10528425
       TabOrder = 1
       object lbTools: TLabel
@@ -498,10 +500,11 @@ object fraLeftBar: TfraLeftBar
     end
     object paTarget: TPanel
       Left = 1
-      Top = 220
+      Top = 216
       Width = 218
-      Height = 139
+      Height = 140
       Align = alTop
+      AutoSize = True
       Color = 10528425
       TabOrder = 2
       object ebTargetObject: TExtBtn
@@ -3206,12 +3209,14 @@ object fraLeftBar: TfraLeftBar
     end
     object paSnapList: TPanel
       Left = 1
-      Top = 359
+      Top = 356
       Width = 218
-      Height = 115
+      Height = 122
       Align = alTop
+      AutoSize = True
       Color = 10528425
       TabOrder = 3
+      ExplicitTop = 355
       object Bevel2: TBevel
         Left = 2
         Top = 46

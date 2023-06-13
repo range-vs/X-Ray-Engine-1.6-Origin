@@ -37,6 +37,31 @@ public:
 typedef xr_vector<EEditorState> EStateList;
 typedef EStateList::iterator EStateIt;
 
+class HelperPanelHeight
+{
+public:
+	HelperPanelHeight();
+	HelperPanelHeight(const HelperPanelHeight&) = delete;
+	HelperPanelHeight(HelperPanelHeight&&) = delete;
+	HelperPanelHeight& operator=(const HelperPanelHeight&) = delete;
+	const HelperPanelHeight& operator=(HelperPanelHeight&&) = delete;
+	~HelperPanelHeight();
+
+	void addPanel(TPanel* panel, int height);
+	int getPanelHeight(TPanel* panel)const;
+    bool removePanel(TPanel* panel);
+
+    static HelperPanelHeight* getInstance();
+
+private:
+	std::map<TPanel*, int> panelHeightBuffer;
+
+    static HelperPanelHeight* instance;
+
+};
+
+extern HelperPanelHeight helperPanelHeight;
+
 class ECORE_API TUI: public IInputReceiver{
 protected:
     friend class CCustomPreferences;

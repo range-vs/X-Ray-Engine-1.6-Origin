@@ -478,15 +478,57 @@ void ResetActionToSelect()
 }
 //---------------------------------------------------------------------------
 
-#define MIN_PANEL_HEIGHT 15
+HelperPanelHeight* HelperPanelHeight::getInstance()
+{
+	if(!instance)
+		instance = new HelperPanelHeight();
+    return instance;
+}
+HelperPanelHeight* HelperPanelHeight::instance{nullptr};
+
+HelperPanelHeight::HelperPanelHeight(){}
+HelperPanelHeight::~HelperPanelHeight()
+{
+    if(instance)
+		delete instance;
+}
+
+void HelperPanelHeight::addPanel(TPanel* panel, int height)
+{
+	if(panelHeightBuffer.find(panel) == panelHeightBuffer.end())
+	{
+		panelHeightBuffer.emplace(panel, height);
+	}
+}
+
+int HelperPanelHeight::getPanelHeight(TPanel* panel)const
+{
+    auto iter{panelHeightBuffer.find(panel)};
+	int h = iter != panelHeightBuffer.end() ?  iter->second : 0;
+    return h;
+}
+
+bool HelperPanelHeight::removePanel(TPanel* panel)
+{
+	auto iter{panelHeightBuffer.find(panel)};
+   	panelHeightBuffer.erase(iter);
+}
+
+
+#define MIN_PANEL_HEIGHT 25
 void __fastcall PanelMinMax(TPanel *pa)
 {
-	if (pa&&(pa->Align!=alClient)){
-        if (pa->Tag > 0){
-            pa->Height = pa->Tag;
-            pa->Tag    = 0;
+	if (pa/*&&(pa->Align!=alClient)*/){
+		int h = HelperPanelHeight::getInstance()->getPanelHeight(pa);
+		if(h > 0) {//if (pa->Tag > 0){
+			pa->AutoSize = true;
+			pa->Height = h; //pa->Tag;
+			HelperPanelHeight::getInstance()->removePanel(pa);
+			//pa->Tag    = 0;
         }else{
-            pa->Tag    = pa->Height;
+			//pa->Tag    = pa->Height;
+			HelperPanelHeight::getInstance()->addPanel(pa, pa->Height);
+			pa->AutoSize = false;
             pa->Height = MIN_PANEL_HEIGHT;
         }
         ExecCommand(COMMAND_UPDATE_TOOLBAR);
@@ -494,9 +536,11 @@ void __fastcall PanelMinMax(TPanel *pa)
 }
 void __fastcall PanelMinimize(TPanel *pa)
 {
-	if (pa&&(pa->Align!=alClient)){
-        if (pa->Tag <= 0){
-            pa->Tag    = pa->Height;
+	if (pa/*&&(pa->Align!=alClient)*/){
+		if(HelperPanelHeight::getInstance()->getPanelHeight(pa) == 0) {//if (pa->Tag == 0){
+        	pa->AutoSize = false;
+			// pa->Tag    = pa->Height;
+			HelperPanelHeight::getInstance()->getInstance()->addPanel(pa, pa->Height);
             pa->Height = MIN_PANEL_HEIGHT;
         }
         ExecCommand(COMMAND_UPDATE_TOOLBAR);
@@ -504,10 +548,13 @@ void __fastcall PanelMinimize(TPanel *pa)
 }
 void __fastcall PanelMaximize(TPanel *pa)
 {
-	if (pa&&(pa->Align!=alClient)){
-        if (pa->Tag > 0){
-            pa->Height = pa->Tag;
-            pa->Tag    = 0;
+	if (pa/*&&(pa->Align!=alClient)*/){
+        int h = HelperPanelHeight::getInstance()->getPanelHeight(pa);
+		if(h > 0){ //if (pa->Tag > 0){
+        	pa->AutoSize = true;
+            pa->Height = h;
+			// pa->Tag    = 0;
+            HelperPanelHeight::getInstance()->removePanel(pa);
         }
         ExecCommand(COMMAND_UPDATE_TOOLBAR);
     }

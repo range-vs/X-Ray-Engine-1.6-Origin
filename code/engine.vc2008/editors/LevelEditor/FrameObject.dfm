@@ -3,6 +3,7 @@ object fraObject: TfraObject
   Top = 503
   VertScrollBar.Visible = False
   Align = alClient
+  AutoSize = True
   BorderStyle = bsNone
   ClientHeight = 372
   ClientWidth = 218
@@ -23,20 +24,20 @@ object fraObject: TfraObject
     Left = 0
     Top = 55
     Width = 218
-    Height = 46
+    Height = 50
     Align = alTop
     Color = 10528425
     TabOrder = 0
     object Bevel3: TBevel
       Left = 154
-      Top = 28
+      Top = 35
       Width = 45
       Height = 16
     end
     object Label1: TLabel
-      Left = 5
-      Top = 16
-      Width = 84
+      Left = 7
+      Top = 15
+      Width = 98
       Height = 13
       Caption = 'Select by Current:'
       WordWrap = True
@@ -86,11 +87,11 @@ object fraObject: TfraObject
       Color = clGray
       ParentColor = False
       OnClick = ExpandClick
-      ExplicitWidth = 83
+      ExplicitTop = 4
     end
     object ExtBtn5: TExtBtn
-      Left = 185
-      Top = 2
+      Left = 205
+      Top = 4
       Width = 11
       Height = 11
       Align = alNone
@@ -113,7 +114,7 @@ object fraObject: TfraObject
     end
     object ExtBtn6: TExtBtn
       Left = 97
-      Top = 29
+      Top = 35
       Width = 27
       Height = 14
       Align = alNone
@@ -129,8 +130,8 @@ object fraObject: TfraObject
       OnClick = ebMultiSelectByRefMoveClick
     end
     object Label4: TLabel
-      Left = 201
-      Top = 30
+      Left = 204
+      Top = 35
       Width = 8
       Height = 13
       Caption = '%'
@@ -142,8 +143,8 @@ object fraObject: TfraObject
       ParentFont = False
     end
     object ExtBtn7: TExtBtn
-      Left = 126
-      Top = 29
+      Left = 122
+      Top = 35
       Width = 27
       Height = 14
       Align = alNone
@@ -159,16 +160,16 @@ object fraObject: TfraObject
       OnClick = ebMultiSelectByRefAppendClick
     end
     object Label6: TLabel
-      Left = 5
-      Top = 31
-      Width = 92
-      Height = 13
+      Left = 7
+      Top = 35
+      Width = 109
+      Height = 26
       Caption = 'Select by Selected:'
       WordWrap = True
     end
     object seSelPercent: TMultiObjSpinEdit
       Left = 155
-      Top = 30
+      Top = 35
       Width = 43
       Height = 13
       LWSensitivity = 1.000000000000000000
@@ -221,10 +222,11 @@ object fraObject: TfraObject
       Color = clGray
       ParentColor = False
       OnClick = ExpandClick
-      ExplicitWidth = 52
+      ExplicitLeft = 2
+      ExplicitTop = -3
     end
     object ExtBtn2: TExtBtn
-      Left = 185
+      Left = 205
       Top = 2
       Width = 11
       Height = 11
@@ -335,14 +337,16 @@ object fraObject: TfraObject
   end
   object paCurrentObject: TPanel
     Left = 0
-    Top = 101
+    Top = 105
     Width = 218
-    Height = 271
+    Height = 267
     Align = alClient
     Color = 10528425
     Constraints.MinHeight = 175
     TabOrder = 2
     OnResize = paCurrentObjectResize
+    ExplicitTop = 101
+    ExplicitHeight = 271
     object APHeadLabel2: TLabel
       Left = 1
       Top = 1
@@ -368,11 +372,14 @@ object fraObject: TfraObject
       Left = 1
       Top = 51
       Width = 216
-      Height = 219
+      Height = 215
       Align = alClient
+      AutoSize = True
       BevelOuter = bvNone
       ParentColor = True
       TabOrder = 0
+      ExplicitTop = 55
+      ExplicitHeight = 205
     end
     object Panel1: TPanel
       Left = 1
