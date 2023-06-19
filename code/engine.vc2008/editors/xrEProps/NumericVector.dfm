@@ -17,6 +17,7 @@ object frmNumericVector: TfrmNumericVector
   KeyPreview = True
   OldCreateOrder = False
   Position = poDefault
+  Scaled = False
   OnKeyDown = FormKeyDown
   OnShow = FormShow
   PixelsPerInch = 96

@@ -246,7 +246,7 @@
     <File Path="WildMagic\WmlWinSystem.cpp"/>
     <File Path="WildMagic\WmlWinSystem.h"/>
     <File Path="guid.cpp"/>
-    <File Path="stdafx.h"/>
     <File Path="stdafx.cpp"/>
+    <File Path="stdafx.h"/>
   </ProjectSortOrder>
 </BorlandProject>

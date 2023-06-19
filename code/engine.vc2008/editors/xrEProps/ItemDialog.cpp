@@ -14,6 +14,7 @@ __fastcall TfrmItemDialog::TfrmItemDialog(TComponent* Owner)
     : TForm(Owner)
 {
 	res		= -1;
+    this->ScaleBy(this->PixelsPerInch, 96);
 }
 //---------------------------------------------------------------------------
 

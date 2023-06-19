@@ -12,6 +12,7 @@ TfrmPreviewImage* TfrmPreviewImage::form = 0;
 __fastcall TfrmPreviewImage::TfrmPreviewImage(TComponent* Owner)
     : TForm(Owner)
 {
+    this->ScaleBy(this->PixelsPerInch, 96);
 }
 //---------------------------------------------------------------------------
 

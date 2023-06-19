@@ -12,6 +12,7 @@ object fraFogVol: TfraFogVol
   Font.Name = 'MS Sans Serif'
   Font.Style = []
   OldCreateOrder = True
+  Scaled = False
   PixelsPerInch = 96
   TextHeight = 13
   object paCommands: TPanel

@@ -50,7 +50,8 @@ __fastcall TfrmObjectList::TfrmObjectList(TComponent* Owner)
     : TForm(Owner)
 {
 	bLockUpdate = false;
-    find_node	= NULL;
+	find_node	= NULL;
+    this->ScaleBy(this->PixelsPerInch, 96);
 }
 
 void __fastcall TfrmObjectList::sbCloseClick(TObject *Sender)

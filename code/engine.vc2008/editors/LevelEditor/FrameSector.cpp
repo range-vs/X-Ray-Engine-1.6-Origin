@@ -16,6 +16,7 @@
 __fastcall TfraSector::TfraSector(TComponent* Owner)
         : TForm(Owner)
 {
+    this->ScaleBy(this->PixelsPerInch, 96);
 }
 //---------------------------------------------------------------------------
 void __fastcall TfraSector::PanelMinClick(TObject *Sender)

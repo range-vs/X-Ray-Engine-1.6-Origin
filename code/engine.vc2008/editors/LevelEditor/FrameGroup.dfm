@@ -13,6 +13,7 @@ object fraGroup: TfraGroup
   Font.Name = 'MS Sans Serif'
   Font.Style = []
   OldCreateOrder = True
+  Scaled = False
   PixelsPerInch = 96
   TextHeight = 13
   object paCommands: TPanel
@@ -138,7 +139,7 @@ object fraGroup: TfraGroup
     object APHeadLabel2: TLabel
       Left = 1
       Top = 1
-      Width = 211
+      Width = 68
       Height = 13
       Align = alTop
       Alignment = taCenter
@@ -146,7 +147,6 @@ object fraGroup: TfraGroup
       Color = clGray
       ParentColor = False
       OnClick = ExpandClick
-      ExplicitWidth = 68
     end
     object ebSelect: TExtBtn
       Left = 7
@@ -217,7 +217,7 @@ object fraGroup: TfraGroup
     object Label1: TLabel
       Left = 1
       Top = 1
-      Width = 211
+      Width = 73
       Height = 13
       Align = alTop
       Alignment = taCenter
@@ -225,7 +225,6 @@ object fraGroup: TfraGroup
       Color = clGray
       ParentColor = False
       OnClick = ExpandClick
-      ExplicitWidth = 73
     end
     object ebCenterToGroup: TExtBtn
       Left = 2

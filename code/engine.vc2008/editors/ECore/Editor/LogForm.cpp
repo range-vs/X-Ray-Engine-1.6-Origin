@@ -15,6 +15,7 @@ __fastcall TfrmLog::TfrmLog(TComponent* Owner)
     : TForm(Owner)
 {
 	DEFINE_INI(fsStorage);
+    this->ScaleBy(this->PixelsPerInch, 96);
 }
 //---------------------------------------------------------------------------
 void __fastcall TfrmLog::CreateLog(){

@@ -5,27 +5,28 @@ object ItemList: TItemList
   BiDiMode = bdLeftToRight
   BorderIcons = [biSystemMenu, biMinimize]
   Caption = 'Item list'
-  ClientHeight = 487
+  ClientHeight = 201
   ClientWidth = 304
   Color = clGray
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -11
-  Font.Name = 'MS Sans Serif'
+  Font.Name = 'Tahoma'
   Font.Style = []
   FormStyle = fsStayOnTop
   KeyPreview = True
   OldCreateOrder = False
   ParentBiDiMode = False
+  Scaled = False
   OnClose = FormClose
   OnShow = FormShow
-  PixelsPerInch = 106
+  PixelsPerInch = 96
   TextHeight = 13
   object tvItems: TElTree
     Left = 0
     Top = 0
     Width = 304
-    Height = 470
+    Height = 184
     Cursor = crDefault
     Hint = ''
     LeftPosition = 0
@@ -97,9 +98,9 @@ object ItemList: TItemList
     FocusedSelectColor = 10526880
     FocusedSelectTextColor = clBlack
     Font.Charset = DEFAULT_CHARSET
-    Font.Color = clBlack
+    Font.Color = clWindowText
     Font.Height = -11
-    Font.Name = 'MS Sans Serif'
+    Font.Name = 'Tahoma'
     Font.Style = []
     FullRowSelect = False
     HeaderColor = 7368816
@@ -110,13 +111,13 @@ object ItemList: TItemList
       0000000010270000000101004014FF040000000001006E00FFFFFFFF00000100
       00000000000000000001000000000000580052005F004500500052004F005000
       53005F004500580050004F005200540053000000000000000000000000000000
-      0000000000000000000000000000000000000000060000004974656D73000100
+      00000000000000000000000000000000D8664B1C060000004974656D73000100
       0000000000000000000000}
     HeaderFlat = True
     HeaderFont.Charset = DEFAULT_CHARSET
-    HeaderFont.Color = clBlack
+    HeaderFont.Color = clWindowText
     HeaderFont.Height = -11
-    HeaderFont.Name = 'MS Sans Serif'
+    HeaderFont.Name = 'Tahoma'
     HeaderFont.Style = []
     HorizontalLines = True
     HorzDivLinesColor = 7368816
@@ -200,7 +201,7 @@ object ItemList: TItemList
   end
   object paStatus: TPanel
     Left = 0
-    Top = 470
+    Top = 184
     Width = 304
     Height = 17
     Align = alBottom

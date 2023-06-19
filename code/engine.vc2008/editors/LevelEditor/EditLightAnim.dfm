@@ -23,7 +23,7 @@ object frmEditLightAnim: TfrmEditLightAnim
   OnDestroy = FormDestroy
   OnKeyDown = FormKeyDown
   OnShow = FormShow
-  PixelsPerInch = 106
+  PixelsPerInch = 96
   TextHeight = 13
   object paItemProps: TPanel
     Left = 191

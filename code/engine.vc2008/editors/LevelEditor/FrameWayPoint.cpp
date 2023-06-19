@@ -15,7 +15,8 @@
 __fastcall TfraWayPoint::TfraWayPoint(TComponent* Owner)
         : TForm(Owner)
 {
-    DEFINE_INI(fsStorage);
+	DEFINE_INI(fsStorage);
+    this->ScaleBy(this->PixelsPerInch, 96);
 }
 //---------------------------------------------------------------------------
 void __fastcall TfraWayPoint::PanelMinClick(TObject *Sender)

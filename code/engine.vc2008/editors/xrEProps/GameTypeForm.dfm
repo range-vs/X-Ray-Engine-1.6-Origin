@@ -12,6 +12,7 @@ object fmGameType: TfmGameType
   Font.Name = 'MS Sans Serif'
   Font.Style = []
   OldCreateOrder = False
+  Scaled = False
   DesignSize = (
     163
     152)

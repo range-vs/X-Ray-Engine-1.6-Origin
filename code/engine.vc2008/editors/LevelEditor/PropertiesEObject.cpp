@@ -23,6 +23,7 @@ __fastcall TfrmPropertiesEObject::TfrmPropertiesEObject(TComponent* Owner)
 {
 	m_Thumbnail	= 0;
 //    m_pEditObject=0;
+	this->ScaleBy(this->PixelsPerInch, 96);
 }
 //---------------------------------------------------------------------------
 

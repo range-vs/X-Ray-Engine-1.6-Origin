@@ -13,6 +13,7 @@ object fraSpawn: TfraSpawn
   Font.Name = 'MS Sans Serif'
   Font.Style = []
   OldCreateOrder = True
+  Scaled = False
   OnCreate = FormCreate
   OnDestroy = FormDestroy
   OnHide = FormHide
@@ -31,7 +32,7 @@ object fraSpawn: TfraSpawn
     object APHeadLabel1: TLabel
       Left = 1
       Top = 1
-      Width = 217
+      Width = 70
       Height = 13
       Align = alTop
       Alignment = taCenter
@@ -39,7 +40,6 @@ object fraSpawn: TfraSpawn
       Color = clGray
       ParentColor = False
       OnClick = ExpandClick
-      ExplicitWidth = 70
     end
     object Bevel1: TBevel
       Left = 1
@@ -72,7 +72,7 @@ object fraSpawn: TfraSpawn
     object Label1: TLabel
       Left = 1
       Top = 1
-      Width = 217
+      Width = 52
       Height = 13
       Align = alTop
       Alignment = taCenter
@@ -80,7 +80,6 @@ object fraSpawn: TfraSpawn
       Color = clGray
       ParentColor = False
       OnClick = ExpandClick
-      ExplicitWidth = 52
     end
     object ExtBtn1: TExtBtn
       Left = 185

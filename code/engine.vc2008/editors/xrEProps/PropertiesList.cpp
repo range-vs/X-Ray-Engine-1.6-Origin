@@ -126,7 +126,8 @@ __fastcall TProperties::TProperties(TComponent* Owner) : TForm(Owner)
     hkShortcut->Parent	= tvProperties;
     hkShortcut->Hide	();
     m_Flags.zero		();
-    m_Folders			= 0;
+	m_Folders			= 0;
+    this->ScaleBy(this->PixelsPerInch, 96);
 }
 //---------------------------------------------------------------------------
 
@@ -161,7 +162,7 @@ TProperties* TProperties::CreateForm(const AnsiString& title, TWinControl* paren
     	props->paFolders->Show	();
 		props->paFolders->Refresh();
 		props->m_Folders		= TItemList::CreateForm("Folders",props->paFolders,alClient,TItemList::ilSuppressIcon|TItemList::ilFolderStore|TItemList::ilSuppressStatus|(props->m_Flags.is(plMultiSelect)?TItemList::ilMultiSelect:0));
-        props->m_Folders->OnItemFocusedEvent.bind(props,&TProperties::OnFolderFocused);
+		props->m_Folders->OnItemFocusedEvent.bind(props,&TProperties::OnFolderFocused);
     }else{
     	props->spFolders->Hide	();
     	props->paFolders->Hide	();
@@ -280,7 +281,7 @@ void TProperties::FillElItems(PropItemVec& items, LPCSTR startup_pref)
         R_ASSERT3			(prop->item,"Duplicate properties key found:",key.c_str());
 		prop->Item()->Hint	= ".";
 		prop->Item()->Tag 	= (ElTreeTagType)prop;
-        prop->Item()->UseStyles=true;
+		prop->Item()->UseStyles=true;
         prop->Item()->CheckBoxEnabled = prop->m_Flags.is(PropItem::flShowCB);
         prop->Item()->ShowCheckBox 	= prop->m_Flags.is(PropItem::flShowCB);
         prop->Item()->CheckBoxState 	= (TCheckBoxState)prop->m_Flags.is(PropItem::flCBChecked);
@@ -291,7 +292,7 @@ void TProperties::FillElItems(PropItemVec& items, LPCSTR startup_pref)
         }                             
         // if canvas value
         if (PROP_CANVAS==prop->type){
-        	prop->Item()->Height 		= ((CanvasValue*)prop->GetFrontValue())->height;
+			prop->Item()->Height 		= ((CanvasValue*)prop->GetFrontValue())->height;
         	prop->Item()->OwnerHeight = false;
         }
         // main text set style
@@ -318,7 +319,7 @@ void TProperties::FillElItems(PropItemVec& items, LPCSTR startup_pref)
         }
     }
 
-    FolderRestore		();
+	FolderRestore		();
 }
 //---------------------------------------------------------------------------
 
@@ -537,19 +538,19 @@ void __fastcall TProperties::tvPropertiesItemDraw(TObject *Sender,
 	TRect  R1;
 	Surface->Brush->Style 			= bsClear;
 	if (SectionIndex == 0){
-        Surface->Font->Style 		= TFontStyles();           
-        Surface->Font->Color 		= (TColor)prop->prop_color;
+		Surface->Font->Style 		= TFontStyles();
+		Surface->Font->Color 		= (TColor)prop->prop_color;
         DrawText					(Surface->Handle, AnsiString(Item->Text).c_str(), -1, &R, DT_LEFT | DT_SINGLELINE | DT_VCENTER);
 	}else if (SectionIndex == 1){
         u32 type 					= prop->type;
-        if (prop->Enabled()){
-            Surface->Font->Color 	= (TColor)prop->val_color;
-            Surface->Font->Style 	= TFontStyles();           
-        }else{
-            Surface->Font->Color 	= clSilver;
-            Surface->Font->Style 	= TFontStyles()<< fsBold;
-        }
-        // check mixed
+		if (prop->Enabled()){
+			Surface->Font->Color 	= (TColor)prop->val_color;
+			Surface->Font->Style 	= TFontStyles();
+		}else{
+			Surface->Font->Color 	= clSilver;
+			Surface->Font->Style 	= TFontStyles()<< fsBold;
+		}
+		// check mixed
         prop->CheckMixed();
         // out caption mixed 
         if (prop->m_Flags.is(PropItem::flMixed)){

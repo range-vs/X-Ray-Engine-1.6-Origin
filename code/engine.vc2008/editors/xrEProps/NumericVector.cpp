@@ -19,6 +19,7 @@ bool NumericVectorRun(const char* title, Fvector* data, double inc, int decimal,
 __fastcall TfrmNumericVector::TfrmNumericVector(TComponent* Owner)
     : TForm(Owner)
 {
+	this->ScaleBy(this->PixelsPerInch, 96);
 }
 //---------------------------------------------------------------------------
 

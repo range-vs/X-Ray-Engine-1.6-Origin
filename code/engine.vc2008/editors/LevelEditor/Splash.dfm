@@ -108,6 +108,7 @@ object frmSplash: TfrmSplash
     000000000000000000000000000000000000C0000003}
   OldCreateOrder = False
   Position = poScreenCenter
+  Scaled = False
   PixelsPerInch = 96
   TextHeight = 13
   object Image1: TImage

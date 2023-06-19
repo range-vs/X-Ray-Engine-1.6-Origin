@@ -15,6 +15,7 @@ object fraDetailObject: TfraDetailObject
   Font.Style = []
   OldCreateOrder = False
   ParentBiDiMode = False
+  Scaled = False
   PixelsPerInch = 96
   TextHeight = 13
   object paCommand: TPanel
@@ -32,7 +33,6 @@ object fraDetailObject: TfraDetailObject
     ShowCaption = False
     TabOrder = 0
     VerticalAlignment = taAlignTop
-    ExplicitHeight = 257
     object Label1: TLabel
       Left = 0
       Top = 0
@@ -44,8 +44,6 @@ object fraDetailObject: TfraDetailObject
       Color = clGray
       ParentColor = False
       OnClick = ExpandClick
-      ExplicitLeft = 1
-      ExplicitTop = 1
       ExplicitWidth = 71
     end
     object ExtBtn3: TExtBtn

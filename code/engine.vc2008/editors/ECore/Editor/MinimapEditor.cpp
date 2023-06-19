@@ -19,6 +19,7 @@ TTMinimapEditor* TTMinimapEditor::form = NULL;
 __fastcall TTMinimapEditor::TTMinimapEditor(TComponent* Owner)
     : TForm(Owner)
 {
+	this->ScaleBy(this->PixelsPerInch, 96);
 }
 #include "ui_main.h"
 

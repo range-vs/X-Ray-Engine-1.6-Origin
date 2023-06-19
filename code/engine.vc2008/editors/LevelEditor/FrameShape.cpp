@@ -15,7 +15,8 @@
 __fastcall TfraShape::TfraShape(TComponent* Owner)
         : TForm(Owner)
 {
-    DEFINE_INI(fsStorage);
+	DEFINE_INI(fsStorage);
+    this->ScaleBy(this->PixelsPerInch, 96);
 }
 //---------------------------------------------------------------------------
 void __fastcall TfraShape::PaneMinClick(TObject *Sender)

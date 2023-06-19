@@ -140,7 +140,8 @@ __fastcall TfrmChoseItem::TfrmChoseItem(TComponent* Owner)
 	tvItems->MultiSelect 	= false;
     m_Flags.assign			(cfAllowNone);
     tvItems->ShowCheckboxes = false;
-    grdFon->Caption 		= "";
+	grdFon->Caption 		= "";
+    this->ScaleBy(this->PixelsPerInch, 96);
 }
 //---------------------------------------------------------------------------
 void __fastcall TfrmChoseItem::sbSelectClick(TObject *Sender)

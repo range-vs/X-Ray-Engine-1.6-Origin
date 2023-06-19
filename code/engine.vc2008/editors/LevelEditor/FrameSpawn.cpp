@@ -16,7 +16,8 @@ __fastcall TfraSpawn::TfraSpawn(TComponent* Owner)
         : TForm(Owner)
 {
     DEFINE_INI(fsStorage);
-    m_Current = 0;
+	m_Current = 0;
+    this->ScaleBy(this->PixelsPerInch, 96);
 }
 //---------------------------------------------------------------------------
 void TfraSpawn::OnItemFocused(ListItemsVec& items)
@@ -105,7 +106,7 @@ void __fastcall TfraSpawn::FormShow(TObject *Sender)
 
 void __fastcall TfraSpawn::FormCreate(TObject *Sender)
 {
-    m_Items 				= TItemList::CreateForm("Spawns",paItems, alClient, 0);
+    m_Items 				= TItemList::CreateForm("Spawns",paItems, alClient, 0, false);
     m_Items->SetOnItemsFocusedEvent(TOnILItemsFocused(this,&TfraSpawn::OnItemFocused));
 }
 //---------------------------------------------------------------------------

@@ -20,7 +20,7 @@ object fraSector: TfraSector
   PrintScale = poNone
   Scaled = False
   StyleElements = []
-  PixelsPerInch = 106
+  PixelsPerInch = 96
   TextHeight = 13
   object paSectorActions: TPanel
     Left = 0

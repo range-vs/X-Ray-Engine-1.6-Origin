@@ -18,6 +18,7 @@ __fastcall TfraGroup::TfraGroup(TComponent* Owner, ESceneGroupTool* gt)
         : TForm(Owner)
 {
 	ParentTools = gt;	VERIFY(ParentTools);
+    this->ScaleBy(this->PixelsPerInch, 96);
 }
 //---------------------------------------------------------------------------
 

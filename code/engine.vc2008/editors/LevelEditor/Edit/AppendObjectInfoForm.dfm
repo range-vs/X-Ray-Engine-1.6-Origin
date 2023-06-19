@@ -14,6 +14,7 @@ object frmAppendObjectInfo: TfrmAppendObjectInfo
   Font.Style = []
   OldCreateOrder = False
   Position = poMainFormCenter
+  Scaled = False
   DesignSize = (
     258
     114)

@@ -14,6 +14,7 @@ object fraObject: TfraObject
   Font.Name = 'MS Sans Serif'
   Font.Style = []
   OldCreateOrder = True
+  Scaled = False
   OnCreate = FormCreate
   OnDestroy = FormDestroy
   OnHide = FormHide
@@ -37,7 +38,7 @@ object fraObject: TfraObject
     object Label1: TLabel
       Left = 7
       Top = 15
-      Width = 98
+      Width = 84
       Height = 13
       Caption = 'Select by Current:'
       WordWrap = True
@@ -87,7 +88,7 @@ object fraObject: TfraObject
       Color = clGray
       ParentColor = False
       OnClick = ExpandClick
-      ExplicitTop = 4
+      ExplicitWidth = 83
     end
     object ExtBtn5: TExtBtn
       Left = 205
@@ -162,8 +163,8 @@ object fraObject: TfraObject
     object Label6: TLabel
       Left = 7
       Top = 35
-      Width = 109
-      Height = 26
+      Width = 92
+      Height = 13
       Caption = 'Select by Selected:'
       WordWrap = True
     end
@@ -214,7 +215,7 @@ object fraObject: TfraObject
     object APHeadLabel1: TLabel
       Left = 1
       Top = 1
-      Width = 216
+      Width = 52
       Height = 13
       Align = alTop
       Alignment = taCenter
@@ -222,8 +223,6 @@ object fraObject: TfraObject
       Color = clGray
       ParentColor = False
       OnClick = ExpandClick
-      ExplicitLeft = 2
-      ExplicitTop = -3
     end
     object ExtBtn2: TExtBtn
       Left = 205
@@ -345,12 +344,10 @@ object fraObject: TfraObject
     Constraints.MinHeight = 175
     TabOrder = 2
     OnResize = paCurrentObjectResize
-    ExplicitTop = 101
-    ExplicitHeight = 271
     object APHeadLabel2: TLabel
       Left = 1
       Top = 1
-      Width = 216
+      Width = 68
       Height = 13
       Align = alTop
       Alignment = taCenter
@@ -358,7 +355,6 @@ object fraObject: TfraObject
       Color = clGray
       ParentColor = False
       OnClick = ExpandClick
-      ExplicitWidth = 68
     end
     object Bevel2: TBevel
       Left = 1
@@ -378,8 +374,6 @@ object fraObject: TfraObject
       BevelOuter = bvNone
       ParentColor = True
       TabOrder = 0
-      ExplicitTop = 55
-      ExplicitHeight = 205
     end
     object Panel1: TPanel
       Left = 1

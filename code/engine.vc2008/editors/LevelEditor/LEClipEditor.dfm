@@ -37,18 +37,18 @@ object ClipMaker: TClipMaker
     BevelOuter = bvNone
     ParentColor = True
     TabOrder = 0
-    ExplicitWidth = 598
-    ExplicitHeight = 545
     object Splitter1: TSplitter
-      Left = 368
+      Left = 360
       Top = 137
-      Height = 408
+      Height = 403
       Align = alRight
+      ExplicitLeft = 368
+      ExplicitHeight = 408
     end
     object paBase: TPanel
       Left = 0
       Top = 0
-      Width = 598
+      Width = 590
       Height = 137
       Align = alTop
       BevelOuter = bvNone
@@ -57,7 +57,7 @@ object ClipMaker: TClipMaker
       object sbBase: TScrollBox
         Left = 0
         Top = 0
-        Width = 598
+        Width = 590
         Height = 137
         HorzScrollBar.Style = ssFlat
         HorzScrollBar.Tracking = True
@@ -273,36 +273,39 @@ object ClipMaker: TClipMaker
     object paClipProps: TPanel
       Left = 0
       Top = 137
-      Width = 368
-      Height = 408
+      Width = 360
+      Height = 403
       Align = alClient
       BevelOuter = bvNone
       Color = 6908265
       TabOrder = 1
       object Bevel20: TBevel
-        Left = 367
+        Left = 359
         Top = 1
         Width = 1
-        Height = 407
+        Height = 402
         Align = alRight
         Shape = bsRightLine
         Style = bsRaised
+        ExplicitLeft = 367
+        ExplicitHeight = 407
       end
       object Bevel15: TBevel
         Left = 0
         Top = 0
-        Width = 368
+        Width = 360
         Height = 1
         Align = alTop
         Shape = bsBottomLine
         Style = bsRaised
+        ExplicitWidth = 368
       end
     end
     object paAnimSelect: TPanel
-      Left = 371
+      Left = 363
       Top = 137
       Width = 227
-      Height = 408
+      Height = 403
       Align = alRight
       BevelOuter = bvNone
       Color = 6908265
@@ -311,10 +314,11 @@ object ClipMaker: TClipMaker
         Left = 226
         Top = 1
         Width = 1
-        Height = 407
+        Height = 402
         Align = alRight
         Shape = bsRightLine
         Style = bsRaised
+        ExplicitHeight = 407
       end
       object Bevel23: TBevel
         Left = 0
@@ -336,7 +340,6 @@ object ClipMaker: TClipMaker
     BevelOuter = bvNone
     ParentColor = True
     TabOrder = 1
-    ExplicitHeight = 545
     object Bevel16: TBevel
       Left = 0
       Top = 118
@@ -823,14 +826,14 @@ object ClipMaker: TClipMaker
       Left = 0
       Top = 138
       Width = 128
-      Height = 407
+      Height = 402
       Align = alClient
       BevelOuter = bvNone
       ParentColor = True
       TabOrder = 2
       object Panel4: TPanel
         Left = 0
-        Top = 377
+        Top = 372
         Width = 128
         Height = 30
         Align = alBottom
@@ -969,7 +972,7 @@ object ClipMaker: TClipMaker
       Left = 128
       Top = 138
       Width = 1
-      Height = 407
+      Height = 402
       Align = alRight
       BevelOuter = bvNone
       Color = 5460819

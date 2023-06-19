@@ -28,6 +28,7 @@ __fastcall TfrmSoundLib::TfrmSoundLib(TComponent* Owner)
 {
     DEFINE_INI(fsStorage);
 	bFormLocked = false;
+    this->ScaleBy(this->PixelsPerInch, 96);
 }
 //---------------------------------------------------------------------------
 

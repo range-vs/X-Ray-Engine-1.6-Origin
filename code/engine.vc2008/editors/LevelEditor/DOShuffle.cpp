@@ -141,7 +141,8 @@ __fastcall TfrmDOShuffle::TfrmDOShuffle(TComponent* Owner, EDetailManager* dm_to
     : TForm(Owner)
 {
     DEFINE_INI(fsStorage);
-    DM = dm_tools; VERIFY(DM);
+	DM = dm_tools; VERIFY(DM);
+    this->ScaleBy(this->PixelsPerInch, 96);
 }
 //---------------------------------------------------------------------------
 TElTreeItem* TfrmDOShuffle::FindItem(const char* s)

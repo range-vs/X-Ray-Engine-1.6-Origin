@@ -11,5 +11,6 @@ TfrmSplash *frmSplash;
 __fastcall TfrmSplash::TfrmSplash(TComponent* Owner)
     : TForm(Owner)
 {
+	this->ScaleBy(this->PixelsPerInch, 96);
 }
 //---------------------------------------------------------------------------

@@ -46,12 +46,13 @@ __fastcall TfrmEditLibrary::TfrmEditLibrary(TComponent* Owner)
 	DEFINE_INI(fsStorage);
 //	m_pEditObject 	= xr_new<CSceneObject>((LPVOID)0,(LPSTR)0);
     m_Props 		= TfrmPropertiesEObject::CreateProperties(0,alNone,TOnModifiedEvent(this,&TfrmEditLibrary::OnModified));
-	m_Items			= TItemList::CreateForm("Objects",paItems,alClient,TItemList::ilMultiSelect|TItemList::ilEditMenu|TItemList::ilDragAllowed|TItemList::ilFolderStore);
+	m_Items			= TItemList::CreateForm("Objects",paItems,alClient,TItemList::ilMultiSelect|TItemList::ilEditMenu|TItemList::ilDragAllowed|TItemList::ilFolderStore, false);
     m_Items->SetOnItemsFocusedEvent	(fastdelegate::bind<TOnILItemsFocused>(this,&TfrmEditLibrary::OnItemsFocused));
 
     m_Items->SetOnItemRemoveEvent	(fastdelegate::bind<TOnItemRemove>(&Lib,&ELibrary::RemoveObject));
     m_Items->SetOnItemRenameEvent	(fastdelegate::bind<TOnItemRename>(&Lib,&ELibrary::RenameObject));
-    bReadOnly		= false;
+	bReadOnly		= false;
+    this->ScaleBy(this->PixelsPerInch, 96);
 }
 //---------------------------------------------------------------------------
 void __fastcall TfrmEditLibrary::ShowEditor()

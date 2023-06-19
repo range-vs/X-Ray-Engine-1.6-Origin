@@ -23,6 +23,7 @@ bool ColorIndicesFunctor::operator()(const std::pair<u32, DOVec>& p)const
 __fastcall TfrmOneColor::TfrmOneColor(TComponent* Owner)
     : TForm(Owner)
 {
+    this->ScaleBy(this->PixelsPerInch, 96);
 }
 //---------------------------------------------------------------------------
 

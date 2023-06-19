@@ -167,6 +167,7 @@ __fastcall TClipMaker::TClipMaker(TComponent* Owner) : TForm(Owner)
     m_CurrentPlayTime=0.f;
 
     m_ObjectItems 		= TItemList::CreateForm("",paAnimSelect,alClient,TItemList::ilDragCustom|TItemList::ilMultiSelect|TItemList::ilSuppressStatus);
+    this->ScaleBy(this->PixelsPerInch, 96);
 }
 
 void __fastcall TClipMaker::FormCreate(TObject *Sender)

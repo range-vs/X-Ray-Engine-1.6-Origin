@@ -32,6 +32,7 @@ bool gameTypeRun(const char* title, GameTypeChooser* data)
 __fastcall TfmGameType::TfmGameType(TComponent* Owner)
 	: TForm(Owner)
 {
+    this->ScaleBy(this->PixelsPerInch, 96);
 }
 //---------------------------------------------------------------------------
 

@@ -39,9 +39,12 @@ typedef xr_vector< TItemList* > ILVec; typedef ILVec::iterator ILVecIt;
 static  ILVec					ILForms;
 
 //---------------------------------------------------------------------------
-TItemList* TItemList::CreateForm(LPCSTR title, TWinControl* parent, TAlign align, u32 flags)
+TItemList* TItemList::CreateForm(LPCSTR title, TWinControl* parent, TAlign align, u32 flags, bool scale_form )
 {
 	TItemList* props 			= xr_new<TItemList>(parent);
+	if(scale_form)
+		props->ScaleBy(props->PixelsPerInch, 96);
+    props->tvItems->LineHeight = 25;
 	// on create
 	props->OnCreate				(title,parent, align, flags);
 	ILForms.push_back			(props);
@@ -174,7 +177,7 @@ __fastcall TItemList::TItemList(TComponent* Owner) : TForm(Owner)
     OnCloseEvent		= 0;
     OnItemRenameEvent	= 0;
     OnItemRemoveEvent	= 0;
-    iLocked				= 0;
+	iLocked				= 0;
 }
 //---------------------------------------------------------------------------
 
@@ -217,7 +220,7 @@ void __fastcall TItemList::AssignItems(ListItemsVec& items, bool full_expand, bo
         	prop->item		= FHelper.AppendFolder(tvItems,*prop->key,!m_Flags.is(ilSuppressIcon));
             TElTreeItem* prop_item	= (TElTreeItem*)prop->item;
             prop_item->CheckBoxEnabled 		= false;
-            prop_item->UseStyles		   	= true;
+			prop_item->UseStyles		   	= true;
             prop_item->MainStyle->TextColor		= (TColor)prop->prop_color;         
             prop_item->MainStyle->OwnerProps 	= true;
             prop_item->MainStyle->Style 		= ElhsOwnerDraw;

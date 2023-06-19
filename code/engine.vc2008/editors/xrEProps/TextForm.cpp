@@ -21,7 +21,8 @@ __fastcall TfrmText::TfrmText(TComponent* Owner)
 	m_Text 			= 0;
     OnApplyClick 	= 0;
     OnCloseClick	= 0;
-    OnCodeInsight	= 0;
+	OnCodeInsight	= 0;
+    this->ScaleBy(this->PixelsPerInch, 96);
 }
 //---------------------------------------------------------------------------
 void __fastcall TfrmText::FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift)

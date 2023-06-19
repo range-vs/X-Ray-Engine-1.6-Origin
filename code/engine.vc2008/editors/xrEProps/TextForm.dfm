@@ -16,6 +16,7 @@ object frmText: TfrmText
   KeyPreview = True
   OldCreateOrder = False
   Position = poScreenCenter
+  Scaled = False
   OnActivate = FormActivate
   OnClose = FormClose
   OnCloseQuery = FormCloseQuery

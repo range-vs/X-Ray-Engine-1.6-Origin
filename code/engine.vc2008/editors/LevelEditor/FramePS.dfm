@@ -13,6 +13,7 @@ object fraPS: TfraPS
   Font.Name = 'MS Sans Serif'
   Font.Style = []
   OldCreateOrder = True
+  Scaled = False
   OnCreate = FormCreate
   OnDestroy = FormDestroy
   OnHide = FormHide
@@ -71,7 +72,7 @@ object fraPS: TfraPS
     object Label: TLabel
       Left = 1
       Top = 1
-      Width = 215
+      Width = 69
       Height = 13
       Align = alTop
       Alignment = taCenter
@@ -79,7 +80,6 @@ object fraPS: TfraPS
       Color = clGray
       ParentColor = False
       OnClick = ExpandClick
-      ExplicitWidth = 69
     end
     object ExtBtn3: TExtBtn
       Left = 185
@@ -183,12 +183,10 @@ object fraPS: TfraPS
     Align = alClient
     ParentColor = True
     TabOrder = 1
-    ExplicitTop = 130
-    ExplicitHeight = 56
     object APHeadLabel2: TLabel
       Left = 1
       Top = 1
-      Width = 215
+      Width = 51
       Height = 13
       Align = alTop
       Alignment = taCenter
@@ -196,7 +194,6 @@ object fraPS: TfraPS
       Color = clGray
       ParentColor = False
       OnClick = ExpandClick
-      ExplicitWidth = 51
     end
     object Bevel1: TBevel
       Left = 1
@@ -215,9 +212,6 @@ object fraPS: TfraPS
       BevelOuter = bvNone
       ParentColor = True
       TabOrder = 0
-      ExplicitLeft = 0
-      ExplicitTop = 21
-      ExplicitHeight = 40
     end
   end
   object fsStorage: TFormStorage

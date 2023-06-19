@@ -29,7 +29,8 @@ __fastcall TfrmEditLightAnim::TfrmEditLightAnim(TComponent* Owner)
     m_CurrentOwner	= 0;
     iMoveKey        = -1;
     m_Props 		= 0;
-    m_Items			= 0;
+	m_Items			= 0;
+    this->ScaleBy(this->PixelsPerInch, 96);
 }
 //---------------------------------------------------------------------------
 void __fastcall TfrmEditLightAnim::FormCreate(TObject *Sender)

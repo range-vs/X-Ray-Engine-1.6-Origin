@@ -14,6 +14,7 @@
 __fastcall TfraLight::TfraLight(TComponent* Owner)
         : TForm(Owner)
 {
+    this->ScaleBy(this->PixelsPerInch, 96);
 }
 //---------------------------------------------------------------------------
 void __fastcall TfraLight::PaneMinClick(TObject *Sender)

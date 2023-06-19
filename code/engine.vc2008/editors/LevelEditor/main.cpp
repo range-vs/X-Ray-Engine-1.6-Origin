@@ -56,6 +56,7 @@ __fastcall TfrmMain::TfrmMain(TComponent* Owner)
     	FlushLog			();
 		TerminateProcess(GetCurrentProcess(),-1);
 	}
+    this->ScaleBy(this->PixelsPerInch, 96);
 }
 //---------------------------------------------------------------------------
 void __fastcall TfrmMain::FormShow(TObject *Sender)

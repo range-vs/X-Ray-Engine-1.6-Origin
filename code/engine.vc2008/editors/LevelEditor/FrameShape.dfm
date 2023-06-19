@@ -15,7 +15,7 @@ object fraShape: TfraShape
   Font.Style = []
   OldCreateOrder = False
   Scaled = False
-  PixelsPerInch = 106
+  PixelsPerInch = 96
   TextHeight = 13
   object paAppend: TPanel
     Left = 0
@@ -25,7 +25,6 @@ object fraShape: TfraShape
     Align = alTop
     ParentColor = True
     TabOrder = 0
-    ExplicitWidth = 219
     object APHeadLabel1: TLabel
       Left = 1
       Top = 1
@@ -108,7 +107,6 @@ object fraShape: TfraShape
     Align = alTop
     ParentColor = True
     TabOrder = 1
-    ExplicitWidth = 219
     object Label1: TLabel
       Left = 1
       Top = 1
@@ -193,7 +191,6 @@ object fraShape: TfraShape
     BorderStyle = bsSingle
     Color = 10528425
     TabOrder = 2
-    ExplicitWidth = 219
     object ebEditLevelBoundMode: TExtBtn
       Left = -2
       Top = 9

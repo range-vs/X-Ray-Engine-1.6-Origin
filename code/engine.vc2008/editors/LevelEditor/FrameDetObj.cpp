@@ -17,7 +17,8 @@ __fastcall TfraDetailObject::TfraDetailObject(TComponent* Owner, EDetailManager*
         : TForm(Owner)
 {
 	DM = dm_tools; VERIFY(DM);
-    DEFINE_INI(fsStorage);
+	DEFINE_INI(fsStorage);
+    this->ScaleBy(this->PixelsPerInch, 96);
 }
 //---------------------------------------------------------------------------
 void __fastcall TfraDetailObject::PaneMinClick(TObject *Sender)

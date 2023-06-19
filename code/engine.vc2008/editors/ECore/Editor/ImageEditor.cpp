@@ -32,7 +32,8 @@ __fastcall TfrmImageLib::TfrmImageLib(TComponent* Owner)
     ttCubeMap->Tag	= STextureParams::ttCubeMap;
     ttBumpMap->Tag  = STextureParams::ttBumpMap;
     ttNormalMap->Tag= STextureParams::ttNormalMap;
-    ttTerrain->Tag  = STextureParams::ttTerrain;
+	ttTerrain->Tag  = STextureParams::ttTerrain;
+    this->ScaleBy(this->PixelsPerInch, 96);
 }
 //---------------------------------------------------------------------------
 

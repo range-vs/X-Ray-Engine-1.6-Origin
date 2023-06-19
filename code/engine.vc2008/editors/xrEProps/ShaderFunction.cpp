@@ -57,6 +57,7 @@ __fastcall TfrmShaderFunction::TfrmShaderFunction(TComponent* Owner)
     : TForm(Owner)
 {
 	FillMenuFromToken(pmFunction, function_token, stFunctionClick);
+    this->ScaleBy(this->PixelsPerInch, 96);
 }
 //---------------------------------------------------------------------------
 

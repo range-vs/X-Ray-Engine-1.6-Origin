@@ -13,6 +13,7 @@ object fraAIMap: TfraAIMap
   Font.Name = 'MS Sans Serif'
   Font.Style = []
   OldCreateOrder = True
+  Scaled = False
   PixelsPerInch = 96
   TextHeight = 13
   object paObjectList: TPanel
@@ -39,7 +40,7 @@ object fraAIMap: TfraAIMap
     object Label2: TLabel
       Left = 1
       Top = 1
-      Width = 89
+      Width = 217
       Height = 13
       Align = alTop
       Alignment = taCenter
@@ -47,6 +48,7 @@ object fraAIMap: TfraAIMap
       Color = clGray
       ParentColor = False
       OnClick = ExpandClick
+      ExplicitWidth = 89
     end
     object ExtBtn2: TExtBtn
       Left = 185
@@ -186,7 +188,7 @@ object fraAIMap: TfraAIMap
     object Label3: TLabel
       Left = 1
       Top = 1
-      Width = 68
+      Width = 217
       Height = 13
       Align = alTop
       Alignment = taCenter
@@ -194,6 +196,7 @@ object fraAIMap: TfraAIMap
       Color = clGray
       ParentColor = False
       OnClick = ExpandClick
+      ExplicitWidth = 68
     end
     object ExtBtn4: TExtBtn
       Left = 185

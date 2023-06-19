@@ -16,6 +16,7 @@ __fastcall TfraFogVol::TfraFogVol(TComponent* Owner, ESceneFogVolumeTool* gt)
 	: TForm(Owner)
 {
 	ParentTools = gt;
+    this->ScaleBy(this->PixelsPerInch, 96);
 }
 //---------------------------------------------------------------------------
 void __fastcall TfraFogVol::ebGroupClick(TObject *Sender)

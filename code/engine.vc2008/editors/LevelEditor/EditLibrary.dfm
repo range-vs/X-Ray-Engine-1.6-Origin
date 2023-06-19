@@ -363,6 +363,7 @@ object frmEditLibrary: TfrmEditLibrary
     BevelOuter = bvNone
     ParentColor = True
     TabOrder = 1
+    ExplicitLeft = -2
   end
   object fsStorage: TFormStorage
     OnSavePlacement = fsStorageSavePlacement

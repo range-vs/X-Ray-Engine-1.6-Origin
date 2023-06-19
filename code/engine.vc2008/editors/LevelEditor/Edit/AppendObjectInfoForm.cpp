@@ -14,6 +14,7 @@ __fastcall TfrmAppendObjectInfo::TfrmAppendObjectInfo(TComponent* Owner)
 	: TForm(Owner)
 {
 	m_result 					= 4;//auto-rename all
+    this->ScaleBy(this->PixelsPerInch, 96);
 }
 
 void TfrmAppendObjectInfo::Prepare()
