@@ -1,11 +1,13 @@
 object frmMain: TfrmMain
   Left = 426
   Top = 417
+  VertScrollBar.Visible = False
   ClientHeight = 413
   ClientWidth = 754
   Color = clBtnFace
   Constraints.MinHeight = 446
   Constraints.MinWidth = 660
+  DoubleBuffered = True
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -11
@@ -23,106 +25,6 @@ object frmMain: TfrmMain
   OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
-  object paLeftBar: TPanel
-    Left = 516
-    Top = 0
-    Width = 238
-    Height = 396
-    Align = alRight
-    BevelInner = bvLowered
-    BevelOuter = bvNone
-    BiDiMode = bdLeftToRight
-    Color = 10528425
-    ParentBiDiMode = False
-    ParentBackground = False
-    TabOrder = 0
-    object paTools: TPanel
-      Left = 1
-      Top = 1
-      Width = 236
-      Height = 16
-      Align = alTop
-      TabOrder = 0
-      object APHeadLabel2: TLabel
-        Left = 1
-        Top = 1
-        Width = 234
-        Height = 13
-        Align = alTop
-        Alignment = taCenter
-        Caption = 'Toolbar'
-        Color = clGray
-        ParentColor = False
-        OnClick = TopClick
-        ExplicitWidth = 36
-      end
-      object sbToolsMin: TExtBtn
-        Left = 223
-        Top = 0
-        Width = 11
-        Height = 13
-        Align = alNone
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clBlack
-        Font.Height = -11
-        Font.Name = 'MS Sans Serif'
-        Font.Style = []
-        Glyph.Data = {
-          DE000000424DDE00000000000000360000002800000007000000070000000100
-          180000000000A8000000120B0000120B00000000000000000000FFFFFFFFFFFF
-          FFFFFFFFFFFFFFFFFF000000FFFFFF000000FFFFFFFFFFFFFFFFFFFFFFFF0000
-          00000000FFFFFF000000FFFFFFFFFFFFFFFFFF000000000000000000FFFFFF00
-          0000FFFFFFFFFFFF000000000000000000000000FFFFFF000000FFFFFFFFFFFF
-          FFFFFF000000000000000000FFFFFF000000FFFFFFFFFFFFFFFFFFFFFFFF0000
-          00000000FFFFFF000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF000000FFFFFF00
-          0000}
-        ParentFont = False
-        OnClick = sbToolsMinClick
-      end
-      object ebAllMin: TExtBtn
-        Left = 3
-        Top = 2
-        Width = 11
-        Height = 11
-        Align = alNone
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clBlack
-        Font.Height = -11
-        Font.Name = 'MS Sans Serif'
-        Font.Style = []
-        Glyph.Data = {
-          AE000000424DAE00000000000000360000002800000006000000060000000100
-          18000000000078000000120B0000120B00000000000000000000FFFFFFFFFFFF
-          FFFFFFFFFFFFFFFFFFFFFFFF0000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-          00000B0B0B0B0B0B0B0B0B0B0B0B0B0B0B0B0B0B00000B0B0B0B0B0B0B0B0B0B
-          0B0B0B0B0B0B0B0B0000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF0000FFFF
-          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF0000}
-        ParentFont = False
-        OnClick = ebAllMinClick
-      end
-      object ebAllMax: TExtBtn
-        Left = 15
-        Top = 2
-        Width = 11
-        Height = 11
-        Align = alNone
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clBlack
-        Font.Height = -11
-        Font.Name = 'MS Sans Serif'
-        Font.Style = []
-        Glyph.Data = {
-          AE000000424DAE00000000000000360000002800000006000000060000000100
-          18000000000078000000120B0000120B00000000000000000000FFFFFFFFFFFF
-          1C1C1C1C1C1CFFFFFFFFFFFF0000FFFFFFFFFFFF191919191919FFFFFFFFFFFF
-          00001B1B1B1717170303030303031717171B1B1B00001B1B1B17171703030303
-          03031717171B1B1B0000FFFFFFFFFFFF191919191919FFFFFFFFFFFF0000FFFF
-          FFFFFFFF1C1C1C1C1C1CFFFFFFFFFFFF0000}
-        ParentFont = False
-        OnClick = ebAllMaxClick
-      end
-    end
-  end
   object paBottomBar: TPanel
     Left = 0
     Top = 396
@@ -131,7 +33,7 @@ object frmMain: TfrmMain
     Align = alBottom
     BevelInner = bvLowered
     BevelOuter = bvNone
-    TabOrder = 1
+    TabOrder = 0
   end
   object paMain: TPanel
     Left = 0
@@ -140,7 +42,7 @@ object frmMain: TfrmMain
     Height = 396
     Align = alClient
     BevelOuter = bvNone
-    TabOrder = 2
+    TabOrder = 1
     object paTopBar: TPanel
       Left = 0
       Top = 0
@@ -149,7 +51,10 @@ object frmMain: TfrmMain
       Align = alTop
       BevelOuter = bvNone
       Color = 10528425
+      DoubleBuffered = True
+      FullRepaint = False
       ParentBackground = False
+      ParentDoubleBuffered = False
       TabOrder = 0
     end
     object paRender: TPanel
@@ -181,6 +86,90 @@ object frmMain: TfrmMain
         OnMouseUp = D3DWindowMouseUp
         OnResize = D3DWindowResize
         OnPaint = D3DWindowPaint
+      end
+    end
+  end
+  object paLeftBarMain: TPanel
+    Left = 516
+    Top = 0
+    Width = 238
+    Height = 396
+    Align = alRight
+    AutoSize = True
+    Caption = 'paLeftBarMain'
+    TabOrder = 2
+    object paLeftBar: TCategoryPanelGroup
+      Left = 1
+      Top = 18
+      Width = 236
+      Height = 377
+      VertScrollBar.Tracking = True
+      VertScrollBar.Visible = False
+      Align = alClient
+      BevelInner = bvLowered
+      BevelOuter = bvNone
+      BiDiMode = bdLeftToRight
+      DoubleBuffered = True
+      Color = 10528425
+      GradientBaseColor = 10528425
+      HeaderFont.Charset = DEFAULT_CHARSET
+      HeaderFont.Color = clWindowText
+      HeaderFont.Height = -11
+      HeaderFont.Name = 'Tahoma'
+      HeaderFont.Style = []
+      ParentBiDiMode = False
+      ParentDoubleBuffered = False
+      TabOrder = 0
+      object paTools: TCategoryPanel
+        Top = 0
+        Height = 300
+        Caption = 'Toolbar'
+        FullRepaint = False
+        ParentColor = True
+        TabOrder = 0
+        OnCollapse = paToolsCollapse
+        OnExpand = paToolsExpand
+        ExplicitLeft = -3
+        ExplicitTop = 3
+      end
+    end
+    object Panel1: TPanel
+      Left = 1
+      Top = 1
+      Width = 236
+      Height = 17
+      Align = alTop
+      Caption = 'Panel1'
+      Color = 10528425
+      ParentBackground = False
+      ShowCaption = False
+      TabOrder = 1
+      object sbToolsMin: TExtBtn
+        Left = 220
+        Top = 1
+        Width = 15
+        Height = 15
+        Align = alRight
+        BtnColor = 10528425
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -11
+        Font.Name = 'MS Sans Serif'
+        Font.Style = []
+        Glyph.Data = {
+          DE000000424DDE00000000000000360000002800000007000000070000000100
+          180000000000A8000000120B0000120B00000000000000000000FFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFF000000FFFFFF000000FFFFFFFFFFFFFFFFFFFFFFFF0000
+          00000000FFFFFF000000FFFFFFFFFFFFFFFFFF000000000000000000FFFFFF00
+          0000FFFFFFFFFFFF000000000000000000000000FFFFFF000000FFFFFFFFFFFF
+          FFFFFF000000000000000000FFFFFF000000FFFFFFFFFFFFFFFFFFFFFFFF0000
+          00000000FFFFFF000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF000000FFFFFF00
+          0000}
+        ParentFont = False
+        OnClick = sbToolsMinClick
+        ExplicitLeft = 1
+        ExplicitTop = 23
+        ExplicitHeight = 212
       end
     end
   end

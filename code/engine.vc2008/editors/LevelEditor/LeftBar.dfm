@@ -9,8 +9,9 @@ object fraLeftBar: TfraLeftBar
   VertScrollBar.Increment = 34
   VertScrollBar.Size = 13
   VertScrollBar.Style = ssFlat
-  VertScrollBar.Tracking = True
+  VertScrollBar.Visible = False
   Align = alClient
+  DoubleBuffered = True
   Color = 10528425
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clBlack
@@ -18,494 +19,216 @@ object fraLeftBar: TfraLeftBar
   Font.Name = 'MS Sans Serif'
   Font.Style = []
   ParentColor = False
+  ParentDoubleBuffered = False
   ParentFont = False
   TabOrder = 0
-  object paLeftBar: TPanel
+  object paLeftBar: TCategoryPanelGroup
     Left = 0
     Top = 0
-    Width = 220
-    Height = 761
+    Width = 226
+    Height = 1015
+    VertScrollBar.Tracking = True
     BevelInner = bvLowered
     BevelOuter = bvNone
-    Color = 10528425
-    Constraints.MaxWidth = 220
+    Constraints.MaxWidth = 226
     Constraints.MinWidth = 220
-    ParentBackground = False
+    Color = 10528425
+    GradientBaseColor = 10528425
+    HeaderFont.Charset = DEFAULT_CHARSET
+    HeaderFont.Color = clWindowText
+    HeaderFont.Height = -11
+    HeaderFont.Name = 'Tahoma'
+    HeaderFont.Style = []
     TabOrder = 0
-    object paScene: TPanel
-      Left = 1
-      Top = 1
-      Width = 218
-      Height = 152
-      Hint = 'Scene commands'
-      Align = alTop
-      Alignment = taLeftJustify
-      AutoSize = True
+    object paFramesMain: TCategoryPanel
+      Top = 521
+      Caption = 'Edit Mode Tools'
       Color = 10528425
-      ParentShowHint = False
-      ShowHint = True
       TabOrder = 0
-      object APHeadLabel2: TLabel
-        Left = 1
-        Top = 1
-        Width = 216
-        Height = 13
-        Align = alTop
-        Alignment = taCenter
-        Caption = 'Scene'
-        Color = clGray
-        ParentColor = False
-        OnClick = PanelMaximizeClick
-        ExplicitWidth = 31
-      end
-      object sbSceneMin: TExtBtn
-        Left = 205
-        Top = 2
-        Width = 11
-        Height = 11
-        Align = alNone
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clBlack
-        Font.Height = -11
-        Font.Name = 'MS Sans Serif'
-        Font.Style = []
-        Glyph.Data = {
-          DE000000424DDE00000000000000360000002800000007000000070000000100
-          180000000000A8000000120B0000120B00000000000000000000FFFFFFFFFFFF
-          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF000000FFFFFFFFFFFFFFFFFFFFFFFFFFFF
-          FFFFFFFFFFFFFF000000FFFFFFFFFFFFFFFFFF000000FFFFFFFFFFFFFFFFFF00
-          0000FFFFFFFFFFFF000000000000000000FFFFFFFFFFFF000000FFFFFF000000
-          000000000000000000000000FFFFFF0000000000000000000000000000000000
-          00000000000000000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF00
-          0000}
-        ParentFont = False
-        OnClick = PanelMimimizeClickClick
-      end
-      object ebSceneFile: TExtBtn
-        Left = 2
-        Top = 16
-        Width = 215
-        Height = 15
-        Align = alNone
-        BevelShow = False
-        HotTrack = True
-        HotColor = 15790320
-        BtnColor = 10528425
-        Caption = 'File'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clBlack
-        Font.Height = -11
-        Font.Name = 'MS Sans Serif'
-        Font.Style = []
-        Glyph.Data = {
-          92000000424D9200000000000000760000002800000007000000070000000100
-          0400000000001C000000120B0000120B0000100000000000000000000000FFFF
-          FF00080808000000000000000000000000000000000000000000000000000000
-          0000000000000000000000000000000000000000000000000000111111101111
-          11101110111011202110122022102220222011111110}
-        Kind = knMinimize
-        Margin = 3
-        ParentFont = False
-        Spacing = 3
-        OnMouseDown = ebSceneFileMouseDown
-      end
-      object ebScene: TExtBtn
-        Left = 2
-        Top = 31
-        Width = 215
-        Height = 15
-        Align = alNone
-        BevelShow = False
-        HotTrack = True
-        HotColor = 15790320
-        BtnColor = 10528425
-        Caption = 'Scene'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clBlack
-        Font.Height = -11
-        Font.Name = 'MS Sans Serif'
-        Font.Style = []
-        Glyph.Data = {
-          DE000000424DDE00000000000000360000002800000007000000070000000100
-          180000000000A8000000120B0000120B00000000000000000000FFFFFFFFFFFF
-          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF000000FFFFFFFFFFFFFFFFFFFFFFFFFFFF
-          FFFFFFFFFFFFFF000000FFFFFFFFFFFFFFFFFF000000FFFFFFFFFFFFFFFFFF00
-          0000FFFFFFFFFFFF000000000000000000FFFFFFFFFFFF000000FFFFFF000000
-          000000000000000000000000FFFFFF0000000000000000000000000000000000
-          00000000000000000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF00
-          0000}
-        Margin = 3
-        ParentFont = False
-        Spacing = 3
-        OnMouseDown = ebSceneMouseDown
-      end
-      object ebObjectList: TExtBtn
-        Left = 2
-        Top = 121
-        Width = 215
-        Height = 15
-        Align = alNone
-        BevelShow = False
-        HotTrack = True
-        HotColor = 15790320
-        BtnColor = 10528425
-        Caption = 'Object List'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clBlack
-        Font.Height = -11
-        Font.Name = 'MS Sans Serif'
-        Font.Style = []
-        Margin = 13
-        ParentFont = False
-        OnClick = ebObjectListClick
-      end
-      object ebPreferences: TExtBtn
-        Left = 2
-        Top = 136
-        Width = 215
-        Height = 15
-        Align = alNone
-        BevelShow = False
-        HotTrack = True
-        HotColor = 15790320
-        BtnColor = 10528425
-        Caption = 'Preferences'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clBlack
-        Font.Height = -11
-        Font.Name = 'MS Sans Serif'
-        Font.Style = []
-        Margin = 13
-        ParentFont = False
-        OnClick = ebEditorPreferencesClick
-      end
-      object ebLightAnimationEditor: TExtBtn
-        Left = 2
-        Top = 106
-        Width = 215
-        Height = 15
-        Align = alNone
-        BevelShow = False
-        HotTrack = True
-        HotColor = 15790320
-        BtnColor = 10528425
-        Caption = 'Light Anim Editor'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clBlack
-        Font.Height = -11
-        Font.Name = 'MS Sans Serif'
-        Font.Style = []
-        Margin = 13
-        ParentFont = False
-        OnClick = ebLightAnimationEditorClick
-      end
-      object ebImages: TExtBtn
-        Left = 2
-        Top = 76
-        Width = 215
-        Height = 15
-        Align = alNone
-        BevelShow = False
-        HotTrack = True
-        HotColor = 15790320
-        BtnColor = 10528425
-        Caption = 'Images'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clBlack
-        Font.Height = -11
-        Font.Name = 'MS Sans Serif'
-        Font.Style = []
-        Glyph.Data = {
-          DE000000424DDE00000000000000360000002800000007000000070000000100
-          180000000000A8000000120B0000120B00000000000000000000FFFFFFFFFFFF
-          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF000000FFFFFFFFFFFFFFFFFFFFFFFFFFFF
-          FFFFFFFFFFFFFF000000FFFFFFFFFFFFFFFFFF000000FFFFFFFFFFFFFFFFFF00
-          0000FFFFFFFFFFFF000000000000000000FFFFFFFFFFFF000000FFFFFF000000
-          000000000000000000000000FFFFFF0000000000000000000000000000000000
-          00000000000000000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF00
-          0000}
-        Margin = 3
-        ParentFont = False
-        Spacing = 3
-        OnMouseDown = ebImagesMouseDown
-      end
-      object ebSounds: TExtBtn
-        Left = 2
-        Top = 91
-        Width = 215
-        Height = 15
-        Align = alNone
-        BevelShow = False
-        HotTrack = True
-        HotColor = 15790320
-        BtnColor = 10528425
-        Caption = 'Sounds'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clBlack
-        Font.Height = -11
-        Font.Name = 'MS Sans Serif'
-        Font.Style = []
-        Glyph.Data = {
-          DE000000424DDE00000000000000360000002800000007000000070000000100
-          180000000000A8000000120B0000120B00000000000000000000FFFFFFFFFFFF
-          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF000000FFFFFFFFFFFFFFFFFFFFFFFFFFFF
-          FFFFFFFFFFFFFF000000FFFFFFFFFFFFFFFFFF000000FFFFFFFFFFFFFFFFFF00
-          0000FFFFFFFFFFFF000000000000000000FFFFFFFFFFFF000000FFFFFF000000
-          000000000000000000000000FFFFFF0000000000000000000000000000000000
-          00000000000000000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF00
-          0000}
-        Margin = 3
-        ParentFont = False
-        Spacing = 3
-        OnMouseDown = ebSoundsMouseDown
-      end
-      object ExtBtn2: TExtBtn
-        Left = 2
-        Top = 61
-        Width = 215
-        Height = 15
-        Align = alNone
-        BevelShow = False
-        HotTrack = True
-        HotColor = 15790320
-        BtnColor = 10528425
-        Caption = 'Objects'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clBlack
-        Font.Height = -11
-        Font.Name = 'MS Sans Serif'
-        Font.Style = []
-        Glyph.Data = {
-          DE000000424DDE00000000000000360000002800000007000000070000000100
-          180000000000A8000000120B0000120B00000000000000000000FFFFFFFFFFFF
-          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF000000FFFFFFFFFFFFFFFFFFFFFFFFFFFF
-          FFFFFFFFFFFFFF000000FFFFFFFFFFFFFFFFFF000000FFFFFFFFFFFFFFFFFF00
-          0000FFFFFFFFFFFF000000000000000000FFFFFFFFFFFF000000FFFFFF000000
-          000000000000000000000000FFFFFF0000000000000000000000000000000000
-          00000000000000000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF00
-          0000}
-        Margin = 3
-        ParentFont = False
-        Spacing = 3
-        OnMouseDown = ExtBtn2MouseDown
-      end
-      object ebCompile: TExtBtn
-        Left = 2
-        Top = 46
-        Width = 215
-        Height = 15
-        Align = alNone
-        BevelShow = False
-        HotTrack = True
-        HotColor = 15790320
-        BtnColor = 10528425
-        Caption = 'Compile'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clBlack
-        Font.Height = -11
-        Font.Name = 'MS Sans Serif'
-        Font.Style = []
-        Glyph.Data = {
-          DE000000424DDE00000000000000360000002800000007000000070000000100
-          180000000000A8000000120B0000120B00000000000000000000FFFFFFFFFFFF
-          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF000000FFFFFFFFFFFFFFFFFFFFFFFFFFFF
-          FFFFFFFFFFFFFF000000FFFFFFFFFFFFFFFFFF000000FFFFFFFFFFFFFFFFFF00
-          0000FFFFFFFFFFFF000000000000000000FFFFFFFFFFFF000000FFFFFF000000
-          000000000000000000000000FFFFFF0000000000000000000000000000000000
-          00000000000000000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF00
-          0000}
-        Margin = 3
-        ParentFont = False
-        Spacing = 3
-        OnMouseDown = ebCompileMouseDown
+      Visible = False
+      object paFrames: TPanel
+        Left = 0
+        Top = 0
+        Width = 220
+        Height = 174
+        Align = alBottom
+        BevelOuter = bvLowered
+        Color = 10528425
+        Constraints.MaxWidth = 220
+        Constraints.MinWidth = 220
+        ParentBackground = False
+        TabOrder = 0
       end
     end
-    object paEdit: TPanel
-      Left = 1
-      Top = 153
-      Width = 218
-      Height = 63
-      Align = alTop
-      AutoSize = True
+    object paSnapList: TCategoryPanel
+      Top = 399
+      Height = 122
+      Caption = 'Snap List'
       Color = 10528425
+      FullRepaint = False
       TabOrder = 1
-      object lbTools: TLabel
-        Left = 1
-        Top = 1
-        Width = 216
-        Height = 13
-        Align = alTop
-        Alignment = taCenter
-        Caption = 'Tools'
+      object Bevel2: TBevel
+        Left = 2
+        Top = 33
+        Width = 215
+        Height = 18
+        Shape = bsTopLine
+        Style = bsRaised
+      end
+      object ebUseSnapList: TExtBtn
+        Left = 2
+        Top = 18
+        Width = 215
+        Height = 15
+        Align = alNone
+        AllowAllUp = True
+        BevelShow = False
+        HotTrack = True
+        HotColor = 15790320
+        BtnColor = 10528425
+        GroupIndex = 1
+        Caption = 'Enable/Show Snap List'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -11
+        Font.Name = 'MS Sans Serif'
+        Font.Style = []
+        Margin = 13
+        ParentFont = False
+        OnClick = ebUseSnapListClick
+      end
+      object ExtBtn1: TExtBtn
+        Left = 2
+        Top = 3
+        Width = 215
+        Height = 15
+        Align = alNone
+        BevelShow = False
+        HotTrack = True
+        HotColor = 15790320
+        BtnColor = 10528425
+        Caption = 'Commands'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -11
+        Font.Name = 'MS Sans Serif'
+        Font.Style = []
+        Glyph.Data = {
+          DE000000424DDE00000000000000360000002800000007000000070000000100
+          180000000000A8000000120B0000120B00000000000000000000FFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF000000FFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFF000000FFFFFFFFFFFFFFFFFF000000FFFFFFFFFFFFFFFFFF00
+          0000FFFFFFFFFFFF000000000000000000FFFFFFFFFFFF000000FFFFFF000000
+          000000000000000000000000FFFFFF0000000000000000000000000000000000
+          00000000000000000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF00
+          0000}
+        Margin = 3
+        ParentFont = False
+        Spacing = 3
+        OnMouseDown = ExtBtn1MouseDown
+      end
+      object Bevel1: TBevel
+        Left = 2
+        Top = 51
+        Width = 215
+        Height = 57
+      end
+      object ebSnapListMode: TExtBtn
+        Left = 15
+        Top = 36
+        Width = 68
+        Height = 14
+        Hint = 'Append to snap list'
+        Align = alNone
+        AllowAllUp = True
+        BevelShow = False
+        HotTrack = True
+        HotColor = 15790320
+        GroupIndex = 2
+        Caption = 'Mode'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -11
+        Font.Name = 'MS Sans Serif'
+        Font.Style = []
+        Glyph.Data = {
+          B6010000424DB601000000000000360000002800000010000000080000000100
+          18000000000080010000120B0000120B00000000000000000000FFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFF000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF1C1C1C1C1C1CFFFFFFFFFFFF03030300
+          0000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          191919191919FFFFFFFFFFFFFFFFFF000000FFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFF1B1B1B1717170303030303031717171B1B1BFFFFFF01
+          0101000000FFFFFF0B0B0B0B0B0B0B0B0B0B0B0B0B0B0B0B0B0B1B1B1B171717
+          0303030303031717171B1B1BFFFFFFFFFFFF000000FFFFFF0B0B0B0B0B0B0B0B
+          0B0B0B0B0B0B0B0B0B0BFFFFFFFFFFFF191919191919FFFFFFFFFFFFFFFFFFFF
+          FFFF040404000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          1C1C1C1C1C1CFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF000000FFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFF000000000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
+        Margin = 2
+        ParentFont = False
+        ParentShowHint = False
+        ShowHint = True
+        OnClick = ebSnapListModeClick
+      end
+      object ebModeInvert: TExtBtn
+        Left = 83
+        Top = 36
+        Width = 37
+        Height = 14
+        Hint = 'Clear snap list'
+        Align = alNone
+        BevelShow = False
+        HotTrack = True
+        HotColor = 15790320
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -11
+        Font.Name = 'MS Sans Serif'
+        Font.Style = []
+        Glyph.Data = {
+          56010000424D560100000000000036000000280000000A000000090000000100
+          18000000000020010000120B0000120B00000000000000000000C8D0D4C8D0D4
+          C8D0D4C8D0D4C8D0D4C8D0D4C8D0D4C8D0D4C8D0D4C8D0D40000C8D0D4000000
+          000000C8D0D4C8D0D4C8D0D4C8D0D4000000000000C8D0D40000C8D0D4C8D0D4
+          000000000000C8D0D4C8D0D4000000000000C8D0D4C8D0D40000C8D0D4C8D0D4
+          C8D0D4000000000000000000000000C8D0D4C8D0D4C8D0D40000C8D0D4C8D0D4
+          C8D0D4C8D0D4000000000000C8D0D4C8D0D4C8D0D4C8D0D40000C8D0D4C8D0D4
+          C8D0D4000000000000000000000000C8D0D4C8D0D4C8D0D40000C8D0D4C8D0D4
+          000000000000C8D0D4C8D0D4000000000000C8D0D4C8D0D40000C8D0D4000000
+          000000C8D0D4C8D0D4C8D0D4C8D0D4000000000000C8D0D40000C8D0D4C8D0D4
+          C8D0D4C8D0D4C8D0D4C8D0D4C8D0D4C8D0D4C8D0D4C8D0D40000}
+        ParentFont = False
+        ParentShowHint = False
+        ShowHint = True
+        OnClick = ebClearSnapClick
+      end
+      object lbSnapList: TListBox
+        Left = 4
+        Top = 53
+        Width = 210
+        Height = 52
+        BorderStyle = bsNone
         Color = clGray
-        ParentColor = False
-        OnClick = PanelMaximizeClick
-        ExplicitWidth = 26
-      end
-      object sbEditMin: TExtBtn
-        Left = 205
-        Top = 2
-        Width = 11
-        Height = 11
-        Align = alNone
+        ExtendedSelect = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Height = -11
         Font.Name = 'MS Sans Serif'
         Font.Style = []
-        Glyph.Data = {
-          DE000000424DDE00000000000000360000002800000007000000070000000100
-          180000000000A8000000120B0000120B00000000000000000000FFFFFFFFFFFF
-          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF000000FFFFFFFFFFFFFFFFFFFFFFFFFFFF
-          FFFFFFFFFFFFFF000000FFFFFFFFFFFFFFFFFF000000FFFFFFFFFFFFFFFFFF00
-          0000FFFFFFFFFFFF000000000000000000FFFFFFFFFFFF000000FFFFFF000000
-          000000000000000000000000FFFFFF0000000000000000000000000000000000
-          00000000000000000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF00
-          0000}
+        ItemHeight = 13
         ParentFont = False
-        OnClick = PanelMimimizeClickClick
-      end
-      object ExtBtn7: TExtBtn
-        Left = 2
-        Top = 16
-        Width = 107
-        Height = 15
-        Align = alNone
-        BevelShow = False
-        HotTrack = True
-        HotColor = 15790320
-        BtnColor = 10528425
-        Caption = 'Edit'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clBlack
-        Font.Height = -11
-        Font.Name = 'MS Sans Serif'
-        Font.Style = []
-        Glyph.Data = {
-          DE000000424DDE00000000000000360000002800000007000000070000000100
-          180000000000A8000000120B0000120B00000000000000000000FFFFFFFFFFFF
-          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF000000FFFFFFFFFFFFFFFFFFFFFFFFFFFF
-          FFFFFFFFFFFFFF000000FFFFFFFFFFFFFFFFFF000000FFFFFFFFFFFFFFFFFF00
-          0000FFFFFFFFFFFF000000000000000000FFFFFFFFFFFF000000FFFFFF000000
-          000000000000000000000000FFFFFF0000000000000000000000000000000000
-          00000000000000000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF00
-          0000}
-        Kind = knMinimize
-        Margin = 3
-        ParentFont = False
-        Spacing = 3
-        OnMouseDown = ExtBtn7MouseDown
-      end
-      object ExtBtn8: TExtBtn
-        Left = 2
-        Top = 31
-        Width = 107
-        Height = 15
-        Align = alNone
-        BevelShow = False
-        HotTrack = True
-        HotColor = 15790320
-        BtnColor = 10528425
-        Caption = 'Selection'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clBlack
-        Font.Height = -11
-        Font.Name = 'MS Sans Serif'
-        Font.Style = []
-        Glyph.Data = {
-          DE000000424DDE00000000000000360000002800000007000000070000000100
-          180000000000A8000000120B0000120B00000000000000000000FFFFFFFFFFFF
-          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF000000FFFFFFFFFFFFFFFFFFFFFFFFFFFF
-          FFFFFFFFFFFFFF000000FFFFFFFFFFFFFFFFFF000000FFFFFFFFFFFFFFFFFF00
-          0000FFFFFFFFFFFF000000000000000000FFFFFFFFFFFF000000FFFFFF000000
-          000000000000000000000000FFFFFF0000000000000000000000000000000000
-          00000000000000000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF00
-          0000}
-        Margin = 3
-        ParentFont = False
-        Spacing = 3
-        OnMouseDown = ExtBtn8MouseDown
-      end
-      object ExtBtn10: TExtBtn
-        Left = 110
-        Top = 16
-        Width = 107
-        Height = 15
-        Align = alNone
-        BevelShow = False
-        HotTrack = True
-        HotColor = 15790320
-        BtnColor = 10528425
-        Caption = 'Visibility'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clBlack
-        Font.Height = -11
-        Font.Name = 'MS Sans Serif'
-        Font.Style = []
-        Glyph.Data = {
-          DE000000424DDE00000000000000360000002800000007000000070000000100
-          180000000000A8000000120B0000120B00000000000000000000FFFFFFFFFFFF
-          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF000000FFFFFFFFFFFFFFFFFFFFFFFFFFFF
-          FFFFFFFFFFFFFF000000FFFFFFFFFFFFFFFFFF000000FFFFFFFFFFFFFFFFFF00
-          0000FFFFFFFFFFFF000000000000000000FFFFFFFFFFFF000000FFFFFF000000
-          000000000000000000000000FFFFFF0000000000000000000000000000000000
-          00000000000000000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF00
-          0000}
-        Kind = knMinimize
-        Margin = 3
-        ParentFont = False
-        Spacing = 3
-        OnMouseDown = ExtBtn10MouseDown
-      end
-      object ebProperties: TExtBtn
-        Left = 2
-        Top = 47
-        Width = 107
-        Height = 15
-        Align = alNone
-        BevelShow = False
-        HotTrack = True
-        HotColor = 15790320
-        BtnColor = 10528425
-        Caption = 'Properties'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clBlack
-        Font.Height = -11
-        Font.Name = 'MS Sans Serif'
-        Font.Style = []
-        Margin = 13
-        ParentFont = False
-        OnClick = ebPropertiesClick
-      end
-      object ebMultiRename: TExtBtn
-        Left = 110
-        Top = 34
-        Width = 107
-        Height = 15
-        Align = alNone
-        BevelShow = False
-        HotTrack = True
-        HotColor = 15790320
-        BtnColor = 10528425
-        Caption = 'Multi Rename'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clBlack
-        Font.Height = -11
-        Font.Name = 'MS Sans Serif'
-        Font.Style = []
-        Margin = 13
-        ParentFont = False
-        OnClick = ebMultiRenameClick
+        Sorted = True
+        TabOrder = 0
       end
     end
-    object paTarget: TPanel
-      Left = 1
-      Top = 216
-      Width = 218
-      Height = 140
-      Align = alTop
-      AutoSize = True
+    object paTarget: TCategoryPanel
+      Top = 229
+      Height = 170
+      Caption = 'Object'
       Color = 10528425
+      FullRepaint = False
       TabOrder = 2
       object ebTargetObject: TExtBtn
         Left = 17
@@ -1084,40 +807,16 @@ object fraLeftBar: TfraLeftBar
         OnClick = TargetClick
       end
       object lbEditMode: TLabel
-        Left = 1
-        Top = 1
-        Width = 216
+        Left = 0
+        Top = 0
+        Width = 220
         Height = 13
         Align = alTop
         Alignment = taCenter
         Caption = 'Edit Mode'
         Color = clGray
         ParentColor = False
-        OnClick = PanelMaximizeClick
         ExplicitWidth = 48
-      end
-      object sbTargetMin: TExtBtn
-        Left = 205
-        Top = 2
-        Width = 11
-        Height = 11
-        Align = alNone
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clBlack
-        Font.Height = -11
-        Font.Name = 'MS Sans Serif'
-        Font.Style = []
-        Glyph.Data = {
-          DE000000424DDE00000000000000360000002800000007000000070000000100
-          180000000000A8000000120B0000120B00000000000000000000FFFFFFFFFFFF
-          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF000000FFFFFFFFFFFFFFFFFFFFFFFFFFFF
-          FFFFFFFFFFFFFF000000FFFFFFFFFFFFFFFFFF000000FFFFFFFFFFFFFFFFFF00
-          0000FFFFFFFFFFFF000000000000000000FFFFFFFFFFFF000000FFFFFF000000
-          000000000000000000000000FFFFFF0000000000000000000000000000000000
-          00000000000000000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF00
-          0000}
-        ParentFont = False
-        OnClick = PanelMimimizeClickClick
       end
       object ebTargetGroup: TExtBtn
         Left = 127
@@ -3207,43 +2906,24 @@ object fraLeftBar: TfraLeftBar
         Style = bsRaised
       end
     end
-    object paSnapList: TPanel
-      Left = 1
-      Top = 356
-      Width = 218
-      Height = 122
-      Align = alTop
-      AutoSize = True
+    object paEdit: TCategoryPanel
+      Top = 152
+      Height = 77
+      Caption = 'Tools'
       Color = 10528425
+      FullRepaint = False
       TabOrder = 3
-      ExplicitTop = 355
-      object Bevel2: TBevel
+      object ExtBtn7: TExtBtn
         Left = 2
-        Top = 46
-        Width = 215
-        Height = 18
-        Shape = bsTopLine
-        Style = bsRaised
-      end
-      object Label1: TLabel
-        Left = 1
         Top = 1
-        Width = 216
-        Height = 13
-        Align = alTop
-        Alignment = taCenter
-        Caption = 'Snap List'
-        Color = clGray
-        ParentColor = False
-        OnClick = PanelMaximizeClick
-        ExplicitWidth = 44
-      end
-      object ExtBtn16: TExtBtn
-        Left = 205
-        Top = 2
-        Width = 11
-        Height = 11
+        Width = 107
+        Height = 15
         Align = alNone
+        BevelShow = False
+        HotTrack = True
+        HotColor = 15790320
+        BtnColor = 10528425
+        Caption = 'Edit'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Height = -11
@@ -3258,42 +2938,23 @@ object fraLeftBar: TfraLeftBar
           000000000000000000000000FFFFFF0000000000000000000000000000000000
           00000000000000000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF00
           0000}
+        Kind = knMinimize
+        Margin = 3
         ParentFont = False
-        OnClick = PanelMimimizeClickClick
+        Spacing = 3
+        OnMouseDown = ExtBtn7MouseDown
       end
-      object ebUseSnapList: TExtBtn
-        Left = 2
-        Top = 31
-        Width = 215
-        Height = 15
-        Align = alNone
-        AllowAllUp = True
-        BevelShow = False
-        HotTrack = True
-        HotColor = 15790320
-        BtnColor = 10528425
-        GroupIndex = 1
-        Caption = 'Enable/Show Snap List'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clBlack
-        Font.Height = -11
-        Font.Name = 'MS Sans Serif'
-        Font.Style = []
-        Margin = 13
-        ParentFont = False
-        OnClick = ebUseSnapListClick
-      end
-      object ExtBtn1: TExtBtn
+      object ExtBtn8: TExtBtn
         Left = 2
         Top = 16
-        Width = 215
+        Width = 107
         Height = 15
         Align = alNone
         BevelShow = False
         HotTrack = True
         HotColor = 15790320
         BtnColor = 10528425
-        Caption = 'Commands'
+        Caption = 'Selection'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Height = -11
@@ -3311,131 +2972,335 @@ object fraLeftBar: TfraLeftBar
         Margin = 3
         ParentFont = False
         Spacing = 3
-        OnMouseDown = ExtBtn1MouseDown
+        OnMouseDown = ExtBtn8MouseDown
       end
-      object Bevel1: TBevel
+      object ExtBtn10: TExtBtn
+        Left = 110
+        Top = 1
+        Width = 107
+        Height = 15
+        Align = alNone
+        BevelShow = False
+        HotTrack = True
+        HotColor = 15790320
+        BtnColor = 10528425
+        Caption = 'Visibility'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -11
+        Font.Name = 'MS Sans Serif'
+        Font.Style = []
+        Glyph.Data = {
+          DE000000424DDE00000000000000360000002800000007000000070000000100
+          180000000000A8000000120B0000120B00000000000000000000FFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF000000FFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFF000000FFFFFFFFFFFFFFFFFF000000FFFFFFFFFFFFFFFFFF00
+          0000FFFFFFFFFFFF000000000000000000FFFFFFFFFFFF000000FFFFFF000000
+          000000000000000000000000FFFFFF0000000000000000000000000000000000
+          00000000000000000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF00
+          0000}
+        Kind = knMinimize
+        Margin = 3
+        ParentFont = False
+        Spacing = 3
+        OnMouseDown = ExtBtn10MouseDown
+      end
+      object ebProperties: TExtBtn
         Left = 2
-        Top = 64
-        Width = 215
-        Height = 57
-      end
-      object ebSnapListMode: TExtBtn
-        Left = 15
-        Top = 49
-        Width = 68
-        Height = 14
-        Hint = 'Append to snap list'
-        Align = alNone
-        AllowAllUp = True
-        BevelShow = False
-        HotTrack = True
-        HotColor = 15790320
-        GroupIndex = 2
-        Caption = 'Mode'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clBlack
-        Font.Height = -11
-        Font.Name = 'MS Sans Serif'
-        Font.Style = []
-        Glyph.Data = {
-          B6010000424DB601000000000000360000002800000010000000080000000100
-          18000000000080010000120B0000120B00000000000000000000FFFFFFFFFFFF
-          FFFFFFFFFFFFFFFFFFFFFFFF000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF1C1C1C1C1C1CFFFFFFFFFFFF03030300
-          0000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-          191919191919FFFFFFFFFFFFFFFFFF000000FFFFFFFFFFFFFFFFFFFFFFFFFFFF
-          FFFFFFFFFFFFFFFFFFFF1B1B1B1717170303030303031717171B1B1BFFFFFF01
-          0101000000FFFFFF0B0B0B0B0B0B0B0B0B0B0B0B0B0B0B0B0B0B1B1B1B171717
-          0303030303031717171B1B1BFFFFFFFFFFFF000000FFFFFF0B0B0B0B0B0B0B0B
-          0B0B0B0B0B0B0B0B0B0BFFFFFFFFFFFF191919191919FFFFFFFFFFFFFFFFFFFF
-          FFFF040404000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-          1C1C1C1C1C1CFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF000000FFFFFFFFFFFFFFFF
-          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-          FFFFFFFFFF000000000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
-        Margin = 2
-        ParentFont = False
-        ParentShowHint = False
-        ShowHint = True
-        OnClick = ebSnapListModeClick
-      end
-      object ebModeInvert: TExtBtn
-        Left = 83
-        Top = 49
-        Width = 37
-        Height = 14
-        Hint = 'Clear snap list'
+        Top = 32
+        Width = 107
+        Height = 15
         Align = alNone
         BevelShow = False
         HotTrack = True
         HotColor = 15790320
+        BtnColor = 10528425
+        Caption = 'Properties'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Height = -11
         Font.Name = 'MS Sans Serif'
         Font.Style = []
-        Glyph.Data = {
-          56010000424D560100000000000036000000280000000A000000090000000100
-          18000000000020010000120B0000120B00000000000000000000C8D0D4C8D0D4
-          C8D0D4C8D0D4C8D0D4C8D0D4C8D0D4C8D0D4C8D0D4C8D0D40000C8D0D4000000
-          000000C8D0D4C8D0D4C8D0D4C8D0D4000000000000C8D0D40000C8D0D4C8D0D4
-          000000000000C8D0D4C8D0D4000000000000C8D0D4C8D0D40000C8D0D4C8D0D4
-          C8D0D4000000000000000000000000C8D0D4C8D0D4C8D0D40000C8D0D4C8D0D4
-          C8D0D4C8D0D4000000000000C8D0D4C8D0D4C8D0D4C8D0D40000C8D0D4C8D0D4
-          C8D0D4000000000000000000000000C8D0D4C8D0D4C8D0D40000C8D0D4C8D0D4
-          000000000000C8D0D4C8D0D4000000000000C8D0D4C8D0D40000C8D0D4000000
-          000000C8D0D4C8D0D4C8D0D4C8D0D4000000000000C8D0D40000C8D0D4C8D0D4
-          C8D0D4C8D0D4C8D0D4C8D0D4C8D0D4C8D0D4C8D0D4C8D0D40000}
+        Margin = 13
         ParentFont = False
-        ParentShowHint = False
-        ShowHint = True
-        OnClick = ebClearSnapClick
+        OnClick = ebPropertiesClick
       end
-      object lbSnapList: TListBox
-        Left = 4
-        Top = 66
-        Width = 210
-        Height = 52
-        BorderStyle = bsNone
-        Color = clGray
-        ExtendedSelect = False
+      object ebMultiRename: TExtBtn
+        Left = 110
+        Top = 19
+        Width = 107
+        Height = 15
+        Align = alNone
+        BevelShow = False
+        HotTrack = True
+        HotColor = 15790320
+        BtnColor = 10528425
+        Caption = 'Multi Rename'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Height = -11
         Font.Name = 'MS Sans Serif'
         Font.Style = []
-        ItemHeight = 13
+        Margin = 13
         ParentFont = False
-        Sorted = True
-        TabOrder = 0
+        OnClick = ebMultiRenameClick
       end
     end
-  end
-  object paFrames: TPanel
-    Left = -1
-    Top = 760
-    Width = 220
-    Height = 255
-    BevelOuter = bvLowered
-    Color = 10528425
-    Constraints.MaxWidth = 220
-    Constraints.MinWidth = 220
-    TabOrder = 1
+    object paScene: TCategoryPanel
+      Top = 0
+      Height = 152
+      Hint = 'Scene commands'
+      Caption = 'Scene'
+      Color = 10528425
+      FullRepaint = False
+      ParentShowHint = False
+      ShowHint = True
+      TabOrder = 4
+      object ebSceneFile: TExtBtn
+        Left = 2
+        Top = 2
+        Width = 215
+        Height = 15
+        Align = alNone
+        BevelShow = False
+        HotTrack = True
+        HotColor = 15790320
+        BtnColor = 10528425
+        Caption = 'File'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -11
+        Font.Name = 'MS Sans Serif'
+        Font.Style = []
+        Glyph.Data = {
+          92000000424D9200000000000000760000002800000007000000070000000100
+          0400000000001C000000120B0000120B0000100000000000000000000000FFFF
+          FF00080808000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000111111101111
+          11101110111011202110122022102220222011111110}
+        Kind = knMinimize
+        Margin = 3
+        ParentFont = False
+        Spacing = 3
+        OnMouseDown = ebSceneFileMouseDown
+      end
+      object ebScene: TExtBtn
+        Left = 2
+        Top = 17
+        Width = 215
+        Height = 15
+        Align = alNone
+        BevelShow = False
+        HotTrack = True
+        HotColor = 15790320
+        BtnColor = 10528425
+        Caption = 'Scene'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -11
+        Font.Name = 'MS Sans Serif'
+        Font.Style = []
+        Glyph.Data = {
+          DE000000424DDE00000000000000360000002800000007000000070000000100
+          180000000000A8000000120B0000120B00000000000000000000FFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF000000FFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFF000000FFFFFFFFFFFFFFFFFF000000FFFFFFFFFFFFFFFFFF00
+          0000FFFFFFFFFFFF000000000000000000FFFFFFFFFFFF000000FFFFFF000000
+          000000000000000000000000FFFFFF0000000000000000000000000000000000
+          00000000000000000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF00
+          0000}
+        Margin = 3
+        ParentFont = False
+        Spacing = 3
+        OnMouseDown = ebSceneMouseDown
+      end
+      object ebObjectList: TExtBtn
+        Left = 2
+        Top = 107
+        Width = 215
+        Height = 15
+        Align = alNone
+        BevelShow = False
+        HotTrack = True
+        HotColor = 15790320
+        BtnColor = 10528425
+        Caption = 'Object List'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -11
+        Font.Name = 'MS Sans Serif'
+        Font.Style = []
+        Margin = 13
+        ParentFont = False
+        OnClick = ebObjectListClick
+      end
+      object ebPreferences: TExtBtn
+        Left = 2
+        Top = 136
+        Width = 215
+        Height = 15
+        Align = alNone
+        BevelShow = False
+        HotTrack = True
+        HotColor = 15790320
+        BtnColor = 10528425
+        Caption = 'Preferences'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -11
+        Font.Name = 'MS Sans Serif'
+        Font.Style = []
+        Margin = 13
+        ParentFont = False
+        OnClick = ebEditorPreferencesClick
+      end
+      object ebLightAnimationEditor: TExtBtn
+        Left = 2
+        Top = 92
+        Width = 215
+        Height = 15
+        Align = alNone
+        BevelShow = False
+        HotTrack = True
+        HotColor = 15790320
+        BtnColor = 10528425
+        Caption = 'Light Anim Editor'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -11
+        Font.Name = 'MS Sans Serif'
+        Font.Style = []
+        Margin = 13
+        ParentFont = False
+        OnClick = ebLightAnimationEditorClick
+      end
+      object ebImages: TExtBtn
+        Left = 2
+        Top = 62
+        Width = 215
+        Height = 15
+        Align = alNone
+        BevelShow = False
+        HotTrack = True
+        HotColor = 15790320
+        BtnColor = 10528425
+        Caption = 'Images'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -11
+        Font.Name = 'MS Sans Serif'
+        Font.Style = []
+        Glyph.Data = {
+          DE000000424DDE00000000000000360000002800000007000000070000000100
+          180000000000A8000000120B0000120B00000000000000000000FFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF000000FFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFF000000FFFFFFFFFFFFFFFFFF000000FFFFFFFFFFFFFFFFFF00
+          0000FFFFFFFFFFFF000000000000000000FFFFFFFFFFFF000000FFFFFF000000
+          000000000000000000000000FFFFFF0000000000000000000000000000000000
+          00000000000000000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF00
+          0000}
+        Margin = 3
+        ParentFont = False
+        Spacing = 3
+        OnMouseDown = ebImagesMouseDown
+      end
+      object ebSounds: TExtBtn
+        Left = 2
+        Top = 77
+        Width = 215
+        Height = 15
+        Align = alNone
+        BevelShow = False
+        HotTrack = True
+        HotColor = 15790320
+        BtnColor = 10528425
+        Caption = 'Sounds'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -11
+        Font.Name = 'MS Sans Serif'
+        Font.Style = []
+        Glyph.Data = {
+          DE000000424DDE00000000000000360000002800000007000000070000000100
+          180000000000A8000000120B0000120B00000000000000000000FFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF000000FFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFF000000FFFFFFFFFFFFFFFFFF000000FFFFFFFFFFFFFFFFFF00
+          0000FFFFFFFFFFFF000000000000000000FFFFFFFFFFFF000000FFFFFF000000
+          000000000000000000000000FFFFFF0000000000000000000000000000000000
+          00000000000000000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF00
+          0000}
+        Margin = 3
+        ParentFont = False
+        Spacing = 3
+        OnMouseDown = ebSoundsMouseDown
+      end
+      object ExtBtn2: TExtBtn
+        Left = 2
+        Top = 47
+        Width = 215
+        Height = 15
+        Align = alNone
+        BevelShow = False
+        HotTrack = True
+        HotColor = 15790320
+        BtnColor = 10528425
+        Caption = 'Objects'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -11
+        Font.Name = 'MS Sans Serif'
+        Font.Style = []
+        Glyph.Data = {
+          DE000000424DDE00000000000000360000002800000007000000070000000100
+          180000000000A8000000120B0000120B00000000000000000000FFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF000000FFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFF000000FFFFFFFFFFFFFFFFFF000000FFFFFFFFFFFFFFFFFF00
+          0000FFFFFFFFFFFF000000000000000000FFFFFFFFFFFF000000FFFFFF000000
+          000000000000000000000000FFFFFF0000000000000000000000000000000000
+          00000000000000000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF00
+          0000}
+        Margin = 3
+        ParentFont = False
+        Spacing = 3
+        OnMouseDown = ExtBtn2MouseDown
+      end
+      object ebCompile: TExtBtn
+        Left = 2
+        Top = 32
+        Width = 215
+        Height = 15
+        Align = alNone
+        BevelShow = False
+        HotTrack = True
+        HotColor = 15790320
+        BtnColor = 10528425
+        Caption = 'Compile'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -11
+        Font.Name = 'MS Sans Serif'
+        Font.Style = []
+        Glyph.Data = {
+          DE000000424DDE00000000000000360000002800000007000000070000000100
+          180000000000A8000000120B0000120B00000000000000000000FFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF000000FFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFF000000FFFFFFFFFFFFFFFFFF000000FFFFFFFFFFFFFFFFFF00
+          0000FFFFFFFFFFFF000000000000000000FFFFFFFFFFFF000000FFFFFF000000
+          000000000000000000000000FFFFFF0000000000000000000000000000000000
+          00000000000000000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF00
+          0000}
+        Margin = 3
+        ParentFont = False
+        Spacing = 3
+        OnMouseDown = ebCompileMouseDown
+      end
+    end
   end
   object fsStorage: TFormStorage
     IniSection = 'LeftBar'
     Options = []
     RegistryRoot = prLocalMachine
     Version = 21
-    StoredProps.Strings = (
-      'paEdit.Tag'
-      'paEdit.Height'
-      'paScene.Tag'
-      'paScene.Height'
-      'paTarget.Tag'
-      'paTarget.Height'
-      'ebUseSnapList.Down'
-      'paSnapList.Tag'
-      'paSnapList.Height')
     StoredValues = <>
     Left = 353
     Top = 46
@@ -3964,7 +3829,6 @@ object fraLeftBar: TfraLeftBar
     end
     object Editminimap1: TMenuItem
       Caption = 'Edit minimap'
-      OnClick = Editminimap1Click
     end
     object SyncTHM1: TMenuItem
       Caption = 'SyncTHM'

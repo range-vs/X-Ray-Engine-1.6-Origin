@@ -1,10 +1,10 @@
 object frmRight: TfrmRight
   Left = 717
   Top = 114
+  Width = 375
+  Height = 782
   BorderIcons = []
   BorderStyle = bsDialog
-  ClientHeight = 753
-  ClientWidth = 369
   Color = clBtnFace
   DefaultMonitor = dmPrimary
   Font.Charset = DEFAULT_CHARSET

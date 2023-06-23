@@ -21,19 +21,18 @@
 class /*ECORE_API*/ TfrmMain : public TForm
 {
 __published:	// IDE-managed Components
-        TPanel *paLeftBar;
+	TCategoryPanelGroup *paLeftBar;
         TPanel *paBottomBar;
-    TPanel *paTools;
+	TCategoryPanel *paTools;
     TTimer *tmRefresh;
 	TFormStorage *fsStorage;
     TPanel *paMain;
     TPanel *paTopBar;
 	TPanel *paRender;
-	TLabel *APHeadLabel2;
 	TExtBtn *sbToolsMin;
 	TD3DWindow *D3DWindow;
-	TExtBtn *ebAllMin;
-	TExtBtn *ebAllMax;
+	TPanel *paLeftBarMain;
+	TPanel *Panel1;
         void __fastcall FormCreate(TObject *Sender);
     void __fastcall D3DWindowResize(TObject *Sender);
     void __fastcall D3DWindowKeyDown(TObject *Sender, WORD &Key,
@@ -57,11 +56,11 @@ __published:	// IDE-managed Components
           TShiftState Shift, int X, int Y);
 	void __fastcall D3DWindowMouseMove(TObject *Sender, TShiftState Shift,
           int X, int Y);
-	void __fastcall ebAllMinClick(TObject *Sender);
-	void __fastcall ebAllMaxClick(TObject *Sender);
 	void __fastcall FormResize(TObject *Sender);
 	void __fastcall paRenderResize(TObject *Sender);
 	void __fastcall fsStorageSavePlacement(TObject *Sender);
+	void __fastcall paToolsCollapse(TObject *Sender);
+	void __fastcall paToolsExpand(TObject *Sender);
 private:	// User declarations
     void __fastcall IdleHandler(TObject *Sender, bool &Done);
 

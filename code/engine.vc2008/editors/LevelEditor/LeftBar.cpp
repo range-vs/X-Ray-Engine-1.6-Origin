@@ -56,18 +56,18 @@ __fastcall TfraLeftBar::TfraLeftBar(TComponent* Owner)
 //---------------------------------------------------------------------------
 
 void UpdatePanel(TPanel* p){
-    if (p){
+	/*if (p){
         for (int j=0; j<p->ControlCount; j++){
             TExtBtn* btn = dynamic_cast<TExtBtn *>(p->Controls[j]);
             if (btn) btn->UpdateMouseInControl();
         }
-    }
+    } */
 }
 //---------------------------------------------------------------------------
 
 void GetHeight(int& h, TForm* f)
 {
-    if (f){
+	/*if (f){
         TPanel* pa;
         for (int j=0; j<f->ControlCount; j++){
             TComponent* temp = f->Controls[j];
@@ -75,7 +75,7 @@ void GetHeight(int& h, TForm* f)
             pa = dynamic_cast<TPanel*>(temp);
             if (pa&&pa->Visible){ h+=pa->Height; UpdatePanel(pa);}
         }
-    }
+    }*/
 }
 //---------------------------------------------------------------------------
 
@@ -86,32 +86,34 @@ void TfraLeftBar::OnTimer()
 
 void TfraLeftBar::RedrawBar()
 {
-    int i, j, h=0;
-    for (i=0; i<fraLeftBar->ComponentCount; i++){
-        TComponent* temp = fraLeftBar->Components[i];
-        if (dynamic_cast<TExtBtn *>(temp) != NULL)
-            ((TExtBtn*)temp)->UpdateMouseInControl();
-    }
-    for (i=0; i<paFrames->ControlCount; i++)
-        GetHeight(h,dynamic_cast<TForm*>(paFrames->Controls[i]));
-    
-    int hh = fraLeftBar->Height-(paLeftBar->Height+h);
-    if (hh<=0) hh = 0; 
-    paFrames->Height = h+hh;
+	int i, j, h=0;
+	/*for (i=0; i<fraLeftBar->ComponentCount; i++){
+		TComponent* temp = fraLeftBar->Components[i];
+		if (dynamic_cast<TExtBtn *>(temp) != NULL)
+			((TExtBtn*)temp)->UpdateMouseInControl();
+	}
+	for (i=0; i<paFrames->ControlCount; i++)
+		GetHeight(h,dynamic_cast<TForm*>(paFrames->Controls[i]));
 
-    h=0;
-    for (j=0; j<paLeftBar->ControlCount; j++){
-        TPanel* pa = dynamic_cast<TPanel*>(paLeftBar->Controls[j]);
-        if (pa&&pa->Visible) h+=pa->Height;
-    }
-    paLeftBar->Height = h+2;
-    paFrames->Top = paLeftBar->Top+paLeftBar->Height;
+
+	int hh = fraLeftBar->Height-(paLeftBar->Height+h);
+	if (hh<=0) hh = 0;
+	paFrames->Height = h+hh;
+
+	h=0;
+	for (j=0; j<paLeftBar->ControlCount; j++){
+		TPanel* pa = dynamic_cast<TPanel*>(paLeftBar->Controls[j]);
+		if (pa&&pa->Visible) h+=pa->Height;
+	}
+
+	paLeftBar->Height = h+2;
+	paFrames->Top = paLeftBar->Top+paLeftBar->Height; */
 }
 //---------------------------------------------------------------------------
 
 void TfraLeftBar::UpdateBar()
 {
-    for (int i=0; i<paFrames->ControlCount; i++){
+	/*for (int i=0; i<paFrames->ControlCount; i++){
         TForm* f = dynamic_cast<TForm*>(paFrames->Controls[i]);
         if (f){
             for (int j=0; j<f->ControlCount; j++){
@@ -124,57 +126,19 @@ void TfraLeftBar::UpdateBar()
             }
         }
     }
-    RedrawBar();
+    RedrawBar();   */
 }
-
-void TfraLeftBar::MinimizeAllFrames()
-{
-    for (int i=0; i<paFrames->ControlCount; i++){
-		TForm* f = dynamic_cast<TForm*>(paFrames->Controls[i]);
-        if (f){
-	        for (int j=0; j<f->ControlCount; j++){
-                TPanel* pa = dynamic_cast<TPanel*>(f->Controls[j]);
-                if (pa) PanelMinimize(pa);
-            }
-        }
-    }
-    for (int j=0; j<paLeftBar->ControlCount; j++){
-        TPanel* pa = dynamic_cast<TPanel*>(paLeftBar->Controls[j]);
-	    if (pa) PanelMinimize(pa);
-    }
-	UpdateBar();
-}
-//---------------------------------------------------------------------------
-
-void TfraLeftBar::MaximizeAllFrames()
-{
-    for (int j=0; j<paLeftBar->ControlCount; j++){
-        TPanel* pa = dynamic_cast<TPanel*>(paLeftBar->Controls[j]);
-	    if (pa)	PanelMaximize(pa);
-    }
-    for (int i=0; i<paFrames->ControlCount; i++){
-		TForm* f = dynamic_cast<TForm*>(paFrames->Controls[i]);
-        if (f){
-	        for (int j=0; j<f->ControlCount; j++){
-                TPanel* pa = dynamic_cast<TPanel*>(f->Controls[j]);
-                if (pa){
-                	if (pa->Align==alClient){
-                        paFrames->Height-=(pa->Height-pa->Constraints->MinHeight);
-                    }else
-	                 	PanelMaximize(pa);
-                }
-            }
-        }
-    }
-	UpdateBar();
-}
-//---------------------------------------------------------------------------
 
 void TfraLeftBar::ChangeTarget(ObjClassID tgt)
 {
-    for (int i=0; i<paTarget->ControlCount; i++){
-    	TExtBtn* B = dynamic_cast<TExtBtn *>(paTarget->Controls[i]);
-        if (B&&ObjClassID(B->Tag)==tgt)	B->Down = true;
+	auto first_ctrl = static_cast<TCategoryPanelSurface*>(paTarget->Controls[0]);
+	for (int i=0; i<first_ctrl->ControlCount; i++)
+	{
+		TExtBtn* B = dynamic_cast<TExtBtn *>(first_ctrl->Controls[i]);
+		if (B&&ObjClassID(B->Tag)==tgt)
+		{
+			B->Down = true;
+        }
     }
     UI->RedrawScene	();
     UpdateBar		();
@@ -352,20 +316,6 @@ void __fastcall TfraLeftBar::TargetClick(TObject *Sender)
     ExecCommand(COMMAND_CHANGE_TARGET, btn->Down?btn->Tag:OBJCLASS_DUMMY);
     // turn off snap mode
     ebSnapListMode->Down 	= false;
-}
-//---------------------------------------------------------------------------
-
-void __fastcall TfraLeftBar::PanelMimimizeClickClick(TObject *Sender)
-{
-    PanelMinMaxClick(Sender);
-    UpdateBar();
-}
-//---------------------------------------------------------------------------
-
-void __fastcall TfraLeftBar::PanelMaximizeClick(TObject *Sender)
-{
-    ::PanelMaximizeClick(Sender);
-    UpdateBar();
 }
 //---------------------------------------------------------------------------
 
@@ -664,7 +614,7 @@ void __fastcall TfraLeftBar::miRecentFilesClick(TObject *Sender)
 
 void TfraLeftBar::RefreshBar()
 {
-	miRecentFiles->Clear();
+	/*miRecentFiles->Clear();
     u32 idx 			= 0;
 	for (AStringIt it=EPrefs->scene_recent_list.begin(); it!=EPrefs->scene_recent_list.end(); it++){
         TMenuItem *MI 	= xr_new<TMenuItem>((TComponent*)0);
@@ -689,7 +639,7 @@ void TfraLeftBar::RefreshBar()
 
             m_TargetButtons[k].second->Down			= t->IsVisible();
         }
-    }
+    }*/
 }
 //---------------------------------------------------------------------------
 
@@ -700,10 +650,6 @@ void __fastcall TfraLeftBar::ClearDebugDraw1Click(TObject *Sender)
 //---------------------------------------------------------------------------
 
 
-void __fastcall TfraLeftBar::Editminimap1Click(TObject *Sender)
-{
-	ExecCommand( COMMAND_MINIMAP_EDITOR );
-}
 //---------------------------------------------------------------------------
 //. #include "..\ECore\editor\EThumbnailTexture.h"
 #include "..\ECore\editor\EThumbnail.h"
@@ -758,4 +704,5 @@ void __fastcall TfraLeftBar::ClipEditor1Click(TObject *Sender)
 	ExecCommand				(COMMAND_SHOW_CLIP_EDITOR);
 }
 //---------------------------------------------------------------------------
+
 

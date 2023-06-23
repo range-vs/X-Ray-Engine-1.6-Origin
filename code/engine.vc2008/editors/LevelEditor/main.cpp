@@ -45,9 +45,10 @@ __fastcall TfrmMain::TfrmMain(TComponent* Owner)
 
 	fraBottomBar->Parent    = paBottomBar;
 	fraTopBar->Parent       = paTopBar;
-	fraLeftBar->Parent      = paLeftBar;
+	fraLeftBar->Parent = paTools;
+	//fraLeftBar->Parent      = paLeftBar;
 	if (paLeftBar->Tag > 0) paLeftBar->Parent = paTopBar;
-	else paLeftBar->Parent 	= frmMain;
+	else paLeftBar->Parent 	= paLeftBarMain;
 
 	EDevice.SetHandle		(Handle,D3DWindow->Handle);
 	EnableReceiveCommands	();
@@ -106,18 +107,20 @@ void __fastcall TfrmMain::FormCreate(TObject *Sender)
 #define MIN_PANEL_HEIGHT 17
 void __fastcall TfrmMain::sbToolsMinClick(TObject *Sender)
 {
-    if (paLeftBar->Tag > 0)
+    if (paLeftBarMain->Tag > 0)
     {
-        paLeftBar->Parent  = frmMain;
-        paLeftBar->Tag     = 0;
-        frmRight->Visible  = false;
-    }else{
-        paLeftBar->Parent = frmRight; //paTopBar;
-        frmRight->Width		= paLeftBar->Width;
-        frmRight->Height	= 1024;
-        paLeftBar->Tag    = 1;
-        frmRight->Visible = true;
-    }
+		paLeftBarMain->Parent  = frmMain;
+		paLeftBarMain->Tag     = 0;
+		frmRight->Visible  = false;
+		paLeftBar->VertScrollBar->Visible = false;
+	}else{
+		paLeftBarMain->Parent = frmRight;
+        frmRight->Width		= paLeftBarMain->Width;
+        //frmRight->Height	= 1024;
+		paLeftBarMain->Tag    = 1;
+		frmRight->Visible = true;
+        paLeftBar->VertScrollBar->Visible = true;
+	}
 }
 //---------------------------------------------------------------------------
 
@@ -187,7 +190,7 @@ void __fastcall TfrmMain::tmRefreshTimer(TObject *Sender)
         if (dynamic_cast<TExtBtn *>(temp) != NULL)
             ((TExtBtn*)temp)->UpdateMouseInControl();
     }
-	fraLeftBar->OnTimer();
+	//fraLeftBar->OnTimer();
 	fraTopBar->OnTimer();
 }
 //---------------------------------------------------------------------------
@@ -236,21 +239,15 @@ void __fastcall TfrmMain::D3DWindowMouseMove(TObject *Sender,
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TfrmMain::ebAllMinClick(TObject *Sender)
-{
-	fraLeftBar->MinimizeAllFrames();
-}
-//---------------------------------------------------------------------------
-
-void __fastcall TfrmMain::ebAllMaxClick(TObject *Sender)
-{
-	fraLeftBar->MaximizeAllFrames();
-}
-//---------------------------------------------------------------------------
 
 void __fastcall TfrmMain::FormResize(TObject *Sender)
 {
-	if (fraLeftBar) fraLeftBar->UpdateBar();
+	if (fraLeftBar)
+	{
+		//fraLeftBar->UpdateBar();
+		paTools->Height = paLeftBar->Height;
+		//fraLeftBar->OnTimer();
+	}
 }
 //---------------------------------------------------------------------------
 
@@ -269,3 +266,15 @@ void TfrmMain::SetHInst(HINSTANCE inst)
 {
 	 m_HInstance = inst;
 }
+void __fastcall TfrmMain::paToolsCollapse(TObject *Sender)
+{
+	//paTools->Repaint();
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TfrmMain::paToolsExpand(TObject *Sender)
+{
+	//paTools->RePaint();
+}
+//---------------------------------------------------------------------------
+

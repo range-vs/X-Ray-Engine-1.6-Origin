@@ -18,10 +18,7 @@
 class TfraLeftBar : public TFrame
 {
 __published:	// IDE-managed Components
-    TPanel *paLeftBar;
-    TPanel *paScene;
-    TPanel *paEdit;
-    TPanel *paTarget;
+	TCategoryPanelGroup *paLeftBar;
 	TExtBtn *ebTargetObject;
 	TExtBtn *ebTargetLight;
 	TExtBtn *ebTargetSoundSrc;
@@ -33,12 +30,7 @@ __published:	// IDE-managed Components
 	TExtBtn *ebTargetWay;
 	TExtBtn *ebTargetSector;
 	TExtBtn *ebTargetPortal;
-	TLabel *APHeadLabel2;
-	TExtBtn *sbSceneMin;
-	TLabel *lbTools;
 	TLabel *lbEditMode;
-	TExtBtn *sbEditMin;
-	TExtBtn *sbTargetMin;
 	TExtBtn *ebTargetGroup;
 	TExtBtn *ebSceneFile;
 	TExtBtn *ebScene;
@@ -73,9 +65,6 @@ __published:	// IDE-managed Components
 	TMenuItem *HideUnselected1;
 	TMenuItem *UnhideAll1;
 	TExtBtn *ebTargetPS;
-	TPanel *paSnapList;
-	TLabel *Label1;
-	TExtBtn *ExtBtn16;
 	TExtBtn *ebUseSnapList;
 	TExtBtn *ExtBtn1;
 	TMxPopupMenu *pmSnapListCommand;
@@ -179,7 +168,7 @@ __published:	// IDE-managed Components
 	TMenuItem *ClearDebugDraw1;
 	TExtBtn *ebMultiRename;
     TMenuItem *N7;
-    TMenuItem *Editminimap1;
+	TMenuItem *Editminimap1;
         TMenuItem *SyncTHM1;
         TMenuItem *N26;
         TMenuItem *Makepack1;
@@ -205,7 +194,12 @@ __published:	// IDE-managed Components
 	TExtBtn *btEnableFogVolumes;
 	TBevel *Bevel3;
 	TMenuItem *ClipEditor1;
-    void __fastcall ebClearClick(TObject *Sender);
+	TCategoryPanel *paScene;
+	TCategoryPanel *paEdit;
+	TCategoryPanel *paTarget;
+	TCategoryPanel *paSnapList;
+	TCategoryPanel *paFramesMain;
+	void __fastcall ebClearClick(TObject *Sender);
     void __fastcall ebLoadClick(TObject *Sender);
     void __fastcall ebSaveClick(TObject *Sender);
     void __fastcall ebSaveAsClick(TObject *Sender);
@@ -220,8 +214,6 @@ __published:	// IDE-managed Components
     void __fastcall ebObjectListClick(TObject *Sender);
     void __fastcall ebEditLibClick(TObject *Sender);
     void __fastcall TargetClick(TObject *Sender);
-    void __fastcall PanelMimimizeClickClick(TObject *Sender);
-    void __fastcall PanelMaximizeClick(TObject *Sender);
     void __fastcall ebEditorPreferencesClick(TObject *Sender);
     void __fastcall ebRefreshEditorClick(TObject *Sender);
 	void __fastcall ebInvertClick(TObject *Sender);
@@ -288,7 +280,6 @@ __published:	// IDE-managed Components
 	void __fastcall MakeSoundOccluder1Click(TObject *Sender);
 	void __fastcall ClearDebugDraw1Click(TObject *Sender);
 	void __fastcall ebMultiRenameClick(TObject *Sender);
-    void __fastcall Editminimap1Click(TObject *Sender);
         void __fastcall SyncTHM1Click(TObject *Sender);
         void __fastcall Makepack1Click(TObject *Sender);
 	void __fastcall ExportObjClick(TObject *Sender);
@@ -304,8 +295,6 @@ public:		// User declarations
         __fastcall TfraLeftBar(TComponent* Owner);
 	void ChangeTarget(ObjClassID tgt);
     void UpdateSnapList();
-    void MinimizeAllFrames();
-    void MaximizeAllFrames();
     void UpdateBar();
     void OnTimer();
     void RefreshBar();
