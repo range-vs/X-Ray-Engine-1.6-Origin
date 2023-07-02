@@ -134,7 +134,9 @@ public:
     CCommandVar		__stdcall	CommandMultiRenameObjects(CCommandVar p1,CCommandVar p2);
 };
 extern CLevelTool*&		LTools;
+extern TForm*		currentFormTool;
 
 extern void ResetActionToSelect();
 extern TShiftState ssRBOnly;
+void fakeRedrawCurrentFormTool();
 #endif

@@ -32,7 +32,7 @@ TfrmMain *frmMain;
 #include "../../xrSound/soundrender_source.h"
 #include "ResourceManager.h"
 #include "../xrEProps/EditorChooseEvents.h"
-
+#include "UI_LevelTools.h"
 
 __fastcall TfrmMain::TfrmMain(TComponent* Owner)
         : TForm(Owner)
@@ -274,7 +274,9 @@ void __fastcall TfrmMain::paToolsCollapse(TObject *Sender)
 
 void __fastcall TfrmMain::paToolsExpand(TObject *Sender)
 {
-	//paTools->RePaint();
+	paTools->Visible = false;
+	paTools->Visible = true;
+    fakeRedrawCurrentFormTool();
 }
 //---------------------------------------------------------------------------
 

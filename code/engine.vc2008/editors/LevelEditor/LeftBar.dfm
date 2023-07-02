@@ -42,22 +42,25 @@ object fraLeftBar: TfraLeftBar
     TabOrder = 0
     object paFramesMain: TCategoryPanel
       Top = 521
+      Height = 350
       Caption = 'Edit Mode Tools'
       Color = 10528425
       TabOrder = 0
-      Visible = False
+      OnCollapse = paCollapse
+      OnExpand = paExpand
       object paFrames: TPanel
         Left = 0
         Top = 0
         Width = 220
-        Height = 174
-        Align = alBottom
+        Height = 324
+        Align = alClient
         BevelOuter = bvLowered
         Color = 10528425
         Constraints.MaxWidth = 220
         Constraints.MinWidth = 220
         ParentBackground = False
         TabOrder = 0
+        ExplicitHeight = 174
       end
     end
     object paSnapList: TCategoryPanel
@@ -67,6 +70,8 @@ object fraLeftBar: TfraLeftBar
       Color = 10528425
       FullRepaint = False
       TabOrder = 1
+      OnCollapse = paCollapse
+      OnExpand = paExpand
       object Bevel2: TBevel
         Left = 2
         Top = 33
@@ -230,6 +235,8 @@ object fraLeftBar: TfraLeftBar
       Color = 10528425
       FullRepaint = False
       TabOrder = 2
+      OnCollapse = paCollapse
+      OnExpand = paExpand
       object ebTargetObject: TExtBtn
         Left = 17
         Top = 17
@@ -2913,6 +2920,8 @@ object fraLeftBar: TfraLeftBar
       Color = 10528425
       FullRepaint = False
       TabOrder = 3
+      OnCollapse = paCollapse
+      OnExpand = paExpand
       object ExtBtn7: TExtBtn
         Left = 2
         Top = 1
@@ -3056,6 +3065,8 @@ object fraLeftBar: TfraLeftBar
       ParentShowHint = False
       ShowHint = True
       TabOrder = 4
+      OnCollapse = paCollapse
+      OnExpand = paExpand
       object ebSceneFile: TExtBtn
         Left = 2
         Top = 2

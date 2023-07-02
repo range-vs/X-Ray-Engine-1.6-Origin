@@ -129,8 +129,6 @@ object frmMain: TfrmMain
         TabOrder = 0
         OnCollapse = paToolsCollapse
         OnExpand = paToolsExpand
-        ExplicitLeft = -3
-        ExplicitTop = 3
       end
     end
     object Panel1: TPanel

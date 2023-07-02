@@ -706,3 +706,15 @@ void __fastcall TfraLeftBar::ClipEditor1Click(TObject *Sender)
 //---------------------------------------------------------------------------
 
 
+void __fastcall TfraLeftBar::paCollapse(TObject *Sender)
+{
+	fakeRedrawCurrentFormTool();
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TfraLeftBar::paExpand(TObject *Sender)
+{
+    fakeRedrawCurrentFormTool();
+}
+//---------------------------------------------------------------------------
+

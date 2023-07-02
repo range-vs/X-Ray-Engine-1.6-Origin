@@ -286,6 +286,8 @@ __published:	// IDE-managed Components
 	void __fastcall e1Click(TObject *Sender);
 	void __fastcall btEnableObjectClick(TObject *Sender);
 	void __fastcall ClipEditor1Click(TObject *Sender);
+	void __fastcall paCollapse(TObject *Sender);
+	void __fastcall paExpand(TObject *Sender);
 private:	// User declarations
     void RedrawBar();
 	void __fastcall miRecentFilesClick(TObject *Sender);

@@ -215,7 +215,7 @@ object fraObject: TfraObject
     object APHeadLabel1: TLabel
       Left = 1
       Top = 1
-      Width = 52
+      Width = 216
       Height = 13
       Align = alTop
       Alignment = taCenter
@@ -223,6 +223,7 @@ object fraObject: TfraObject
       Color = clGray
       ParentColor = False
       OnClick = ExpandClick
+      ExplicitWidth = 52
     end
     object ExtBtn2: TExtBtn
       Left = 205
@@ -347,7 +348,7 @@ object fraObject: TfraObject
     object APHeadLabel2: TLabel
       Left = 1
       Top = 1
-      Width = 68
+      Width = 216
       Height = 13
       Align = alTop
       Alignment = taCenter
@@ -355,6 +356,7 @@ object fraObject: TfraObject
       Color = clGray
       ParentColor = False
       OnClick = ExpandClick
+      ExplicitWidth = 68
     end
     object Bevel2: TBevel
       Left = 1

@@ -18,15 +18,13 @@
 
 #include "../../Include/stack_trace.h"
 
-//#define DETACH_FRAME(a) 	if (a){ (a)->Hide(); 	(a)->Parent = NULL; }
-//#define ATTACH_FRAME(a,b)	if (a){ (a)->Parent=(b);(a)->Show(); 		}
-
 void DETACH_FRAME(TForm* a)
 {
 	  if (a)
 	  {
 		a->Hide();
 		a->Parent=NULL;
+        currentFormTool = nullptr;
       }
 }
 
@@ -38,7 +36,7 @@ void ATTACH_FRAME(TForm* a, TPanel* b)
 	  {
 		a->Parent=b;
 		a->Show();
-        int a = 48;
+        currentFormTool = a;
 	  }
     }
 	catch (Exception &exception)
@@ -48,7 +46,18 @@ void ATTACH_FRAME(TForm* a, TPanel* b)
 	}
 }
 
+void fakeRedrawCurrentFormTool()
+{
+	if(currentFormTool)
+	{
+		currentFormTool->Visible = false;
+        currentFormTool->Visible = true;
+    }
+}
+
 CLevelTool*&	LTools=(CLevelTool*&)Tools;
+
+TForm* currentFormTool = nullptr;
 
 TShiftState ssRBOnly;
 //---------------------------------------------------------------------------
