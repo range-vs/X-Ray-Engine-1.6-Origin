@@ -1,6 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <BorlandProject>
 	<ProjectSortOrder AutoSort="0" SortType="0">
+    <VirtualFolder ID="{B910BBB5-C542-46A3-B94D-BF0CCC3AA8A8}"/>
+    <File Path="..\Include\IUi.hpp"/>
     <File Path="..\..\editors"/>
     <File Path="..\Include"/>
     <File Path="..\Include\stack_trace.cpp"/>

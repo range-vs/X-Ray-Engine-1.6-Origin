@@ -38,14 +38,16 @@ __published:	// IDE-managed Components
 	TFormStorage *fsStorage;
 	TExtBtn *ebCreateNewMultiple;
 	TExtBtn *ebDistributeObjects;
+	TPanel *Panel1;
+	TPanel *Panel2;
     void __fastcall PanelMinClick(TObject *Sender);
-    void __fastcall TopClick(TObject *Sender);
 	void __fastcall ebCaptureInsideVolumeClick(TObject *Sender);
 	void __fastcall ebCreateDefaultClick(TObject *Sender);
 	void __fastcall ebRemoveDefaultClick(TObject *Sender);
 	void __fastcall ebValidateClick(TObject *Sender);
 	void __fastcall ebBoxPickClick(TObject *Sender);
 	void __fastcall ebDistributeObjectsClick(TObject *Sender);
+	void __fastcall FormShow(TObject *Sender);
 private:	// User declarations
 public:		// User declarations
         __fastcall TfraSector(TComponent* Owner);

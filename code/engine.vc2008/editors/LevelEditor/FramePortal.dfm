@@ -18,6 +18,7 @@ object fraPortal: TfraPortal
   Font.Style = []
   OldCreateOrder = True
   Scaled = False
+  OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
   object paCommands: TPanel
@@ -28,45 +29,9 @@ object fraPortal: TfraPortal
     Align = alTop
     ParentColor = True
     TabOrder = 0
-    object APHeadLabel1: TLabel
-      Left = 1
-      Top = 1
-      Width = 223
-      Height = 13
-      Align = alTop
-      Alignment = taCenter
-      Caption = 'Command'
-      Color = clGray
-      ParentColor = False
-      OnClick = TopClick
-      ExplicitWidth = 47
-    end
-    object ExtBtn2: TExtBtn
-      Left = 185
-      Top = 2
-      Width = 11
-      Height = 11
-      Align = alNone
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clBlack
-      Font.Height = -11
-      Font.Name = 'MS Sans Serif'
-      Font.Style = []
-      Glyph.Data = {
-        DE000000424DDE00000000000000360000002800000007000000070000000100
-        180000000000A8000000120B0000120B00000000000000000000FFFFFFFFFFFF
-        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF000000FFFFFFFFFFFFFFFFFFFFFFFFFFFF
-        FFFFFFFFFFFFFF000000FFFFFFFFFFFFFFFFFF000000FFFFFFFFFFFFFFFFFF00
-        0000FFFFFFFFFFFF000000000000000000FFFFFFFFFFFF000000FFFFFF000000
-        000000000000000000000000FFFFFF0000000000000000000000000000000000
-        00000000000000000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF00
-        0000}
-      ParentFont = False
-      OnClick = PanelMinClick
-    end
     object ebInvertOrient: TExtBtn
       Left = 1
-      Top = 14
+      Top = 21
       Width = 223
       Height = 15
       Align = alTop
@@ -81,11 +46,12 @@ object fraPortal: TfraPortal
       Font.Style = []
       ParentFont = False
       OnClick = ebInvertOrientClick
+      ExplicitTop = 14
       ExplicitWidth = 215
     end
     object ebComputeAllPortals: TExtBtn
       Left = 1
-      Top = 29
+      Top = 36
       Width = 223
       Height = 15
       Align = alTop
@@ -100,11 +66,12 @@ object fraPortal: TfraPortal
       Font.Style = []
       ParentFont = False
       OnClick = ebComputeAllPortalsClick
+      ExplicitTop = 29
       ExplicitWidth = 215
     end
     object ebComputeSelPortals: TExtBtn
       Left = 1
-      Top = 44
+      Top = 51
       Width = 223
       Height = 15
       Align = alTop
@@ -119,11 +86,12 @@ object fraPortal: TfraPortal
       Font.Style = []
       ParentFont = False
       OnClick = ebComputeClick
+      ExplicitTop = 44
       ExplicitWidth = 215
     end
     object ExtBtn1: TExtBtn
       Left = 1
-      Top = 59
+      Top = 66
       Width = 223
       Height = 15
       Align = alTop
@@ -138,7 +106,57 @@ object fraPortal: TfraPortal
       Font.Style = []
       ParentFont = False
       OnClick = ExtBtn1Click
+      ExplicitTop = 59
       ExplicitWidth = 215
+    end
+    object Panel1: TPanel
+      Left = 1
+      Top = 1
+      Width = 223
+      Height = 20
+      Align = alTop
+      Caption = 'HeaderPanel'
+      ShowCaption = False
+      TabOrder = 0
+      object APHeadLabel1: TLabel
+        Left = 1
+        Top = 1
+        Width = 210
+        Height = 18
+        Align = alClient
+        Alignment = taCenter
+        Caption = 'Command'
+        Color = clGray
+        ParentColor = False
+        ExplicitWidth = 47
+        ExplicitHeight = 13
+      end
+      object ExtBtn2: TExtBtn
+        Left = 211
+        Top = 1
+        Width = 11
+        Height = 18
+        Align = alRight
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -11
+        Font.Name = 'MS Sans Serif'
+        Font.Style = []
+        Glyph.Data = {
+          DE000000424DDE00000000000000360000002800000007000000070000000100
+          180000000000A8000000120B0000120B00000000000000000000FFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF000000FFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFF000000FFFFFFFFFFFFFFFFFF000000FFFFFFFFFFFFFFFFFF00
+          0000FFFFFFFFFFFF000000000000000000FFFFFFFFFFFF000000FFFFFF000000
+          000000000000000000000000FFFFFF0000000000000000000000000000000000
+          00000000000000000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF00
+          0000}
+        ParentFont = False
+        OnClick = PanelMinClick
+        ExplicitLeft = 185
+        ExplicitTop = 2
+        ExplicitHeight = 11
+      end
     end
   end
   object fsStorage: TFormStorage

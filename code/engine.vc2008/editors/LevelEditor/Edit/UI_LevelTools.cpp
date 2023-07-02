@@ -18,33 +18,21 @@
 
 #include "../../Include/stack_trace.h"
 
-//#define DETACH_FRAME(a) 	if (a){ (a)->Hide(); 	(a)->Parent = NULL; }
-//#define ATTACH_FRAME(a,b)	if (a){ (a)->Parent=(b);(a)->Show(); 		}
-
 void DETACH_FRAME(TForm* a)
 {
 	  if (a)
 	  {
 		a->Hide();
 		a->Parent=NULL;
-      }
+	  }
 }
 
 void ATTACH_FRAME(TForm* a, TPanel* b)
 {
-	try
+	if(a)
 	{
-	  if (a)
-	  {
 		a->Parent=b;
 		a->Show();
-        int a = 48;
-	  }
-    }
-	catch (Exception &exception)
-    {
-	   System::UnicodeString ex = exception.StackTrace;
-       int a = 46;
 	}
 }
 

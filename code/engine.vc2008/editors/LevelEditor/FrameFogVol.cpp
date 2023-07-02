@@ -32,7 +32,7 @@ void __fastcall TfraFogVol::ebUngroupClick(TObject *Sender)
 
 void __fastcall TfraFogVol::ExtBtn2Click(TObject *Sender)
 {
-     PanelMinMaxClick(Sender);
+     collapseExpandPanel(Sender);
 }
 //---------------------------------------------------------------------------
 

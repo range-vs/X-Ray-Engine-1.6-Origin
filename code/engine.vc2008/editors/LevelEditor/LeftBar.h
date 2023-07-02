@@ -205,6 +205,10 @@ __published:	// IDE-managed Components
 	TExtBtn *btEnableFogVolumes;
 	TBevel *Bevel3;
 	TMenuItem *ClipEditor1;
+	TPanel *Panel1;
+	TPanel *Panel2;
+	TPanel *Panel3;
+	TPanel *Panel4;
     void __fastcall ebClearClick(TObject *Sender);
     void __fastcall ebLoadClick(TObject *Sender);
     void __fastcall ebSaveClick(TObject *Sender);
@@ -221,7 +225,6 @@ __published:	// IDE-managed Components
     void __fastcall ebEditLibClick(TObject *Sender);
     void __fastcall TargetClick(TObject *Sender);
     void __fastcall PanelMimimizeClickClick(TObject *Sender);
-    void __fastcall PanelMaximizeClick(TObject *Sender);
     void __fastcall ebEditorPreferencesClick(TObject *Sender);
     void __fastcall ebRefreshEditorClick(TObject *Sender);
 	void __fastcall ebInvertClick(TObject *Sender);
@@ -299,7 +302,9 @@ private:	// User declarations
     void RedrawBar();
 	void __fastcall miRecentFilesClick(TObject *Sender);
     
-    xr_vector<std::pair<TExtBtn*,TExtBtn*> >	m_TargetButtons;
+	xr_vector<std::pair<TExtBtn*,TExtBtn*> >	m_TargetButtons;
+	xr_vector<TControl*> headersFixed{};
+    xr_vector<TControl*> headersDynamic{};
 public:		// User declarations
         __fastcall TfraLeftBar(TComponent* Owner);
 	void ChangeTarget(ObjClassID tgt);
@@ -307,8 +312,9 @@ public:		// User declarations
     void MinimizeAllFrames();
     void MaximizeAllFrames();
     void UpdateBar();
-    void OnTimer();
-    void RefreshBar();
+	void OnTimer();
+	void RefreshBar();
+	void CacheCollapseExpandControls(TPanel* base, xr_vector<TControl*>& cache);
 };
 //---------------------------------------------------------------------------
 extern PACKAGE TfraLeftBar *fraLeftBar;

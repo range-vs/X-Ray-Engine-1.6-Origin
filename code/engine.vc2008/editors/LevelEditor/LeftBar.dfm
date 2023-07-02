@@ -1,7 +1,7 @@
 object fraLeftBar: TfraLeftBar
   Left = 0
   Top = 0
-  Width = 451
+  Width = 827
   Height = 1015
   HorzScrollBar.ButtonSize = 1
   HorzScrollBar.ParentColor = False
@@ -28,7 +28,7 @@ object fraLeftBar: TfraLeftBar
     BevelInner = bvLowered
     BevelOuter = bvNone
     Color = 10528425
-    Constraints.MaxWidth = 220
+    Constraints.MaxWidth = 451
     Constraints.MinWidth = 220
     ParentBackground = False
     TabOrder = 0
@@ -36,7 +36,7 @@ object fraLeftBar: TfraLeftBar
       Left = 1
       Top = 1
       Width = 218
-      Height = 152
+      Height = 158
       Hint = 'Scene commands'
       Align = alTop
       Alignment = taLeftJustify
@@ -45,45 +45,9 @@ object fraLeftBar: TfraLeftBar
       ParentShowHint = False
       ShowHint = True
       TabOrder = 0
-      object APHeadLabel2: TLabel
-        Left = 1
-        Top = 1
-        Width = 216
-        Height = 13
-        Align = alTop
-        Alignment = taCenter
-        Caption = 'Scene'
-        Color = clGray
-        ParentColor = False
-        OnClick = PanelMaximizeClick
-        ExplicitWidth = 31
-      end
-      object sbSceneMin: TExtBtn
-        Left = 205
-        Top = 2
-        Width = 11
-        Height = 11
-        Align = alNone
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clBlack
-        Font.Height = -11
-        Font.Name = 'MS Sans Serif'
-        Font.Style = []
-        Glyph.Data = {
-          DE000000424DDE00000000000000360000002800000007000000070000000100
-          180000000000A8000000120B0000120B00000000000000000000FFFFFFFFFFFF
-          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF000000FFFFFFFFFFFFFFFFFFFFFFFFFFFF
-          FFFFFFFFFFFFFF000000FFFFFFFFFFFFFFFFFF000000FFFFFFFFFFFFFFFFFF00
-          0000FFFFFFFFFFFF000000000000000000FFFFFFFFFFFF000000FFFFFF000000
-          000000000000000000000000FFFFFF0000000000000000000000000000000000
-          00000000000000000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF00
-          0000}
-        ParentFont = False
-        OnClick = PanelMimimizeClickClick
-      end
       object ebSceneFile: TExtBtn
         Left = 2
-        Top = 16
+        Top = 22
         Width = 215
         Height = 15
         Align = alNone
@@ -111,7 +75,7 @@ object fraLeftBar: TfraLeftBar
       end
       object ebScene: TExtBtn
         Left = 2
-        Top = 31
+        Top = 37
         Width = 215
         Height = 15
         Align = alNone
@@ -141,7 +105,7 @@ object fraLeftBar: TfraLeftBar
       end
       object ebObjectList: TExtBtn
         Left = 2
-        Top = 121
+        Top = 127
         Width = 215
         Height = 15
         Align = alNone
@@ -161,7 +125,7 @@ object fraLeftBar: TfraLeftBar
       end
       object ebPreferences: TExtBtn
         Left = 2
-        Top = 136
+        Top = 142
         Width = 215
         Height = 15
         Align = alNone
@@ -181,7 +145,7 @@ object fraLeftBar: TfraLeftBar
       end
       object ebLightAnimationEditor: TExtBtn
         Left = 2
-        Top = 106
+        Top = 112
         Width = 215
         Height = 15
         Align = alNone
@@ -201,7 +165,7 @@ object fraLeftBar: TfraLeftBar
       end
       object ebImages: TExtBtn
         Left = 2
-        Top = 76
+        Top = 82
         Width = 215
         Height = 15
         Align = alNone
@@ -231,7 +195,7 @@ object fraLeftBar: TfraLeftBar
       end
       object ebSounds: TExtBtn
         Left = 2
-        Top = 91
+        Top = 97
         Width = 215
         Height = 15
         Align = alNone
@@ -261,7 +225,7 @@ object fraLeftBar: TfraLeftBar
       end
       object ExtBtn2: TExtBtn
         Left = 2
-        Top = 61
+        Top = 67
         Width = 215
         Height = 15
         Align = alNone
@@ -291,7 +255,7 @@ object fraLeftBar: TfraLeftBar
       end
       object ebCompile: TExtBtn
         Left = 2
-        Top = 46
+        Top = 52
         Width = 215
         Height = 15
         Align = alNone
@@ -319,55 +283,66 @@ object fraLeftBar: TfraLeftBar
         Spacing = 3
         OnMouseDown = ebCompileMouseDown
       end
+      object Panel1: TPanel
+        Left = 1
+        Top = 1
+        Width = 216
+        Height = 20
+        Align = alTop
+        Caption = 'PanelHeader'
+        ShowCaption = False
+        TabOrder = 0
+        object APHeadLabel2: TLabel
+          Left = 1
+          Top = 1
+          Width = 203
+          Height = 18
+          Align = alClient
+          Alignment = taCenter
+          Caption = 'Scene'
+          Color = clGray
+          ParentColor = False
+          ExplicitWidth = 31
+          ExplicitHeight = 13
+        end
+        object sbSceneMin: TExtBtn
+          Left = 204
+          Top = 1
+          Width = 11
+          Height = 18
+          Align = alRight
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -11
+          Font.Name = 'MS Sans Serif'
+          Font.Style = []
+          Glyph.Data = {
+            DE000000424DDE00000000000000360000002800000007000000070000000100
+            180000000000A8000000120B0000120B00000000000000000000FFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF000000FFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFF000000FFFFFFFFFFFFFFFFFF000000FFFFFFFFFFFFFFFFFF00
+            0000FFFFFFFFFFFF000000000000000000FFFFFFFFFFFF000000FFFFFF000000
+            000000000000000000000000FFFFFF0000000000000000000000000000000000
+            00000000000000000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF00
+            0000}
+          ParentFont = False
+          OnClick = PanelMimimizeClickClick
+          ExplicitTop = -3
+        end
+      end
     end
     object paEdit: TPanel
       Left = 1
-      Top = 153
+      Top = 159
       Width = 218
-      Height = 63
+      Height = 70
       Align = alTop
       AutoSize = True
       Color = 10528425
       TabOrder = 1
-      object lbTools: TLabel
-        Left = 1
-        Top = 1
-        Width = 216
-        Height = 13
-        Align = alTop
-        Alignment = taCenter
-        Caption = 'Tools'
-        Color = clGray
-        ParentColor = False
-        OnClick = PanelMaximizeClick
-        ExplicitWidth = 26
-      end
-      object sbEditMin: TExtBtn
-        Left = 205
-        Top = 2
-        Width = 11
-        Height = 11
-        Align = alNone
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clBlack
-        Font.Height = -11
-        Font.Name = 'MS Sans Serif'
-        Font.Style = []
-        Glyph.Data = {
-          DE000000424DDE00000000000000360000002800000007000000070000000100
-          180000000000A8000000120B0000120B00000000000000000000FFFFFFFFFFFF
-          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF000000FFFFFFFFFFFFFFFFFFFFFFFFFFFF
-          FFFFFFFFFFFFFF000000FFFFFFFFFFFFFFFFFF000000FFFFFFFFFFFFFFFFFF00
-          0000FFFFFFFFFFFF000000000000000000FFFFFFFFFFFF000000FFFFFF000000
-          000000000000000000000000FFFFFF0000000000000000000000000000000000
-          00000000000000000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF00
-          0000}
-        ParentFont = False
-        OnClick = PanelMimimizeClickClick
-      end
       object ExtBtn7: TExtBtn
         Left = 2
-        Top = 16
+        Top = 23
         Width = 107
         Height = 15
         Align = alNone
@@ -398,7 +373,7 @@ object fraLeftBar: TfraLeftBar
       end
       object ExtBtn8: TExtBtn
         Left = 2
-        Top = 31
+        Top = 38
         Width = 107
         Height = 15
         Align = alNone
@@ -428,7 +403,7 @@ object fraLeftBar: TfraLeftBar
       end
       object ExtBtn10: TExtBtn
         Left = 110
-        Top = 16
+        Top = 23
         Width = 107
         Height = 15
         Align = alNone
@@ -459,7 +434,7 @@ object fraLeftBar: TfraLeftBar
       end
       object ebProperties: TExtBtn
         Left = 2
-        Top = 47
+        Top = 54
         Width = 107
         Height = 15
         Align = alNone
@@ -479,7 +454,7 @@ object fraLeftBar: TfraLeftBar
       end
       object ebMultiRename: TExtBtn
         Left = 110
-        Top = 34
+        Top = 41
         Width = 107
         Height = 15
         Align = alNone
@@ -497,19 +472,68 @@ object fraLeftBar: TfraLeftBar
         ParentFont = False
         OnClick = ebMultiRenameClick
       end
+      object Panel2: TPanel
+        Left = 1
+        Top = 1
+        Width = 216
+        Height = 20
+        Align = alTop
+        Caption = 'PanelHeader'
+        ShowCaption = False
+        TabOrder = 0
+        object lbTools: TLabel
+          Left = 1
+          Top = 1
+          Width = 203
+          Height = 18
+          Align = alClient
+          Alignment = taCenter
+          Caption = 'Tools'
+          Color = clGray
+          ParentColor = False
+          ExplicitWidth = 26
+          ExplicitHeight = 13
+        end
+        object sbEditMin: TExtBtn
+          Left = 204
+          Top = 1
+          Width = 11
+          Height = 18
+          Align = alRight
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -11
+          Font.Name = 'MS Sans Serif'
+          Font.Style = []
+          Glyph.Data = {
+            DE000000424DDE00000000000000360000002800000007000000070000000100
+            180000000000A8000000120B0000120B00000000000000000000FFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF000000FFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFF000000FFFFFFFFFFFFFFFFFF000000FFFFFFFFFFFFFFFFFF00
+            0000FFFFFFFFFFFF000000000000000000FFFFFFFFFFFF000000FFFFFF000000
+            000000000000000000000000FFFFFF0000000000000000000000000000000000
+            00000000000000000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF00
+            0000}
+          ParentFont = False
+          OnClick = PanelMimimizeClickClick
+          ExplicitLeft = 205
+          ExplicitTop = 2
+          ExplicitHeight = 11
+        end
+      end
     end
     object paTarget: TPanel
       Left = 1
-      Top = 216
+      Top = 229
       Width = 218
-      Height = 140
+      Height = 148
       Align = alTop
       AutoSize = True
       Color = 10528425
       TabOrder = 2
       object ebTargetObject: TExtBtn
         Left = 17
-        Top = 17
+        Top = 25
         Width = 95
         Height = 15
         Align = alNone
@@ -573,7 +597,7 @@ object fraLeftBar: TfraLeftBar
       end
       object ebTargetLight: TExtBtn
         Left = 17
-        Top = 32
+        Top = 40
         Width = 95
         Height = 15
         Align = alNone
@@ -637,7 +661,7 @@ object fraLeftBar: TfraLeftBar
       end
       object ebTargetSoundSrc: TExtBtn
         Left = 17
-        Top = 47
+        Top = 55
         Width = 95
         Height = 15
         Align = alNone
@@ -701,7 +725,7 @@ object fraLeftBar: TfraLeftBar
       end
       object ebTargetSoundEnv: TExtBtn
         Left = 17
-        Top = 62
+        Top = 70
         Width = 95
         Height = 15
         Align = alNone
@@ -765,7 +789,7 @@ object fraLeftBar: TfraLeftBar
       end
       object ebTargetGlow: TExtBtn
         Left = 17
-        Top = 77
+        Top = 85
         Width = 95
         Height = 15
         Align = alNone
@@ -829,7 +853,7 @@ object fraLeftBar: TfraLeftBar
       end
       object ebTargetSpawnPoint: TExtBtn
         Left = 17
-        Top = 107
+        Top = 115
         Width = 95
         Height = 15
         Align = alNone
@@ -893,7 +917,7 @@ object fraLeftBar: TfraLeftBar
       end
       object ebTargetWay: TExtBtn
         Left = 17
-        Top = 123
+        Top = 131
         Width = 95
         Height = 15
         Align = alNone
@@ -957,7 +981,7 @@ object fraLeftBar: TfraLeftBar
       end
       object ebTargetSector: TExtBtn
         Left = 127
-        Top = 17
+        Top = 25
         Width = 95
         Height = 15
         Align = alNone
@@ -1021,7 +1045,7 @@ object fraLeftBar: TfraLeftBar
       end
       object ebTargetPortal: TExtBtn
         Left = 127
-        Top = 32
+        Top = 40
         Width = 95
         Height = 15
         Align = alNone
@@ -1083,45 +1107,9 @@ object fraLeftBar: TfraLeftBar
         Spacing = 3
         OnClick = TargetClick
       end
-      object lbEditMode: TLabel
-        Left = 1
-        Top = 1
-        Width = 216
-        Height = 13
-        Align = alTop
-        Alignment = taCenter
-        Caption = 'Edit Mode'
-        Color = clGray
-        ParentColor = False
-        OnClick = PanelMaximizeClick
-        ExplicitWidth = 48
-      end
-      object sbTargetMin: TExtBtn
-        Left = 205
-        Top = 2
-        Width = 11
-        Height = 11
-        Align = alNone
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clBlack
-        Font.Height = -11
-        Font.Name = 'MS Sans Serif'
-        Font.Style = []
-        Glyph.Data = {
-          DE000000424DDE00000000000000360000002800000007000000070000000100
-          180000000000A8000000120B0000120B00000000000000000000FFFFFFFFFFFF
-          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF000000FFFFFFFFFFFFFFFFFFFFFFFFFFFF
-          FFFFFFFFFFFFFF000000FFFFFFFFFFFFFFFFFF000000FFFFFFFFFFFFFFFFFF00
-          0000FFFFFFFFFFFF000000000000000000FFFFFFFFFFFF000000FFFFFF000000
-          000000000000000000000000FFFFFF0000000000000000000000000000000000
-          00000000000000000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF00
-          0000}
-        ParentFont = False
-        OnClick = PanelMimimizeClickClick
-      end
       object ebTargetGroup: TExtBtn
         Left = 127
-        Top = 47
+        Top = 55
         Width = 95
         Height = 15
         Align = alNone
@@ -1185,7 +1173,7 @@ object fraLeftBar: TfraLeftBar
       end
       object ebTargetPS: TExtBtn
         Left = 127
-        Top = 62
+        Top = 70
         Width = 95
         Height = 15
         Align = alNone
@@ -1249,7 +1237,7 @@ object fraLeftBar: TfraLeftBar
       end
       object ebTargetShape: TExtBtn
         Left = 17
-        Top = 92
+        Top = 100
         Width = 95
         Height = 15
         Align = alNone
@@ -1313,7 +1301,7 @@ object fraLeftBar: TfraLeftBar
       end
       object ebTargetDO: TExtBtn
         Left = 127
-        Top = 77
+        Top = 85
         Width = 95
         Height = 15
         Align = alNone
@@ -1377,7 +1365,7 @@ object fraLeftBar: TfraLeftBar
       end
       object ebTargetAIMap: TExtBtn
         Left = 127
-        Top = 92
+        Top = 100
         Width = 95
         Height = 15
         Align = alNone
@@ -1441,7 +1429,7 @@ object fraLeftBar: TfraLeftBar
       end
       object ebTargetWallmarks: TExtBtn
         Left = 127
-        Top = 107
+        Top = 115
         Width = 95
         Height = 15
         Align = alNone
@@ -1505,7 +1493,7 @@ object fraLeftBar: TfraLeftBar
       end
       object ebTargetFogVolumes: TExtBtn
         Left = 127
-        Top = 121
+        Top = 129
         Width = 95
         Height = 15
         Align = alNone
@@ -1569,7 +1557,7 @@ object fraLeftBar: TfraLeftBar
       end
       object btEnableObject: TExtBtn
         Left = 3
-        Top = 18
+        Top = 26
         Width = 16
         Height = 16
         Hint = 'Clear snap list'
@@ -1671,7 +1659,7 @@ object fraLeftBar: TfraLeftBar
       object btEnableLight: TExtBtn
         Tag = 1
         Left = 3
-        Top = 33
+        Top = 41
         Width = 16
         Height = 16
         Hint = 'Clear snap list'
@@ -1773,7 +1761,7 @@ object fraLeftBar: TfraLeftBar
       object btEnableSoundSrc: TExtBtn
         Tag = 2
         Left = 3
-        Top = 48
+        Top = 56
         Width = 16
         Height = 16
         Hint = 'Clear snap list'
@@ -1875,7 +1863,7 @@ object fraLeftBar: TfraLeftBar
       object btEnableSoundEnv: TExtBtn
         Tag = 3
         Left = 3
-        Top = 63
+        Top = 71
         Width = 16
         Height = 16
         Hint = 'Clear snap list'
@@ -1977,7 +1965,7 @@ object fraLeftBar: TfraLeftBar
       object btEnableGlow: TExtBtn
         Tag = 4
         Left = 3
-        Top = 78
+        Top = 86
         Width = 16
         Height = 16
         Hint = 'Clear snap list'
@@ -2079,7 +2067,7 @@ object fraLeftBar: TfraLeftBar
       object btEnableShape: TExtBtn
         Tag = 5
         Left = 3
-        Top = 93
+        Top = 101
         Width = 16
         Height = 16
         Hint = 'Clear snap list'
@@ -2181,7 +2169,7 @@ object fraLeftBar: TfraLeftBar
       object btEnableSpawnPoint: TExtBtn
         Tag = 6
         Left = 3
-        Top = 108
+        Top = 116
         Width = 16
         Height = 16
         Hint = 'Clear snap list'
@@ -2283,7 +2271,7 @@ object fraLeftBar: TfraLeftBar
       object btEnableWay: TExtBtn
         Tag = 7
         Left = 3
-        Top = 123
+        Top = 131
         Width = 16
         Height = 16
         Hint = 'Clear snap list'
@@ -2385,7 +2373,7 @@ object fraLeftBar: TfraLeftBar
       object btEnableSector: TExtBtn
         Tag = 8
         Left = 110
-        Top = 18
+        Top = 26
         Width = 16
         Height = 16
         Hint = 'Clear snap list'
@@ -2487,7 +2475,7 @@ object fraLeftBar: TfraLeftBar
       object btEnablePortal: TExtBtn
         Tag = 9
         Left = 110
-        Top = 33
+        Top = 41
         Width = 16
         Height = 16
         Hint = 'Clear snap list'
@@ -2589,7 +2577,7 @@ object fraLeftBar: TfraLeftBar
       object btEnableGroup: TExtBtn
         Tag = 10
         Left = 110
-        Top = 48
+        Top = 56
         Width = 16
         Height = 16
         Hint = 'Clear snap list'
@@ -2691,7 +2679,7 @@ object fraLeftBar: TfraLeftBar
       object btEnablePS: TExtBtn
         Tag = 11
         Left = 110
-        Top = 63
+        Top = 71
         Width = 16
         Height = 16
         Hint = 'Clear snap list'
@@ -2793,7 +2781,7 @@ object fraLeftBar: TfraLeftBar
       object btEnableDO: TExtBtn
         Tag = 12
         Left = 110
-        Top = 78
+        Top = 86
         Width = 16
         Height = 16
         Hint = 'Clear snap list'
@@ -2895,7 +2883,7 @@ object fraLeftBar: TfraLeftBar
       object btEnableAIMap: TExtBtn
         Tag = 13
         Left = 110
-        Top = 93
+        Top = 101
         Width = 16
         Height = 16
         Hint = 'Clear snap list'
@@ -2997,7 +2985,7 @@ object fraLeftBar: TfraLeftBar
       object btEnableWallmarks: TExtBtn
         Tag = 14
         Left = 110
-        Top = 108
+        Top = 116
         Width = 16
         Height = 16
         Hint = 'Clear snap list'
@@ -3099,7 +3087,7 @@ object fraLeftBar: TfraLeftBar
       object btEnableFogVolumes: TExtBtn
         Tag = 15
         Left = 110
-        Top = 123
+        Top = 131
         Width = 16
         Height = 16
         Hint = 'Clear snap list'
@@ -3200,70 +3188,82 @@ object fraLeftBar: TfraLeftBar
       end
       object Bevel3: TBevel
         Left = 109
-        Top = 18
+        Top = 26
         Width = 2
         Height = 120
         Shape = bsSpacer
         Style = bsRaised
       end
+      object Panel3: TPanel
+        Left = 1
+        Top = 1
+        Width = 216
+        Height = 20
+        Align = alTop
+        Caption = 'PanelHeader'
+        ShowCaption = False
+        TabOrder = 0
+        object lbEditMode: TLabel
+          Left = 1
+          Top = 1
+          Width = 203
+          Height = 18
+          Align = alClient
+          Alignment = taCenter
+          Caption = 'Edit Mode'
+          Color = clGray
+          ParentColor = False
+          ExplicitWidth = 48
+          ExplicitHeight = 13
+        end
+        object sbTargetMin: TExtBtn
+          Left = 204
+          Top = 1
+          Width = 11
+          Height = 18
+          Align = alRight
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -11
+          Font.Name = 'MS Sans Serif'
+          Font.Style = []
+          Glyph.Data = {
+            DE000000424DDE00000000000000360000002800000007000000070000000100
+            180000000000A8000000120B0000120B00000000000000000000FFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF000000FFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFF000000FFFFFFFFFFFFFFFFFF000000FFFFFFFFFFFFFFFFFF00
+            0000FFFFFFFFFFFF000000000000000000FFFFFFFFFFFF000000FFFFFF000000
+            000000000000000000000000FFFFFF0000000000000000000000000000000000
+            00000000000000000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF00
+            0000}
+          ParentFont = False
+          OnClick = PanelMimimizeClickClick
+          ExplicitLeft = 205
+          ExplicitTop = 2
+          ExplicitHeight = 11
+        end
+      end
     end
     object paSnapList: TPanel
       Left = 1
-      Top = 356
+      Top = 377
       Width = 218
-      Height = 122
+      Height = 129
       Align = alTop
       AutoSize = True
       Color = 10528425
       TabOrder = 3
-      ExplicitTop = 355
       object Bevel2: TBevel
         Left = 2
-        Top = 46
+        Top = 53
         Width = 215
         Height = 18
         Shape = bsTopLine
         Style = bsRaised
       end
-      object Label1: TLabel
-        Left = 1
-        Top = 1
-        Width = 216
-        Height = 13
-        Align = alTop
-        Alignment = taCenter
-        Caption = 'Snap List'
-        Color = clGray
-        ParentColor = False
-        OnClick = PanelMaximizeClick
-        ExplicitWidth = 44
-      end
-      object ExtBtn16: TExtBtn
-        Left = 205
-        Top = 2
-        Width = 11
-        Height = 11
-        Align = alNone
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clBlack
-        Font.Height = -11
-        Font.Name = 'MS Sans Serif'
-        Font.Style = []
-        Glyph.Data = {
-          DE000000424DDE00000000000000360000002800000007000000070000000100
-          180000000000A8000000120B0000120B00000000000000000000FFFFFFFFFFFF
-          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF000000FFFFFFFFFFFFFFFFFFFFFFFFFFFF
-          FFFFFFFFFFFFFF000000FFFFFFFFFFFFFFFFFF000000FFFFFFFFFFFFFFFFFF00
-          0000FFFFFFFFFFFF000000000000000000FFFFFFFFFFFF000000FFFFFF000000
-          000000000000000000000000FFFFFF0000000000000000000000000000000000
-          00000000000000000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF00
-          0000}
-        ParentFont = False
-        OnClick = PanelMimimizeClickClick
-      end
       object ebUseSnapList: TExtBtn
         Left = 2
-        Top = 31
+        Top = 38
         Width = 215
         Height = 15
         Align = alNone
@@ -3285,7 +3285,7 @@ object fraLeftBar: TfraLeftBar
       end
       object ExtBtn1: TExtBtn
         Left = 2
-        Top = 16
+        Top = 23
         Width = 215
         Height = 15
         Align = alNone
@@ -3315,13 +3315,13 @@ object fraLeftBar: TfraLeftBar
       end
       object Bevel1: TBevel
         Left = 2
-        Top = 64
+        Top = 71
         Width = 215
         Height = 57
       end
       object ebSnapListMode: TExtBtn
         Left = 15
-        Top = 49
+        Top = 56
         Width = 68
         Height = 14
         Hint = 'Append to snap list'
@@ -3360,7 +3360,7 @@ object fraLeftBar: TfraLeftBar
       end
       object ebModeInvert: TExtBtn
         Left = 83
-        Top = 49
+        Top = 56
         Width = 37
         Height = 14
         Hint = 'Clear snap list'
@@ -3392,7 +3392,7 @@ object fraLeftBar: TfraLeftBar
       end
       object lbSnapList: TListBox
         Left = 4
-        Top = 66
+        Top = 73
         Width = 210
         Height = 52
         BorderStyle = bsNone
@@ -3407,6 +3407,55 @@ object fraLeftBar: TfraLeftBar
         ParentFont = False
         Sorted = True
         TabOrder = 0
+      end
+      object Panel4: TPanel
+        Left = 1
+        Top = 1
+        Width = 216
+        Height = 20
+        Align = alTop
+        Caption = 'PanelHeader'
+        ShowCaption = False
+        TabOrder = 1
+        object ExtBtn16: TExtBtn
+          Left = 204
+          Top = 1
+          Width = 11
+          Height = 18
+          Align = alRight
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -11
+          Font.Name = 'MS Sans Serif'
+          Font.Style = []
+          Glyph.Data = {
+            DE000000424DDE00000000000000360000002800000007000000070000000100
+            180000000000A8000000120B0000120B00000000000000000000FFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF000000FFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFF000000FFFFFFFFFFFFFFFFFF000000FFFFFFFFFFFFFFFFFF00
+            0000FFFFFFFFFFFF000000000000000000FFFFFFFFFFFF000000FFFFFF000000
+            000000000000000000000000FFFFFF0000000000000000000000000000000000
+            00000000000000000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF00
+            0000}
+          ParentFont = False
+          OnClick = PanelMimimizeClickClick
+          ExplicitLeft = 205
+          ExplicitTop = 2
+          ExplicitHeight = 11
+        end
+        object Label1: TLabel
+          Left = 1
+          Top = 1
+          Width = 203
+          Height = 18
+          Align = alClient
+          Alignment = taCenter
+          Caption = 'Snap List'
+          Color = clGray
+          ParentColor = False
+          ExplicitWidth = 44
+          ExplicitHeight = 13
+        end
       end
     end
   end

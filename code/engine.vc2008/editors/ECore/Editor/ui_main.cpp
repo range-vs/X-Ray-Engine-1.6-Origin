@@ -514,63 +514,55 @@ bool HelperPanelHeight::removePanel(TPanel* panel)
    	panelHeightBuffer.erase(iter);
 }
 
+void __fastcall ñollapsePanel(TObject* Sender)
+{
+	if (Sender){
+		TExtBtn* btn = static_cast<TExtBtn*>(Sender);
+		TPanel* panelParent = static_cast<TPanel*>(btn->Parent->Parent);
+		if(HelperPanelHeight::getInstance()->getPanelHeight(panelParent) == 0) {
+			panelParent->AutoSize = false;
+			HelperPanelHeight::getInstance()->getInstance()->addPanel(panelParent, panelParent->Height);
+			panelParent->Height = btn->Parent->Height;
+		}
+		ExecCommand(COMMAND_UPDATE_TOOLBAR);
+	}
+}
 
-#define MIN_PANEL_HEIGHT 25
-void __fastcall PanelMinMax(TPanel *pa)
+void __fastcall expandPanel(TObject* Sender)
 {
-	if (pa/*&&(pa->Align!=alClient)*/){
-		int h = HelperPanelHeight::getInstance()->getPanelHeight(pa);
-		if(h > 0) {//if (pa->Tag > 0){
-			pa->AutoSize = true;
-			pa->Height = h; //pa->Tag;
-			HelperPanelHeight::getInstance()->removePanel(pa);
-			//pa->Tag    = 0;
-        }else{
-			//pa->Tag    = pa->Height;
-			HelperPanelHeight::getInstance()->addPanel(pa, pa->Height);
-			pa->AutoSize = false;
-            pa->Height = MIN_PANEL_HEIGHT;
+	if (Sender){
+		TExtBtn* btn = static_cast<TExtBtn*>(Sender);
+		TPanel* panelParent = static_cast<TPanel*>(btn->Parent->Parent);
+		int h = HelperPanelHeight::getInstance()->getPanelHeight(panelParent);
+		if(h > 0){
+			panelParent->AutoSize = true;
+			panelParent->Height = h;
+			HelperPanelHeight::getInstance()->removePanel(panelParent);
+		}
+		ExecCommand(COMMAND_UPDATE_TOOLBAR);
+	}
+}
+
+void __fastcall collapseExpandPanel(TObject* Sender)
+{
+	if (Sender){
+		TExtBtn* btn = static_cast<TExtBtn*>(Sender);
+		TPanel* panelParent = static_cast<TPanel*>(btn->Parent->Parent);
+		int h = HelperPanelHeight::getInstance()->getPanelHeight(panelParent);
+		if(h > 0) {
+			panelParent->AutoSize = true;
+			panelParent->Height = h;
+			HelperPanelHeight::getInstance()->removePanel(panelParent);
+		}else{
+			HelperPanelHeight::getInstance()->addPanel(panelParent, panelParent->Height);
+			panelParent->AutoSize = false;
+            panelParent->Height = btn->Parent->Height;
         }
         ExecCommand(COMMAND_UPDATE_TOOLBAR);
-    }
+	}
 }
-void __fastcall PanelMinimize(TPanel *pa)
-{
-	if (pa/*&&(pa->Align!=alClient)*/){
-		if(HelperPanelHeight::getInstance()->getPanelHeight(pa) == 0) {//if (pa->Tag == 0){
-        	pa->AutoSize = false;
-			// pa->Tag    = pa->Height;
-			HelperPanelHeight::getInstance()->getInstance()->addPanel(pa, pa->Height);
-            pa->Height = MIN_PANEL_HEIGHT;
-        }
-        ExecCommand(COMMAND_UPDATE_TOOLBAR);
-    }
-}
-void __fastcall PanelMaximize(TPanel *pa)
-{
-	if (pa/*&&(pa->Align!=alClient)*/){
-        int h = HelperPanelHeight::getInstance()->getPanelHeight(pa);
-		if(h > 0){ //if (pa->Tag > 0){
-        	pa->AutoSize = true;
-            pa->Height = h;
-			// pa->Tag    = 0;
-            HelperPanelHeight::getInstance()->removePanel(pa);
-        }
-        ExecCommand(COMMAND_UPDATE_TOOLBAR);
-    }
-}
-void __fastcall PanelMinMaxClick(TObject* Sender)
-{
-    PanelMinMax(((TPanel*)((TControl*)Sender)->Parent));
-}
-void __fastcall PanelMinimizeClick(TObject* Sender)
-{
-    PanelMinimize(((TPanel*)((TControl*)Sender)->Parent));
-}
-void __fastcall PanelMaximizeClick(TObject* Sender)
-{
-    PanelMaximize(((TPanel*)((TControl*)Sender)->Parent));
-}
+
+
 //---------------------------------------------------------------------------
 
 bool TUI::OnCreate(TD3DWindow* w, TPanel* p)

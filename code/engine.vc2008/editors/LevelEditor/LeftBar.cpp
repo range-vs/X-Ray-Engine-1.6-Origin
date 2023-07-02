@@ -51,7 +51,42 @@ __fastcall TfraLeftBar::TfraLeftBar(TComponent* Owner)
         m_TargetButtons[k].second->GroupIndex			= ++startGroupIndex;
     }
 
-    DEFINE_INI				(fsStorage);
+	DEFINE_INI				(fsStorage);
+
+	CacheCollapseExpandControls(paLeftBar, headersFixed);
+}
+
+void TfraLeftBar::CacheCollapseExpandControls(TPanel* base, xr_vector<TControl*>& cache)
+{
+    for(int i{0}; i < base->ControlCount; ++i)
+	{
+		TPanel* panel = dynamic_cast<TPanel*>(base->Controls[i]);
+		if(panel)
+		{
+            TPanel* headerPanel {nullptr};
+			for(int j{0}; j < panel->ControlCount; ++j)
+			{
+				headerPanel = dynamic_cast<TPanel*>(panel->Controls[j]);
+				if(headerPanel && headerPanel->Caption == "PanelHeader")
+                {
+					break;
+				}
+			}
+			if(headerPanel)
+			{
+                TExtBtn* headerBtn {nullptr};
+				for(int k{0}; k < headerPanel->ControlCount; ++k)
+				{
+					headerBtn = dynamic_cast<TExtBtn*>(headerPanel->Controls[k]);
+					if(headerBtn)
+					{
+						cache.emplace_back(headerBtn);
+						break;
+					}
+				}
+			}
+		}
+	}
 }
 //---------------------------------------------------------------------------
 
@@ -113,7 +148,7 @@ void TfraLeftBar::UpdateBar()
 {
     for (int i=0; i<paFrames->ControlCount; i++){
         TForm* f = dynamic_cast<TForm*>(paFrames->Controls[i]);
-        if (f){
+		if (f){
             for (int j=0; j<f->ControlCount; j++){
                 TPanel* pa = dynamic_cast<TPanel*>(f->Controls[j]);
                 if (pa){
@@ -129,43 +164,20 @@ void TfraLeftBar::UpdateBar()
 
 void TfraLeftBar::MinimizeAllFrames()
 {
-    for (int i=0; i<paFrames->ControlCount; i++){
-		TForm* f = dynamic_cast<TForm*>(paFrames->Controls[i]);
-        if (f){
-	        for (int j=0; j<f->ControlCount; j++){
-                TPanel* pa = dynamic_cast<TPanel*>(f->Controls[j]);
-                if (pa) PanelMinimize(pa);
-            }
-        }
-    }
-    for (int j=0; j<paLeftBar->ControlCount; j++){
-        TPanel* pa = dynamic_cast<TPanel*>(paLeftBar->Controls[j]);
-	    if (pa) PanelMinimize(pa);
-    }
+	for(auto&& btn: headersFixed)
+		ñollapsePanel(btn);
+	for(auto&& btn: headersDynamic)
+		ñollapsePanel(btn);
 	UpdateBar();
 }
 //---------------------------------------------------------------------------
 
 void TfraLeftBar::MaximizeAllFrames()
 {
-    for (int j=0; j<paLeftBar->ControlCount; j++){
-        TPanel* pa = dynamic_cast<TPanel*>(paLeftBar->Controls[j]);
-	    if (pa)	PanelMaximize(pa);
-    }
-    for (int i=0; i<paFrames->ControlCount; i++){
-		TForm* f = dynamic_cast<TForm*>(paFrames->Controls[i]);
-        if (f){
-	        for (int j=0; j<f->ControlCount; j++){
-                TPanel* pa = dynamic_cast<TPanel*>(f->Controls[j]);
-                if (pa){
-                	if (pa->Align==alClient){
-                        paFrames->Height-=(pa->Height-pa->Constraints->MinHeight);
-                    }else
-	                 	PanelMaximize(pa);
-                }
-            }
-        }
-    }
+	for(auto&& btn: headersFixed)
+		expandPanel(btn);
+	for(auto&& btn: headersDynamic)
+		expandPanel(btn);
 	UpdateBar();
 }
 //---------------------------------------------------------------------------
@@ -173,9 +185,10 @@ void TfraLeftBar::MaximizeAllFrames()
 void TfraLeftBar::ChangeTarget(ObjClassID tgt)
 {
     for (int i=0; i<paTarget->ControlCount; i++){
-    	TExtBtn* B = dynamic_cast<TExtBtn *>(paTarget->Controls[i]);
+		TExtBtn* B = dynamic_cast<TExtBtn *>(paTarget->Controls[i]);
         if (B&&ObjClassID(B->Tag)==tgt)	B->Down = true;
-    }
+	}
+	CacheCollapseExpandControls(paFrames, headersDynamic);
     UI->RedrawScene	();
     UpdateBar		();
 }
@@ -357,17 +370,11 @@ void __fastcall TfraLeftBar::TargetClick(TObject *Sender)
 
 void __fastcall TfraLeftBar::PanelMimimizeClickClick(TObject *Sender)
 {
-    PanelMinMaxClick(Sender);
-    UpdateBar();
+	collapseExpandPanel(Sender);
+	UpdateBar();
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TfraLeftBar::PanelMaximizeClick(TObject *Sender)
-{
-    ::PanelMaximizeClick(Sender);
-    UpdateBar();
-}
-//---------------------------------------------------------------------------
 
 void __fastcall TfraLeftBar::ebEditorPreferencesClick(TObject *Sender)
 {

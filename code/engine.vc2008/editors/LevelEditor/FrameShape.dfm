@@ -21,49 +21,13 @@ object fraShape: TfraShape
     Left = 0
     Top = 0
     Width = 217
-    Height = 48
+    Height = 60
     Align = alTop
     ParentColor = True
     TabOrder = 0
-    object APHeadLabel1: TLabel
-      Left = 1
-      Top = 1
-      Width = 215
-      Height = 13
-      Align = alTop
-      Alignment = taCenter
-      Caption = 'Append'
-      Color = clGray
-      ParentColor = False
-      OnClick = ExpandClick
-      ExplicitWidth = 37
-    end
-    object ExtBtn2: TExtBtn
-      Left = 205
-      Top = 2
-      Width = 11
-      Height = 11
-      Align = alNone
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clBlack
-      Font.Height = -11
-      Font.Name = 'MS Sans Serif'
-      Font.Style = []
-      Glyph.Data = {
-        DE000000424DDE00000000000000360000002800000007000000070000000100
-        180000000000A8000000120B0000120B00000000000000000000FFFFFFFFFFFF
-        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF000000FFFFFFFFFFFFFFFFFFFFFFFFFFFF
-        FFFFFFFFFFFFFF000000FFFFFFFFFFFFFFFFFF000000FFFFFFFFFFFFFFFFFF00
-        0000FFFFFFFFFFFF000000000000000000FFFFFFFFFFFF000000FFFFFF000000
-        000000000000000000000000FFFFFF0000000000000000000000000000000000
-        00000000000000000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF00
-        0000}
-      ParentFont = False
-      OnClick = PaneMinClick
-    end
     object ebTypeSphere: TExtBtn
       Left = 2
-      Top = 16
+      Top = 21
       Width = 215
       Height = 15
       Align = alNone
@@ -82,7 +46,7 @@ object fraShape: TfraShape
     end
     object ebTypeBox: TExtBtn
       Left = 2
-      Top = 31
+      Top = 36
       Width = 215
       Height = 15
       Align = alNone
@@ -98,54 +62,67 @@ object fraShape: TfraShape
       Font.Style = []
       ParentFont = False
     end
-  end
-  object paEdit: TPanel
-    Left = 0
-    Top = 48
-    Width = 217
-    Height = 47
-    Align = alTop
-    ParentColor = True
-    TabOrder = 1
-    object Label1: TLabel
+    object Panel2: TPanel
       Left = 1
       Top = 1
       Width = 215
-      Height = 13
+      Height = 20
       Align = alTop
-      Alignment = taCenter
-      Caption = 'Edit'
-      Color = clGray
-      ParentColor = False
-      OnClick = ExpandClick
-      ExplicitWidth = 18
+      Caption = 'HeaderPanel'
+      ShowCaption = False
+      TabOrder = 0
+      object APHeadLabel1: TLabel
+        Left = 1
+        Top = 1
+        Width = 202
+        Height = 18
+        Align = alClient
+        Alignment = taCenter
+        Caption = 'Append'
+        Color = clGray
+        ParentColor = False
+        ExplicitWidth = 37
+        ExplicitHeight = 13
+      end
+      object ExtBtn2: TExtBtn
+        Left = 203
+        Top = 1
+        Width = 11
+        Height = 18
+        Align = alRight
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -11
+        Font.Name = 'MS Sans Serif'
+        Font.Style = []
+        Glyph.Data = {
+          DE000000424DDE00000000000000360000002800000007000000070000000100
+          180000000000A8000000120B0000120B00000000000000000000FFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF000000FFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFF000000FFFFFFFFFFFFFFFFFF000000FFFFFFFFFFFFFFFFFF00
+          0000FFFFFFFFFFFF000000000000000000FFFFFFFFFFFF000000FFFFFF000000
+          000000000000000000000000FFFFFF0000000000000000000000000000000000
+          00000000000000000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF00
+          0000}
+        ParentFont = False
+        OnClick = PaneMinClick
+        ExplicitLeft = 204
+        ExplicitTop = 2
+        ExplicitHeight = 11
+      end
     end
-    object ExtBtn3: TExtBtn
-      Left = 205
-      Top = 2
-      Width = 11
-      Height = 11
-      Align = alNone
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clBlack
-      Font.Height = -11
-      Font.Name = 'MS Sans Serif'
-      Font.Style = []
-      Glyph.Data = {
-        DE000000424DDE00000000000000360000002800000007000000070000000100
-        180000000000A8000000120B0000120B00000000000000000000FFFFFFFFFFFF
-        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF000000FFFFFFFFFFFFFFFFFFFFFFFFFFFF
-        FFFFFFFFFFFFFF000000FFFFFFFFFFFFFFFFFF000000FFFFFFFFFFFFFFFFFF00
-        0000FFFFFFFFFFFF000000000000000000FFFFFFFFFFFF000000FFFFFF000000
-        000000000000000000000000FFFFFF0000000000000000000000000000000000
-        00000000000000000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF00
-        0000}
-      ParentFont = False
-      OnClick = PaneMinClick
-    end
+  end
+  object paEdit: TPanel
+    Left = 0
+    Top = 60
+    Width = 217
+    Height = 60
+    Align = alTop
+    ParentColor = True
+    TabOrder = 1
     object ebAttachShape: TExtBtn
       Left = 2
-      Top = 16
+      Top = 21
       Width = 215
       Height = 14
       Align = alNone
@@ -165,7 +142,7 @@ object fraShape: TfraShape
     end
     object ebDetachAllShapes: TExtBtn
       Left = 2
-      Top = 30
+      Top = 35
       Width = 215
       Height = 14
       Align = alNone
@@ -180,6 +157,55 @@ object fraShape: TfraShape
       Font.Style = []
       ParentFont = False
       OnClick = ebDetachAllShapesClick
+    end
+    object Panel3: TPanel
+      Left = 1
+      Top = 1
+      Width = 215
+      Height = 20
+      Align = alTop
+      Caption = 'HeaderPanel'
+      ShowCaption = False
+      TabOrder = 0
+      ExplicitTop = 14
+      object ExtBtn3: TExtBtn
+        Left = 203
+        Top = 1
+        Width = 11
+        Height = 18
+        Align = alRight
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -11
+        Font.Name = 'MS Sans Serif'
+        Font.Style = []
+        Glyph.Data = {
+          DE000000424DDE00000000000000360000002800000007000000070000000100
+          180000000000A8000000120B0000120B00000000000000000000FFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF000000FFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFF000000FFFFFFFFFFFFFFFFFF000000FFFFFFFFFFFFFFFFFF00
+          0000FFFFFFFFFFFF000000000000000000FFFFFFFFFFFF000000FFFFFF000000
+          000000000000000000000000FFFFFF0000000000000000000000000000000000
+          00000000000000000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF00
+          0000}
+        ParentFont = False
+        OnClick = PaneMinClick
+        ExplicitLeft = 204
+        ExplicitTop = 2
+        ExplicitHeight = 11
+      end
+      object Label1: TLabel
+        Left = 1
+        Top = 1
+        Width = 202
+        Height = 18
+        Align = alClient
+        Alignment = taCenter
+        Caption = 'Edit'
+        Color = clGray
+        ParentColor = False
+        ExplicitTop = 5
+      end
     end
   end
   object Panel1: TPanel

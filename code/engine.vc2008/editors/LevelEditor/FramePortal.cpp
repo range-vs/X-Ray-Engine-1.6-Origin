@@ -22,12 +22,7 @@ __fastcall TfraPortal::TfraPortal(TComponent* Owner)
 //---------------------------------------------------------------------------
 void __fastcall TfraPortal::PanelMinClick(TObject *Sender)
 {
-    PanelMinMaxClick(Sender);
-}
-//---------------------------------------------------------------------------
-void __fastcall TfraPortal::TopClick(TObject *Sender)
-{
-    PanelMaximizeClick(Sender);
+	collapseExpandPanel(Sender);
 }
 //---------------------------------------------------------------------------
 
@@ -66,6 +61,13 @@ void __fastcall TfraPortal::ebInvertOrientClick(TObject *Sender)
 void __fastcall TfraPortal::ExtBtn1Click(TObject *Sender)
 {
 	tool->RemoveSimilar();
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TfraPortal::FormShow(TObject *Sender)
+{
+    Panel1->Visible = false;
+    Panel1->Visible = true;
 }
 //---------------------------------------------------------------------------
 

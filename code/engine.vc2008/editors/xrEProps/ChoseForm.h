@@ -51,7 +51,6 @@ __published:	// IDE-managed Components
 	TExtBtn *ebExt;
 	TEdit *edFind;
 	TSplitter *Splitter1;
-	TSplitter *Splitter2;
 	TPanel *paInfo;
         TLabel *lblMaxCountTitle;
         TLabel *lblMaxCountCheck;

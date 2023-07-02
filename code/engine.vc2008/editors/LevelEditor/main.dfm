@@ -44,24 +44,26 @@ object frmMain: TfrmMain
       Align = alTop
       TabOrder = 0
       object APHeadLabel2: TLabel
-        Left = 1
+        Left = 12
         Top = 1
-        Width = 234
-        Height = 13
-        Align = alTop
+        Width = 212
+        Height = 14
+        Align = alClient
         Alignment = taCenter
         Caption = 'Toolbar'
         Color = clGray
         ParentColor = False
         OnClick = TopClick
+        ExplicitLeft = 23
         ExplicitWidth = 36
+        ExplicitHeight = 13
       end
       object sbToolsMin: TExtBtn
-        Left = 223
-        Top = 0
+        Left = 224
+        Top = 1
         Width = 11
-        Height = 13
-        Align = alNone
+        Height = 14
+        Align = alRight
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Height = -11
@@ -78,13 +80,15 @@ object frmMain: TfrmMain
           0000}
         ParentFont = False
         OnClick = sbToolsMinClick
+        ExplicitLeft = 223
+        ExplicitTop = 0
+        ExplicitHeight = 13
       end
       object ebAllMin: TExtBtn
-        Left = 3
-        Top = 2
+        Left = 1
+        Top = 1
         Width = 11
-        Height = 11
-        Align = alNone
+        Height = 14
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Height = -11
@@ -99,12 +103,14 @@ object frmMain: TfrmMain
           FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF0000}
         ParentFont = False
         OnClick = ebAllMinClick
+        ExplicitLeft = -5
+        ExplicitTop = 3
       end
       object ebAllMax: TExtBtn
-        Left = 15
-        Top = 2
+        Left = 12
+        Top = 1
         Width = 11
-        Height = 11
+        Height = 14
         Align = alNone
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack

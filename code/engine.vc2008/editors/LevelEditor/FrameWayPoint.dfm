@@ -20,49 +20,13 @@ object fraWayPoint: TfraWayPoint
     Left = 0
     Top = 0
     Width = 217
-    Height = 49
+    Height = 60
     Align = alTop
     ParentColor = True
     TabOrder = 0
-    object APHeadLabel1: TLabel
-      Left = 1
-      Top = 1
-      Width = 215
-      Height = 13
-      Align = alTop
-      Alignment = taCenter
-      Caption = 'Way Mode'
-      Color = clGray
-      ParentColor = False
-      OnClick = ExpandClick
-      ExplicitWidth = 52
-    end
-    object ExtBtn2: TExtBtn
-      Left = 185
-      Top = 2
-      Width = 11
-      Height = 11
-      Align = alNone
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clBlack
-      Font.Height = -11
-      Font.Name = 'MS Sans Serif'
-      Font.Style = []
-      Glyph.Data = {
-        DE000000424DDE00000000000000360000002800000007000000070000000100
-        180000000000A8000000120B0000120B00000000000000000000FFFFFFFFFFFF
-        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF000000FFFFFFFFFFFFFFFFFFFFFFFFFFFF
-        FFFFFFFFFFFFFF000000FFFFFFFFFFFFFFFFFF000000FFFFFFFFFFFFFFFFFF00
-        0000FFFFFFFFFFFF000000000000000000FFFFFFFFFFFF000000FFFFFF000000
-        000000000000000000000000FFFFFF0000000000000000000000000000000000
-        00000000000000000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF00
-        0000}
-      ParentFont = False
-      OnClick = PanelMinClick
-    end
     object ebModeWay: TExtBtn
       Left = 2
-      Top = 17
+      Top = 23
       Width = 215
       Height = 15
       Align = alNone
@@ -123,7 +87,7 @@ object fraWayPoint: TfraWayPoint
     object ebModePoint: TExtBtn
       Tag = 1
       Left = 2
-      Top = 33
+      Top = 39
       Width = 215
       Height = 15
       Align = alNone
@@ -180,54 +144,68 @@ object fraWayPoint: TfraWayPoint
       Spacing = 3
       OnClick = ebModeWayClick
     end
-  end
-  object paLink: TPanel
-    Left = 0
-    Top = 49
-    Width = 217
-    Height = 84
-    Align = alTop
-    ParentColor = True
-    TabOrder = 1
-    object Label1: TLabel
+    object Panel1: TPanel
       Left = 1
       Top = 1
       Width = 215
-      Height = 13
+      Height = 20
       Align = alTop
-      Alignment = taCenter
-      Caption = 'Link Command'
-      Color = clGray
-      ParentColor = False
-      OnClick = ExpandClick
-      ExplicitWidth = 70
+      Caption = 'HeaderPanel'
+      ShowCaption = False
+      TabOrder = 0
+      ExplicitTop = 14
+      object APHeadLabel1: TLabel
+        Left = 1
+        Top = 1
+        Width = 202
+        Height = 18
+        Align = alClient
+        Alignment = taCenter
+        Caption = 'Way Mode'
+        Color = clGray
+        ParentColor = False
+        ExplicitWidth = 52
+        ExplicitHeight = 13
+      end
+      object ExtBtn2: TExtBtn
+        Left = 203
+        Top = 1
+        Width = 11
+        Height = 18
+        Align = alRight
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -11
+        Font.Name = 'MS Sans Serif'
+        Font.Style = []
+        Glyph.Data = {
+          DE000000424DDE00000000000000360000002800000007000000070000000100
+          180000000000A8000000120B0000120B00000000000000000000FFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF000000FFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFF000000FFFFFFFFFFFFFFFFFF000000FFFFFFFFFFFFFFFFFF00
+          0000FFFFFFFFFFFF000000000000000000FFFFFFFFFFFF000000FFFFFF000000
+          000000000000000000000000FFFFFF0000000000000000000000000000000000
+          00000000000000000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF00
+          0000}
+        ParentFont = False
+        OnClick = PanelMinClick
+        ExplicitLeft = 185
+        ExplicitTop = 2
+        ExplicitHeight = 11
+      end
     end
-    object ExtBtn3: TExtBtn
-      Left = 185
-      Top = 2
-      Width = 11
-      Height = 11
-      Align = alNone
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clBlack
-      Font.Height = -11
-      Font.Name = 'MS Sans Serif'
-      Font.Style = []
-      Glyph.Data = {
-        DE000000424DDE00000000000000360000002800000007000000070000000100
-        180000000000A8000000120B0000120B00000000000000000000FFFFFFFFFFFF
-        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF000000FFFFFFFFFFFFFFFFFFFFFFFFFFFF
-        FFFFFFFFFFFFFF000000FFFFFFFFFFFFFFFFFF000000FFFFFFFFFFFFFFFFFF00
-        0000FFFFFFFFFFFF000000000000000000FFFFFFFFFFFF000000FFFFFF000000
-        000000000000000000000000FFFFFF0000000000000000000000000000000000
-        00000000000000000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF00
-        0000}
-      ParentFont = False
-      OnClick = PanelMinClick
-    end
+  end
+  object paLink: TPanel
+    Left = 0
+    Top = 60
+    Width = 217
+    Height = 90
+    Align = alTop
+    ParentColor = True
+    TabOrder = 1
     object ebInvertLink: TExtBtn
       Left = 2
-      Top = 67
+      Top = 72
       Width = 107
       Height = 15
       Align = alNone
@@ -246,7 +224,7 @@ object fraWayPoint: TfraWayPoint
     end
     object ebAdd1Link: TExtBtn
       Left = 2
-      Top = 37
+      Top = 42
       Width = 107
       Height = 15
       Align = alNone
@@ -265,7 +243,7 @@ object fraWayPoint: TfraWayPoint
     end
     object ebRemoveLinks: TExtBtn
       Left = 109
-      Top = 67
+      Top = 72
       Width = 107
       Height = 15
       Align = alNone
@@ -284,7 +262,7 @@ object fraWayPoint: TfraWayPoint
     end
     object ebAdd2Link: TExtBtn
       Left = 2
-      Top = 52
+      Top = 57
       Width = 107
       Height = 15
       Align = alNone
@@ -303,7 +281,7 @@ object fraWayPoint: TfraWayPoint
     end
     object ebAutoLink: TExtBtn
       Left = 2
-      Top = 17
+      Top = 22
       Width = 215
       Height = 15
       Align = alNone
@@ -363,13 +341,13 @@ object fraWayPoint: TfraWayPoint
     end
     object Bevel1: TBevel
       Left = 2
-      Top = 35
+      Top = 40
       Width = 215
       Height = 2
     end
     object ebConvert1: TExtBtn
       Left = 109
-      Top = 37
+      Top = 42
       Width = 107
       Height = 15
       Align = alNone
@@ -388,7 +366,7 @@ object fraWayPoint: TfraWayPoint
     end
     object ebConvert2: TExtBtn
       Left = 109
-      Top = 52
+      Top = 57
       Width = 107
       Height = 15
       Align = alNone
@@ -404,6 +382,56 @@ object fraWayPoint: TfraWayPoint
       Margin = 13
       ParentFont = False
       OnClick = ebConvert2Click
+    end
+    object Panel2: TPanel
+      Left = 1
+      Top = 1
+      Width = 215
+      Height = 20
+      Align = alTop
+      Caption = 'HeaderPanel'
+      ShowCaption = False
+      TabOrder = 0
+      ExplicitTop = 14
+      object ExtBtn3: TExtBtn
+        Left = 203
+        Top = 1
+        Width = 11
+        Height = 18
+        Align = alRight
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -11
+        Font.Name = 'MS Sans Serif'
+        Font.Style = []
+        Glyph.Data = {
+          DE000000424DDE00000000000000360000002800000007000000070000000100
+          180000000000A8000000120B0000120B00000000000000000000FFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF000000FFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFF000000FFFFFFFFFFFFFFFFFF000000FFFFFFFFFFFFFFFFFF00
+          0000FFFFFFFFFFFF000000000000000000FFFFFFFFFFFF000000FFFFFF000000
+          000000000000000000000000FFFFFF0000000000000000000000000000000000
+          00000000000000000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF00
+          0000}
+        ParentFont = False
+        OnClick = PanelMinClick
+        ExplicitLeft = 185
+        ExplicitTop = 2
+        ExplicitHeight = 11
+      end
+      object Label1: TLabel
+        Left = 1
+        Top = 1
+        Width = 202
+        Height = 18
+        Align = alClient
+        Alignment = taCenter
+        Caption = 'Link Command'
+        Color = clGray
+        ParentColor = False
+        ExplicitWidth = 70
+        ExplicitHeight = 13
+      end
     end
   end
   object fsStorage: TFormStorage

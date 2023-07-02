@@ -24,15 +24,10 @@ __fastcall TfraGroup::TfraGroup(TComponent* Owner, ESceneGroupTool* gt)
 
 void __fastcall TfraGroup::PaneMinClick(TObject *Sender)
 {
-    PanelMinMaxClick(Sender);
+	collapseExpandPanel(Sender);
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TfraGroup::ExpandClick(TObject *Sender)
-{
-    PanelMaximizeClick(Sender);
-}
-//---------------------------------------------------------------------------
 
 void __fastcall TfraGroup::ebMakeGroupClick(TObject *Sender)
 {

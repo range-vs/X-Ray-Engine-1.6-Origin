@@ -19,15 +19,10 @@ __fastcall TfraLight::TfraLight(TComponent* Owner)
 //---------------------------------------------------------------------------
 void __fastcall TfraLight::PaneMinClick(TObject *Sender)
 {
-    PanelMinMaxClick(Sender);
+	collapseExpandPanel(Sender);
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TfraLight::ExpandClick(TObject *Sender)
-{
-    PanelMaximizeClick(Sender);
-}
-//---------------------------------------------------------------------------
 
 void TfraLight::UseInD3D(bool bAll, bool bFlag){
 	ObjectIt _F = Scene->FirstObj(OBJCLASS_LIGHT);

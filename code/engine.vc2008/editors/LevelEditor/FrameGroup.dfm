@@ -139,14 +139,14 @@ object fraGroup: TfraGroup
     object APHeadLabel2: TLabel
       Left = 1
       Top = 1
-      Width = 68
+      Width = 211
       Height = 13
       Align = alTop
       Alignment = taCenter
       Caption = 'Current Object'
       Color = clGray
       ParentColor = False
-      OnClick = ExpandClick
+      ExplicitWidth = 68
     end
     object ebSelect: TExtBtn
       Left = 7
@@ -208,23 +208,24 @@ object fraGroup: TfraGroup
   end
   object Panel2: TPanel
     Left = 0
-    Top = 115
+    Top = 154
     Width = 213
     Height = 51
     Align = alTop
     Color = 10528425
     TabOrder = 2
+    ExplicitTop = 115
     object Label1: TLabel
       Left = 1
       Top = 1
-      Width = 73
+      Width = 211
       Height = 13
       Align = alTop
       Alignment = taCenter
       Caption = 'Pivot Alignment'
       Color = clGray
       ParentColor = False
-      OnClick = ExpandClick
+      ExplicitWidth = 73
     end
     object ebCenterToGroup: TExtBtn
       Left = 2
@@ -269,30 +270,27 @@ object fraGroup: TfraGroup
     Left = 0
     Top = 69
     Width = 213
-    Height = 46
+    Height = 85
     Align = alTop
     Color = 10528425
     TabOrder = 3
-    DesignSize = (
-      213
-      46)
     object Bevel3: TBevel
       Left = 154
-      Top = 28
+      Top = 59
       Width = 45
       Height = 16
     end
     object Label2: TLabel
-      Left = 5
-      Top = 16
-      Width = 84
-      Height = 13
+      Left = 7
+      Top = 22
+      Width = 66
+      Height = 27
       Caption = 'Select by Current:'
       WordWrap = True
     end
     object ExtBtn1: TExtBtn
       Left = 97
-      Top = 15
+      Top = 27
       Width = 27
       Height = 14
       Align = alNone
@@ -308,8 +306,8 @@ object fraGroup: TfraGroup
       OnClick = ExtBtn1Click
     end
     object ExtBtn3: TExtBtn
-      Left = 126
-      Top = 15
+      Left = 130
+      Top = 27
       Width = 27
       Height = 14
       Align = alNone
@@ -324,46 +322,9 @@ object fraGroup: TfraGroup
       ParentFont = False
       OnClick = ExtBtn3Click
     end
-    object APHeadLabel3: TLabel
-      Left = 1
-      Top = 1
-      Width = 211
-      Height = 13
-      Align = alTop
-      Alignment = taCenter
-      Caption = 'Reference Select'
-      Color = clGray
-      ParentColor = False
-      OnClick = ExpandClick
-      ExplicitWidth = 83
-    end
-    object ExtBtn5: TExtBtn
-      Left = 200
-      Top = 2
-      Width = 11
-      Height = 11
-      Align = alNone
-      Anchors = [akTop, akRight]
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clBlack
-      Font.Height = -11
-      Font.Name = 'MS Sans Serif'
-      Font.Style = []
-      Glyph.Data = {
-        DE000000424DDE00000000000000360000002800000007000000070000000100
-        180000000000A8000000120B0000120B00000000000000000000FFFFFFFFFFFF
-        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF000000FFFFFFFFFFFFFFFFFFFFFFFFFFFF
-        FFFFFFFFFFFFFF000000FFFFFFFFFFFFFFFFFF000000FFFFFFFFFFFFFFFFFF00
-        0000FFFFFFFFFFFF000000000000000000FFFFFFFFFFFF000000FFFFFF000000
-        000000000000000000000000FFFFFF0000000000000000000000000000000000
-        00000000000000000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF00
-        0000}
-      ParentFont = False
-      OnClick = PaneMinClick
-    end
     object ExtBtn6: TExtBtn
       Left = 97
-      Top = 29
+      Top = 60
       Width = 27
       Height = 14
       Align = alNone
@@ -380,7 +341,7 @@ object fraGroup: TfraGroup
     end
     object Label4: TLabel
       Left = 201
-      Top = 30
+      Top = 61
       Width = 8
       Height = 13
       Caption = '%'
@@ -393,7 +354,7 @@ object fraGroup: TfraGroup
     end
     object ExtBtn7: TExtBtn
       Left = 126
-      Top = 29
+      Top = 60
       Width = 27
       Height = 14
       Align = alNone
@@ -409,16 +370,16 @@ object fraGroup: TfraGroup
       OnClick = ExtBtn7Click
     end
     object Label6: TLabel
-      Left = 5
-      Top = 31
-      Width = 92
-      Height = 13
+      Left = 7
+      Top = 50
+      Width = 84
+      Height = 29
       Caption = 'Select by Selected:'
       WordWrap = True
     end
     object seSelPercent: TMultiObjSpinEdit
       Left = 155
-      Top = 30
+      Top = 61
       Width = 43
       Height = 13
       LWSensitivity = 1.000000000000000000
@@ -431,6 +392,55 @@ object fraGroup: TfraGroup
       Color = 12698049
       TabOrder = 0
       OnKeyPress = seSelPercentKeyPress
+    end
+    object Panel1: TPanel
+      Left = 1
+      Top = 1
+      Width = 211
+      Height = 20
+      Align = alTop
+      Caption = 'HeaderPanel'
+      ShowCaption = False
+      TabOrder = 1
+      object APHeadLabel3: TLabel
+        Left = 1
+        Top = 1
+        Width = 198
+        Height = 18
+        Align = alClient
+        Alignment = taCenter
+        Caption = 'Reference Select'
+        Color = clGray
+        ParentColor = False
+        ExplicitWidth = 83
+        ExplicitHeight = 13
+      end
+      object ExtBtn5: TExtBtn
+        Left = 199
+        Top = 1
+        Width = 11
+        Height = 18
+        Align = alRight
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -11
+        Font.Name = 'MS Sans Serif'
+        Font.Style = []
+        Glyph.Data = {
+          DE000000424DDE00000000000000360000002800000007000000070000000100
+          180000000000A8000000120B0000120B00000000000000000000FFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF000000FFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFF000000FFFFFFFFFFFFFFFFFF000000FFFFFFFFFFFFFFFFFF00
+          0000FFFFFFFFFFFF000000000000000000FFFFFFFFFFFF000000FFFFFF000000
+          000000000000000000000000FFFFFF0000000000000000000000000000000000
+          00000000000000000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF00
+          0000}
+        ParentFont = False
+        OnClick = PaneMinClick
+        ExplicitLeft = 200
+        ExplicitTop = 2
+        ExplicitHeight = 11
+      end
     end
   end
   object pmGroupCommands: TMxPopupMenu

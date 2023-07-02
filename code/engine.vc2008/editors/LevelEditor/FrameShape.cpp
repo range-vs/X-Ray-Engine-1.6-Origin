@@ -21,15 +21,10 @@ __fastcall TfraShape::TfraShape(TComponent* Owner)
 //---------------------------------------------------------------------------
 void __fastcall TfraShape::PaneMinClick(TObject *Sender)
 {
-    PanelMinMaxClick(Sender);
+    collapseExpandPanel(Sender);
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TfraShape::ExpandClick(TObject *Sender)
-{
-    PanelMaximizeClick(Sender);
-}
-//---------------------------------------------------------------------------
 
 void __fastcall TfraShape::ebDetachAllShapesClick(TObject *Sender)
 {

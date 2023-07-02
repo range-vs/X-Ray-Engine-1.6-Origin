@@ -23,15 +23,10 @@ __fastcall TfraDetailObject::TfraDetailObject(TComponent* Owner, EDetailManager*
 //---------------------------------------------------------------------------
 void __fastcall TfraDetailObject::PaneMinClick(TObject *Sender)
 {
-    PanelMinMaxClick(Sender);
+	collapseExpandPanel(Sender);
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TfraDetailObject::ExpandClick(TObject *Sender)
-{
-    PanelMaximizeClick(Sender);
-}
-//---------------------------------------------------------------------------
 
 void __fastcall TfraDetailObject::ExtBtn1Click(TObject *Sender)
 {
@@ -95,4 +90,12 @@ void __fastcall TfraDetailObject::ExtBtn6Click(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
+
+
+void __fastcall TfraDetailObject::FormShow(TObject *Sender)
+{
+    Panel1->Visible = false;
+    Panel1->Visible = true;
+}
+//---------------------------------------------------------------------------
 

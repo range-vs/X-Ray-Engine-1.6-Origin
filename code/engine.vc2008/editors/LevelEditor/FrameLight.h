@@ -24,8 +24,8 @@ __published:	// IDE-managed Components
 	TExtBtn *ebUnuseSelInD3D;
 	TExtBtn *ebUseAllInD3D;
 	TExtBtn *ebUnuseAllInD3D;
+	TPanel *Panel1;
     void __fastcall PaneMinClick(TObject *Sender);
-    void __fastcall ExpandClick(TObject *Sender);
 	void __fastcall ebUseSelInD3DClick(TObject *Sender);
 	void __fastcall ebUnuseSelInD3DClick(TObject *Sender);
 	void __fastcall ebUseAllInD3DClick(TObject *Sender);

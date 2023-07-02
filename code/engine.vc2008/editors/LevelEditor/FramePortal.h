@@ -28,12 +28,13 @@ __published:	// IDE-managed Components
 	TExtBtn *ebComputeSelPortals;
 	TFormStorage *fsStorage;
 	TExtBtn *ExtBtn1;
+	TPanel *Panel1;
     void __fastcall PanelMinClick(TObject *Sender);
-    void __fastcall TopClick(TObject *Sender);
 	void __fastcall ebComputeClick(TObject *Sender);
 	void __fastcall ebComputeAllPortalsClick(TObject *Sender);
 	void __fastcall ebInvertOrientClick(TObject *Sender);
 	void __fastcall ExtBtn1Click(TObject *Sender);
+	void __fastcall FormShow(TObject *Sender);
 private:	// User declarations
 public:		// User declarations
         __fastcall TfraPortal(TComponent* Owner);

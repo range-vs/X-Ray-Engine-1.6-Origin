@@ -78,8 +78,3 @@ void  CPhysicsShellHolderEditorBase::UpdateObjectXform(Fmatrix &obj_xform) const
  	VERIFY( m_physics_shell );
     m_physics_shell->applyGravityAccel( force );
  }
-
- #ifdef	DEBUG
-std::string CPhysicsShellHolderEditorBase::dump	( EDumpType type )const
-{ VERIFY(false); return std::string("ActorEditor!");}
-#endif

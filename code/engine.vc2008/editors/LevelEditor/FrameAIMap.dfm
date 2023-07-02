@@ -37,48 +37,9 @@ object fraAIMap: TfraAIMap
     ShowCaption = False
     TabOrder = 0
     VerticalAlignment = taAlignTop
-    object Label2: TLabel
-      Left = 1
-      Top = 1
-      Width = 217
-      Height = 13
-      Align = alTop
-      Alignment = taCenter
-      Caption = 'AI Map Commands'
-      Color = clGray
-      ParentColor = False
-      OnClick = ExpandClick
-      ExplicitWidth = 89
-    end
-    object ExtBtn2: TExtBtn
-      Left = 185
-      Top = 2
-      Width = 11
-      Height = 11
-      Align = alNone
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clBlack
-      Font.Height = -11
-      Font.Name = 'MS Sans Serif'
-      Font.Style = []
-      Glyph.Data = {
-        DE000000424DDE00000000000000360000002800000007000000070000000100
-        180000000000A8000000120B0000120B00000000000000000000FFFFFFFFFFFF
-        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF000000FFFFFFFFFFFFFFFFFFFFFFFFFFFF
-        FFFFFFFFFFFFFF000000FFFFFFFFFFFFFFFFFF000000FFFFFFFFFFFFFFFFFF00
-        0000FFFFFFFFFFFF000000000000000000FFFFFFFFFFFF000000FFFFFF000000
-        000000000000000000000000FFFFFF0000000000000000000000000000000000
-        00000000000000000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF00
-        0000}
-      ParentFont = False
-      ParentShowHint = False
-      ShowHint = False
-      Spacing = 10
-      OnClick = PanelMinClick
-    end
     object ebGenerateMap: TExtBtn
       Left = 1
-      Top = 16
+      Top = 22
       Width = 107
       Height = 15
       Align = alNone
@@ -97,7 +58,7 @@ object fraAIMap: TfraAIMap
     end
     object ebSmoothNodes: TExtBtn
       Left = 109
-      Top = 16
+      Top = 22
       Width = 107
       Height = 15
       Align = alNone
@@ -116,7 +77,7 @@ object fraAIMap: TfraAIMap
     end
     object ExtBtn6: TExtBtn
       Left = 109
-      Top = 32
+      Top = 38
       Width = 107
       Height = 15
       Align = alNone
@@ -135,7 +96,7 @@ object fraAIMap: TfraAIMap
     end
     object ebGenerateSelected: TExtBtn
       Left = 1
-      Top = 32
+      Top = 38
       Width = 107
       Height = 15
       Align = alNone
@@ -154,7 +115,7 @@ object fraAIMap: TfraAIMap
     end
     object ebResetSelected: TExtBtn
       Left = 1
-      Top = 48
+      Top = 54
       Width = 107
       Height = 15
       Align = alNone
@@ -171,6 +132,58 @@ object fraAIMap: TfraAIMap
       ParentFont = False
       OnClick = ebResetSelectedClick
     end
+    object Panel1: TPanel
+      Left = 1
+      Top = 1
+      Width = 217
+      Height = 20
+      Align = alTop
+      Caption = 'HeaderPanel'
+      ShowCaption = False
+      TabOrder = 0
+      object ExtBtn2: TExtBtn
+        Left = 205
+        Top = 1
+        Width = 11
+        Height = 18
+        Align = alRight
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -11
+        Font.Name = 'MS Sans Serif'
+        Font.Style = []
+        Glyph.Data = {
+          DE000000424DDE00000000000000360000002800000007000000070000000100
+          180000000000A8000000120B0000120B00000000000000000000FFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF000000FFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFF000000FFFFFFFFFFFFFFFFFF000000FFFFFFFFFFFFFFFFFF00
+          0000FFFFFFFFFFFF000000000000000000FFFFFFFFFFFF000000FFFFFF000000
+          000000000000000000000000FFFFFF0000000000000000000000000000000000
+          00000000000000000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF00
+          0000}
+        ParentFont = False
+        ParentShowHint = False
+        ShowHint = False
+        Spacing = 10
+        OnClick = PanelMinClick
+        ExplicitLeft = 185
+        ExplicitTop = 2
+        ExplicitHeight = 11
+      end
+      object Label2: TLabel
+        Left = 1
+        Top = 1
+        Width = 204
+        Height = 18
+        Align = alClient
+        Alignment = taCenter
+        Caption = 'AI Map Commands'
+        Color = clGray
+        ParentColor = False
+        ExplicitWidth = 89
+        ExplicitHeight = 13
+      end
+    end
   end
   object paLink: TPanel
     Left = 0
@@ -185,45 +198,9 @@ object fraAIMap: TfraAIMap
     ShowHint = True
     TabOrder = 1
     VerticalAlignment = taAlignTop
-    object Label3: TLabel
-      Left = 1
-      Top = 1
-      Width = 217
-      Height = 13
-      Align = alTop
-      Alignment = taCenter
-      Caption = 'AI Map Nodes'
-      Color = clGray
-      ParentColor = False
-      OnClick = ExpandClick
-      ExplicitWidth = 68
-    end
-    object ExtBtn4: TExtBtn
-      Left = 185
-      Top = 2
-      Width = 11
-      Height = 11
-      Align = alNone
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clBlack
-      Font.Height = -11
-      Font.Name = 'MS Sans Serif'
-      Font.Style = []
-      Glyph.Data = {
-        DE000000424DDE00000000000000360000002800000007000000070000000100
-        180000000000A8000000120B0000120B00000000000000000000FFFFFFFFFFFF
-        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF000000FFFFFFFFFFFFFFFFFFFFFFFFFFFF
-        FFFFFFFFFFFFFF000000FFFFFFFFFFFFFFFFFF000000FFFFFFFFFFFFFFFFFF00
-        0000FFFFFFFFFFFF000000000000000000FFFFFFFFFFFF000000FFFFFF000000
-        000000000000000000000000FFFFFF0000000000000000000000000000000000
-        00000000000000000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF00
-        0000}
-      ParentFont = False
-      OnClick = PanelMinClick
-    end
     object ebModeAppend: TExtBtn
       Left = 6
-      Top = 215
+      Top = 221
       Width = 46
       Height = 15
       Align = alNone
@@ -244,7 +221,7 @@ object fraAIMap: TfraAIMap
     end
     object ebModeRemove: TExtBtn
       Left = 6
-      Top = 230
+      Top = 236
       Width = 46
       Height = 15
       Align = alNone
@@ -265,7 +242,7 @@ object fraAIMap: TfraAIMap
     object ebUp: TExtBtn
       Tag = 1
       Left = 82
-      Top = 215
+      Top = 221
       Width = 24
       Height = 15
       Align = alNone
@@ -293,7 +270,7 @@ object fraAIMap: TfraAIMap
     object ebDown: TExtBtn
       Tag = 3
       Left = 82
-      Top = 245
+      Top = 251
       Width = 24
       Height = 15
       Align = alNone
@@ -320,7 +297,7 @@ object fraAIMap: TfraAIMap
     end
     object ebLeft: TExtBtn
       Left = 58
-      Top = 230
+      Top = 236
       Width = 24
       Height = 15
       Align = alNone
@@ -348,7 +325,7 @@ object fraAIMap: TfraAIMap
     object ebRight: TExtBtn
       Tag = 2
       Left = 106
-      Top = 230
+      Top = 236
       Width = 24
       Height = 15
       Align = alNone
@@ -376,7 +353,7 @@ object fraAIMap: TfraAIMap
     object ebFull: TExtBtn
       Tag = 4
       Left = 82
-      Top = 230
+      Top = 236
       Width = 24
       Height = 15
       Align = alNone
@@ -411,7 +388,7 @@ object fraAIMap: TfraAIMap
     end
     object ebModeInvert: TExtBtn
       Left = 6
-      Top = 245
+      Top = 251
       Width = 46
       Height = 15
       Align = alNone
@@ -431,7 +408,7 @@ object fraAIMap: TfraAIMap
     end
     object Label5: TLabel
       Left = 5
-      Top = 199
+      Top = 205
       Width = 78
       Height = 13
       Caption = 'Link Commands:'
@@ -444,7 +421,7 @@ object fraAIMap: TfraAIMap
     end
     object ebIgnoreConstraints: TExtBtn
       Left = 2
-      Top = 16
+      Top = 22
       Width = 215
       Height = 15
       Align = alNone
@@ -467,7 +444,7 @@ object fraAIMap: TfraAIMap
     end
     object ebAutoLink: TExtBtn
       Left = 2
-      Top = 31
+      Top = 37
       Width = 213
       Height = 15
       Align = alNone
@@ -491,13 +468,13 @@ object fraAIMap: TfraAIMap
     end
     object Bevel2: TBevel
       Left = 1
-      Top = 48
+      Top = 54
       Width = 215
       Height = 2
     end
     object ExtBtn1: TExtBtn
       Left = 137
-      Top = 215
+      Top = 221
       Width = 77
       Height = 15
       Align = alNone
@@ -518,7 +495,7 @@ object fraAIMap: TfraAIMap
     object ExtBtn5: TExtBtn
       Tag = 1
       Left = 137
-      Top = 230
+      Top = 236
       Width = 77
       Height = 15
       Align = alNone
@@ -539,7 +516,7 @@ object fraAIMap: TfraAIMap
     object ExtBtn3: TExtBtn
       Tag = 2
       Left = 137
-      Top = 245
+      Top = 251
       Width = 77
       Height = 15
       Align = alNone
@@ -559,7 +536,7 @@ object fraAIMap: TfraAIMap
     end
     object btnIgnoreMaterialClear: TExtBtn
       Left = 171
-      Top = 81
+      Top = 87
       Width = 37
       Height = 14
       Hint = 'Clear snap list'
@@ -591,7 +568,7 @@ object fraAIMap: TfraAIMap
     end
     object Label1: TLabel
       Left = 1
-      Top = 65
+      Top = 71
       Width = 208
       Height = 13
       Alignment = taCenter
@@ -599,11 +576,10 @@ object fraAIMap: TfraAIMap
       Caption = 'Ignore materials'
       Color = clGray
       ParentColor = False
-      OnClick = ExpandClick
     end
     object btnAddIgnoredMaterial: TExtBtn
       Left = 11
-      Top = 81
+      Top = 87
       Width = 30
       Height = 14
       Hint = 'add material to ignore list'
@@ -624,7 +600,7 @@ object fraAIMap: TfraAIMap
     end
     object lbIgnoreMaterialsList: TListBox
       Left = 4
-      Top = 98
+      Top = 104
       Width = 210
       Height = 87
       BorderStyle = bsNone
@@ -640,6 +616,55 @@ object fraAIMap: TfraAIMap
       ParentFont = False
       Sorted = True
       TabOrder = 0
+    end
+    object Panel2: TPanel
+      Left = 1
+      Top = 1
+      Width = 217
+      Height = 20
+      Align = alTop
+      Caption = 'HeaderPanel'
+      ShowCaption = False
+      TabOrder = 1
+      object ExtBtn4: TExtBtn
+        Left = 205
+        Top = 1
+        Width = 11
+        Height = 18
+        Align = alRight
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -11
+        Font.Name = 'MS Sans Serif'
+        Font.Style = []
+        Glyph.Data = {
+          DE000000424DDE00000000000000360000002800000007000000070000000100
+          180000000000A8000000120B0000120B00000000000000000000FFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF000000FFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFF000000FFFFFFFFFFFFFFFFFF000000FFFFFFFFFFFFFFFFFF00
+          0000FFFFFFFFFFFF000000000000000000FFFFFFFFFFFF000000FFFFFF000000
+          000000000000000000000000FFFFFF0000000000000000000000000000000000
+          00000000000000000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF00
+          0000}
+        ParentFont = False
+        OnClick = PanelMinClick
+        ExplicitLeft = 185
+        ExplicitTop = 2
+        ExplicitHeight = 11
+      end
+      object Label3: TLabel
+        Left = 1
+        Top = 1
+        Width = 204
+        Height = 18
+        Align = alClient
+        Alignment = taCenter
+        Caption = 'AI Map Nodes'
+        Color = clGray
+        ParentColor = False
+        ExplicitWidth = 68
+        ExplicitHeight = 13
+      end
     end
   end
   object fsStorage: TFormStorage

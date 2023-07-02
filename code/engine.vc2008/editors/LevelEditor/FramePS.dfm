@@ -30,14 +30,14 @@ object fraPS: TfraPS
     TabOrder = 0
     object Label5: TLabel
       Left = 2
-      Top = 16
+      Top = 22
       Width = 58
       Height = 13
       Caption = 'Ref'#39's select:'
     end
     object ebSelectByRefs: TExtBtn
       Left = 100
-      Top = 16
+      Top = 22
       Width = 47
       Height = 15
       Align = alNone
@@ -54,7 +54,7 @@ object fraPS: TfraPS
     end
     object ebDeselectByRefs: TExtBtn
       Left = 148
-      Top = 16
+      Top = 22
       Width = 47
       Height = 15
       Align = alNone
@@ -69,44 +69,9 @@ object fraPS: TfraPS
       Transparent = False
       OnClick = ebDeselectByRefsClick
     end
-    object Label: TLabel
-      Left = 1
-      Top = 1
-      Width = 69
-      Height = 13
-      Align = alTop
-      Alignment = taCenter
-      Caption = 'PS Commands'
-      Color = clGray
-      ParentColor = False
-      OnClick = ExpandClick
-    end
-    object ExtBtn3: TExtBtn
-      Left = 185
-      Top = 2
-      Width = 11
-      Height = 11
-      Align = alNone
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clBlack
-      Font.Height = -11
-      Font.Name = 'MS Sans Serif'
-      Font.Style = []
-      Glyph.Data = {
-        DE000000424DDE00000000000000360000002800000007000000070000000100
-        180000000000A8000000120B0000120B00000000000000000000FFFFFFFFFFFF
-        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF000000FFFFFFFFFFFFFFFFFFFFFFFFFFFF
-        FFFFFFFFFFFFFF000000FFFFFFFFFFFFFFFFFF000000FFFFFFFFFFFFFFFFFF00
-        0000FFFFFFFFFFFF000000000000000000FFFFFFFFFFFF000000FFFFFF000000
-        000000000000000000000000FFFFFF0000000000000000000000000000000000
-        00000000000000000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF00
-        0000}
-      ParentFont = False
-      OnClick = PaneMinClick
-    end
     object ebCurrentPSPlay: TExtBtn
       Left = 100
-      Top = 32
+      Top = 38
       Width = 47
       Height = 15
       Align = alNone
@@ -138,7 +103,7 @@ object fraPS: TfraPS
     end
     object ebCurrentPSStop: TExtBtn
       Left = 148
-      Top = 32
+      Top = 38
       Width = 47
       Height = 15
       Align = alNone
@@ -169,10 +134,59 @@ object fraPS: TfraPS
     end
     object Label1: TLabel
       Left = 2
-      Top = 32
+      Top = 38
       Width = 45
       Height = 13
       Caption = 'Selected:'
+    end
+    object Panel2: TPanel
+      Left = 1
+      Top = 1
+      Width = 215
+      Height = 20
+      Align = alTop
+      Caption = 'HeaderPanel'
+      ShowCaption = False
+      TabOrder = 0
+      object ExtBtn3: TExtBtn
+        Left = 203
+        Top = 1
+        Width = 11
+        Height = 18
+        Align = alRight
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -11
+        Font.Name = 'MS Sans Serif'
+        Font.Style = []
+        Glyph.Data = {
+          DE000000424DDE00000000000000360000002800000007000000070000000100
+          180000000000A8000000120B0000120B00000000000000000000FFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF000000FFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFF000000FFFFFFFFFFFFFFFFFF000000FFFFFFFFFFFFFFFFFF00
+          0000FFFFFFFFFFFF000000000000000000FFFFFFFFFFFF000000FFFFFF000000
+          000000000000000000000000FFFFFF0000000000000000000000000000000000
+          00000000000000000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF00
+          0000}
+        ParentFont = False
+        OnClick = PaneMinClick
+        ExplicitLeft = 185
+        ExplicitTop = 2
+        ExplicitHeight = 11
+      end
+      object Label: TLabel
+        Left = 1
+        Top = 1
+        Width = 202
+        Height = 18
+        Align = alClient
+        Alignment = taCenter
+        Caption = 'PS Commands'
+        Color = clGray
+        ParentColor = False
+        ExplicitWidth = 69
+        ExplicitHeight = 13
+      end
     end
   end
   object Panel1: TPanel
@@ -186,14 +200,14 @@ object fraPS: TfraPS
     object APHeadLabel2: TLabel
       Left = 1
       Top = 1
-      Width = 51
+      Width = 215
       Height = 13
       Align = alTop
       Alignment = taCenter
       Caption = 'Current PS'
       Color = clGray
       ParentColor = False
-      OnClick = ExpandClick
+      ExplicitWidth = 51
     end
     object Bevel1: TBevel
       Left = 1
@@ -212,6 +226,7 @@ object fraPS: TfraPS
       BevelOuter = bvNone
       ParentColor = True
       TabOrder = 0
+      ExplicitTop = 20
     end
   end
   object fsStorage: TFormStorage

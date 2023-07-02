@@ -43,8 +43,9 @@ __published:	// IDE-managed Components
 	TMultiObjSpinEdit *seSelPercent;
 	TLabel *Label3;
 	TLabel *Label5;
+	TPanel *Panel1;
+	TPanel *Panel2;
     void __fastcall PaneMinClick(TObject *Sender);
-    void __fastcall ExpandClick(TObject *Sender);
 	void __fastcall ebAttachObjectClick(TObject *Sender);
 	void __fastcall evDetachObjectClick(TObject *Sender);
 	void __fastcall FormHide(TObject *Sender);

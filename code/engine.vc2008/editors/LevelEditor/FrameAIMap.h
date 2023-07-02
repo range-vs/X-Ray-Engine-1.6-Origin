@@ -55,8 +55,9 @@ __published:	// IDE-managed Components
 	TListBox *lbIgnoreMaterialsList;
 	TLabel *Label1;
 	TExtBtn *btnAddIgnoredMaterial;
+	TPanel *Panel1;
+	TPanel *Panel2;
     void __fastcall PanelMinClick(TObject *Sender);
-    void __fastcall ExpandClick(TObject *Sender);
 	void __fastcall ebGenerateMapClick(TObject *Sender);
 	void __fastcall ebDrawSnapObjectsClick(TObject *Sender);
 	void __fastcall ebInvertLinkClick(TObject *Sender);

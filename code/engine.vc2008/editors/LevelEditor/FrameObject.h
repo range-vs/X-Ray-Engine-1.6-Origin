@@ -49,10 +49,11 @@ __published:	// IDE-managed Components
 	TExtBtn *ExtBtn4;
 	TMultiObjSpinEdit *seSelPercent;
 	TExtBtn *ExtBtn9;
+	TPanel *Panel2;
+	TPanel *Panel3;
     void __fastcall PaneMinClick(TObject *Sender);
     void __fastcall ebSelectByRefsClick(TObject *Sender);
     void __fastcall ebDeselectByRefsClick(TObject *Sender);
-    void __fastcall ExpandClick(TObject *Sender);
 	void __fastcall ebMultiAppendClick(TObject *Sender);
 	void __fastcall ebMultiSelectByRefMoveClick(TObject *Sender);
 	void __fastcall ebMultiSelectByRefAppendClick(TObject *Sender);

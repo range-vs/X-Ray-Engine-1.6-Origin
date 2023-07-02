@@ -21,12 +21,7 @@ __fastcall TfraSector::TfraSector(TComponent* Owner)
 //---------------------------------------------------------------------------
 void __fastcall TfraSector::PanelMinClick(TObject *Sender)
 {
-    PanelMinMaxClick(Sender);
-}
-//---------------------------------------------------------------------------
-void __fastcall TfraSector::TopClick(TObject *Sender)
-{
-    PanelMaximizeClick(Sender);           
+	collapseExpandPanel(Sender);
 }
 //---------------------------------------------------------------------------
 
@@ -78,4 +73,11 @@ void __fastcall TfraSector::ebBoxPickClick(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
+
+void __fastcall TfraSector::FormShow(TObject *Sender)
+{
+	Panel1->Visible = false;
+    Panel1->Visible = true;
+}
+//---------------------------------------------------------------------------
 

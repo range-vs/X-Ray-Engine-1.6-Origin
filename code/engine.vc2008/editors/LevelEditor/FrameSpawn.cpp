@@ -32,15 +32,10 @@ void TfraSpawn::OnItemFocused(ListItemsVec& items)
 
 void __fastcall TfraSpawn::PaneMinClick(TObject *Sender)
 {
-    PanelMinMaxClick(Sender);
+    collapseExpandPanel(Sender);
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TfraSpawn::ExpandClick(TObject *Sender)
-{
-    PanelMaximizeClick(Sender);
-}
-//---------------------------------------------------------------------------
 
 void __fastcall TfraSpawn::ebAttachObjectClick(TObject *Sender)
 {

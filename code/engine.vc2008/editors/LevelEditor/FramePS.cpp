@@ -32,15 +32,10 @@ void TfraPS::OnItemFocused(ListItemsVec& items)
 //------------------------------------------------------------------------------
 void __fastcall TfraPS::PaneMinClick(TObject *Sender)
 {
-    PanelMinMaxClick(Sender);
+	collapseExpandPanel(Sender);
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TfraPS::ExpandClick(TObject *Sender)
-{
-    PanelMaximizeClick(Sender);
-}
-//---------------------------------------------------------------------------
 
 //---------------------------------------------------------------------------
 // Selecting

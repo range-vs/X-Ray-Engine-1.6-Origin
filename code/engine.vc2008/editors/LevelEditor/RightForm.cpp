@@ -12,5 +12,6 @@ TfrmRight *frmRight;
 __fastcall TfrmRight::TfrmRight(TComponent* Owner)
 	: TForm(Owner)
 {
+    this->ScaleBy(this->PixelsPerInch, 96);
 }
 //---------------------------------------------------------------------------

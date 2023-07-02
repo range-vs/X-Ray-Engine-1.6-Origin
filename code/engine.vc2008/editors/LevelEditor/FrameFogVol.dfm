@@ -24,48 +24,9 @@ object fraFogVol: TfraFogVol
     Alignment = taLeftJustify
     ParentColor = True
     TabOrder = 0
-    DesignSize = (
-      218
-      327)
-    object APHeadLabel1: TLabel
-      Left = 1
-      Top = 1
-      Width = 216
-      Height = 13
-      Align = alTop
-      Alignment = taCenter
-      Caption = 'Commands'
-      Color = clGray
-      ParentColor = False
-      ExplicitWidth = 52
-    end
-    object ExtBtn2: TExtBtn
-      Left = 205
-      Top = 2
-      Width = 11
-      Height = 11
-      Align = alNone
-      Anchors = [akTop, akRight]
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clBlack
-      Font.Height = -11
-      Font.Name = 'MS Sans Serif'
-      Font.Style = []
-      Glyph.Data = {
-        DE000000424DDE00000000000000360000002800000007000000070000000100
-        180000000000A8000000120B0000120B00000000000000000000FFFFFFFFFFFF
-        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF000000FFFFFFFFFFFFFFFFFFFFFFFFFFFF
-        FFFFFFFFFFFFFF000000FFFFFFFFFFFFFFFFFF000000FFFFFFFFFFFFFFFFFF00
-        0000FFFFFFFFFFFF000000000000000000FFFFFFFFFFFF000000FFFFFF000000
-        000000000000000000000000FFFFFF0000000000000000000000000000000000
-        00000000000000000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF00
-        0000}
-      ParentFont = False
-      OnClick = ExtBtn2Click
-    end
     object ebGroup: TExtBtn
       Left = 2
-      Top = 16
+      Top = 22
       Width = 107
       Height = 15
       Align = alNone
@@ -84,7 +45,7 @@ object fraFogVol: TfraFogVol
     end
     object ebUngroup: TExtBtn
       Left = 106
-      Top = 16
+      Top = 22
       Width = 107
       Height = 15
       Align = alNone
@@ -100,6 +61,55 @@ object fraFogVol: TfraFogVol
       Font.Style = []
       ParentFont = False
       OnClick = ebUngroupClick
+    end
+    object Panel1: TPanel
+      Left = 1
+      Top = 1
+      Width = 216
+      Height = 20
+      Align = alTop
+      Caption = 'HeaderPanel'
+      ShowCaption = False
+      TabOrder = 0
+      object APHeadLabel1: TLabel
+        Left = 1
+        Top = 1
+        Width = 203
+        Height = 18
+        Align = alClient
+        Alignment = taCenter
+        Caption = 'Commands'
+        Color = clGray
+        ParentColor = False
+        ExplicitWidth = 52
+        ExplicitHeight = 13
+      end
+      object ExtBtn2: TExtBtn
+        Left = 204
+        Top = 1
+        Width = 11
+        Height = 18
+        Align = alRight
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -11
+        Font.Name = 'MS Sans Serif'
+        Font.Style = []
+        Glyph.Data = {
+          DE000000424DDE00000000000000360000002800000007000000070000000100
+          180000000000A8000000120B0000120B00000000000000000000FFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF000000FFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFF000000FFFFFFFFFFFFFFFFFF000000FFFFFFFFFFFFFFFFFF00
+          0000FFFFFFFFFFFF000000000000000000FFFFFFFFFFFF000000FFFFFF000000
+          000000000000000000000000FFFFFF0000000000000000000000000000000000
+          00000000000000000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF00
+          0000}
+        ParentFont = False
+        OnClick = ExtBtn2Click
+        ExplicitLeft = 206
+        ExplicitTop = -1
+        ExplicitHeight = 11
+      end
     end
   end
 end

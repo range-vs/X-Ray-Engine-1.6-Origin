@@ -36,8 +36,8 @@ __published:	// IDE-managed Components
 	TExtBtn *ExtBtn5;
 	TBevel *Bevel1;
 	TExtBtn *ebReinitializeSlotObjects;
+	TPanel *Panel1;
     void __fastcall PaneMinClick(TObject *Sender);
-    void __fastcall ExpandClick(TObject *Sender);
 	void __fastcall ExtBtn1Click(TObject *Sender);
 	void __fastcall ExtBtn5Click(TObject *Sender);
 	void __fastcall ebUpdateObjectsClick(TObject *Sender);
@@ -46,6 +46,7 @@ __published:	// IDE-managed Components
 	void __fastcall ebInvalidateCacheClick(TObject *Sender);
 	void __fastcall ebResetSlotsClick(TObject *Sender);
 	void __fastcall ebClearDetailsClick(TObject *Sender);
+	void __fastcall FormShow(TObject *Sender);
 private:	// User declarations
 	EDetailManager* DM;
 public:		// User declarations

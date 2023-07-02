@@ -35,10 +35,10 @@ __published:	// IDE-managed Components
 	TFormStorage *fsStorage;
 	TImageList *ilModeIcons;
 	TBevel *Bevel1;
+	TPanel *Panel2;
     void __fastcall PaneMinClick(TObject *Sender);
     void __fastcall ebSelectByRefsClick(TObject *Sender);
     void __fastcall ebDeselectByRefsClick(TObject *Sender);
-    void __fastcall ExpandClick(TObject *Sender);
 	void __fastcall ebCurrentPSPlayClick(TObject *Sender);
 	void __fastcall ebCurrentPSStopClick(TObject *Sender);
 	void __fastcall FormHide(TObject *Sender);

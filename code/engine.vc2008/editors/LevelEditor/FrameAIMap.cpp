@@ -33,15 +33,10 @@ __fastcall TfraAIMap::TfraAIMap(TComponent* Owner, ESceneAIMapTool* _tools)
 //---------------------------------------------------------------------------
 void __fastcall TfraAIMap::PanelMinClick(TObject *Sender)
 {
-    PanelMinMaxClick(Sender);
+	collapseExpandPanel(Sender);
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TfraAIMap::ExpandClick(TObject *Sender)
-{
-    PanelMaximizeClick(Sender);
-}
-//---------------------------------------------------------------------------
 
 void __fastcall TfraAIMap::ebGenerateMapClick(TObject *Sender)
 {

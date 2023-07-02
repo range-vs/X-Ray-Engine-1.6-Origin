@@ -45,15 +45,10 @@ void TfraObject::OnItemFocused(ListItemsVec& items)
 //------------------------------------------------------------------------------
 void __fastcall TfraObject::PaneMinClick(TObject *Sender)
 {
-    PanelMinMaxClick(Sender);
+	collapseExpandPanel(Sender);
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TfraObject::ExpandClick(TObject *Sender)
-{
-    PanelMaximizeClick(Sender);
-}
-//---------------------------------------------------------------------------
 
 //---------------------------------------------------------------------------
 // Selecting

@@ -35,8 +35,9 @@ __published:	// IDE-managed Components
 	TPanel *Panel1;
 	TExtBtn *ebEditLevelBoundMode;
 	TExtBtn *ebRecalcLB;
+	TPanel *Panel2;
+	TPanel *Panel3;
     void __fastcall PaneMinClick(TObject *Sender);
-    void __fastcall ExpandClick(TObject *Sender);
 	void __fastcall ebDetachAllShapesClick(TObject *Sender);
 	void __fastcall ebAttachShapeClick(TObject *Sender);
 	void __fastcall ebEditLevelBoundModeClick(TObject *Sender);
