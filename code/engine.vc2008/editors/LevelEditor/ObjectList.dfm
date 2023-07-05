@@ -315,6 +315,8 @@ object frmObjectList: TfrmObjectList
       OnMouseDown = tvItemsMouseDown
       OnDblClick = tvItemsDblClick
       OnKeyPress = tvItemsKeyPress
+      ExplicitLeft = -2
+      ExplicitTop = -1
     end
     object Panel4: TPanel
       Left = 1

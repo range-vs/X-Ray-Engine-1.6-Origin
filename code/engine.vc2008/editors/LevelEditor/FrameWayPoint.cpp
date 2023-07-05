@@ -11,12 +11,15 @@
 #pragma package(smart_init)
 #pragma resource "*.dfm"
 
+#include "../../xrEProps/ui_scale.hpp"
+
+
 //---------------------------------------------------------------------------
 __fastcall TfraWayPoint::TfraWayPoint(TComponent* Owner)
         : TForm(Owner)
 {
 	DEFINE_INI(fsStorage);
-    this->ScaleBy(this->PixelsPerInch, 96);
+    scaleBy(this);
 }
 //---------------------------------------------------------------------------
 void __fastcall TfraWayPoint::PanelMinClick(TObject *Sender)

@@ -33,14 +33,13 @@ object fraSpawn: TfraSpawn
     object APHeadLabel1: TLabel
       Left = 1
       Top = 1
-      Width = 217
+      Width = 70
       Height = 13
       Align = alTop
       Alignment = taCenter
       Caption = 'Current Spawn'
       Color = clGray
       ParentColor = False
-      ExplicitWidth = 70
     end
     object Bevel1: TBevel
       Left = 1
@@ -146,15 +145,13 @@ object fraSpawn: TfraSpawn
       object Label1: TLabel
         Left = 1
         Top = 1
-        Width = 204
-        Height = 18
+        Width = 52
+        Height = 13
         Align = alClient
         Alignment = taCenter
         Caption = 'Commands'
         Color = clGray
         ParentColor = False
-        ExplicitWidth = 52
-        ExplicitHeight = 13
       end
     end
   end
@@ -298,15 +295,13 @@ object fraSpawn: TfraSpawn
       object APHeadLabel3: TLabel
         Left = 1
         Top = 1
-        Width = 204
-        Height = 18
+        Width = 83
+        Height = 13
         Align = alClient
         Alignment = taCenter
         Caption = 'Reference Select'
         Color = clGray
         ParentColor = False
-        ExplicitWidth = 83
-        ExplicitHeight = 13
       end
       object ExtBtn3: TExtBtn
         Left = 205

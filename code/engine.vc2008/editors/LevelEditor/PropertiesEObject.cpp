@@ -17,13 +17,15 @@
 #pragma link "ElXPThemedControl"
 #pragma link "MXCtrls"
 #pragma resource "*.dfm"
+
+#include "../../xrEProps/ui_scale.hpp"
+
 //---------------------------------------------------------------------------
 __fastcall TfrmPropertiesEObject::TfrmPropertiesEObject(TComponent* Owner)
     : TForm(Owner)
 {
 	m_Thumbnail	= 0;
 //    m_pEditObject=0;
-	this->ScaleBy(this->PixelsPerInch, 96);
 }
 //---------------------------------------------------------------------------
 

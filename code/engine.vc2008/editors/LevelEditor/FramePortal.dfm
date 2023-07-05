@@ -121,15 +121,13 @@ object fraPortal: TfraPortal
       object APHeadLabel1: TLabel
         Left = 1
         Top = 1
-        Width = 210
-        Height = 18
+        Width = 47
+        Height = 13
         Align = alClient
         Alignment = taCenter
         Caption = 'Command'
         Color = clGray
         ParentColor = False
-        ExplicitWidth = 47
-        ExplicitHeight = 13
       end
       object ExtBtn2: TExtBtn
         Left = 211

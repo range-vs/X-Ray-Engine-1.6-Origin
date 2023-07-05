@@ -173,15 +173,13 @@ object fraAIMap: TfraAIMap
       object Label2: TLabel
         Left = 1
         Top = 1
-        Width = 204
-        Height = 18
+        Width = 89
+        Height = 13
         Align = alClient
         Alignment = taCenter
         Caption = 'AI Map Commands'
         Color = clGray
         ParentColor = False
-        ExplicitWidth = 89
-        ExplicitHeight = 13
       end
     end
   end
@@ -655,15 +653,13 @@ object fraAIMap: TfraAIMap
       object Label3: TLabel
         Left = 1
         Top = 1
-        Width = 204
-        Height = 18
+        Width = 68
+        Height = 13
         Align = alClient
         Alignment = taCenter
         Caption = 'AI Map Nodes'
         Color = clGray
         ParentColor = False
-        ExplicitWidth = 68
-        ExplicitHeight = 13
       end
     end
   end

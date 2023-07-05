@@ -1,4 +1,4 @@
-//---------------------------------------------------------------------------
+п»ї//---------------------------------------------------------------------------
 
 #include "stdafx.h"
 #pragma hdrstop
@@ -34,6 +34,8 @@
 #pragma link "MXCtrls"
 #pragma resource "*.dfm"
 
+#include "../xrEProps/ui_scale.hpp"
+
 TfrmEditLibrary* TfrmEditLibrary::form=0;
 FS_FileSet TfrmEditLibrary::modif_map;
 bool TfrmEditLibrary::bFinalExit = false;
@@ -46,13 +48,14 @@ __fastcall TfrmEditLibrary::TfrmEditLibrary(TComponent* Owner)
 	DEFINE_INI(fsStorage);
 //	m_pEditObject 	= xr_new<CSceneObject>((LPVOID)0,(LPSTR)0);
     m_Props 		= TfrmPropertiesEObject::CreateProperties(0,alNone,TOnModifiedEvent(this,&TfrmEditLibrary::OnModified));
-	m_Items			= TItemList::CreateForm("Objects",paItems,alClient,TItemList::ilMultiSelect|TItemList::ilEditMenu|TItemList::ilDragAllowed|TItemList::ilFolderStore, false);
+	m_Items			= TItemList::CreateForm("Objects",paItems,alClient,TItemList::ilMultiSelect|TItemList::ilEditMenu|TItemList::ilDragAllowed|TItemList::ilFolderStore);
     m_Items->SetOnItemsFocusedEvent	(fastdelegate::bind<TOnILItemsFocused>(this,&TfrmEditLibrary::OnItemsFocused));
 
     m_Items->SetOnItemRemoveEvent	(fastdelegate::bind<TOnItemRemove>(&Lib,&ELibrary::RemoveObject));
-    m_Items->SetOnItemRenameEvent	(fastdelegate::bind<TOnItemRename>(&Lib,&ELibrary::RenameObject));
+	m_Items->SetOnItemRenameEvent	(fastdelegate::bind<TOnItemRename>(&Lib,&ELibrary::RenameObject));
 	bReadOnly		= false;
-    this->ScaleBy(this->PixelsPerInch, 96);
+	scaleBy(this, {m_Items->tvItems});
+	scaleBy(m_Props, {m_Props->GetBasicProp()->tvProperties, m_Props->GetSurfProp()->tvProperties});
 }
 //---------------------------------------------------------------------------
 void __fastcall TfrmEditLibrary::ShowEditor()
@@ -331,7 +334,7 @@ void __fastcall TfrmEditLibrary::FormKeyDown(TObject *Sender, WORD &Key,
         if (Key==VK_ESCAPE){
             if (bFormLocked)	ExecCommand(COMMAND_BREAK_LAST_OPERATION);
             else				ebCancel->Click();
-            Key = 0; // :-) нужно для того чтобы AccessVoilation не вылазил по ESCAPE
+            Key = 0; // :-) пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ AccessVoilation пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ ESCAPE
         }
     }
 }
@@ -340,9 +343,9 @@ void __fastcall TfrmEditLibrary::FormKeyDown(TObject *Sender, WORD &Key,
 
 void __fastcall TfrmEditLibrary::ebPropertiesClick(TObject *Sender)
 {
-    SelectionToReference		(NULL);
+	SelectionToReference		(NULL);
     UpdateObjectProperties		();
-    m_Props->ShowProperties		();
+	m_Props->ShowProperties		();
 }
 //---------------------------------------------------------------------------
 void __fastcall TfrmEditLibrary::ebSaveClick(TObject *Sender)

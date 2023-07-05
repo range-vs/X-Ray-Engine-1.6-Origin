@@ -350,15 +350,13 @@ object fraSector: TfraSector
       object APHeadLabel2: TLabel
         Left = 1
         Top = 1
-        Width = 205
-        Height = 18
+        Width = 18
+        Height = 13
         Align = alClient
         Alignment = taCenter
         Caption = 'Edit'
         Color = clGray
         ParentColor = False
-        ExplicitWidth = 18
-        ExplicitHeight = 13
       end
       object ExtBtn1: TExtBtn
         Left = 206
@@ -509,15 +507,13 @@ object fraSector: TfraSector
       object APHeadLabel1: TLabel
         Left = 1
         Top = 1
-        Width = 205
-        Height = 18
+        Width = 47
+        Height = 13
         Align = alClient
         Alignment = taCenter
         Caption = 'Command'
         Color = clGray
         ParentColor = False
-        ExplicitWidth = 47
-        ExplicitHeight = 13
       end
       object ExtBtn2: TExtBtn
         Left = 206

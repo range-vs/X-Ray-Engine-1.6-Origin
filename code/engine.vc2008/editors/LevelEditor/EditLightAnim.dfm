@@ -41,7 +41,6 @@ object frmEditLightAnim: TfrmEditLightAnim
     ParentFont = False
     TabOrder = 0
     Visible = False
-    ExplicitHeight = 222
     object paColorAndControls: TPanel
       Left = 241
       Top = 0
@@ -51,7 +50,6 @@ object frmEditLightAnim: TfrmEditLightAnim
       BevelOuter = bvNone
       ParentColor = True
       TabOrder = 0
-      ExplicitHeight = 222
       object paColor: TPanel
         Left = 0
         Top = 0
@@ -61,7 +59,8 @@ object frmEditLightAnim: TfrmEditLightAnim
         BevelInner = bvLowered
         Color = 10526880
         TabOrder = 0
-        ExplicitHeight = 188
+        ExplicitLeft = 5
+        ExplicitTop = -5
         object lbCurFrame: TMxLabel
           Left = 3
           Top = 3
@@ -109,7 +108,6 @@ object frmEditLightAnim: TfrmEditLightAnim
         BevelOuter = bvNone
         Color = 10528425
         TabOrder = 1
-        ExplicitTop = 188
         object ebPrevKey: TExtBtn
           Left = 44
           Top = 18
@@ -384,12 +382,11 @@ object frmEditLightAnim: TfrmEditLightAnim
       BevelOuter = bvNone
       ParentColor = True
       TabOrder = 1
-      ExplicitHeight = 222
       object paProps: TPanel
         Left = 0
         Top = 0
         Width = 241
-        Height = 187
+        Height = 184
         Align = alClient
         BevelOuter = bvLowered
         Color = 10528425
@@ -397,7 +394,7 @@ object frmEditLightAnim: TfrmEditLightAnim
       end
       object wnShape: TD3DWindow
         Left = 0
-        Top = 187
+        Top = 184
         Width = 241
         Height = 35
         FocusedColor = 15000804
@@ -431,10 +428,9 @@ object frmEditLightAnim: TfrmEditLightAnim
     BevelOuter = bvNone
     ParentColor = True
     TabOrder = 1
-    ExplicitHeight = 222
     object Panel2: TPanel
       Left = 0
-      Top = 203
+      Top = 200
       Width = 191
       Height = 19
       Align = alBottom
@@ -541,11 +537,13 @@ object frmEditLightAnim: TfrmEditLightAnim
       Left = 0
       Top = 0
       Width = 191
-      Height = 203
+      Height = 200
       Align = alClient
       BevelOuter = bvLowered
       ParentColor = True
       TabOrder = 1
+      ExplicitLeft = -5
+      ExplicitTop = -5
     end
   end
   object fsStorage: TFormStorage

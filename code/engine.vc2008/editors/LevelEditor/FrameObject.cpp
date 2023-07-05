@@ -17,6 +17,8 @@
 #pragma link "mxPlacemnt"
 #pragma resource "*.dfm"
 
+#include "../../xrEProps/ui_scale.hpp"
+
 //---------------------------------------------------------------------------
 __fastcall TfraObject::TfraObject(TComponent* Owner,ESceneObjectTool* parent_tools)
         : TForm(Owner)
@@ -24,7 +26,6 @@ __fastcall TfraObject::TfraObject(TComponent* Owner,ESceneObjectTool* parent_too
     DEFINE_INI(fsStorage);
     m_Current 	= 0;
 	ParentTools	= parent_tools;
-    this->ScaleBy(this->PixelsPerInch, 96);
 }
 //---------------------------------------------------------------------------
 void TfraObject::OnDrawObjectThumbnail(LPCSTR name, HDC hdc, const Irect &r)
@@ -229,8 +230,9 @@ void __fastcall TfraObject::FormHide(TObject *Sender)
 
 void __fastcall TfraObject::FormCreate(TObject *Sender)
 {
-    m_Items 				= TItemList::CreateForm("Objects", paItems, alClient, 0, false);
-    m_Items->SetOnItemsFocusedEvent(TOnILItemsFocused(this,&TfraObject::OnItemFocused));
+    m_Items 				= TItemList::CreateForm("Objects", paItems, alClient, 0);
+	m_Items->SetOnItemsFocusedEvent(TOnILItemsFocused(this,&TfraObject::OnItemFocused));
+	scaleBy(this, {m_Items->tvItems});
 	// fill list
 	RefreshList				();
 }

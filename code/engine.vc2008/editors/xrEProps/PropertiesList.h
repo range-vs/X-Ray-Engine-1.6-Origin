@@ -230,7 +230,11 @@ public:		// User declarations
     }
 
     void				SetReadOnly				(BOOL val){m_Flags.set(plReadOnly,val);}
-    PropItem*			FindItem 				(const shared_str& name);
+	PropItem*			FindItem 				(const shared_str& name);
+	TItemList*			GetProps()const
+	{
+        return m_Folders;
+	};
 };
 //---------------------------------------------------------------------------
 #endif

@@ -12,13 +12,15 @@
 #pragma link "multi_color"
 #pragma resource "*.dfm"
 
+#include "../xrEProps/ui_scale.hpp"
+
 //---------------------------------------------------------------------------
 __fastcall TfraDetailObject::TfraDetailObject(TComponent* Owner, EDetailManager* dm_tools)
         : TForm(Owner)
 {
 	DM = dm_tools; VERIFY(DM);
 	DEFINE_INI(fsStorage);
-    this->ScaleBy(this->PixelsPerInch, 96);
+    scaleBy(this);
 }
 //---------------------------------------------------------------------------
 void __fastcall TfraDetailObject::PaneMinClick(TObject *Sender)

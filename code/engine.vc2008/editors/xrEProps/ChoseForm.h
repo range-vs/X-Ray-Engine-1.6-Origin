@@ -56,6 +56,8 @@ __published:	// IDE-managed Components
         TLabel *lblMaxCountCheck;
         TLabel *lblCurrentCountTitle;
         TLabel *lblCurrentCountSelected;
+	TPanel *Panel1;
+	TPanel *Panel3;
     void __fastcall sbSelectClick(TObject *Sender);
     void __fastcall sbCancelClick(TObject *Sender);
     void __fastcall FormShow(TObject *Sender);

@@ -1,10 +1,11 @@
-//---------------------------------------------------------------------------
+п»ї//---------------------------------------------------------------------------
 
 #include "stdafx.h"
 #pragma hdrstop
 
 #include "ChoseForm.h"
-#include "PropertiesList.h"               
+#include "PropertiesList.h"
+#include "ItemList.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma link "ElXPThemedControl"
@@ -21,6 +22,7 @@ TOnChooseFillEvents 		TfrmChoseItem::fill_events	= 0;
 AnsiString 					TfrmChoseItem::m_LastSelection;
 
 #include "../include/stack_trace.h"
+#include "ui_scale.hpp"
 
 //---------------------------------------------------------------------------
 SChooseEvents* TfrmChoseItem::GetEvents	(u32 choose_ID)
@@ -42,7 +44,8 @@ void TfrmChoseItem::ClearEvents()
 //---------------------------------------------------------------------------
 void __fastcall TfrmChoseItem::FormCreate(TObject *Sender)
 {
-    m_Props = TProperties::CreateForm("Info",paInfo,alClient);
+	m_Props = TProperties::CreateForm("Info",paInfo,alClient);
+	scaleBy(this, {m_Props->tvProperties});
 }
 //---------------------------------------------------------------------------
 
@@ -141,7 +144,6 @@ __fastcall TfrmChoseItem::TfrmChoseItem(TComponent* Owner)
     m_Flags.assign			(cfAllowNone);
     tvItems->ShowCheckboxes = false;
 	grdFon->Caption 		= "";
-    this->ScaleBy(this->PixelsPerInch, 96);
 }
 //---------------------------------------------------------------------------
 void __fastcall TfrmChoseItem::sbSelectClick(TObject *Sender)
@@ -362,10 +364,9 @@ void __fastcall TfrmChoseItem::tvItemsItemFocused(TObject *Sender)
 		}
 		lbItemName->Caption 	= Item->Text;
 		lbHint->Caption 		= Item->Hint;
-        // TODO: вывести строки в консоль (дебаг)
     }
     m_Props->AssignItems		(items);
-    paInfo->Visible				= !items.empty();
+    //paInfo->Visible				= !items.empty();
 	paImage->Repaint			();
 }
 //---------------------------------------------------------------------------

@@ -11,34 +11,34 @@
 #include "../Include/stack_trace.h"
 
 //---------------------------------------------------------------------------
-USEFORM("FrameAIMap.cpp", fraAIMap);
-USEFORM("FrameDetObj.cpp", fraDetailObject);
-USEFORM("FramePS.cpp", fraPS);
-USEFORM("FrameSector.cpp", fraSector);
-USEFORM("FrameShape.cpp", fraShape);
-USEFORM("FrameSpawn.cpp", fraSpawn);
-USEFORM("FrameWayPoint.cpp", fraWayPoint);
-USEFORM("FrameFogVol.cpp", fraFogVol);
 USEFORM("FrameGroup.cpp", fraGroup);
 USEFORM("FrameLight.cpp", fraLight);
 USEFORM("FrameObject.cpp", fraObject);
 USEFORM("FramePortal.cpp", fraPortal);
-USEFORM("TopBar.cpp", fraTopBar); /* TFrame: File Type */
-USEFORM("LeftBar.cpp", fraLeftBar); /* TFrame: File Type */
-USEFORM("FrmDBXpacker.cpp", DB_packer);
+USEFORM("FramePS.cpp", fraPS);
+USEFORM("FrameAIMap.cpp", fraAIMap);
+USEFORM("FrameDetObj.cpp", fraDetailObject);
+USEFORM("FrameFogVol.cpp", fraFogVol);
+USEFORM("FrameSector.cpp", fraSector);
 USEFORM("LEClipEditor.cpp", ClipMaker);
-USEFORM("PropertiesEObject.cpp", frmPropertiesEObject);
+USEFORM("LeftBar.cpp", fraLeftBar); /* TFrame: File Type */
+USEFORM("FrameShape.cpp", fraShape);
+USEFORM("FrameSpawn.cpp", fraSpawn);
+USEFORM("FrameWayPoint.cpp", fraWayPoint);
+USEFORM("FrmDBXpacker.cpp", DB_packer);
 USEFORM("RightForm.cpp", frmRight);
 USEFORM("Splash.cpp", frmSplash);
+USEFORM("TopBar.cpp", fraTopBar); /* TFrame: File Type */
 USEFORM("main.cpp", frmMain);
 USEFORM("ObjectList.cpp", frmObjectList);
 USEFORM("previewimage.cpp", frmPreviewImage);
+USEFORM("PropertiesEObject.cpp", frmPropertiesEObject);
+USEFORM("EditLibrary.cpp", frmEditLibrary);
 USEFORM("EditLightAnim.cpp", frmEditLightAnim);
 USEFORM("Edit\AppendObjectInfoForm.cpp", frmAppendObjectInfo);
 USEFORM("BottomBar.cpp", fraBottomBar); /* TFrame: File Type */
 USEFORM("DOOneColor.cpp", frmOneColor);
 USEFORM("DOShuffle.cpp", frmDOShuffle);
-USEFORM("EditLibrary.cpp", frmEditLibrary);
 //---------------------------------------------------------------------------
 int WINAPI WinMain(HINSTANCE hInst, HINSTANCE, LPSTR, int)
 {

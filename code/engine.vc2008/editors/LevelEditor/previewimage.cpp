@@ -7,12 +7,15 @@
 #pragma package(smart_init)
 #pragma resource "*.dfm"
 
+#include "../../xrEProps/ui_scale.hpp"
+
+
 TfrmPreviewImage* TfrmPreviewImage::form = 0;
 //---------------------------------------------------------------------------
 __fastcall TfrmPreviewImage::TfrmPreviewImage(TComponent* Owner)
     : TForm(Owner)
 {
-    this->ScaleBy(this->PixelsPerInch, 96);
+    scaleBy(this);
 }
 //---------------------------------------------------------------------------
 

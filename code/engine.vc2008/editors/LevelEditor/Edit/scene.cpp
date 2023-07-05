@@ -20,6 +20,8 @@
 #include "ESceneLightTools.h"
 #include "AppendObjectInfoForm.h"
 #include "lephysics.h"
+
+#include "../../xrEProps/ui_scale.hpp"
 //----------------------------------------------------
 EScene* Scene;
 //----------------------------------------------------
@@ -100,6 +102,7 @@ void EScene::OnCreate()
     m_RTFlags.zero			();
     ExecCommand				(COMMAND_UPDATE_CAPTION);
 	m_SummaryInfo 			= TProperties::CreateForm("Level Summary Info", 0, alNone, 0,0,0, TProperties::plFolderStore|TProperties::plItemFolders);
+    scaleBy(m_SummaryInfo, {m_SummaryInfo->GetProps()->tvItems, m_SummaryInfo->tvProperties});
 }
 
 void EScene::OnDestroy()

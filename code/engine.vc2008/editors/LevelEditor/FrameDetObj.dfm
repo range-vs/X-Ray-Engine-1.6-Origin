@@ -251,15 +251,13 @@ object fraDetailObject: TfraDetailObject
       object Label1: TLabel
         Left = 1
         Top = 1
-        Width = 212
-        Height = 18
+        Width = 71
+        Height = 13
         Align = alClient
         Alignment = taCenter
         Caption = 'DO Commands'
         Color = clGray
         ParentColor = False
-        ExplicitWidth = 71
-        ExplicitHeight = 13
       end
     end
   end

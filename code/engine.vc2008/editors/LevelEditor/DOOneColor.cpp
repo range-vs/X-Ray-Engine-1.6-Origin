@@ -1,4 +1,4 @@
-#include "stdafx.h"
+п»ї#include "stdafx.h"
 #pragma hdrstop
 
 #include "DOOneColor.h"
@@ -9,6 +9,8 @@
 #pragma link "ElXPThemedControl"
 #pragma link "ExtBtn"
 #pragma resource "*.dfm"
+
+#include "../xrEProps/ui_scale.hpp"
 
 /*ColorIndicesFunctor::ColorIndicesFunctor(u32 fc):findColor(fc){}
 
@@ -23,18 +25,18 @@ bool ColorIndicesFunctor::operator()(const std::pair<u32, DOVec>& p)const
 __fastcall TfrmOneColor::TfrmOneColor(TComponent* Owner)
     : TForm(Owner)
 {
-    this->ScaleBy(this->PixelsPerInch, 96);
+    scaleBy(this);
 }
 //---------------------------------------------------------------------------
 
-/*void __fastcall TfrmOneColor::AddObjectToIndexColor(const char* name)  // здесь добавляем модельку травы к индексу цвета
+/*void __fastcall TfrmOneColor::AddObjectToIndexColor(const char* name)  // пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 {
     EDetail* DO	= DM->FindDOByName(name);
     if (DO && std::find(DM->m_ColorIndices[indexColor].begin(), DM->m_ColorIndices[indexColor].end(), DO) == DM->m_ColorIndices[indexColor].end())
         DM->m_ColorIndices[indexColor].push_back(DO);
 }
 
-void __fastcall TfrmOneColor::RemoveObjectToIndexColor(const char* name)  // здесь удаляем модельку травы у индекса цвета
+void __fastcall TfrmOneColor::RemoveObjectToIndexColor(const char* name)  // пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 {
     EDetail* DO	= DM->FindDOByName(name);
     DM->m_ColorIndices[indexColor].erase(std::find(DM->m_ColorIndices[indexColor].begin(),
@@ -42,16 +44,16 @@ void __fastcall TfrmOneColor::RemoveObjectToIndexColor(const char* name)  // зде
         DO));
 }
 
-void __fastcall TfrmOneColor::ReplaceObjectsToIndexColor() // здесь заеняем индекс цвета у DM->m_ColorIndices
+void __fastcall TfrmOneColor::ReplaceObjectsToIndexColor() // пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ DM->m_ColorIndices
 {
      u32 oldIndexColor = indexColor;
      indexColor = color_rgba(GetRValue(mcColor->Brush->Color), GetGValue(mcColor->Brush->Color), GetBValue(mcColor->Brush->Color), 0);
 
-     // обновление нового цвета
+     // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
      int countIndexColor = std::count_if(DM->m_ColorIndices.begin(), DM->m_ColorIndices.end(), ColorIndicesFunctor(indexColor));
      if(countIndexColor == 0)
      {
-          // перенос цветов со старого индекса в новый
+          // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ
           DM->m_ColorIndices.insert(make_pair(indexColor, DOVec()));
           for ( TElTreeItem* node = tvDOList->Items->GetFirstNode(); node; node = node->GetNext())
           {
@@ -64,23 +66,23 @@ void __fastcall TfrmOneColor::ReplaceObjectsToIndexColor() // здесь заеняем инде
      else
         DM->m_ColorIndices[indexColor].insert(DM->m_ColorIndices[indexColor].end(), DM->m_ColorIndices[oldIndexColor].begin(), DM->m_ColorIndices[oldIndexColor].end());
 
-     // обновление старого цвета
+     // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
      countIndexColor = std::count_if(DM->m_ColorIndices.begin(), DM->m_ColorIndices.end(), ColorIndicesFunctor(oldIndexColor));
      if(countIndexColor == 0)
         DM->m_ColorIndices.erase(oldIndexColor);
 
-     // TODO: не забыть обновить ГУИ (для старого цвета, как? -> просто добавить еще один индекс с этими элементами(DM->m_ColorIndices[indexColor].insert(DM->m_ColorIndices[indexColor].end(), DM->m_ColorIndices[oldIndexColor].begin(), DM->m_ColorIndices[oldIndexColor].end());))
+     // TODO: пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ (пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ? -> пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ(DM->m_ColorIndices[indexColor].insert(DM->m_ColorIndices[indexColor].end(), DM->m_ColorIndices[oldIndexColor].begin(), DM->m_ColorIndices[oldIndexColor].end());))
      
      //DM->m_ColorIndices.insert(make_pair(indexColor, DM->m_ColorIndices[oldIndexColor]));
      //DM->m_ColorIndices.erase(oldIndexColor);
 }
 
-void __fastcall TfrmOneColor::RemoveIndexColor() // здесь удаляем цвет из DM->m_ColorIndices
+void __fastcall TfrmOneColor::RemoveIndexColor() // пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ DM->m_ColorIndices
 {
       DM->m_ColorIndices.erase(indexColor); 
 }
 
-void __fastcall TfrmOneColor::AddIndexColor() // здесь добавляем цвет к DM->m_ColorIndices
+void __fastcall TfrmOneColor::AddIndexColor() // пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ DM->m_ColorIndices
 {
     if(DM->m_ColorIndices.find(indexColor) != DM->m_ColorIndices.end())
         DM->m_ColorIndices.insert(make_pair(indexColor, DOVec()));

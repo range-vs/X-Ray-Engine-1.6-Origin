@@ -157,15 +157,13 @@ object fraWayPoint: TfraWayPoint
       object APHeadLabel1: TLabel
         Left = 1
         Top = 1
-        Width = 202
-        Height = 18
+        Width = 52
+        Height = 13
         Align = alClient
         Alignment = taCenter
         Caption = 'Way Mode'
         Color = clGray
         ParentColor = False
-        ExplicitWidth = 52
-        ExplicitHeight = 13
       end
       object ExtBtn2: TExtBtn
         Left = 203
@@ -422,15 +420,13 @@ object fraWayPoint: TfraWayPoint
       object Label1: TLabel
         Left = 1
         Top = 1
-        Width = 202
-        Height = 18
+        Width = 70
+        Height = 13
         Align = alClient
         Alignment = taCenter
         Caption = 'Link Command'
         Color = clGray
         ParentColor = False
-        ExplicitWidth = 70
-        ExplicitHeight = 13
       end
     end
   end

@@ -17,6 +17,8 @@
 #pragma link "multi_edit"
 #pragma resource "*.dfm"
 
+#include "../xrEProps/ui_scale.hpp"
+
 //DWORD WINAPI run(LPVOID _tools)
 //{
 //   ESceneAIMapTool* tools = (ESceneAIMapTool*)&_tools;
@@ -28,7 +30,7 @@ __fastcall TfraAIMap::TfraAIMap(TComponent* Owner, ESceneAIMapTool* _tools)
 : TForm(Owner)
 {   
 	tools = _tools;  R_ASSERT(tools);
-    this->ScaleBy(this->PixelsPerInch, 96);
+    scaleBy(this);
 }
 //---------------------------------------------------------------------------
 void __fastcall TfraAIMap::PanelMinClick(TObject *Sender)

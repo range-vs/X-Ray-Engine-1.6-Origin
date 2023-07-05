@@ -1,4 +1,4 @@
-//---------------------------------------------------------------------------
+п»ї//---------------------------------------------------------------------------
 #include "stdafx.h"
 #pragma hdrstop
 
@@ -19,6 +19,8 @@
 #pragma link "MXCtrls"
 #pragma resource "*.dfm"
 
+#include "../../xrEProps/ui_scale.hpp"
+
 TfrmSoundLib* TfrmSoundLib::form = 0;
 FS_FileSet	TfrmSoundLib::modif_map;
 Flags32 TfrmSoundLib::m_Flags={0};
@@ -28,7 +30,6 @@ __fastcall TfrmSoundLib::TfrmSoundLib(TComponent* Owner)
 {
     DEFINE_INI(fsStorage);
 	bFormLocked = false;
-    this->ScaleBy(this->PixelsPerInch, 96);
 }
 //---------------------------------------------------------------------------
 
@@ -45,7 +46,8 @@ void __fastcall TfrmSoundLib::FormCreate(TObject *Sender)
     m_ItemList->SetOnItemRemoveEvent		(on_remove);
 	m_ItemList->SetOnItemRenameEvent		(on_rename);
     m_ItemList->SetImages					(ImageList);
-    bAutoPlay 								= FALSE;
+	bAutoPlay 								= FALSE;
+    scaleBy(this, {m_ItemList->tvItems, m_ItemProps->tvProperties});
 }
 //---------------------------------------------------------------------------
 
@@ -184,7 +186,7 @@ void __fastcall TfrmSoundLib::FormKeyDown(TObject *Sender, WORD &Key,
     }else{
         if (Key==VK_ESCAPE){
             if (bFormLocked)	ExecCommand(COMMAND_BREAK_LAST_OPERATION);
-            Key = 0; // :-) нужно для того чтобы AccessVoilation не вылазил по ESCAPE
+            Key = 0; // :-) пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ AccessVoilation пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ ESCAPE
         }
     }
 }

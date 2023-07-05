@@ -658,4 +658,3 @@ void SPBItem::Info				(LPCSTR text, bool bWarn)
 	    UI->ProgressDraw		();
     }
 }
-

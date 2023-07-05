@@ -42,6 +42,8 @@
 #pragma link "ExtBtn"
 #pragma resource "*.dfm"
 
+#include "ui_scale.hpp"
+
 #ifdef _WIN64
 	using ElTreeTagType = std::int64_t;
 #else
@@ -127,7 +129,7 @@ __fastcall TProperties::TProperties(TComponent* Owner) : TForm(Owner)
     hkShortcut->Hide	();
     m_Flags.zero		();
 	m_Folders			= 0;
-    this->ScaleBy(this->PixelsPerInch, 96);
+    //scaleBy(this);
 }
 //---------------------------------------------------------------------------
 
@@ -1794,5 +1796,4 @@ PropItem* TProperties::FindItem(const shared_str& name)
 	return PHelper().FindItem(m_Items,name,PROP_UNDEF);
 }
 //---------------------------------------------------------------------------
-
 

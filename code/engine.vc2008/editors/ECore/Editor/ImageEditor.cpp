@@ -1,4 +1,4 @@
-//---------------------------------------------------------------------------
+п»ї//---------------------------------------------------------------------------
 #include "stdafx.h"
 #pragma hdrstop
 
@@ -17,6 +17,9 @@
 #pragma link "mxPlacemnt"
 #pragma link "MXCtrls"
 #pragma resource "*.dfm"
+
+#include "../../xrEProps/ui_scale.hpp"
+
 TfrmImageLib* TfrmImageLib::form = 0;
 FS_FileSet	TfrmImageLib::texture_map;
 FS_FileSet	TfrmImageLib::modif_map;
@@ -33,17 +36,17 @@ __fastcall TfrmImageLib::TfrmImageLib(TComponent* Owner)
     ttBumpMap->Tag  = STextureParams::ttBumpMap;
     ttNormalMap->Tag= STextureParams::ttNormalMap;
 	ttTerrain->Tag  = STextureParams::ttTerrain;
-    this->ScaleBy(this->PixelsPerInch, 96);
 }
 //---------------------------------------------------------------------------
 
 void __fastcall TfrmImageLib::FormCreate(TObject*)
 {
 	m_ItemProps 				= TProperties::CreateForm	("",paProperties,alClient);
-    m_ItemList					= TItemList::CreateForm		("Items",paItems,alClient);
+	m_ItemList					= TItemList::CreateForm		("Items",paItems,alClient);
     m_ItemList->SetOnItemsFocusedEvent	(fastdelegate::bind<TOnILItemsFocused>(this,&TfrmImageLib::OnItemsFocused));
     m_ItemList->SetOnItemRemoveEvent	(fastdelegate::bind<TOnItemRemove>(&ImageLib,&CImageManager::RemoveTexture));
-    m_ItemList->SetImages		(ImageList);
+	m_ItemList->SetImages		(ImageList);
+	scaleBy(this, {m_ItemList->tvItems, m_ItemProps->tvProperties});
 }
 //---------------------------------------------------------------------------
 
@@ -253,7 +256,7 @@ void __fastcall TfrmImageLib::FormKeyDown(TObject*, WORD &Key,
     }else{
         if (Key==VK_ESCAPE){
             if (bFormLocked)	ExecCommand(COMMAND_BREAK_LAST_OPERATION);
-            Key = 0; // :-) нужно для того чтобы AccessVoilation не вылазил по ESCAPE
+            Key = 0; // :-) пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ AccessVoilation пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ ESCAPE
         }
     }
 }

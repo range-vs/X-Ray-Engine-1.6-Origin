@@ -3,10 +3,13 @@
 #pragma hdrstop
 
 #include "PropertiesList.h"
+#include "ItemList.h"
 #include "ui_main.h"
 #include "ui_toolscustom.h"
 
 #include "EditorPreferences.h"
+
+#include "../../xrEProps/ui_scale.hpp"
 
 #include "stack_trace.h"
 //---------------------------------------------------------------------------
@@ -346,8 +349,8 @@ void CCustomPreferences::AppendRecentFile(LPCSTR name)
 
 void CCustomPreferences::OnCreate()
 {
-	//Load				();  // range fix
 	m_ItemProps 		= TProperties::CreateModalForm("Editor Preferences",false,0,0,TOnCloseEvent(this,&CCustomPreferences::OnClose),TProperties::plItemFolders|TProperties::plFullSort); //TProperties::plFullExpand TProperties::plFullSort TProperties::plNoClearStore|TProperties::plFolderStore|
+	scaleBy(m_ItemProps, {m_ItemProps->tvProperties, m_ItemProps->GetProps()->tvItems});
 }
 //---------------------------------------------------------------------------
 

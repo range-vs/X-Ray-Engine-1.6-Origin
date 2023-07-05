@@ -4,6 +4,8 @@
 #include "LogForm.h"
 #include "ui_main.h"
 
+#include "../../xrEProps/ui_scale.hpp"
+
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma link "mxPlacemnt"
@@ -15,7 +17,7 @@ __fastcall TfrmLog::TfrmLog(TComponent* Owner)
     : TForm(Owner)
 {
 	DEFINE_INI(fsStorage);
-    this->ScaleBy(this->PixelsPerInch, 96);
+    scaleBy(this);
 }
 //---------------------------------------------------------------------------
 void __fastcall TfrmLog::CreateLog(){

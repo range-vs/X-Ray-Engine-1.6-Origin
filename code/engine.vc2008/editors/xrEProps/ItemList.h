@@ -183,7 +183,7 @@ public:		// User declarations
     virtual void		SetFlags				(u32 mask)	{m_Flags.assign(mask);}	
     
 #ifdef __BORLANDC__
-	static TItemList* 	CreateForm				(LPCSTR title, TWinControl* parent=0, TAlign align=alNone, u32 flags=ilMultiSelect|ilFolderStore, bool scale_form = true);
+	static TItemList* 	CreateForm				(LPCSTR title, TWinControl* parent=0, TAlign align=alNone, u32 flags=ilMultiSelect|ilFolderStore);
 #endif
 	static TItemList* 	CreateModalForm			(LPCSTR title, u32 flags=ilMultiSelect|ilFolderStore);
 	static void 		DestroyForm				(TItemList*& props);

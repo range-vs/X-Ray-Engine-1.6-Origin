@@ -14,6 +14,8 @@
 #pragma link "MxMenus"
 #pragma resource "*.dfm"
 
+#include "ui_scale.hpp"
+
 //---------------------------------------------------------------------------
 __fastcall TfrmText::TfrmText(TComponent* Owner)
     : TForm(Owner)
@@ -22,7 +24,7 @@ __fastcall TfrmText::TfrmText(TComponent* Owner)
     OnApplyClick 	= 0;
     OnCloseClick	= 0;
 	OnCodeInsight	= 0;
-    this->ScaleBy(this->PixelsPerInch, 96);
+    scaleBy(this);
 }
 //---------------------------------------------------------------------------
 void __fastcall TfrmText::FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift)

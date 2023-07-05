@@ -74,15 +74,13 @@ object fraShape: TfraShape
       object APHeadLabel1: TLabel
         Left = 1
         Top = 1
-        Width = 202
-        Height = 18
+        Width = 37
+        Height = 13
         Align = alClient
         Alignment = taCenter
         Caption = 'Append'
         Color = clGray
         ParentColor = False
-        ExplicitWidth = 37
-        ExplicitHeight = 13
       end
       object ExtBtn2: TExtBtn
         Left = 203
@@ -197,14 +195,13 @@ object fraShape: TfraShape
       object Label1: TLabel
         Left = 1
         Top = 1
-        Width = 202
-        Height = 18
+        Width = 18
+        Height = 13
         Align = alClient
         Alignment = taCenter
         Caption = 'Edit'
         Color = clGray
         ParentColor = False
-        ExplicitTop = 5
       end
     end
   end

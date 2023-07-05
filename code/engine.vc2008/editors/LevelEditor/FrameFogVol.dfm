@@ -74,15 +74,13 @@ object fraFogVol: TfraFogVol
       object APHeadLabel1: TLabel
         Left = 1
         Top = 1
-        Width = 203
-        Height = 18
+        Width = 52
+        Height = 13
         Align = alClient
         Alignment = taCenter
         Caption = 'Commands'
         Color = clGray
         ParentColor = False
-        ExplicitWidth = 52
-        ExplicitHeight = 13
       end
       object ExtBtn2: TExtBtn
         Left = 204

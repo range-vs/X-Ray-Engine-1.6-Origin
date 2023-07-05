@@ -10,11 +10,13 @@
 #pragma package(smart_init)
 #pragma resource "*.dfm"
 
+#include "../../xrEProps/ui_scale.hpp"
+
 //---------------------------------------------------------------------------
 __fastcall TfraLight::TfraLight(TComponent* Owner)
         : TForm(Owner)
 {
-    this->ScaleBy(this->PixelsPerInch, 96);
+    scaleBy(this);
 }
 //---------------------------------------------------------------------------
 void __fastcall TfraLight::PaneMinClick(TObject *Sender)

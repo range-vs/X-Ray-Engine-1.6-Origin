@@ -23,12 +23,13 @@ object fraObject: TfraObject
   TextHeight = 13
   object paSelectObject: TPanel
     Left = 0
-    Top = 60
+    Top = 75
     Width = 218
     Height = 85
     Align = alTop
     Color = 10528425
     TabOrder = 0
+    ExplicitTop = 60
     object Bevel3: TBevel
       Left = 153
       Top = 56
@@ -202,15 +203,16 @@ object fraObject: TfraObject
     Left = 0
     Top = 0
     Width = 218
-    Height = 60
+    Height = 75
     Align = alTop
     Color = 10528425
     TabOrder = 1
+    ExplicitLeft = -1
     ExplicitTop = -4
     object ebMultiAppend: TExtBtn
       Left = 2
       Top = 20
-      Width = 215
+      Width = 107
       Height = 15
       Align = alNone
       BevelShow = False
@@ -228,14 +230,14 @@ object fraObject: TfraObject
     end
     object Bevel4: TBevel
       Left = 1
-      Top = 41
+      Top = 36
       Width = 216
-      Height = 1
+      Height = 9
       Shape = bsBottomLine
     end
     object ebRandomAppendMode: TExtBtn
       Left = 1
-      Top = 41
+      Top = 45
       Width = 108
       Height = 17
       Align = alNone
@@ -295,10 +297,10 @@ object fraObject: TfraObject
       OnClick = ebRandomAppendModeClick
     end
     object ExtBtn8: TExtBtn
-      Left = 107
-      Top = 24
-      Width = 107
-      Height = 17
+      Left = 106
+      Top = 20
+      Width = 106
+      Height = 15
       Align = alNone
       BevelShow = False
       HotTrack = True
@@ -364,14 +366,16 @@ object fraObject: TfraObject
   end
   object paCurrentObject: TPanel
     Left = 0
-    Top = 145
+    Top = 160
     Width = 218
-    Height = 227
+    Height = 212
     Align = alClient
     Color = 10528425
     Constraints.MinHeight = 175
     TabOrder = 2
     OnResize = paCurrentObjectResize
+    ExplicitTop = 145
+    ExplicitHeight = 227
     object APHeadLabel2: TLabel
       Left = 1
       Top = 38
@@ -397,12 +401,13 @@ object fraObject: TfraObject
       Left = 1
       Top = 51
       Width = 216
-      Height = 175
+      Height = 160
       Align = alClient
       AutoSize = True
       BevelOuter = bvNone
       ParentColor = True
       TabOrder = 0
+      ExplicitHeight = 175
     end
     object Panel1: TPanel
       Left = 1

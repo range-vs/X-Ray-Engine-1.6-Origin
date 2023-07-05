@@ -17,6 +17,7 @@
 #include "lephysics.h"
 
 #include "../../Include/stack_trace.h"
+#include "../../xrEProps/ui_scale.hpp"
 
 void DETACH_FRAME(TForm* a)
 {
@@ -80,8 +81,9 @@ bool CLevelTool::OnCreate()
                                                 TOnModifiedEvent(this,&CLevelTool::OnPropsModified),
                                                 0,
                                                 TOnCloseEvent(this,&CLevelTool::OnPropsClose),
-                          TProperties::plItemFolders|TProperties::plFolderStore|TProperties::plNoClearStore|TProperties::plFullExpand);
-    pObjectListForm = TfrmObjectList::CreateForm();
+						  TProperties::plItemFolders|TProperties::plFolderStore|TProperties::plNoClearStore|TProperties::plFullExpand);
+	scaleBy(m_Props, {m_Props->tvProperties, m_Props->GetProps()->tvItems});
+	pObjectListForm = TfrmObjectList::CreateForm();
     return true;
 }
 //---------------------------------------------------------------------------

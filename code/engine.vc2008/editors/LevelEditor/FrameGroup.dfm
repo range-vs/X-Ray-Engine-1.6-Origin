@@ -139,14 +139,13 @@ object fraGroup: TfraGroup
     object APHeadLabel2: TLabel
       Left = 1
       Top = 1
-      Width = 211
+      Width = 68
       Height = 13
       Align = alTop
       Alignment = taCenter
       Caption = 'Current Object'
       Color = clGray
       ParentColor = False
-      ExplicitWidth = 68
     end
     object ebSelect: TExtBtn
       Left = 7
@@ -218,14 +217,13 @@ object fraGroup: TfraGroup
     object Label1: TLabel
       Left = 1
       Top = 1
-      Width = 211
+      Width = 73
       Height = 13
       Align = alTop
       Alignment = taCenter
       Caption = 'Pivot Alignment'
       Color = clGray
       ParentColor = False
-      ExplicitWidth = 73
     end
     object ebCenterToGroup: TExtBtn
       Left = 2
@@ -283,8 +281,8 @@ object fraGroup: TfraGroup
     object Label2: TLabel
       Left = 7
       Top = 22
-      Width = 66
-      Height = 27
+      Width = 47
+      Height = 26
       Caption = 'Select by Current:'
       WordWrap = True
     end
@@ -372,8 +370,8 @@ object fraGroup: TfraGroup
     object Label6: TLabel
       Left = 7
       Top = 50
-      Width = 84
-      Height = 29
+      Width = 47
+      Height = 26
       Caption = 'Select by Selected:'
       WordWrap = True
     end
@@ -405,15 +403,13 @@ object fraGroup: TfraGroup
       object APHeadLabel3: TLabel
         Left = 1
         Top = 1
-        Width = 198
-        Height = 18
+        Width = 83
+        Height = 13
         Align = alClient
         Alignment = taCenter
         Caption = 'Reference Select'
         Color = clGray
         ParentColor = False
-        ExplicitWidth = 83
-        ExplicitHeight = 13
       end
       object ExtBtn5: TExtBtn
         Left = 199

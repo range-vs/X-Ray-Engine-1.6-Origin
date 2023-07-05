@@ -1,4 +1,5 @@
 //---------------------------------------------------------------------------
+#include "stdafx.h"
 
 #include <vcl.h>
 #pragma hdrstop
@@ -7,11 +8,14 @@
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma resource "*.dfm"
+
+#include "../xrEProps/ui_scale.hpp"
+
 TfrmRight *frmRight;
 //---------------------------------------------------------------------------
 __fastcall TfrmRight::TfrmRight(TComponent* Owner)
 	: TForm(Owner)
 {
-    this->ScaleBy(this->PixelsPerInch, 96);
+    scaleBy(this);
 }
 //---------------------------------------------------------------------------

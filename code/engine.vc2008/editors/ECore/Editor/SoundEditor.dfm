@@ -127,6 +127,7 @@ object frmSoundLib: TfrmSoundLib
     BevelOuter = bvNone
     ParentColor = True
     TabOrder = 1
+    ExplicitLeft = -3
   end
   object fsStorage: TFormStorage
     Version = 1

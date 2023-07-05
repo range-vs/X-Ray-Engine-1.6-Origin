@@ -12,11 +12,14 @@
 #pragma link "mxPlacemnt"
 #pragma resource "*.dfm"
 
+#include "../../xrEProps/ui_scale.hpp"
+
+
 //---------------------------------------------------------------------------
 __fastcall TfraSector::TfraSector(TComponent* Owner)
         : TForm(Owner)
 {
-    this->ScaleBy(this->PixelsPerInch, 96);
+    scaleBy(this);
 }
 //---------------------------------------------------------------------------
 void __fastcall TfraSector::PanelMinClick(TObject *Sender)

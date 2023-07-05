@@ -3,7 +3,8 @@
 
 #include "ShaderFunction.h"
 #include "WaveForm.h"
-//#include "ui_main.h"
+#include "ui_scale.hpp"
+
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma link "ExtBtn"
@@ -57,7 +58,7 @@ __fastcall TfrmShaderFunction::TfrmShaderFunction(TComponent* Owner)
     : TForm(Owner)
 {
 	FillMenuFromToken(pmFunction, function_token, stFunctionClick);
-    this->ScaleBy(this->PixelsPerInch, 96);
+    scaleBy(this);
 }
 //---------------------------------------------------------------------------
 

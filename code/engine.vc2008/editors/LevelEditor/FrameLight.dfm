@@ -112,15 +112,13 @@ object fraLight: TfraLight
       object APHeadLabel1: TLabel
         Left = 1
         Top = 1
-        Width = 202
-        Height = 18
+        Width = 64
+        Height = 13
         Align = alClient
         Alignment = taCenter
         Caption = 'Affect in D3D'
         Color = clGray
         ParentColor = False
-        ExplicitWidth = 64
-        ExplicitHeight = 13
       end
       object ExtBtn2: TExtBtn
         Left = 203

@@ -68,6 +68,8 @@ public:		// User declarations
     void			HideProperties			(){Hide();}
     bool __fastcall IsModified				(){return (m_BasicProp->IsModified()||m_SurfProp->IsModified());}
 	void __fastcall OnPick					(const SRayPickInfo& pinf);
+	TProperties* 	GetBasicProp()const {return m_BasicProp;}
+	TProperties* 	GetSurfProp()const {return m_SurfProp;}
 };
 //---------------------------------------------------------------------------
 #endif

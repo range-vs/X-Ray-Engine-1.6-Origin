@@ -12,13 +12,14 @@
 #pragma link "mxPlacemnt"
 #pragma resource "*.dfm"
 
+#include "../../xrEProps/ui_scale.hpp"
+
 //---------------------------------------------------------------------------
 __fastcall TfraPS::TfraPS(TComponent* Owner)
         : TForm(Owner)
 {
     DEFINE_INI(fsStorage);
 	m_Current = 0;
-	this->ScaleBy(this->PixelsPerInch, 96);
 }
 //---------------------------------------------------------------------------
 void TfraPS::OnItemFocused(ListItemsVec& items)
@@ -112,9 +113,10 @@ void __fastcall TfraPS::FormShow(TObject *Sender)
 
 void __fastcall TfraPS::FormCreate(TObject *Sender)
 {
-    m_Items 				= TItemList::CreateForm("Particles",paItems, alClient, 0, false);
+    m_Items 				= TItemList::CreateForm("Particles",paItems, alClient, 0);
     m_Items->SetImages		(ilModeIcons);
-    m_Items->SetOnItemsFocusedEvent(TOnILItemsFocused(this,&TfraPS::OnItemFocused));
+	m_Items->SetOnItemsFocusedEvent(TOnILItemsFocused(this,&TfraPS::OnItemFocused));
+    scaleBy(this, {m_Items->tvItems});
 }
 //---------------------------------------------------------------------------
 

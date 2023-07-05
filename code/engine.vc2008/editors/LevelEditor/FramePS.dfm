@@ -177,15 +177,13 @@ object fraPS: TfraPS
       object Label: TLabel
         Left = 1
         Top = 1
-        Width = 202
-        Height = 18
+        Width = 69
+        Height = 13
         Align = alClient
         Alignment = taCenter
         Caption = 'PS Commands'
         Color = clGray
         ParentColor = False
-        ExplicitWidth = 69
-        ExplicitHeight = 13
       end
     end
   end
@@ -200,14 +198,13 @@ object fraPS: TfraPS
     object APHeadLabel2: TLabel
       Left = 1
       Top = 1
-      Width = 215
+      Width = 51
       Height = 13
       Align = alTop
       Alignment = taCenter
       Caption = 'Current PS'
       Color = clGray
       ParentColor = False
-      ExplicitWidth = 51
     end
     object Bevel1: TBevel
       Left = 1

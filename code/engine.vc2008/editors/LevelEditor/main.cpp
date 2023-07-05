@@ -1,4 +1,4 @@
-//---------------------------------------------------------------------------
+п»ї//---------------------------------------------------------------------------
 
 #include "stdafx.h"
 #pragma hdrstop
@@ -33,6 +33,8 @@ TfrmMain *frmMain;
 #include "ResourceManager.h"
 #include "../xrEProps/EditorChooseEvents.h"
 
+#include "../../xrEProps/ui_scale.hpp"
+
 
 __fastcall TfrmMain::TfrmMain(TComponent* Owner)
         : TForm(Owner)
@@ -56,7 +58,7 @@ __fastcall TfrmMain::TfrmMain(TComponent* Owner)
     	FlushLog			();
 		TerminateProcess(GetCurrentProcess(),-1);
 	}
-    this->ScaleBy(this->PixelsPerInch, 96);
+    scaleBy(this);
 }
 //---------------------------------------------------------------------------
 void __fastcall TfrmMain::FormShow(TObject *Sender)
@@ -208,7 +210,7 @@ void __fastcall TfrmMain::D3DWindowChangeFocus(TObject *Sender)
     }else{
 		UI->OnAppDeactivate();
         UI->IR_Release();
-        paRender->Color=paRender->Color; // чтобы не было  internal code gen error
+        paRender->Color=paRender->Color; // пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ  internal code gen error
     }
 }
 //---------------------------------------------------------------------------

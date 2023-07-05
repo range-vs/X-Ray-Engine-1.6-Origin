@@ -59,21 +59,17 @@ object frmPropertiesEObject: TfrmPropertiesEObject
     ParentColor = False
     TabOrder = 0
     UseXPThemes = False
-    ExplicitWidth = 459
-    ExplicitHeight = 329
     object tsBasic: TElTabSheet
       Hint = ''
       PageControl = ElPageControl1
       Caption = 'Main Options'
       Color = 10528425
       Visible = False
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object paBasic: TPanel
         Left = 0
         Top = 0
-        Width = 455
-        Height = 317
+        Width = 447
+        Height = 305
         Align = alClient
         BevelOuter = bvLowered
         Color = 10528425
@@ -85,23 +81,21 @@ object frmPropertiesEObject: TfrmPropertiesEObject
       PageControl = ElPageControl1
       Caption = 'Surfaces'
       Color = 10528425
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object paSurfaces: TPanel
         Left = 0
         Top = 19
-        Width = 319
-        Height = 291
+        Width = 311
+        Height = 286
         Align = alClient
         BevelOuter = bvLowered
         Color = 10528425
         TabOrder = 0
       end
       object Panel2: TPanel
-        Left = 319
+        Left = 311
         Top = 19
         Width = 136
-        Height = 291
+        Height = 286
         Align = alRight
         BevelOuter = bvNone
         ParentColor = True
@@ -110,7 +104,7 @@ object frmPropertiesEObject: TfrmPropertiesEObject
           Left = 0
           Top = 0
           Width = 136
-          Height = 291
+          Height = 286
           Align = alClient
           Caption = ' Texture Details '
           TabOrder = 0
@@ -190,7 +184,7 @@ object frmPropertiesEObject: TfrmPropertiesEObject
       object Panel1: TPanel
         Left = 0
         Top = 0
-        Width = 455
+        Width = 447
         Height = 19
         Align = alTop
         BevelOuter = bvNone

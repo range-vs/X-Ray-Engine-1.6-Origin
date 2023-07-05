@@ -46,17 +46,14 @@ object frmMain: TfrmMain
       object APHeadLabel2: TLabel
         Left = 12
         Top = 1
-        Width = 212
-        Height = 14
+        Width = 36
+        Height = 13
         Align = alClient
         Alignment = taCenter
         Caption = 'Toolbar'
         Color = clGray
         ParentColor = False
         OnClick = TopClick
-        ExplicitLeft = 23
-        ExplicitWidth = 36
-        ExplicitHeight = 13
       end
       object sbToolsMin: TExtBtn
         Left = 224
@@ -89,6 +86,7 @@ object frmMain: TfrmMain
         Top = 1
         Width = 11
         Height = 14
+        Align = alNone
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Height = -11
@@ -103,8 +101,6 @@ object frmMain: TfrmMain
           FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF0000}
         ParentFont = False
         OnClick = ebAllMinClick
-        ExplicitLeft = -5
-        ExplicitTop = 3
       end
       object ebAllMax: TExtBtn
         Left = 12

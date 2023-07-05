@@ -249,6 +249,12 @@
             <DependentOn>TextForm.h</DependentOn>
             <BuildOrder>1</BuildOrder>
         </CppCompile>
+        <CppCompile Include="ui_scale.cpp">
+            <BuildOrder>21</BuildOrder>
+        </CppCompile>
+        <None Include="ui_scale.hpp">
+            <BuildOrder>22</BuildOrder>
+        </None>
         <None Include="WaveForm.h">
             <BuildOrder>29</BuildOrder>
             <BuildOrder>16</BuildOrder>
@@ -536,6 +542,12 @@
                 <DeployFile LocalName="..\..\..\..\bins\Win64\Debug\xrEPropsB.dll" Configuration="Debug" Class="ProjectOutput"/>
                 <DeployFile Condition="'$(DynamicRTL)'=='true' And '$(Multithreaded)'!='true'" LocalName="$(BDS)\bin\cc32270.dll" Class="DependencyModule">
                     <Platform Name="Win32">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\..\..\..\bins\Win64\Debug\xrEPropsB.dll" Configuration="Debug" Class="ProjectOutput">
+                    <Platform Name="Win64">
+                        <RemoteName>xrEPropsB.dll</RemoteName>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>

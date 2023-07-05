@@ -10,13 +10,14 @@
 #pragma link "ExtBtn"
 #pragma resource "*.dfm"
 
+#include "../xrEProps/ui_scale.hpp"
 
 //---------------------------------------------------------------------------
 __fastcall TfraFogVol::TfraFogVol(TComponent* Owner, ESceneFogVolumeTool* gt)
 	: TForm(Owner)
 {
 	ParentTools = gt;
-    this->ScaleBy(this->PixelsPerInch, 96);
+    scaleBy(this);
 }
 //---------------------------------------------------------------------------
 void __fastcall TfraFogVol::ebGroupClick(TObject *Sender)

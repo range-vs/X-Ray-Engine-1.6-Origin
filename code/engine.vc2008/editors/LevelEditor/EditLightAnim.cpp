@@ -17,6 +17,8 @@
 #pragma link "RenderWindow"
 #pragma resource "*.dfm"
 
+#include "../xrEProps/ui_scale.hpp"
+
 TfrmEditLightAnim* TfrmEditLightAnim::form=0;
 
 //---------------------------------------------------------------------------
@@ -30,7 +32,6 @@ __fastcall TfrmEditLightAnim::TfrmEditLightAnim(TComponent* Owner)
     iMoveKey        = -1;
     m_Props 		= 0;
 	m_Items			= 0;
-    this->ScaleBy(this->PixelsPerInch, 96);
 }
 //---------------------------------------------------------------------------
 void __fastcall TfrmEditLightAnim::FormCreate(TObject *Sender)
@@ -41,6 +42,7 @@ void __fastcall TfrmEditLightAnim::FormCreate(TObject *Sender)
     m_Items->SetOnItemFocusedEvent	(fastdelegate::bind<TOnILItemFocused>(this,&TfrmEditLightAnim::OnItemFocused));
     m_Items->SetOnItemRemoveEvent	(fastdelegate::bind<TOnItemRemove>(&LALib,&ELightAnimLibrary::RemoveObject));
     m_Items->SetOnItemRenameEvent	(fastdelegate::bind<TOnItemRename>(&LALib,&ELightAnimLibrary::RenameObject));
+    scaleBy(this, {m_Props->tvProperties, m_Items->tvItems});
 }
 //---------------------------------------------------------------------------
 

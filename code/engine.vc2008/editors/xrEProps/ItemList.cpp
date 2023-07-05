@@ -26,6 +26,8 @@
 #pragma link "ElPopBtn"
 #pragma resource "*.dfm"
 
+#include "ui_scale.hpp"
+
 #ifdef _WIN64
 	using ElTreeTagType = std::int64_t;
 #else
@@ -39,12 +41,12 @@ typedef xr_vector< TItemList* > ILVec; typedef ILVec::iterator ILVecIt;
 static  ILVec					ILForms;
 
 //---------------------------------------------------------------------------
-TItemList* TItemList::CreateForm(LPCSTR title, TWinControl* parent, TAlign align, u32 flags, bool scale_form )
+TItemList* TItemList::CreateForm(LPCSTR title, TWinControl* parent, TAlign align, u32 flags)
 {
 	TItemList* props 			= xr_new<TItemList>(parent);
-	if(scale_form)
-		props->ScaleBy(props->PixelsPerInch, 96);
-    props->tvItems->LineHeight = 25;
+	//if(scale_form)
+	//	scaleBy(props);
+	//props->tvItems->LineHeight = 25;
 	// on create
 	props->OnCreate				(title,parent, align, flags);
 	ILForms.push_back			(props);
@@ -178,6 +180,7 @@ __fastcall TItemList::TItemList(TComponent* Owner) : TForm(Owner)
     OnItemRenameEvent	= 0;
     OnItemRemoveEvent	= 0;
 	iLocked				= 0;
+    //scaleBy(this);
 }
 //---------------------------------------------------------------------------
 
@@ -705,4 +708,5 @@ void TItemList::GenerateObjectName(shared_str& name, LPCSTR start_node, LPCSTR p
     name					  	= _name.c_str();
 }
 //---------------------------------------------------------------------------
+
 
