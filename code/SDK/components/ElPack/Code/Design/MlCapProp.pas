@@ -34,11 +34,11 @@ type
     CancelButton: TButton;
     Panel2: TPanel;
     LineCounter: TLabel;
-    Memo: TElEdit;
     Load: TSpeedButton;
     Save: TSpeedButton;
     OpenDialog: TOpenDialog;
     SaveDialog: TSaveDialog;
+    Memo: TElEdit;
     procedure MemoChange(Sender : TObject);
     procedure LoadClick(Sender: TObject);
     procedure SaveClick(Sender: TObject);

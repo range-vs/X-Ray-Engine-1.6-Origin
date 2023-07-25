@@ -84,7 +84,8 @@ Types,
   ElUnicodeStrings,
   {$endif}
   ElStrUtils,
-  ElVCLUtils;
+  ElVCLUtils,
+  UxTheme;
 
 type
 

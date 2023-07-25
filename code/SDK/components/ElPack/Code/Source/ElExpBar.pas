@@ -56,7 +56,8 @@ Types,
     ElIni,
     ElUxTheme,
     ElTmSchema,
-    ElAdvPanel;
+    ElAdvPanel,
+    UxTheme;
 
 type
 
@@ -586,7 +587,7 @@ begin
   begin
     R := ClientRect;
     R.Bottom := FCaptionPanel.Height;
-    DrawThemeParentBackground(Handle, Canvas.Handle, R);
+    DrawThemeParentBackground(Handle, Canvas.Handle, @R);
   end;
   R := ClientRect;
   if Self.FCaptionSettings.Visible then
@@ -616,7 +617,7 @@ begin
     begin
       R := ClientRect;
       R.Bottom := FCaptionPanel.Height;
-      DrawThemeParentBackground(Handle, Msg.DC, R);
+      DrawThemeParentBackground(Handle, Msg.DC, @R);
     end;
     R := ClientRect;
     if Self.FCaptionSettings.Visible then
@@ -709,7 +710,7 @@ begin
   if IsThemeApplied then
   begin
     R := ClientRect;
-    DrawThemeParentBackground(Handle, Msg.DC, R);
+    DrawThemeParentBackground(Handle, Msg.DC, @R);
     FBar := Parent.Parent as TElExplorerBar;
     if FBar <> nil then
       DrawThemeBackground(Theme, Msg.DC, EBP_NORMALGROUPHEAD, EBHC_NORMAL, R, nil);

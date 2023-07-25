@@ -114,20 +114,6 @@ const
   WideCRLF = WideString(#13#10#0);
 {$endif}
 
-//{$IFDEF WIN32}
-const
-  oleaut = 'oleaut32.dll';
-
-function SysAllocStringLen(P: PWideChar; Len: Integer): PWideChar; stdcall;
-  external oleaut name 'SysAllocStringLen';
-
-procedure SysFreeString(S: PWideChar); stdcall;
-  external oleaut name 'SysFreeString';
-
-function SysStringLen(S: PWideChar): Integer; stdcall;
-  external oleaut name 'SysStringLen';
-//{$ENDIF WIN32}
-
 function IntToStrFmt(value: integer): string;
 function FloatToStrFmt(value: extended; decims: integer): string;
 
@@ -3601,7 +3587,7 @@ end;
 
 function WideStrBufSize(const Str: PWideChar): Cardinal;
 begin
-  Result := SysStringLen(Str);
+  Result := StrBufSize(Str);
 end;
 
 function WideStrNew(const Str: PWideChar): PWideChar;
@@ -3619,7 +3605,7 @@ procedure WideStrDispose(Str: PWideChar);
 begin
   if not Assigned(Str) then
   begin
-    SysFreeString(Str);
+    StrDispose(Str);
   end;
 end;
 {$endif}

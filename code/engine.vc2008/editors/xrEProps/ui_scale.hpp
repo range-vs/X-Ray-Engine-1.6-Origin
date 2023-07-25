@@ -1,9 +1,9 @@
 #pragma once
 
-#include "stdafx.h"
-#pragma hdrstop
+//#include "stdafx.h"
+//#pragma hdrstop
 
-#include <iostream>
+//#include <iostream>
 
 
 extern XR_EPROPS_API void __fastcall scaleBy(TForm* Sender);

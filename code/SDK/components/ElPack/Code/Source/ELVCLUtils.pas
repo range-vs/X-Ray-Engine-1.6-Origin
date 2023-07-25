@@ -89,18 +89,6 @@ uses
 
 const
   MOUSE_WHEEL_DELTA = 120;
-  {$ifndef B_5_UP}
-  DT_HIDEPREFIX     = $00100000;
-  WM_CHANGEUISTATE  = $0127;
-  WM_UPDATEUISTATE  = $0128;
-  WM_QUERYUISTATE   = $0129;
-  {$endif}
-  {$ifdef B_4_UP}
-  {$EXTERNALSYM SPI_GETKEYBOARDCUES}
-  SPI_GETKEYBOARDCUES = $100A;  
-  {$else}
-  SPI_GETKEYBOARDCUES = $100A;  
-  {$endif}
 
   SC_DRAGMOVE = $F012;
 var

@@ -138,6 +138,7 @@ uses
 {$ifdef MSWINDOWS}
   ElTmSchema,
   ElUxTheme,
+  UxTheme,
 {$endif}
 {$ifndef CLX_USED}
   ElImgFrm,

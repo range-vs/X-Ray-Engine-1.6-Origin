@@ -21,9 +21,7 @@
 
 unit ElUxTheme;
 
-{.$HPPEMIT ''}
-{.$HPPEMIT '#include "tmschema.h"'}
-{.$HPPEMIT ''}
+//{$HPPEMIT '#include "UxTheme.h"'}
 
 {$MINENUMSIZE 4}
 
@@ -33,12 +31,14 @@ interface
 uses 
 
 Windows, 
-{$ifdef VCL_6_USED}
+//{$ifdef VCL_6_USED}
 Types,
-{$endif}
+//{$endif}
+UxTheme,
+
 ElTmSchema;
 
-const
+{const
 
 // draw a grayed-out string
   DTT_GRAYED         = 1;
@@ -73,8 +73,6 @@ const
   DTL_RIGHT  = 4;
   DTL_BOTTOM = 8;
 
-  MAX_INTLIST_COUNT = 10;
-
   PO_STATE   = 0;       // property was found in the state section
   PO_PART    = 1;       // property was found in the part section
   PO_CLASS   = 2;       // property was found in the class section
@@ -94,7 +92,7 @@ const
 
   TS_MIN = 0;
   TS_TRUE = 1;
-  TS_DRAW = 2;
+  TS_DRAW = 2;}
 
 type
 

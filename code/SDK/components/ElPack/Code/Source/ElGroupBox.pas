@@ -103,7 +103,8 @@ uses
   {$ifdef USE_SOUND_MAP}
   ElSndMap,
   {$endif}
-  ElCheckCtl;
+  ElCheckCtl,
+  UxTheme;
 
 type
 
@@ -1076,10 +1077,13 @@ end;
 
 {$ifndef CLX_USED}
 procedure TCustomElGroupBox.WMEraseBkgnd(var Msg: TWMEraseBkgnd);
+var
+  R: TRect;
 begin
   if IsThemeApplied then
   begin
-    DrawThemeParentBackground(Handle, Msg.DC, ClientRect);
+    R := ClientRect;
+    DrawThemeParentBackground(Handle, Msg.DC, @R);
 
     (*
     R1 := GetCaptionRect;
@@ -1288,7 +1292,7 @@ begin
   if IsThemeApplied() then
   begin
     {$ifndef CLX_USED}
-    GetThemePartSizeTo('BUTTON', Canvas.Handle, BP_CHECKBOX, 1, nil, TS_TRUE, Result);
+    GetThemePartSizeTo('BUTTON', Canvas.Handle, BP_CHECKBOX, 1, nil, integer(TS_TRUE), Result);
     {$else}
     Canvas.Start;
     GetThemePartSizeTo('BUTTON', QPaintDevice_handle(QPainter_device(Canvas.Handle)), BP_CHECKBOX, 1, nil, TS_TRUE, Result);

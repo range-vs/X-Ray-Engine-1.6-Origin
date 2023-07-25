@@ -246,7 +246,8 @@ Types,
   ElList,
   ElSndMap,
   ElStrUtils,
-  ElImgFrm;
+  ElImgFrm,
+  UxTheme;
 
 type
   TPullDownEvent = procedure(Sender : TObject) of object;
@@ -5207,7 +5208,7 @@ begin
 {$ifdef MSWINDOWS}
   if FArrTheme <> 0 then
   begin
-    GetThemePartSizeTo('COMBOBOX', 0, CP_DROPDOWNBUTTON, CBXS_NORMAL, nil, TS_TRUE, PS);
+    GetThemePartSizeTo('COMBOBOX', 0, CP_DROPDOWNBUTTON, CBXS_NORMAL, nil, Integer(TS_TRUE), PS);
     result := PS.cx;
   end
   else
@@ -7882,7 +7883,7 @@ begin
   if FArrTheme <> 0 then
   begin
     {$ifndef CLX_USED}
-    GetThemePartSizeTo(PWideChar(GetArrowThemedClassName), Canvas.Handle, GetArrowThemePartID, GetArrowThemeStateID, nil, TS_TRUE, PS);
+    GetThemePartSizeTo(PWideChar(GetArrowThemedClassName), Canvas.Handle, GetArrowThemePartID, GetArrowThemeStateID, nil, integer(TS_TRUE), PS);
     {$else}
     Canvas.Start;
     GetThemePartSizeTo(PWideChar(GetArrowThemedClassName), QPaintDevice_handle(QPainter_device(Canvas.Handle)), GetArrowThemePartID, GetArrowThemeStateID, nil, TS_TRUE, PS);
@@ -8142,7 +8143,7 @@ begin
     begin
       r := Rect(0,0,aw, aw);
       {$ifndef CLX_USED}
-      GetThemeBackgroundExtent(Theme, Canvas.Handle, GetThemePartID, GetThemeStateID, @R, inR);
+      GetThemeBackgroundExtent(Theme, Canvas.Handle, GetThemePartID, GetThemeStateID, R, inR);
       {$else}
       Canvas.Start;
       GetThemeBackgroundExtent(Theme, QPaintDevice_handle(QPainter_device(Canvas.Handle)), GetThemePartID, GetThemeStateID, @R, inR);
@@ -8160,7 +8161,7 @@ begin
   if IsThemeApplied then
   begin
     {$ifndef CLX_USED}
-    GetThemeBackgroundContentRect(Theme, Canvas.Handle, GetThemePartID, GetThemeStateID, R, inR);
+    GetThemeBackgroundContentRect(Theme, Canvas.Handle, GetThemePartID, GetThemeStateID, R, @inR);
     {$else}
     Canvas.Start;
     GetThemeBackgroundContentRect(Theme, QPaintDevice_handle(QPainter_device(Canvas.Handle)), GetThemePartID, GetThemeStateID, R, inR);

@@ -190,7 +190,8 @@ uses
 {$ifdef HAS_HTML_RENDER}
   HTMLRender,
 {$endif}  
-  ElVCLUtils;
+  ElVCLUtils,
+  UxTheme;
 
 type
   TElSectionStyle = (ElhsText, ElhsOwnerDraw, ElhsPictureOnly);
@@ -282,7 +283,7 @@ type
     FSortMode : TElSSortMode;
     FAllowClick : boolean;
     FAlignment : TElSAlignment;
-    FText: string; // TElFString --> range fix
+    FText: TElFString; // TElFString --> range fix
     FData : pointer;
     FOwner : TCustomElHeader;
     FLookupHist : TStringList;
@@ -299,7 +300,7 @@ type
     function GetRight : integer;
     procedure SetMaxWidth(value : integer);
     procedure SetMinWidth(value : integer);
-    procedure SetText(value: string);  //TElFString
+    procedure SetText(value: TElFString);  //TElFString
     procedure SetStyle(value : TElSectionStyle);
     procedure SetSortMode(value : TElSSortMode);
     procedure SetAlignment(value : TElSAlignment);
@@ -352,7 +353,7 @@ type
 {$ENDIF}
     property Owner: TCustomElHeader read FOwner;
   published
-    property Text: string read FText write SetText; //  TElFString --> range fix
+    property Text: TElFString read FText write SetText; //  TElFString --> range fix
     property Style : TElSectionStyle read FStyle write SetStyle default ElhsText;
     property Width : integer read GetWidth write SetWidth;
     property MaxWidth : integer read FMaxWidth write SetMaxWidth default 10000;
@@ -1172,7 +1173,7 @@ begin
     result := i;
 end;
 
-procedure TElHeaderSection.SetText(value: string); //TElFString
+procedure TElHeaderSection.SetText(value: TElFString); //TElFString
 begin
   if FText = value then exit;
   FText := value;

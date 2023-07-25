@@ -75,16 +75,16 @@ type
 
     TElTreeInplaceEdit = class(TElTreeInplaceEditor)
     private
-      {$ifndef CLX_USED}
-      SaveWndProc : TWndMethod;
-      procedure EditorWndProc(var Message : TMessage);
-      {$endif}
+      //{$ifndef CLX_USED}
+      //SaveWndProc : TWndMethod;
+      //procedure EditorWndProc(var Message : TMessage);
+      //{$endif}
     protected
-      {$ifdef CLX_USED}
-      FEditor: TEdit;
-      {$else}
+      //{$ifdef CLX_USED}
+      //FEditor: TEdit;
+      //{$else}
       FEditor: TElEdit;
-      {$endif}
+      //{$endif}
       procedure DoStartOperation; override;
       procedure DoStopOperation(Accepted : boolean); override;
       function GetVisible: Boolean; override;
@@ -95,11 +95,11 @@ type
     public
       constructor Create(AOwner : TComponent); override;
       destructor Destroy; override;
-      {$ifdef CLX_USED}
-      property Editor: TEdit read FEditor;
-      {$else}
+      //{$ifdef CLX_USED}
+      //property Editor: TEdit read FEditor;
+      //{$else}
       property Editor: TElEdit read FEditor;
-      {$endif}
+      //{$endif}
     end;
 
     TElTreeInplaceMemo = class(TElTreeInplaceEditor)
@@ -201,19 +201,19 @@ type
 
   THackElTree = class(TCustomElTree);
 
-  {$ifdef CLX_USED}
-  TElInpEdit = class(TEdit)
-  {$else}
+  //{$ifdef CLX_USED}
+  //TElInpEdit = class(TEdit)
+  //{$else}
   TElInpEdit = class(TElEdit)
-  {$endif}
+  //{$endif}
   private
-    {$ifndef CLX_USED}
-    procedure WMGetDlgCode(var Message: TWMGetDlgCode); message WM_GETDLGCODE;
-    {$else}
+    //{$ifndef CLX_USED}
+    //procedure WMGetDlgCode(var Message: TWMGetDlgCode); message WM_GETDLGCODE;
+    //{$else}
     constructor Create(AOwner : TComponent); override;
     procedure KeyDown(var Key : Word; Shift : TShiftState); override;
     procedure DoExit; override;
-    {$endif}
+    //{$endif}
     procedure KeyPress(var Key: Char); override;
   end;
 
@@ -322,11 +322,11 @@ begin
 end;
 {$endif}
 
-{$ifdef CLX_USED}
+//{$ifdef CLX_USED}
 constructor TElInpEdit.Create(AOwner : TComponent);
 begin
   inherited;
-  InputKeys := InputKeys + [ikReturns, ikEsc];
+  //InputKeys := InputKeys + [ikReturns, ikEsc];
 end;
 
 procedure TElInpEdit.DoExit;
@@ -379,12 +379,12 @@ begin
   inherited;
 end;
 
-{$else}
-procedure TElInpEdit.WMGetDlgCode(var Message: TWMGetDlgCode); // CNS
-begin
-  Message.Result := Message.Result or DLGC_WANTARROWS or DLGC_WANTALLKEYS; // we want the RETURN key
-end;
-{$endif}
+//{$else}
+//procedure TElInpEdit.WMGetDlgCode(var Message: TWMGetDlgCode); // CNS
+//begin
+//  Message.Result := Message.Result or DLGC_WANTARROWS or DLGC_WANTALLKEYS; // we want the RETURN key
+//end;
+//{$endif}
 
 procedure TElInpEdit.KeyPress(var Key: Char); // CNS
 begin                                   // get rid of Windows beep
@@ -414,7 +414,7 @@ begin
   FEditor.BoundsRect := FCellRect;
 end;
 
-{$ifndef CLX_USED}
+(*{$ifndef CLX_USED}
 procedure TElTreeInplaceEdit.EditorWndProc(var Message : TMessage);
 var InputValid : boolean;
 begin
@@ -471,6 +471,7 @@ begin
   SaveWndProc(Message);
 end;
 {$endif}
+*)
 
 procedure TElTreeInplaceEdit.DoStartOperation;
 begin
@@ -494,25 +495,25 @@ constructor TElTreeInplaceEdit.Create(AOwner : TComponent);
 begin
   inherited;
   FEditor := TElInpEdit.Create(Self);
-  {$ifndef CLX_USED}
-  FEditor.ParentCtl3D := false;
-  FEditor.Ctl3D := false;
-  FEditor.AutoSelect := true;
-  {$endif}
+  //{$ifndef CLX_USED}
+  //FEditor.ParentCtl3D := false;
+  //FEditor.Ctl3D := false;
+  //FEditor.AutoSelect := true;
+  //{$endif}
   FEditor.Visible := false;
   FEditor.AutoSize := false;
-  {$ifndef CLX_USED}
-  SaveWndProc := FEditor.WindowProc;
-  FEditor.WindowProc := Self.EditorWndProc;
-  {$endif}
+  //{$ifndef CLX_USED}
+  //SaveWndProc := FEditor.WindowProc;
+  //FEditor.WindowProc := Self.EditorWndProc;
+  //{$endif}
   FTypes := [sftText];
 end;
 
 destructor TElTreeInplaceEdit.Destroy;
 begin
-  {$ifndef CLX_USED}
-  FEditor.WindowProc := SaveWndProc;
-  {$endif}
+  //{$ifndef CLX_USED}
+  //FEditor.WindowProc := SaveWndProc;
+  //{$endif}
   FEditor.Free;
   FEditor := nil;
   inherited;

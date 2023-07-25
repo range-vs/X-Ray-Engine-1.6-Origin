@@ -134,8 +134,8 @@ Types,
   ElHintWnd,
   ElTmSchema,
   ElUxTheme,
-  ElXPThemedControl
-  ;
+  ElXPThemedControl,
+  UxTheme;
 
 type
 

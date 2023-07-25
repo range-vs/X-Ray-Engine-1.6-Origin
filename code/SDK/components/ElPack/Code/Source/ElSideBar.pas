@@ -150,7 +150,8 @@ Types,
   QImgList,
 {$endif}
   ElExtBkgnd,
-  ElIni;
+  ElIni,
+  UxTheme;
 
 type
 
@@ -1320,7 +1321,7 @@ var i,
 
         {$ifndef CLX_USED}
         DrawThemeBackground(Theme, TmpCanvas.Handle, TP_BUTTON, sid, Section.FBoundRect, nil);
-        GetThemeBackgroundContentRect(Theme, TmpCanvas.Handle, TP_BUTTON, sid, Section.FBoundRect, R);
+        GetThemeBackgroundContentRect(Theme, TmpCanvas.Handle, TP_BUTTON, sid, Section.FBoundRect, @R);
         {$else}
         TmpCanvas.Start;
         DrawThemeBackground(Theme, QPaintDevice_handle(QPainter_device(TmpCanvas.Handle)), TP_BUTTON, sid, Section.FBoundRect, nil);
@@ -1674,7 +1675,7 @@ var i,
           sid := TS_HOT;
         {$ifndef CLX_USED}
         DrawThemeBackground(Theme, TmpCanvas.Handle, TP_BUTTON, sid, Item.FBoundRect, nil);
-        GetThemeBackgroundContentRect(Theme, TmpCanvas.Handle, TP_BUTTON, sid, Item.FBoundRect, BtnRect);
+        GetThemeBackgroundContentRect(Theme, TmpCanvas.Handle, TP_BUTTON, sid, Item.FBoundRect, @BtnRect);
         {$else}
         TmpCanvas.Start;
         DrawThemeBackground(Theme, QPaintDevice_handle(QPainter_device(TmpCanvas.Handle)), TP_BUTTON, sid, Item.FBoundRect, nil);
