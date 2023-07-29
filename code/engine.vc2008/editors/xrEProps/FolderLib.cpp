@@ -1,4 +1,4 @@
-#include "stdafx.h"
+п»ї#include "stdafx.h"
 #pragma hdrstop
 
 #include "FolderLib.h"
@@ -39,8 +39,6 @@ AnsiString CFolderHelper::GetObjectName(const AnsiString& full_name, AnsiString&
     return dest.c_str();
 }
 
-// собирает имя от стартового итема до конечного
-// может включать либо не включать имя объекта
 bool CFolderHelper::MakeName(TElTreeItem* begin_item, TElTreeItem* end_item, AnsiString& name, bool bOnlyFolder)
 {
     name = "";
@@ -311,21 +309,21 @@ void __fastcall CFolderHelper::DragDrop(TObject *Sender, TObject* Source, int X,
 
 //..FS.lock_rescan();
     for (ELVecIt it=drag_items.begin(); it!=drag_items.end(); it++){
-        TElTreeItem* item 	= *it;
+		TElTreeItem* item 	= *it;
         int drg_level		= item->Level;
 
         bool bFolderMove	= IsFolder(item);
 
-        do{
-            // проверяем есть ли в таргете такой элемент
-            EItemType type 	= *static_cast<EItemType*>(item->Data);  // range fix
-            TElTreeItem* pNode = FindItemInFolder(type,tv,cur_folder,item->Text);
+		do{
+			void* data {item->Data};
+			std::int32_t predType {(std::int32_t)(data)};
+            EItemType type {(EItemType)(predType)};
+			TElTreeItem* pNode = FindItemInFolder(type,tv,cur_folder,item->Text);
             if (pNode&&IsObject(item)){
                 Msg			("#!Item '%s' already exist in folder '%s'.",AnsiString(item->Text).c_str(),AnsiString(cur_folder->Text).c_str());
                 item		= item->GetNext();
                 continue;
             }
-            // если нет добавляем
             if (!pNode){ 
                 pNode 				= (type==TYPE_FOLDER)?LL_CreateFolder(tv,cur_folder,item->Text,item->ForceButtons):LL_CreateObject(tv,cur_folder,item->Text);
                 if (type==TYPE_OBJECT) pNode->Assign(item);
