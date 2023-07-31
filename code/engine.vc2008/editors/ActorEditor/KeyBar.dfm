@@ -57,24 +57,25 @@ object frmKeyBar: TfrmKeyBar
       BevelOuter = bvNone
       Color = 10528425
       TabOrder = 0
+      ExplicitTop = 0
       object Label1: TLabel
         Left = 2
-        Top = 4
+        Top = -1
         Width = 25
         Height = 13
         Caption = 'LOD:'
       end
       object seLOD: TMultiObjSpinEdit
         Left = 30
-        Top = 4
+        Top = -1
         Width = 37
         Height = 14
-        LWSensitivity = 0.1
+        LWSensitivity = 0.100000000000000000
         ButtonKind = bkLightWave
-        Increment = 0.01
-        MaxValue = 1
+        Increment = 0.010000000000000000
+        MaxValue = 1.000000000000000000
         ValueType = vtFloat
-        Value = 1
+        Value = 1.000000000000000000
         BorderStyle = bsNone
         Color = 10526880
         TabOrder = 0
@@ -83,17 +84,17 @@ object frmKeyBar: TfrmKeyBar
         OnKeyPress = seLODKeyPress
       end
       object spinTimeFactor: TMultiObjSpinEdit
-        Left = 69
-        Top = 5
+        Left = 71
+        Top = -1
         Width = 36
         Height = 14
-        LWSensitivity = 0.02
+        LWSensitivity = 0.020000000000000000
         ButtonKind = bkLightWave
-        Increment = 0.01
-        MaxValue = 10
-        MinValue = 0.01
+        Increment = 0.010000000000000000
+        MaxValue = 10.000000000000000000
+        MinValue = 0.010000000000000000
         ValueType = vtFloat
-        Value = 1
+        Value = 1.000000000000000000
         BorderStyle = bsNone
         Color = 10526880
         TabOrder = 1
@@ -173,16 +174,14 @@ object frmKeyBar: TfrmKeyBar
             Top = 1
             Width = 863
             Height = 18
+            Hint = ''
             Max = 100
             Page = 50
             Position = 50
             TickPosition = tpNone
-            OffsetLeft = 5
-            OffsetRight = 5
             ThumbType = tstBox
             SelEnd = 0
             TrackColor = 10528425
-            SelectionMarkSize = 3
             ThumbWidth = 5
             Align = alClient
             Color = clGray
@@ -197,18 +196,19 @@ object frmKeyBar: TfrmKeyBar
             Width = 22
             Height = 18
             Cursor = crDefault
+            Hint = ''
             Checked = True
             Flat = True
             FlatAlways = True
             State = cbChecked
-            LinkColor = clBlue
             LinkStyle = [fsUnderline]
+            Caption = ''
             TabOrder = 1
             Color = clInactiveCaptionText
             ParentColor = False
             Align = alLeft
             DockOrientation = doNoOrient
-            DoubleBuffered = False
+            ExplicitHeight = 17
           end
         end
       end
@@ -221,6 +221,7 @@ object frmKeyBar: TfrmKeyBar
         BevelOuter = bvNone
         Color = 10528425
         TabOrder = 2
+        ExplicitTop = -1
         object stEndTime: TStaticText
           Left = 0
           Top = 0
@@ -238,6 +239,7 @@ object frmKeyBar: TfrmKeyBar
           ParentColor = False
           ParentFont = False
           TabOrder = 0
+          ExplicitWidth = 107
         end
       end
     end
@@ -262,8 +264,10 @@ object frmKeyBar: TfrmKeyBar
       Top = 1
       Width = 41
       Height = 13
+      Cursor = crDefault
+      Hint = ''
       NumGlyphs = 1
-      ShadowFollowsColor = True
+      LinkStyle = [fsUnderline]
       Caption = 'Up'
       Align = alRight
       OnClick = BtnUpCh1Click
@@ -274,8 +278,10 @@ object frmKeyBar: TfrmKeyBar
       Top = 1
       Width = 41
       Height = 13
+      Cursor = crDefault
+      Hint = ''
       NumGlyphs = 1
-      ShadowFollowsColor = True
+      LinkStyle = [fsUnderline]
       Caption = 'Down'
       Align = alRight
       OnClick = BtnDownCh1Click
@@ -286,8 +292,10 @@ object frmKeyBar: TfrmKeyBar
       Top = 1
       Width = 41
       Height = 13
+      Cursor = crDefault
+      Hint = ''
       NumGlyphs = 1
-      ShadowFollowsColor = True
+      LinkStyle = [fsUnderline]
       Caption = 'Del'
       Align = alRight
       OnClick = BtnDelCh1Click
@@ -314,8 +322,10 @@ object frmKeyBar: TfrmKeyBar
       Top = 1
       Width = 41
       Height = 13
+      Cursor = crDefault
+      Hint = ''
       NumGlyphs = 1
-      ShadowFollowsColor = True
+      LinkStyle = [fsUnderline]
       Caption = 'Up'
       Align = alRight
       OnClick = BtnUpCh2Click
@@ -326,8 +336,10 @@ object frmKeyBar: TfrmKeyBar
       Top = 1
       Width = 41
       Height = 13
+      Cursor = crDefault
+      Hint = ''
       NumGlyphs = 1
-      ShadowFollowsColor = True
+      LinkStyle = [fsUnderline]
       Caption = 'Down'
       Align = alRight
       OnClick = BtnDownCh2Click
@@ -338,8 +350,10 @@ object frmKeyBar: TfrmKeyBar
       Top = 1
       Width = 41
       Height = 13
+      Cursor = crDefault
+      Hint = ''
       NumGlyphs = 1
-      ShadowFollowsColor = True
+      LinkStyle = [fsUnderline]
       Caption = 'Del'
       Align = alRight
       OnClick = BtnDelCh2Click
@@ -366,8 +380,10 @@ object frmKeyBar: TfrmKeyBar
       Top = 1
       Width = 41
       Height = 13
+      Cursor = crDefault
+      Hint = ''
       NumGlyphs = 1
-      ShadowFollowsColor = True
+      LinkStyle = [fsUnderline]
       Caption = 'Up'
       Align = alRight
       OnClick = BtnUpCh3Click
@@ -378,8 +394,10 @@ object frmKeyBar: TfrmKeyBar
       Top = 1
       Width = 41
       Height = 13
+      Cursor = crDefault
+      Hint = ''
       NumGlyphs = 1
-      ShadowFollowsColor = True
+      LinkStyle = [fsUnderline]
       Caption = 'Down'
       Align = alRight
       OnClick = BtnDownCh3Click
@@ -390,8 +408,10 @@ object frmKeyBar: TfrmKeyBar
       Top = 1
       Width = 41
       Height = 13
+      Cursor = crDefault
+      Hint = ''
       NumGlyphs = 1
-      ShadowFollowsColor = True
+      LinkStyle = [fsUnderline]
       Caption = 'Del'
       Align = alRight
       OnClick = BtnDelCh3Click
@@ -418,8 +438,10 @@ object frmKeyBar: TfrmKeyBar
       Top = 1
       Width = 41
       Height = 13
+      Cursor = crDefault
+      Hint = ''
       NumGlyphs = 1
-      ShadowFollowsColor = True
+      LinkStyle = [fsUnderline]
       Caption = 'Up'
       Align = alRight
       OnClick = BtnUpCh4Click
@@ -430,8 +452,10 @@ object frmKeyBar: TfrmKeyBar
       Top = 1
       Width = 41
       Height = 13
+      Cursor = crDefault
+      Hint = ''
       NumGlyphs = 1
-      ShadowFollowsColor = True
+      LinkStyle = [fsUnderline]
       Caption = 'Down'
       Align = alRight
       OnClick = BtnDownCh4Click
@@ -442,8 +466,10 @@ object frmKeyBar: TfrmKeyBar
       Top = 1
       Width = 41
       Height = 13
+      Cursor = crDefault
+      Hint = ''
       NumGlyphs = 1
-      ShadowFollowsColor = True
+      LinkStyle = [fsUnderline]
       Caption = 'Del'
       Align = alRight
       OnClick = BtnDelCh4Click

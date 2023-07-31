@@ -18,10 +18,13 @@
 #pragma link "ElCheckCtl"
 #pragma link "ElPopBtn"
 #pragma resource "*.dfm"
+
+#include "../xrEProps/ui_scale.hpp"
 //---------------------------------------------------------------------------
 __fastcall TfrmKeyBar::TfrmKeyBar(TComponent* Owner)
     : TForm(Owner)
 {
+    scaleBy(this);
 }
 //---------------------------------------------------------------------------
 TfrmKeyBar* TfrmKeyBar::CreateKeyBar(TWinControl* parent)

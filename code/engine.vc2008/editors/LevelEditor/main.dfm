@@ -44,16 +44,19 @@ object frmMain: TfrmMain
       Align = alTop
       TabOrder = 0
       object APHeadLabel2: TLabel
-        Left = 12
+        Left = 1
         Top = 1
-        Width = 36
-        Height = 13
+        Width = 223
+        Height = 14
         Align = alClient
         Alignment = taCenter
         Caption = 'Toolbar'
         Color = clGray
         ParentColor = False
         OnClick = TopClick
+        ExplicitLeft = 12
+        ExplicitWidth = 36
+        ExplicitHeight = 13
       end
       object sbToolsMin: TExtBtn
         Left = 224

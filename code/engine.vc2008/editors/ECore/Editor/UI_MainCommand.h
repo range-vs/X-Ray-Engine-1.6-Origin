@@ -43,7 +43,6 @@ enum{
 
     COMMAND_MUTE_SOUND,
 
-    // имеют разную реализацию
     COMMAND_CLEAR,
     COMMAND_LOAD,
     COMMAND_SAVE,

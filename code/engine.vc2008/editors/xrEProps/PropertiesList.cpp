@@ -803,7 +803,7 @@ void __fastcall TProperties::tvPropertiesMouseDown(TObject *Sender,
                         mi->Caption = token_list[i].name;
                         mi->OnClick = PMItemClick;
                         pmEnum->Items->Add(mi);
-                    }
+					}
                 }break;
                 case PROP_RTOKEN:{
                     pmEnum->Items->Clear();

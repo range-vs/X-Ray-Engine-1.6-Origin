@@ -12,6 +12,8 @@
 #include "../xrEProps/PropertiesList.h"
 #include "BonePart.h"
 #include "../xrEProps/NumericVector.h"
+
+#include "../xrEProps/ui_scale.hpp"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma link "ExtBtn"
@@ -34,7 +36,9 @@ __fastcall TfraLeftBar::TfraLeftBar(TComponent* Owner)
 	DEFINE_INI(fsStorage);
 
     frmMain->paLeftBar->Width = paLeftBar->Width+2;
-    frmMain->sbToolsMin->Left = paLeftBar->Width-frmMain->sbToolsMin->Width-3;
+	frmMain->sbToolsMin->Left = paLeftBar->Width-frmMain->sbToolsMin->Width-3;
+
+    CacheCollapseExpandControls(paLeftBar, headersFixed);
 }
 //---------------------------------------------------------------------------
 
@@ -92,20 +96,16 @@ void TfraLeftBar::UpdateBar(){
 
 void TfraLeftBar::MinimizeAllFrames()
 {
-    for (int j=0; j<paLeftBar->ControlCount; j++){
-        TPanel* pa = dynamic_cast<TPanel*>(paLeftBar->Controls[j]);
-	    if (pa) PanelMinimize(pa);
-    }
-	UpdateBar();                      
+    for(auto&& btn: headersFixed)
+		ñollapsePanel(btn);
+	UpdateBar();
 }
 //---------------------------------------------------------------------------
 
 void TfraLeftBar::MaximizeAllFrames()
 {
-    for (int j=0; j<paLeftBar->ControlCount; j++){
-        TPanel* pa = dynamic_cast<TPanel*>(paLeftBar->Controls[j]);
-	    if (pa)	PanelMaximize(pa);
-    }
+	for(auto&& btn: headersFixed)
+		expandPanel(btn);
 	UpdateBar();
 }
 //---------------------------------------------------------------------------
@@ -136,14 +136,7 @@ void __fastcall TfraLeftBar::ImageEditor1Click(TObject *Sender)
 
 void __fastcall TfraLeftBar::PanelMimimizeClick(TObject *Sender)
 {
-    ::PanelMinMaxClick(Sender);
-    UpdateBar();
-}
-//---------------------------------------------------------------------------
-
-void __fastcall TfraLeftBar::PanelMaximizeClick(TObject *Sender)
-{
-    ::PanelMaximizeClick(Sender);
+    collapseExpandPanel(Sender);
     UpdateBar();
 }
 //---------------------------------------------------------------------------
@@ -387,6 +380,38 @@ void __fastcall TfraLeftBar::Quit1Click(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
+void TfraLeftBar::CacheCollapseExpandControls(TPanel* base, xr_vector<TControl*>& cache)
+{
+    for(int i{0}; i < base->ControlCount; ++i)
+	{
+		TPanel* panel = dynamic_cast<TPanel*>(base->Controls[i]);
+		if(panel)
+		{
+            TPanel* headerPanel {nullptr};
+			for(int j{0}; j < panel->ControlCount; ++j)
+			{
+				headerPanel = dynamic_cast<TPanel*>(panel->Controls[j]);
+				if(headerPanel && headerPanel->Caption == "PanelHeader")
+                {
+					break;
+				}
+			}
+			if(headerPanel)
+			{
+                TExtBtn* headerBtn {nullptr};
+				for(int k{0}; k < headerPanel->ControlCount; ++k)
+				{
+					headerBtn = dynamic_cast<TExtBtn*>(headerPanel->Controls[k]);
+					if(headerBtn)
+					{
+						cache.emplace_back(headerBtn);
+						break;
+					}
+				}
+			}
+		}
+	}
+}
 
 
 

@@ -4,7 +4,7 @@
 #include "ui_scale.hpp"
 
 
-constexpr const int scaleLineHeightTree {3};
+constexpr const int scaleLineHeightTree {5};
 
 static void _scaleBy(TElTree* arg)
 {

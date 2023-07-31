@@ -98,9 +98,11 @@ __published:	// IDE-managed Components
 	TMenuItem *ExportC1;
 	TMenuItem *N12;
 	TMenuItem *Quit1;
+	TPanel *Panel1;
+	TPanel *Panel2;
+	TPanel *Panel3;
     void __fastcall ebSaveClick(TObject *Sender);
     void __fastcall PanelMimimizeClick(TObject *Sender);
-    void __fastcall PanelMaximizeClick(TObject *Sender);
     void __fastcall ebEditorPreferencesClick(TObject *Sender);
 	void __fastcall ebSceneFileMouseDown(TObject *Sender,
           TMouseButton Button, TShiftState Shift, int X, int Y);
@@ -148,6 +150,8 @@ __published:	// IDE-managed Components
 private:	// User declarations
 	void __fastcall ShowPPMenu		(TMxPopupMenu* M, TObject* btn);
 	void __stdcall			RenameItem		(LPCSTR p0, LPCSTR p1, EItemType tp);
+
+    xr_vector<TControl*> headersFixed{};
 public:		// User declarations
         __fastcall TfraLeftBar		(TComponent* Owner);
     void 			UpdateBar		();
@@ -156,7 +160,8 @@ public:		// User declarations
     void 			MinimizeAllFrames();
     void 			MaximizeAllFrames();
     void 			RefreshBar		();
-    void			SetReadOnly		(BOOL val);
+	void			SetReadOnly		(BOOL val);
+    void CacheCollapseExpandControls(TPanel* base, xr_vector<TControl*>& cache);
 };
 //---------------------------------------------------------------------------
 extern PACKAGE TfraLeftBar *fraLeftBar;

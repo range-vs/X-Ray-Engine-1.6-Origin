@@ -24,6 +24,8 @@
 #include "../../xrphysics/iphworld.h"
 #include "../../xrcdb/xr_area.h"
 
+#include "../xrEProps/ui_scale.hpp"
+
 CActorTools*&	ATools=(CActorTools*&)Tools; // range fix
 //------------------------------------------------------------------------------
 #define CHECK_SNAP(R,A,C){ R+=A; if(fabsf(R)>=C){ A=snapto(R,C); R=0; }else{A=0;}}
@@ -76,6 +78,7 @@ void PreviewModel::OnDestroy()
 void PreviewModel::OnCreate()
 {
     m_Props = TProperties::CreateForm("Preview prefs",0,alNone);
+	scaleBy(m_Props, {m_Props->tvProperties});
 }
 
 void PreviewModel::Clear()
@@ -187,7 +190,11 @@ bool CActorTools::OnCreate()
     m_ObjectItems 		= TItemList::CreateForm("",fraLeftBar->paObjectProps,alClient,TItemList::ilDragCustom|TItemList::ilMultiSelect|TItemList::ilSuppressStatus);
 	m_ObjectItems->SetOnItemsFocusedEvent(fastdelegate::bind<TOnILItemsFocused>(this,&CActorTools::OnObjectItemFocused));
     m_Props 			= TProperties::CreateForm("",fraLeftBar->paItemProps,alClient,fastdelegate::bind<TOnModifiedEvent>(this,&CActorTools::OnItemModified));
-    m_PreviewObject.OnCreate();
+	m_PreviewObject.OnCreate();
+
+    scaleBy(frmMain);
+    scaleBy(nullptr, {m_ObjectItems->tvItems});
+	scaleBy(nullptr, {m_Props->tvProperties});
 
     // key bar
 	m_KeyBar 			= TfrmKeyBar::CreateKeyBar(frmMain->paMain);

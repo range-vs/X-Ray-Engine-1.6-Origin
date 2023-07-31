@@ -296,7 +296,7 @@ object fraBottomBar: TfraBottomBar
     MarginEndColor = 2763306
     BKColor = 10528425
     SelColor = clBlack
-    SelFontColor = 10526880
+    SelFontColor = 15790320
     SepHColor = 1644825
     SepLColor = 13158600
     LeftMargin = 10
@@ -484,7 +484,7 @@ object fraBottomBar: TfraBottomBar
     MarginEndColor = 2763306
     BKColor = 10528425
     SelColor = clBlack
-    SelFontColor = 10526880
+    SelFontColor = 15790320
     SepHColor = 1644825
     SepLColor = 13158600
     LeftMargin = 10

@@ -21,7 +21,7 @@ object frmMain: TfrmMain
   OnKeyDown = FormKeyDown
   OnResize = FormResize
   OnShow = FormShow
-  PixelsPerInch = 106
+  PixelsPerInch = 96
   TextHeight = 13
   object paLeftBar: TPanel
     Left = 516
@@ -44,7 +44,7 @@ object frmMain: TfrmMain
       object APHeadLabel2: TLabel
         Left = 1
         Top = 1
-        Width = 36
+        Width = 234
         Height = 13
         Align = alTop
         Alignment = taCenter
@@ -52,6 +52,7 @@ object frmMain: TfrmMain
         Color = clGray
         ParentColor = False
         OnClick = TopClick
+        ExplicitWidth = 36
       end
       object sbToolsMin: TExtBtn
         Left = 223

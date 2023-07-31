@@ -105,21 +105,15 @@ void __fastcall TfrmMain::FormCreate(TObject *Sender)
 //---------------------------------------------------------------------------
 
 #include "RightForm.h"
-#define MIN_PANEL_HEIGHT 17
 void __fastcall TfrmMain::sbToolsMinClick(TObject *Sender)
 {
-    if (paLeftBar->Tag > 0)
-    {
-        paLeftBar->Parent  = frmMain;
-        paLeftBar->Tag     = 0;
-        frmRight->Visible  = false;
-    }else{
-        paLeftBar->Parent = frmRight; //paTopBar;
-        frmRight->Width		= paLeftBar->Width;
-        frmRight->Height	= 1024;
-        paLeftBar->Tag    = 1;
-        frmRight->Visible = true;
-    }
+	if (paLeftBar->Tag > 0){
+		paLeftBar->Parent = frmMain;
+		paLeftBar->Tag    = 0;
+	}else{
+		paLeftBar->Parent = paTopBar;
+		paLeftBar->Tag    = 1;
+	}
 }
 //---------------------------------------------------------------------------
 
@@ -241,12 +235,20 @@ void __fastcall TfrmMain::D3DWindowMouseMove(TObject *Sender,
 void __fastcall TfrmMain::ebAllMinClick(TObject *Sender)
 {
 	fraLeftBar->MinimizeAllFrames();
+//    if (paLeftBar->Tag <= 0){
+//        paLeftBar->Parent = paTopBar;
+//        paLeftBar->Tag    = 1;
+//	}
 }
 //---------------------------------------------------------------------------
 
 void __fastcall TfrmMain::ebAllMaxClick(TObject *Sender)
 {
 	fraLeftBar->MaximizeAllFrames();
+//    if (paLeftBar->Tag > 0){
+//		paLeftBar->Parent = frmMain;
+//        paLeftBar->Tag    = 0;
+//    }
 }
 //---------------------------------------------------------------------------
 

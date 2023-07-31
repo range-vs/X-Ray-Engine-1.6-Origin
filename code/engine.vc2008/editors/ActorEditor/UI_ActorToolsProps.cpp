@@ -22,7 +22,6 @@ void CActorTools::OnObjectItemFocused(ListItemsVec& items)
     // unselect
     if (m_pEditObject){
     	m_pEditObject->ResetSAnimation(false);
-//.	    StopMotion					();     // убрал из-за того что не миксятся анимации в режиме енжине
     	m_pEditObject->SelectBones	(false);
     }
                             

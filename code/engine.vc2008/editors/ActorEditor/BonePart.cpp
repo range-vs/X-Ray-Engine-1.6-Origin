@@ -9,6 +9,8 @@
 #include "UI_ActorTools.h"
 #include "../ECore/Editor/UI_Main.h"
 #include "../xrEProps/FolderLib.h"
+
+#include "../xrEProps/ui_scale.hpp"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma resource "*.dfm"
@@ -44,7 +46,8 @@ __fastcall TfrmBonePart::TfrmBonePart(TComponent* Owner)
     L[0] = lbPart1;
     L[1] = lbPart2;                      
     L[2] = lbPart3;
-    L[3] = lbPart4;
+	L[3] = lbPart4;
+    scaleBy(this);
 }
 //---------------------------------------------------------------------------
 void __fastcall TfrmBonePart::FormShow(TObject *Sender)
