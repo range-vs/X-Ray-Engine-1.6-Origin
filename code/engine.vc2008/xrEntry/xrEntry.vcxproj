@@ -256,6 +256,7 @@ set pathOutLibs=$(SolutionDir)../../libraries\Win64\Debug\
 %25pathToMkexp%25 %25pathOutLibs%25MagicFMB.a %25pathToDlls%25MagicFM.dll
 %25pathToMkexp%25 %25pathOutLibs%25d3dx9d_41.a %25pathToAddDlls%25d3dx9d_41.dll"
 %25pathToMkexp%25 %25pathOutLibs%25LWOB.a %25pathToDlls%25LWO.dll"
+%25pathToMkexp%25 %25pathOutLibs%25xrSoundB.a %25pathToDlls%25xrSound.dll"
 
 copy /Y "$(SolutionDir)../../code\SDK\binaries\Win64\FreeImage.dll" "%25pathToDlls%25FreeImage.dll"
 copy /Y "$(SolutionDir)../../code\SDK\binaries\Win64\amd_ags_x64.dll" "%25pathToDlls%25amd_ags_x64.dll"
@@ -433,6 +434,7 @@ set pathOutLibs=$(SolutionDir)../../libraries\Win64\Release\
 %25pathToMkexp%25 %25pathOutLibs%25MagicFMB.a %25pathToDlls%25MagicFM.dll
 %25pathToMkexp%25 %25pathOutLibs%25d3dx9_41.a %25pathToAddDlls%25d3dx9_41.dll"
 %25pathToMkexp%25 %25pathOutLibs%25LWOB.a %25pathToDlls%25LWO.dll
+%25pathToMkexp%25 %25pathOutLibs%25xrSoundB.a %25pathToDlls%25xrSound.dll"
 
 copy /Y "$(SolutionDir)../../code\SDK\binaries\Win64\FreeImage.dll" "%25pathToDlls%25FreeImage.dll"
 copy /Y "$(SolutionDir)../../code\SDK\binaries\Win64\amd_ags_x64.dll" "%25pathToDlls%25amd_ags_x64.dll"

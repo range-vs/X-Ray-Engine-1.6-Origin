@@ -10,7 +10,7 @@ static void _scaleBy(TElTree* arg)
 {
 	if(arg)
 	{
-		std::cout << arg->Font->Height << std::endl;
+		//std::cout << arg->Font->Height << std::endl;
 		arg->LineHeight = std::abs(arg->Font->Height) + scaleLineHeightTree;
 	}
 }
