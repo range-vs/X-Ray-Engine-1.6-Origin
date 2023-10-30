@@ -69,7 +69,7 @@
         <GenPackage>true</GenPackage>
         <DCC_Namespace>System;Xml;Data;Datasnap;Web;Soap;Vcl;Vcl.Imaging;Vcl.Touch;Vcl.Samples;Vcl.Shell;$(DCC_Namespace)</DCC_Namespace>
         <SanitizedProjectName>editorB</SanitizedProjectName>
-        <DCC_DcpOutput>..\..\..\..\libraries\$(Platform)\$(Config)</DCC_DcpOutput>
+        <DCC_DcpOutput>..\..\..\..\bins\$(Platform)\$(Config)</DCC_DcpOutput>
         <DCC_BplOutput>..\..\..\..\bins\$(Platform)\$(Config)</DCC_BplOutput>
         <VerInfo_Locale>1049</VerInfo_Locale>
         <VerInfo_Keys>CompanyName=;FileDescription=$(MSBuildProjectName);FileVersion=1.0.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProgramID=com.embarcadero.$(MSBuildProjectName);ProductName=$(MSBuildProjectName);ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
