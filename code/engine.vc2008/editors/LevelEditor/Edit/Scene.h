@@ -113,12 +113,19 @@ public:
         flUpdateSnapList        = (1<<2),
         flRT_LoadCanceled       = (1<<3),
         flRT_Synchronizing      = (1<<4),
+        flRT_SkipMissingObjects = (1<<5),
+        flRT_Loading            = (1<<6),
     };
     Flags32            m_RTFlags;
 public:
     IC void         CancelLoading       ()              { m_RTFlags.set(flRT_LoadCanceled, TRUE); }
     IC void         ResetLoadingCancel  ()              { m_RTFlags.set(flRT_LoadCanceled, FALSE); }
     IC bool         LoadingCanceled     () const        { return m_RTFlags.test(flRT_LoadCanceled); }
+    IC void         SkipAllMissingObjects()             { m_RTFlags.set(flRT_SkipMissingObjects, TRUE); }
+    IC bool         SkipMissingObjects  () const        { return m_RTFlags.test(flRT_SkipMissingObjects); }
+    IC void         BeginLoading        ()              { m_RTFlags.set(flRT_Loading, TRUE); }
+    IC void         EndLoading          ()              { m_RTFlags.set(flRT_Loading, FALSE); }
+    IC bool         Loading             () const        { return m_RTFlags.test(flRT_Loading); }
     IC void         BeginSynchronize    ()              { m_RTFlags.set(flRT_Synchronizing, TRUE); }
     IC void         EndSynchronize      ()              { m_RTFlags.set(flRT_Synchronizing, FALSE); }
     IC bool         Synchronizing       () const        { return m_RTFlags.test(flRT_Synchronizing); }
@@ -310,15 +317,30 @@ protected:
     typedef TSubstPairs::const_iterator     TSubstPairs_cit;
     TSubstPairs                             m_subst_pairs;
 
+    typedef xr_vector<xr_string>            TMissingRefs;
+    typedef TMissingRefs::const_iterator    TMissingRefs_cit;
+    TMissingRefs                            m_missing_refs;
+
     
 public:
     void            RegisterSubstObjectName  (const xr_string& from, const xr_string& to );
     bool            GetSubstObjectName       (const xr_string& from, xr_string& to) const;
 
+    void            ResetMissingObjects      ();
+    void            RegisterMissingObject    (const xr_string& ref_name);
+    void            DumpMissingObjects       ();
+
 };
 
 //----------------------------------------------------
 extern EScene* Scene;
+//----------------------------------------------------
+// missing resource dialog: [cap_yes][Skip][Skip All], closing the window cancels loading
+// returns mrYes (select), mrNo (skip), mrOk (skip all), mrCancel (loading canceled)
+extern int  MissingObjectDlgEx	(LPCSTR cap_yes, LPCSTR cap_no, LPCSTR msg);
+extern int  MissingObjectDlg	(LPCSTR what, LPCSTR name, LPCSTR hint_select, LPCSTR hint_skip);
+extern bool MissingObjectSkipped(LPCSTR what, LPCSTR name);
+extern LPCSTR MissingObjectCloseHint();
 //----------------------------------------------------
 
 #endif /*_INCDEF_Scene_H_*/

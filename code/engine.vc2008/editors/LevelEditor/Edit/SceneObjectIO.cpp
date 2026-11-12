@@ -15,6 +15,51 @@
 #define SCENEOBJ_CHUNK_PLACEMENT     	0x0904
 #define SCENEOBJ_CHUNK_FLAGS			0x0905
 
+static bool LoadMissingReference(CSceneObject* obj, LPCSTR ref_name)
+{
+    if (MissingObjectSkipped("Object", ref_name))
+        return		false;
+
+    bool bRes		= false;
+    int  mr			= mrNone;
+
+    xr_string _new_name;
+    if (Scene->GetSubstObjectName(ref_name, _new_name))
+    {
+        string1024 _message;
+        sprintf		(_message,	"Object [%s] not found in library.\n\n"
+                                "'Replace' - replace it with [%s].\n"
+                                "'Select...' - choose another object from the library.\n"
+                                "'Skip All' - skip all missing objects (see log for their names).%s",
+                                ref_name, _new_name.c_str(), MissingObjectCloseHint());
+
+        mr			= MissingObjectDlgEx("Replace", "Select...", _message);
+        if (mrYes==mr)
+            bRes	= (0!=obj->SetReference(_new_name.c_str()));
+        else
+        if (mrNo==mr)
+            mr		= mrYes;	// 'Select...' in this dialog
+    }else
+    {
+        mr			= MissingObjectDlg("Object", ref_name,
+                                       "choose a replacement object.",
+                                       "load the level without this object.");
+    }
+
+    if (!bRes&&(mrYes==mr))
+    {
+        LPCSTR new_val	= 0;
+        if (TfrmChoseItem::SelectItem(smObject,new_val,1))
+        {
+            bRes		= (0!=obj->SetReference(new_val));
+            if (bRes)
+                Scene->RegisterSubstObjectName(ref_name, new_val);
+        }
+    }
+
+    return bRes;
+}
+
 bool CSceneObject::LoadLTX(CInifile& ini, LPCSTR sect_name)
 {
     bool bRes = true;
@@ -27,51 +72,7 @@ bool CSceneObject::LoadLTX(CInifile& ini, LPCSTR sect_name)
         xr_string ref_name  = ini.r_string			(sect_name, "reference_name");
 
         if (!SetReference(ref_name.c_str()))
-        {
-            ELog.Msg            ( mtError, "CSceneObject: '%s' not found in library", ref_name.c_str() );
-            bRes                = false;
-            int mr              = mrNone;
-
-            xr_string       _new_name;
-            bool b_found    = Scene->GetSubstObjectName(ref_name.c_str(), _new_name);
-            if(b_found)
-            {
-                xr_string _message;
-                _message = "Object ["+ref_name+"] not found. Relace it with ["+_new_name+"] or select other from library?";
-                mr = ELog.DlgMsg(mtConfirmation,TMsgDlgButtons() << mbYes << mbNo << mbCancel, _message.c_str());
-                if(mrYes==mr)
-                {
-                    bRes = SetReference(_new_name.c_str());
-                }
-                else if (mrCancel==mr)
-                {
-                    Scene->CancelLoading();
-                    break;
-                }
-            }
-            if(!bRes)
-            {
-                if(mr == mrNone)
-                    mr = ELog.DlgMsg(mtConfirmation,TMsgDlgButtons() << mbYes << mbNo << mbCancel, "Object not found. Do you want to select it from library?");
-                else
-                    mr = mrNone;
-
-                LPCSTR new_val = 0;
-                if ( (mr==mrNone||mr==mrYes) && TfrmChoseItem::SelectItem(smObject,new_val,1))
-                {
-                    bRes = SetReference(new_val);
-                    if(bRes)
-                        Scene->RegisterSubstObjectName(ref_name.c_str(), new_val);
-                }
-                else if (mrCancel==mr)
-                {
-                    Scene->CancelLoading();
-                    break;
-                }
-            }
-
-            Scene->Modified();
-        }
+            bRes = LoadMissingReference(this, ref_name.c_str());
 //        if(!CheckVersion())
 //            ELog.Msg( mtError, "CSceneObject: '%s' different file version!", ref_name.c_str() );
 
@@ -123,51 +124,7 @@ bool CSceneObject::LoadStream(IReader& F)
         F.r_stringZ	(buf,sizeof(buf));
 
         if (!SetReference(buf))
-        {
-            ELog.Msg            ( mtError, "CSceneObject: '%s' not found in library", buf );
-            bRes                = false;
-            int mr              = mrNone;
-
-            xr_string       _new_name;
-            bool b_found    = Scene->GetSubstObjectName(buf, _new_name);
-            if(b_found)
-            {
-                xr_string _message;
-                _message = "Object ["+xr_string(buf)+"] not found. Relace it with ["+_new_name+"] or select other from library?";
-                mr = ELog.DlgMsg(mtConfirmation,TMsgDlgButtons() << mbYes << mbNo << mbCancel, _message.c_str());
-                if(mrYes==mr)
-                {
-                    bRes = SetReference(_new_name.c_str());
-                }
-                else if (mrCancel==mr)
-                {
-                    Scene->CancelLoading();
-                    break;
-                }
-            }
-            if(!bRes)
-            {
-                if(mr == mrNone)
-                    mr = ELog.DlgMsg(mtConfirmation,TMsgDlgButtons() << mbYes << mbNo << mbCancel, "Object not found. Do you want to select it from library?");
-                else
-                    mr = mrNone;
-
-                LPCSTR new_val = 0;
-                if ( (mr==mrNone||mr==mrYes) && TfrmChoseItem::SelectItem(smObject,new_val,1))
-                {
-                    bRes = SetReference(new_val);
-                    if(bRes)
-                        Scene->RegisterSubstObjectName(buf, new_val);
-                }
-                else if (mrCancel==mr)
-                {
-                    Scene->CancelLoading();
-                    break;
-                }
-            }
-
-            Scene->Modified();
-        }
+            bRes = LoadMissingReference(this, buf);
 //        if(!CheckVersion()){
 //            ELog.Msg( mtError, "CSceneObject: '%s' different file version!", buf );
 //            }

@@ -21,6 +21,7 @@ class EParticlesObject: public CCustomObject
 
 	void __stdcall  	OnRefChange			(PropValue* V);
 	void __stdcall  	OnControlClick		(ButtonValue* sender, bool& bModif, bool& bSafe);
+	bool				LoadMissingReference();
 public:
 	                	EParticlesObject   	(LPVOID data, LPCSTR name);
     void            	Construct   		(LPVOID data);
