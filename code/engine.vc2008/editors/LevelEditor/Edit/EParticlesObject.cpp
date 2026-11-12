@@ -8,6 +8,7 @@
 #include "../ECORE/Editor/D3DUtils.h"
 #include "..\..\Layers\xrRender\PSLibrary.h"
 #include "../ECore/Editor/ui_main.h"
+#include "scene.h"
 
 #define CPSOBJECT_VERSION  				0x0013
 //----------------------------------------------------
@@ -165,11 +166,28 @@ bool EParticlesObject::LoadLTX(CInifile& ini, LPCSTR sect_name)
 
     m_RefName		= ini.r_string(sect_name, "ref_name");
     if (!Compile(*m_RefName))
-    {
-        ELog.DlgMsg( mtError, "EParticlesObject: '%s' not found in library", *m_RefName );
-        return false;
-    }
+    	return LoadMissingReference();
+
     return true;
+}
+
+bool EParticlesObject::LoadMissingReference()
+{
+    int mr			= MissingObjectDlg("Particle system", m_RefName.c_str(),
+                                   "choose a replacement particle system.",
+                                   "load the level without this object.");
+    if (mrYes!=mr)
+    	return false;
+
+    LPCSTR new_val	= 0;
+    if (TfrmChoseItem::SelectItem(smParticles,new_val,1))
+    {
+        m_RefName	= new_val;
+        if (Compile(*m_RefName))
+        	return true;
+    }
+
+    return false;
 }
 
 void EParticlesObject::SaveLTX(CInifile& ini, LPCSTR sect_name)
@@ -207,10 +225,7 @@ bool EParticlesObject::LoadStream(IReader& F)
     }
 
     if (!Compile(*m_RefName))
-    {
-        ELog.DlgMsg( mtError, "EParticlesObject: '%s' not found in library", *m_RefName );
-        return false;
-    }
+    	return LoadMissingReference();
 
     return true;
 }

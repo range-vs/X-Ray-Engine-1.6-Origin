@@ -7,6 +7,24 @@
 #include "../../ecore/editor/D3DUtils.h"
 #include "../ECore/Editor/ui_main.h"
 #include "IGame_Persistent.h"
+#include "scene.h"
+
+static bool SoundFileExist(LPCSTR name)
+{
+	if (!name||!name[0])	return false;
+
+	string_path		nm, fn;
+    xr_strcpy		(nm,name);
+    if (strext(nm))	*strext(nm)	= 0;
+    strconcat		(sizeof(fn),fn,nm,".ogg");
+
+	if (FS.exist("$level$",fn))	return true;
+
+    string_path		full;
+    FS.update_path	(full,"$game_sounds$",fn);
+
+    return			(0!=FS.exist(full));
+}
 //----------------------------------------------------
 
 #define VIS_RADIUS 0.25f
@@ -144,6 +162,9 @@ bool ESoundSource::LoadLTX(CInifile& ini, LPCSTR sect_name)
 
     ResetSource		();
 
+    if (Scene->LoadingCanceled())
+    	return false;
+
     switch (m_Type)
     {
     case stStaticSource:
@@ -240,6 +261,9 @@ bool ESoundSource::LoadStream(IReader& F)
 	}
     
     ResetSource		();
+
+    if (Scene->LoadingCanceled())
+    	return false;
 
     switch (m_Type){
     case stStaticSource: 
@@ -415,6 +439,15 @@ void ESoundSource::ResetSource()
 {
 	m_Source.destroy();
 	if (m_WAVName.size()){
+    	if (!SoundFileExist(m_WAVName.c_str()))
+        {
+            int mr			= MissingObjectDlg("Sound", m_WAVName.c_str(),
+                                           "choose a replacement sound.",
+                                           "keep the name (a silent stub will be used).");
+            LPCSTR _new_val	= 0;
+            if (mrYes==mr && TfrmChoseItem::SelectItem(smSoundSource,_new_val,1))
+            	m_WAVName	= _new_val;
+        }
     	m_Source.create		(*m_WAVName,st_Effect,sg_Undefined);
         CSoundRender_Source* src= (CSoundRender_Source*)m_Source._handle();
         m_Params.min_distance	= src->m_fMinDist;

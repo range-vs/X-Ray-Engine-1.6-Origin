@@ -130,17 +130,17 @@ void CSpawnPoint::CLE_Visual::OnChangeVisual	()
 
         if(NULL==visual && !g_tmp_lock)
         {
-         xr_string _msg = "Model [" + xr_string(source->visual_name.c_str())+"] not found. Do you want to select it from library?";
-              int mr = ELog.DlgMsg(mtConfirmation,TMsgDlgButtons() << mbYes << mbNo, _msg.c_str());
-              LPCSTR _new_val = 0;
-              g_tmp_lock = true;
-              if (mr==mrYes && TfrmChoseItem::SelectItem(smVisual,_new_val, 1) )
-              {
-                  source->visual_name  =  _new_val;
-                  visual = ::Render->model_Create(source->visual_name.c_str());
-              }
-              g_tmp_lock = false;
-
+            int mr			= MissingObjectDlg("Model", source->visual_name.c_str(),
+                                           "choose a replacement model.",
+                                           "leave this spawn point without model.");
+            LPCSTR _new_val	= 0;
+            g_tmp_lock		= true;
+            if (mrYes==mr && TfrmChoseItem::SelectItem(smVisual,_new_val, 1) )
+            {
+                source->visual_name  =  _new_val;
+                visual = ::Render->model_Create(source->visual_name.c_str());
+            }
+            g_tmp_lock		= false;
         }
     }
     PlayAnimationFirstFrame	();
@@ -270,13 +270,38 @@ CSpawnPoint::CLE_Motion::CLE_Motion	(CSE_Motion* src)
 CSpawnPoint::CLE_Motion::~CLE_Motion()
 {
 }
+static bool MotionFileExist(LPCSTR name)
+{
+	if (!name||!name[0])					return false;
+
+	string_path	fn;
+    if (FS.exist(fn,"$level$",name))		return true;
+    if (FS.exist(fn,"$game_anims$",name))	return true;
+
+    return false;
+}
+
 void __stdcall	CSpawnPoint::CLE_Motion::OnChangeMotion	()
 {
 	xr_delete					(animator);
-    if (source->motion_name.size()){
-        animator				= xr_new<CObjectAnimator>();
-        animator->Load			(*source->motion_name);
-        PlayMotion				();
+    if (source->motion_name.size())
+    {
+    	if (!MotionFileExist(*source->motion_name))
+        {
+            int mr			= MissingObjectDlg("Motion", source->motion_name.c_str(),
+                                           "choose a replacement motion.",
+                                           "leave this spawn point without motion.");
+            LPCSTR _new_val	= 0;
+            if (mrYes==mr && TfrmChoseItem::SelectItem(smGameAnim,_new_val, 1) )
+                source->motion_name	= _new_val;
+        }
+
+    	if (MotionFileExist(*source->motion_name))
+        {
+            animator			= xr_new<CObjectAnimator>();
+            animator->Load		(*source->motion_name);
+            PlayMotion			();
+        }
     }
 	ExecCommand					(COMMAND_UPDATE_PROPERTIES);
 }
@@ -1111,6 +1136,9 @@ bool CSpawnPoint::LoadLTX(CInifile& ini, LPCSTR sect_name)
     if(ini.line_exist(sect_name, "attached_count"))
 	    Scene->ReadObjectsLTX(ini, sect_name, "attached",OnAppendObject,0);
 
+    if (Scene->LoadingCanceled())
+    	return false;
+
 	UpdateTransform	();
 
 	// BUG fix
@@ -1230,6 +1258,9 @@ bool CSpawnPoint::LoadStream(IReader& F)
 
 	// objects
     Scene->ReadObjectsStream(F,SPAWNPOINT_CHUNK_ATTACHED_OBJ,OnAppendObject,0);
+
+    if (Scene->LoadingCanceled())
+    	return false;
 
 	UpdateTransform	();
 

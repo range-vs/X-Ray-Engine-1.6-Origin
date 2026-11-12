@@ -616,6 +616,14 @@ void EScene::SaveObjectsStream( ObjectList& lst, u32 chunk_id, IWriter& F )
 }
 //--------------------------------------------------------------------------------------------------
 
+struct SSceneLoadingGuard
+{
+	EScene*		scene;
+				SSceneLoadingGuard	(EScene* s):scene(s)	{scene->BeginLoading();}
+				~SSceneLoadingGuard	()						{scene->EndLoading();}
+};
+//--------------------------------------------------------------------------------------------------
+
 bool EScene::ReadObjectStream(IReader& F, CCustomObject*& O)
 {
     ObjClassID clsid		=OBJCLASS_DUMMY;
@@ -706,7 +714,10 @@ bool EScene::ReadObjectsLTX(CInifile& ini,  LPCSTR sect_name_parent, LPCSTR sect
                 xr_delete(obj);}
         
         else if (LoadingCanceled())
+        {
             bRes = false;
+            break;
+        }
 
         if (pb)
 			pb->Inc();
@@ -767,7 +778,11 @@ bool EScene::ReadObjectsStream(IReader& F, u32 chunk_id, TAppendObject on_append
             	if (obj && !on_append(obj))
                 	xr_delete(obj);}
             else if (LoadingCanceled())
-            bRes = false;
+            {
+            	bRes = false;
+                O->close	();
+                break;
+            }
 
             O->close	();
             O 			= OBJ->open_chunk(count);
@@ -791,6 +806,8 @@ bool EScene::LoadLTX(LPCSTR map_name, bool bUndo)
 {
     DWORD version = 0;
 	if (!map_name||(0==map_name[0])) return false;
+
+    SSceneLoadingGuard	_loading(this);
 
     xr_string 		full_name;
     full_name 		= map_name;
@@ -827,6 +844,7 @@ bool EScene::LoadLTX(LPCSTR map_name, bool bUndo)
 
 
         ResetLoadingCancel();
+        ResetMissingObjects();
         bool bRes               = true;
         SceneToolsMapPairIt _I = m_SceneTools.begin();
         SceneToolsMapPairIt _E 	= m_SceneTools.end();
@@ -878,6 +896,14 @@ bool EScene::LoadLTX(LPCSTR map_name, bool bUndo)
         SynchronizeObjects();
         EndSynchronize();
 
+        DumpMissingObjects();
+
+        if (LoadingCanceled())
+        {
+            UI->UpdateScene(true);
+            return false;
+        }
+
 	    if (!bUndo)
         	m_RTFlags.set(flRT_Unsaved|flRT_Modified,FALSE);
         
@@ -894,6 +920,8 @@ bool EScene::Load(LPCSTR map_name, bool bUndo)
     u32 version = 0;
 
 	if (!map_name||(0==map_name[0])) return false;
+
+    SSceneLoadingGuard	_loading(this);
 
     xr_string 		full_name;
     full_name 		= map_name;
@@ -958,6 +986,7 @@ bool EScene::Load(LPCSTR map_name, bool bUndo)
 
         SPBItem* pb 		= UI->ProgressStart(obj_cnt,"Loading objects...");
         ResetLoadingCancel();
+        ResetMissingObjects();
         bool bRes           = ReadObjectsStream(*F,CHUNK_OBJECT_LIST,OnLoadAppendObject,pb);
         UI->ProgressEnd		(pb);
 
@@ -1028,6 +1057,14 @@ bool EScene::Load(LPCSTR map_name, bool bUndo)
         BeginSynchronize();
         SynchronizeObjects();
         EndSynchronize();
+
+        DumpMissingObjects();
+
+        if (LoadingCanceled())
+        {
+            UI->UpdateScene(true);
+            return false;
+        }
 
 	    if (!bUndo)
         	m_RTFlags.set(flRT_Unsaved|flRT_Modified,FALSE);
@@ -1100,6 +1137,8 @@ bool EScene::LoadSelection( LPCSTR fname )
 
 	VERIFY( fname );
 
+    SSceneLoadingGuard	_loading(this);
+
     xr_string 		full_name;
     full_name 		= fname;
 
@@ -1122,6 +1161,8 @@ bool EScene::LoadSelection( LPCSTR fname )
         }
 
         // Objects
+        ResetLoadingCancel();
+        ResetMissingObjects();
         if (!ReadObjectsStream(*F,CHUNK_OBJECT_LIST,OnLoadSelectionAppendObject,0))
         {
             ELog.DlgMsg(mtError,"EScene. Failed to load selection.");
@@ -1141,6 +1182,7 @@ bool EScene::LoadSelection( LPCSTR fname )
         // Synchronize
 		SynchronizeObjects();
 		FS.r_close(F);
+        DumpMissingObjects();
     }
 	return res;
 }

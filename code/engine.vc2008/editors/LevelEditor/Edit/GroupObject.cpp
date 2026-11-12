@@ -159,7 +159,14 @@ bool CGroupObject::LoadLTX(CInifile& ini, LPCSTR sect_name)
     {
 	    Scene->ReadObjectsLTX			(ini, sect_name, "ingroup", AppendObjectLoadCB, 0);
     }
-    VERIFY(m_ObjectsInGroup.size());
+    if (Scene->LoadingCanceled())
+        return		false;
+
+    if (m_ObjectsInGroup.empty())
+    {
+        ELog.Msg	(mtError,"CGroupObject: '%s' - all objects in group are missing. Group skipped.", Name);
+        return		false;
+    }
 
    	SetRefName(ini.r_string	(sect_name, "ref_name")) ;
 	if (!m_ReferenceName_.size())
@@ -233,7 +240,14 @@ bool CGroupObject::LoadStream(IReader& F)
     {
 	    Scene->ReadObjectsStream(F,GROUPOBJ_CHUNK_OBJECT_LIST,AppendObjectLoadCB,0);
     }
-    VERIFY(m_ObjectsInGroup.size());
+    if (Scene->LoadingCanceled())
+        return		false;
+
+    if (m_ObjectsInGroup.empty())
+    {
+        ELog.Msg	(mtError,"CGroupObject: '%s' - all objects in group are missing. Group skipped.", Name);
+        return		false;
+    }
 
     if (F.find_chunk(GROUPOBJ_CHUNK_REFERENCE))	
     {

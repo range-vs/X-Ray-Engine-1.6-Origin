@@ -660,3 +660,99 @@ bool EScene::GetSubstObjectName(const xr_string& _from, xr_string& _to) const
 
     return (It!=It_e);
 }
+
+void EScene::ResetMissingObjects()
+{
+    m_RTFlags.set			(flRT_SkipMissingObjects, FALSE);
+    m_missing_refs.clear	();
+}
+
+void EScene::RegisterMissingObject(const xr_string& _ref_name)
+{
+    TMissingRefs_cit It		= m_missing_refs.begin();
+    TMissingRefs_cit It_e	= m_missing_refs.end();
+    for(;It!=It_e;++It)
+        if(*It==_ref_name)
+            return;
+
+    m_missing_refs.push_back(_ref_name);
+}
+
+void EScene::DumpMissingObjects()
+{
+    if(m_missing_refs.empty())
+        return;
+
+    Modified();
+
+    Msg("!---------------------------------------------");
+    Msg("! EScene: %d missing resource(s), skipped or replaced:", u32(m_missing_refs.size()));
+
+    TMissingRefs_cit It		= m_missing_refs.begin();
+    TMissingRefs_cit It_e	= m_missing_refs.end();
+    for(;It!=It_e;++It)
+        Msg("!   %s", It->c_str());
+
+    Msg("!---------------------------------------------");
+}
+
+bool MissingObjectSkipped(LPCSTR what, LPCSTR name)
+{
+    string512		_item;
+    sprintf			(_item, "%s: %s", what, name);
+
+    ELog.Msg						(mtError, "%s [%s] not found.", what, name);
+    Scene->RegisterMissingObject	(_item);
+
+    return Scene->SkipMissingObjects()||Scene->LoadingCanceled();
+}
+
+LPCSTR MissingObjectCloseHint()
+{
+    return Scene->Loading() ? "\nClose this window - cancel loading and clear the scene." : "";
+}
+
+int MissingObjectDlgEx(LPCSTR cap_yes, LPCSTR cap_no, LPCSTR msg)
+{
+    ExecCommand		(COMMAND_RENDER_FOCUS);
+
+    UnicodeString	captions[3];
+    captions[0]		= UnicodeString(cap_yes);		// mbYes
+    captions[1]		= UnicodeString(cap_no);		// mbNo
+    captions[2]		= UnicodeString("Skip All");	// mbOK
+
+    int res			= MessageDlg(msg, mtConfirmation, TMsgDlgButtons() << mbYes << mbNo << mbOK, 0, mbYes, captions, 2);
+
+    if (mrOk==res)
+    {
+        Scene->SkipAllMissingObjects();
+        ELog.Msg					(mtInformation, "EScene: all missing objects will be skipped.");
+    }else
+    if ((mrYes!=res)&&(mrNo!=res))
+    {	// window closed (X or Esc)
+        if (Scene->Loading())
+        {	// cancel loading
+            res		= mrCancel;
+            Scene->CancelLoading	();
+            ELog.Msg				(mtInformation, "EScene: loading canceled.");
+        }else
+        	res		= mrNo;	// nothing to cancel - just skip
+    }
+
+    return res;
+}
+
+int MissingObjectDlg(LPCSTR what, LPCSTR name, LPCSTR hint_select, LPCSTR hint_skip)
+{
+    if (MissingObjectSkipped(what,name))
+    	return mrNo;
+
+    string1024		_msg;
+    sprintf			(_msg,	"%s [%s] not found.\n\n"
+                            "'Select...' - %s\n"
+                            "'Skip' - %s\n"
+                            "'Skip All' - skip all missing objects (see log for their names).%s",
+                            what, name, hint_select, hint_skip, MissingObjectCloseHint());
+
+    return MissingObjectDlgEx("Select...", "Skip", _msg);
+}

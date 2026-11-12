@@ -7,6 +7,23 @@
 #include "ELight.h"
 #include "LightAnimLibrary.h"
 #include "escenelighttools.h"
+#include "scene.h"
+
+static bool LoadMissingLightAnim(CLAItem*& anim_ref, LPCSTR anm)
+{
+	if (!anm||!anm[0])	return true;
+
+    int mr			= MissingObjectDlg("Light animation", anm,
+                                   "choose a replacement animation.",
+                                   "load this light without animation.");
+    if (mrCancel==mr)	return false;
+
+    LPCSTR new_val	= 0;
+    if (mrYes==mr && TfrmChoseItem::SelectItem(smLAnim,new_val,1))
+    	anim_ref	= LALib.FindItem(new_val);
+
+    return true;
+}
 
 static const u32 LIGHT_VERSION   			= 0x0011;
 //----------------------------------------------------
@@ -107,8 +124,8 @@ bool CLight::LoadLTX(CInifile& ini, LPCSTR sect_name)
     if(anm)
     {
         m_pAnimRef	= LALib.FindItem(anm);
-        if (!m_pAnimRef)
-        	ELog.Msg(mtError, "Can't find light animation: %s",anm);
+        if (!m_pAnimRef&&!LoadMissingLightAnim(m_pAnimRef,anm))
+        	return false;
     }
 
    	m_FalloffTex	= ini.r_string	(sect_name, "fallof_texture");
@@ -214,7 +231,8 @@ bool CLight::LoadStream(IReader& F)
     {
     	F.r_stringZ(buf,sizeof(buf));
         m_pAnimRef	= LALib.FindItem(buf);
-        if (!m_pAnimRef) ELog.Msg(mtError, "Can't find light animation: %s",buf);
+        if (!m_pAnimRef&&!LoadMissingLightAnim(m_pAnimRef,buf))
+        	return false;
     }
 
     if (F.find_chunk(LIGHT_CHUNK_FALLOFF_TEXTURE))
